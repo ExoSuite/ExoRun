@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
+import {observable} from 'mobx'
 import {Container} from "./components";
 
 export class ExoRun extends React.Component {

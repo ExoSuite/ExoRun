@@ -7,6 +7,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "@babel/plugin-proposal-decorators": "^7.1.0",
+    "@babel/runtime": "^7.0.0",
+    "mobx": "^5.1.2",
+    "mobx-react": "^5.2.8",
     "react": "16.5.0",
     "react-native": "0.57.1"
   },
