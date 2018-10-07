@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
-import {View, StyleSheet, StatusBar, Text, Button, TouchableOpacity, TouchableHighlight} from "react-native";
+import React from 'react'
+import {View, StyleSheet,  Text, Button, TouchableOpacity} from "react-native";
 import RNCamera from 'react-native-camera'
 import ActionButton from 'react-native-action-button';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/Ionicons';
 // @ts-ignore
 import Expand from 'react-native-simple-expand';
-import Modal from "react-native-modal";
+//import Modal from "react-native-modal";
 // @ts-ignore
 import {RkAvoidKeyboard, RkButton, RkStyleSheet, RkText, RkTextInput, RkTheme} from 'react-native-ui-kitten';
 import geolib from 'geolib'
@@ -30,24 +30,16 @@ interface Track {
     checkpoints:Checkpoint[]
 }
 
-interface Location {
-    coords:Checkpoint
-}
-
 export class ExoRun extends React.Component {
-    static navigationOptions = {
-        header: null
-    };
     interval:number = 0;
     intervalchrono:number = 0;
-    currentLatitude:number = 0;
-    currentLongitude:number = 0;
-    currentAltitude:number = 0;
+    currentLatitude:any = 0;
+    currentLongitude:any = 0;
+    currentAltitude:any = 0;
     locationError:string = "";
     distance:number = 30000;
     laps:number[] = [];
     checkpoints:Checkpoint[] = [];
-    runnerPosition:Checkpoint[] = [];
     currentCheckpoint = 0;
     registeredTracks:Track[] = [{
         id: 1,
@@ -67,7 +59,6 @@ export class ExoRun extends React.Component {
         }];
     currentTrackName:string = "";
     currentTrackDescription:string = "";
-    elapsed = 0;
     state = {
         screen: screens.MAIN,
         openid: 0,
@@ -86,10 +77,10 @@ export class ExoRun extends React.Component {
 
     /**** MAIN SCREEN ****/
 
-    switchToMain() {
+    /*switchToMain() {
         this.setState({screen: screens.MAIN});
     }
-
+*/
     /**** CREATE LAP SCREEN ****/
 
     _toggleModal() {
@@ -106,8 +97,8 @@ export class ExoRun extends React.Component {
 
     _deleteCheckpoint() {
 
-        var array = this.checkpoints;
-        var index = this.checkpoints.length - 1;
+        let array = this.checkpoints;
+        let index = this.checkpoints.length - 1;
         if (index >= 0) {
             array.splice(index, 1);
             this.checkpoints = array;
@@ -121,7 +112,7 @@ export class ExoRun extends React.Component {
             this.currentTrackDescription = "";
         }
     }
-
+/*
     saveTrack() {
         if (this.currentTrackName === null
             || this.currentTrackName === "")
@@ -140,14 +131,14 @@ export class ExoRun extends React.Component {
         this.currentTrackName = "";
         this.currentTrackDescription = "";
         this._toggleModal();
-    }
+    }*/
 
+    @autobind
     switchToCreate() {
         this.setState({screen: screens.CREATE, openid: 0});
     }
 
 
-    @autobind
     showCreationTracks() {
         return <ActionButton buttonColor='#09d819' position="left">
             <ActionButton.Item buttonColor='#ff8c00' title="Créer checkpoint"
@@ -243,7 +234,7 @@ export class ExoRun extends React.Component {
 
     /**** CHOOSE TRACKS SCREEN ****/
     @autobind
-    generate(key) {
+    generate(key:any) {
 
         if (!key)
             return ;
@@ -283,7 +274,7 @@ export class ExoRun extends React.Component {
     }
 
     debug_screen() {
-        this.setState({});
+
         return <View>
             {(this.state.screen === screens.MAIN) ? <Text style={styles.baseText}>MAIN SCREEN</Text> :
                 (this.state.screen === screens.RUN) ? <Text style={styles.baseText}>RUN SCREEN</Text> :
@@ -303,32 +294,32 @@ export class ExoRun extends React.Component {
                 this.currentLatitude =  position.coords.latitude;
                 this.currentLongitude =  position.coords.longitude;
                 this.currentAltitude =  position.coords.altitude ? position.coords.altitude : 0;
+                if (this.state.screen === screens.RUN) {
+                    if (this.currentCheckpoint < this.checkpoints.length)
+                    {
+                        this.distance = geolib.getDistance(
+                            {
+                                latitude: this.currentLatitude,
+                                longitude: this.currentLongitude
+                            },
+                            {
+                                latitude: this.checkpoints[this.currentCheckpoint].latitude,
+                                longitude: this.checkpoints[this.currentCheckpoint].longitude
+                            });
+                    }
+                }
+                this.setState({});
             },
             (error) => this.locationError = error.message,
             {enableHighAccuracy: false, timeout: 5000, maximumAge: 0},
         );
-        if (this.state.screen === screens.RUN) {
-            if (this.currentCheckpoint < this.checkpoints.length)
-            {
-                var prevDistance = this.distance;
-                this.distance = geolib.getDistance(
-                    {
-                        latitude: this.currentLatitude,
-                        longitude: this.currentLongitude
-                    },
-                    {
-                        latitude: this.checkpoints[this.currentCheckpoint].latitude,
-                        longitude: this.checkpoints[this.currentCheckpoint].longitude
-                    });
-                if (this.distance <= prevDistance - 1 || this.distance >= prevDistance + 1)
-                    this.setState({});
-            }
 
-        }
     };
 
     componentDidMount() {
         this.interval = setInterval(() => {
+
+            // noinspection JSIgnoredPromiseFromCall
             this.updateLoc();
         }, 100);
 
@@ -344,9 +335,7 @@ export class ExoRun extends React.Component {
         return (
             <View style={{flex: 1}}>
                 <RNCamera
-                    ref={(cam) => {
-                        this.camera = cam;
-                    }}
+
                     style={{...StyleSheet.absoluteFillObject}}>
                 </RNCamera>
                 <ActionButton buttonColor='#09d819'>
@@ -355,15 +344,16 @@ export class ExoRun extends React.Component {
                         <Icon name="md-archive" style={styles.actionButtonIcon}/>
                     </ActionButton.Item>
                     <ActionButton.Item buttonColor='#3498db' title="Nouveau parcours"
-                                       onPress={this._switchToCreate}>
+                                       onPress={this.switchToCreate}>
                         <Icon name="md-add-circle" style={styles.actionButtonIcon}/>
                     </ActionButton.Item>
                 </ActionButton>
 
                 {(this.state.screen === screens.TRACKLIST) ? this.showRegisteredTracks() :
-                 (this.state.screen === screens.RUN) ? this.showRunTracks(): null}
+                    (this.state.screen === screens.RUN) ? this.showRunTracks():
+                        (this.state.screen === screens.CREATE) ? this.showCreationTracks(): null   }
 
-                 {this.debug_screen()}
+                {this.debug_screen()}
 
 
             </View>
