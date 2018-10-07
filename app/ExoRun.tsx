@@ -6,7 +6,7 @@ import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 // @ts-ignore
 import Expand from 'react-native-simple-expand';
-//import Modal from "react-native-modal";
+import Modal from "react-native-modal";
 // @ts-ignore
 import {RkAvoidKeyboard, RkButton, RkStyleSheet, RkText, RkTextInput, RkTheme} from 'react-native-ui-kitten';
 import geolib from 'geolib'
@@ -43,8 +43,8 @@ export class ExoRun extends React.Component {
     currentCheckpoint = 0;
     registeredTracks:Track[] = [{
         id: 1,
-        name: "Example",
-        description: "3 checkpoint(s)",
+        name: "Nexus run",
+        description: "3 checkpoint(s) - Nice (France)",
         checkpoints: [  {latitude: 43.6957831, longitude: 7.2699759, altitude: 56.70000076293945},
             {latitude: 43.6958452, longitude: 7.2701865, altitude: 56.70000076293945},
             {latitude: 43.6957831, longitude: 7.2699759, altitude: 56.70000076293945}
@@ -52,10 +52,18 @@ export class ExoRun extends React.Component {
     },
         {
             id: 2,
-            name: "Example2",
-            description: "2 checkpoint(s)",
+            name: "Nexus sprint",
+            description: "2 checkpoint(s) - Nice (France",
             checkpoints: [{latitude: 43.6958452, longitude: 7.2701865, altitude: 56.70000076293945},
                 {latitude: 43.6958452, longitude: 7.2701865, altitude: 56.70000076293945}]
+        },
+        {
+            id: 3,
+            name: "Laval run",
+            description: "3 checkpoint(s) - Québec (Canada",
+            checkpoints: [{latitude: 46.7889443, longitude: -71.2774904, altitude: 56.70000076293945},
+                {latitude: 46.7890845, longitude: -71.2776021, altitude: 56.70000076293945},
+                {latitude: 46.788935, longitude: -71.2775159, altitude: 56.70000076293945}]
         }];
     currentTrackName:string = "";
     currentTrackDescription:string = "";
@@ -83,55 +91,62 @@ export class ExoRun extends React.Component {
 */
     /**** CREATE LAP SCREEN ****/
 
+    @autobind
     _toggleModal() {
         this.setState({isModalVisible: !this.state.isModalVisible});
     }
 
+    @autobind
     _createCheckpoint() {
         this.checkpoints.push({
             latitude: this.currentLatitude,
             longitude: this.currentLongitude,
             altitude: this.currentAltitude
         });
+        this.setState({});
     }
 
+    @autobind
     _deleteCheckpoint() {
-
         let array = this.checkpoints;
         let index = this.checkpoints.length - 1;
         if (index >= 0) {
             array.splice(index, 1);
             this.checkpoints = array;
         }
+        this.setState({});
     }
 
+    @autobind
     _confirmSaveTrack() {
         if (this.checkpoints.length > 0) {
             this._toggleModal();
             this.currentTrackName = "";
             this.currentTrackDescription = "";
         }
-    }
-/*
-    saveTrack() {
-        if (this.currentTrackName === null
-            || this.currentTrackName === "")
-            this.currentTrackName =  "No Name";
-        if (this.currentTrackDescription === null
-            || this.currentTrackDescription === "")
-            this.currentTrackDescription = "No Desc";
-        this.registeredTracks.push({
-            id: this.registeredTracks.length + 1,
-            name: this.currentTrackName,
-            description : this.currentTrackDescription,
-            checkpoints: this.checkpoints,
-        });
+        this.setState({});
 
-        this.checkpoints = [];
-        this.currentTrackName = "";
-        this.currentTrackDescription = "";
-        this._toggleModal();
-    }*/
+    }
+    @autobind
+        saveTrack() {
+            if (this.currentTrackName === null
+                || this.currentTrackName === "")
+                this.currentTrackName =  "No Name";
+            if (this.currentTrackDescription === null
+                || this.currentTrackDescription === "")
+                this.currentTrackDescription = "No Desc";
+            this.registeredTracks.push({
+                id: this.registeredTracks.length + 1,
+                name: this.currentTrackName,
+                description : this.currentTrackDescription,
+                checkpoints: this.checkpoints,
+            });
+
+            this.checkpoints = [];
+            this.currentTrackName = "";
+            this.currentTrackDescription = "";
+            this._toggleModal();
+        }
 
     @autobind
     switchToCreate() {
@@ -160,8 +175,8 @@ export class ExoRun extends React.Component {
     createLaps() {
         return this.laps.map((time, idx) => (
             <View key={idx}>
-                <Text style={styles.baseText}>
-                    Lap #{idx + 1}
+                <Text style={styles.checkpoints}>
+                    Lap #{idx + 1} : {time / 1000} s
                 </Text>
             </View>
         ));
@@ -169,6 +184,7 @@ export class ExoRun extends React.Component {
 
     /**** RUN SCREEN ****/
 
+    @autobind
     _onLapPress() {
         this.laps.push(this.state.timeElasped);
         this.currentCheckpoint = this.currentCheckpoint + 1;
@@ -182,11 +198,15 @@ export class ExoRun extends React.Component {
         }
     }
 
+    @autobind
     _onStartPress() {
         // check if clock is running, then stop
         this.setState({
             startTime: new Date(),
         });
+
+        this.currentCheckpoint = 1;
+        this.distance = 30000;
 
         this.intervalchrono = setInterval(() => {
             this.setState({
@@ -198,29 +218,39 @@ export class ExoRun extends React.Component {
     }
 
     distanceToCheckpoint() {
-        if (this.distance != null && this.distance <= 10 && this.currentCheckpoint === 0) {
-            this.setState({
-                stopwatch:
-                    <View>
-                        <Text style={styles.baseText}>{(this.state.timeElasped)}</Text>*/
-                        <Button title="go" onPress={this._onStartPress}/>
-                        <Button title="Lap" onPress={this._onLapPress}/>
-                    </View>});
-            this.currentCheckpoint = 1;
+        if (this.distance != null && this.currentCheckpoint === 0) {
+            if (this.distance <= 10) {
+                return <View>
+                    <Button title="go" onPress={this._onStartPress}/>
+                    <Text style={styles.checkpoints}>{this.state.timeElasped / 1000} s</Text>
+                    <Text style={styles.checkpoints}>{this.distance < 2000 ? this.distance + " m" : "SEARCHING"}</Text>
+                </View>
+            }
+            else {
+                return <View>
+                    <Text style={styles.checkpoints}>{this.state.timeElasped / 1000} s</Text>
+                    <Text style={styles.checkpoints}>{this.distance < 2000 ? this.distance + " m": "SEARCHING"}</Text>
+                </View>
+            }
         }
-        return <View>
-            <Text style={styles.baseText}>{this.distance} m</Text>
-        </View>
-    }
+        if (this.distance != null && this.currentCheckpoint > 0) {
+            if (this.distance <= 10) {
+                this._onLapPress()
+                this.distance = 30000;
+            }
+                return <View>
+
+                    <Text style={styles.checkpoints}>{this.state.timeElasped / 1000} s</Text>
+                    <Text style={styles.checkpoints}>{this.distance < 2000 ? this.distance + " m" : "SEARCHING"}</Text>
+                </View>
+            }
+        }
 
     showRunTracks() {
-        if (this.state.timerRunning === true && this.distance <= 5 && this.currentCheckpoint < this.checkpoints.length)
-            this._onLapPress();
         return <View>
             <Text style={styles.upTitle}> {this.currentCheckpoint} / {this.checkpoints.length} CP</Text>
-            {this.state.stopwatch ? this.state.stopwatch : null}
-            {this.createLaps()}
             {this.currentCheckpoint < this.checkpoints.length ? this.distanceToCheckpoint() : null}
+            {this.createLaps()}
         </View>
     }
 
@@ -311,7 +341,7 @@ export class ExoRun extends React.Component {
                 this.setState({});
             },
             (error) => this.locationError = error.message,
-            {enableHighAccuracy: false, timeout: 5000, maximumAge: 0},
+            {enableHighAccuracy: false, timeout: 1500, maximumAge: 0},
         );
 
     };
@@ -348,6 +378,17 @@ export class ExoRun extends React.Component {
                         <Icon name="md-add-circle" style={styles.actionButtonIcon}/>
                     </ActionButton.Item>
                 </ActionButton>
+
+                <Modal isVisible={this.state.isModalVisible} animationType='slide' presentationStyle='overFullScreen'>
+                    <View style={styles.modalContent}>
+                        <RkTextInput rkType='rounded' placeholder='Nom du parcours'
+                                     onChangeText={(text:any) => this.currentTrackName = text}/>
+                        <RkTextInput rkType='rounded' placeholder='Description'
+                                     onChangeText={(text:any) => this.currentTrackDescription =  text}/>
+                        <Button title="Sauvegarder" onPress={this.saveTrack}/>
+                        <Button title="Annuler" onPress={this._toggleModal}/>
+                    </View>
+                </Modal>
 
                 {(this.state.screen === screens.TRACKLIST) ? this.showRegisteredTracks() :
                     (this.state.screen === screens.RUN) ? this.showRunTracks():
@@ -425,6 +466,14 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
         flex: 1
+    },
+    modalContent: {
+        backgroundColor: "white",
+        padding: 22,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 4,
+        borderColor: "rgba(0, 0, 0, 0.1)"
     },
 });
 
