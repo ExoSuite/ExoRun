@@ -1,5 +1,6 @@
 import React from 'react'
-import {View, StyleSheet,  Text, Button, TouchableOpacity} from "react-native";
+import {View, StyleSheet, Text, Button, TouchableOpacity} from "react-native";
+// @ts-ignore
 import RNCamera from 'react-native-camera'
 import ActionButton from 'react-native-action-button';
 // @ts-ignore
@@ -18,34 +19,34 @@ export interface Props {
 }
 
 interface Checkpoint {
-    latitude:number,
-    longitude:number,
-    altitude:number
+    latitude: number,
+    longitude: number,
+    altitude: number
 }
 
 interface Track {
-    id:number,
-    name:string,
-    description:string,
-    checkpoints:Checkpoint[]
+    id: number,
+    name: string,
+    description: string,
+    checkpoints: Checkpoint[]
 }
 
-export class ExoRun extends React.Component {
-    interval:number = 0;
-    intervalchrono:number = 0;
-    currentLatitude:any = 0;
-    currentLongitude:any = 0;
-    currentAltitude:any = 0;
-    locationError:string = "";
-    distance:number = 30000;
-    laps:number[] = [];
-    checkpoints:Checkpoint[] = [];
+export default class ExoRun extends React.Component {
+    interval: number = 0;
+    intervalchrono: number = 0;
+    currentLatitude: any = 0;
+    currentLongitude: any = 0;
+    currentAltitude: any = 0;
+    locationError: string = "";
+    distance: number = 30000;
+    laps: number[] = [];
+    checkpoints: Checkpoint[] = [];
     currentCheckpoint = 0;
-    registeredTracks:Track[] = [{
+    registeredTracks: Track[] = [{
         id: 1,
         name: "Nexus run",
         description: "3 checkpoint(s) - Nice (France)",
-        checkpoints: [  {latitude: 43.6957831, longitude: 7.2699759, altitude: 56.70000076293945},
+        checkpoints: [{latitude: 43.6957831, longitude: 7.2699759, altitude: 56.70000076293945},
             {latitude: 43.6958452, longitude: 7.2701865, altitude: 56.70000076293945},
             {latitude: 43.6957831, longitude: 7.2699759, altitude: 56.70000076293945}
         ]
@@ -65,8 +66,8 @@ export class ExoRun extends React.Component {
                 {latitude: 46.7890845, longitude: -71.2776021, altitude: 56.70000076293945},
                 {latitude: 46.788935, longitude: -71.2775159, altitude: 56.70000076293945}]
         }];
-    currentTrackName:string = "";
-    currentTrackDescription:string = "";
+    currentTrackName: string = "";
+    currentTrackDescription: string = "";
     state = {
         screen: screens.MAIN,
         openid: 0,
@@ -127,26 +128,27 @@ export class ExoRun extends React.Component {
         this.setState({});
 
     }
-    @autobind
-        saveTrack() {
-            if (this.currentTrackName === null
-                || this.currentTrackName === "")
-                this.currentTrackName =  "No Name";
-            if (this.currentTrackDescription === null
-                || this.currentTrackDescription === "")
-                this.currentTrackDescription = "No Desc";
-            this.registeredTracks.push({
-                id: this.registeredTracks.length + 1,
-                name: this.currentTrackName,
-                description : this.currentTrackDescription,
-                checkpoints: this.checkpoints,
-            });
 
-            this.checkpoints = [];
-            this.currentTrackName = "";
-            this.currentTrackDescription = "";
-            this._toggleModal();
-        }
+    @autobind
+    saveTrack() {
+        if (this.currentTrackName === null
+            || this.currentTrackName === "")
+            this.currentTrackName = "No Name";
+        if (this.currentTrackDescription === null
+            || this.currentTrackDescription === "")
+            this.currentTrackDescription = "No Desc";
+        this.registeredTracks.push({
+            id: this.registeredTracks.length + 1,
+            name: this.currentTrackName,
+            description: this.currentTrackDescription,
+            checkpoints: this.checkpoints,
+        });
+
+        this.checkpoints = [];
+        this.currentTrackName = "";
+        this.currentTrackDescription = "";
+        this._toggleModal();
+    }
 
     @autobind
     switchToCreate() {
@@ -190,10 +192,12 @@ export class ExoRun extends React.Component {
         this.currentCheckpoint = this.currentCheckpoint + 1;
         this.distance = 5000;
         if (this.currentCheckpoint > this.checkpoints.length - 1) {
-            this.setState({stopwatch: null,
+            this.setState({
+                stopwatch: null,
                 timeElasped: null,
                 timerRunning: false,
-                startTime: null});
+                startTime: null
+            });
             clearInterval(this.intervalchrono);
         }
     }
@@ -229,7 +233,7 @@ export class ExoRun extends React.Component {
             else {
                 return <View>
                     <Text style={styles.checkpoints}>{this.state.timeElasped / 1000} s</Text>
-                    <Text style={styles.checkpoints}>{this.distance < 2000 ? this.distance + " m": "SEARCHING"}</Text>
+                    <Text style={styles.checkpoints}>{this.distance < 2000 ? this.distance + " m" : "SEARCHING"}</Text>
                 </View>
             }
         }
@@ -238,13 +242,13 @@ export class ExoRun extends React.Component {
                 this._onLapPress()
                 this.distance = 30000;
             }
-                return <View>
+            return <View>
 
-                    <Text style={styles.checkpoints}>{this.state.timeElasped / 1000} s</Text>
-                    <Text style={styles.checkpoints}>{this.distance < 2000 ? this.distance + " m" : "SEARCHING"}</Text>
-                </View>
-            }
+                <Text style={styles.checkpoints}>{this.state.timeElasped / 1000} s</Text>
+                <Text style={styles.checkpoints}>{this.distance < 2000 ? this.distance + " m" : "SEARCHING"}</Text>
+            </View>
         }
+    }
 
     showRunTracks() {
         return <View>
@@ -255,7 +259,7 @@ export class ExoRun extends React.Component {
     }
 
     @autobind
-    switchToRun(){
+    switchToRun() {
         this.setState({screen: screens.RUN});
         this.currentCheckpoint = 0;
         this.checkpoints = this.registeredTracks[this.state.openid - 1].checkpoints;
@@ -264,14 +268,14 @@ export class ExoRun extends React.Component {
 
     /**** CHOOSE TRACKS SCREEN ****/
     @autobind
-    generate(key:any) {
+    generate(key: any) {
 
         if (!key)
-            return ;
+            return;
         return <View key={key.id}>
             {(key.id === 1) ? <Text style={styles.upTitle}>PARCOURS</Text> : null}
             <TouchableOpacity onPress={() => {
-                this.setState({openid:key.id});
+                this.setState({openid: key.id});
             }}>
                 <Text style={styles.button}>{key.name}</Text>
             </TouchableOpacity>
@@ -279,14 +283,26 @@ export class ExoRun extends React.Component {
                 {
                     (key.id === this.state.openid) ?
                         <View style={styles.row}>
-                            <View style = {{flex: 0.8, flexDirection: 'row'}}>
-                                <Text style={[styles.buttonexpend, {alignSelf: 'flex-start'}]}> {key.description} </Text>
+                            <View style={{flex: 0.8, flexDirection: 'row'}}>
+                                <Text
+                                    style={[styles.buttonexpend, {alignSelf: 'flex-start'}]}> {key.description} </Text>
                             </View>
-                            <TouchableOpacity onPress={this.switchToRun} style = {{flex: 0.2, flexDirection: 'row', backgroundColor: "#3498db", alignItems: 'center', justifyContent:'center'}}>
-                                <RkText  style={{fontFamily: 'Cochin', color: 'white', fontWeight: 'bold', textAlign: 'center'}}>Run</RkText>
+                            <TouchableOpacity onPress={this.switchToRun} style={{
+                                flex: 0.2,
+                                flexDirection: 'row',
+                                backgroundColor: "#3498db",
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}>
+                                <RkText style={{
+                                    fontFamily: 'Cochin',
+                                    color: 'white',
+                                    fontWeight: 'bold',
+                                    textAlign: 'center'
+                                }}>Run</RkText>
                             </TouchableOpacity>
                         </View>
-                        : <Text style={{padding:10}}> </Text>
+                        : <Text style={{padding: 10}}> </Text>
                 }
 
             </Expand>
@@ -309,7 +325,8 @@ export class ExoRun extends React.Component {
             {(this.state.screen === screens.MAIN) ? <Text style={styles.baseText}>MAIN SCREEN</Text> :
                 (this.state.screen === screens.RUN) ? <Text style={styles.baseText}>RUN SCREEN</Text> :
                     (this.state.screen === screens.CREATE) ? <Text style={styles.baseText}>CREATE SCREEN</Text> :
-                        (this.state.screen === screens.TRACKLIST) ? <Text style={styles.baseText}>TRACKLIST SCREEN</Text> : null}
+                        (this.state.screen === screens.TRACKLIST) ?
+                            <Text style={styles.baseText}>TRACKLIST SCREEN</Text> : null}
             <Text style={styles.baseText}>Current checkpoints: {this.checkpoints.length}</Text>
             <Text style={styles.baseText}>Latitude: {this.currentLatitude}</Text>
             <Text style={styles.baseText}>Longitude: {this.currentLongitude}</Text>
@@ -318,15 +335,14 @@ export class ExoRun extends React.Component {
 
     /**** MAIN RENDER LOOP ****/
 
-    updateLoc = async() => {
+    updateLoc = async () => {
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                this.currentLatitude =  position.coords.latitude;
-                this.currentLongitude =  position.coords.longitude;
-                this.currentAltitude =  position.coords.altitude ? position.coords.altitude : 0;
+                this.currentLatitude = position.coords.latitude;
+                this.currentLongitude = position.coords.longitude;
+                this.currentAltitude = position.coords.altitude ? position.coords.altitude : 0;
                 if (this.state.screen === screens.RUN) {
-                    if (this.currentCheckpoint < this.checkpoints.length)
-                    {
+                    if (this.currentCheckpoint < this.checkpoints.length) {
                         this.distance = geolib.getDistance(
                             {
                                 latitude: this.currentLatitude,
@@ -370,7 +386,7 @@ export class ExoRun extends React.Component {
                 </RNCamera>
                 <ActionButton buttonColor='#09d819'>
                     <ActionButton.Item buttonColor='#9b59b6' title="Vos parcours"
-                                       onPress= {this.switchToTracklist}>
+                                       onPress={this.switchToTracklist}>
                         <Icon name="md-archive" style={styles.actionButtonIcon}/>
                     </ActionButton.Item>
                     <ActionButton.Item buttonColor='#3498db' title="Nouveau parcours"
@@ -379,20 +395,20 @@ export class ExoRun extends React.Component {
                     </ActionButton.Item>
                 </ActionButton>
 
-                <Modal isVisible={this.state.isModalVisible} animationType='slide' presentationStyle='overFullScreen'>
+                <Modal isVisible={this.state.isModalVisible}>
                     <View style={styles.modalContent}>
                         <RkTextInput rkType='rounded' placeholder='Nom du parcours'
-                                     onChangeText={(text:any) => this.currentTrackName = text}/>
+                                     onChangeText={(text: any) => this.currentTrackName = text}/>
                         <RkTextInput rkType='rounded' placeholder='Description'
-                                     onChangeText={(text:any) => this.currentTrackDescription =  text}/>
+                                     onChangeText={(text: any) => this.currentTrackDescription = text}/>
                         <Button title="Sauvegarder" onPress={this.saveTrack}/>
                         <Button title="Annuler" onPress={this._toggleModal}/>
                     </View>
                 </Modal>
 
                 {(this.state.screen === screens.TRACKLIST) ? this.showRegisteredTracks() :
-                    (this.state.screen === screens.RUN) ? this.showRunTracks():
-                        (this.state.screen === screens.CREATE) ? this.showCreationTracks(): null   }
+                    (this.state.screen === screens.RUN) ? this.showRunTracks() :
+                        (this.state.screen === screens.CREATE) ? this.showCreationTracks() : null}
 
                 {this.debug_screen()}
 
