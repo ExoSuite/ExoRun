@@ -43,8 +43,9 @@ export default class API implements IAPI {
         }
         // TODO: launch request with body data
         // TODO: set 'Content-Type': 'application/json' by default if provided in headers param get value from headers to axios headers
-        if (headers['Content-Type']) {
+        if (!headers['Content-Type']) {
             headers['Content-Type'] = 'application/json';
+            headers['Authorization'] = "Bearer " + AjouterIciLetoken;
         }
         // TODO: get token add 'Authorization': 'Bearer tokenxxxxxx' to axios headers if requireAuth is true
         if (httpMethod == "POST") {
