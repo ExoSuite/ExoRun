@@ -1,6 +1,7 @@
 import {IAPI, TokenResponse} from "app/interfaces";
 import {Build, HttpRequest} from "app/enums";
 import axios, {AxiosResponse} from 'axios';
+import * as https from "https";
 
 interface IClient {
     client_secret: string
@@ -14,6 +15,10 @@ interface Headers {
 
 const defaultHeaders = {
     'Content-Type': 'application/json'
+};
+
+const defaultAxiosConfig = {
+    httpsAgent: new https.Agent({ keepAlive: true })
 };
 
 export default class API implements IAPI {
@@ -67,6 +72,7 @@ export default class API implements IAPI {
         }
 
         const axiosConfig = {
+            ...defaultAxiosConfig,
             method: httpMethod,
             headers,
             data: {},

@@ -240,7 +240,7 @@ export default class ExoRun extends React.Component {
         }
         if (this.distance != null && this.currentCheckpoint > 0) {
             if (this.distance <= 10) {
-                this._onLapPress()
+                this._onLapPress();
                 this.distance = 30000;
             }
             return <View>
