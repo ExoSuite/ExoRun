@@ -18,7 +18,9 @@ const defaultHeaders = {
 };
 
 const defaultAxiosConfig = {
-    httpsAgent: new https.Agent({ keepAlive: true })
+    httpsAgent: new https.Agent({ keepAlive: true }),
+    data: {},
+    params: {}
 };
 
 export default class API implements IAPI {
@@ -75,8 +77,6 @@ export default class API implements IAPI {
             ...defaultAxiosConfig,
             method: httpMethod,
             headers,
-            data: {},
-            params: {},
             url,
             baseURL: this.URL
         };
