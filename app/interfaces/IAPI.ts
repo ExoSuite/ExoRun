@@ -3,5 +3,5 @@ import {AxiosResponse} from "axios";
 
 export default interface IAPI {
     checkToken(): void;
-    request(httpMethod: HttpRequest, data: Object, headers: Object, requireAuth: boolean, uri: string,): Promise<AxiosResponse>;
+    request(httpMethod: HttpRequest, uri: string, data: Object, headers: Object, requireAuth: boolean): Promise<AxiosResponse>;
 }
