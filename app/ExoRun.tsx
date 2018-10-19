@@ -12,6 +12,7 @@ import Modal from "react-native-modal";
 import {RkAvoidKeyboard, RkButton, RkStyleSheet, RkText, RkTextInput, RkTheme} from 'react-native-ui-kitten';
 import geolib from 'geolib'
 import autobind from 'autobind-decorator'
+import Timer = NodeJS.Timer;
 
 export interface Props {
     name: string;
@@ -32,8 +33,8 @@ interface Track {
 }
 
 export default class ExoRun extends React.Component {
-    interval: number = 0;
-    intervalchrono: number = 0;
+    interval: any = 0;
+    intervalchrono: any = 0;
     currentLatitude: any = 0;
     currentLongitude: any = 0;
     currentAltitude: any = 0;

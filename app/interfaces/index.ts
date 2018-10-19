@@ -1,1 +1,1 @@
-export {default as IAPI} from './IAPI';
+export {default as IAPI, TokenResponse} from './IAPI';
