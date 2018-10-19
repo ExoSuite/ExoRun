@@ -48,14 +48,10 @@ export default class API implements IAPI {
             headers['Authorization'] = "Bearer " + AjouterIciLetoken;
         }
         // TODO: get token add 'Authorization': 'Bearer tokenxxxxxx' to axios headers if requireAuth is true
-        if (httpMethod == "POST") {
+        if (httpMethod == "POST" ) {
             return await axios.request({method: httpMethod, url: "/auth/login", data: data, headers: headers});
         }
-        else if (httpMethod == "GET") {
-            return await axios.request({method: httpMethod, url: "/user/me", data: data, headers: headers});
-        }
-        else
-            return await axios.request({method: httpMethod, url: "", data: data, headers: headers});
+        return await axios.request({method: httpMethod, url: "", data: data, headers: headers});
     }
 
 
