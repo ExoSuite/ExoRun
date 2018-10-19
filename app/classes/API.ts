@@ -36,7 +36,7 @@ export default class API implements IAPI {
         // TODO: decode and check if token is expired and refresh the token if expired
     }
 
-    async request(httpMethod: HttpRequest, data: Object = {}, headers: Object = {}, requireAuth: boolean = true, uri: string): Promise<AxiosResponse> {
+    async request(httpMethod: HttpRequest, uri: string, data: Object = {}, headers: Object = {}, requireAuth: boolean = true): Promise<AxiosResponse> {
         // TODO: launch checkToken if requireAuth is true
         if (requireAuth) {
             await this.checkToken();
