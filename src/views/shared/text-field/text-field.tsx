@@ -8,7 +8,7 @@ import { TextFieldProps } from "./text-field.props"
 // the base styling for the container
 const CONTAINER: ViewStyle = {
   paddingVertical: spacing[3],
-};
+}
 
 // the base styling for the TextInput
 const INPUT: TextStyle = {
@@ -17,12 +17,12 @@ const INPUT: TextStyle = {
   minHeight: 44,
   fontSize: 18,
   backgroundColor: color.palette.white,
-};
+}
 
 // currently we have no presets, but that changes quickly when you build your app.
 const PRESETS: { [name: string]: ViewStyle } = {
   default: {},
-};
+}
 
 /**
  * A component which has a label and an input together.
@@ -37,11 +37,11 @@ export class TextField extends React.Component<TextFieldProps, {}> {
       preset = "default",
       style: styleOverride,
       inputStyle: inputStyleOverride,
-      ...rest
-    } = this.props;
-    const containerStyle: ViewStyle = { ...CONTAINER, ...PRESETS[preset], ...styleOverride };
-    const inputStyle: TextStyle = { ...INPUT, ...inputStyleOverride };
-    const actualPlaceholder = placeholderTx ? translate(placeholderTx) : placeholder;
+      ...rest,
+    } = this.props
+    const containerStyle: ViewStyle = { ...CONTAINER, ...PRESETS[preset], ...styleOverride }
+    const inputStyle: TextStyle = { ...INPUT, ...inputStyleOverride }
+    const actualPlaceholder = placeholderTx ? translate(placeholderTx) : placeholder
 
     return (
       <View style={containerStyle}>

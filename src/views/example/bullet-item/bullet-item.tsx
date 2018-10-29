@@ -10,22 +10,22 @@ const BULLET_ITEM: ViewStyle = {
   paddingBottom: spacing[4],  
   borderBottomWidth: 1, 
   borderBottomColor: "#3A3048", 
-};
+}
 const BULLET_CONTAINER: ViewStyle = {
   marginRight: spacing[4] - 1, 
   marginTop: spacing[2],
-};
+}
 const BULLET: ImageStyle = {
   width: 8,
   height: 8,
-};
+}
 const BULLET_TEXT: TextStyle = {
   flex: 1,
   fontFamily: "Montserrat-Regular",  
   color: "#BAB6C8",  
   fontSize: 15,
   lineHeight: 22,
-};
+}
 
 export interface BulletItemProps {
   text: string

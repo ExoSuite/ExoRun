@@ -15,4 +15,4 @@ export const typography = {
    * An alternate font used for perhaps titles and stuff.
    */
   secondary: Platform.select({ ios: "Montserrat", android: "Montserrat" }),
-};
+}

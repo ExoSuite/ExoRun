@@ -9,9 +9,9 @@ import { presets, isNonScrolling } from "./screen.presets"
  * @param props The screen props
  */
 function ScreenWithoutScrolling(props: ScreenProps) {
-  const preset = presets[props.preset] || presets["fixed"];
-  const style = { ...preset.nonScroll, ...props.style };
-  const backgroundStyle = props.backgroundColor ? { backgroundColor: props.backgroundColor } : {};
+  const preset = presets[props.preset] || presets["fixed"]
+  const style = { ...preset.nonScroll, ...props.style }
+  const backgroundStyle = props.backgroundColor ? { backgroundColor: props.backgroundColor } : {}
 
   return <View style={[style, backgroundStyle]}>{props.children}</View>
 }
@@ -22,10 +22,10 @@ function ScreenWithoutScrolling(props: ScreenProps) {
  * @param props The screen props
  */
 function ScreenWithScrolling(props: ScreenProps) {
-  const preset = presets[props.preset] || presets["scroll"];
-  const outerStyle = preset.scrollOuter;
-  const backgroundStyle = props.backgroundColor ? { backgroundColor: props.backgroundColor } : {};
-  const innerStyle = { ...preset.scrollInner, ...props.style } as ViewStyle;
+  const preset = presets[props.preset] || presets["scroll"]
+  const outerStyle = preset.scrollOuter
+  const backgroundStyle = props.backgroundColor ? { backgroundColor: props.backgroundColor } : {}
+  const innerStyle = { ...preset.scrollInner, ...props.style } as ViewStyle
 
   return (
     <ScrollView style={[outerStyle, backgroundStyle]} contentContainerStyle={innerStyle}>

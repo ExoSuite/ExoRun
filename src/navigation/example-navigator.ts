@@ -8,4 +8,4 @@ export const ExampleNavigator = createStackNavigator({
 },
 {
   headerMode: "none",
-});
+})

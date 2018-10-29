@@ -11,4 +11,4 @@ storiesOf("Wallpaper", module)
         <Wallpaper />
       </UseCase>
     </Story>
-  ));
+  ))

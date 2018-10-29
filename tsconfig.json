@@ -12,9 +12,10 @@
     "noUnusedLocals": true,
     "sourceMap": true,
     "target": "es6",
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
-      "src/*": [ "*" ]
+      "src/*": ["src/*"],
+      "storybook/*": ["storybook/*"]
     }
   },
   "exclude": ["node_modules"],

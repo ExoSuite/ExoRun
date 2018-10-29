@@ -1,8 +1,6 @@
-#  ExoRun
+# ExoRun
 
 [![Build Status](https://semaphoreci.com/api/v1/ir/ignite-ir-boilerplate-bowser/branches/master/badge.svg)](https://semaphoreci.com/ir/ignite-ir-boilerplate-bowser)
-
-
 
 ## The latest and greatest boilerplate for Infinite Red opinions
 
@@ -10,11 +8,11 @@ This is the boilerplate that [Infinite Red](https://infinite.red) uses as a way 
 
 Currently includes:
 
-* React Native
-* React Navigation
-* MobX State Tree
-* TypeScript
-* And more!
+- React Native
+- React Navigation
+- MobX State Tree
+- TypeScript
+- And more!
 
 ## Quick Start
 
@@ -72,7 +70,6 @@ For example: A custom `Button` component would have the main component file, and
 
 This is a departure from the previous boilerplate, which grouped files by type (components together, styles together, tests together, images together, etc.). One feature of this new approach is the use of index files which export specific functions from files in the directory to create a public interface for each "thing", or "feature. You'll see that pattern quite a bit in this boilerplate.
 
-
 ## ./src directory
 
 Included in an Ignite boilerplate project is the src directory. This is a directory you would normally have to create when using vanilla React Native.
@@ -93,7 +90,8 @@ src
 
 **app**
 This is where a lot of your app's initialization takes place. Here you'll find:
-* root-component.tsx - This is the root component of your app that will render your navigators and other views.
+
+- root-component.tsx - This is the root component of your app that will render your navigators and other views.
 
 **i18n**
 This is where your translations will live if you are using `react-native-i18n`.
@@ -128,6 +126,7 @@ This directory will hold your Jest configs and mocks, as well as your [storyshot
 The `ignite` directory stores all things Ignite, including CLI and boilerplate items. Here you will find generators, plugins and examples to help you get started with React Native.
 
 ## Running Storybook
+
 From the command line in your generated app's root directory, enter `yarn run storybook`
 This starts up the storybook server.
 
@@ -137,8 +136,8 @@ For Visual Studio Code users, there is a handy extension that makes it easy to l
 
 ## Previous Boilerplates
 
-* [2017 aka Andross](https://github.com/infinitered/ignite-ir-boilerplate-andross)
-* [2016 aka Ignite 1.0](https://github.com/infinitered/ignite-ir-boilerplate-2016)
+- [2017 aka Andross](https://github.com/infinitered/ignite-ir-boilerplate-andross)
+- [2016 aka Ignite 1.0](https://github.com/infinitered/ignite-ir-boilerplate-2016)
 
 ## Premium Support
 

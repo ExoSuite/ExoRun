@@ -46,21 +46,21 @@ export type GeneralApiProblem =
 export function getGeneralApiProblem(response: ApiResponse<any>): GeneralApiProblem | void {
   switch (response.problem) {
     case "CONNECTION_ERROR":
-      return { kind: "cannot-connect", temporary: true };
+      return { kind: "cannot-connect", temporary: true }
     case "NETWORK_ERROR":
-      return { kind: "cannot-connect", temporary: true };
+      return { kind: "cannot-connect", temporary: true }
     case "TIMEOUT_ERROR":
-      return { kind: "timeout", temporary: true };
+      return { kind: "timeout", temporary: true }
     case "SERVER_ERROR":
-      return { kind: "server" };
+      return { kind: "server" }
     case "UNKNOWN_ERROR":
-      return { kind: "unknown", temporary: true };
+      return { kind: "unknown", temporary: true }
     case "CLIENT_ERROR":
       switch (response.status) {
         case 401:
-          return { kind: "unauthorized" };
+          return { kind: "unauthorized" }
         case 403:
-          return { kind: "forbidden" };
+          return { kind: "forbidden" }
         default:
           return { kind: "rejected" }
       }

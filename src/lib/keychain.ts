@@ -9,7 +9,7 @@ import * as ReactNativeKeychain from "react-native-keychain"
  */
 export async function save(username: string, password: string, server?: string) {
   if (server) {
-    await ReactNativeKeychain.setInternetCredentials(server, username, password);
+    await ReactNativeKeychain.setInternetCredentials(server, username, password)
     return true
   } else {
     return ReactNativeKeychain.setGenericPassword(username, password)
@@ -23,14 +23,14 @@ export async function save(username: string, password: string, server?: string) 
  */
 export async function load(server?: string) {
   if (server) {
-    const creds = await ReactNativeKeychain.getInternetCredentials(server);
+    const creds = await ReactNativeKeychain.getInternetCredentials(server)
     return {
       username: creds.username,
       password: creds.password,
       server,
     }
   } else {
-    const creds = await ReactNativeKeychain.getGenericPassword();
+    const creds = await ReactNativeKeychain.getGenericPassword()
     if (typeof creds === "object") {
       return {
         username: creds.username,
@@ -54,7 +54,7 @@ export async function load(server?: string) {
  */
 export async function reset(server?: string) {
   if (server) {
-    await ReactNativeKeychain.resetInternetCredentials(server);
+    await ReactNativeKeychain.resetInternetCredentials(server)
     return true
   } else {
     return await ReactNativeKeychain.resetGenericPassword()
