@@ -1,9 +1,9 @@
-import * as React from "react"
-import { storiesOf } from "@storybook/react-native"
-import { StoryScreen, Story, UseCase } from "../../../../storybook/views"
-import { Text } from "../text"
-import { TextField } from "./"
-import { State } from "react-powerplug"
+import * as React from "react";
+import { storiesOf } from "@storybook/react-native";
+import { StoryScreen, Story, UseCase } from "../../../../storybook/views";
+import { Text } from "../text";
+import { TextField } from "./";
+import { State } from "react-powerplug";
 
 storiesOf("TextField", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -88,4 +88,4 @@ storiesOf("TextField", module)
         <Text text="* attention designers:  i am so sorry" preset="secondary" />
       </UseCase>
     </Story>
-  ))
+  ));

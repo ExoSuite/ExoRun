@@ -8,4 +8,5 @@
 //
 // It's easier just to leave it here.
 
-import "./src/app/main"
+import 'es6-symbol/implement';
+import './src/app/main';

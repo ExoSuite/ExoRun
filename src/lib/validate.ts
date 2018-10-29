@@ -1,27 +1,27 @@
-const ValidateJS = require("validate.js")
-import { contains } from "ramda"
+const ValidateJS = require("validate.js");
+import { contains } from "ramda";
 
 // HACK(steve): wierd typescript situation because of strange typings
-const Validate: any = ValidateJS.default ? ValidateJS.default : ValidateJS
+const Validate: any = ValidateJS.default ? ValidateJS.default : ValidateJS;
 
 /**
  * Validates that 1 attribute doesn't appear in another's attributes content.
  */
 Validate.validators.excludes = function custom(value, options, key, attributes) {
-  const list = attributes[options.attribute] || []
+  const list = attributes[options.attribute] || [];
   if (value && contains(value, list)) {
-    return options.message || `${value} is in the list`
+    return options.message || `${value} is in the list`;
   }
-}
+};
 
 /**
  * Validates that another attribute isn't true.
  */
 Validate.validators.tripped = function custom(value, options, key, attributes) {
   if (value && attributes[options.attribute] === true) {
-    return options.message || `${options.attribute} is true`
+    return options.message || `${options.attribute} is true`;
   }
-}
+};
 
 /**
  * Defines the rules for validating.
@@ -43,7 +43,7 @@ Validate.validators.tripped = function custom(value, options, key, attributes) {
  *
  */
 export interface ValidationRules {
-  [key: string]: {}
+  [key: string]: {};
 }
 
 /**
@@ -61,7 +61,7 @@ export interface ValidationRules {
  * ```
  */
 export interface ValidationErrors {
-  [key: string]: {}
+  [key: string]: {};
 }
 
 /**
@@ -72,7 +72,7 @@ export interface ValidationErrors {
  */
 export function validate(rules: ValidationRules, data: {}): ValidationErrors {
   if (typeof data !== "object") {
-    return {}
+    return {};
   }
-  return Validate(data, rules, { fullMessages: false }) || {}
+  return Validate(data, rules, { fullMessages: false }) || {};
 }

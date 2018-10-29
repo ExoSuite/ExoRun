@@ -1,16 +1,16 @@
-import "../i18n"
-import * as React from "react"
-import { setupRootStore } from "./setup-root-store"
-import { StatefulNavigator } from "../navigation"
-import { RootStore } from "./root-store"
-import { Provider } from "mobx-react"
-import { BackButtonHandler } from "../navigation/back-button-handler"
-import { contains } from "ramda"
-import { DEFAULT_NAVIGATION_CONFIG } from "../navigation/navigation-config"
-import SplashScreen from "react-native-splash-screen"
+import "../i18n";
+import * as React from "react";
+import { setupRootStore } from "./setup-root-store";
+import { StatefulNavigator } from "../navigation";
+import { RootStore } from "./root-store";
+import { Provider } from "mobx-react";
+import { BackButtonHandler } from "../navigation/back-button-handler";
+import { contains } from "ramda";
+import { DEFAULT_NAVIGATION_CONFIG } from "../navigation/navigation-config";
+import SplashScreen from "react-native-splash-screen";
 
 interface RootComponentState {
-  rootStore?: RootStore
+  rootStore?: RootStore;
 }
 
 /**
@@ -22,10 +22,10 @@ export class RootComponent extends React.Component<{}, RootComponentState> {
    * re-renders when we're good to go.
    */
   async componentDidMount() {
-    SplashScreen.hide()
+    SplashScreen.hide();
     this.setState({
-      rootStore: await setupRootStore(),
-    })
+      rootStore: await setupRootStore()
+    });
   }
 
   /**
@@ -35,11 +35,11 @@ export class RootComponent extends React.Component<{}, RootComponentState> {
    * @param routeName The currently active route name.
    */
   canExit(routeName: string) {
-    return contains(routeName, DEFAULT_NAVIGATION_CONFIG.exitRoutes)
+    return contains(routeName, DEFAULT_NAVIGATION_CONFIG.exitRoutes);
   }
 
   render() {
-    const rootStore = this.state && this.state.rootStore
+    const rootStore = this.state && this.state.rootStore;
 
     // Before we show the app, we have to wait for our state to be ready.
     // In the meantime, don't render anything. This will be the background
@@ -50,21 +50,21 @@ export class RootComponent extends React.Component<{}, RootComponentState> {
     // You're welcome to swap in your own component to render if your boot up
     // sequence is too slow though.
     if (!rootStore) {
-      return null
+      return null;
     }
 
     // otherwise, we're ready to render the app
 
     // --- am: begin list of stores ---
-    const otherStores = {}
+    const otherStores = {};
     // --- am: end list of stores ---
 
     return (
       <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>
         <BackButtonHandler canExit={this.canExit}>
-          <StatefulNavigator />
+          <StatefulNavigator/>
         </BackButtonHandler>
       </Provider>
-    )
+    );
   }
 }

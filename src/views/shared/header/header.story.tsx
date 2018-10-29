@@ -1,14 +1,14 @@
-import * as React from "react"
-import { View } from "react-native"
-import { storiesOf } from "@storybook/react-native"
-import { StoryScreen, Story, UseCase } from "../../../../storybook/views"
-import { Header } from "./header"
-import { color } from "../../../theme/color"
+import * as React from "react";
+import { View } from "react-native";
+import { storiesOf } from "@storybook/react-native";
+import { StoryScreen, Story, UseCase } from "../../../../storybook/views";
+import { Header } from "./header";
+import { color } from "../../../theme/color";
 
 const VIEWSTYLE = {
   flex: 1,
   backgroundColor: color.storybookDarkBg,
-}
+};
 
 storiesOf("Header", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -40,4 +40,4 @@ storiesOf("Header", module)
         </View>
       </UseCase>
     </Story>
-  ))
+  ));

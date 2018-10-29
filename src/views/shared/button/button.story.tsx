@@ -1,7 +1,7 @@
-import * as React from "react"
-import { storiesOf } from "@storybook/react-native"
-import { StoryScreen, Story, UseCase } from "../../../../storybook/views"
-import { Button } from "./"
+import * as React from "react";
+import { storiesOf } from "@storybook/react-native";
+import { StoryScreen, Story, UseCase } from "../../../../storybook/views";
+import { Button } from "./";
 
 storiesOf("Button", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -14,4 +14,4 @@ storiesOf("Button", module)
         <Button text="Click It" preset="primary" onPress={() => window.alert("pressed")} disabled />
       </UseCase>
     </Story>
-  ))
+  ));

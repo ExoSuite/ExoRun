@@ -1,5 +1,5 @@
-import { Reactotron } from "services/reactotron"
-import { Api } from "services/api"
+import { Reactotron } from "services/reactotron";
+import { Api } from "services/api";
 
 /**
  * The environment is a place where services and shared dependencies between
@@ -9,10 +9,10 @@ export class Environment {
   /**
    * Reactotron is only available in dev.
    */
-  reactotron: Reactotron
+  reactotron: Reactotron;
 
   /**
    * Our api.
    */
-  api: Api
+  api: Api;
 }

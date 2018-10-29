@@ -1,24 +1,24 @@
-import { ViewStyle, ScrollViewStyle } from "react-native"
-import { color } from "../../../theme"
-import { isEmpty, isNil } from "ramda"
+import { ViewStyle, ScrollViewStyle } from "react-native";
+import { color } from "../../../theme";
+import { isEmpty, isNil } from "ramda";
 
 /**
  * The base shape & color.
  */
-const SHAPE: ScrollViewStyle = { backgroundColor: color.background, flex: 1 }
+const SHAPE: ScrollViewStyle = { backgroundColor: color.background, flex: 1 };
 
 /**
  * Governs the default child layout.
  */
-const CONTENTS: ViewStyle = { justifyContent: "flex-start", alignItems: "flex-start" }
+const CONTENTS: ViewStyle = { justifyContent: "flex-start", alignItems: "flex-start" };
 
 /**
  * Glues the shape & child layout together since there's no restrictions on view style.
  */
-const DOES_NOT_SCROLL: ViewStyle = { ...SHAPE, ...CONTENTS }
+const DOES_NOT_SCROLL: ViewStyle = { ...SHAPE, ...CONTENTS };
 
 // a style-safe value when a preset's sub-style isn't defined
-const NOPE = {}
+const NOPE = {};
 
 /**
  * All the variations of screens.
@@ -71,12 +71,12 @@ export const presets = {
     scrollOuter: SHAPE,
     scrollInner: { ...CONTENTS, alignItems: "stretch" } as ViewStyle,
   },
-}
+};
 
 /**
  * The variations of screens.
  */
-export type ScreenPresets = keyof typeof presets
+export type ScreenPresets = keyof typeof presets;
 
 /**
  * Is this preset a non-scrolling one?
@@ -90,5 +90,5 @@ export function isNonScrolling(preset: ScreenPresets) {
     isEmpty(preset) ||
     isNil(presets[preset]) ||
     presets[preset].nonScroll === NOPE
-  )
+  );
 }

@@ -1,9 +1,9 @@
-import { types } from "mobx-state-tree"
-import { RootNavigator } from "./root-navigator"
-import { NavigationActions, NavigationAction } from "react-navigation"
-import { NavigationEvents } from "./navigation-events"
+import { types } from "mobx-state-tree";
+import { RootNavigator } from "./root-navigator";
+import { NavigationActions, NavigationAction } from "react-navigation";
+import { NavigationEvents } from "./navigation-events";
 
-const DEFAULT_STATE = RootNavigator.router.getStateForAction(NavigationActions.init(), null)
+const DEFAULT_STATE = RootNavigator.router.getStateForAction(NavigationActions.init(), null);
 
 /**
  * Finds the current route.
@@ -11,11 +11,11 @@ const DEFAULT_STATE = RootNavigator.router.getStateForAction(NavigationActions.i
  * @param navState the current nav state
  */
 function findCurrentRoute(navState) {
-  const route = navState.routes[navState.index]
+  const route = navState.routes[navState.index];
   if (route.routes) {
-    return findCurrentRoute(route)
+    return findCurrentRoute(route);
   }
-  return route
+  return route;
 }
 
 // @ts-ignore
@@ -37,7 +37,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      * Return all subscribers 
      */
     actionSubscribers(){
-      return self.subs
+      return self.subs;
     },
 
     /**
@@ -49,24 +49,24 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      * @param shouldPush Should we push or replace the whole stack?
      */
     dispatch(action: NavigationAction, shouldPush: boolean = true) {
-      const previousNavState = shouldPush ? self.state : null
-      self.state = RootNavigator.router.getStateForAction(action, previousNavState) || self.state
-      self.fireSubscribers(action, previousNavState, self.state)
-      return true
+      const previousNavState = shouldPush ? self.state : null;
+      self.state = RootNavigator.router.getStateForAction(action, previousNavState) || self.state;
+      self.fireSubscribers(action, previousNavState, self.state);
+      return true;
     },
 
     /**
      * Resets the navigation back to the start.
      */
     reset() {
-      self.state = DEFAULT_STATE
+      self.state = DEFAULT_STATE;
     },
 
     /**
      * Finds the current route.
      */
     findCurrentRoute() {
-      return findCurrentRoute(self.state)
+      return findCurrentRoute(self.state);
     },
   }))
   .actions(self => ({
@@ -76,8 +76,8 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      * @param routeName The route name.
      */
     navigateTo (routeName: string) {
-      self.dispatch(NavigationActions.navigate({ routeName }))
+      self.dispatch(NavigationActions.navigate({ routeName }));
     },
-  }))
+  }));
 
-export type NavigationStore = typeof NavigationStoreModel.Type
+export type NavigationStore = typeof NavigationStoreModel.Type;

@@ -1,5 +1,5 @@
-import { createStackNavigator } from "react-navigation"
-import { ExampleNavigator } from "./example-navigator"
+import { createStackNavigator } from "react-navigation";
+import { ExampleNavigator } from "./example-navigator";
 
 export const RootNavigator = createStackNavigator(
   {
@@ -9,4 +9,4 @@ export const RootNavigator = createStackNavigator(
     headerMode: "none",
     navigationOptions: { gesturesEnabled: false },
   },
-)
+);

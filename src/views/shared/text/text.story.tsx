@@ -1,14 +1,14 @@
-import * as React from "react"
-import { View } from "react-native"
-import { storiesOf } from "@storybook/react-native"
-import { StoryScreen, Story, UseCase } from "storybook/views"
-import { color } from "src/theme"
-import { Text } from "./text"
+import * as React from "react";
+import { View } from "react-native";
+import { storiesOf } from "@storybook/react-native";
+import { StoryScreen, Story, UseCase } from "storybook/views";
+import { color } from "src/theme";
+import { Text } from "./text";
 
 const VIEWSTYLE = {
   flex: 1,
   backgroundColor: color.storybookDarkBg,
-}
+};
 
 storiesOf("Text", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -71,4 +71,4 @@ storiesOf("Text", module)
         </View>
       </UseCase>
     </Story>
-  ))
+  ));

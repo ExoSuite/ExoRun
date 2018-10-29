@@ -1,9 +1,9 @@
-import * as React from "react"
-import { View } from "react-native"
-import { storiesOf } from "@storybook/react-native"
-import { StoryScreen, Story, UseCase } from "storybook/views"
-import { Checkbox } from "./"
-import { Toggle } from "react-powerplug"
+import * as React from "react";
+import { View } from "react-native";
+import { storiesOf } from "@storybook/react-native";
+import { StoryScreen, Story, UseCase } from "storybook/views";
+import { Checkbox } from "./";
+import { Toggle } from "react-powerplug";
 
 storiesOf("Checkbox", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -92,4 +92,4 @@ storiesOf("Checkbox", module)
         </Toggle>
       </UseCase>
     </Story>
-  ))
+  ));

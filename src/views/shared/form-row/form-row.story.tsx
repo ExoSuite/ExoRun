@@ -1,13 +1,13 @@
-import * as React from "react"
-import { storiesOf } from "@storybook/react-native"
-import { StoryScreen, Story, UseCase } from "../../../../storybook/views"
-import { FormRow } from "./form-row"
-import { Text } from "../text"
-import { color } from "../../../theme/color"
+import * as React from "react";
+import { storiesOf } from "@storybook/react-native";
+import { StoryScreen, Story, UseCase } from "../../../../storybook/views";
+import { FormRow } from "./form-row";
+import { Text } from "../text";
+import { color } from "../../../theme/color";
 
 const TEXT_STYLE_OVERRIDE = {
   color: color.storybookTextColor,
-}
+};
 
 storiesOf("FormRow", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -85,4 +85,4 @@ storiesOf("FormRow", module)
         </FormRow>
       </UseCase>
     </Story>
-  ))
+  ));

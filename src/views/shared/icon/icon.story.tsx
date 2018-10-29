@@ -1,7 +1,7 @@
-import * as React from "react"
-import { storiesOf } from "@storybook/react-native"
-import { StoryScreen, Story, UseCase } from "storybook/views"
-import { Icon } from "./icon"
+import * as React from "react";
+import { storiesOf } from "@storybook/react-native";
+import { StoryScreen, Story, UseCase } from "storybook/views";
+import { Icon } from "./icon";
 
 storiesOf("Icon", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -14,4 +14,4 @@ storiesOf("Icon", module)
         <Icon icon="bullet" />
       </UseCase>
     </Story>
-  ))
+  ));

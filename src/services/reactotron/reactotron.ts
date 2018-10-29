@@ -1,9 +1,9 @@
-import Tron from "reactotron-react-native"
-import { RootStore } from "../../app/root-store"
-import { onSnapshot } from "mobx-state-tree"
-import { ReactotronConfig, DEFAULT_REACTOTRON_CONFIG } from "./reactotron-config"
-import { mst } from "reactotron-mst"
-import { commandMiddleware } from "./command-middleware"
+import Tron from "reactotron-react-native";
+import { RootStore } from "../../app/root-store";
+import { onSnapshot } from "mobx-state-tree";
+import { ReactotronConfig, DEFAULT_REACTOTRON_CONFIG } from "./reactotron-config";
+import { mst } from "reactotron-mst";
+import { commandMiddleware } from "./command-middleware";
 
 // Teach TypeScript about the bad things we want to do.
 declare global {
@@ -11,16 +11,16 @@ declare global {
     /**
      * Hey, it's Reactotron if we're in dev, and no-ops if we're in prod.
      */
-    tron: typeof Tron
+    tron: typeof Tron;
   }
 }
 
 /** Do Nothing. */
-const noop = () => undefined
+const noop = () => undefined;
 
 // in dev, we attach Reactotron, in prod we attach a interface-compatible mock.
 if (__DEV__) {
-  console.tron = Tron // attach reactotron to `console.tron`
+  console.tron = Tron; // attach reactotron to `console.tron`
 } else {
   // attach a mock so if things sneaky by our __DEV__ guards, we won't crash.
   console.tron = {
@@ -35,7 +35,7 @@ if (__DEV__) {
     error: noop,
     image: noop,
     reportError: noop,
-  }
+  };
 }
 
 /**
@@ -44,8 +44,8 @@ if (__DEV__) {
  * services.
  */
 export class Reactotron {
-  config: ReactotronConfig
-  rootStore: any
+  config: ReactotronConfig;
+  rootStore: any;
 
   /**
    * Create the Reactotron service.
@@ -63,7 +63,7 @@ export class Reactotron {
         snapshots: false,
         ...(config && config.state),
       },
-    }
+    };
   }
 
   /**
@@ -74,25 +74,25 @@ export class Reactotron {
    */
   setRootStore(rootStore: any, initialData: any) {
     if (__DEV__) {
-      rootStore = rootStore as RootStore // typescript hack
-      this.rootStore = rootStore
+      rootStore = rootStore as RootStore; // typescript hack
+      this.rootStore = rootStore;
 
-      const { initial, snapshots } = this.config.state
-      const name = "ROOT STORE"
+      const { initial, snapshots } = this.config.state;
+      const name = "ROOT STORE";
 
       // logging features
       if (initial) {
-        console.tron.display({ name, value: initialData, preview: "Initial State" })
+        console.tron.display({ name, value: initialData, preview: "Initial State" });
       }
       // log state changes?
       if (snapshots) {
         onSnapshot(rootStore, snapshot => {
-          console.tron.display({ name, value: snapshot, preview: "New State" })
-        })
+          console.tron.display({ name, value: snapshot, preview: "New State" });
+        });
       }
 
       // @ts-ignore
-      console.tron.trackMstNode(rootStore)
+      console.tron.trackMstNode(rootStore);
     }
   }
 
@@ -106,32 +106,32 @@ export class Reactotron {
       Tron.configure({
         name: this.config.name || require("../../../package.json").name,
         host: this.config.host,
-      })
+      });
 
       // hookup middleware
       Tron.useReactNative({
         asyncStorage: this.config.useAsyncStorage ? undefined : false,
-      })
+      });
 
       // ignore some chatty `mobx-state-tree` actions
-      const RX = /postProcessSnapshot|@APPLY_SNAPSHOT/
+      const RX = /postProcessSnapshot|@APPLY_SNAPSHOT/;
 
       // hookup mobx-state-tree middleware
       Tron.use(
         mst({
           filter: event => RX.test(event.name) === false,
         }),
-      )
+      );
 
       // hookup custom command middleware
-      Tron.use(commandMiddleware(() => this.rootStore))
+      Tron.use(commandMiddleware(() => this.rootStore));
 
       // connect to the app
-      Tron.connect()
+      Tron.connect();
 
       // clear if we should
       if (this.config.clearOnLoad) {
-        Tron.clear()
+        Tron.clear();
       }
     }
   }

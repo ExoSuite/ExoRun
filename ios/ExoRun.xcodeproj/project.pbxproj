@@ -29,16 +29,17 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		61313262163D4573B4264E1E /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 912D70081F3E473896F53DC1 /* Montserrat-Black.ttf */; };
 		6AF86751A89448478E719538 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29F1BCBCE69D4641B0752CDA /* Montserrat-ThinItalic.ttf */; };
+		7CFBDF74CE4088C67C2DD589 /* Pods_ExoRun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E9125B82201FFCCE635366E /* Pods_ExoRun.framework */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		88073CF2068647FCB7D9B9A9 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58F517479080411A9137F900 /* Montserrat-SemiBoldItalic.ttf */; };
 		8A1FFE32822F4DB0A97E65E5 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7C1D5548128402B89AFBD6F /* Montserrat-LightItalic.ttf */; };
 		97429159499742339140F426 /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7243143C95649BCB8B6262D /* Montserrat-MediumItalic.ttf */; };
 		9F09F404AF7B4D30A7236FFF /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6471180C777D436B8D9A4350 /* Montserrat-Bold.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		BDFD5D1D2187B93800678D18 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDFD5D1C2187B91600678D18 /* libSplashScreen.a */; };
 		D022E6FEB5BC4F30B2DB2C67 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBFB21407A1E48A1A980FA80 /* Montserrat-Italic.ttf */; };
 		D20FE44A6E234B67AD7D836E /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E1AEACC79C04C008DA4721E /* Montserrat-ExtraLight.ttf */; };
 		DC7F306EDC2341B9A14E4743 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A8D613EE9564B9DAA18D47F /* Montserrat-ExtraBold.ttf */; };
-		E256D60261FF4A934BEF1AD4 /* libPods-ExoRun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DFC6EA59C5B7B35F07AB469 /* libPods-ExoRun.a */; };
 		E7CAFDAB67E7440A934FA173 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18FF816F1DBB4944BD710048 /* Montserrat-Light.ttf */; };
 		E8C65E23E4AE4619A4EDE254 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B66A61D78134F728EDA8243 /* Montserrat-Medium.ttf */; };
 /* End PBXBuildFile section */
@@ -303,6 +304,13 @@
 			remoteGlobalIDString = 358F4ED71D1E81A9004DF814;
 			remoteInfo = RCTBlob;
 		};
+		BDFD5D1B2187B91600678D18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BDFD5D172187B91600678D18 /* SplashScreen.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D7682761D8E76B80014119E;
+			remoteInfo = SplashScreen;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -327,7 +335,7 @@
 		2B66A61D78134F728EDA8243 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Medium.ttf"; path = "../src/theme/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		34F82F71BF654827A562ECD0 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../src/theme/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
-		4DFC6EA59C5B7B35F07AB469 /* libPods-ExoRun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExoRun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E9125B82201FFCCE635366E /* Pods_ExoRun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExoRun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58F517479080411A9137F900 /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBoldItalic.ttf"; path = "../src/theme/fonts/Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		61FDB2C22E9E4CCF96808E82 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Thin.ttf"; path = "../src/theme/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; };
@@ -341,6 +349,7 @@
 		A55FC26425B5B744BE0298D5 /* Pods-ExoRun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExoRun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExoRun/Pods-ExoRun.debug.xcconfig"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		BC55AF30AD05423D9B8B6891 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBoldItalic.ttf"; path = "../src/theme/fonts/Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		BDFD5D172187B91600678D18 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		C65BFDDD8983410092BCD78B /* Montserrat-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLightItalic.ttf"; path = "../src/theme/fonts/Montserrat-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		C7C1D5548128402B89AFBD6F /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-LightItalic.ttf"; path = "../src/theme/fonts/Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
 		DBFB21407A1E48A1A980FA80 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Italic.ttf"; path = "../src/theme/fonts/Montserrat-Italic.ttf"; sourceTree = "<group>"; };
@@ -354,6 +363,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDFD5D1D2187B93800678D18 /* libSplashScreen.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -367,7 +377,7 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				E256D60261FF4A934BEF1AD4 /* libPods-ExoRun.a in Frameworks */,
+				7CFBDF74CE4088C67C2DD589 /* Pods_ExoRun.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,7 +486,7 @@
 			isa = PBXGroup;
 			children = (
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
-				4DFC6EA59C5B7B35F07AB469 /* libPods-ExoRun.a */,
+				4E9125B82201FFCCE635366E /* Pods_ExoRun.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -502,6 +512,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				BDFD5D172187B91600678D18 /* SplashScreen.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -576,6 +587,14 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		BDFD5D182187B91600678D18 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BDFD5D1C2187B91600678D18 /* libSplashScreen.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		C9569C408DDD444CA89A9C39 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -613,6 +632,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				9090062EE678F2AA77580F35 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -691,6 +711,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = BDFD5D182187B91600678D18 /* Products */;
+					ProjectRef = BDFD5D172187B91600678D18 /* SplashScreen.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -960,6 +984,13 @@
 			remoteRef = ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		BDFD5D1C2187B91600678D18 /* libSplashScreen.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSplashScreen.a;
+			remoteRef = BDFD5D1B2187B91600678D18 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1005,6 +1036,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		9090062EE678F2AA77580F35 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ExoRun/Pods-ExoRun-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DoubleConversion/DoubleConversion.framework",
+				"${BUILT_PRODUCTS_DIR}/Folly/folly.framework",
+				"${BUILT_PRODUCTS_DIR}/RNI18n/RNI18n.framework",
+				"${BUILT_PRODUCTS_DIR}/RNKeychain/RNKeychain.framework",
+				"${BUILT_PRODUCTS_DIR}/React/React.framework",
+				"${BUILT_PRODUCTS_DIR}/glog/glog.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-splash-screen/react_native_splash_screen.framework",
+				"${BUILT_PRODUCTS_DIR}/yoga/yoga.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DoubleConversion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/folly.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNI18n.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNKeychain.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/glog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_splash_screen.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExoRun/Pods-ExoRun-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		E88A4D62A0BA1ED89D1E7B12 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1065,6 +1132,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExoSuite.ExoRun;
 				PRODUCT_NAME = ExoRun;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1091,6 +1159,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExoSuite.ExoRun;
 				PRODUCT_NAME = ExoRun;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1130,7 +1199,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1165,7 +1234,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

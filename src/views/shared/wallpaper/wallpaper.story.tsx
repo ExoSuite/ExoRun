@@ -1,7 +1,7 @@
-import * as React from "react"
-import { storiesOf } from "@storybook/react-native"
-import { StoryScreen, Story, UseCase } from "../../../../storybook/views"
-import { Wallpaper } from "./wallpaper"
+import * as React from "react";
+import { storiesOf } from "@storybook/react-native";
+import { StoryScreen, Story, UseCase } from "../../../../storybook/views";
+import { Wallpaper } from "./wallpaper";
 
 storiesOf("Wallpaper", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -11,4 +11,4 @@ storiesOf("Wallpaper", module)
         <Wallpaper />
       </UseCase>
     </Story>
-  ))
+  ));

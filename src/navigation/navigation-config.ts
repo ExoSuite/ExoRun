@@ -6,7 +6,7 @@ export interface NavigationConfig {
    * Anything not on this list will be a standard `back` action in
    * react-navigation.
    */
-  exitRoutes: string[]
+  exitRoutes: string[];
 }
 
 /**
@@ -15,4 +15,4 @@ export interface NavigationConfig {
  */
 export const DEFAULT_NAVIGATION_CONFIG: NavigationConfig = {
   exitRoutes: ["firstExample"],
-}
+};
