@@ -1,0 +1,99 @@
+PODS:
+  - boost-for-react-native (1.63.0)
+  - DoubleConversion (1.1.6)
+  - Folly (2016.10.31.00):
+    - boost-for-react-native
+    - DoubleConversion
+    - glog
+  - glog (0.3.5)
+  - React (0.57.4):
+    - React/Core (= 0.57.4)
+  - react-native-splash-screen (3.1.1):
+    - React
+  - React/Core (0.57.4):
+    - yoga (= 0.57.4.React)
+  - React/CxxBridge (0.57.4):
+    - Folly (= 2016.10.31.00)
+    - React/Core
+    - React/cxxreact
+  - React/cxxreact (0.57.4):
+    - boost-for-react-native (= 1.63.0)
+    - Folly (= 2016.10.31.00)
+    - React/jschelpers
+    - React/jsinspector
+  - React/DevSupport (0.57.4):
+    - React/Core
+    - React/RCTWebSocket
+  - React/fishhook (0.57.4)
+  - React/jschelpers (0.57.4):
+    - Folly (= 2016.10.31.00)
+    - React/PrivateDatabase
+  - React/jsinspector (0.57.4)
+  - React/PrivateDatabase (0.57.4)
+  - React/RCTBlob (0.57.4):
+    - React/Core
+  - React/RCTNetwork (0.57.4):
+    - React/Core
+  - React/RCTText (0.57.4):
+    - React/Core
+  - React/RCTWebSocket (0.57.4):
+    - React/Core
+    - React/fishhook
+    - React/RCTBlob
+  - RNI18n (2.0.15):
+    - React
+  - RNKeychain (3.0.0):
+    - React
+  - yoga (0.57.4.React)
+
+DEPENDENCIES:
+  - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
+  - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
+  - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
+  - React/Core (from `../node_modules/react-native`)
+  - React/CxxBridge (from `../node_modules/react-native`)
+  - React/DevSupport (from `../node_modules/react-native`)
+  - React/RCTNetwork (from `../node_modules/react-native`)
+  - React/RCTText (from `../node_modules/react-native`)
+  - React/RCTWebSocket (from `../node_modules/react-native`)
+  - RNI18n (from `../node_modules/react-native-i18n`)
+  - RNKeychain (from `../node_modules/react-native-keychain`)
+  - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - boost-for-react-native
+
+EXTERNAL SOURCES:
+  DoubleConversion:
+    :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
+  Folly:
+    :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
+  glog:
+    :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  React:
+    :path: "../node_modules/react-native"
+  react-native-splash-screen:
+    :path: "../node_modules/react-native-splash-screen"
+  RNI18n:
+    :path: "../node_modules/react-native-i18n"
+  RNKeychain:
+    :path: "../node_modules/react-native-keychain"
+  yoga:
+    :path: "../node_modules/react-native/ReactCommon/yoga"
+
+SPEC CHECKSUMS:
+  boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
+  DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
+  Folly: c89ac2d5c6ab169cd7397ef27485c44f35f742c7
+  glog: e8acf0ebbf99759d3ff18c86c292a5898282dcde
+  React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
+  react-native-splash-screen: 8e3f866dc79bfe533baeffd0a38c33f7a7eae7f8
+  RNI18n: 46b8694063fbd699f2c06a4dc8e835b3176763b1
+  RNKeychain: 627c6095cef215dd3d9804a9a9cf45ab96aa3997
+  yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
+
+PODFILE CHECKSUM: e9c8401dae7a8ad310bcb85473b130b9c43729fe
+
+COCOAPODS: 1.5.3
