@@ -3,15 +3,19 @@
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "jsx": "react-native",
-    "module": "es2015",
+    "jsx": "react",
+    "module": "es6",
     "moduleResolution": "node",
     "noImplicitAny": false,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "sourceMap": true,
-    "target": "es2015"
+    "target": "es6",
+    "baseUrl": "src",
+    "paths": {
+      "src/*": [ "*" ]
+    }
   },
   "exclude": ["node_modules"],
   "include": ["src", "test", "storybook"]

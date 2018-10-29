@@ -70,6 +70,7 @@ export class Reactotron {
    * Hook into the root store for doing awesome state-related things.
    *
    * @param rootStore The root store
+   * @param initialData
    */
   setRootStore(rootStore: any, initialData: any) {
     if (__DEV__) {

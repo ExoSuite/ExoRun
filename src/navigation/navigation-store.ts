@@ -18,6 +18,8 @@ function findCurrentRoute(navState) {
   return route
 }
 
+// @ts-ignore
+// @ts-ignore
 /**
  * Tracks the navigation state for `react-navigation` as well as providers
  * the actions for changing that state.
@@ -27,7 +29,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
     /**
      * the navigation state tree (Frozen here means it is immutable.)
      */
-    state: types.optional(types.frozen, DEFAULT_STATE),
+    state: types.optional(types.frozen(), DEFAULT_STATE),
   })
   .actions(self => ({
 
