@@ -8,7 +8,7 @@ import { color } from "../../../theme/color"
 const VIEWSTYLE = {
   flex: 1,
   backgroundColor: color.storybookDarkBg,
-}
+};
 
 storiesOf("Header", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -40,4 +40,4 @@ storiesOf("Header", module)
         </View>
       </UseCase>
     </Story>
-  ))
+  ));

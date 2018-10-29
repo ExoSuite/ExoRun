@@ -5,7 +5,7 @@ export interface StoryProps {
   children?: React.ReactNode
 }
 
-const ROOT: ViewStyle = { flex: 1 }
+const ROOT: ViewStyle = { flex: 1 };
 
 export function Story(props: StoryProps) {
   return (

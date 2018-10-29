@@ -11,11 +11,11 @@ const BASE_VIEW: ViewStyle = {
   borderRadius: 4,
   justifyContent: "center",
   alignItems: "center",
-}
+};
 
 const BASE_TEXT: TextStyle = {
   paddingHorizontal: spacing[3],
-}
+};
 
 /**
  * All the variations of text styling within the app.
@@ -37,7 +37,7 @@ export const viewPresets = {
     paddingVertical: 0,
     alignItems: "flex-start",
   } as ViewStyle,
-}
+};
 
 export const textPresets = {
   primary: { ...BASE_TEXT, fontSize: 9, color: color.palette.white } as TextStyle,
@@ -47,7 +47,7 @@ export const textPresets = {
     paddingHorizontal: 0,
     paddingVertical: 0,
   } as TextStyle,
-}
+};
 
 /**
  * A list of preset names.

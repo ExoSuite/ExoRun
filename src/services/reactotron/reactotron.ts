@@ -16,7 +16,7 @@ declare global {
 }
 
 /** Do Nothing. */
-const noop = () => undefined
+const noop = () => undefined;
 
 // in dev, we attach Reactotron, in prod we attach a interface-compatible mock.
 if (__DEV__) {
@@ -44,8 +44,8 @@ if (__DEV__) {
  * services.
  */
 export class Reactotron {
-  config: ReactotronConfig
-  rootStore: any
+  config: ReactotronConfig;
+  rootStore: any;
 
   /**
    * Create the Reactotron service.
@@ -73,11 +73,11 @@ export class Reactotron {
    */
   setRootStore(rootStore: any, initialData: any) {
     if (__DEV__) {
-      rootStore = rootStore as RootStore // typescript hack
-      this.rootStore = rootStore
+      rootStore = rootStore as RootStore; // typescript hack
+      this.rootStore = rootStore;
 
-      const { initial, snapshots } = this.config.state
-      const name = "ROOT STORE"
+      const { initial, snapshots } = this.config.state;
+      const name = "ROOT STORE";
 
       // logging features
       if (initial) {
@@ -105,28 +105,28 @@ export class Reactotron {
       Tron.configure({
         name: this.config.name || require("../../../package.json").name,
         host: this.config.host,
-      })
+      });
 
       // hookup middleware
       Tron.useReactNative({
         asyncStorage: this.config.useAsyncStorage ? undefined : false,
-      })
+      });
 
       // ignore some chatty `mobx-state-tree` actions
-      const RX = /postProcessSnapshot|@APPLY_SNAPSHOT/
+      const RX = /postProcessSnapshot|@APPLY_SNAPSHOT/;
 
       // hookup mobx-state-tree middleware
       Tron.use(
         mst({
           filter: event => RX.test(event.name) === false,
         }),
-      )
+      );
 
       // hookup custom command middleware
-      Tron.use(commandMiddleware(() => this.rootStore))
+      Tron.use(commandMiddleware(() => this.rootStore));
 
       // connect to the app
-      Tron.connect()
+      Tron.connect();
 
       // clear if we should
       if (this.config.clearOnLoad) {

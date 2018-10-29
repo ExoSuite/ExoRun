@@ -92,4 +92,4 @@ storiesOf("Checkbox", module)
         </Toggle>
       </UseCase>
     </Story>
-  ))
+  ));

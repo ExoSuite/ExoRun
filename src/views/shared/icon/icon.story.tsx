@@ -14,4 +14,4 @@ storiesOf("Icon", module)
         <Icon icon="bullet" />
       </UseCase>
     </Story>
-  ))
+  ));

@@ -8,7 +8,7 @@ import { Text } from "./text"
 const VIEWSTYLE = {
   flex: 1,
   backgroundColor: color.storybookDarkBg,
-}
+};
 
 storiesOf("Text", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -71,4 +71,4 @@ storiesOf("Text", module)
         </View>
       </UseCase>
     </Story>
-  ))
+  ));

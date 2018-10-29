@@ -8,9 +8,9 @@ const ROOT: ViewStyle = {
   flexDirection: "row",
   paddingVertical: spacing[1],
   alignSelf: "flex-start",
-}
+};
 
-const DIMENSIONS = { width: 16, height: 16 }
+const DIMENSIONS = { width: 16, height: 16 };
 
 const OUTLINE: ViewStyle = {
   ...DIMENSIONS,
@@ -20,22 +20,22 @@ const OUTLINE: ViewStyle = {
   borderWidth: 1,
   borderColor: color.primaryDarker,
   borderRadius: 1,
-}
+};
 
 const FILL: ViewStyle = {
   width: DIMENSIONS.width - 4,
   height: DIMENSIONS.height - 4,
   backgroundColor: color.primary,
-}
+};
 
-const LABEL: TextStyle = { paddingLeft: spacing[2] }
+const LABEL: TextStyle = { paddingLeft: spacing[2] };
 
 export function Checkbox(props: CheckboxProps) {
-  const numberOfLines = props.multiline ? 0 : 1
-  const rootStyle = { ...ROOT, ...props.style } as ViewStyle
-  const outlineStyle = { ...OUTLINE, ...props.outlineStyle } as ViewStyle
-  const fillStyle = { ...FILL, ...props.fillStyle } as ViewStyle
-  const onPress = props.onToggle ? () => props.onToggle && props.onToggle(!props.value) : null
+  const numberOfLines = props.multiline ? 0 : 1;
+  const rootStyle = { ...ROOT, ...props.style } as ViewStyle;
+  const outlineStyle = { ...OUTLINE, ...props.outlineStyle } as ViewStyle;
+  const fillStyle = { ...FILL, ...props.fillStyle } as ViewStyle;
+  const onPress = props.onToggle ? () => props.onToggle && props.onToggle(!props.value) : null;
 
   return (
     <TouchableOpacity

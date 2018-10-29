@@ -15,4 +15,4 @@ export interface NavigationConfig {
  */
 export const DEFAULT_NAVIGATION_CONFIG: NavigationConfig = {
   exitRoutes: ["firstExample"],
-}
+};

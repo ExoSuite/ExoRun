@@ -3,7 +3,7 @@ import { RootNavigator } from "./root-navigator"
 import { NavigationActions, NavigationAction } from "react-navigation"
 import { NavigationEvents } from "./navigation-events"
 
-const DEFAULT_STATE = RootNavigator.router.getStateForAction(NavigationActions.init(), null)
+const DEFAULT_STATE = RootNavigator.router.getStateForAction(NavigationActions.init(), null);
 
 /**
  * Finds the current route.
@@ -11,7 +11,7 @@ const DEFAULT_STATE = RootNavigator.router.getStateForAction(NavigationActions.i
  * @param navState the current nav state
  */
 function findCurrentRoute(navState) {
-  const route = navState.routes[navState.index]
+  const route = navState.routes[navState.index];
   if (route.routes) {
     return findCurrentRoute(route)
   }
@@ -47,9 +47,9 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      * @param shouldPush Should we push or replace the whole stack?
      */
     dispatch(action: NavigationAction, shouldPush: boolean = true) {
-      const previousNavState = shouldPush ? self.state : null
-      self.state = RootNavigator.router.getStateForAction(action, previousNavState) || self.state
-      self.fireSubscribers(action, previousNavState, self.state)
+      const previousNavState = shouldPush ? self.state : null;
+      self.state = RootNavigator.router.getStateForAction(action, previousNavState) || self.state;
+      self.fireSubscribers(action, previousNavState, self.state);
       return true
     },
 
@@ -76,6 +76,6 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
     navigateTo (routeName: string) {
       self.dispatch(NavigationActions.navigate({ routeName }))
     },
-  }))
+  }));
 
 export type NavigationStore = typeof NavigationStoreModel.Type

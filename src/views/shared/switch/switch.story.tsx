@@ -41,4 +41,4 @@ storiesOf("Switch", module)
         </Toggle>
       </UseCase>
     </Story>
-  ))
+  ));

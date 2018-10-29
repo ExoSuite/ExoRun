@@ -12,76 +12,76 @@ import { BulletItem } from "../bullet-item"
 import { Api } from "../../../services/api"
 import { save } from "../../../lib/storage"
 
-const FULL: ViewStyle = { flex: 1 }
+const FULL: ViewStyle = { flex: 1 };
 const CONTAINER: ViewStyle = {
   backgroundColor: color.transparent,
   paddingHorizontal: spacing[4],
-}
+};
 const DEMO: ViewStyle = {
   paddingVertical: spacing[4],
   paddingHorizontal: spacing[4],
   backgroundColor: "#5D2555",
-}
-const BOLD: TextStyle = { fontWeight: "bold" }
+};
+const BOLD: TextStyle = { fontWeight: "bold" };
 const DEMO_TEXT: TextStyle = {
   ...BOLD,
   fontSize: 13,
   letterSpacing: 2,
-}
+};
 const HEADER: TextStyle = {
   paddingTop: spacing[3],
   paddingBottom: spacing[5] - 1,
   paddingHorizontal: 0,
-}
+};
 const HEADER_TITLE: TextStyle = {
   ...BOLD,
   fontSize: 12,
   lineHeight: 15,
   textAlign: "center",
   letterSpacing: 1.5,
-}
+};
 const TITLE: TextStyle = {
   ...BOLD,
   fontSize: 28,
   lineHeight: 38,
   textAlign: "center",
   marginBottom: spacing[5],
-}
+};
 const TAGLINE: TextStyle = {
   color: "#BAB6C8",
   fontSize: 15,
   lineHeight: 22,
   marginBottom: spacing[4] + spacing[1],
-}
+};
 const IGNITE: ImageStyle = {
   marginVertical: spacing[6],
   alignSelf: "center",
-}
+};
 const LOVE_WRAPPER: ViewStyle = {
   flexDirection: "row",
   alignItems: "center",
   alignSelf: "center",
-}
+};
 const LOVE: TextStyle = {
   color: "#BAB6C8",
   fontSize: 15,
   lineHeight: 22,
-}
+};
 const HEART: ImageStyle = {
   marginHorizontal: spacing[2],
   width: 10,
   height: 10,
   resizeMode: "contain",
-}
+};
 
 export interface SecondExampleScreenProps extends NavigationScreenProps<{}> {}
 
 export class SecondExampleScreen extends React.Component<SecondExampleScreenProps, {}> {
-  goBack = () => this.props.navigation.goBack(null)
+  goBack = () => this.props.navigation.goBack(null);
 
   demoReactotron = async () => {
-    console.tron.log("Your Friendly tron log message")
-    console.tron.logImportant("I am important")
+    console.tron.log("Your Friendly tron log message");
+    console.tron.logImportant("I am important");
     console.tron.display({
       name: "DISPLAY",
       value: {
@@ -104,15 +104,15 @@ export class SecondExampleScreen extends React.Component<SecondExampleScreenProp
         uri:
           "https://avatars2.githubusercontent.com/u/3902527?s=200&u=a0d16b13ed719f35d95ca0f4440f5d07c32c349a&v=4",
       },
-    })
+    });
     // make an API call for the demo
     // Don't do API like this, use store's API
-    const demo = new Api()
-    demo.setup()
-    demo.getUser("1")
+    const demo = new Api();
+    demo.setup();
+    demo.getUser("1");
     // Let's do some async storage stuff
     await save("Cool Name", "Boaty McBoatface")
-  }
+  };
 
   render() {
     return (

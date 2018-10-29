@@ -7,7 +7,7 @@ import { color } from "../../../theme/color"
 
 const TEXT_STYLE_OVERRIDE = {
   color: color.storybookTextColor,
-}
+};
 
 storiesOf("FormRow", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -85,4 +85,4 @@ storiesOf("FormRow", module)
         </FormRow>
       </UseCase>
     </Story>
-  ))
+  ));

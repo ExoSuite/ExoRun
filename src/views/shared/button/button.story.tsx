@@ -14,4 +14,4 @@ storiesOf("Button", module)
         <Button text="Click It" preset="primary" onPress={() => window.alert("pressed")} disabled />
       </UseCase>
     </Story>
-  ))
+  ));

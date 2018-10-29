@@ -37,7 +37,7 @@ export class RootComponent extends React.Component<{}, RootComponentState> {
   }
 
   render() {
-    const rootStore = this.state && this.state.rootStore
+    const rootStore = this.state && this.state.rootStore;
 
     // Before we show the app, we have to wait for our state to be ready.
     // In the meantime, don't render anything. This will be the background
@@ -54,7 +54,7 @@ export class RootComponent extends React.Component<{}, RootComponentState> {
     // otherwise, we're ready to render the app
 
     // --- am: begin list of stores ---
-    const otherStores = {}
+    const otherStores = {};
     // --- am: end list of stores ---
 
     return (

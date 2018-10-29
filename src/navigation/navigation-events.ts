@@ -9,7 +9,7 @@ import { EventType, NavigationEventCallback } from "react-navigation"
  */
 export const NavigationEvents = types.model("NavigationEvents").volatile(self => {
   // who is currently subscribed to react-navigation events
-  const subs = new Set<NavigationEventCallback>()
+  const subs = new Set<NavigationEventCallback>();
 
   /**
    * Fires after we change our state.  You call this from the dispatch
@@ -29,7 +29,7 @@ export const NavigationEvents = types.model("NavigationEvents").volatile(self =>
         lastState: oldState,
       })
     })
-  }
+  };
 
   /**
    * Provides a way from screens (for example) to subscribe to `react-navigation`
@@ -44,13 +44,13 @@ export const NavigationEvents = types.model("NavigationEvents").volatile(self =>
     }
 
     // subscribe
-    subs.add(handler)
+    subs.add(handler);
 
     // return the instructions on how to unsubscribe
     return {
       remove: () => subs.delete(handler),
     }
-  }
+  };
 
   return { addListener, fireSubscribers, subs}
-})
+});
