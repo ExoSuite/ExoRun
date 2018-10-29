@@ -3,8 +3,9 @@ package com.exorun;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.oblador.vectoricons.VectorIconsPackage;
-import org.reactnative.camera.RNCameraPackage;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.oblador.keychain.KeychainPackage;
+import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -25,8 +26,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new VectorIconsPackage(),
-            new RNCameraPackage()
+            new SplashScreenReactPackage(),
+            new KeychainPackage(),
+            new RNI18nPackage()
       );
     }
 

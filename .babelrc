@@ -1,3 +1,15 @@
 {
-  "presets": ["module:metro-react-native-babel-preset"]
+  "presets": ["react-native"],
+  "env": {
+    "production": {
+    }
+  },
+  "plugins": [
+    [
+      "transform-inline-environment-variables",
+      {
+        "include": ["NODE_ENV", "API"]
+      }
+    ]
+  ]
 }
