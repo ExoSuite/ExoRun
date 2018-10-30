@@ -18,7 +18,8 @@ const SHOW_STORYBOOK = false;
 
 // appease the typescript overlords
 declare global {
-  var module;
+  // @ts-ignore
+  let module;
 }
 
 if (SHOW_STORYBOOK && __DEV__) {

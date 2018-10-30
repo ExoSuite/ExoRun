@@ -1,5 +1,5 @@
 import { ViewStyle, ScrollViewStyle } from "react-native";
-import { color } from "../../../theme";
+import { color } from "src/theme";
 import { isEmpty, isNil } from "ramda";
 
 /**

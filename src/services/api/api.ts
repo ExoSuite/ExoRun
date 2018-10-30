@@ -92,6 +92,7 @@ export class Api {
       headers["Authorization"] = "Bearer " + token.access_token;
     }
 
+    // @ts-ignore
     this.apisauce.setHeaders(headers);
 
     let apiCall: ApisauceInstance["delete"] | ApisauceInstance["post"]

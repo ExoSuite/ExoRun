@@ -24,6 +24,7 @@ export function Wallpaper(props: WallpaperProps) {
   const source = backgroundImage || defaultImage;
 
   return (
+    // @ts-ignore
     <Image source={source} style={style}/>
   );
 }
