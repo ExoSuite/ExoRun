@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -42,6 +41,7 @@
 		DC7F306EDC2341B9A14E4743 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A8D613EE9564B9DAA18D47F /* Montserrat-ExtraBold.ttf */; };
 		E7CAFDAB67E7440A934FA173 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18FF816F1DBB4944BD710048 /* Montserrat-Light.ttf */; };
 		E8C65E23E4AE4619A4EDE254 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B66A61D78134F728EDA8243 /* Montserrat-Medium.ttf */; };
+		CB8FB9B5311140C8AC142F50 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C507B6AFEE464437800CD85B /* bg.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -356,6 +356,7 @@
 		E3932E10917C414DB2AD5AD6 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BoldItalic.ttf"; path = "../src/theme/fonts/Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
 		E7243143C95649BCB8B6262D /* Montserrat-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-MediumItalic.ttf"; path = "../src/theme/fonts/Montserrat-MediumItalic.ttf"; sourceTree = "<group>"; };
 		EB4EA4C5DCAFCDB5B66143BC /* Pods-ExoRun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExoRun.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExoRun/Pods-ExoRun.release.xcconfig"; sourceTree = "<group>"; };
+		C507B6AFEE464437800CD85B /* bg.png */ = {isa = PBXFileReference; name = "bg.png"; path = "../src/assets/bg.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -616,6 +617,7 @@
 				58F517479080411A9137F900 /* Montserrat-SemiBoldItalic.ttf */,
 				61FDB2C22E9E4CCF96808E82 /* Montserrat-Thin.ttf */,
 				29F1BCBCE69D4641B0752CDA /* Montserrat-ThinItalic.ttf */,
+				C507B6AFEE464437800CD85B /* bg.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1022,6 +1024,7 @@
 				88073CF2068647FCB7D9B9A9 /* Montserrat-SemiBoldItalic.ttf in Resources */,
 				2153A952004E48508FF44D6D /* Montserrat-Thin.ttf in Resources */,
 				6AF86751A89448478E719538 /* Montserrat-ThinItalic.ttf in Resources */,
+				CB8FB9B5311140C8AC142F50 /* bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

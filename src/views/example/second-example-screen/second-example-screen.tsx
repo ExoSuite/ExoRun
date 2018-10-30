@@ -112,7 +112,7 @@ export class SecondExampleScreen extends React.Component<SecondExampleScreenProp
     demo.getUser("1");
     // Let's do some async storage stuff
     await save("Cool Name", "Boaty McBoatface");
-  }
+  };
 
   render() {
     return (

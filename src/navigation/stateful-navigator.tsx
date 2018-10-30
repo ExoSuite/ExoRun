@@ -16,7 +16,7 @@ export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {
 
   getCurrentNavigation = () => {
     return this.currentNavProp;
-  }
+  };
 
   render() {
     // grab our state & dispatch from our navigation store

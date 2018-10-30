@@ -89,7 +89,8 @@
   },
   "rnpm": {
     "assets": [
-      "./src/theme/fonts/"
+      "./src/theme/fonts/",
+      "./src/assets"
     ]
   }
 }

@@ -3,6 +3,14 @@ import { getGeneralApiProblem } from "./api-problem";
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config";
 import * as Types from "./api.types";
 
+export enum HttpRequest {
+  POST = 'POST',
+  GET = 'GET',
+  PUT = 'PUT',
+  PATCH = 'PATCH',
+  DELETE = 'DELETE'
+}
+
 /**
  * Manages all requests to the API.
  */
