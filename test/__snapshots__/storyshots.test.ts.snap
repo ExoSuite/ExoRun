@@ -2,8 +2,6 @@
 
 exports[`Storyshots Button Style Presets 1`] = `
 <View
-  enabled={true}
-  keyboardVerticalOffset={50}
   onLayout={[Function]}
   style={
     Array [
@@ -58,9 +56,6 @@ exports[`Storyshots Button Style Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -77,9 +72,6 @@ exports[`Storyshots Button Style Presets 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -91,9 +83,6 @@ exports[`Storyshots Button Style Presets 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -135,9 +124,6 @@ exports[`Storyshots Button Style Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#ffffff",
@@ -184,9 +170,6 @@ exports[`Storyshots Button Style Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -203,9 +186,6 @@ exports[`Storyshots Button Style Presets 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -217,9 +197,6 @@ exports[`Storyshots Button Style Presets 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -261,9 +238,6 @@ exports[`Storyshots Button Style Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#ffffff",
@@ -286,8 +260,6 @@ exports[`Storyshots Button Style Presets 1`] = `
 
 exports[`Storyshots Checkbox Behaviour 1`] = `
 <View
-  enabled={true}
-  keyboardVerticalOffset={50}
   onLayout={[Function]}
   style={
     Array [
@@ -342,9 +314,6 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -361,9 +330,6 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -375,9 +341,6 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -430,9 +393,6 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
                 }
               />
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
                   Object {
@@ -480,9 +440,6 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -499,9 +456,6 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -513,9 +467,6 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -578,9 +529,6 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
                 />
               </View>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
                   Object {
@@ -628,9 +576,6 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -647,9 +592,6 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -661,9 +603,6 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -716,9 +655,6 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
                 }
               />
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
                   Object {
@@ -742,8 +678,6 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
 
 exports[`Storyshots Checkbox Styling 1`] = `
 <View
-  enabled={true}
-  keyboardVerticalOffset={50}
   onLayout={[Function]}
   style={
     Array [
@@ -798,9 +732,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -817,9 +748,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -831,9 +759,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -887,9 +812,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
                   }
                 />
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={0}
                   style={
                     Object {
@@ -938,9 +860,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -957,9 +876,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -971,9 +887,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -1030,9 +943,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
                   }
                 />
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Object {
@@ -1081,9 +991,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -1100,9 +1007,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -1114,9 +1018,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -1170,9 +1071,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
                   }
                 />
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Object {
@@ -1221,9 +1119,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -1240,9 +1135,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -1254,9 +1146,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -1310,9 +1199,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
                   }
                 />
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Object {
@@ -1337,8 +1223,6 @@ exports[`Storyshots Checkbox Styling 1`] = `
 
 exports[`Storyshots FormRow Assembled 1`] = `
 <View
-  enabled={true}
-  keyboardVerticalOffset={50}
   onLayout={[Function]}
   style={
     Array [
@@ -1393,9 +1277,6 @@ exports[`Storyshots FormRow Assembled 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -1412,9 +1293,6 @@ exports[`Storyshots FormRow Assembled 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -1426,9 +1304,6 @@ exports[`Storyshots FormRow Assembled 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -1461,9 +1336,6 @@ exports[`Storyshots FormRow Assembled 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#1d1d1d",
@@ -1486,9 +1358,6 @@ exports[`Storyshots FormRow Assembled 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#1d1d1d",
@@ -1511,9 +1380,6 @@ exports[`Storyshots FormRow Assembled 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#1d1d1d",
@@ -1537,9 +1403,6 @@ exports[`Storyshots FormRow Assembled 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#1d1d1d",
@@ -1585,9 +1448,6 @@ exports[`Storyshots FormRow Assembled 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -1604,9 +1464,6 @@ exports[`Storyshots FormRow Assembled 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -1618,9 +1475,6 @@ exports[`Storyshots FormRow Assembled 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -1650,9 +1504,6 @@ exports[`Storyshots FormRow Assembled 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#1d1d1d",
@@ -1675,9 +1526,6 @@ exports[`Storyshots FormRow Assembled 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#1d1d1d",
@@ -1701,9 +1549,6 @@ exports[`Storyshots FormRow Assembled 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#1d1d1d",
@@ -1725,8 +1570,6 @@ exports[`Storyshots FormRow Assembled 1`] = `
 
 exports[`Storyshots FormRow Presets 1`] = `
 <View
-  enabled={true}
-  keyboardVerticalOffset={50}
   onLayout={[Function]}
   style={
     Array [
@@ -1781,9 +1624,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -1800,9 +1640,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -1814,9 +1651,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -1849,9 +1683,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#1d1d1d",
@@ -1863,9 +1694,6 @@ exports[`Storyshots FormRow Presets 1`] = `
                 Curved borders at the top.
               </Text>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#1d1d1d",
@@ -1911,9 +1739,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -1930,9 +1755,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -1944,9 +1766,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -1977,9 +1796,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#1d1d1d",
@@ -2025,9 +1841,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -2044,9 +1857,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -2058,9 +1868,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -2092,9 +1899,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#1d1d1d",
@@ -2106,9 +1910,6 @@ exports[`Storyshots FormRow Presets 1`] = `
                 Curved at the bottom
               </Text>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#1d1d1d",
@@ -2154,9 +1955,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -2173,9 +1971,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -2187,9 +1982,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -2220,9 +2012,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#1d1d1d",
@@ -2268,9 +2057,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -2287,9 +2073,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -2301,9 +2084,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -2333,9 +2113,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#1d1d1d",
@@ -2381,9 +2158,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -2400,9 +2174,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -2414,9 +2185,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -2446,9 +2214,6 @@ exports[`Storyshots FormRow Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#1d1d1d",
@@ -2470,8 +2235,6 @@ exports[`Storyshots FormRow Presets 1`] = `
 
 exports[`Storyshots Header Behavior 1`] = `
 <View
-  enabled={true}
-  keyboardVerticalOffset={50}
   onLayout={[Function]}
   style={
     Array [
@@ -2526,9 +2289,6 @@ exports[`Storyshots Header Behavior 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -2545,9 +2305,6 @@ exports[`Storyshots Header Behavior 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -2559,9 +2316,6 @@ exports[`Storyshots Header Behavior 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -2617,9 +2371,6 @@ exports[`Storyshots Header Behavior 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Object {
                         "color": "#ffffff",
@@ -2675,9 +2426,6 @@ exports[`Storyshots Header Behavior 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -2694,9 +2442,6 @@ exports[`Storyshots Header Behavior 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -2708,9 +2453,6 @@ exports[`Storyshots Header Behavior 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -2790,9 +2532,6 @@ exports[`Storyshots Header Behavior 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Object {
                         "color": "#ffffff",
@@ -2848,9 +2587,6 @@ exports[`Storyshots Header Behavior 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -2867,9 +2603,6 @@ exports[`Storyshots Header Behavior 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -2881,9 +2614,6 @@ exports[`Storyshots Header Behavior 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -2939,9 +2669,6 @@ exports[`Storyshots Header Behavior 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Object {
                         "color": "#ffffff",
@@ -2997,8 +2724,6 @@ exports[`Storyshots Header Behavior 1`] = `
 
 exports[`Storyshots Icon Names 1`] = `
 <View
-  enabled={true}
-  keyboardVerticalOffset={50}
   onLayout={[Function]}
   style={
     Array [
@@ -3053,9 +2778,6 @@ exports[`Storyshots Icon Names 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -3072,9 +2794,6 @@ exports[`Storyshots Icon Names 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -3086,9 +2805,6 @@ exports[`Storyshots Icon Names 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -3152,9 +2868,6 @@ exports[`Storyshots Icon Names 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -3171,9 +2884,6 @@ exports[`Storyshots Icon Names 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -3185,9 +2895,6 @@ exports[`Storyshots Icon Names 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -3225,294 +2932,8 @@ exports[`Storyshots Icon Names 1`] = `
 </View>
 `;
 
-exports[`Storyshots PizzaLocation Style Presets 1`] = `
-<View
-  enabled={true}
-  keyboardVerticalOffset={50}
-  onLayout={[Function]}
-  style={
-    Array [
-      Object {
-        "backgroundColor": "#f0f0f0",
-        "flex": 1,
-      },
-      Object {
-        "paddingBottom": 0,
-      },
-    ]
-  }
->
-  <View
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <RCTScrollView>
-      <View>
-        <View
-          style={
-            Object {
-              "backgroundColor": "#eee",
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "borderBottomColor": "#e6e6e6",
-                "borderBottomWidth": 1,
-                "paddingBottom": 10,
-                "paddingHorizontal": 10,
-                "paddingTop": 20,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "borderTopColor": "#e6e6e6",
-                  "borderTopWidth": 1,
-                  "flexDirection": "row",
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Object {
-                    "color": "#666",
-                    "fontSize": 10,
-                    "paddingBottom": 2,
-                    "paddingHorizontal": 4,
-                  }
-                }
-              >
-                Use Case
-              </Text>
-            </View>
-            <View
-              style={Object {}}
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Object {
-                    "color": "#3d3d3d",
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Primary
-              </Text>
-            </View>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Object {
-                  "color": "#666",
-                  "fontSize": 10,
-                  "paddingTop": 0,
-                }
-              }
-            >
-              The primary.
-            </Text>
-          </View>
-          <View
-            style={
-              Object {
-                "backgroundColor": "#fff",
-                "padding": 10,
-              }
-            }
-          >
-            <View
-              accessible={true}
-              isTVSelectable={true}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FBA928",
-                  "borderRadius": 4,
-                  "justifyContent": "center",
-                  "opacity": 1,
-                  "paddingHorizontal": 8,
-                  "paddingVertical": 8,
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Object {
-                    "color": "#ffffff",
-                    "fontFamily": "Montserrat",
-                    "fontSize": 9,
-                    "paddingHorizontal": 12,
-                  }
-                }
-              >
-                Click It
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "backgroundColor": "#eee",
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "borderBottomColor": "#e6e6e6",
-                "borderBottomWidth": 1,
-                "paddingBottom": 10,
-                "paddingHorizontal": 10,
-                "paddingTop": 20,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "borderTopColor": "#e6e6e6",
-                  "borderTopWidth": 1,
-                  "flexDirection": "row",
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Object {
-                    "color": "#666",
-                    "fontSize": 10,
-                    "paddingBottom": 2,
-                    "paddingHorizontal": 4,
-                  }
-                }
-              >
-                Use Case
-              </Text>
-            </View>
-            <View
-              style={Object {}}
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Object {
-                    "color": "#3d3d3d",
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Disabled
-              </Text>
-            </View>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Object {
-                  "color": "#666",
-                  "fontSize": 10,
-                  "paddingTop": 0,
-                }
-              }
-            >
-              The disabled behaviour of the primary button.
-            </Text>
-          </View>
-          <View
-            style={
-              Object {
-                "backgroundColor": "#fff",
-                "padding": 10,
-              }
-            }
-          >
-            <View
-              accessible={true}
-              isTVSelectable={true}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FBA928",
-                  "borderRadius": 4,
-                  "justifyContent": "center",
-                  "opacity": 1,
-                  "paddingHorizontal": 8,
-                  "paddingVertical": 8,
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Object {
-                    "color": "#ffffff",
-                    "fontFamily": "Montserrat",
-                    "fontSize": 9,
-                    "paddingHorizontal": 12,
-                  }
-                }
-              >
-                Click It
-              </Text>
-            </View>
-          </View>
-        </View>
-      </View>
-    </RCTScrollView>
-  </View>
-</View>
-`;
-
 exports[`Storyshots Switch Behaviour 1`] = `
 <View
-  enabled={true}
-  keyboardVerticalOffset={50}
   onLayout={[Function]}
   style={
     Array [
@@ -3567,9 +2988,6 @@ exports[`Storyshots Switch Behaviour 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -3586,9 +3004,6 @@ exports[`Storyshots Switch Behaviour 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -3600,9 +3015,6 @@ exports[`Storyshots Switch Behaviour 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -3702,9 +3114,6 @@ exports[`Storyshots Switch Behaviour 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -3721,9 +3130,6 @@ exports[`Storyshots Switch Behaviour 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -3735,9 +3141,6 @@ exports[`Storyshots Switch Behaviour 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -3837,9 +3240,6 @@ exports[`Storyshots Switch Behaviour 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -3856,9 +3256,6 @@ exports[`Storyshots Switch Behaviour 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -3870,9 +3267,6 @@ exports[`Storyshots Switch Behaviour 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -3948,8 +3342,6 @@ exports[`Storyshots Switch Behaviour 1`] = `
 
 exports[`Storyshots Switch Styling 1`] = `
 <View
-  enabled={true}
-  keyboardVerticalOffset={50}
   onLayout={[Function]}
   style={
     Array [
@@ -4004,9 +3396,6 @@ exports[`Storyshots Switch Styling 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -4023,9 +3412,6 @@ exports[`Storyshots Switch Styling 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -4037,9 +3423,6 @@ exports[`Storyshots Switch Styling 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -4117,8 +3500,6 @@ exports[`Storyshots Switch Styling 1`] = `
 
 exports[`Storyshots Text Passing Content 1`] = `
 <View
-  enabled={true}
-  keyboardVerticalOffset={50}
   onLayout={[Function]}
   style={
     Array [
@@ -4173,9 +3554,6 @@ exports[`Storyshots Text Passing Content 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -4192,9 +3570,6 @@ exports[`Storyshots Text Passing Content 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -4206,9 +3581,6 @@ exports[`Storyshots Text Passing Content 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -4237,9 +3609,6 @@ exports[`Storyshots Text Passing Content 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#ffffff",
@@ -4285,9 +3654,6 @@ exports[`Storyshots Text Passing Content 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -4304,9 +3670,6 @@ exports[`Storyshots Text Passing Content 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -4318,9 +3681,6 @@ exports[`Storyshots Text Passing Content 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -4349,9 +3709,6 @@ exports[`Storyshots Text Passing Content 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#ffffff",
@@ -4363,9 +3720,6 @@ exports[`Storyshots Text Passing Content 1`] = `
                 common.ok.test
               </Text>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#ffffff",
@@ -4411,9 +3765,6 @@ exports[`Storyshots Text Passing Content 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -4430,9 +3781,6 @@ exports[`Storyshots Text Passing Content 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -4444,9 +3792,6 @@ exports[`Storyshots Text Passing Content 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -4475,9 +3820,6 @@ exports[`Storyshots Text Passing Content 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#ffffff",
@@ -4523,9 +3865,6 @@ exports[`Storyshots Text Passing Content 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -4542,9 +3881,6 @@ exports[`Storyshots Text Passing Content 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -4556,9 +3892,6 @@ exports[`Storyshots Text Passing Content 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -4587,9 +3920,6 @@ exports[`Storyshots Text Passing Content 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#ffffff",
@@ -4601,9 +3931,6 @@ exports[`Storyshots Text Passing Content 1`] = `
                  
                 Hello 
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Object {
                       "color": "#ffffff",
@@ -4628,8 +3955,6 @@ exports[`Storyshots Text Passing Content 1`] = `
 
 exports[`Storyshots Text Style Presets 1`] = `
 <View
-  enabled={true}
-  keyboardVerticalOffset={50}
   onLayout={[Function]}
   style={
     Array [
@@ -4684,9 +4009,6 @@ exports[`Storyshots Text Style Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -4703,9 +4025,6 @@ exports[`Storyshots Text Style Presets 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -4717,9 +4036,6 @@ exports[`Storyshots Text Style Presets 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -4748,9 +4064,6 @@ exports[`Storyshots Text Style Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#ffffff",
@@ -4762,9 +4075,6 @@ exports[`Storyshots Text Style Presets 1`] = `
                 Hello!
               </Text>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#ffffff",
@@ -4783,9 +4093,6 @@ exports[`Storyshots Text Style Presets 1`] = `
                 line height
               </Text>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#ffffff",
@@ -4798,9 +4105,6 @@ exports[`Storyshots Text Style Presets 1`] = `
                 The quick brown fox jumped over the slow lazy dog.
               </Text>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#ffffff",
@@ -4846,9 +4150,6 @@ exports[`Storyshots Text Style Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -4865,9 +4166,6 @@ exports[`Storyshots Text Style Presets 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -4879,9 +4177,6 @@ exports[`Storyshots Text Style Presets 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -4910,9 +4205,6 @@ exports[`Storyshots Text Style Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#ffffff",
@@ -4959,9 +4251,6 @@ exports[`Storyshots Text Style Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -4978,9 +4267,6 @@ exports[`Storyshots Text Style Presets 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -4992,9 +4278,6 @@ exports[`Storyshots Text Style Presets 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -5023,9 +4306,6 @@ exports[`Storyshots Text Style Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#ffffff",
@@ -5048,8 +4328,6 @@ exports[`Storyshots Text Style Presets 1`] = `
 
 exports[`Storyshots TextField Labelling 1`] = `
 <View
-  enabled={true}
-  keyboardVerticalOffset={50}
   onLayout={[Function]}
   style={
     Array [
@@ -5104,9 +4382,6 @@ exports[`Storyshots TextField Labelling 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -5123,9 +4398,6 @@ exports[`Storyshots TextField Labelling 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -5137,9 +4409,6 @@ exports[`Storyshots TextField Labelling 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -5167,9 +4436,6 @@ exports[`Storyshots TextField Labelling 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#939AA4",
@@ -5232,9 +4498,6 @@ exports[`Storyshots TextField Labelling 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -5251,9 +4514,6 @@ exports[`Storyshots TextField Labelling 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -5265,9 +4525,6 @@ exports[`Storyshots TextField Labelling 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -5295,9 +4552,6 @@ exports[`Storyshots TextField Labelling 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#939AA4",
@@ -5336,8 +4590,6 @@ exports[`Storyshots TextField Labelling 1`] = `
 
 exports[`Storyshots TextField Style Overrides 1`] = `
 <View
-  enabled={true}
-  keyboardVerticalOffset={50}
   onLayout={[Function]}
   style={
     Array [
@@ -5392,9 +4644,6 @@ exports[`Storyshots TextField Style Overrides 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -5411,9 +4660,6 @@ exports[`Storyshots TextField Style Overrides 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -5425,9 +4671,6 @@ exports[`Storyshots TextField Style Overrides 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -5457,9 +4700,6 @@ exports[`Storyshots TextField Style Overrides 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#939AA4",
@@ -5496,9 +4736,6 @@ exports[`Storyshots TextField Style Overrides 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#939AA4",
@@ -5560,9 +4797,6 @@ exports[`Storyshots TextField Style Overrides 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -5579,9 +4813,6 @@ exports[`Storyshots TextField Style Overrides 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -5593,9 +4824,6 @@ exports[`Storyshots TextField Style Overrides 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -5623,9 +4851,6 @@ exports[`Storyshots TextField Style Overrides 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#939AA4",
@@ -5658,9 +4883,6 @@ exports[`Storyshots TextField Style Overrides 1`] = `
               />
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#939AA4",
@@ -5681,8 +4903,6 @@ exports[`Storyshots TextField Style Overrides 1`] = `
 
 exports[`Storyshots Wallpaper Style Presets 1`] = `
 <View
-  enabled={true}
-  keyboardVerticalOffset={50}
   onLayout={[Function]}
   style={
     Array [
@@ -5737,9 +4957,6 @@ exports[`Storyshots Wallpaper Style Presets 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#666",
@@ -5756,9 +4973,6 @@ exports[`Storyshots Wallpaper Style Presets 1`] = `
               style={Object {}}
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "color": "#3d3d3d",
@@ -5770,9 +4984,6 @@ exports[`Storyshots Wallpaper Style Presets 1`] = `
               </Text>
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -5793,7 +5004,11 @@ exports[`Storyshots Wallpaper Style Presets 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "uri": "bg",
+                }
+              }
               style={
                 Object {
                   "bottom": 0,

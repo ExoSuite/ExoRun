@@ -1,6 +1,8 @@
 /**
  * The options used to configure the API.
  */
+import { Build, BuiltFor } from "src/services/buildDetector/build";
+
 export interface ApiConfig {
   /**
    * The URL of the api.
@@ -13,10 +15,18 @@ export interface ApiConfig {
   timeout: number;
 }
 
+let URL: string;
+
+if (Build.is(BuiltFor.DEVELOPMENT) || Build.is(BuiltFor.TESTING)) {
+  URL = "https://api.dev.exosuite.fr";
+} else {
+  URL = "https://api.exosuite.fr";
+}
+
 /**
  * The default configuration for the app.
  */
 export const DEFAULT_API_CONFIG: ApiConfig = {
-  url: "https://jsonplaceholder.typicode.com",
-  timeout: 10000,
+  url: `${URL}/`,
+  timeout: 10000
 };
