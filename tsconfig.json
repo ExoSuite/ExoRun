@@ -1,16 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "experimentalDecorators": true,
-    "module": "commonjs",
-    "lib": ["es2015"],
-    "jsx": "react",
-    "strict": true,
-    "baseUrl": "app",
-    "paths": {
-      "app/*": [ "*" ]
-    },
+    "allowJs": false,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
-  }
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "module": "es6",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "sourceMap": true,
+    "target": "es6",
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["src/*"],
+      "storybook/*": ["storybook/*"]
+    }
+  },
+  "exclude": ["node_modules"],
+  "include": ["src", "test", "storybook"]
 }
