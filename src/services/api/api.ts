@@ -1,7 +1,6 @@
 import { ApisauceInstance, create, ApiResponse } from "apisauce";
 import { getGeneralApiProblem } from "./api-problem";
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config";
-import { FatalError } from "tslint/lib/error";
 import * as https from "https";
 import { HttpRequest } from "./api-http-request";
 
@@ -60,9 +59,9 @@ export class Api {
       timeout: this.config.timeout,
       headers: {
         Accept: "application/json",
-        httpsAgent: new https.Agent({ keepAlive: true }),
-        adapter: require('axios/lib/adapters/http')
-      }
+      },
+      httpsAgent: new https.Agent({ keepAlive: true }),
+      adapter: require('axios/lib/adapters/http')
     });
 
     return this;
@@ -89,7 +88,7 @@ export class Api {
     if (requireAuth) {
       const token: TokenResponse = await this.checkToken();
       if (!token.access_token)
-        throw new FatalError("Required API authentication but access_token was undefined!");
+        throw new Error("Required API authentication but access_token was undefined!");
       headers["Authorization"] = "Bearer " + token.access_token;
     }
 
