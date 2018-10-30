@@ -61,6 +61,7 @@ export class Api {
       headers: {
         Accept: "application/json",
         httpsAgent: new https.Agent({ keepAlive: true }),
+        adapter: require('axios/lib/adapters/http')
       }
     });
 

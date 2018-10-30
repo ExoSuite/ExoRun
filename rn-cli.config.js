@@ -4,5 +4,8 @@ module.exports = {
   },
   getSourceExts() {
     return ['ts', 'tsx'];
-  }
+  },
+  resolver: {
+    extraNodeModules: require('node-libs-react-native')
+  },
 };
