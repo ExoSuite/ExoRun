@@ -1,20 +1,9 @@
 import { ApisauceInstance, create, ApiResponse } from "apisauce";
+import * as https from "https";
 import { getGeneralApiProblem } from "./api-problem";
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config";
-import * as https from "https";
 import { HttpRequest } from "./api-http-request";
-
-export interface TokenResponse {
-  token_type: string
-  expires_in: number
-  access_token: string
-  refresh_token: string
-}
-
-interface IClient {
-  client_secret: string
-  client_id: number
-}
+import { IClient, TokenResponse } from "./api.types";
 
 /**
  * Manages all requests to the API.
