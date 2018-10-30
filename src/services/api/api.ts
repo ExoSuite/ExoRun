@@ -49,8 +49,8 @@ export class Api {
       headers: {
         Accept: "application/json",
       },
-      httpsAgent: new https.Agent({ keepAlive: true }),
-      adapter: require('axios/lib/adapters/http')
+      httpsAgent: new https.Agent({ keepAlive: true }), // see HTTP keep alive
+      adapter: require('axios/lib/adapters/http') // define real http adapter
     });
 
     return this;
@@ -81,6 +81,7 @@ export class Api {
       headers["Authorization"] = "Bearer " + token.access_token;
     }
 
+    // set additional headers
     // @ts-ignore
     this.apisauce.setHeaders(headers);
 
@@ -88,21 +89,24 @@ export class Api {
       | ApisauceInstance["put"] | ApisauceInstance["patch"]
       | ApisauceInstance["get"];
 
+    // choose method to use GET/POST/PUT/PATCH/DELETE
     if (httpMethod === HttpRequest.DELETE) apiCall = this.apisauce.delete;
     else if (httpMethod === HttpRequest.POST) apiCall = this.apisauce.post;
     else if (httpMethod === HttpRequest.PATCH) apiCall = this.apisauce.patch;
     else if (httpMethod === HttpRequest.GET) apiCall = this.apisauce.get;
     else if (httpMethod === HttpRequest.PUT) apiCall = this.apisauce.put;
 
+    // launch api request
     // @ts-ignore
     const response: ApiResponse<any> = await apiCall(url, data);
 
-    // the typical ways to die when calling an api
+    // the typical ways to die when calling an api fails
     if (!response.ok) {
       const problem = getGeneralApiProblem(response);
       throw new Error(problem ? problem.kind : "Request was canceled");
     }
 
+    // return response from api
     return response;
   }
 }
