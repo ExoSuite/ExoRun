@@ -7,8 +7,7 @@ import { TokenResponse } from "src/services/api";
  * @param tokens
  * @param server The server these creds are for.
  */
-export async function save(tokens: TokenResponse, server: string) {
-  // TODO: verify if save function save a TokenResponse
+export async function save(tokens: TokenResponse, server: string): Promise<boolean> {
   await ReactNativeKeychain.setInternetCredentials(server, "exosuite", JSON.stringify(tokens));
   return true;
 }
@@ -18,13 +17,11 @@ export async function save(tokens: TokenResponse, server: string) {
  *
  * @param server The server that these creds are for
  */
-export async function load(server: string) {
-  // TODO: verify if load function return a TokenResponse
+export async function load(server: string): Promise<TokenResponse | boolean> {
   const creds = await ReactNativeKeychain.getInternetCredentials(server);
-  return {
-    tokens: creds.password,
-    server,
-  };
+  if (creds.password)
+    return JSON.parse(creds.password);
+  return false;
 }
 
 /**
