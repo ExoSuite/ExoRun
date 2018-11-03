@@ -4,6 +4,7 @@ import { getGeneralApiProblem } from "./api-problem";
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config";
 import { HttpRequest } from "./api-http-request";
 import { IClient, TokenResponse } from "./api.types";
+import {load} from "src/lib/keychain";
 
 
 /**
@@ -59,13 +60,21 @@ export class Api {
 
   async checkToken(): Promise<TokenResponse> {
     // TODO: decode and check if token is expired and refresh the token if expired
-    const credentials = await load('exosuite-users-api');
-    return {
-      token_type: "",
-      access_token: "",
-      refresh_token: "",
-      expires_in: 0
-    };
+    const credentials: any = await load('exosuite-users-api');
+
+    const decoded: any = jwt_decode(credentials.access_token);
+    if (decoded.expires_in <= 0) {
+      const TestToken: any = {
+        grant_type: "refresh_token",
+        refresh_token: decoded.refresh_token,
+        client_id: this.client.client_id,
+        client_refresh: this.client.client_secret,
+        scope: "",
+      };
+      const response: any = this.apisauce.post('https://api.dev.exosuite.fr/oauth/token', TestToken);
+      return JSON.parse(response);
+    }
+    return decoded;
   }
 
   async request(

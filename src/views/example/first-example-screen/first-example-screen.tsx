@@ -89,8 +89,8 @@ export class FirstExampleScreen extends React.Component<FirstExampleScreenProps,
     const TestToken: TokenResponse = {
       token_type: "jwt",
       expires_in: 1541221110,
-      access_token: "zdazdzadzdqdq",
-      refresh_token: "zdqdzqzdqdzqzd",
+      access_token: "Le seigneur",
+      refresh_token: "est avec nous",
     };
     await save(TestToken, "exosuite-users-api");
   }
@@ -98,8 +98,7 @@ export class FirstExampleScreen extends React.Component<FirstExampleScreenProps,
   async testFctload() {
     const printData: any = await load("exosuite-users-api");
 
-    console.tron.display(printData.tokens);
-    console.tron.display(printData.server);
+    console.tron.log(printData);
   }
 
 
