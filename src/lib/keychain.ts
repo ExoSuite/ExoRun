@@ -1,13 +1,15 @@
 import * as ReactNativeKeychain from "react-native-keychain";
+import { TokenResponse } from "src/services/api";
 
 /**
  * Saves some credentials securely.
  *
- * @param token
+ * @param tokens
  * @param server The server these creds are for.
  */
-export async function save(token: string, server: string) {
-  await ReactNativeKeychain.setInternetCredentials(server, null, token);
+export async function save(tokens: TokenResponse, server: string) {
+  // TODO: verify if save function save a TokenResponse
+  await ReactNativeKeychain.setInternetCredentials(server, null, JSON.stringify(tokens));
   return true;
 }
 
@@ -17,9 +19,10 @@ export async function save(token: string, server: string) {
  * @param server The server that these creds are for
  */
 export async function load(server: string) {
+  // TODO: verify if load function return a TokenResponse
   const creds = await ReactNativeKeychain.getInternetCredentials(server);
   return {
-    token: creds.password,
+    tokens: creds.password,
     server,
   };
 }
