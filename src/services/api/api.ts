@@ -4,7 +4,7 @@ import jwtDecode from "jwt-decode";
 import { getGeneralApiProblem } from "./api-problem";
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config";
 import { HttpRequest } from "./api-http-request";
-import { IClient, IGrantToken, ITokenResponse } from "./api.types";
+import { IClient, IGrantRequest, ITokenResponse } from "./api.types";
 import { load, save } from "src/lib/keychain";
 import { Server } from "./api.servers";
 
@@ -23,9 +23,9 @@ export class Api {
    */
   config: ApiConfig;
 
-  private client: IClient;
+  private readonly client: IClient;
 
-  private grantToken: IGrantToken;
+  private readonly grantRequest: IGrantRequest;
 
   /**
    * Creates the api.
@@ -39,7 +39,7 @@ export class Api {
       client_secret: "pxAbi1S7lwQpnYZxIbXiccXb7F8BHP55E7nut4Zs"
     };
 
-    this.grantToken = {
+    this.grantRequest = {
       ...this.client,
       grant_type: "refresh_token",
       refresh_token: "",
@@ -73,30 +73,33 @@ export class Api {
     return typeof (arg) !== "boolean";
   }
 
-  private static isBoolean(arg: any) {
-    return typeof (arg) === "boolean";
-  }
-
   async checkToken(): Promise<ITokenResponse | boolean> {
-    // TODO: decode and check if token is expired and refresh the token if expired
+    // get tokens from secure storage
     const credentials: ITokenResponse | boolean = await load(Server.EXOSUITE_USERS_API);
+    // check if credentials match with type ITokenResponse
     if (Api.isITokenResponse(credentials)) {
+      // decode token
       const decoded = jwtDecode(credentials.access_token);
+      // check if token is expired
       if (decoded.expires_in <= 0) {
-        this.grantToken.refresh_token = credentials.refresh_token;
-        const response = await this.apisauce.post("oauth/token", this.grantToken);
+        // assign refresh token to grantRequest
+        this.grantRequest.refresh_token = credentials.refresh_token;
+        // call api for new tokens
+        const response = await this.apisauce.post("oauth/token", this.grantRequest);
         // @ts-ignore
-        const ITokenResponse: ITokenResponse = response.data;
-        await save(ITokenResponse, Server.EXOSUITE_USERS_API);
-        return ITokenResponse;
+        const newTokens: ITokenResponse = response.data;
+        // save new tokens
+        await save(newTokens, Server.EXOSUITE_USERS_API);
+        // return new tokens
+        return newTokens;
       }
-    }
 
-    if (Api.isBoolean(credentials)) {
+      // return non modified tokens
+      return credentials;
+    } else {
+      // if tokens was not provided throw an error
       throw new Error("Can't load token!");
     }
-
-    return credentials;
   }
 
   async request(
