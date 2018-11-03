@@ -12,6 +12,13 @@ export interface IClient {
   client_id: number
 }
 
+export interface IGrantToken extends IClient {
+  grant_type: string,
+  refresh_token: string,
+  scope: string
+}
+
+
 export interface User {
   id: number;
   name: string;

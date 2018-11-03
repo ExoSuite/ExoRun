@@ -1,10 +1,12 @@
 import { ApisauceInstance, create, ApiResponse } from "apisauce";
 import * as https from "https";
+import jwtDecode from "jwt-decode";
 import { getGeneralApiProblem } from "./api-problem";
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config";
 import { HttpRequest } from "./api-http-request";
-import { IClient, TokenResponse } from "./api.types";
-import {load} from "src/lib/keychain";
+import { IClient, IGrantToken, TokenResponse } from "./api.types";
+import { load, save } from "src/lib/keychain";
+import { Server } from "./api.servers";
 
 
 /**
@@ -23,6 +25,8 @@ export class Api {
 
   private client: IClient;
 
+  private grantToken: IGrantToken;
+
   /**
    * Creates the api.
    *
@@ -33,6 +37,13 @@ export class Api {
     this.client = {
       client_id: 131,
       client_secret: "pxAbi1S7lwQpnYZxIbXiccXb7F8BHP55E7nut4Zs"
+    };
+
+    this.grantToken = {
+      ...this.client,
+      grant_type: "refresh_token",
+      refresh_token: "",
+      scope: ""
     };
   }
 
@@ -49,32 +60,43 @@ export class Api {
       baseURL: this.config.url,
       timeout: this.config.timeout,
       headers: {
-        Accept: "application/json",
+        Accept: "application/json"
       },
       httpsAgent: new https.Agent({ keepAlive: true }), // see HTTP keep alive
-      adapter: require('axios/lib/adapters/http') // define real http adapter
+      adapter: require("axios/lib/adapters/http") // define real http adapter
     });
 
     return this;
   }
 
-  async checkToken(): Promise<TokenResponse> {
-    // TODO: decode and check if token is expired and refresh the token if expired
-    const credentials: any = await load('exosuite-users-api');
+  private static isTokenResponse(arg: any): arg is TokenResponse {
+    return typeof (arg) !== "boolean";
+  }
 
-    const decoded: any = jwt_decode(credentials.access_token);
-    if (decoded.expires_in <= 0) {
-      const TestToken: any = {
-        grant_type: "refresh_token",
-        refresh_token: decoded.refresh_token,
-        client_id: this.client.client_id,
-        client_refresh: this.client.client_secret,
-        scope: "",
-      };
-      const response: any = this.apisauce.post('https://api.dev.exosuite.fr/oauth/token', TestToken);
-      return JSON.parse(response);
+  private static isBoolean(arg: any) {
+    return typeof (arg) === "boolean";
+  }
+
+  async checkToken(): Promise<TokenResponse | boolean> {
+    // TODO: decode and check if token is expired and refresh the token if expired
+    const credentials: TokenResponse | boolean = await load(Server.EXOSUITE_USERS_API);
+    if (Api.isTokenResponse(credentials)) {
+      const decoded = jwtDecode(credentials.access_token);
+      if (decoded.expires_in <= 0) {
+        this.grantToken.refresh_token = credentials.refresh_token;
+        const response = await this.apisauce.post("oauth/token", this.grantToken);
+        // @ts-ignore
+        const tokenResponse: TokenResponse = response.data;
+        await save(tokenResponse, Server.EXOSUITE_USERS_API);
+        return tokenResponse;
+      }
     }
-    return decoded;
+
+    if (Api.isBoolean(credentials)) {
+      throw new Error("Can't load token!");
+    }
+
+    return credentials;
   }
 
   async request(
@@ -86,10 +108,12 @@ export class Api {
   ): Promise<ApiResponse<any>> {
 
     if (requireAuth) {
-      const token: TokenResponse = await this.checkToken();
-      if (!token.access_token)
+      const token: TokenResponse | boolean = await this.checkToken();
+      if (Api.isTokenResponse(token) && token.access_token) {
+        headers["Authorization"] = "Bearer " + token.access_token;
+      } else {
         throw new Error("Required API authentication but access_token was undefined!");
-      headers["Authorization"] = "Bearer " + token.access_token;
+      }
     }
 
     // set additional headers
