@@ -42,9 +42,7 @@ PODS:
     - React/RCTBlob
   - RNI18n (2.0.15):
     - React
-  - RNKeychain (3.0.0):
-    - React
-  - RNVectorIcons (4.3.0):
+  - RNVectorIcons (6.0.2):
     - React
   - yoga (0.57.4.React)
 
@@ -60,7 +58,6 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
   - RNI18n (from `../node_modules/react-native-i18n`)
-  - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -81,8 +78,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-splash-screen"
   RNI18n:
     :path: "../node_modules/react-native-i18n"
-  RNKeychain:
-    :path: "../node_modules/react-native-keychain"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   yoga:
@@ -96,10 +91,9 @@ SPEC CHECKSUMS:
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
   react-native-splash-screen: 8e3f866dc79bfe533baeffd0a38c33f7a7eae7f8
   RNI18n: 46b8694063fbd699f2c06a4dc8e835b3176763b1
-  RNKeychain: 627c6095cef215dd3d9804a9a9cf45ab96aa3997
-  RNVectorIcons: c0dbfbf6068fefa240c37b0f71bd03b45dddac44
+  RNVectorIcons: 8c52e1e8da1153613fdef44748e865c25556cb9c
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: 4b318de4f6628f6407b80328dd46ac7755fc45ba
+PODFILE CHECKSUM: 0d213344601dba61bbf42ae34ce09d7318dd7b62
 
 COCOAPODS: 1.5.3
