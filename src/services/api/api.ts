@@ -4,7 +4,7 @@ import jwtDecode from "jwt-decode";
 import { getGeneralApiProblem } from "./api-problem";
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config";
 import { HttpRequest } from "./api-http-request";
-import { IClient, IGrantToken, TokenResponse } from "./api.types";
+import { IClient, IGrantToken, ITokenResponse } from "./api.types";
 import { load, save } from "src/lib/keychain";
 import { Server } from "./api.servers";
 
@@ -69,7 +69,7 @@ export class Api {
     return this;
   }
 
-  private static isTokenResponse(arg: any): arg is TokenResponse {
+  private static isITokenResponse(arg: any): arg is ITokenResponse {
     return typeof (arg) !== "boolean";
   }
 
@@ -77,18 +77,18 @@ export class Api {
     return typeof (arg) === "boolean";
   }
 
-  async checkToken(): Promise<TokenResponse | boolean> {
+  async checkToken(): Promise<ITokenResponse | boolean> {
     // TODO: decode and check if token is expired and refresh the token if expired
-    const credentials: TokenResponse | boolean = await load(Server.EXOSUITE_USERS_API);
-    if (Api.isTokenResponse(credentials)) {
+    const credentials: ITokenResponse | boolean = await load(Server.EXOSUITE_USERS_API);
+    if (Api.isITokenResponse(credentials)) {
       const decoded = jwtDecode(credentials.access_token);
       if (decoded.expires_in <= 0) {
         this.grantToken.refresh_token = credentials.refresh_token;
         const response = await this.apisauce.post("oauth/token", this.grantToken);
         // @ts-ignore
-        const tokenResponse: TokenResponse = response.data;
-        await save(tokenResponse, Server.EXOSUITE_USERS_API);
-        return tokenResponse;
+        const ITokenResponse: ITokenResponse = response.data;
+        await save(ITokenResponse, Server.EXOSUITE_USERS_API);
+        return ITokenResponse;
       }
     }
 
@@ -108,8 +108,8 @@ export class Api {
   ): Promise<ApiResponse<any>> {
 
     if (requireAuth) {
-      const token: TokenResponse | boolean = await this.checkToken();
-      if (Api.isTokenResponse(token) && token.access_token) {
+      const token: ITokenResponse | boolean = await this.checkToken();
+      if (Api.isITokenResponse(token) && token.access_token) {
         headers["Authorization"] = "Bearer " + token.access_token;
       } else {
         throw new Error("Required API authentication but access_token was undefined!");

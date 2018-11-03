@@ -9,7 +9,7 @@ import { Header } from "../../shared/header";
 import { color, spacing } from "../../../theme";
 import { bowserLogo } from "./";
 import {load, save} from "src/lib/keychain";
-import {TokenResponse} from "src/services/api/api.types";
+import {ITokenResponse} from "src/services/api/api.types";
 
 const FULL: ViewStyle = { flex: 1 };
 const CONTAINER: ViewStyle = {
@@ -86,7 +86,7 @@ export class FirstExampleScreen extends React.Component<FirstExampleScreenProps,
   nextScreen = () => this.props.navigation.navigate("secondExample");
 
   async testFct() {
-    const TestToken: TokenResponse = {
+    const TestToken: ITokenResponse = {
       token_type: "jwt",
       expires_in: 1541221110,
       access_token: "Le seigneur",

@@ -1,6 +1,6 @@
 // this file is for define api responses
 
-export interface TokenResponse {
+export interface ITokenResponse {
   token_type: string
   expires_in: number
   access_token: string
