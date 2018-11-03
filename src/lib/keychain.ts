@@ -8,7 +8,7 @@ import { TokenResponse } from "src/services/api";
  * @param server The server these creds are for.
  */
 export async function save(tokens: TokenResponse, server: string): Promise<boolean> {
-  await ReactNativeKeychain.setInternetCredentials(server, "exosuite", JSON.stringify(tokens));
+  await ReactNativeKeychain.setInternetCredentials(server, 'ExoRun', JSON.stringify(tokens));
   return true;
 }
 
