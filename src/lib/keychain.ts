@@ -9,7 +9,7 @@ import { TokenResponse } from "src/services/api";
  */
 export async function save(tokens: TokenResponse, server: string) {
   // TODO: verify if save function save a TokenResponse
-  await ReactNativeKeychain.setInternetCredentials(server, null, JSON.stringify(tokens));
+  await ReactNativeKeychain.setInternetCredentials(server, "exosuite", JSON.stringify(tokens));
   return true;
 }
 

@@ -8,13 +8,15 @@ import { Wallpaper } from "../../shared/wallpaper";
 import { Header } from "../../shared/header";
 import { color, spacing } from "../../../theme";
 import { bowserLogo } from "./";
+import {load, save} from "src/lib/keychain";
+import {TokenResponse} from "src/services/api/api.types";
 
 const FULL: ViewStyle = { flex: 1 };
-const CONTAINER: ViewStyle = { 
+const CONTAINER: ViewStyle = {
   backgroundColor: color.transparent,
   paddingHorizontal: spacing[4],
 };
-const TEXT: TextStyle = { 
+const TEXT: TextStyle = {
   color: color.palette.white,
   fontFamily: "Montserrat",
 };
@@ -24,7 +26,7 @@ const HEADER: TextStyle = {
   paddingBottom: spacing[4] + spacing[1],
   paddingHorizontal: 0,
 };
-const HEADER_TITLE: TextStyle = { 
+const HEADER_TITLE: TextStyle = {
   ...TEXT,
   ...BOLD,
   fontSize: 12,
@@ -32,20 +34,20 @@ const HEADER_TITLE: TextStyle = {
   textAlign: "center",
   letterSpacing: 1.5,
 };
-const TITLE_WRAPPER: TextStyle = { 
+const TITLE_WRAPPER: TextStyle = {
   ...TEXT,
   textAlign: "center",
 };
-const TITLE: TextStyle = { 
-  ...TEXT, 
+const TITLE: TextStyle = {
+  ...TEXT,
   ...BOLD,
   fontSize: 28,
   lineHeight: 38,
   textAlign: "center",
 };
-const ALMOST: TextStyle = { 
-  ...TEXT, 
-  ...BOLD,  
+const ALMOST: TextStyle = {
+  ...TEXT,
+  ...BOLD,
   fontSize: 26,
   fontStyle: "italic",
 };
@@ -55,14 +57,14 @@ const BOWSER: ImageStyle = {
   maxWidth: "100%",
 };
 const CONTENT: TextStyle = {
-  ...TEXT,  
-  color: "#BAB6C8",  
+  ...TEXT,
+  color: "#BAB6C8",
   fontSize: 15,
   lineHeight: 22,
   marginBottom: spacing[5],
 };
-const CONTINUE: ViewStyle = { 
-  paddingVertical: spacing[4], 
+const CONTINUE: ViewStyle = {
+  paddingVertical: spacing[4],
   paddingHorizontal: spacing[4],
   backgroundColor: "#5D2555",
 };
@@ -74,7 +76,7 @@ const CONTINUE_TEXT: TextStyle = {
 };
 const FOOTER: ViewStyle = { backgroundColor: "#20162D" };
 const FOOTER_CONTENT: ViewStyle = {
-  paddingVertical: spacing[4], 
+  paddingVertical: spacing[4],
   paddingHorizontal: spacing[4],
 };
 
@@ -83,10 +85,28 @@ export interface FirstExampleScreenProps extends NavigationScreenProps<{}> {}
 export class FirstExampleScreen extends React.Component<FirstExampleScreenProps, {}> {
   nextScreen = () => this.props.navigation.navigate("secondExample");
 
+  async testFct() {
+    const TestToken: TokenResponse = {
+      token_type: "jwt",
+      expires_in: 1541221110,
+      access_token: "zdazdzadzdqdq",
+      refresh_token: "zdqdzqzdqdzqzd",
+    };
+    await save(TestToken, "exosuite-users-api");
+  }
+
+  async testFctload() {
+    const printData: any = await load("exosuite-users-api");
+
+    console.tron.display(printData.tokens);
+    console.tron.display(printData.server);
+  }
+
+
   render() {
     return (
       <View style={FULL}>
-        <StatusBar barStyle="light-content" />      
+        <StatusBar barStyle="light-content" />
         <Wallpaper />
         <SafeAreaView style={FULL}>
           <Screen style={CONTAINER} backgroundColor={color.transparent} preset="scrollStack">
@@ -95,12 +115,12 @@ export class FirstExampleScreen extends React.Component<FirstExampleScreenProps,
               style={HEADER}
               titleStyle={HEADER_TITLE}
             />
-            <Text style={TITLE_WRAPPER}> 
+            <Text style={TITLE_WRAPPER}>
               <Text style={TITLE} text="Your new app, " />
               <Text style={ALMOST} text="almost" />
               <Text style={TITLE} text="!" />
             </Text>
-            <Text style={TITLE} preset="header" tx="firstExampleScreen.readyForLaunch" />          
+            <Text style={TITLE} preset="header" tx="firstExampleScreen.readyForLaunch" />
             <Image source={bowserLogo} style={BOWSER} />
             <Text style={CONTENT}>
               This probably isn't what your app is going to look like. Unless your designer handed you this screen and, in that case, congrats! You're ready to ship.
@@ -118,6 +138,15 @@ export class FirstExampleScreen extends React.Component<FirstExampleScreenProps,
               tx="firstExampleScreen.continue"
               onPress={this.nextScreen}
               />
+            <Button
+              tx="Test"
+              onPress={this.testFct}
+            />
+            <Button
+              tx="Test"
+              onPress={this.testFctload}
+            />
+
           </View>
         </SafeAreaView>
       </View>

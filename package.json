@@ -44,8 +44,8 @@
     "react-native-vector-icons": "4.3.0",
     "react-navigation": "2.18.2",
     "reactotron-mst": "2.1.0",
-    "reactotron-react-native": "2.1.0",
-    "validate.js": "0.12.0"
+    "validate.js": "0.12.0",
+    "yarn": "^1.12.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -76,6 +76,7 @@
     "react-native-typescript-transformer": "1.2.10",
     "react-powerplug": "1.0.0-rc.1",
     "react-test-renderer": "16.6.0",
+    "reactotron-react-native": "^2.1.0",
     "rimraf": "2.6.2",
     "solidarity": "2.1.0",
     "tslint": "5.11.0",

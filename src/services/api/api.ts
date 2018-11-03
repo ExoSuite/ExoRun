@@ -5,6 +5,7 @@ import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config";
 import { HttpRequest } from "./api-http-request";
 import { IClient, TokenResponse } from "./api.types";
 
+
 /**
  * Manages all requests to the API.
  */
@@ -58,6 +59,7 @@ export class Api {
 
   async checkToken(): Promise<TokenResponse> {
     // TODO: decode and check if token is expired and refresh the token if expired
+    const credentials = await load('exosuite-users-api');
     return {
       token_type: "",
       access_token: "",
