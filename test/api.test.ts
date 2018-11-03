@@ -2,7 +2,7 @@ import { Api, HttpRequest, HttpResponse } from "src/services/api";
 
 it('initialize API without crashing', () => {
   const instance = new Api().setup();
-  return instance.request(HttpRequest.GET, '/auth/register', {}, {}, false)
+  return instance.request(HttpRequest.GET, 'auth/register', {}, {}, false)
     .then((response) => {
       console.log(response);
     }).catch((e) => {
