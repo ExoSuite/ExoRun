@@ -1,12 +1,13 @@
-import { createStackNavigator } from "react-navigation";
+import { createSwitchNavigator } from "react-navigation";
+import { Home } from "src/views/home"
 import { AuthNavigator } from "./auth-navigator";
 
-export const RootNavigator = createStackNavigator(
+export const RootNavigator = createSwitchNavigator(
   {
-    auth: { screen: AuthNavigator }
+    auth: { screen: AuthNavigator },
+    home: { screen: Home },
   },
   {
-    headerMode: "none",
-    navigationOptions: { gesturesEnabled: false }
+    initialRouteName: 'auth'
   }
 );

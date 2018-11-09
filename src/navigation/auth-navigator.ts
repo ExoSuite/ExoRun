@@ -1,9 +1,10 @@
 import { createStackNavigator } from "react-navigation";
-import { Auth } from "src/views/Auth"
+import { LoginScreen, RegisterScreen } from "src/views/auth";
 
 export const AuthNavigator = createStackNavigator({
-    Auth: { screen: Auth }
+    login: { screen: LoginScreen },
+    register: { screen: RegisterScreen }
   },
   {
-    headerMode: "none",
+    headerMode: "none"
   });

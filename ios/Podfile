@@ -1,6 +1,4 @@
-# Required for Swift apps
 platform :ios, '9.0'
-use_frameworks!
 
 # The target name is most likely the name of your project.
 target 'ExoRun' do
@@ -24,10 +22,8 @@ target 'ExoRun' do
     pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
     pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-    pod 'RNI18n', :path => '../node_modules/react-native-i18n'
-
-    pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
-
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+  pod 'RNLanguages', :path => '../node_modules/react-native-languages'
 
 end
