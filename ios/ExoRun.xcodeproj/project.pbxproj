@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -44,7 +43,6 @@
 		AAE27E35A4D14BBBA398A3A6 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18E9DBFCC6DC4B9DA8C25A1B /* Octicons.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B4BB91CDAA1B454C9F2042C0 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB3CEE548CA44021B5A43FDF /* FontAwesome5_Solid.ttf */; };
-		BD4C7ACB218E5CBF00F2000D /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD4C7AC7218E5CA700F2000D /* libRNKeychain.a */; };
 		BDFD5D1D2187B93800678D18 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDFD5D1C2187B91600678D18 /* libSplashScreen.a */; };
 		C38AC06CDB6546C08E4840AF /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A59DA66B10FB4649BE519091 /* MaterialCommunityIcons.ttf */; };
 		CB8FB9B5311140C8AC142F50 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C507B6AFEE464437800CD85B /* bg.png */; };
@@ -321,20 +319,6 @@
 			remoteGlobalIDString = 358F4ED71D1E81A9004DF814;
 			remoteInfo = RCTBlob;
 		};
-		BD4C7AC6218E5CA700F2000D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BD4C7A9C218E5CA700F2000D /* RNKeychain.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5D82366F1B0CE05B005A9EF3;
-			remoteInfo = RNKeychain;
-		};
-		BD4C7AC8218E5CA700F2000D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BD4C7A9C218E5CA700F2000D /* RNKeychain.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6478985F1F38BF9100DA1C12;
-			remoteInfo = "RNKeychain-tvOS";
-		};
 		BDFD5D1B2187B91600678D18 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BDFD5D172187B91600678D18 /* SplashScreen.xcodeproj */;
@@ -389,7 +373,6 @@
 		BA744932BEC342F1A41F2F26 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		BC55AF30AD05423D9B8B6891 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBoldItalic.ttf"; path = "../src/theme/fonts/Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		BD4C7A81218E58F400F2000D /* ExoRun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ExoRun.entitlements; path = ExoRun/ExoRun.entitlements; sourceTree = "<group>"; };
-		BD4C7A9C218E5CA700F2000D /* RNKeychain.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNKeychain.xcodeproj; path = "../node_modules/react-native-keychain/RNKeychain.xcodeproj"; sourceTree = "<group>"; };
 		BDFD5D172187B91600678D18 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		C507B6AFEE464437800CD85B /* bg.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = bg.png; path = ../src/assets/bg.png; sourceTree = "<group>"; };
 		C65BFDDD8983410092BCD78B /* Montserrat-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLightItalic.ttf"; path = "../src/theme/fonts/Montserrat-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
@@ -412,7 +395,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD4C7ACB218E5CBF00F2000D /* libRNKeychain.a in Frameworks */,
 				BDFD5D1D2187B93800678D18 /* libSplashScreen.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
@@ -563,7 +545,6 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				BD4C7A9C218E5CA700F2000D /* RNKeychain.xcodeproj */,
 				BDFD5D172187B91600678D18 /* SplashScreen.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -630,15 +611,6 @@
 				EB4EA4C5DCAFCDB5B66143BC /* Pods-ExoRun.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		BD4C7A9D218E5CA700F2000D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				BD4C7AC7218E5CA700F2000D /* libRNKeychain.a */,
-				BD4C7AC9218E5CA700F2000D /* libRNKeychain.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		BDA48B3821876FB90075F523 /* Recovered References */ = {
@@ -798,10 +770,6 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-				},
-				{
-					ProductGroup = BD4C7A9D218E5CA700F2000D /* Products */;
-					ProjectRef = BD4C7A9C218E5CA700F2000D /* RNKeychain.xcodeproj */;
 				},
 				{
 					ProductGroup = BDFD5D182187B91600678D18 /* Products */;
@@ -1073,20 +1041,6 @@
 			fileType = archive.ar;
 			path = libRCTBlob.a;
 			remoteRef = ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		BD4C7AC7218E5CA700F2000D /* libRNKeychain.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNKeychain.a;
-			remoteRef = BD4C7AC6218E5CA700F2000D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		BD4C7AC9218E5CA700F2000D /* libRNKeychain.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNKeychain.a;
-			remoteRef = BD4C7AC8218E5CA700F2000D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		BDFD5D1C2187B91600678D18 /* libSplashScreen.a */ = {

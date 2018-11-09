@@ -26,4 +26,6 @@ target 'ExoRun' do
 
   pod 'RNLanguages', :path => '../node_modules/react-native-languages'
 
+  pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
+
 end

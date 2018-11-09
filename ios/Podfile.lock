@@ -38,6 +38,8 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - RNKeychain (3.0.0):
+    - React
   - RNLanguages (3.0.1):
     - React
   - RNVectorIcons (6.0.2):
@@ -54,6 +56,7 @@ DEPENDENCIES:
   - React/RCTNetwork (from `../node_modules/react-native`)
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNLanguages (from `../node_modules/react-native-languages`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -71,6 +74,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   React:
     :path: "../node_modules/react-native"
+  RNKeychain:
+    :path: "../node_modules/react-native-keychain"
   RNLanguages:
     :path: "../node_modules/react-native-languages"
   RNVectorIcons:
@@ -84,10 +89,11 @@ SPEC CHECKSUMS:
   Folly: c89ac2d5c6ab169cd7397ef27485c44f35f742c7
   glog: e8acf0ebbf99759d3ff18c86c292a5898282dcde
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
+  RNKeychain: 627c6095cef215dd3d9804a9a9cf45ab96aa3997
   RNLanguages: e3ae05ef105937645218272429dac0c3f7633451
   RNVectorIcons: 8c52e1e8da1153613fdef44748e865c25556cb9c
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: 461309325e31018eccc1e4dfd313fb71ee5e6e1f
+PODFILE CHECKSUM: eb2e07c17862abc70ad2bf6531db2a539632d0b2
 
 COCOAPODS: 1.5.3

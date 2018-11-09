@@ -10,6 +10,9 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#if RCT_DEV
+#import <React/RCTDevLoadingView.h>
+#endif
 
 @implementation AppDelegate
 
@@ -35,7 +38,8 @@
       }
     }
   }
-
+  
+  
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];
   rootViewController.view = rootView;
