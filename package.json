@@ -46,7 +46,8 @@
     "react-native-vector-icons": "6.0.2",
     "react-navigation": "2.18.2",
     "reactotron-mst": "2.1.0",
-    "validate.js": "0.12.0"
+    "validate.js": "0.12.0",
+    "react-native-mask-loader": "latest"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
