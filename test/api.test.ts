@@ -1,11 +1,13 @@
 import { Api, HttpRequest, HttpResponse } from "src/services/api";
 
-it('initialize API without crashing', () => {
+it("initialize API without crashing", () => {
   const instance = new Api().setup();
-  return instance.request(HttpRequest.GET, 'auth/register', {}, {}, false)
-    .then((response) => {
+  return instance
+    .request(HttpRequest.GET, "auth/register", {}, {}, false)
+    .then(response => {
       console.log(response);
-    }).catch((e) => {
+    })
+    .catch(e => {
       if (e.message !== HttpResponse.METHOD_NOT_ALLOWED) fail();
     });
 });

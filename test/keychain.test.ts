@@ -35,4 +35,4 @@ test("load", async () => {
 });
 */
 
-test('ok', () => {});
+test("ok", () => {});

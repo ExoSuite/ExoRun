@@ -1,13 +1,13 @@
 import * as React from "react";
 import { inject, observer } from "mobx-react";
-import { action, observable } from "mobx";
-import { StyleSheet } from 'react-native';
 // @ts-ignore: until they update @type/react-navigation
 import { getNavigation, NavigationScreenProp, NavigationState } from "react-navigation";
-import Loader from "react-native-mask-loader";
 
 import { RootNavigator } from "./root-navigator";
 import { NavigationStore } from "./navigation-store";
+import { Loader } from "src/views/auth/loader";
+import autobind from "autobind-decorator";
+import { AssetLocator } from "src/services/asset";
 
 interface StatefulNavigatorProps {
   navigationStore?: NavigationStore;
@@ -18,26 +18,24 @@ interface StatefulNavigatorProps {
 export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {}> {
   currentNavProp: NavigationScreenProp<NavigationState>;
 
-  @observable appLoaded: boolean = false;
+  loader: Loader = null;
 
   getCurrentNavigation = () => {
     return this.currentNavProp;
   };
 
-  @action.bound
+  @autobind
   removeLoader() {
-    this.appLoaded = true;
+    this.loader.animate();
   }
 
   async componentDidMount() {
-      setTimeout(this.removeLoader, 2000);
+    setTimeout(this.removeLoader, 2000);
   }
 
   render() {
     // grab our state & dispatch from our navigation store
     const { state, dispatch, actionSubscribers } = this.props.navigationStore;
-
-    const { appLoaded } = this;
 
     // create a custom navigation implementation
     this.currentNavProp = getNavigation(
@@ -51,28 +49,13 @@ export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {
 
     return (
       <Loader
-        isLoaded={appLoaded}
-        imageSource={require("./twitter.png")}
-        backgroundStyle={styles.loadingBackgroundStyle}
+        ref={(ref: Loader) => this.loader = ref}
+        backgroundColor="#6b58a0"
+        imageProperties={{ height: 200, width: 200}}
+        imageSource={AssetLocator('exosuite-icon-loader')}
       >
         <RootNavigator navigation={this.currentNavProp}/>
       </Loader>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  loadingBackgroundStyle: {
-    backgroundColor: 'rgba(125, 125, 255, 1)',
-  },
-});

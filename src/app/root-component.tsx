@@ -22,7 +22,7 @@ export class RootComponent extends React.Component<{}, RootComponentState> {
    * re-renders when we're good to go.
    */
   async componentDidMount() {
-    SplashScreen.hide();
+    await SplashScreen.hide();
     this.setState({
       rootStore: await setupRootStore()
     });

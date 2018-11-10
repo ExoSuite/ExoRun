@@ -76,6 +76,18 @@
     {
       "path": "src/assets/bg.png",
       "sha1": "54a13762bcd2073e53c7eca9bca44af2e7152f38"
+    },
+    {
+      "path": "src/assets/exosuite-icon-loader.png",
+      "sha1": "34b7b9cab8fc83d2a9d6c8b83c6583ca47d8fa74"
+    },
+    {
+      "path": "src/assets/exosuite-icon.png",
+      "sha1": "daea4330a6e348c03db7a95006dc7c01f3931fad"
+    },
+    {
+      "path": "src/assets/twitter.png",
+      "sha1": "acc364946077b0e32b2343474ce4066ad3ee524c"
     }
   ]
 }

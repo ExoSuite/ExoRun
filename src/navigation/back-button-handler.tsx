@@ -46,7 +46,7 @@ export class BackButtonHandler extends React.Component<BackButtonHandlerProps, {
       // let the system know we've handled this event
       return true;
     }
-  };
+  }
 
   /**
    * Renders the children or nothing if they weren't passed.

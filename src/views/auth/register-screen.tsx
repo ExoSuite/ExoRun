@@ -1,10 +1,10 @@
-import * as React from "react"
-import { observer } from "mobx-react"
-import { ViewStyle } from "react-native"
-import { Text } from "../shared/text"
-import { Screen } from "../shared/screen"
-import { color } from "src/theme"
-import { NavigationScreenProps } from "react-navigation"
+import * as React from "react";
+import { observer } from "mobx-react";
+import { ViewStyle } from "react-native";
+import { Text } from "../shared/text";
+import { Screen } from "../shared/screen";
+import { color } from "src/theme";
+import { NavigationScreenProps } from "react-navigation";
 
 export interface RegisterScreenProps extends NavigationScreenProps<{}> {
 }
@@ -21,6 +21,6 @@ export class RegisterScreen extends React.Component<RegisterScreenProps, {}> {
       <Screen style={ROOT} preset="fixedCenter">
         {/*<Text preset="header" tx="auth.header" />*/}
       </Screen>
-    )
+    );
   }
 }

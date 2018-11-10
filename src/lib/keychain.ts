@@ -10,7 +10,7 @@ import { ITokenResponse } from "src/services/api";
 export async function save(tokens: ITokenResponse, server: string): Promise<boolean> {
   await ReactNativeKeychain.setInternetCredentials(
     server,
-    'ExoRun',
+    "ExoRun",
     JSON.stringify(tokens)
   );
   return true;

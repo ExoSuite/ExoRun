@@ -9,7 +9,7 @@
 // It's easier just to leave it here.
 
 // import required modules
-import 'node-libs-react-native/globals'
+import 'node-libs-react-native/globals';
 import 'es6-symbol/implement';
 
 // import main APP

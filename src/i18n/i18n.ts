@@ -1,5 +1,5 @@
-import RNLanguages from 'react-native-languages';
-import I18n from 'i18n-js';
+import RNLanguages from "react-native-languages";
+import I18n from "i18n-js";
 
 
 const en = require("./en");
