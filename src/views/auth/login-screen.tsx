@@ -36,8 +36,14 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
     navigation.navigate("register");
   }
 
+  @autobind
+  navigateToHome() {
+    const { navigation } = this.props;
+    navigation.navigate("home");
+  }
+
   render() {
-    const { navigateToRegister } = this;
+    const { navigateToRegister, navigateToHome } = this;
 
     return (
       <View style={FULL}>
@@ -45,7 +51,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
           <Screen style={CONTAINER} backgroundColor={color.transparent} preset="fixedStack">
             <Text preset="largeHeaderCentered" tx="auth.login.header"/>
             <View style={{ alignItems: "center", justifyContent: "space-around", flex: 0.12 }}>
-              <Button style={{ width: "80%" }}>
+              <Button style={{ width: "80%" }} onPress={navigateToHome}>
                 <Text preset="bold" tx="auth.login.header"/>
               </Button>
               <Button style={{ width: "80%" }} onPress={navigateToRegister}>
