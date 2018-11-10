@@ -21,5 +21,15 @@
   "storybook": {
     "placeholder": "Placeholder",
     "field": "Field"
+  },
+  "auth": {
+    "login": {
+      "header": "Se connecter",
+      "login": "Se connecter à ExoRun"
+    },
+    "register": {
+      "header": "S'enregistrer",
+      "register": "Enregistrer moi"
+    }
   }
 }

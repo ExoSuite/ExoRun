@@ -19,7 +19,7 @@ export class Loader extends React.Component<LoaderProps> {
     const { animation } = this;
     Animated.timing(animation, {
       toValue: 100,
-      duration: 1000,
+      duration: 1250,
       useNativeDriver: true
     }).start(() => runInAction(() => this.appLoaded = true));
   }

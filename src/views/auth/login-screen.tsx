@@ -1,27 +1,60 @@
 import * as React from "react";
 import { observer } from "mobx-react";
-import { ViewStyle } from "react-native";
+import { SafeAreaView, View, ViewStyle } from "react-native";
 import { Screen } from "../shared/screen";
-import { color } from "src/theme";
+import { color, spacing } from "src/theme";
 import { NavigationScreenProps } from "react-navigation";
 import { Button } from "src/views/shared/button";
+import { Text } from "src/views/shared/text";
+import autobind from "autobind-decorator";
+import { Header } from "src/views/shared/header";
 
 export interface LoginScreenProps extends NavigationScreenProps<{}> {
 }
 
 const ROOT: ViewStyle = {
-  backgroundColor: color.palette.black,
+  backgroundColor: color.palette.black
+};
+
+const FULL: ViewStyle = {
+  ...ROOT,
+  flex: 1
+};
+
+const CONTAINER: ViewStyle = {
+  ...FULL,
+  paddingHorizontal: spacing[4]
 };
 
 // @inject("mobxstuff")
 @observer
 export class LoginScreen extends React.Component<LoginScreenProps, {}> {
-  render () {
+
+  @autobind
+  navigateToRegister() {
+    const { navigation } = this.props;
+    navigation.navigate("register");
+  }
+
+  render() {
+    const { navigateToRegister } = this;
+
     return (
-      <Screen style={ROOT} preset="fixedCenter">
-        <Button/>
-        {/*<Text preset="header" tx="auth.header" />*/}
-      </Screen>
+      <View style={FULL}>
+        <SafeAreaView style={FULL}>
+          <Screen style={CONTAINER} backgroundColor={color.transparent} preset="fixedStack">
+            <Text preset="largeHeaderCentered" tx="auth.login.header"/>
+            <View style={{ alignItems: "center", justifyContent: "space-around", flex: 0.12 }}>
+              <Button style={{ width: "80%" }}>
+                <Text preset="bold" tx="auth.login.header"/>
+              </Button>
+              <Button style={{ width: "80%" }} onPress={navigateToRegister}>
+                <Text preset="bold" tx="auth.register.header"/>
+              </Button>
+            </View>
+          </Screen>
+        </SafeAreaView>
+      </View>
     );
   }
 }
