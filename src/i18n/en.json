@@ -25,7 +25,8 @@
   "auth": {
     "login": {
       "header": "Login",
-      "login": "Login into ExoRun"
+      "login": "Login into ExoRun",
+      "username" : "E-mail"
     },
     "register": {
       "header": "Register",

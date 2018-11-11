@@ -40,6 +40,8 @@ export const color = {
    * The default color of text in many components.
    */
   text: palette.white,
+
+  textinput: palette.black,
   /**
    * Secondary information.
    */

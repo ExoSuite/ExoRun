@@ -13,15 +13,15 @@ const CONTAINER: ViewStyle = {
 // the base styling for the TextInput
 const INPUT: TextStyle = {
   fontFamily: typography.primary,
-  color: color.text,
+  color: color.textinput,
   minHeight: 44,
   fontSize: 18,
   backgroundColor: color.palette.white,
 };
 
 // currently we have no presets, but that changes quickly when you build your app.
-const PRESETS: { [name: string]: ViewStyle } = {
-  default: {},
+export const PRESETS: { [name: string]: ViewStyle } = {
+  default: {}, loginScreen: {width:"80%"}
 };
 
 /**
@@ -31,6 +31,7 @@ export class TextField extends React.Component<TextFieldProps, {}> {
   render() {
     const {
       placeholderTx,
+      placeholderTextColor,
       placeholder,
       labelTx,
       label,
@@ -48,7 +49,7 @@ export class TextField extends React.Component<TextFieldProps, {}> {
         <Text preset="fieldLabel" tx={labelTx} text={label} />
         <TextInput
           placeholder={actualPlaceholder}
-          placeholderTextColor={color.palette.lighterGrey}
+          placeholderTextColor={placeholderTextColor}
           underlineColorAndroid={color.transparent}
           {...rest}
           style={inputStyle}

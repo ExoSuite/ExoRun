@@ -34,5 +34,9 @@ export interface TextFieldProps extends TextInputProps {
   /**
    * Various look & feels.
    */
-  preset?: "default";
+  preset?: string;
+
+  placeholderTextColor?: string;
+
+  color?: string;
 }

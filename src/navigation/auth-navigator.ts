@@ -1,7 +1,9 @@
 import { createStackNavigator } from "react-navigation";
-import { LoginScreen, RegisterScreen } from "src/views/auth";
+import {AuthScreen, LoginScreen, RegisterScreen} from "src/views/auth";
 
-export const AuthNavigator = createStackNavigator({
+export const AuthNavigator = createStackNavigator(
+  {
+    auth: { screen: AuthScreen },
     login: { screen: LoginScreen },
     register: { screen: RegisterScreen }
   },
