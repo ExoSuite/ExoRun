@@ -25,10 +25,12 @@
   "auth": {
     "powered": "Powered by ",
     "slogan": "La technologie au service du sport.",
+    "back": "Retour",
     "login": {
       "header": "Se connecter",
       "login": "Se connecter à ExoRun",
-      "username" : "E-mail"
+      "username" : "E-mail",
+      "password" : "Mot de passe"
     },
     "register": {
       "header": "S'enregistrer",

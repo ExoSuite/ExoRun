@@ -7,7 +7,7 @@ import { TextFieldProps } from "./text-field.props";
 
 // the base styling for the container
 const CONTAINER: ViewStyle = {
-  paddingVertical: spacing[3],
+  paddingVertical: spacing[1],
 };
 
 // the base styling for the TextInput
@@ -21,7 +21,7 @@ const INPUT: TextStyle = {
 
 // currently we have no presets, but that changes quickly when you build your app.
 export const PRESETS: { [name: string]: ViewStyle } = {
-  default: {}, loginScreen: {width:"80%"}
+  default: {}, loginScreen: {width:"95%", borderBottomColor:color.palette.lightGrey, borderBottomWidth:1}
 };
 
 /**

@@ -24,11 +24,13 @@
   },
   "auth": {
     "powered": "Powered by ",
+    "back": "Go back",
     "slogan": "Technology for sport.",
     "login": {
       "header": "Login",
       "login": "Login into ExoRun",
-      "username" : "E-mail"
+      "username" : "E-mail",
+      "password" : "Password"
     },
     "register": {
       "header": "Register",

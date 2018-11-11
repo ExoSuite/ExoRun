@@ -30,6 +30,8 @@ export const viewPresets = {
 
   secondary: { ...BASE_VIEW, backgroundColor: color.secondary } as ViewStyle,
 
+  neutral: { ...BASE_VIEW, backgroundColor: color.palette.orangeDarker } as ViewStyle,
+
   /**
    * A button without extras.
    */

@@ -41,7 +41,7 @@ export const color = {
    */
   text: palette.white,
 
-  textinput: palette.black,
+  textinput: palette.white,
   /**
    * Secondary information.
    */
