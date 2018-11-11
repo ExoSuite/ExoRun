@@ -86,6 +86,10 @@
       "sha1": "daea4330a6e348c03db7a95006dc7c01f3931fad"
     },
     {
+      "path": "src/assets/exosuite-logo.png",
+      "sha1": "dce5d5208d1ee4d18fc749cece006fd11a1bbd6c"
+    },
+    {
       "path": "src/assets/twitter.png",
       "sha1": "acc364946077b0e32b2343474ce4066ad3ee524c"
     }

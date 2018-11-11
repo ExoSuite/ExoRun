@@ -34,7 +34,7 @@ export const presets = {
   /**
    * Very Large headers centered.
    */
-  largeHeaderCentered: { ...BASE, fontSize: 32, fontWeight: "bold", textAlign: 'center' } as TextStyle,
+  largeHeaderCentered: { ...BASE, fontSize: 32, fontWeight: "bold", textAlign: "center" } as TextStyle,
 
   /**
    * Field labels that appear on forms above the inputs.

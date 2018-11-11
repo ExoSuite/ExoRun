@@ -60,6 +60,7 @@
 		0CCC05375958479AB2D39536 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 32E7A0E73A8F4315B5B2441F /* twitter.png */; };
 		099C95C1B41B41FCBAB039B7 /* exosuite-icon-loader.png in Resources */ = {isa = PBXBuildFile; fileRef = B16389F3ABB044A086E01934 /* exosuite-icon-loader.png */; };
 		D67761103D1F4B7C9C4A1BFF /* exosuite-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 223A9F5EF1FB44CA9465D606 /* exosuite-icon.png */; };
+		5662EEF8BD8B47F78C92E7D5 /* exosuite-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0340D16059AC4A7498BBF204 /* exosuite-logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -394,6 +395,7 @@
 		32E7A0E73A8F4315B5B2441F /* twitter.png */ = {isa = PBXFileReference; name = "twitter.png"; path = "../src/assets/twitter.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		B16389F3ABB044A086E01934 /* exosuite-icon-loader.png */ = {isa = PBXFileReference; name = "exosuite-icon-loader.png"; path = "../src/assets/exosuite-icon-loader.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		223A9F5EF1FB44CA9465D606 /* exosuite-icon.png */ = {isa = PBXFileReference; name = "exosuite-icon.png"; path = "../src/assets/exosuite-icon.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0340D16059AC4A7498BBF204 /* exosuite-logo.png */ = {isa = PBXFileReference; name = "exosuite-logo.png"; path = "../src/assets/exosuite-logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -674,6 +676,7 @@
 				32E7A0E73A8F4315B5B2441F /* twitter.png */,
 				B16389F3ABB044A086E01934 /* exosuite-icon-loader.png */,
 				223A9F5EF1FB44CA9465D606 /* exosuite-icon.png */,
+				0340D16059AC4A7498BBF204 /* exosuite-logo.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1104,6 +1107,7 @@
 				0CCC05375958479AB2D39536 /* twitter.png in Resources */,
 				099C95C1B41B41FCBAB039B7 /* exosuite-icon-loader.png in Resources */,
 				D67761103D1F4B7C9C4A1BFF /* exosuite-icon.png in Resources */,
+				5662EEF8BD8B47F78C92E7D5 /* exosuite-logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,7 +32,7 @@ export class Loader extends React.Component<LoaderProps> {
       opacity: animation.interpolate({
         inputRange: [0, 15, 30],
         outputRange: [0, 0, 1],
-        extrapolate: 'clamp',
+        extrapolate: "clamp",
       }),
     };
 
@@ -48,7 +48,7 @@ export class Loader extends React.Component<LoaderProps> {
     };
 
     const solidStyle = {
-      position: 'absolute',
+      position: "absolute",
       height: imageProperties.height,
       width: imageProperties.width,
       top: (-imageProperties.height / 2) + (Screen.Height / 2),

@@ -21,13 +21,13 @@ export const color = {
    */
   transparent: "rgba(0, 0, 0, 0)",
   /**
-   * The screen background.
+   * The loader color
    */
-  background: palette.mainColor,
+  loaderColor: palette.loaderColor,
   /**
    * The main tinting color.
    */
-  primary: palette.orange,
+  primary: palette.blue,
   /**
    * The main tinting color, but darker.
    */

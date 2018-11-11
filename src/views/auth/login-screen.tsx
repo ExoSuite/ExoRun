@@ -30,6 +30,12 @@ const CONTAINER: ViewStyle = {
 @observer
 export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 
+  constructor(props) {
+    super(props);
+    console.tron.log("ok");
+  }
+
+
   @autobind
   navigateToRegister() {
     const { navigation } = this.props;
@@ -58,6 +64,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
                 <Text preset="bold" tx="auth.register.header"/>
               </Button>
             </View>
+
           </Screen>
         </SafeAreaView>
       </View>
