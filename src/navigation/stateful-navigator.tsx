@@ -9,6 +9,7 @@ import { Loader } from "src/views/auth/loader";
 import autobind from "autobind-decorator";
 import { AssetLocator } from "src/services/asset";
 import { color } from "src/theme";
+import {Screen} from "src/services/device";
 
 interface StatefulNavigatorProps {
   navigationStore?: NavigationStore;
@@ -51,9 +52,9 @@ export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {
     return (
       <Loader
         ref={(ref: Loader) => this.loader = ref}
-        backgroundColor={color.loaderColor}
-        imageProperties={{ height: 200, width: 200 }}
-        imageSource={AssetLocator("exosuite-icon-loader")}
+        backgroundColor={color.palette.backgroundDarker}
+        imageProperties={{ height: Screen.Height, width: Screen.Width }}
+        imageSource={AssetLocator("exosuite-loader")}
       >
         <RootNavigator navigation={this.currentNavProp}/>
       </Loader>

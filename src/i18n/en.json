@@ -23,6 +23,7 @@
     "field": "Field"
   },
   "auth": {
+    "powered": "Powered by ",
     "login": {
       "header": "Login",
       "login": "Login into ExoRun",

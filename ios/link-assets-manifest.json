@@ -74,24 +74,20 @@
       "sha1": "62dcb447998b27a83872d75439ce35124fe08aa7"
     },
     {
-      "path": "src/assets/bg.png",
-      "sha1": "54a13762bcd2073e53c7eca9bca44af2e7152f38"
+      "path": "src/assets/exorun-logo.png",
+      "sha1": "e265c7de51901c5bb20fbf6a3061a389d7bf0a31"
     },
     {
-      "path": "src/assets/exosuite-icon-loader.png",
-      "sha1": "34b7b9cab8fc83d2a9d6c8b83c6583ca47d8fa74"
+      "path": "src/assets/exorun-text.png",
+      "sha1": "cc5e2a7e40a0c7cf6020572843741b469d931640"
     },
     {
-      "path": "src/assets/exosuite-icon.png",
-      "sha1": "daea4330a6e348c03db7a95006dc7c01f3931fad"
+      "path": "src/assets/exosuite-loader.png",
+      "sha1": "4596f841638a66158c08b66552f38c54207ad2f1"
     },
     {
       "path": "src/assets/exosuite-logo.png",
       "sha1": "dce5d5208d1ee4d18fc749cece006fd11a1bbd6c"
-    },
-    {
-      "path": "src/assets/twitter.png",
-      "sha1": "acc364946077b0e32b2343474ce4066ad3ee524c"
     }
   ]
 }

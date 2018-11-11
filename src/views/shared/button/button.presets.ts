@@ -9,11 +9,11 @@ const BASE_VIEW: ViewStyle = {
   paddingHorizontal: spacing[2],
   borderRadius: 4,
   justifyContent: "center",
-  alignItems: "center",
+  alignItems: "center"
 };
 
 const BASE_TEXT: TextStyle = {
-  paddingHorizontal: spacing[3],
+  paddingHorizontal: spacing[3]
 };
 
 /**
@@ -26,7 +26,10 @@ export const viewPresets = {
    * A smaller piece of secondard information.
    */
   primary: { ...BASE_VIEW, backgroundColor: color.primary } as ViewStyle,
-  
+
+
+  secondary: { ...BASE_VIEW, backgroundColor: color.secondary } as ViewStyle,
+
   /**
    * A button without extras.
    */
@@ -34,8 +37,8 @@ export const viewPresets = {
     ...BASE_VIEW,
     paddingHorizontal: 0,
     paddingVertical: 0,
-    alignItems: "flex-start",
-  } as ViewStyle,
+    alignItems: "flex-start"
+  } as ViewStyle
 };
 
 export const textPresets = {
@@ -44,8 +47,8 @@ export const textPresets = {
     ...BASE_TEXT,
     color: color.text,
     paddingHorizontal: 0,
-    paddingVertical: 0,
-  } as TextStyle,
+    paddingVertical: 0
+  } as TextStyle
 };
 
 /**

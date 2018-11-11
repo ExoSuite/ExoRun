@@ -1,18 +1,19 @@
-import * as React from "react"
-import { observer } from "mobx-react"
-import {SafeAreaView, View, ViewStyle} from "react-native"
-import { Text } from "../shared/text/index"
-import { Screen } from "../shared/screen/index"
-import {color, spacing} from "../../theme/index"
-import { NavigationScreenProps } from "react-navigation"
+import * as React from "react";
+import { observer } from "mobx-react";
+import { Image, ImageStyle, SafeAreaView, View, ViewStyle } from "react-native";
+import { Text } from "src/views/shared/text";
+import { Screen } from "src/views/shared/screen";
+import { color, spacing } from "src/theme";
+import { NavigationScreenProps } from "react-navigation";
 import autobind from "autobind-decorator";
-import {Button} from "src/views/shared/button";
+import { Button } from "src/views/shared/button";
+import { AssetLocator } from "src/services/asset";
 
 export interface AuthScreenProps extends NavigationScreenProps<{}> {
 }
 
 const ROOT: ViewStyle = {
-  backgroundColor: color.palette.black
+  backgroundColor: color.palette.backgroundDarker
 };
 
 const FULL: ViewStyle = {
@@ -25,15 +26,20 @@ const CONTAINER: ViewStyle = {
   paddingHorizontal: spacing[4]
 };
 
-// @inject("mobxstuff")
+const EXORUN_TEXT: ImageStyle = {
+  width: 150,
+  height: 50,
+  alignSelf: "center"
+};
+
+const EXORUN_LOGO: ImageStyle = {
+  width: 75,
+  height: 35,
+  alignSelf: "center"
+};
+
 @observer
 export class AuthScreen extends React.Component<AuthScreenProps, {}> {
-
-  constructor(props) {
-    super(props);
-    console.tron.log("ok");
-  }
-
 
   @autobind
   navigateToRegister() {
@@ -53,18 +59,31 @@ export class AuthScreen extends React.Component<AuthScreenProps, {}> {
     return (
       <View style={FULL}>
         <SafeAreaView style={FULL}>
-          <Screen style={CONTAINER} backgroundColor={color.transparent} preset="fixedStack">
-            <Text preset="largeHeaderCentered" tx="auth.login.header"/>
-            <View style={{ alignItems: "center", justifyContent: "space-around", flex: 0.12 }}>
-              <Button style={{ width: "80%" }} onPress={navigateToLogin}>
-                <Text preset="bold" tx="auth.login.header"/>
-              </Button>
-              <Button style={{ width: "80%" }} onPress={navigateToRegister}>
-                <Text preset="bold" tx="auth.register.header"/>
-              </Button>
+          <Image
+            source={AssetLocator("exorun-text")}
+            style={EXORUN_TEXT}
+            resizeMode="contain"
+          />
+          <Image
+            source={AssetLocator("exorun-logo")}
+            style={EXORUN_LOGO}
+            resizeMode="contain"
+          />
+          <Screen style={CONTAINER} backgroundColor={color.transparent} preset="fixedCenter">
+            <View style={{marginBottom: 35}}>
+              <Text preset="largeHeaderCentered" tx="auth.login.header"/>
             </View>
-
+            <Button style={{ width: "80%", marginBottom: 10 }} onPress={navigateToLogin}>
+              <Text preset="bold" tx="auth.login.header"/>
+            </Button>
+            <Button style={{ width: "80%" }} onPress={navigateToRegister} preset="secondary">
+              <Text preset="bold" tx="auth.register.header"/>
+            </Button>
           </Screen>
+          <View style={{}}>
+
+          </View>
+          <Text preset="bold" tx="auth.powered"/>
         </SafeAreaView>
       </View>
     );
