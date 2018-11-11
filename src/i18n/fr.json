@@ -24,6 +24,7 @@
   },
   "auth": {
     "powered": "Powered by ",
+    "slogan": "La technologie au service du sport.",
     "login": {
       "header": "Se connecter",
       "login": "Se connecter à ExoRun",

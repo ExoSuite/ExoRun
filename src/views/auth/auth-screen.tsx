@@ -38,6 +38,18 @@ const EXORUN_LOGO: ImageStyle = {
   alignSelf: "center"
 };
 
+const EXOSUITE: ImageStyle = {
+  width: 200,
+  height: 100,
+};
+
+const FOOTER_CONTAINER: ViewStyle = {
+  flexDirection: 'row',
+  alignSelf: 'center',
+  alignItems: 'center',
+  justifyContent: 'center'
+};
+
 @observer
 export class AuthScreen extends React.Component<AuthScreenProps, {}> {
 
@@ -70,8 +82,8 @@ export class AuthScreen extends React.Component<AuthScreenProps, {}> {
             resizeMode="contain"
           />
           <Screen style={CONTAINER} backgroundColor={color.transparent} preset="fixedCenter">
-            <View style={{marginBottom: 35}}>
-              <Text preset="largeHeaderCentered" tx="auth.login.header"/>
+            <View style={{marginBottom: 100}}>
+              <Text preset="largeHeaderCentered" tx="auth.slogan"/>
             </View>
             <Button style={{ width: "80%", marginBottom: 10 }} onPress={navigateToLogin}>
               <Text preset="bold" tx="auth.login.header"/>
@@ -80,10 +92,14 @@ export class AuthScreen extends React.Component<AuthScreenProps, {}> {
               <Text preset="bold" tx="auth.register.header"/>
             </Button>
           </Screen>
-          <View style={{}}>
-
+          <View style={FOOTER_CONTAINER}>
+            <Text preset="bold" tx="auth.powered"/>
+            <Image
+              source={AssetLocator("exosuite-logo")}
+              style={EXOSUITE}
+              resizeMode="contain"
+            />
           </View>
-          <Text preset="bold" tx="auth.powered"/>
         </SafeAreaView>
       </View>
     );

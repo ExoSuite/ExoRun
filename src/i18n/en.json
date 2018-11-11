@@ -24,6 +24,7 @@
   },
   "auth": {
     "powered": "Powered by ",
+    "slogan": "Technology for sport.",
     "login": {
       "header": "Login",
       "login": "Login into ExoRun",
