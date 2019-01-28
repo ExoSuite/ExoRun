@@ -8,6 +8,16 @@ import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.reactcommunity.rnlanguages.RNLanguagesPackage;
 import com.oblador.keychain.KeychainPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.reactcommunity.rnlanguages.RNLanguagesPackage;
+import com.oblador.keychain.KeychainPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.reactcommunity.rnlanguages.RNLanguagesPackage;
+import com.oblador.keychain.KeychainPackage;
 import com.oblador.keychain.KeychainPackage;
 import com.reactcommunity.rnlanguages.RNLanguagesPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -38,6 +48,16 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new VectorIconsPackage(),
+            new SplashScreenReactPackage(),
+            new RNGestureHandlerPackage(),
+            new RNLanguagesPackage(),
+            new KeychainPackage(),
+            new VectorIconsPackage(),
+            new SplashScreenReactPackage(),
+            new RNGestureHandlerPackage(),
+            new RNLanguagesPackage(),
+            new KeychainPackage(),
             new VectorIconsPackage(),
             new SplashScreenReactPackage(),
             new RNGestureHandlerPackage(),

@@ -28,4 +28,6 @@ target 'ExoRun' do
 
   pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
 
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+
 end
