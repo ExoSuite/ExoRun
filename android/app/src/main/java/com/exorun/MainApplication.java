@@ -4,17 +4,30 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import com.oblador.vectoricons.VectorIconsPackage;
+
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
+
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.reactcommunity.rnlanguages.RNLanguagesPackage;
 import com.oblador.keychain.KeychainPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
+
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
+
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.reactcommunity.rnlanguages.RNLanguagesPackage;
 import com.oblador.keychain.KeychainPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
+
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
+
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.reactcommunity.rnlanguages.RNLanguagesPackage;
+import com.oblador.keychain.KeychainPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.reactcommunity.rnlanguages.RNLanguagesPackage;
 import com.oblador.keychain.KeychainPackage;
@@ -46,28 +59,14 @@ public class MainApplication extends Application implements ReactApplication {
 
         @Override
         protected List<ReactPackage> getPackages() {
-            return Arrays.<ReactPackage>asList(
+            return Arrays.asList(
                     new MainReactPackage(),
-            new VectorIconsPackage(),
-            new SplashScreenReactPackage(),
-            new RNGestureHandlerPackage(),
-            new RNLanguagesPackage(),
-            new KeychainPackage(),
-            new VectorIconsPackage(),
-            new SplashScreenReactPackage(),
-            new RNGestureHandlerPackage(),
-            new RNLanguagesPackage(),
-            new KeychainPackage(),
-            new VectorIconsPackage(),
-            new SplashScreenReactPackage(),
-            new RNGestureHandlerPackage(),
-            new RNLanguagesPackage(),
-            new KeychainPackage(),
                     new RNLanguagesPackage(),
                     new VectorIconsPackage(),
                     new SplashScreenReactPackage(),
-                    new KeychainPackage()
-                    );
+                    new KeychainPackage(),
+                    new RNGestureHandlerPackage()
+            );
         }
 
         @Override

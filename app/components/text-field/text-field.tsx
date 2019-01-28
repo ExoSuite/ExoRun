@@ -8,7 +8,7 @@ import { reduce } from "ramda"
 
 // the base styling for the container
 const CONTAINER: ViewStyle = {
-  paddingVertical: spacing[3],
+  paddingVertical: spacing[3]
 }
 
 // the base styling for the TextInput
@@ -17,29 +17,29 @@ const INPUT: TextStyle = {
   color: color.text,
   minHeight: 44,
   fontSize: 18,
-  backgroundColor: color.palette.white,
+  backgroundColor: color.palette.white
 }
 
 // currently we have no presets, but that changes quickly when you build your app.
 export const PRESETS: { [name: string]: ViewStyle } = {
   default: {},
   loginScreen: {
-    width:"95%",
-    borderBottomColor:color.palette.lightGrey,
-    borderBottomWidth:1
+    width: "95%",
+    borderBottomColor: color.palette.lightGrey,
+    borderBottomWidth: 1
   }
-};
+}
 
 
 const enhance = (style, styleOverride) => {
   if (Array.isArray(styleOverride)) {
-    return reduce((acc,term) => {
+    return reduce((acc, term) => {
       return { ...acc, ...term }
     }, style, styleOverride)
   } else {
     return {
       ...style,
-      ...styleOverride,
+      ...styleOverride
     }
   }
 }
@@ -70,7 +70,7 @@ export class TextField extends React.Component<TextFieldProps, {}> {
 
     return (
       <View style={containerStyle}>
-        <Text preset="fieldLabel" tx={labelTx} text={label} />
+        <Text preset="fieldLabel" tx={labelTx} text={label}/>
         <TextInput
           placeholder={actualPlaceholder}
           placeholderTextColor={color.palette.lighterGrey}
