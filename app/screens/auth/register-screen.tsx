@@ -1,12 +1,11 @@
 import * as React from "react";
 import { observer } from "mobx-react";
 import { SafeAreaView, TextStyle, View, ViewStyle } from "react-native";
-import { Text } from "../shared/text";
-import { Screen } from "../shared/screen";
-import { color, spacing } from "src/theme";
+import { Screen } from "app/components/screen";
+import { color, spacing } from "app/theme";
 import { NavigationScreenProps } from "react-navigation";
-import { Button } from "src/views/shared/button";
-import { Header } from "src/views/shared/header";
+import { Button } from "app/components/button";
+import { Header } from "app/components/header";
 import autobind from "autobind-decorator";
 
 export interface RegisterScreenProps extends NavigationScreenProps<{}> {

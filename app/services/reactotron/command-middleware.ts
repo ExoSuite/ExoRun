@@ -1,5 +1,5 @@
-import { clear } from "../../lib/storage";
-import { RootStore } from "../../app/root-store";
+import { clear } from "app/utils/storage"
+import { RootStore } from "app/models/root-store"
 
 export type GetRootStore = () => RootStore;
 
@@ -7,18 +7,18 @@ export const commandMiddleware = (getRootStore: GetRootStore) => {
   return tron => {
     return {
       onCommand: async command => {
-        if (command.type !== "custom") return;
+        if (command.type !== "custom") return
         switch (command.payload) {
           case "resetStore":
-            console.tron.log("resetting store");
-            clear();
-            break;
+            console.tron.log("resetting store")
+            clear()
+            break
           case "resetNavigation":
-            console.tron.log("resetting navigation store");
-            getRootStore().navigationStore.reset();
-            break;
+            console.tron.log("resetting navigation store")
+            getRootStore().navigationStore.reset()
+            break
         }
-      },
-    };
-  };
-};
+      }
+    }
+  }
+}

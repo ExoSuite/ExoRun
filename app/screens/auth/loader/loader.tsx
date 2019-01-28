@@ -4,7 +4,7 @@ import { observable, runInAction } from "mobx";
 import { observer } from "mobx-react";
 
 import { LoaderProps } from "./loader.props";
-import { Screen } from "src/services/device";
+import { Screen } from "app/services/device";
 
 /**
  */

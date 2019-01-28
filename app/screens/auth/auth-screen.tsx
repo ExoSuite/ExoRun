@@ -1,13 +1,13 @@
 import * as React from "react";
 import { observer } from "mobx-react";
 import { Image, ImageStyle, SafeAreaView, View, ViewStyle } from "react-native";
-import { Text } from "src/views/shared/text";
-import { Screen } from "src/views/shared/screen";
-import { color, spacing } from "src/theme";
+import { Text } from "app/components/text";
+import { Screen } from "app/components/screen";
+import { color, spacing } from "app/theme";
 import { NavigationScreenProps } from "react-navigation";
 import autobind from "autobind-decorator";
-import { Button } from "src/views/shared/button";
-import { AssetLocator } from "src/services/asset";
+import { Button } from "app/components/button";
+import { AssetLocator } from "app/services/asset";
 
 export interface AuthScreenProps extends NavigationScreenProps<{}> {
 }
