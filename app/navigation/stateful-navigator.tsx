@@ -5,11 +5,11 @@ import { getNavigation, NavigationScreenProp, NavigationState } from "react-navi
 
 import { RootNavigator } from "./root-navigator";
 import { NavigationStore } from "./navigation-store";
-import { Loader } from "src/views/auth/loader";
+import { Loader } from "app/screens/auth/loader";
 import autobind from "autobind-decorator";
-import { AssetLocator } from "src/services/asset";
-import { color } from "src/theme";
-import {Screen} from "src/services/device";
+import { AssetLocator } from "app/services/asset";
+import { color } from "app/theme";
+import {Screen} from "app/services/device";
 
 interface StatefulNavigatorProps {
   navigationStore?: NavigationStore;

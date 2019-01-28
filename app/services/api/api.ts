@@ -5,7 +5,7 @@ import { getGeneralApiProblem } from "./api-problem";
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config";
 import { HttpRequest } from "./api-http-request";
 import { IClient, IGrantRequest, ITokenResponse } from "./api.types";
-import { load, save } from "src/lib/keychain";
+import { load, save } from "app/utils/keychain";
 import { Server } from "./api.servers";
 
 

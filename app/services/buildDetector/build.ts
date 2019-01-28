@@ -1,4 +1,4 @@
-import {ENV} from "src/app/environment-variables";
+import {ENV} from "app/environment-variables";
 
 export enum BuiltFor {
   PRODUCTION = "production",
