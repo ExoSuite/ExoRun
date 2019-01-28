@@ -1,4 +1,4 @@
-import { Api, HttpRequest, HttpResponse } from "src/services/api";
+import { Api, HttpRequest, HttpResponse } from "app/services/api";
 
 it("initialize API without crashing", () => {
   const instance = new Api().setup();

@@ -13,4 +13,4 @@ import 'node-libs-react-native/globals';
 import 'es6-symbol/implement';
 
 // import main APP
-import './src/app/main';
+import "./app/app.tsx"
