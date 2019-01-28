@@ -29,4 +29,4 @@ declare var process: any
  */
 export const API: string | undefined = process.env.API
 
-export const ENV: string | undefined = process.env.NODE_ENV;
+export const ENV: string | undefined = process.env.NODE_ENV

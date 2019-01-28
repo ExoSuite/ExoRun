@@ -12,6 +12,7 @@ import { Provider } from "mobx-react"
 import { BackButtonHandler } from "./navigation/back-button-handler"
 import { contains } from "ramda"
 import { DEFAULT_NAVIGATION_CONFIG } from "./navigation/navigation-config"
+import SplashScreen from "react-native-splash-screen";
 
 interface AppState {
   rootStore?: RootStore
@@ -26,6 +27,7 @@ export class App extends React.Component<{}, AppState> {
    * re-renders when we're good to go.
    */
   async componentDidMount() {
+    await SplashScreen.hide();
     this.setState({
       rootStore: await setupRootStore(),
     })
@@ -84,4 +86,3 @@ const SHOW_STORYBOOK = false
 
 const RootComponent = SHOW_STORYBOOK && __DEV__ ? StorybookUIRoot : App
 AppRegistry.registerComponent(APP_NAME, () => RootComponent)
-

@@ -8,5 +8,5 @@ export enum HttpResponse {
   REJECTED = "rejected",
   UNKNOWN = "unknown",
   BAD_DATA = "bad-data",
-  METHOD_NOT_ALLOWED = "method-not-allowed"
+  METHOD_NOT_ALLOWED = "method-not-allowed",
 }

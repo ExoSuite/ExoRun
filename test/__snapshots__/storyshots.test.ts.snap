@@ -114,7 +114,7 @@ exports[`Storyshots Button Style Presets 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": undefined,
+                  "backgroundColor": "#1d86d7",
                   "borderRadius": 4,
                   "justifyContent": "center",
                   "opacity": 1,
@@ -228,7 +228,7 @@ exports[`Storyshots Button Style Presets 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": undefined,
+                  "backgroundColor": "#1d86d7",
                   "borderRadius": 4,
                   "justifyContent": "center",
                   "opacity": 1,
@@ -342,7 +342,7 @@ exports[`Storyshots Button Style Presets 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": undefined,
+                  "backgroundColor": "#1d86d7",
                   "borderRadius": 0,
                   "justifyContent": "center",
                   "opacity": 1,

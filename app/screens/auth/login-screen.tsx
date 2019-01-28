@@ -43,7 +43,6 @@ const EXORUN_LOGO: ImageStyle = {
 const disabled = color.palette.lightGrey
 const enabled = color.secondary
 
-// @inject("mobxstuff")
 @observer
 export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 

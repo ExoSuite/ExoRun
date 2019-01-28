@@ -1,5 +1,5 @@
-import * as ReactNativeKeychain from "react-native-keychain";
-import { ITokenResponse } from "app/services/api";
+import * as ReactNativeKeychain from "react-native-keychain"
+import { ITokenResponse } from "app/services/api"
 
 /**
  * Saves some credentials securely.
@@ -11,9 +11,9 @@ export async function save(tokens: ITokenResponse, server: string): Promise<bool
   await ReactNativeKeychain.setInternetCredentials(
     server,
     "ExoRun",
-    JSON.stringify(tokens)
-  );
-  return true;
+    JSON.stringify(tokens),
+  )
+  return true
 }
 
 /**
@@ -22,10 +22,10 @@ export async function save(tokens: ITokenResponse, server: string): Promise<bool
  * @param server The server that these creds are for
  */
 export async function load(server: string): Promise<ITokenResponse | boolean> {
-  const creds = await ReactNativeKeychain.getInternetCredentials(server);
+  const creds = await ReactNativeKeychain.getInternetCredentials(server)
   if (creds.password)
-    return JSON.parse(creds.password);
-  return false;
+    return JSON.parse(creds.password)
+  return false
 }
 
 /**
@@ -34,6 +34,6 @@ export async function load(server: string): Promise<ITokenResponse | boolean> {
  * @param server The server which has these creds
  */
 export async function reset(server: string) {
-  await ReactNativeKeychain.resetInternetCredentials(server);
-  return true;
+  await ReactNativeKeychain.resetInternetCredentials(server)
+  return true
 }

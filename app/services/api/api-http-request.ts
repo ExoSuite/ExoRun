@@ -3,5 +3,5 @@ export enum HttpRequest {
   GET = "GET",
   PUT = "PUT",
   PATCH = "PATCH",
-  DELETE = "DELETE"
+  DELETE = "DELETE",
 }

@@ -1,5 +1,5 @@
-import { ApiResponse } from "apisauce";
-import { HttpResponse } from "./api-http-response";
+import { ApiResponse } from "apisauce"
+import { HttpResponse } from "./api-http-response"
 
 export type GeneralApiProblem =
   /**
@@ -40,7 +40,7 @@ export type GeneralApiProblem =
   | { kind: HttpResponse.BAD_DATA }
 
   | { kind: HttpResponse.METHOD_NOT_ALLOWED }
-  ;
+  
 
 /**
  * Attempts to get a common cause of problems from an api response.
@@ -51,30 +51,30 @@ export function getGeneralApiProblem(response: ApiResponse<any>): GeneralApiProb
   switch (response.problem) {
     case "NETWORK_ERROR":
     case "CONNECTION_ERROR":
-      return { kind: HttpResponse.CANNOT_CONNECT, temporary: true };
+      return { kind: HttpResponse.CANNOT_CONNECT, temporary: true }
 
     case "TIMEOUT_ERROR":
-      return { kind: HttpResponse.TIMEOUT, temporary: true };
+      return { kind: HttpResponse.TIMEOUT, temporary: true }
     case "SERVER_ERROR":
-      return { kind: HttpResponse.SERVER_ERROR };
+      return { kind: HttpResponse.SERVER_ERROR }
     case "UNKNOWN_ERROR":
-      return { kind: HttpResponse.UNKNOWN, temporary: true };
+      return { kind: HttpResponse.UNKNOWN, temporary: true }
     case "CLIENT_ERROR":
       switch (response.status) {
         case 401:
-          return { kind: HttpResponse.UNAUTHORIZED };
+          return { kind: HttpResponse.UNAUTHORIZED }
         case 403:
-          return { kind: HttpResponse.FORBIDDEN };
+          return { kind: HttpResponse.FORBIDDEN }
         case 404:
-          return { kind: HttpResponse.NOT_FOUND };
+          return { kind: HttpResponse.NOT_FOUND }
         case 405:
-          return { kind: HttpResponse.METHOD_NOT_ALLOWED };
+          return { kind: HttpResponse.METHOD_NOT_ALLOWED }
         default:
-          return { kind: HttpResponse.REJECTED };
+          return { kind: HttpResponse.REJECTED }
       }
     case "CANCEL_ERROR":
-      return null;
+      return null
   }
 
-  return null;
+  return null
 }

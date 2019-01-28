@@ -1,13 +1,13 @@
-import {ENV} from "app/environment-variables";
+import {ENV} from "app/environment-variables"
 
 export enum BuiltFor {
   PRODUCTION = "production",
   DEVELOPMENT = "development",
-  TESTING = "test"
+  TESTING = "test",
 }
 
 export class Build {
     static is(builtFor: BuiltFor) {
-        return ENV === builtFor;
+        return ENV === builtFor
     }
 }

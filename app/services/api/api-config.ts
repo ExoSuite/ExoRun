@@ -1,26 +1,26 @@
 /**
  * The options used to configure the API.
  */
-import { Build, BuiltFor } from "app/services/buildDetector";
+import { Build, BuiltFor } from "app/services/buildDetector"
 
 export interface ApiConfig {
   /**
    * The URL of the api.
    */
-  url: string;
+  url: string
 
   /**
    * Milliseconds before we timeout the request.
    */
-  timeout: number;
+  timeout: number
 }
 
-let URL: string;
+let URL: string
 
 if (Build.is(BuiltFor.DEVELOPMENT) || Build.is(BuiltFor.TESTING)) {
-  URL = "https://api.dev.exosuite.fr";
+  URL = "https://api.dev.exosuite.fr"
 } else {
-  URL = "https://api.exosuite.fr";
+  URL = "https://api.exosuite.fr"
 }
 
 /**
@@ -28,5 +28,5 @@ if (Build.is(BuiltFor.DEVELOPMENT) || Build.is(BuiltFor.TESTING)) {
  */
 export const DEFAULT_API_CONFIG: ApiConfig = {
   url: `${URL}/`,
-  timeout: 10000
-};
+  timeout: 10000,
+}
