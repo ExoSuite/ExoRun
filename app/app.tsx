@@ -27,9 +27,11 @@ export class App extends React.Component<{}, AppState> {
    * re-renders when we're good to go.
    */
   async componentDidMount() {
-    await SplashScreen.hide();
+    const rootStore = await setupRootStore();
     this.setState({
-      rootStore: await setupRootStore(),
+      rootStore
+    }, async () => {
+      await SplashScreen.hide();
     })
   }
 
@@ -63,6 +65,8 @@ export class App extends React.Component<{}, AppState> {
     // --- am: begin list of stores ---
     const otherStores = {}
     // --- am: end list of stores ---
+
+    //console.tron.log(this.state.rootStore)
 
     return (
       <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>

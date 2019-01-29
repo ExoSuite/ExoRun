@@ -1,7 +1,7 @@
 import * as React from "react"
 import { View, TextInput, TextStyle, ViewStyle } from "react-native"
-import { color, spacing, typography } from "../../theme"
-import { translate } from "../../i18n"
+import { color, spacing, typography } from "app/theme"
+import { translate } from "app/i18n"
 import { Text } from "../text"
 import { TextFieldProps } from "./text-field.props"
 import { reduce } from "ramda"
@@ -17,6 +17,8 @@ const INPUT: TextStyle = {
   color: color.text,
   minHeight: 44,
   fontSize: 18,
+  borderRadius: 10,
+  paddingHorizontal: 5,
   backgroundColor: color.palette.white
 }
 
@@ -25,8 +27,12 @@ export const PRESETS: { [name: string]: ViewStyle } = {
   default: {},
   loginScreen: {
     width: "95%",
+    maxHeight: 70,
     borderBottomColor: color.palette.lightGrey,
     borderBottomWidth: 1
+  },
+  transparentInput: {
+    backgroundColor: "transparent"
   }
 }
 

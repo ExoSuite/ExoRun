@@ -5,11 +5,13 @@ import { Screen } from "app/components/screen"
 import { color, spacing } from "app/theme"
 import { NavigationScreenProps } from "react-navigation"
 import autobind from "autobind-decorator"
-import { TextField } from "app/components/text-field"
+import { TextField, PRESETS } from "app/components/text-field"
 import { Text } from "app/components/text"
 import { AssetLocator } from "app/services/asset"
 import { Button } from "app/components/button"
 import { action, observable } from "mobx"
+import throttle from "lodash.throttle"
+import { inject } from "mobx-react/native"
 
 export interface LoginScreenProps extends NavigationScreenProps<{}> {
 }
@@ -43,11 +45,26 @@ const EXORUN_LOGO: ImageStyle = {
 const disabled = color.palette.lightGrey
 const enabled = color.secondary
 
+@inject('rootStore')
 @observer
 export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 
   @observable username: string = null
   @observable password: string = null
+  private readonly goBack: Function
+  private readonly authorizeLogin: (event) => void
+
+  constructor(props) {
+    super(props)
+    this.goBack = throttle(props.navigation.goBack, 3000)
+    this.authorizeLogin = throttle(this._authorizeLogin, 5000)
+  }
+
+  @autobind
+  _authorizeLogin() {
+
+  }
+
 
   @action.bound
   setUsername(username: string) {
@@ -61,8 +78,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 
   @autobind
   back() {
-    const { navigation } = this.props
-    navigation.goBack(null)
+    this.goBack()
   }
 
   @autobind
@@ -99,14 +115,14 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
                 preset={"loginScreen"}
                 placeholderTx="auth.login.username"
                 placeholderTextColor={color.palette.lightGrey}
-                inputStyle={{ backgroundColor: color.palette.backgroundDarkerer }}
+                inputStyle={PRESETS.transparentInput}
                 onChangeText={this.setUsername}
               />
               <TextField
                 preset={"loginScreen"}
                 placeholderTx="auth.login.password"
                 placeholderTextColor={color.palette.lightGrey}
-                inputStyle={{ backgroundColor: color.palette.backgroundDarkerer }}
+                inputStyle={PRESETS.transparentInput}
                 secureTextEntry={true}
                 onChangeText={this.setPassword}
               />
@@ -120,8 +136,11 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
                 <Button style={{ width: "40%" }} onPress={this.back} preset="neutral">
                   <Text preset="bold" tx="auth.back"/>
                 </Button>
-                <Button style={{ width: "40%", backgroundColor: buttonColor }} onPress={() => {
-                }} preset="primary">
+                <Button
+                  style={{ width: "40%", backgroundColor: buttonColor }}
+                  onPress={this.authorizeLogin}
+                  preset="primary"
+                >
                   <Text preset="bold" tx="auth.login.header"/>
                 </Button>
 

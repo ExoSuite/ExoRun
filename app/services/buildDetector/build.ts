@@ -1,4 +1,6 @@
 import {ENV} from "app/environment-variables"
+import includes from 'lodash.includes'
+import Config from 'react-native-config'
 
 export enum BuiltFor {
   PRODUCTION = "production",
@@ -8,6 +10,9 @@ export enum BuiltFor {
 
 export class Build {
     static is(builtFor: BuiltFor) {
+        if (ENV === undefined) {
+          return includes(builtFor, Config.APP_ENV)
+        }
         return ENV === builtFor
     }
 }
