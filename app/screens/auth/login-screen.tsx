@@ -49,7 +49,7 @@ const enabled = color.secondary
 @observer
 export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 
-  @observable username: string = null
+  @observable email: string = null
   @observable password: string = null
   private readonly goBack: Function
   private readonly authorizeLogin: (event) => void
@@ -67,8 +67,8 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 
 
   @action.bound
-  setUsername(username: string) {
-    this.username = username
+  setEmail(email: string) {
+    this.email = email
   }
 
   @action.bound
@@ -88,9 +88,9 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   }
 
   render() {
-    const { username, password } = this
+    const { email, password } = this
     let buttonColor
-    if (username && password) {
+    if (email && password) {
       buttonColor = enabled
     } else {
       buttonColor = disabled
@@ -116,7 +116,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
                 placeholderTx="auth.login.username"
                 placeholderTextColor={color.palette.lightGrey}
                 inputStyle={PRESETS.transparentInput}
-                onChangeText={this.setUsername}
+                onChangeText={this.setEmail}
               />
               <TextField
                 preset={"loginScreen"}
