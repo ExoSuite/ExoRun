@@ -38,7 +38,7 @@
     "ramda": "0.26.1",
     "react": "16.6.3",
     "react-native": "0.57.8",
-    "react-native-gesture-handler": "1.0.9",
+    "react-native-gesture-handler": "1.0.15",
     "react-native-keychain": "3.0.0",
     "react-native-languages": "^3.0.2",
     "react-native-splash-screen": "3.1.1",

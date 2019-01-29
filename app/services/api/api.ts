@@ -35,8 +35,8 @@ export class Api {
   constructor(config: ApiConfig = DEFAULT_API_CONFIG) {
     this.config = config
     this.client = {
-      client_id: 131,
-      client_secret: "pxAbi1S7lwQpnYZxIbXiccXb7F8BHP55E7nut4Zs",
+      client_id: 1,
+      client_secret: "4eTPOwUpimKkxXiIrUAngSp3n8IuUfCX39YMNNDQ",
     }
 
     this.grantRequest = {

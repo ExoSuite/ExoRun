@@ -2,11 +2,11 @@
 import "react-native"
 
 // libraries to mock
-import "./mock-i18n"
-import "./mock-reactotron"
-import "./mock-textinput"
-import "./mock-react-native-languages"
-import "./mock-react-native-splash-screen"
+import "./mocks/mock-i18n"
+import "./mocks/mock-reactotron"
+import "./mocks/mock-textinput"
+import "./mocks/mock-react-native-languages"
+import "./mocks/mock-react-native-splash-screen"
 
 declare global {
   let __TEST__
