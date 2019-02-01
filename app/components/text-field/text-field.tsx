@@ -1,8 +1,8 @@
 import * as React from "react"
-import { View, TextInput, TextStyle, ViewStyle } from "react-native"
-import { color, spacing, typography } from "app/theme"
-import { translate } from "app/i18n"
-import { Text } from "../text"
+import { TextInput, TextStyle, View, ViewStyle } from "react-native"
+import { color, spacing, typography } from "@theme"
+import { translate } from "@i18n"
+import { Text } from "@components"
 import { TextFieldProps } from "./text-field.props"
 import { reduce } from "ramda"
 

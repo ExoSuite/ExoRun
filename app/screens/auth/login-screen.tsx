@@ -1,14 +1,13 @@
 import * as React from "react"
 import { observer } from "mobx-react"
 import { Image, ImageStyle, SafeAreaView, View, ViewStyle } from "react-native"
-import { Screen } from "app/components/screen"
-import { color, spacing } from "app/theme"
+import { Button, Screen } from "@components"
+import { PRESETS, TextField } from "@components/text-field"
+import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import autobind from "autobind-decorator"
-import { TextField, PRESETS } from "app/components/text-field"
-import { Text } from "app/components/text"
-import { AssetLocator } from "app/services/asset"
-import { Button } from "app/components/button"
+import { Text } from "@components/text"
+import { Asset } from "@services/asset"
 import { action, observable } from "mobx"
 import throttle from "lodash.throttle"
 import { inject } from "mobx-react/native"
@@ -45,7 +44,7 @@ const EXORUN_LOGO: ImageStyle = {
 const disabled = color.palette.lightGrey
 const enabled = color.secondary
 
-@inject('rootStore')
+@inject("rootStore")
 @observer
 export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 
@@ -101,12 +100,12 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
         <SafeAreaView style={FULL}>
           <Screen style={CONTAINER} backgroundColor={color.palette.backgroundDarker} preset="fixedStack">
             <Image
-              source={AssetLocator("exorun-text")}
+              source={Asset.Locator("exorun-text")}
               style={EXORUN_TEXT}
               resizeMode="contain"
             />
             <Image
-              source={AssetLocator("exorun-logo")}
+              source={Asset.Locator("exorun-logo")}
               style={EXORUN_LOGO}
               resizeMode="contain"
             />

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { storiesOf } from "@storybook/react-native"
-import { StoryScreen, Story, UseCase } from "../../../storybook/views"
+import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { Wallpaper } from "./wallpaper"
 
 storiesOf("Wallpaper")
@@ -8,7 +8,7 @@ storiesOf("Wallpaper")
   .add("Style Presets", () => (
     <Story>
       <UseCase text="default/stretch" usage="Full screen wallpaper image.">
-        <Wallpaper />
+        <Wallpaper/>
       </UseCase>
     </Story>
   ))

@@ -40,7 +40,7 @@ export type GeneralApiProblem =
   | { kind: HttpResponse.BAD_DATA }
 
   | { kind: HttpResponse.METHOD_NOT_ALLOWED }
-  
+
 
 /**
  * Attempts to get a common cause of problems from an api response.

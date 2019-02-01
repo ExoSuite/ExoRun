@@ -1,28 +1,29 @@
 import * as React from "react"
 import { storiesOf } from "@storybook/react-native"
-import { StoryScreen, Story, UseCase } from "../../../storybook/views"
+import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { Text } from "../text"
 import { TextField } from "./"
 import { State } from "react-powerplug"
-import { ViewStyle, TextStyle } from "react-native"
+import { TextStyle, ViewStyle } from "react-native"
 
 const styleArray: ViewStyle[] = [
-  {paddingHorizontal: 30},
-  {borderWidth: 30},
+  { paddingHorizontal: 30 },
+  { borderWidth: 30 }
 ]
 
 const inputStyleArray: TextStyle[] = [
   {
     backgroundColor: "rebeccapurple",
     color: "white",
-    padding: 40},
+    padding: 40
+  },
   {
     borderWidth: 10,
     borderRadius: 4,
-    borderColor: "#7fff00",
-  },
+    borderColor: "#7fff00"
+  }
 ]
-var alertWhenFocused = true
+let alertWhenFocused = true
 
 storiesOf("TextField")
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
@@ -99,12 +100,12 @@ storiesOf("TextField")
                 padding: 40,
                 borderWidth: 10,
                 borderRadius: 4,
-                borderColor: "hotpink",
+                borderColor: "hotpink"
               }}
             />
           )}
         </State>
-        <Text text="* attention designers:  i am so sorry" preset="secondary" />
+        <Text text="* attention designers:  i am so sorry" preset="secondary"/>
       </UseCase>
 
       <UseCase
@@ -122,7 +123,7 @@ storiesOf("TextField")
             />
           )}
         </State>
-        <Text text="* attention designers:  i am so sorry" preset="secondary" />
+        <Text text="* attention designers:  i am so sorry" preset="secondary"/>
       </UseCase>
     </Story>
   ))
@@ -144,11 +145,11 @@ storiesOf("TextField")
                 padding: 40,
                 borderWidth: 10,
                 borderRadius: 4,
-                borderColor: "hotpink",
+                borderColor: "hotpink"
               }}
               forwardedRef={ref => ref}
               onFocus={() => {
-                if(alertWhenFocused) {
+                if (alertWhenFocused) {
                   // Prevent text field focus from being repeatedly triggering alert
                   alertWhenFocused = false
                   window.alert("Text field focuesed with forwarded ref!")
@@ -157,7 +158,7 @@ storiesOf("TextField")
             />
           )}
         </State>
-        <Text text="* attention designers:  i am so sorry" preset="secondary" />
+        <Text text="* attention designers:  i am so sorry" preset="secondary"/>
       </UseCase>
     </Story>
   ))

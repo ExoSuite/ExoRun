@@ -1,33 +1,31 @@
-import * as React from "react";
-import { observer } from "mobx-react";
-import { SafeAreaView, TextStyle, View, ViewStyle } from "react-native";
-import { Screen } from "app/components/screen";
-import { color, spacing } from "app/theme";
-import { NavigationScreenProps } from "react-navigation";
-import { Button } from "app/components/button";
-import { Header } from "app/components/header";
-import autobind from "autobind-decorator";
+import * as React from "react"
+import { SafeAreaView, TextStyle, View, ViewStyle } from "react-native"
+import { NavigationScreenProps } from "react-navigation"
+import { observer } from "mobx-react"
+import { Button, Header, Screen } from "@components"
+import { color, spacing } from "@theme"
+import autobind from "autobind-decorator"
 
 export interface RegisterScreenProps extends NavigationScreenProps<{}> {
 }
 
 const FULL: ViewStyle = {
   flex: 1,
-  backgroundColor: color.palette.black,
-};
+  backgroundColor: color.palette.black
+}
 
 const CONTAINER: ViewStyle = {
   ...FULL,
   paddingHorizontal: spacing[4]
-};
+}
 
 const HEADER: TextStyle = {
   paddingTop: spacing[3],
   paddingBottom: spacing[5] - 1,
   paddingHorizontal: 0
-};
+}
 
-const BOLD: TextStyle = { fontWeight: "bold" };
+const BOLD: TextStyle = { fontWeight: "bold" }
 
 const HEADER_TITLE: TextStyle = {
   ...BOLD,
@@ -35,7 +33,7 @@ const HEADER_TITLE: TextStyle = {
   lineHeight: 15,
   textAlign: "center",
   letterSpacing: 1.5
-};
+}
 
 // @inject("mobxstuff")
 @observer
@@ -43,12 +41,12 @@ export class RegisterScreen extends React.Component<RegisterScreenProps, {}> {
 
   @autobind
   goBack() {
-    const { navigation } = this.props;
-    navigation.goBack(null);
+    const { navigation } = this.props
+    navigation.goBack(null)
   }
 
   render() {
-    const { goBack } = this;
+    const { goBack } = this
 
     return (
       <View style={FULL}>
@@ -65,6 +63,6 @@ export class RegisterScreen extends React.Component<RegisterScreenProps, {}> {
           </Screen>
         </SafeAreaView>
       </View>
-    );
+    )
   }
 }

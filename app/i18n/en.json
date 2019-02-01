@@ -29,8 +29,8 @@
     "login": {
       "header": "Login",
       "login": "Login into ExoRun",
-      "username" : "E-mail",
-      "password" : "Password"
+      "username": "E-mail",
+      "password": "Password"
     },
     "register": {
       "header": "Register",

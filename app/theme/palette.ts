@@ -10,4 +10,4 @@ export const palette = {
   angry: "#dd3333",
   black: "#1d1d1d",
   green: "#2f9e2c"
-};
+}

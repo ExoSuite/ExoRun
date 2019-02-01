@@ -1,5 +1,5 @@
-import { createSwitchNavigator } from "react-navigation";
-import { AuthNavigator } from "./auth-navigator";
+import { createSwitchNavigator } from "react-navigation"
+import { AuthNavigator } from "./auth-navigator"
 
 export const RootNavigator = createSwitchNavigator(
   {
@@ -8,4 +8,4 @@ export const RootNavigator = createSwitchNavigator(
   {
     initialRouteName: "auth"
   }
-);
+)

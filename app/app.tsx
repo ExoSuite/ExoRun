@@ -7,12 +7,13 @@ import * as React from "react"
 import { AppRegistry } from "react-native"
 import { StatefulNavigator } from "./navigation"
 import { StorybookUIRoot } from "../storybook"
-import { RootStore, setupRootStore } from "./models/root-store"
+import { RootStore, setupRootStore } from "@models/root-store"
 import { Provider } from "mobx-react"
-import { BackButtonHandler } from "./navigation/back-button-handler"
+import { BackButtonHandler } from "@navigation/back-button-handler"
 import { contains } from "ramda"
-import { DEFAULT_NAVIGATION_CONFIG } from "./navigation/navigation-config"
-import SplashScreen from "react-native-splash-screen";
+import { DEFAULT_NAVIGATION_CONFIG } from "@navigation/navigation-config"
+import { Platform } from "@services/device"
+import SplashScreen from "react-native-splash-screen"
 
 interface AppState {
   rootStore?: RootStore
@@ -27,12 +28,24 @@ export class App extends React.Component<{}, AppState> {
    * re-renders when we're good to go.
    */
   async componentDidMount() {
-    const rootStore = await setupRootStore();
-    this.setState({
-      rootStore
-    }, async () => {
-      await SplashScreen.hide();
-    })
+    const rootStore = await setupRootStore()
+    this.setState(
+      {
+        rootStore
+      }
+    )
+  }
+
+  componentWillMount() {
+
+    // hack to ignore white screen on android
+    if (Platform.Android) {
+      setTimeout(() => {
+        SplashScreen.hide()
+      }, 300)
+    } else {
+      SplashScreen.hide()
+    }
   }
 
   /**
@@ -71,7 +84,7 @@ export class App extends React.Component<{}, AppState> {
     return (
       <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>
         <BackButtonHandler canExit={this.canExit}>
-          <StatefulNavigator />
+          <StatefulNavigator/>
         </BackButtonHandler>
       </Provider>
     )

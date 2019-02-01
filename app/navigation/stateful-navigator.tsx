@@ -1,15 +1,15 @@
-import * as React from "react";
-import { inject, observer } from "mobx-react";
+import * as React from "react"
+import { inject, observer } from "mobx-react"
 // @ts-ignore: until they update @type/react-navigation
-import { getNavigation, NavigationScreenProp, NavigationState } from "react-navigation";
+import { getNavigation, NavigationScreenProp, NavigationState } from "react-navigation"
 
-import { RootNavigator } from "./root-navigator";
-import { NavigationStore } from "./navigation-store";
-import { Loader } from "app/screens/auth/loader";
-import autobind from "autobind-decorator";
-import { AssetLocator } from "app/services/asset";
-import { color } from "app/theme";
-import {Screen} from "app/services/device";
+import { RootNavigator } from "./root-navigator"
+import { NavigationStore } from "./navigation-store"
+import { Loader } from "@screens/auth/loader"
+import autobind from "autobind-decorator"
+import { Asset } from "@services/asset"
+import { color } from "@theme"
+import { Screen } from "@services/device"
 
 interface StatefulNavigatorProps {
   navigationStore?: NavigationStore;
@@ -18,26 +18,26 @@ interface StatefulNavigatorProps {
 @inject("navigationStore")
 @observer
 export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {}> {
-  currentNavProp: NavigationScreenProp<NavigationState>;
+  currentNavProp: NavigationScreenProp<NavigationState>
 
-  loader: Loader = null;
+  loader: Loader = null
 
   getCurrentNavigation = () => {
-    return this.currentNavProp;
-  };
+    return this.currentNavProp
+  }
 
   @autobind
   removeLoader() {
-    this.loader.animate();
+    this.loader.animate()
   }
 
   async componentDidMount() {
-    setTimeout(this.removeLoader, 2000);
+    setTimeout(this.removeLoader, 2000)
   }
 
   render() {
     // grab our state & dispatch from our navigation store
-    const { state, dispatch, actionSubscribers } = this.props.navigationStore;
+    const { state, dispatch, actionSubscribers } = this.props.navigationStore
 
     // create a custom navigation implementation
     this.currentNavProp = getNavigation(
@@ -47,17 +47,17 @@ export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {
       actionSubscribers(),
       {},
       this.getCurrentNavigation
-    );
+    )
 
     return (
       <Loader
         ref={(ref: Loader) => this.loader = ref}
         backgroundColor={color.palette.backgroundDarker}
         imageProperties={{ height: Screen.Height, width: Screen.Width }}
-        imageSource={AssetLocator("exosuite-loader")}
+        imageSource={Asset.Locator("exosuite-loader")}
       >
         <RootNavigator navigation={this.currentNavProp}/>
       </Loader>
-    );
+    )
   }
 }

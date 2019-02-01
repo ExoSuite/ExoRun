@@ -1,11 +1,18 @@
-import {Platform} from "react-native";
+import { Platform } from "react-native"
 
 // create url for static retrieve of assets
-export function AssetLocator (assetName: string, fileExtension: FileExtension = FileExtension.PNG) {
-    return {uri: Platform.OS === "ios" ? assetName : `asset:/custom/${assetName}.${fileExtension}`};
+class Asset {
+  static Locator(assetName: string, fileExtension: FileExtension = FileExtension.PNG) {
+    return { uri: Platform.OS === "ios" ? assetName : `asset:/custom/${assetName}.${fileExtension}` }
+  }
 }
 
-export enum FileExtension {
-    PNG = "png",
-    JPG = "jpg"
+enum FileExtension {
+  PNG = "png",
+  JPG = "jpg"
+}
+
+export {
+  Asset,
+  FileExtension
 }

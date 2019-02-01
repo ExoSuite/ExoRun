@@ -1,7 +1,7 @@
-import {Platform as RNPlatform} from "react-native";
+import { Platform as RNPlatform } from "react-native"
 
 
 export class Platform {
-    static iOS = RNPlatform.OS === "ios";
-    static Android = RNPlatform.OS === "android";
+  static iOS = RNPlatform.OS === "ios"
+  static Android = RNPlatform.OS === "android"
 }

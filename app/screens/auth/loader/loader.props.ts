@@ -1,8 +1,8 @@
-import * as React from "react";
+import * as React from "react"
 
 export interface ImageProperties {
-    height: number;
-    width: number;
+  height: number;
+  width: number;
 }
 
 export interface LoaderProps {

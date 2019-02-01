@@ -1,5 +1,5 @@
-import { clear } from "app/utils/storage"
-import { RootStore } from "app/models/root-store"
+import { clear } from "@utils/storage"
+import { RootStore } from "@models/root-store"
 
 export type GetRootStore = () => RootStore;
 
@@ -11,7 +11,7 @@ export const commandMiddleware = (getRootStore: GetRootStore) => {
         switch (command.payload) {
           case "resetStore":
             console.tron.log("resetting store")
-            clear()
+            await clear()
             break
           case "resetNavigation":
             console.tron.log("resetting navigation store")

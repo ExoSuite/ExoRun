@@ -6,6 +6,7 @@ import { NavigationStore } from "./navigation-store"
 
 interface BackButtonHandlerProps {
   navigationStore?: NavigationStore
+
   /**
    * Are we allowed to exit?
    */

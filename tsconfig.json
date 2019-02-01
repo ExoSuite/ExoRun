@@ -14,10 +14,20 @@
     "baseUrl": ".",
     "target": "es2015",
     "paths": {
-      "app/*": ["app/*"],
-      "storybook/*": ["storybook/*"]
+      "storybook/*": ["storybook/*"],
+      "@services/*": ["app/services/*"],
+      "@components/*": ["app/components/*"],
+      "@components": ["app/components"],
+      "@models/*": ["app/models/*"],
+      "@screens/*": ["app/screens/*"],
+      "@screens": ["app/screens"],
+      "@theme/*": ["app/theme/*"],
+      "@theme": ["app/theme"],
+      "@utils": ["app/utils"],
+      "@utils/*": ["app/utils/*"],
+      "@navigation/*": ["app/navigation/*"],
+      "@i18n/*": ["app/i18n/*"],
+      "@i18n": ["app/i18n"]
     }
-  },
-  "exclude": ["node_modules"],
-  "include": ["src", "test", "storybook"]
+  }
 }

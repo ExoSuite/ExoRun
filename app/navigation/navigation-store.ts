@@ -1,6 +1,6 @@
 import { types } from "mobx-state-tree"
 import { RootNavigator } from "./root-navigator"
-import { NavigationActions, NavigationAction } from "react-navigation"
+import { NavigationAction, NavigationActions } from "react-navigation"
 import { NavigationEvents } from "./navigation-events"
 
 const DEFAULT_STATE = RootNavigator.router.getStateForAction(NavigationActions.init(), null)
@@ -29,14 +29,14 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      * the navigation state tree (Frozen here means it is immutable.)
      */
     // @ts-ignore
-    state: types.optional(types.frozen(), DEFAULT_STATE),
+    state: types.optional(types.frozen(), DEFAULT_STATE)
   })
   .actions(self => ({
 
     /**
      * Return all subscribers
      */
-    actionSubscribers(){
+    actionSubscribers() {
       return self.subs
     },
 
@@ -67,7 +67,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      */
     findCurrentRoute() {
       return findCurrentRoute(self.state)
-    },
+    }
   }))
   .actions(self => ({
     /**
@@ -75,9 +75,9 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      *
      * @param routeName The route name.
      */
-    navigateTo (routeName: string) {
+    navigateTo(routeName: string) {
       self.dispatch(NavigationActions.navigate({ routeName }))
-    },
+    }
   }))
 
 export type NavigationStore = typeof NavigationStoreModel.Type

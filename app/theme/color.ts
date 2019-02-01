@@ -1,4 +1,4 @@
-import { palette } from "./palette";
+import { palette } from "./palette"
 
 /**
  * Roles for colors.  Prefer using these over the palette.  It makes it easier
@@ -27,6 +27,8 @@ export const color = {
 
 
   secondary: palette.green,
+
+  background: palette.backgroundDarker,
 
   /**
    * The main tinting color, but darker.
@@ -62,5 +64,5 @@ export const color = {
    * Storybook text color for stories that display Text components against the
    * white background
    */
-  storybookTextColor: palette.black,
-};
+  storybookTextColor: palette.black
+}

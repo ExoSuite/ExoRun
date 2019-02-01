@@ -1,2 +1,2 @@
-export * from "./platform";
-export * from "./screen";
+export * from "./platform"
+export * from "./screen"

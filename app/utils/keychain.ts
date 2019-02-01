@@ -1,5 +1,5 @@
 import * as ReactNativeKeychain from "react-native-keychain"
-import { ITokenResponse } from "app/services/api"
+import { ITokenResponse } from "@services/api"
 
 /**
  * Saves some credentials securely.
@@ -11,7 +11,7 @@ export async function save(tokens: ITokenResponse, server: string): Promise<bool
   await ReactNativeKeychain.setInternetCredentials(
     server,
     "ExoRun",
-    JSON.stringify(tokens),
+    JSON.stringify(tokens)
   )
   return true
 }

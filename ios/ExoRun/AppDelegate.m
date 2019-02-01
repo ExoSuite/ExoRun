@@ -10,9 +10,6 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#if RCT_DEV
-#import <React/RCTDevLoadingView.h>
-#endif
 
 @implementation AppDelegate
 
@@ -30,7 +27,7 @@
                                                       moduleName:@"ExoRun"
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
-  rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
+  rootView.backgroundColor = [UIColor blackColor];
 
   NSArray *allPngImageNames = [[NSBundle mainBundle] pathsForResourcesOfType:@"png" inDirectory:nil];
   for (NSString *imgName in allPngImageNames){
