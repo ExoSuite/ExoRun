@@ -36,14 +36,14 @@ export class Api {
     this.config = config
     this.client = {
       client_id: 1,
-      client_secret: "4eTPOwUpimKkxXiIrUAngSp3n8IuUfCX39YMNNDQ"
+      client_secret: "4eTPOwUpimKkxXiIrUAngSp3n8IuUfCX39YMNNDQ",
     }
 
     this.grantRequest = {
       ...this.client,
       grant_type: "refresh_token",
       refresh_token: "",
-      scope: ""
+      scope: "",
     }
   }
 
@@ -60,10 +60,10 @@ export class Api {
       baseURL: this.config.url,
       timeout: this.config.timeout,
       headers: {
-        Accept: "application/json"
+        Accept: "application/json",
       },
       httpsAgent: new https.Agent({ keepAlive: true }), // see HTTP keep alive
-      adapter: require("axios/lib/adapters/http") // define real http adapter
+      adapter: require("axios/lib/adapters/http"), // define real http adapter
     })
 
     return this
@@ -107,7 +107,7 @@ export class Api {
     url: string,
     data: Object = {},
     headers: Object = {},
-    requireAuth: boolean = true
+    requireAuth: boolean = true,
   ): Promise<ApiResponse<any>> {
 
     if (requireAuth) {

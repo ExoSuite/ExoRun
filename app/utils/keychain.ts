@@ -11,7 +11,7 @@ export async function save(tokens: ITokenResponse, server: string): Promise<bool
   await ReactNativeKeychain.setInternetCredentials(
     server,
     "ExoRun",
-    JSON.stringify(tokens)
+    JSON.stringify(tokens),
   )
   return true
 }

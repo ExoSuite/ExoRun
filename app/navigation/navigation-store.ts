@@ -29,7 +29,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      * the navigation state tree (Frozen here means it is immutable.)
      */
     // @ts-ignore
-    state: types.optional(types.frozen(), DEFAULT_STATE)
+    state: types.optional(types.frozen(), DEFAULT_STATE),
   })
   .actions(self => ({
 
@@ -67,7 +67,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      */
     findCurrentRoute() {
       return findCurrentRoute(self.state)
-    }
+    },
   }))
   .actions(self => ({
     /**
@@ -77,7 +77,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      */
     navigateTo(routeName: string) {
       self.dispatch(NavigationActions.navigate({ routeName }))
-    }
+    },
   }))
 
 export type NavigationStore = typeof NavigationStoreModel.Type

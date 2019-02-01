@@ -1,17 +1,17 @@
 import * as React from "react"
 import { storiesOf } from "@storybook/react-native"
-import { Story, StoryScreen, UseCase } from "../../../storybook/views"
+import { StoryScreen, Story, UseCase } from "../../../storybook/views"
 import { FormRow } from "./form-row"
 import { Text } from "../text"
-import { color } from "@theme"
+import { color } from "../../theme/color"
 import { ViewStyle } from "react-native"
 
 const TEXT_STYLE_OVERRIDE = {
-  color: color.storybookTextColor
+  color: color.storybookTextColor,
 }
 const arrayStyle: ViewStyle[] = [
-  { borderWidth: 5 },
-  { borderColor: "#32cd32" }
+  {borderWidth: 5},
+  {borderColor: "#32cd32"},
 ]
 
 storiesOf("FormRow")

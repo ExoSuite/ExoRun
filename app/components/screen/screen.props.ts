@@ -1,6 +1,6 @@
+import * as React from "react"
 import { ViewStyle } from "react-native"
 import { ScreenPresets } from "./screen.presets"
-import * as React from "react"
 
 export interface ScreenProps {
   /**

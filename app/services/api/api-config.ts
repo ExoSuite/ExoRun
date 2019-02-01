@@ -28,5 +28,5 @@ if (Build.is(BuiltFor.DEVELOPMENT) || Build.is(BuiltFor.TESTING)) {
  */
 export const DEFAULT_API_CONFIG: ApiConfig = {
   url: `${URL}/`,
-  timeout: 10000
+  timeout: 10000,
 }

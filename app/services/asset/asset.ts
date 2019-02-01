@@ -9,10 +9,10 @@ class Asset {
 
 enum FileExtension {
   PNG = "png",
-  JPG = "jpg"
+  JPG = "jpg",
 }
 
 export {
   Asset,
-  FileExtension
+  FileExtension,
 }

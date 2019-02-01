@@ -1,5 +1,5 @@
 import * as React from "react"
-import { TextStyle, View, ViewStyle } from "react-native"
+import { View, ViewStyle, TextStyle } from "react-native"
 import { HeaderProps } from "./header.props"
 import { Button } from "../button"
 import { Icon } from "../icon"
@@ -14,7 +14,7 @@ const ROOT: ViewStyle = {
   alignItems: "center",
   paddingTop: spacing[5],
   paddingBottom: spacing[5],
-  justifyContent: "flex-start"
+  justifyContent: "flex-start",
 }
 const TITLE: TextStyle = { textAlign: "center" }
 const TITLE_MIDDLE: ViewStyle = { flex: 1, justifyContent: "center" }
@@ -33,7 +33,7 @@ export class Header extends React.Component<HeaderProps, {}> {
       leftIcon,
       headerText,
       headerTx,
-      titleStyle
+      titleStyle,
     } = this.props
     const header = headerText || (headerTx && translate(headerTx)) || ""
 
@@ -41,20 +41,20 @@ export class Header extends React.Component<HeaderProps, {}> {
       <View style={{ ...ROOT, ...this.props.style }}>
         {leftIcon ? (
           <Button preset="link" onPress={onLeftPress}>
-            <Icon icon={leftIcon}/>
+            <Icon icon={leftIcon} />
           </Button>
         ) : (
-          <View style={LEFT}/>
+          <View style={LEFT} />
         )}
         <View style={TITLE_MIDDLE}>
-          <Text style={{ ...TITLE, ...titleStyle }} text={header}/>
+          <Text style={{...TITLE, ...titleStyle}} text={header} />
         </View>
         {rightIcon ? (
           <Button preset="link" onPress={onRightPress}>
-            <Icon icon={rightIcon}/>
+            <Icon icon={rightIcon} />
           </Button>
         ) : (
-          <View style={RIGHT}/>
+          <View style={RIGHT} />
         )}
       </View>
     )

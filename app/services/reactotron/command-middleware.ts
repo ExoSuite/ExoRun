@@ -1,7 +1,7 @@
 import { clear } from "@utils/storage"
 import { RootStore } from "@models/root-store"
 
-export type GetRootStore = () => RootStore;
+export type GetRootStore = () => RootStore
 
 export const commandMiddleware = (getRootStore: GetRootStore) => {
   return tron => {
@@ -18,7 +18,7 @@ export const commandMiddleware = (getRootStore: GetRootStore) => {
             getRootStore().navigationStore.reset()
             break
         }
-      }
+      },
     }
   }
 }

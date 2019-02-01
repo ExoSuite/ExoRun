@@ -29,15 +29,12 @@ export class App extends React.Component<{}, AppState> {
    */
   async componentDidMount() {
     const rootStore = await setupRootStore()
-    this.setState(
-      {
-        rootStore
-      }
-    )
+    this.setState({
+      rootStore,
+    })
   }
 
   componentWillMount() {
-
     // hack to ignore white screen on android
     if (Platform.Android) {
       setTimeout(() => {
@@ -84,7 +81,7 @@ export class App extends React.Component<{}, AppState> {
     return (
       <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>
         <BackButtonHandler canExit={this.canExit}>
-          <StatefulNavigator/>
+          <StatefulNavigator />
         </BackButtonHandler>
       </Provider>
     )
@@ -99,7 +96,7 @@ const APP_NAME = "ExoRun"
 // Should we show storybook instead of our app?
 //
 // ⚠️ Leave this as `false` when checking into git.
-const SHOW_STORYBOOK = false
+const SHOW_STORYBOOK = true
 
 const RootComponent = SHOW_STORYBOOK && __DEV__ ? StorybookUIRoot : App
 AppRegistry.registerComponent(APP_NAME, () => RootComponent)

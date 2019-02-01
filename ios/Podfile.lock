@@ -8,8 +8,6 @@ PODS:
   - glog (0.3.5)
   - React (0.58.3):
     - React/Core (= 0.58.3)
-  - react-native-splash-screen (3.1.1):
-    - React
   - React/Core (0.58.3):
     - yoga (= 0.58.3.React)
   - React/CxxBridge (0.58.3):
@@ -32,8 +30,6 @@ PODS:
     - React/cxxreact
     - React/jsi
   - React/jsinspector (0.58.3)
-  - React/RCTAnimation (0.58.3):
-    - React/Core
   - React/RCTBlob (0.58.3):
     - React/Core
   - React/RCTNetwork (0.58.3):
@@ -56,11 +52,9 @@ DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
-  - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
-  - React/RCTAnimation (from `../node_modules/react-native`)
   - React/RCTNetwork (from `../node_modules/react-native`)
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
@@ -82,8 +76,6 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   React:
     :path: "../node_modules/react-native"
-  react-native-splash-screen:
-    :path: "../node_modules/react-native-splash-screen"
   RNKeychain:
     :path: "../node_modules/react-native-keychain"
   RNLanguages:
@@ -99,12 +91,11 @@ SPEC CHECKSUMS:
   Folly: de497beb10f102453a1afa9edbf8cf8a251890de
   glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
   React: 9b873b38b92ed8012d7cdf3b965477095ed364c4
-  react-native-splash-screen: 8e3f866dc79bfe533baeffd0a38c33f7a7eae7f8
   RNKeychain: 627c6095cef215dd3d9804a9a9cf45ab96aa3997
   RNLanguages: e3ae05ef105937645218272429dac0c3f7633451
   RNVectorIcons: 8c52e1e8da1153613fdef44748e865c25556cb9c
   yoga: 0885622311729a02c2bc02dca97167787a51488b
 
-PODFILE CHECKSUM: 875a97a4772fe6cd982bac2e8e50b5ba86e58c65
+PODFILE CHECKSUM: b2c9612b173fdec1e8d92bbb3a8c0aa8ab64389d
 
 COCOAPODS: 1.5.3

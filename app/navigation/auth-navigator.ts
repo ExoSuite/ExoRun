@@ -5,8 +5,8 @@ export const AuthNavigator = createStackNavigator(
   {
     auth: { screen: AuthScreen },
     login: { screen: LoginScreen },
-    register: { screen: RegisterScreen }
+    register: { screen: RegisterScreen },
   },
   {
-    headerMode: "none"
+    headerMode: "none",
   })

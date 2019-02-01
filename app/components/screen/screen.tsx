@@ -1,7 +1,7 @@
 import * as React from "react"
 import { ScrollView, View, ViewStyle } from "react-native"
 import { ScreenProps } from "./screen.props"
-import { isNonScrolling, presets } from "./screen.presets"
+import { presets, isNonScrolling } from "./screen.presets"
 
 /**
  * This screen does not scroll.

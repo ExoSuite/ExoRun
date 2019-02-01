@@ -12,7 +12,7 @@ import { color } from "@theme"
 import { Screen } from "@services/device"
 
 interface StatefulNavigatorProps {
-  navigationStore?: NavigationStore;
+  navigationStore?: NavigationStore
 }
 
 @inject("navigationStore")
@@ -46,7 +46,7 @@ export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {
       dispatch,
       actionSubscribers(),
       {},
-      this.getCurrentNavigation
+      this.getCurrentNavigation,
     )
 
     return (

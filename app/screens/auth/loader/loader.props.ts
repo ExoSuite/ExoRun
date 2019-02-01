@@ -1,16 +1,16 @@
 import * as React from "react"
 
 export interface ImageProperties {
-  height: number;
-  width: number;
+  height: number
+  width: number
 }
 
 export interface LoaderProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 
-  backgroundColor: string;
+  backgroundColor: string
 
-  imageProperties: ImageProperties;
+  imageProperties: ImageProperties
 
-  imageSource: any;
+  imageSource: any
 }

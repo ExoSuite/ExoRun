@@ -1,10 +1,10 @@
 import * as React from "react"
-import { Image, ImageStyle, View } from "react-native"
+import { View, Image, ImageStyle } from "react-native"
 import { IconProps } from "./icon.props"
 import { icons } from "./icons"
 
 const ROOT: ImageStyle = {
-  resizeMode: "contain"
+  resizeMode: "contain",
 }
 
 export function Icon(props: IconProps) {
@@ -13,7 +13,7 @@ export function Icon(props: IconProps) {
 
   return (
     <View style={containerStyle}>
-      <Image style={style} source={icons[icon]}/>
+      <Image style={style} source={icons[icon]} />
     </View>
   )
 }

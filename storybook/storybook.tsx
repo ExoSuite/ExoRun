@@ -18,6 +18,7 @@ export class StorybookUIRoot extends React.Component {
       reactotron.setup()
     }
   }
+
   render() {
     return <StorybookUI />
   }

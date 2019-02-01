@@ -2,7 +2,7 @@ import * as React from "react"
 import { observer } from "mobx-react"
 import { Image, ImageStyle, SafeAreaView, View, ViewStyle } from "react-native"
 import { Button, Screen } from "@components"
-import { PRESETS, TextField } from "@components/text-field"
+import { TextField } from "@components/text-field"
 import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import autobind from "autobind-decorator"
@@ -16,29 +16,29 @@ export interface LoginScreenProps extends NavigationScreenProps<{}> {
 }
 
 const ROOT: ViewStyle = {
-  backgroundColor: color.palette.black
+  backgroundColor: color.palette.black,
 }
 
 const FULL: ViewStyle = {
   ...ROOT,
-  flex: 1
+  flex: 1,
 }
 
 const CONTAINER: ViewStyle = {
   ...FULL,
-  paddingHorizontal: spacing[4]
+  paddingHorizontal: spacing[4],
 }
 
 const EXORUN_TEXT: ImageStyle = {
   width: 150,
   height: 50,
-  alignSelf: "center"
+  alignSelf: "center",
 }
 
 const EXORUN_LOGO: ImageStyle = {
   width: 75,
   height: 35,
-  alignSelf: "center"
+  alignSelf: "center",
 }
 
 const disabled = color.palette.lightGrey
@@ -113,15 +113,19 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
               <TextField
                 preset={"loginScreen"}
                 placeholderTx="auth.login.username"
+                inputStyle={{
+                  backgroundColor: "transparent"
+                }}
                 placeholderTextColor={color.palette.lightGrey}
-                inputStyle={PRESETS.transparentInput}
                 onChangeText={this.setEmail}
               />
               <TextField
                 preset={"loginScreen"}
                 placeholderTx="auth.login.password"
+                inputStyle={{
+                  backgroundColor: "transparent"
+                }}
                 placeholderTextColor={color.palette.lightGrey}
-                inputStyle={PRESETS.transparentInput}
                 secureTextEntry={true}
                 onChangeText={this.setPassword}
               />
@@ -130,9 +134,9 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
                 flexDirection: "row",
                 justifyContent: "space-around",
                 width: "100%",
-                marginTop: 25
+                marginTop: 25,
               }}>
-                <Button style={{ width: "40%" }} onPress={this.back} preset="neutral">
+                <Button style={{ width: "40%" }} onPress={this.back}>
                   <Text preset="bold" tx="auth.back"/>
                 </Button>
                 <Button
