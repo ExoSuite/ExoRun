@@ -26,8 +26,8 @@ const INPUT: TextStyle = {
 const PRESETS: { [name: string]: ViewStyle } = {
   default: {},
   loginScreen: {
-    width: "95%",
-    borderBottomColor: color.palette.lightGrey,
+    width: "100%",
+    borderBottomColor: color.palette.lighterGrey,
     borderBottomWidth: 0.5,
     backgroundColor: "transparent"
   },

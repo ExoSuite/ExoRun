@@ -17,9 +17,9 @@ import { NavigationScreenProps } from "react-navigation"
 import throttle from "lodash.throttle"
 import autobind from "autobind-decorator"
 import KeyboardSpacer from "react-native-keyboard-spacer"
-
+import validator from "validate.js"
 // custom imports
-import { Button, Screen, TextField, Text, Header } from "@components"
+import { Button, Header, Screen, Text, TextField } from "@components"
 import { color, spacing } from "@theme"
 import { Asset } from "@services/asset"
 import { Injection } from "@services/injections"
@@ -32,11 +32,15 @@ export interface LoginScreenProps extends NavigationScreenProps<{}> {
 
 const EXOSUITE: ImageStyle = {
   width: 200,
-  height: 100,
+  height: 100
 }
 
 const EXTRA_PADDING_TOP: ViewStyle = {
-  paddingTop: spacing[5]
+  paddingTop: spacing[3]
+}
+
+const ZERO_PADDING: ViewStyle = {
+  padding: 0
 }
 
 const FOOTER_CONTAINER: ViewStyle = {
@@ -44,8 +48,8 @@ const FOOTER_CONTAINER: ViewStyle = {
   alignSelf: "center",
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor:  color.background,
-  width: '100%'
+  backgroundColor: color.background,
+  width: "100%"
 }
 
 const BOLD: TextStyle = { fontWeight: "bold" }
@@ -53,14 +57,14 @@ const BOLD: TextStyle = { fontWeight: "bold" }
 const HEADER: TextStyle = {
   paddingTop: spacing[2],
   paddingBottom: spacing[2],
-  backgroundColor: color.palette.backgroundDarkerer,
+  backgroundColor: color.palette.backgroundDarkerer
 }
 const HEADER_TITLE: TextStyle = {
   ...BOLD,
   fontSize: 12,
   lineHeight: 15,
   textAlign: "center",
-  letterSpacing: 1.5,
+  letterSpacing: 1.5
 }
 
 const FULL: ViewStyle = {
@@ -75,20 +79,16 @@ const CONTAINER: ViewStyle = {
   justifyContent: "space-evenly"
 }
 
-const EXORUN_TEXT: ImageStyle = {
-  width: 150,
-  height: 50,
-  alignSelf: "center",
-}
-
 const disabled = color.palette.lightGrey
 const enabled = color.secondary
+const hidePassword = "auth.login.password-hide"
+const revealPassword = "auth.login.password-reveal"
 
 const DismissKeyboard = ({ children }) => (
   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
     {children}
   </TouchableWithoutFeedback>
-);
+)
 
 @inject(Injection.Environment)
 @observer
@@ -96,6 +96,8 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 
   @observable email: string = null
   @observable password: string = null
+  @observable isPasswordVisible = false
+  @observable isValidEmail = false
 
   private readonly goBack: Function
   private readonly authorizeLogin: (event) => void
@@ -108,14 +110,19 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 
   @autobind
   async _authorizeLogin() {
-    const {api} = this.props.env;
-    await api.login(this.email, this.password).catch((e: Error) => console.tron.log('COUCOU', e.message))
+    const { api } = this.props.env
+    await api.login(this.email, this.password).catch((e: Error) => console.tron.log("COUCOU", e.message))
   }
 
+  @action.bound
+  toggleIsPasswordVisible() {
+    this.isPasswordVisible = !this.isPasswordVisible
+  }
 
   @action.bound
   setEmail(email: string) {
     this.email = email
+    this.emailValidator()
   }
 
   @action.bound
@@ -128,45 +135,72 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
     this.goBack()
   }
 
-  @autobind
-  navigateToRegister() {
-    const { navigation } = this.props
-    navigation.navigate("register")
+  @action.bound
+  emailValidator() {
+    this.isValidEmail = !(validator.validate(
+      { email: this.email },
+      { email: { email: true } }
+    ) !== undefined)
   }
 
+  @autobind
+  RenderIsValidEmail() {
+    if (!this.isValidEmail && this.email != null) {
+      return <Text tx={"auth.login.bad-email"} style={{color: color.palette.orange}}/>;
+    } else if (this.isValidEmail && this.email) {
+      return <Text tx={"auth.login.good-email"} style={{color: color.palette.green}}/>;
+    }
+    return null
+  }
+
+
   render() {
-    const { email, password } = this
+    const {
+      email,
+      password,
+      isPasswordVisible,
+      toggleIsPasswordVisible,
+      emailValidator,
+      RenderIsValidEmail,
+      isValidEmail
+    } = this
     let buttonColor
-    if (email && password) {
+    if (email && password && isValidEmail) {
       buttonColor = enabled
     } else {
       buttonColor = disabled
     }
 
+    const passwordToggleText = isPasswordVisible ? hidePassword : revealPassword
+
     return (
       <DismissKeyboard>
         <SafeAreaView style={FULL}>
+
           <Header
             leftIcon="chevron-left"
             leftIconType="solid"
             leftIconSize={20}
+            leftIconColor={color.palette.lightBlue}
             onLeftPress={() => this.goBack()}
             style={HEADER}
             titleStyle={HEADER_TITLE}
           />
+
+          <FormRow preset={"clear"} style={[EXTRA_PADDING_TOP, { backgroundColor: color.background }]}>
+            <Text tx="auth.login.login" preset="headerCentered" allowFontScaling/>
+          </FormRow>
+
+          {/* Email / Password / Login button */}
           <Screen style={CONTAINER} backgroundColor={color.background} preset="fixed">
 
-            <FormRow preset={"clear"} style={EXTRA_PADDING_TOP}>
-              <Text tx="auth.login.login" preset="header"/>
-            </FormRow>
-
-            <FormRow preset={"clearFullWidth"}>
+            <FormRow preset={"clearFullWidth"} style={{ marginBottom: spacing[4] }}>
+              <RenderIsValidEmail/>
               <TextField
                 preset={"loginScreen"}
                 placeholderTx="auth.login.username"
-                inputStyle={{
-                  backgroundColor: "transparent"
-                }}
+                inputStyle={{ backgroundColor: "transparent" }}
+                onEndEditing={emailValidator}
                 placeholderTextColor={color.palette.lightGrey}
                 onChangeText={this.setEmail}
               />
@@ -174,27 +208,30 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
               <TextField
                 preset={"loginScreen"}
                 placeholderTx="auth.login.password"
-                inputStyle={{
-                  backgroundColor: "transparent"
-                }}
+                inputStyle={{ backgroundColor: "transparent" }}
                 placeholderTextColor={color.palette.lightGrey}
-                secureTextEntry={true}
+                secureTextEntry={!isPasswordVisible}
                 onChangeText={this.setPassword}
               />
+              <FormRow preset={"clear"} style={[ZERO_PADDING, { paddingTop: spacing[2] }]}>
+                <Button preset="link" tx={passwordToggleText} onPress={toggleIsPasswordVisible}/>
+              </FormRow>
             </FormRow>
 
-            <FormRow preset="clearFullWidth" style={EXTRA_PADDING_TOP}>
+            <FormRow preset="clearFullWidth">
               <Button
                 style={{ backgroundColor: buttonColor }}
                 onPress={this.authorizeLogin}
-                disabled={buttonColor != enabled}
+                disabled={buttonColor != enabled} // can we press on the login button?
                 preset="primaryFullWidth"
               >
                 <Text preset="bold" tx="auth.login.header"/>
               </Button>
             </FormRow>
+
             <KeyboardSpacer/>
           </Screen>
+
           <View style={FOOTER_CONTAINER}>
             <Text preset="bold" tx="auth.powered"/>
             <Image
