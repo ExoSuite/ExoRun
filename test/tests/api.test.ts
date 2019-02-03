@@ -1,14 +1,15 @@
-import { Api, HttpRequest, HttpResponse } from "app/services/api"
+import { Api, HttpRequest, HttpResponse } from "@services/api"
 
 it("should initialize API without crashing", () => {
   const instance = new Api().setup()
   return instance
     .request(HttpRequest.GET, "auth/register", {}, {}, false)
     .then(response => {
-      fail()
+      fail("Request must throw an error")
     })
     .catch(e => {
-      if (e.message !== HttpResponse.METHOD_NOT_ALLOWED) fail()
+      if (e.message !== HttpResponse.METHOD_NOT_ALLOWED)
+        fail("Request must throw METHOD_NOT_ALLOWED")
     })
 })
 

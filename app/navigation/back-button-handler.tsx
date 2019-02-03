@@ -3,6 +3,7 @@ import { BackHandler } from "react-native"
 import { inject, observer } from "mobx-react"
 import { NavigationActions } from "react-navigation"
 import { NavigationStore } from "./navigation-store"
+import { Injection } from "@services/injections"
 
 interface BackButtonHandlerProps {
   navigationStore?: NavigationStore
@@ -13,7 +14,7 @@ interface BackButtonHandlerProps {
   canExit(routeName: string): Boolean
 }
 
-@inject("navigationStore")
+@inject(Injection.NavigationStore)
 @observer
 export class BackButtonHandler extends React.Component<BackButtonHandlerProps, {}> {
   /**

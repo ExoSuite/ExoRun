@@ -14,23 +14,27 @@ import { contains } from "ramda"
 import { DEFAULT_NAVIGATION_CONFIG } from "@navigation/navigation-config"
 import { Platform } from "@services/device"
 import SplashScreen from "react-native-splash-screen"
+import { Environment } from "@models/environment"
 
 interface AppState {
   rootStore?: RootStore
+  env?: Environment
 }
 
 /**
  * This is the root component of our app.
  */
 export class App extends React.Component<{}, AppState> {
+
   /**
    * When the component is mounted. This happens asynchronously and simply
    * re-renders when we're good to go.
    */
   async componentDidMount() {
-    const rootStore = await setupRootStore()
+    const store = await setupRootStore()
     this.setState({
-      rootStore,
+      rootStore: store.rootStore,
+      env: store.env
     })
   }
 
@@ -57,6 +61,7 @@ export class App extends React.Component<{}, AppState> {
 
   render() {
     const rootStore = this.state && this.state.rootStore
+    const env = this.state && this.state.env
 
     // Before we show the app, we have to wait for our state to be ready.
     // In the meantime, don't render anything. This will be the background
@@ -66,17 +71,17 @@ export class App extends React.Component<{}, AppState> {
     //
     // You're welcome to swap in your own component to render if your boot up
     // sequence is too slow though.
-    if (!rootStore) {
+    if (!rootStore || !env) {
       return null
     }
 
     // otherwise, we're ready to render the app
 
     // --- am: begin list of stores ---
-    const otherStores = {}
+    const otherStores = {
+      env
+    }
     // --- am: end list of stores ---
-
-    //console.tron.log(this.state.rootStore)
 
     return (
       <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>
@@ -96,7 +101,7 @@ const APP_NAME = "ExoRun"
 // Should we show storybook instead of our app?
 //
 // ⚠️ Leave this as `false` when checking into git.
-const SHOW_STORYBOOK = true
+const SHOW_STORYBOOK = false
 
 const RootComponent = SHOW_STORYBOOK && __DEV__ ? StorybookUIRoot : App
 AppRegistry.registerComponent(APP_NAME, () => RootComponent)

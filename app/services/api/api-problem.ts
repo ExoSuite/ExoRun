@@ -39,6 +39,9 @@ export type GeneralApiProblem =
    */
   | { kind: HttpResponse.BAD_DATA }
 
+  /**
+   * request was not with the correct HTTP method.
+   */
   | { kind: HttpResponse.METHOD_NOT_ALLOWED }
 
 
@@ -47,7 +50,7 @@ export type GeneralApiProblem =
  *
  * @param response The api response.
  */
-export function getGeneralApiProblem(response: ApiResponse<any>): GeneralApiProblem | void {
+export function getGeneralApiProblem(response: ApiResponse<any>): GeneralApiProblem {
   switch (response.problem) {
     case "NETWORK_ERROR":
     case "CONNECTION_ERROR":
@@ -69,6 +72,8 @@ export function getGeneralApiProblem(response: ApiResponse<any>): GeneralApiProb
           return { kind: HttpResponse.NOT_FOUND }
         case 405:
           return { kind: HttpResponse.METHOD_NOT_ALLOWED }
+        case 422:
+          return { kind: HttpResponse.BAD_DATA }
         default:
           return { kind: HttpResponse.REJECTED }
       }

@@ -1,7 +1,7 @@
 import { ApiResponse, ApisauceInstance, create } from "apisauce"
 import * as https from "https"
 import jwtDecode from "jwt-decode"
-import { getGeneralApiProblem } from "./api-problem"
+import { GeneralApiProblem, getGeneralApiProblem } from "./api-problem"
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
 import { HttpRequest } from "./api-http-request"
 import { IClient, IGrantRequest, ITokenResponse } from "./api.types"
@@ -16,12 +16,12 @@ export class Api {
   /**
    * The underlying apisauce instance which performs the requests.
    */
-  apisauce: ApisauceInstance
+  private apisauce: ApisauceInstance
 
   /**
    * Configurable options.
    */
-  config: ApiConfig
+  private config: ApiConfig
 
   private readonly client: IClient
 
@@ -73,7 +73,7 @@ export class Api {
     return typeof (arg) !== "boolean"
   }
 
-  async checkToken(): Promise<ITokenResponse | boolean> {
+  private async checkToken(): Promise<ITokenResponse | boolean> {
     // get tokens from secure storage
     const credentials: ITokenResponse | boolean = await load(Server.EXOSUITE_USERS_API)
     // check if credentials match with type ITokenResponse
@@ -100,6 +100,16 @@ export class Api {
       // if tokens was not provided throw an error
       throw new Error("Can't load token!")
     }
+  }
+
+  async login(email: string, password: string): Promise<ApiResponse<ITokenResponse> | GeneralApiProblem> {
+    return this.request(
+      HttpRequest.POST,
+      'auth/login',
+      {email, password, ...this.client},
+      {},
+      false
+      );
   }
 
   async request(
@@ -141,7 +151,11 @@ export class Api {
     // the typical ways to die when calling an api fails
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
-      throw new Error(problem ? problem.kind : "Request was canceled")
+      console.tron.log("PROBLEM", problem)
+      return new Promise((resolve, reject) => {
+
+        reject(new Error(problem ? problem.kind : "Request was canceled"));
+      })
     }
 
     // return response from api

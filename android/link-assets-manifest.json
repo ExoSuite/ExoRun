@@ -88,6 +88,38 @@
     {
       "path": "app/assets/exosuite-logo.png",
       "sha1": "dce5d5208d1ee4d18fc749cece006fd11a1bbd6c"
+    },
+    {
+      "path": "app/assets/fonts/fa-brands-400.ttf",
+      "sha1": "bc36e10ee56e2fdcd903e667cebfc51dfa0d223c"
+    },
+    {
+      "path": "app/assets/fonts/fa-light-300.ttf",
+      "sha1": "2cb62102299e79150cc08b695b7ddf80425098b3"
+    },
+    {
+      "path": "app/assets/fonts/fa-regular-400.ttf",
+      "sha1": "40a3071cbc5fa15809a9bb94ecda3b6aed75ef1d"
+    },
+    {
+      "path": "app/assets/fonts/fa-solid-900.ttf",
+      "sha1": "9100b3f65cfaadcaf8c456101d0e6ca1844a9ba1"
+    },
+    {
+      "path": "app/assets/fonts/fa-brands-400.ttf",
+      "sha1": "bc36e10ee56e2fdcd903e667cebfc51dfa0d223c"
+    },
+    {
+      "path": "app/assets/fonts/fa-light-300.ttf",
+      "sha1": "2cb62102299e79150cc08b695b7ddf80425098b3"
+    },
+    {
+      "path": "app/assets/fonts/fa-regular-400.ttf",
+      "sha1": "40a3071cbc5fa15809a9bb94ecda3b6aed75ef1d"
+    },
+    {
+      "path": "app/assets/fonts/fa-solid-900.ttf",
+      "sha1": "9100b3f65cfaadcaf8c456101d0e6ca1844a9ba1"
     }
   ]
 }

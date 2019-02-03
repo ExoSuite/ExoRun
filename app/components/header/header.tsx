@@ -1,11 +1,12 @@
 import * as React from "react"
-import { View, ViewStyle, TextStyle } from "react-native"
+import { Image, ImageStyle, TextStyle, View, ViewStyle } from "react-native"
 import { HeaderProps } from "./header.props"
-import { Button } from "../button"
-import { Icon } from "../icon"
-import { Text } from "../text"
 import { spacing } from "@theme"
 import { translate } from "@i18n"
+import { FontawesomeIcon } from "@components/fontawesome-icon"
+import { Button } from "@components/button"
+import { Text } from "@components/text"
+import { Asset } from "@services/asset"
 
 // static styles
 const ROOT: ViewStyle = {
@@ -14,12 +15,19 @@ const ROOT: ViewStyle = {
   alignItems: "center",
   paddingTop: spacing[5],
   paddingBottom: spacing[5],
-  justifyContent: "flex-start",
+  justifyContent: "flex-start"
 }
 const TITLE: TextStyle = { textAlign: "center" }
 const TITLE_MIDDLE: ViewStyle = { flex: 1, justifyContent: "center" }
 const LEFT: ViewStyle = { width: 32 }
 const RIGHT: ViewStyle = { width: 32 }
+
+const EXORUN_LOGO: ImageStyle = {
+  width: 75,
+  height: 35,
+  alignSelf: "center",
+}
+
 
 /**
  * Header that appears on many screens. Will hold navigation buttons and screen title.
@@ -30,10 +38,18 @@ export class Header extends React.Component<HeaderProps, {}> {
       onLeftPress,
       onRightPress,
       rightIcon,
+      rightIconColor,
+      rightIconSize,
+      rightIconType,
+      rightIconStyle = {},
       leftIcon,
+      leftIconColor,
+      leftIconType,
+      leftIconSize,
+      leftIconStyle = {},
       headerText,
       headerTx,
-      titleStyle,
+      titleStyle
     } = this.props
     const header = headerText || (headerTx && translate(headerTx)) || ""
 
@@ -41,20 +57,46 @@ export class Header extends React.Component<HeaderProps, {}> {
       <View style={{ ...ROOT, ...this.props.style }}>
         {leftIcon ? (
           <Button preset="link" onPress={onLeftPress}>
-            <Icon icon={leftIcon} />
+            <FontawesomeIcon
+              type={leftIconType}
+              size={leftIconSize}
+              name={leftIcon}
+              color={leftIconColor}
+              style={leftIconStyle}
+            />
           </Button>
         ) : (
-          <View style={LEFT} />
+          <View style={LEFT}/>
         )}
-        <View style={TITLE_MIDDLE}>
-          <Text style={{...TITLE, ...titleStyle}} text={header} />
-        </View>
+        {
+          header ? (
+              <View style={TITLE_MIDDLE}>
+                <Text style={{ ...TITLE, ...titleStyle }} text={header}/>
+              </View>
+          ) :
+            (
+              <View style={TITLE_MIDDLE}>
+                <Image
+                  source={Asset.Locator("exorun-logo")}
+                  style={EXORUN_LOGO}
+                  resizeMode="contain"
+                />
+              </View>
+            )
+        }
+
         {rightIcon ? (
           <Button preset="link" onPress={onRightPress}>
-            <Icon icon={rightIcon} />
+            <FontawesomeIcon
+              type={rightIconType}
+              size={rightIconSize}
+              name={rightIcon}
+              color={rightIconColor}
+              style={rightIconStyle}
+            />
           </Button>
         ) : (
-          <View style={RIGHT} />
+          <View style={RIGHT}/>
         )}
       </View>
     )

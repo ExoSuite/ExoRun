@@ -63,6 +63,12 @@ export const PRESETS = {
     ...ROOT,
     borderColor: color.transparent,
   },
+
+  clearFullWidth: {
+    ...ROOT,
+    borderColor: color.transparent,
+    width: '100%'
+  }
 }
 
 /**

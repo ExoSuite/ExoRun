@@ -635,7 +635,7 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
                 <View
                   style={
                     Object {
-                      "backgroundColor": "#1d86d7",
+                      "backgroundColor": "#FBA928",
                       "height": 12,
                       "width": 12,
                     }
@@ -3429,7 +3429,7 @@ exports[`Storyshots Switch Behaviour 1`] = `
               <View
                 style={
                   Object {
-                    "backgroundColor": undefined,
+                    "backgroundColor": "#ffffff",
                     "borderColor": "rgba(0, 0, 0, 0.1)",
                     "borderRadius": 15,
                     "borderWidth": 1,
@@ -3543,8 +3543,8 @@ exports[`Storyshots Switch Behaviour 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Object {
-                  "backgroundColor": "#1d86d7",
-                  "borderColor": "#1d86d7",
+                  "backgroundColor": "#FBA928",
+                  "borderColor": "#FBA928",
                   "borderRadius": 22.5,
                   "borderWidth": 1,
                   "height": 32,
@@ -3555,7 +3555,7 @@ exports[`Storyshots Switch Behaviour 1`] = `
               <View
                 style={
                   Object {
-                    "backgroundColor": undefined,
+                    "backgroundColor": "#ffffff",
                     "borderColor": "rgba(0, 0, 0, 0.1)",
                     "borderRadius": 15,
                     "borderWidth": 1,
@@ -3681,7 +3681,7 @@ exports[`Storyshots Switch Behaviour 1`] = `
               <View
                 style={
                   Object {
-                    "backgroundColor": undefined,
+                    "backgroundColor": "#ffffff",
                     "borderColor": "rgba(0, 0, 0, 0.1)",
                     "borderRadius": 15,
                     "borderWidth": 1,
@@ -5104,10 +5104,12 @@ exports[`Storyshots TextField Labelling 1`] = `
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
+                    "borderRadius": 10,
                     "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 18,
                     "minHeight": 44,
+                    "paddingHorizontal": 5,
                   }
                 }
                 underlineColorAndroid="rgba(0, 0, 0, 0)"
@@ -5220,10 +5222,12 @@ exports[`Storyshots TextField Labelling 1`] = `
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
+                    "borderRadius": 10,
                     "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 18,
                     "minHeight": 44,
+                    "paddingHorizontal": 5,
                   }
                 }
                 underlineColorAndroid="rgba(0, 0, 0, 0)"
@@ -5364,6 +5368,7 @@ exports[`Storyshots TextField Ref Forwarding 1`] = `
                     "fontSize": 18,
                     "minHeight": 44,
                     "padding": 40,
+                    "paddingHorizontal": 5,
                   }
                 }
                 underlineColorAndroid="rgba(0, 0, 0, 0)"
@@ -5518,10 +5523,12 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
+                    "borderRadius": 10,
                     "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 18,
                     "minHeight": 44,
+                    "paddingHorizontal": 5,
                   }
                 }
                 underlineColorAndroid="rgba(0, 0, 0, 0)"
@@ -5554,10 +5561,12 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
+                    "borderRadius": 10,
                     "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 18,
                     "minHeight": 44,
+                    "paddingHorizontal": 5,
                   }
                 }
                 underlineColorAndroid="rgba(0, 0, 0, 0)"
@@ -5677,6 +5686,7 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                     "fontSize": 18,
                     "minHeight": 44,
                     "padding": 40,
+                    "paddingHorizontal": 5,
                   }
                 }
                 underlineColorAndroid="rgba(0, 0, 0, 0)"
@@ -5809,6 +5819,7 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                     "fontSize": 18,
                     "minHeight": 44,
                     "padding": 40,
+                    "paddingHorizontal": 5,
                   }
                 }
                 underlineColorAndroid="rgba(0, 0, 0, 0)"

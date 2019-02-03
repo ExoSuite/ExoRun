@@ -1,32 +1,78 @@
+// library imports
 import * as React from "react"
 import { observer } from "mobx-react"
-import { Image, ImageStyle, SafeAreaView, View, ViewStyle } from "react-native"
-import { Button, Screen } from "@components"
-import { TextField } from "@components/text-field"
-import { color, spacing } from "@theme"
-import { NavigationScreenProps } from "react-navigation"
-import autobind from "autobind-decorator"
-import { Text } from "@components/text"
-import { Asset } from "@services/asset"
+import {
+  Image,
+  ImageStyle,
+  Keyboard,
+  SafeAreaView,
+  TextStyle,
+  TouchableWithoutFeedback,
+  View,
+  ViewStyle
+} from "react-native"
 import { action, observable } from "mobx"
-import throttle from "lodash.throttle"
 import { inject } from "mobx-react/native"
+import { NavigationScreenProps } from "react-navigation"
+import throttle from "lodash.throttle"
+import autobind from "autobind-decorator"
+import KeyboardSpacer from "react-native-keyboard-spacer"
+
+// custom imports
+import { Button, Screen, TextField, Text, Header } from "@components"
+import { color, spacing } from "@theme"
+import { Asset } from "@services/asset"
+import { Injection } from "@services/injections"
+import { Environment } from "@models/environment"
+import { FormRow } from "@components/form-row"
 
 export interface LoginScreenProps extends NavigationScreenProps<{}> {
+  env: Environment
 }
 
-const ROOT: ViewStyle = {
-  backgroundColor: color.palette.black,
+const EXOSUITE: ImageStyle = {
+  width: 200,
+  height: 100,
+}
+
+const EXTRA_PADDING_TOP: ViewStyle = {
+  paddingTop: spacing[5]
+}
+
+const FOOTER_CONTAINER: ViewStyle = {
+  flexDirection: "row",
+  alignSelf: "center",
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundColor:  color.background,
+  width: '100%'
+}
+
+const BOLD: TextStyle = { fontWeight: "bold" }
+
+const HEADER: TextStyle = {
+  paddingTop: spacing[2],
+  paddingBottom: spacing[2],
+  backgroundColor: color.palette.backgroundDarkerer,
+}
+const HEADER_TITLE: TextStyle = {
+  ...BOLD,
+  fontSize: 12,
+  lineHeight: 15,
+  textAlign: "center",
+  letterSpacing: 1.5,
 }
 
 const FULL: ViewStyle = {
-  ...ROOT,
   flex: 1,
+  backgroundColor: color.palette.backgroundDarkerer
 }
 
 const CONTAINER: ViewStyle = {
   ...FULL,
   paddingHorizontal: spacing[4],
+  flexGrow: 1,
+  justifyContent: "space-evenly"
 }
 
 const EXORUN_TEXT: ImageStyle = {
@@ -35,21 +81,22 @@ const EXORUN_TEXT: ImageStyle = {
   alignSelf: "center",
 }
 
-const EXORUN_LOGO: ImageStyle = {
-  width: 75,
-  height: 35,
-  alignSelf: "center",
-}
-
 const disabled = color.palette.lightGrey
 const enabled = color.secondary
 
-@inject("rootStore")
+const DismissKeyboard = ({ children }) => (
+  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    {children}
+  </TouchableWithoutFeedback>
+);
+
+@inject(Injection.Environment)
 @observer
 export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 
   @observable email: string = null
   @observable password: string = null
+
   private readonly goBack: Function
   private readonly authorizeLogin: (event) => void
 
@@ -60,8 +107,9 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   }
 
   @autobind
-  _authorizeLogin() {
-
+  async _authorizeLogin() {
+    const {api} = this.props.env;
+    await api.login(this.email, this.password).catch((e: Error) => console.tron.log('COUCOU', e.message))
   }
 
 
@@ -96,20 +144,23 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
     }
 
     return (
-      <View style={FULL}>
+      <DismissKeyboard>
         <SafeAreaView style={FULL}>
-          <Screen style={CONTAINER} backgroundColor={color.palette.backgroundDarker} preset="fixedStack">
-            <Image
-              source={Asset.Locator("exorun-text")}
-              style={EXORUN_TEXT}
-              resizeMode="contain"
-            />
-            <Image
-              source={Asset.Locator("exorun-logo")}
-              style={EXORUN_LOGO}
-              resizeMode="contain"
-            />
-            <View style={{ alignItems: "center" }}>
+          <Header
+            leftIcon="chevron-left"
+            leftIconType="solid"
+            leftIconSize={20}
+            onLeftPress={() => this.goBack()}
+            style={HEADER}
+            titleStyle={HEADER_TITLE}
+          />
+          <Screen style={CONTAINER} backgroundColor={color.background} preset="fixed">
+
+            <FormRow preset={"clear"} style={EXTRA_PADDING_TOP}>
+              <Text tx="auth.login.login" preset="header"/>
+            </FormRow>
+
+            <FormRow preset={"clearFullWidth"}>
               <TextField
                 preset={"loginScreen"}
                 placeholderTx="auth.login.username"
@@ -119,6 +170,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
                 placeholderTextColor={color.palette.lightGrey}
                 onChangeText={this.setEmail}
               />
+
               <TextField
                 preset={"loginScreen"}
                 placeholderTx="auth.login.password"
@@ -129,30 +181,32 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
                 secureTextEntry={true}
                 onChangeText={this.setPassword}
               />
-              <View style={{
-                alignItems: "center",
-                flexDirection: "row",
-                justifyContent: "space-around",
-                width: "100%",
-                marginTop: 25,
-              }}>
-                <Button style={{ width: "40%" }} onPress={this.back}>
-                  <Text preset="bold" tx="auth.back"/>
-                </Button>
-                <Button
-                  style={{ width: "40%", backgroundColor: buttonColor }}
-                  onPress={this.authorizeLogin}
-                  preset="primary"
-                >
-                  <Text preset="bold" tx="auth.login.header"/>
-                </Button>
+            </FormRow>
 
-              </View>
-            </View>
-
+            <FormRow preset="clearFullWidth" style={EXTRA_PADDING_TOP}>
+              <Button
+                style={{ backgroundColor: buttonColor }}
+                onPress={this.authorizeLogin}
+                disabled={buttonColor != enabled}
+                preset="primaryFullWidth"
+              >
+                <Text preset="bold" tx="auth.login.header"/>
+              </Button>
+            </FormRow>
+            <KeyboardSpacer/>
           </Screen>
+          <View style={FOOTER_CONTAINER}>
+            <Text preset="bold" tx="auth.powered"/>
+            <Image
+              source={Asset.Locator("exosuite-logo")}
+              style={EXOSUITE}
+              resizeMode="contain"
+            />
+          </View>
+
         </SafeAreaView>
-      </View>
+      </DismissKeyboard>
+
     )
   }
 }

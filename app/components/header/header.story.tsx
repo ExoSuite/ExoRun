@@ -25,7 +25,9 @@ storiesOf("Header")
         <View style={VIEWSTYLE}>
           <Header
             headerTx="secondExampleScreen.howTo"
-            leftIcon="back"
+            leftIcon="head-vr"
+            leftIconType="solid"
+            leftIconSize={30}
             onLeftPress={() => window.alert("left nav")}
           />
         </View>
@@ -34,7 +36,9 @@ storiesOf("Header")
         <View style={VIEWSTYLE}>
           <Header
             headerTx="secondExampleScreen.howTo"
-            rightIcon="bullet"
+            rightIcon="head-vr"
+            rightIconType="solid"
+            rightIconSize={30}
             onRightPress={() => window.alert("right nav")}
           />
         </View>

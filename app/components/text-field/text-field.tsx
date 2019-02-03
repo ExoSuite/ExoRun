@@ -27,9 +27,8 @@ const PRESETS: { [name: string]: ViewStyle } = {
   default: {},
   loginScreen: {
     width: "95%",
-    maxHeight: 70,
     borderBottomColor: color.palette.lightGrey,
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
     backgroundColor: "transparent"
   },
   transparentInput: {

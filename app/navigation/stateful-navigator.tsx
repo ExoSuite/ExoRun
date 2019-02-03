@@ -10,12 +10,13 @@ import autobind from "autobind-decorator"
 import { Asset } from "@services/asset"
 import { color } from "@theme"
 import { Screen } from "@services/device"
+import { Injection } from "@services/injections"
 
 interface StatefulNavigatorProps {
   navigationStore?: NavigationStore
 }
 
-@inject("navigationStore")
+@inject(Injection.NavigationStore)
 @observer
 export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {}> {
   currentNavProp: NavigationScreenProp<NavigationState>

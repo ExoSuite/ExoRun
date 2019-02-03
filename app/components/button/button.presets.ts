@@ -29,6 +29,8 @@ export const viewPresets = {
 
   secondary: { ...BASE_VIEW, backgroundColor: color.secondary } as ViewStyle,
 
+  primaryFullWidth: { ...BASE_VIEW, backgroundColor: color.palette.blue, width: '100%' } as ViewStyle,
+
   /**
    * A button without extras.
    */

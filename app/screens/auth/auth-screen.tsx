@@ -6,17 +6,14 @@ import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import autobind from "autobind-decorator"
 import { Asset } from "@services/asset"
+import { palette } from "@theme/palette"
 
 export interface AuthScreenProps extends NavigationScreenProps<{}> {
 }
 
-const ROOT: ViewStyle = {
-  backgroundColor: color.palette.backgroundDarker,
-}
-
 const FULL: ViewStyle = {
-  ...ROOT,
   flex: 1,
+  backgroundColor: color.background
 }
 
 const CONTAINER: ViewStyle = {
@@ -67,39 +64,37 @@ export class AuthScreen extends React.Component<AuthScreenProps, {}> {
     const { navigateToRegister, navigateToLogin } = this
 
     return (
-      <View style={FULL}>
-        <SafeAreaView style={FULL}>
-          <Image
-            source={Asset.Locator("exorun-text")}
-            style={EXORUN_TEXT}
-            resizeMode="contain"
-          />
-          <Image
-            source={Asset.Locator("exorun-logo")}
-            style={EXORUN_LOGO}
-            resizeMode="contain"
-          />
-          <Screen style={CONTAINER} backgroundColor={color.transparent} preset="fixedCenter">
-            <View style={{ marginBottom: 100 }}>
-              <Text preset="largeHeaderCentered" tx="auth.slogan"/>
-            </View>
-            <Button style={{ width: "80%", marginBottom: 10 }} onPress={navigateToLogin}>
-              <Text preset="bold" tx="auth.login.header"/>
-            </Button>
-            <Button style={{ width: "80%" }} onPress={navigateToRegister} preset="secondary">
-              <Text preset="bold" tx="auth.register.header"/>
-            </Button>
-          </Screen>
-          <View style={FOOTER_CONTAINER}>
-            <Text preset="bold" tx="auth.powered"/>
-            <Image
-              source={Asset.Locator("exosuite-logo")}
-              style={EXOSUITE}
-              resizeMode="contain"
-            />
+      <SafeAreaView style={FULL}>
+        <Image
+          source={Asset.Locator("exorun-text")}
+          style={EXORUN_TEXT}
+          resizeMode="contain"
+        />
+        <Image
+          source={Asset.Locator("exorun-logo")}
+          style={EXORUN_LOGO}
+          resizeMode="contain"
+        />
+        <Screen style={CONTAINER} backgroundColor={color.transparent} preset="fixedCenter">
+          <View style={{ marginBottom: 100 }}>
+            <Text preset="largeHeaderCentered" tx="auth.slogan"/>
           </View>
-        </SafeAreaView>
-      </View>
+          <Button style={{ width: "80%", marginBottom: 10 }} onPress={navigateToLogin}>
+            <Text preset="bold" tx="auth.login.header"/>
+          </Button>
+          <Button style={{ width: "80%" }} onPress={navigateToRegister} preset="secondary">
+            <Text preset="bold" tx="auth.register.header"/>
+          </Button>
+        </Screen>
+        <View style={FOOTER_CONTAINER}>
+          <Text preset="bold" tx="auth.powered"/>
+          <Image
+            source={Asset.Locator("exosuite-logo")}
+            style={EXOSUITE}
+            resizeMode="contain"
+          />
+        </View>
+      </SafeAreaView>
     )
   }
 }
