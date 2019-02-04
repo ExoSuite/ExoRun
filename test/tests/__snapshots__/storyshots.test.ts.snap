@@ -114,7 +114,7 @@ exports[`Storyshots Button Style Presets 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#1d86d7",
+                  "backgroundColor": "#0095d9",
                   "borderRadius": 4,
                   "justifyContent": "center",
                   "opacity": 1,
@@ -228,7 +228,7 @@ exports[`Storyshots Button Style Presets 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#1d86d7",
+                  "backgroundColor": "#0095d9",
                   "borderRadius": 4,
                   "justifyContent": "center",
                   "opacity": 1,
@@ -342,7 +342,7 @@ exports[`Storyshots Button Style Presets 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#1d86d7",
+                  "backgroundColor": "#0095d9",
                   "borderRadius": 0,
                   "justifyContent": "center",
                   "opacity": 1,
@@ -1455,6 +1455,446 @@ exports[`Storyshots Checkbox Styling 1`] = `
                 </Text>
               </View>
             </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
+exports[`Storyshots FontawesomeIcon Example 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                Light
+              </Text>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              Chevron left light
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#FBA928",
+                    "fontSize": 30,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "Font Awesome 5 Pro",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {
+                    "fontWeight": "100",
+                  },
+                ]
+              }
+            >
+              
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                Solid
+              </Text>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              Chevron left solid
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#FBA928",
+                    "fontSize": 30,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "Font Awesome 5 Pro",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {
+                    "fontWeight": "700",
+                  },
+                ]
+              }
+            >
+              
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                Regular
+              </Text>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              Chevron left regular
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              regular={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#FBA928",
+                    "fontSize": 30,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "Font Awesome 5 Pro",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {
+                    "fontWeight": "400",
+                  },
+                ]
+              }
+            >
+              
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                Brand
+              </Text>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              For print a brand
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              brand={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#FBA928",
+                    "fontSize": 30,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "Font Awesome 5 Brands",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {
+                    "fontWeight": "400",
+                  },
+                ]
+              }
+            >
+              
+            </Text>
           </View>
         </View>
       </View>
@@ -2885,16 +3325,28 @@ exports[`Storyshots Header Behavior 1`] = `
                     }
                   }
                 >
-                  <View>
-                    <Image
-                      source={1}
-                      style={
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      Array [
                         Object {
-                          "resizeMode": "contain",
-                        }
-                      }
-                    />
-                  </View>
+                          "color": "#FBA928",
+                          "fontSize": 30,
+                        },
+                        undefined,
+                        Object {
+                          "fontFamily": "Font Awesome 5 Pro",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {
+                          "fontWeight": "700",
+                        },
+                      ]
+                    }
+                  >
+                    
+                  </Text>
                 </View>
                 <View
                   style={
@@ -3074,228 +3526,30 @@ exports[`Storyshots Header Behavior 1`] = `
                     }
                   }
                 >
-                  <View>
-                    <Image
-                      source={1}
-                      style={
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      Array [
                         Object {
-                          "resizeMode": "contain",
-                        }
-                      }
-                    />
-                  </View>
+                          "color": "#FBA928",
+                          "fontSize": 30,
+                        },
+                        undefined,
+                        Object {
+                          "fontFamily": "Font Awesome 5 Pro",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {
+                          "fontWeight": "700",
+                        },
+                      ]
+                    }
+                  >
+                    
+                  </Text>
                 </View>
               </View>
-            </View>
-          </View>
-        </View>
-      </View>
-    </RCTScrollView>
-  </View>
-</View>
-`;
-
-exports[`Storyshots Icon Names 1`] = `
-<View
-  onLayout={[Function]}
-  style={
-    Array [
-      Object {
-        "backgroundColor": "#f0f0f0",
-        "flex": 1,
-      },
-      Object {
-        "paddingBottom": 0,
-      },
-    ]
-  }
->
-  <View
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <RCTScrollView>
-      <View>
-        <View
-          style={
-            Object {
-              "backgroundColor": "#eee",
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "borderBottomColor": "#e6e6e6",
-                "borderBottomWidth": 1,
-                "paddingBottom": 10,
-                "paddingHorizontal": 10,
-                "paddingTop": 20,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "borderTopColor": "#e6e6e6",
-                  "borderTopWidth": 1,
-                  "flexDirection": "row",
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#666",
-                    "fontSize": 10,
-                    "paddingBottom": 2,
-                    "paddingHorizontal": 4,
-                  }
-                }
-              >
-                Use Case
-              </Text>
-            </View>
-            <View
-              style={Object {}}
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#3d3d3d",
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                back
-              </Text>
-            </View>
-            <Text
-              style={
-                Object {
-                  "color": "#666",
-                  "fontSize": 10,
-                  "paddingTop": 0,
-                }
-              }
-            >
-              The icon for going back
-            </Text>
-          </View>
-          <View
-            style={
-              Object {
-                "backgroundColor": "#fff",
-                "padding": 10,
-              }
-            }
-          >
-            <View>
-              <Image
-                source={1}
-                style={
-                  Object {
-                    "resizeMode": "contain",
-                  }
-                }
-              />
-            </View>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "backgroundColor": "#eee",
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "borderBottomColor": "#e6e6e6",
-                "borderBottomWidth": 1,
-                "paddingBottom": 10,
-                "paddingHorizontal": 10,
-                "paddingTop": 20,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "borderTopColor": "#e6e6e6",
-                  "borderTopWidth": 1,
-                  "flexDirection": "row",
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#666",
-                    "fontSize": 10,
-                    "paddingBottom": 2,
-                    "paddingHorizontal": 4,
-                  }
-                }
-              >
-                Use Case
-              </Text>
-            </View>
-            <View
-              style={Object {}}
-            >
-              <Text
-                style={
-                  Object {
-                    "color": "#3d3d3d",
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                bullet
-              </Text>
-            </View>
-            <Text
-              style={
-                Object {
-                  "color": "#666",
-                  "fontSize": 10,
-                  "paddingTop": 0,
-                }
-              }
-            >
-              The icon for a bullet point
-            </Text>
-          </View>
-          <View
-            style={
-              Object {
-                "backgroundColor": "#fff",
-                "padding": 10,
-              }
-            }
-          >
-            <View>
-              <Image
-                source={1}
-                style={
-                  Object {
-                    "resizeMode": "contain",
-                  }
-                }
-              />
             </View>
           </View>
         </View>
@@ -3429,7 +3683,7 @@ exports[`Storyshots Switch Behaviour 1`] = `
               <View
                 style={
                   Object {
-                    "backgroundColor": "#ffffff",
+                    "backgroundColor": "#16202a",
                     "borderColor": "rgba(0, 0, 0, 0.1)",
                     "borderRadius": 15,
                     "borderWidth": 1,
@@ -3555,7 +3809,7 @@ exports[`Storyshots Switch Behaviour 1`] = `
               <View
                 style={
                   Object {
-                    "backgroundColor": "#ffffff",
+                    "backgroundColor": "#16202a",
                     "borderColor": "rgba(0, 0, 0, 0.1)",
                     "borderRadius": 15,
                     "borderWidth": 1,
@@ -3681,7 +3935,7 @@ exports[`Storyshots Switch Behaviour 1`] = `
               <View
                 style={
                   Object {
-                    "backgroundColor": "#ffffff",
+                    "backgroundColor": "#16202a",
                     "borderColor": "rgba(0, 0, 0, 0.1)",
                     "borderRadius": 15,
                     "borderWidth": 1,

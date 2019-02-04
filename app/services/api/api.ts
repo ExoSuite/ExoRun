@@ -1,12 +1,13 @@
 import { ApiResponse, ApisauceInstance, create } from "apisauce"
 import * as https from "https"
 import jwtDecode from "jwt-decode"
-import { GeneralApiProblem, getGeneralApiProblem } from "./api-problem"
+import { getGeneralApiProblem } from "./api-problem"
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
 import { HttpRequest } from "./api-http-request"
 import { IClient, IGrantRequest, ITokenResponse } from "./api.types"
 import { load, save } from "@utils/keychain"
 import { Server } from "./api.servers"
+import { HttpRequestError } from "@exceptions"
 
 
 /**
@@ -102,14 +103,15 @@ export class Api {
     }
   }
 
-  async login(email: string, password: string): Promise<ApiResponse<ITokenResponse> | GeneralApiProblem> {
+  /* this function may throw 422  */
+  async login(email: string, password: string): Promise<ApiResponse<ITokenResponse>> {
     return this.request(
       HttpRequest.POST,
-      'auth/login',
+      "auth/login",
       {email, password, ...this.client},
       {},
-      false
-      );
+      false,
+      )
   }
 
   async request(
@@ -151,10 +153,8 @@ export class Api {
     // the typical ways to die when calling an api fails
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
-      console.tron.log("PROBLEM", problem)
       return new Promise((resolve, reject) => {
-
-        reject(new Error(problem ? problem.kind : "Request was canceled"));
+        reject(new HttpRequestError(problem, response))
       })
     }
 

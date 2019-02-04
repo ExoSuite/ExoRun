@@ -28,7 +28,9 @@
       "@utils/*": ["app/utils/*"],
       "@navigation/*": ["app/navigation/*"],
       "@i18n/*": ["app/i18n/*"],
-      "@i18n": ["app/i18n"]
+      "@i18n": ["app/i18n"],
+      "@exceptions": ["app/exceptions"],
+      "@exceptions/*": ["app/exceptions/*"]
     }
   }
 }

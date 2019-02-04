@@ -1,37 +1,9 @@
 import * as React from "react"
-import { ViewStyle } from "react-native"
-import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
+import FontAwesome5Pro from "react-native-vector-icons/FontAwesome5Pro"
 import {color as themeColor} from "@theme"
-import { IconTypes } from "@components"
+import { FontawesomeIconProps } from "@components/fontawesome-icon/font-awesome-icon.props"
 
 export type FontawesomeIconTypes = "brand" | "light" | "solid" | "regular"
-
-export interface FontawesomeIconProps {
-  /**
-   * name of the font awesome icon
-   */
-  name: IconTypes
-
-  /**
-   * type of icon
-   */
-  type?: FontawesomeIconTypes
-
-  /**
-   * color of icon
-   */
-  color?: string
-
-  /**
-   * size of icon
-   */
-  size?: number
-
-  /**
-   * An optional style override useful for padding & margin.
-   */
-  style?: ViewStyle
-}
 
 /**
  * Stateless functional component for your needs
@@ -44,7 +16,7 @@ export function FontawesomeIcon(props: FontawesomeIconProps) {
 
   const fontProps = {name, size, color}
 
-  let component;
+  let component
   if (type == "brand") {
     component = <FontAwesome5Pro {...fontProps} brand {...style}/>
   }
@@ -57,5 +29,5 @@ export function FontawesomeIcon(props: FontawesomeIconProps) {
   else
     component = <FontAwesome5Pro {...fontProps} light {...style}/>
 
-  return component;
+  return component
 }

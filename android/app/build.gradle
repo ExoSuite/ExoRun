@@ -154,6 +154,7 @@ configurations.all {
 }
 
 dependencies {
+    implementation project(':lottie-react-native')
     implementation project(':react-native-config')
     apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
     implementation project(':react-native-vector-icons')

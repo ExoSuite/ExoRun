@@ -1,4 +1,5 @@
 export enum Injection {
   Environment = "env",
-  NavigationStore = "navigationStore"
+  NavigationStore = "navigationStore",
+  Api = "api"
 }

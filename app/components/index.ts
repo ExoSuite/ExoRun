@@ -1,7 +1,5 @@
-export * from "./bullet-item"
 export * from "./button"
 export * from "./text"
-export * from "./icon"
 export * from "./text-field"
 export * from "./header"
 export * from "./screen"

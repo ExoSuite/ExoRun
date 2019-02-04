@@ -22,25 +22,27 @@ import validator from "validate.js"
 import { Button, Header, Screen, Text, TextField } from "@components"
 import { color, spacing } from "@theme"
 import { Asset } from "@services/asset"
-import { Injection } from "@services/injections"
-import { Environment } from "@models/environment"
 import { FormRow } from "@components/form-row"
+import { Loader } from "@components/loader"
+import { Api } from "@services/api"
+import { Injection } from "@services/injections"
 
 export interface LoginScreenProps extends NavigationScreenProps<{}> {
-  env: Environment
+  api: Api,
+  loader: Loader
 }
 
 const EXOSUITE: ImageStyle = {
   width: 200,
-  height: 100
+  height: 100,
 }
 
 const EXTRA_PADDING_TOP: ViewStyle = {
-  paddingTop: spacing[3]
+  paddingTop: spacing[3],
 }
 
 const ZERO_PADDING: ViewStyle = {
-  padding: 0
+  padding: 0,
 }
 
 const FOOTER_CONTAINER: ViewStyle = {
@@ -49,7 +51,11 @@ const FOOTER_CONTAINER: ViewStyle = {
   alignItems: "center",
   justifyContent: "center",
   backgroundColor: color.background,
-  width: "100%"
+  width: "100%",
+}
+
+const EMAIL_TEXT: TextStyle = {
+  paddingTop: spacing[5],
 }
 
 const BOLD: TextStyle = { fontWeight: "bold" }
@@ -57,26 +63,26 @@ const BOLD: TextStyle = { fontWeight: "bold" }
 const HEADER: TextStyle = {
   paddingTop: spacing[2],
   paddingBottom: spacing[2],
-  backgroundColor: color.palette.backgroundDarkerer
+  backgroundColor: color.palette.backgroundDarkerer,
 }
 const HEADER_TITLE: TextStyle = {
   ...BOLD,
   fontSize: 12,
   lineHeight: 15,
   textAlign: "center",
-  letterSpacing: 1.5
+  letterSpacing: 1.5,
 }
 
 const FULL: ViewStyle = {
   flex: 1,
-  backgroundColor: color.palette.backgroundDarkerer
+  backgroundColor: color.palette.backgroundDarkerer,
 }
 
 const CONTAINER: ViewStyle = {
   ...FULL,
   paddingHorizontal: spacing[4],
   flexGrow: 1,
-  justifyContent: "space-evenly"
+  justifyContent: "space-evenly",
 }
 
 const disabled = color.palette.lightGrey
@@ -90,7 +96,7 @@ const DismissKeyboard = ({ children }) => (
   </TouchableWithoutFeedback>
 )
 
-@inject(Injection.Environment)
+@inject(Injection.Api)
 @observer
 export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 
@@ -104,14 +110,15 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 
   constructor(props) {
     super(props)
+    console.tron.logImportant(props.loader)
     this.goBack = throttle(props.navigation.goBack, 3000)
     this.authorizeLogin = throttle(this._authorizeLogin, 5000)
   }
 
   @autobind
   async _authorizeLogin() {
-    const { api } = this.props.env
-    await api.login(this.email, this.password).catch((e: Error) => console.tron.log("COUCOU", e.message))
+    const { api } = this.props
+    await api.login(this.email, this.password)
   }
 
   @action.bound
@@ -139,16 +146,22 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   emailValidator() {
     this.isValidEmail = !(validator.validate(
       { email: this.email },
-      { email: { email: true } }
+      { email: { email: true } },
     ) !== undefined)
   }
 
   @autobind
   RenderIsValidEmail() {
     if (!this.isValidEmail && this.email != null) {
-      return <Text tx={"auth.login.bad-email"} style={{color: color.palette.orange}}/>;
+      return <Text
+        tx={"auth.login.bad-email"}
+        style={[{color: color.palette.orange}, EMAIL_TEXT]
+      }/>
     } else if (this.isValidEmail && this.email) {
-      return <Text tx={"auth.login.good-email"} style={{color: color.palette.green}}/>;
+      return <Text
+        tx={"auth.login.good-email"}
+        style={[{color: color.palette.green}, EMAIL_TEXT]}
+      />
     }
     return null
   }
@@ -162,7 +175,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
       toggleIsPasswordVisible,
       emailValidator,
       RenderIsValidEmail,
-      isValidEmail
+      isValidEmail,
     } = this
     let buttonColor
     if (email && password && isValidEmail) {

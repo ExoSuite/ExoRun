@@ -29,7 +29,7 @@ const PRESETS: { [name: string]: ViewStyle } = {
     width: "100%",
     borderBottomColor: color.palette.lighterGrey,
     borderBottomWidth: 0.5,
-    backgroundColor: "transparent"
+    backgroundColor: "transparent",
   },
   transparentInput: {
     backgroundColor: "transparent",

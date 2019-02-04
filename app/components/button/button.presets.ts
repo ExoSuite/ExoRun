@@ -29,7 +29,7 @@ export const viewPresets = {
 
   secondary: { ...BASE_VIEW, backgroundColor: color.secondary } as ViewStyle,
 
-  primaryFullWidth: { ...BASE_VIEW, backgroundColor: color.palette.blue, width: '100%' } as ViewStyle,
+  primaryFullWidth: { ...BASE_VIEW, backgroundColor: color.palette.blue, width: "100%" } as ViewStyle,
 
   /**
    * A button without extras.
@@ -41,7 +41,7 @@ export const viewPresets = {
     alignItems: "flex-start",
   } as ViewStyle,
 
-  neutral: { ...BASE_VIEW, backgroundColor: color.palette.orangeDarker } as ViewStyle
+  neutral: { ...BASE_VIEW, backgroundColor: color.palette.orangeDarker } as ViewStyle,
 }
 
 export const textPresets = {

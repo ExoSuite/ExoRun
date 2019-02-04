@@ -34,7 +34,7 @@ export const presets = {
   /**
    * Large headers.
    */
-  headerCentered: { ...BASE, fontSize: 24, fontWeight: "bold", textAlign: 'center' } as TextStyle,
+  headerCentered: { ...BASE, fontSize: 24, fontWeight: "bold", textAlign: "center" } as TextStyle,
 
   /**
    * Very Large headers centered.

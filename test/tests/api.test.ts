@@ -1,14 +1,15 @@
 import { Api, HttpRequest, HttpResponse } from "@services/api"
+import { HttpRequestError } from "@exceptions"
 
 it("should initialize API without crashing", () => {
   const instance = new Api().setup()
   return instance
     .request(HttpRequest.GET, "auth/register", {}, {}, false)
-    .then(response => {
+    .then(() => {
       fail("Request must throw an error")
     })
-    .catch(e => {
-      if (e.message !== HttpResponse.METHOD_NOT_ALLOWED)
+    .catch((e: HttpRequestError) => {
+      if (e.isNot(HttpResponse.METHOD_NOT_ALLOWED))
         fail("Request must throw METHOD_NOT_ALLOWED")
     })
 })
@@ -17,10 +18,10 @@ it("should return 404", function() {
   const instance = new Api().setup()
   return instance
     .request(HttpRequest.GET, "", {}, {}, false)
-    .then(response => {
+    .then(() => {
       fail()
     })
-    .catch(e => {
-      if (e.message !== HttpResponse.NOT_FOUND) fail()
+    .catch((e: HttpRequestError) => {
+      if (e.is(HttpResponse.METHOD_NOT_ALLOWED)) fail()
     })
 })

@@ -15,6 +15,7 @@ import { DEFAULT_NAVIGATION_CONFIG } from "@navigation/navigation-config"
 import { Platform } from "@services/device"
 import SplashScreen from "react-native-splash-screen"
 import { Environment } from "@models/environment"
+import { Loader } from "@components/loader"
 
 interface AppState {
   rootStore?: RootStore
@@ -25,28 +26,25 @@ interface AppState {
  * This is the root component of our app.
  */
 export class App extends React.Component<{}, AppState> {
-
   /**
    * When the component is mounted. This happens asynchronously and simply
    * re-renders when we're good to go.
    */
   async componentDidMount() {
-    const store = await setupRootStore()
-    this.setState({
-      rootStore: store.rootStore,
-      env: store.env
-    })
-  }
-
-  componentWillMount() {
     // hack to ignore white screen on android
     if (Platform.Android) {
       setTimeout(() => {
         SplashScreen.hide()
-      }, 300)
+      }, 500)
     } else {
       SplashScreen.hide()
     }
+
+    const store = await setupRootStore()
+    this.setState({
+      rootStore: store.rootStore,
+      env: store.env,
+    })
   }
 
   /**
@@ -79,14 +77,20 @@ export class App extends React.Component<{}, AppState> {
 
     // --- am: begin list of stores ---
     const otherStores = {
-      env
+      env,
+      api: env.api
     }
     // --- am: end list of stores ---
 
     return (
-      <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>
+      <Provider
+        rootStore={rootStore}
+        navigationStore={rootStore.navigationStore}
+        {...otherStores}
+      >
         <BackButtonHandler canExit={this.canExit}>
           <StatefulNavigator />
+          <Loader />
         </BackButtonHandler>
       </Provider>
     )

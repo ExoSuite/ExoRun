@@ -6,14 +6,13 @@ import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import autobind from "autobind-decorator"
 import { Asset } from "@services/asset"
-import { palette } from "@theme/palette"
 
 export interface AuthScreenProps extends NavigationScreenProps<{}> {
 }
 
 const FULL: ViewStyle = {
   flex: 1,
-  backgroundColor: color.background
+  backgroundColor: color.background,
 }
 
 const CONTAINER: ViewStyle = {

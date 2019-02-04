@@ -1,5 +1,4 @@
 import { ViewStyle, TextStyle } from "react-native"
-import { IconTypes } from "../icon"
 import { FontawesomeIconTypes } from "@components/fontawesome-icon"
 
 export interface HeaderProps {
@@ -16,7 +15,7 @@ export interface HeaderProps {
   /**
    * Icon that should appear on the left
    */
-  leftIcon?: IconTypes
+  leftIcon?: string
   leftIconColor?: string
   leftIconSize?: number
   leftIconType?: FontawesomeIconTypes
@@ -30,7 +29,7 @@ export interface HeaderProps {
   /**
    * Icon that should appear on the right
    */
-  rightIcon?: IconTypes
+  rightIcon?: string
   rightIconColor?: string
   rightIconSize?: number
   rightIconType?: FontawesomeIconTypes
