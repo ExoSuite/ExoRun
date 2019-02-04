@@ -52,3 +52,4 @@ ios/Pods
 
 junit.xml
 .env
+coverage
