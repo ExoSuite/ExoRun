@@ -5,6 +5,7 @@ import Config from "react-native-config"
 export enum BuiltFor {
   PRODUCTION = "production",
   DEVELOPMENT = "development",
+  STAGING = "staging",
   TESTING = "test",
 }
 
