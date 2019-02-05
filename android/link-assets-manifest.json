@@ -104,10 +104,6 @@
     {
       "path": "app/assets/img/exosuite-logo.png",
       "sha1": "dce5d5208d1ee4d18fc749cece006fd11a1bbd6c"
-    },
-    {
-      "path": "app/assets/lottie/loader-success-failed.json",
-      "sha1": "201dadbe8e35af53cdf12be6646cb4ec377fc58a"
     }
   ]
 }

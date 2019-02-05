@@ -1,3 +1,4 @@
+import * as React from "react"
 import { ViewStyle } from "react-native"
 
 export interface LoaderProps {
@@ -7,4 +8,5 @@ export interface LoaderProps {
   style?: ViewStyle
 
 
+  children?: React.ReactNode
 }

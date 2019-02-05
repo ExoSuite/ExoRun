@@ -16,6 +16,9 @@ import { Platform } from "@services/device"
 import SplashScreen from "react-native-splash-screen"
 import { Environment } from "@models/environment"
 import { Loader } from "@components/loader"
+import Config from 'react-native-config'
+import { bool } from "prop-types"
+import { boolean } from "mobx-state-tree/dist/types/primitives"
 
 interface AppState {
   rootStore?: RootStore
@@ -78,16 +81,12 @@ export class App extends React.Component<{}, AppState> {
     // --- am: begin list of stores ---
     const otherStores = {
       env,
-      api: env.api
+      api: env.api,
     }
     // --- am: end list of stores ---
 
     return (
-      <Provider
-        rootStore={rootStore}
-        navigationStore={rootStore.navigationStore}
-        {...otherStores}
-      >
+      <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>
         <BackButtonHandler canExit={this.canExit}>
           <StatefulNavigator />
           <Loader />
@@ -105,7 +104,7 @@ const APP_NAME = "ExoRun"
 // Should we show storybook instead of our app?
 //
 // ⚠️ Leave this as `false` when checking into git.
-const SHOW_STORYBOOK = false
+const SHOW_STORYBOOK = JSON.parse(Config.STORYBOOK_ENABLED)
 
 const RootComponent = SHOW_STORYBOOK && __DEV__ ? StorybookUIRoot : App
 AppRegistry.registerComponent(APP_NAME, () => RootComponent)
