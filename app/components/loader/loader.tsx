@@ -14,6 +14,7 @@ const MODAL_CONTAINER: ViewStyle = {
   justifyContent: "center",
   alignItems: "center",
   borderRadius: 4,
+  minHeight: 200
 }
 
 
@@ -25,12 +26,38 @@ const MODAL_CONTAINER: ViewStyle = {
 @observer
 export class Loader extends React.Component<LoaderProps> {
 
+  private readonly animationEnd = 240
+  private readonly animationStart = 0
+  private readonly successAnimation = {
+    start: this.animationStart,
+    end: 417
+  }
+
   @observable private _isVisible: boolean = false;
+  private isAnimationPlaying = false
+
+  lottieAnimation: LottieView;
 
   @action
   hasError(errors: Object): this {
     this._errors = errors;
     return this
+  }
+
+  success() {
+    this.lottieAnimation.reset();
+    this.lottieAnimation.play(this.successAnimation.start, this.successAnimation.end)
+    this.isAnimationPlaying = false
+  }
+
+  componentDidUpdate(prevProps: Readonly<LoaderProps>, prevState: Readonly<{}>, snapshot?: any): void {
+    const {animationEnd, animationStart} = this
+    if (this._isVisible && this.lottieAnimation && !this.isAnimationPlaying) {
+      this.lottieAnimation.play(animationStart, animationEnd)
+      this.isAnimationPlaying = true
+      /*this.lottieAnimation.reset();
+      this.lottieAnimation.play(this.successAnimation.start, this.successAnimation.end)*/
+    }
   }
 
   @action.bound
@@ -41,7 +68,7 @@ export class Loader extends React.Component<LoaderProps> {
 
   render(): React.ReactNode {
     // grab the props
-    const { style, ...rest } = this.props
+    const { style, children, ...rest } = this.props
     const { toggleIsVisible, _isVisible } = this
 
     return (
@@ -51,10 +78,10 @@ export class Loader extends React.Component<LoaderProps> {
       >
         <View style={MODAL_CONTAINER}>
           <LottieView
+            ref={(ref) => this.lottieAnimation = ref}
             source={Lottie.LoaderSuccessFailed}
-            autoPlay
-            loop
           />
+          {children}
         </View>
       </Modal>
     )

@@ -3770,6 +3770,7 @@ exports[`Storyshots Loader Playground 1`] = `
                       "backgroundColor": "white",
                       "borderRadius": 4,
                       "justifyContent": "center",
+                      "minHeight": 200,
                       "padding": 22,
                     }
                   }
@@ -3792,7 +3793,7 @@ exports[`Storyshots Loader Playground 1`] = `
                     }
                   >
                     <View
-                      autoPlay={true}
+                      autoPlay={false}
                       enableMergePathsAndroidForKitKatAndAbove={false}
                       loop={true}
                       onAnimationFinish={[Function]}
@@ -3811,6 +3812,40 @@ exports[`Storyshots Loader Playground 1`] = `
                         }
                       }
                     />
+                  </View>
+                  <View
+                    accessible={true}
+                    isTVSelectable={true}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#0095d9",
+                        "borderRadius": 4,
+                        "justifyContent": "center",
+                        "opacity": 1,
+                        "paddingHorizontal": 8,
+                        "paddingVertical": 8,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "#ffffff",
+                          "fontFamily": "Montserrat",
+                          "fontSize": 9,
+                          "paddingHorizontal": 12,
+                        }
+                      }
+                    >
+                      click to success
+                    </Text>
                   </View>
                 </View>
               </View>

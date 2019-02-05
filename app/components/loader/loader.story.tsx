@@ -12,9 +12,9 @@ storiesOf("Loader")
     <Story>
       <UseCase text="Primary" usage="The primary.">
         <Button text="Click for reveal loader" onPress={() => ref.toggleIsVisible()}/>
-        <Loader ref={(loader: Loader) => {
-          ref = loader
-        }}/>
+        <Loader ref={(loader: Loader) => {ref = loader}}>
+          <Button text="click to success" onPress={() => ref.success()}/>
+        </Loader>
       </UseCase>
     </Story>
   ))
