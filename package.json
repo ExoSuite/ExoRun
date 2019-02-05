@@ -22,7 +22,7 @@
     "hack:types-react-test-renderer": "rimraf node_modules/@types/react-test-renderer/node_modules/@types",
     "patch": "patch-package",
     "prepare": "npm-run-all patch hack:*",
-    "storybook": "storybook start -p 9001"
+    "storybook": "storybook start -p 9001 --skip-packager"
   },
   "dependencies": {
     "apisauce": "1.0.2",
