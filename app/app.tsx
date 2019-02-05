@@ -16,6 +16,9 @@ import { Platform } from "@services/device"
 import SplashScreen from "react-native-splash-screen"
 import { Environment } from "@models/environment"
 import { Loader } from "@components/loader"
+import Config from 'react-native-config'
+import { bool } from "prop-types"
+import { boolean } from "mobx-state-tree/dist/types/primitives"
 
 interface AppState {
   rootStore?: RootStore
@@ -101,7 +104,7 @@ const APP_NAME = "ExoRun"
 // Should we show storybook instead of our app?
 //
 // ⚠️ Leave this as `false` when checking into git.
-const SHOW_STORYBOOK = true
+const SHOW_STORYBOOK = JSON.parse(Config.STORYBOOK_ENABLED)
 
 const RootComponent = SHOW_STORYBOOK && __DEV__ ? StorybookUIRoot : App
 AppRegistry.registerComponent(APP_NAME, () => RootComponent)

@@ -1,5 +1,3 @@
-import { Asset, ImageUri } from "@services/asset"
-
 export class Lottie {
-  static readonly LoaderSuccessFailed: ImageUri = Asset.LottieLocator("loader-success-failed")
+  static readonly LoaderSuccessFailed = require('./assets/loader-success-failed.json')
 }

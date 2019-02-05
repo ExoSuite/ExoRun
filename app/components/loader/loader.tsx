@@ -4,7 +4,8 @@ import Modal from "react-native-modal"
 import { LoaderProps } from "./loader.props"
 import { observer } from "mobx-react/native"
 import { action, observable } from "mobx"
-import { Text } from "../text"
+import LottieView from 'lottie-react-native';
+import { Lottie } from "@services/lottie"
 
 
 const MODAL_CONTAINER: ViewStyle = {
@@ -15,9 +16,6 @@ const MODAL_CONTAINER: ViewStyle = {
   borderRadius: 4,
 }
 
-interface LoaderState {
-  is
-}
 
 /**
  * Loader with lottie animation on error or success
@@ -25,18 +23,20 @@ interface LoaderState {
  * Component description here for TypeScript tips.
  */
 @observer
-export class Loader extends React.Component<LoaderProps, LoaderState> {
+export class Loader extends React.Component<LoaderProps> {
 
   @observable private _isVisible: boolean = false;
 
   @action
-  hasError(errors: Object){
+  hasError(errors: Object): this {
     this._errors = errors;
+    return this
   }
 
   @action.bound
-  toggleIsVisible() {
+  toggleIsVisible(): this {
     this._isVisible = !this._isVisible
+    return this
   }
 
   render(): React.ReactNode {
@@ -50,7 +50,11 @@ export class Loader extends React.Component<LoaderProps, LoaderState> {
         onBackdropPress={toggleIsVisible}
       >
         <View style={MODAL_CONTAINER}>
-          <Text text={"ok"}/>
+          <LottieView
+            source={Lottie.LoaderSuccessFailed}
+            autoPlay
+            loop
+          />
         </View>
       </Modal>
     )

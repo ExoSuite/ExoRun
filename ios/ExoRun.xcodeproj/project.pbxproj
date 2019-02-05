@@ -63,7 +63,6 @@
 		F9C8B6BA08E942249101BC8D /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6516FF5F5F3A4EA580B0B372 /* Montserrat-ExtraBold.ttf */; };
 		FCD5DCB83FCA4F01AFF25633 /* fa-regular-400.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CED407D69374D1DA4720C8E /* fa-regular-400.ttf */; };
 		FF3EDC6A770E48F0B7A78D44 /* fa-light-300.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50BCD9553D9345B0BCAAC4CC /* fa-light-300.ttf */; };
-		EEFC422C14E04F119D6EE1FB /* loader-success-failed.json in Resources */ = {isa = PBXBuildFile; fileRef = 032BA60AE05848598BDC3936 /* loader-success-failed.json */; };
 		F70FFBF2695C4AC0946E1F97 /* exorun-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C850D838FEE941FEB6594FA2 /* exorun-logo.png */; };
 		87FB472175DE469E934897A5 /* exorun-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ABCF0851CFE497DA74C2CE8 /* exorun-text.png */; };
 		1B9A3D6AA4084836AB45E42B /* exosuite-loader.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAA077044834AD595F8A96A /* exosuite-loader.png */; };
@@ -428,7 +427,6 @@
 		E8851333CCDF4E24B5B8033D /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Medium.ttf"; path = "../app/theme/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		EB4EA4C5DCAFCDB5B66143BC /* Pods-ExoRun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExoRun.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExoRun/Pods-ExoRun.release.xcconfig"; sourceTree = "<group>"; };
 		F41A14822EA24F69B56F562E /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Thin.ttf"; path = "../app/theme/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; };
-		032BA60AE05848598BDC3936 /* loader-success-failed.json */ = {isa = PBXFileReference; name = "loader-success-failed.json"; path = "../app/assets/lottie/loader-success-failed.json"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		C850D838FEE941FEB6594FA2 /* exorun-logo.png */ = {isa = PBXFileReference; name = "exorun-logo.png"; path = "../app/assets/img/exorun-logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		0ABCF0851CFE497DA74C2CE8 /* exorun-text.png */ = {isa = PBXFileReference; name = "exorun-text.png"; path = "../app/assets/img/exorun-text.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		7EAA077044834AD595F8A96A /* exosuite-loader.png */ = {isa = PBXFileReference; name = "exosuite-loader.png"; path = "../app/assets/img/exosuite-loader.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
@@ -738,7 +736,6 @@
 				50BCD9553D9345B0BCAAC4CC /* fa-light-300.ttf */,
 				1CED407D69374D1DA4720C8E /* fa-regular-400.ttf */,
 				0942B5BBCB074BE79AE52D43 /* fa-solid-900.ttf */,
-				032BA60AE05848598BDC3936 /* loader-success-failed.json */,
 				C850D838FEE941FEB6594FA2 /* exorun-logo.png */,
 				0ABCF0851CFE497DA74C2CE8 /* exorun-text.png */,
 				7EAA077044834AD595F8A96A /* exosuite-loader.png */,
@@ -1202,7 +1199,6 @@
 				FF3EDC6A770E48F0B7A78D44 /* fa-light-300.ttf in Resources */,
 				FCD5DCB83FCA4F01AFF25633 /* fa-regular-400.ttf in Resources */,
 				3158FC93076342179FB15667 /* fa-solid-900.ttf in Resources */,
-				EEFC422C14E04F119D6EE1FB /* loader-success-failed.json in Resources */,
 				F70FFBF2695C4AC0946E1F97 /* exorun-logo.png in Resources */,
 				87FB472175DE469E934897A5 /* exorun-text.png in Resources */,
 				1B9A3D6AA4084836AB45E42B /* exosuite-loader.png in Resources */,

@@ -14,10 +14,6 @@ class Asset {
   static Locator(assetName: string, fileExtension: FileExtension = FileExtension.PNG): ImageUri {
     return { uri: this._locator(assetName, fileExtension) }
   }
-
-  static LottieLocator(assetName: string): ImageUri {
-    return { uri: this._locator(assetName, FileExtension.JSON) }
-  }
 }
 
 enum FileExtension {
