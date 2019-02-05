@@ -15,27 +15,28 @@ const MODAL_CONTAINER: ViewStyle = {
   borderRadius: 4,
 }
 
+interface LoaderState {
+  is
+}
+
 /**
  * Loader with lottie animation on error or success
  *
  * Component description here for TypeScript tips.
  */
 @observer
-export class Loader extends React.Component<LoaderProps> {
+export class Loader extends React.Component<LoaderProps, LoaderState> {
 
-  @observable private static _isVisible: boolean = false
-
-  @observable private static _errors: Object = null
+  @observable private _isVisible: boolean = false;
 
   @action
-  static show(errors: Object) {
-    this._isVisible = true
+  hasError(errors: Object){
     this._errors = errors;
   }
 
   @action.bound
-  private toggleIsVisible() {
-    Loader._isVisible = !Loader._isVisible
+  toggleIsVisible() {
+    this._isVisible = !this._isVisible
   }
 
   render(): React.ReactNode {
@@ -45,7 +46,7 @@ export class Loader extends React.Component<LoaderProps> {
 
     return (
       <Modal
-        isVisible={Loader._isVisible}
+        isVisible={_isVisible}
         onBackdropPress={toggleIsVisible}
       >
         <View style={MODAL_CONTAINER}>

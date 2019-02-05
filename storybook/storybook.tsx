@@ -1,6 +1,7 @@
 import React from "react"
 import { getStorybookUI, configure } from "@storybook/react-native"
 import SplashScreen from "react-native-splash-screen"
+import { Provider } from "mobx-react/native"
 
 configure(() => {
   require("./storybook-registry")
@@ -20,6 +21,11 @@ export class StorybookUIRoot extends React.Component {
   }
 
   render() {
-    return <StorybookUI />
+    return (
+      <Provider store={{}}>
+        <StorybookUI />
+      </Provider>
+    )
+
   }
 }

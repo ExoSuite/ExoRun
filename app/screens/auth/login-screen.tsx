@@ -9,7 +9,7 @@ import {
   TextStyle,
   TouchableWithoutFeedback,
   View,
-  ViewStyle
+  ViewStyle,
 } from "react-native"
 import { action, observable } from "mobx"
 import { inject } from "mobx-react/native"

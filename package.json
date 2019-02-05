@@ -22,7 +22,7 @@
     "hack:types-react-test-renderer": "rimraf node_modules/@types/react-test-renderer/node_modules/@types",
     "patch": "patch-package",
     "prepare": "npm-run-all patch hack:*",
-    "storybook": "storybook start -p 9001 --skip-packager"
+    "storybook": "storybook start -p 9001"
   },
   "dependencies": {
     "apisauce": "1.0.2",
@@ -91,7 +91,7 @@
     "rimraf": "2.6.3",
     "solidarity": "2.3.1",
     "tslint": "5.12.1",
-    "tslint-config-prettier": "1.17.0",
+    "tslint-config-prettier": "1.18.0",
     "typescript": "3.3.1"
   },
   "jest": {
