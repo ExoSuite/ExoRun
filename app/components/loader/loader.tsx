@@ -8,13 +8,10 @@ import { action, observable } from "mobx"
 import autobind from "autobind-decorator"
 import { observer } from "mobx-react/native"
 import { View as AnimatedView } from "react-native-animatable"
-import Sound from 'react-native-sound'
-
 // custom imports
 import { Lottie } from "@services/lottie"
 import { Animation, LoaderState } from "@components/loader/loader.types"
 import { LoaderProps } from "./loader.props"
-import {SoundPlayer} from "@services/sound-player"
 
 
 const MODAL_CONTAINER: ViewStyle = {
@@ -108,7 +105,7 @@ export class Loader extends React.Component<LoaderProps> {
     this._isFinalAnimationPlaying = false
     this._errors = errors
     if (errorCallback)
-      this._errorCallback = errorCallback;
+      this._errorCallback = errorCallback
     if (soundCallback)
       this._soundCallback = soundCallback
   }
@@ -118,7 +115,7 @@ export class Loader extends React.Component<LoaderProps> {
     this._status = LoaderState.SUCCESS
     this._isFinalAnimationPlaying = false
     if (successCallback)
-      this._successCallback = successCallback;
+      this._successCallback = successCallback
     if (soundCallback)
       this._soundCallback = soundCallback
 

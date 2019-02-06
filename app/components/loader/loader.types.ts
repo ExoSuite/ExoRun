@@ -2,7 +2,7 @@
 export enum LoaderState {
   ERROR,
   SUCCESS,
-  STANDBY
+  STANDBY,
 }
 
 export interface Animation {

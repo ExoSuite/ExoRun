@@ -1,7 +1,8 @@
 jest.mock("react-navigation", () => {
   return {
     NavigationActions: {
-      init: () => {},
+      init: () => {
+      }
     },
     withOrientation: () => {
     },

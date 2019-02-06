@@ -8,8 +8,8 @@ NativeModules.RNGestureHandlerModule = {
   forceTouchAvailable: jest.fn(),
   State: {},
   Directions: {}
-};
+}
 
 NativeModules.PlatformConstants = {
-  forceTouchAvailable: false,
-};
+  forceTouchAvailable: false
+}

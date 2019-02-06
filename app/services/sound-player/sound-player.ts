@@ -2,15 +2,18 @@ import Sound from "react-native-sound"
 import { IService } from "@services/interfaces"
 
 const mock = {
-  play: () => {}
+  play: () => {
+  }
 }
 
+type mockType = typeof mock
+
 export class SoundPlayer implements IService {
-  private successSound;
-  private errorSound;
+  private successSound: Sound | mockType
+  private errorSound: Sound | mockType
 
   success() {
-    this.successSound.play();
+    this.successSound.play()
   }
 
   error() {
@@ -18,8 +21,8 @@ export class SoundPlayer implements IService {
   }
 
   async setup() {
-    this.successSound = new Sound(require('./assets/Popcorn.mp3'));
-    this.errorSound = new Sound(require('./assets/NFCFailure.mp3'));
+    this.successSound = new Sound(require("./assets/Popcorn.mp3"))
+    this.errorSound = new Sound(require("./assets/NFCFailure.mp3"))
   }
 
   async setupForTests() {

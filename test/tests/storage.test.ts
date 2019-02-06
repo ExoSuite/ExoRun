@@ -1,4 +1,4 @@
-import { load, loadString, save, saveString, clear, remove } from "../../app/utils/storage"
+import { clear, load, loadString, remove, save, saveString } from "../../app/utils/storage"
 
 // fixtures
 const VALUE_OBJECT = { x: 1 }
@@ -15,7 +15,7 @@ jest.mock("AsyncStorage", () => ({
   getItem: mockGetItem,
   setItem: mockSetItem,
   removeItem: mockRemoveItem,
-  clear: mockClear,
+  clear: mockClear
 }))
 
 // reset mocks after each test

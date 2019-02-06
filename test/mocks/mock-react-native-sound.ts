@@ -1,1 +1,1 @@
-jest.mock('react-native-sound', () => 'Sound')
+jest.mock("react-native-sound", () => "Sound")
