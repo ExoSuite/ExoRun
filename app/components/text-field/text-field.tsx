@@ -1,5 +1,5 @@
 import * as React from "react"
-import { View, TextInput, TextStyle, ViewStyle } from "react-native"
+import { TextInput, TextStyle, View, ViewStyle } from "react-native"
 import { color, spacing, typography } from "@theme"
 import { translate } from "@i18n"
 import { Text } from "../text"
@@ -8,7 +8,7 @@ import { reduce } from "ramda"
 
 // the base styling for the container
 const CONTAINER: ViewStyle = {
-  paddingVertical: spacing[3],
+  paddingVertical: spacing[3]
 }
 
 // the base styling for the TextInput
@@ -19,7 +19,7 @@ const INPUT: TextStyle = {
   fontSize: 18,
   borderRadius: 10,
   paddingHorizontal: 5,
-  backgroundColor: color.palette.white,
+  backgroundColor: color.palette.white
 }
 
 // currently we have no presets, but that changes quickly when you build your app.
@@ -29,23 +29,23 @@ const PRESETS: { [name: string]: ViewStyle } = {
     width: "100%",
     borderBottomColor: color.palette.lighterGrey,
     borderBottomWidth: 0.5,
-    backgroundColor: "transparent",
+    backgroundColor: "transparent"
   },
   transparentInput: {
-    backgroundColor: "transparent",
-  },
+    backgroundColor: "transparent"
+  }
 }
 
 
 const enhance = (style, styleOverride) => {
   if (Array.isArray(styleOverride)) {
-    return reduce((acc,term) => {
+    return reduce((acc, term) => {
       return { ...acc, ...term }
     }, style, styleOverride)
   } else {
     return {
       ...style,
-      ...styleOverride,
+      ...styleOverride
     }
   }
 }
@@ -76,7 +76,7 @@ export class TextField extends React.Component<TextFieldProps, {}> {
 
     return (
       <View style={containerStyle}>
-        <Text preset="fieldLabel" tx={labelTx} text={label} />
+        <Text preset="fieldLabel" tx={labelTx} text={label}/>
         <TextInput
           placeholder={actualPlaceholder}
           placeholderTextColor={color.palette.lighterGrey}

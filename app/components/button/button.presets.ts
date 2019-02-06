@@ -1,4 +1,4 @@
-import { ViewStyle, TextStyle } from "react-native"
+import { TextStyle, ViewStyle } from "react-native"
 import { color, spacing } from "@theme"
 
 /**
@@ -9,11 +9,11 @@ const BASE_VIEW: ViewStyle = {
   paddingHorizontal: spacing[2],
   borderRadius: 4,
   justifyContent: "center",
-  alignItems: "center",
+  alignItems: "center"
 }
 
 const BASE_TEXT: TextStyle = {
-  paddingHorizontal: spacing[3],
+  paddingHorizontal: spacing[3]
 }
 
 /**
@@ -29,6 +29,10 @@ export const viewPresets = {
 
   secondary: { ...BASE_VIEW, backgroundColor: color.secondary } as ViewStyle,
 
+  success: { ...BASE_VIEW, backgroundColor: color.success } as ViewStyle,
+
+  error: { ...BASE_VIEW, backgroundColor: color.error } as ViewStyle,
+
   primaryFullWidth: { ...BASE_VIEW, backgroundColor: color.palette.blue, width: "100%" } as ViewStyle,
 
   /**
@@ -38,10 +42,10 @@ export const viewPresets = {
     ...BASE_VIEW,
     paddingHorizontal: 0,
     paddingVertical: 0,
-    alignItems: "flex-start",
+    alignItems: "flex-start"
   } as ViewStyle,
 
-  neutral: { ...BASE_VIEW, backgroundColor: color.palette.orangeDarker } as ViewStyle,
+  neutral: { ...BASE_VIEW, backgroundColor: color.palette.orangeDarker } as ViewStyle
 }
 
 export const textPresets = {
@@ -50,8 +54,8 @@ export const textPresets = {
     ...BASE_TEXT,
     color: color.text,
     paddingHorizontal: 0,
-    paddingVertical: 0,
-  } as TextStyle,
+    paddingVertical: 0
+  } as TextStyle
 }
 
 /**

@@ -1,6 +1,7 @@
 import { ApiResponse, ApisauceInstance, create } from "apisauce"
 import * as https from "https"
 import jwtDecode from "jwt-decode"
+import { languageTag } from "@i18n/i18n"
 import { getGeneralApiProblem } from "./api-problem"
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
 import { HttpRequest } from "./api-http-request"
@@ -8,12 +9,13 @@ import { IClient, IGrantRequest, ITokenResponse } from "./api.types"
 import { load, save } from "@utils/keychain"
 import { Server } from "./api.servers"
 import { HttpRequestError } from "@exceptions"
+import { IService } from "@services/interfaces"
 
 
 /**
  * Manages all requests to the API.
  */
-export class Api {
+export class Api implements IService {
   /**
    * The underlying apisauce instance which performs the requests.
    */
@@ -37,14 +39,14 @@ export class Api {
     this.config = config
     this.client = {
       client_id: 1,
-      client_secret: "4eTPOwUpimKkxXiIrUAngSp3n8IuUfCX39YMNNDQ",
+      client_secret: "4eTPOwUpimKkxXiIrUAngSp3n8IuUfCX39YMNNDQ"
     }
 
     this.grantRequest = {
       ...this.client,
       grant_type: "refresh_token",
       refresh_token: "",
-      scope: "",
+      scope: ""
     }
   }
 
@@ -55,19 +57,17 @@ export class Api {
    *
    * Be as quick as possible in here.
    */
-  setup(): this {
+  async setup() {
     // construct the apisauce instance
     this.apisauce = create({
       baseURL: this.config.url,
       timeout: this.config.timeout,
       headers: {
-        Accept: "application/json",
+        Accept: "application/json"
       },
       httpsAgent: new https.Agent({ keepAlive: true }), // see HTTP keep alive
-      adapter: require("axios/lib/adapters/http"), // define real http adapter
+      adapter: require("axios/lib/adapters/http") // define real http adapter
     })
-
-    return this
   }
 
   private static isITokenResponse(arg: any): arg is ITokenResponse {
@@ -108,10 +108,10 @@ export class Api {
     return this.request(
       HttpRequest.POST,
       "auth/login",
-      {email, password, ...this.client},
+      { email, password, ...this.client },
       {},
-      false,
-      )
+      false
+    )
   }
 
   async request(
@@ -119,7 +119,7 @@ export class Api {
     url: string,
     data: Object = {},
     headers: Object = {},
-    requireAuth: boolean = true,
+    requireAuth: boolean = true
   ): Promise<ApiResponse<any>> {
 
     if (requireAuth) {
@@ -130,6 +130,9 @@ export class Api {
         throw new Error("Required API authentication but access_token was undefined!")
       }
     }
+
+    headers["X-localization"] = languageTag
+    // console.tron.log(headers)
 
     // set additional headers
     // @ts-ignore

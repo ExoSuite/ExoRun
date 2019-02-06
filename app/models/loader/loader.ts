@@ -9,17 +9,22 @@ export const LoaderModel = types
   .views(self => ({}))
   .actions(self => ({}))
 
-  /**
-  * Un-comment the following to omit model attributes from your snapshots (and from async storage). 
-  * Useful for sensitive data like passwords, or transitive state like whether a modal is open.
+/**
+ * Un-comment the following to omit model attributes from your snapshots (and from async storage).
+ * Useful for sensitive data like passwords, or transitive state like whether a modal is open.
 
-  * Note that you'll need to import `omit` from ramda, which is already included in the project!
-  *  .actions(self => ({
-  *   postProcessSnapshot: omit(["password", "socialSecurityNumber", "creditCardNumber"]),
-  * }))
-  */
+ * Note that you'll need to import `omit` from ramda, which is already included in the project!
+ *  .actions(self => ({
+ *   postProcessSnapshot: omit(["password", "socialSecurityNumber", "creditCardNumber"]),
+ * }))
+ */
 
 type LoaderType = typeof LoaderModel.Type
-export interface Loader extends LoaderType {}
+
+export interface Loader extends LoaderType {
+}
+
 type LoaderSnapshotType = typeof LoaderModel.SnapshotType
-export interface LoaderSnapshot extends LoaderSnapshotType {}
+
+export interface LoaderSnapshot extends LoaderSnapshotType {
+}

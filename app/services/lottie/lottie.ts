@@ -1,3 +1,3 @@
 export class Lottie {
-  static readonly LoaderSuccessFailed = require('./assets/loader-success-failed.json')
+  static readonly LoaderSuccessFailed = require("./assets/loader-success-failed")
 }

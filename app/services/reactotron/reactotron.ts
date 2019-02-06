@@ -4,6 +4,7 @@ import { onSnapshot } from "mobx-state-tree"
 import { DEFAULT_REACTOTRON_CONFIG, ReactotronConfig } from "./reactotron-config"
 import { mst } from "reactotron-mst"
 import { commandMiddleware } from "./command-middleware"
+import { IService } from "@services/interfaces"
 
 // Teach TypeScript about the bad things we want to do.
 declare global {
@@ -35,7 +36,7 @@ if (__DEV__) {
     display: noop,
     error: noop,
     image: noop,
-    reportError: noop,
+    reportError: noop
   }
 }
 
@@ -44,7 +45,7 @@ if (__DEV__) {
  * instance off of `console.tron`. This is only to be consistent with the other
  * services.
  */
-export class Reactotron {
+export class Reactotron implements IService {
   config: ReactotronConfig
   rootStore: any
 
@@ -61,8 +62,8 @@ export class Reactotron {
       state: {
         initial: false,
         snapshots: false,
-        ...(config && config.state),
-      },
+        ...(config && config.state)
+      }
     }
   }
 
@@ -105,12 +106,12 @@ export class Reactotron {
       // configure reactotron
       Tron.configure({
         name: this.config.name || require("../../../package.json").name,
-        host: this.config.host,
+        host: this.config.host
       })
 
       // hookup middleware
       Tron.useReactNative({
-        asyncStorage: this.config.useAsyncStorage ? undefined : false,
+        asyncStorage: this.config.useAsyncStorage ? undefined : false
       })
 
       // ignore some chatty `mobx-state-tree` actions
@@ -119,8 +120,8 @@ export class Reactotron {
       // hookup mobx-state-tree middleware
       Tron.use(
         mst({
-          filter: event => RX.test(event.name) === false,
-        }),
+          filter: event => RX.test(event.name) === false
+        })
       )
 
       // hookup custom command middleware

@@ -1,4 +1,4 @@
-import { LoaderModel, Loader } from "./loader"
+import { Loader, LoaderModel } from "./loader"
 
 test("can be created", () => {
   const instance: Loader = LoaderModel.create({})

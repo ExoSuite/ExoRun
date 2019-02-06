@@ -46,8 +46,11 @@ PODS:
     - React/RCTBlob
   - RNKeychain (3.0.0):
     - React
-  - RNLanguages (3.0.2):
-    - React
+  - RNSound (0.10.12):
+    - React/Core
+    - RNSound/Core (= 0.10.12)
+  - RNSound/Core (0.10.12):
+    - React/Core
   - RNVectorIcons (6.2.0):
     - React
   - yoga (0.58.3.React)
@@ -64,7 +67,7 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
   - RNKeychain (from `../node_modules/react-native-keychain`)
-  - RNLanguages (from `../node_modules/react-native-languages`)
+  - RNSound (from `../node_modules/react-native-sound`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -86,8 +89,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native"
   RNKeychain:
     :path: "../node_modules/react-native-keychain"
-  RNLanguages:
-    :path: "../node_modules/react-native-languages"
+  RNSound:
+    :path: "../node_modules/react-native-sound"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   yoga:
@@ -102,10 +105,10 @@ SPEC CHECKSUMS:
   lottie-react-native: 31ceb9d2d1423fa99c64d19eb93c0364256a6a3e
   React: 9b873b38b92ed8012d7cdf3b965477095ed364c4
   RNKeychain: 627c6095cef215dd3d9804a9a9cf45ab96aa3997
-  RNLanguages: e3ae05ef105937645218272429dac0c3f7633451
+  RNSound: b360b3862d3118ed1c74bb9825696b5957686ac4
   RNVectorIcons: 8c52e1e8da1153613fdef44748e865c25556cb9c
   yoga: 0885622311729a02c2bc02dca97167787a51488b
 
-PODFILE CHECKSUM: 71bf968be0c9a25f443ca1ddfa79fc965489bb93
+PODFILE CHECKSUM: b5edfb3cc2cd134183691f0cf8fce26492737dde
 
 COCOAPODS: 1.5.3

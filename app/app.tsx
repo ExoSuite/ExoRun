@@ -16,9 +16,7 @@ import { Platform } from "@services/device"
 import SplashScreen from "react-native-splash-screen"
 import { Environment } from "@models/environment"
 import { Loader } from "@components/loader"
-import Config from 'react-native-config'
-import { bool } from "prop-types"
-import { boolean } from "mobx-state-tree/dist/types/primitives"
+import Config from "react-native-config"
 
 interface AppState {
   rootStore?: RootStore
@@ -46,7 +44,7 @@ export class App extends React.Component<{}, AppState> {
     const store = await setupRootStore()
     this.setState({
       rootStore: store.rootStore,
-      env: store.env,
+      env: store.env
     })
   }
 
@@ -80,16 +78,16 @@ export class App extends React.Component<{}, AppState> {
 
     // --- am: begin list of stores ---
     const otherStores = {
-      env,
       api: env.api,
+      soundPlayer: env.soundPlayer
     }
     // --- am: end list of stores ---
 
     return (
       <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>
         <BackButtonHandler canExit={this.canExit}>
-          <StatefulNavigator />
-          <Loader />
+          <StatefulNavigator/>
+          <Loader/>
         </BackButtonHandler>
       </Provider>
     )

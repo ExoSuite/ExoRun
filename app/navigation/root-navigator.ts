@@ -3,9 +3,9 @@ import { AuthNavigator } from "./auth-navigator"
 
 export const RootNavigator = createSwitchNavigator(
   {
-    auth: { screen: AuthNavigator },
+    auth: { screen: AuthNavigator }
   },
   {
-    initialRouteName: "auth",
-  },
+    initialRouteName: "auth"
+  }
 )

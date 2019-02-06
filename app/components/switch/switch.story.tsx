@@ -1,49 +1,49 @@
 import * as React from "react"
 import { View, ViewStyle } from "react-native"
 import { storiesOf } from "@storybook/react-native"
-import { StoryScreen, Story, UseCase } from "../../../storybook/views"
+import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { Toggle } from "react-powerplug"
 import { Switch } from "."
 
 const styleArray: ViewStyle[] = [
-  {borderColor: "#686868"},
+  { borderColor: "#686868" }
 ]
 
 const trackOffStyle: ViewStyle[] = [
-  {backgroundColor: "#686868"},
+  { backgroundColor: "#686868" },
   {
     height: 80,
-    borderRadius: 0,
-  },
+    borderRadius: 0
+  }
 ]
 const trackOnStyle: ViewStyle[] = [
   {
     backgroundColor: "#b1008e",
-    borderColor: "#686868",
+    borderColor: "#686868"
   },
   {
     height: 80,
-    borderRadius: 0,
-  },
+    borderRadius: 0
+  }
 
 ]
 const thumbOffStyle: ViewStyle[] = [
   {
     backgroundColor: "#b1008e",
-    borderColor: "#686868",
+    borderColor: "#686868"
   },
   {
     height: 80,
-    borderRadius: 0,
-  },
+    borderRadius: 0
+  }
 ]
 const thumbOnStyle: ViewStyle[] = [
-  {backgroundColor: "#f0c"},
+  { backgroundColor: "#f0c" },
   {
     height: 80,
     borderRadius: 0,
-    borderColor: "#686868",
-  },
+    borderColor: "#686868"
+  }
 ]
 
 storiesOf("Switch")
@@ -52,14 +52,14 @@ storiesOf("Switch")
     <Story>
       <UseCase text="The Toggle Switch" usage="Use the switch to represent on/off states.">
         <Toggle initial={false}>
-          {({ on, toggle }) => <Switch value={on} onToggle={toggle} />}
+          {({ on, toggle }) => <Switch value={on} onToggle={toggle}/>}
         </Toggle>
       </UseCase>
       <UseCase text="value = true" usage="This is permanently on.">
-        <Switch value={true} />
+        <Switch value={true}/>
       </UseCase>
       <UseCase text="value = false" usage="This is permanantly off.">
-        <Switch value={false} />
+        <Switch value={false}/>
       </UseCase>
     </Story>
   ))

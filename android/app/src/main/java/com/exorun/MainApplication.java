@@ -3,6 +3,8 @@ package com.exorun;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactcommunity.rnlocalize.RNLocalizePackage;
+import com.zmxv.RNSound.RNSoundPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
@@ -11,7 +13,6 @@ import com.oblador.vectoricons.VectorIconsPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import com.reactcommunity.rnlanguages.RNLanguagesPackage;
 import com.oblador.keychain.KeychainPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 
@@ -64,6 +65,8 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.asList(
                     new MainReactPackage(),
+            new RNLocalizePackage(),
+            new RNSoundPackage(),
             new LottiePackage(),
                     new ReactNativeConfigPackage(),
                     new RNLanguagesPackage(),

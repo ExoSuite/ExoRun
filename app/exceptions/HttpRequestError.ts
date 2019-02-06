@@ -4,9 +4,9 @@ import { ApiResponse } from "apisauce"
 
 export class HttpRequestError extends BaseError {
   private readonly status: HttpResponse
-  private readonly _data: {errors: Object, message: string}
+  private readonly _data: { errors: Object, message: string }
 
-  constructor (problem: GeneralApiProblem, response: ApiResponse<any>) {
+  constructor(problem: GeneralApiProblem, response: ApiResponse<any>) {
     super()
     this.status = problem.kind
     this._data = response.data || []
@@ -22,6 +22,11 @@ export class HttpRequestError extends BaseError {
 
   public happened(): Object {
     return this._data.errors || {}
+  }
+
+  // base message
+  public what(): string {
+    return this.message
   }
 
 }

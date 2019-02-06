@@ -1,5 +1,5 @@
 export abstract class BaseError extends Error {
-  protected constructor () {
+  protected constructor() {
     super()
     Error.apply(this, arguments)
   }

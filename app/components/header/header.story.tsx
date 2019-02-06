@@ -1,13 +1,13 @@
 import * as React from "react"
 import { View } from "react-native"
 import { storiesOf } from "@storybook/react-native"
-import { StoryScreen, Story, UseCase } from "../../../storybook/views"
+import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { Header } from "./header"
 import { color } from "@theme"
 
 const VIEWSTYLE = {
   flex: 1,
-  backgroundColor: color.storybookDarkBg,
+  backgroundColor: color.storybookDarkBg
 }
 
 storiesOf("Header")

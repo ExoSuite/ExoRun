@@ -24,5 +24,5 @@ enum FileExtension {
 
 export {
   Asset,
-  FileExtension,
+  FileExtension
 }

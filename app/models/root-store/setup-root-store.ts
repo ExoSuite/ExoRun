@@ -1,9 +1,10 @@
-import  { onSnapshot } from "mobx-state-tree"
+import { onSnapshot } from "mobx-state-tree"
 import { RootStore, RootStoreModel } from "./root-store"
 import { Environment } from "@models/environment"
 import * as storage from "@utils/storage"
 import { Reactotron } from "@services/reactotron"
 import { Api } from "@services/api"
+import { SoundPlayer } from "@services/sound-player"
 
 /**
  * The key we'll be saving our state as within async storage.
@@ -43,7 +44,7 @@ export async function setupRootStore() {
 
   return {
     rootStore,
-    env,
+    env
   }
 }
 
@@ -60,10 +61,12 @@ export async function createEnvironment() {
   // create each service
   env.reactotron = new Reactotron()
   env.api = new Api()
+  env.soundPlayer = new SoundPlayer()
 
   // allow each service to setup
   await env.reactotron.setup()
   await env.api.setup()
+  await env.soundPlayer.setup()
 
   return env
 }

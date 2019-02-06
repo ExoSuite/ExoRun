@@ -20,7 +20,7 @@ export class Loader extends React.Component<LoaderProps> {
     Animated.timing(animation, {
       toValue: 100,
       duration: 1250,
-      useNativeDriver: true,
+      useNativeDriver: true
     }).start(() => runInAction(() => this.appLoaded = true))
   }
 
@@ -32,8 +32,8 @@ export class Loader extends React.Component<LoaderProps> {
       opacity: animation.interpolate({
         inputRange: [0, 15, 30],
         outputRange: [0, 0, 1],
-        extrapolate: "clamp",
-      }),
+        extrapolate: "clamp"
+      })
     }
 
     const appScale = {
@@ -41,10 +41,10 @@ export class Loader extends React.Component<LoaderProps> {
         {
           scale: animation.interpolate({
             inputRange: [0, 7, 100],
-            outputRange: [1.1, 1.03, 1],
-          }),
-        },
-      ],
+            outputRange: [1.1, 1.03, 1]
+          })
+        }
+      ]
     }
 
     const solidStyle = {
@@ -57,10 +57,10 @@ export class Loader extends React.Component<LoaderProps> {
         {
           scale: animation.interpolate({
             inputRange: [0, 10, 100],
-            outputRange: [1, 0.8, 70],
-          }),
-        },
-      ],
+            outputRange: [1, 0.8, 70]
+          })
+        }
+      ]
     }
 
     const fullScreenBackgroundLayer = appLoaded ? null : (
@@ -82,8 +82,8 @@ export class Loader extends React.Component<LoaderProps> {
 
 const styles = StyleSheet.create({
   fullScreen: {
-    flex: 1,
-  },
+    flex: 1
+  }
 })
 
 

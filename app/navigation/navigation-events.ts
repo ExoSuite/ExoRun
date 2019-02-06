@@ -26,7 +26,7 @@ export const NavigationEvents = types.model("NavigationEvents").volatile(self =>
         type: "action",
         action,
         state: newState,
-        lastState: oldState,
+        lastState: oldState
       })
     })
   }
@@ -42,7 +42,7 @@ export const NavigationEvents = types.model("NavigationEvents").volatile(self =>
     if (eventName !== "action") {
       return {
         remove: () => {
-        },
+        }
       }
     }
 
@@ -51,7 +51,7 @@ export const NavigationEvents = types.model("NavigationEvents").volatile(self =>
 
     // return the instructions on how to unsubscribe
     return {
-      remove: () => subs.delete(handler),
+      remove: () => subs.delete(handler)
     }
   }
 
