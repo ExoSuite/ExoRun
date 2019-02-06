@@ -9,7 +9,7 @@ let refSuccess: Loader
 let refError: Loader
 
 const soundPlayer = new SoundPlayer()
-if (typeof __TEST__ === "undefined" || !__TEST__)
+if (process.env.JEST_WORKER_ID === undefined)
   soundPlayer.setup()
 else
   soundPlayer.setupForTests()
