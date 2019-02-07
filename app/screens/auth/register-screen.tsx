@@ -11,18 +11,18 @@ export interface RegisterScreenProps extends NavigationScreenProps<{}> {
 
 const FULL: ViewStyle = {
   flex: 1,
-  backgroundColor: color.palette.black
+  backgroundColor: color.palette.black,
 }
 
 const CONTAINER: ViewStyle = {
   ...FULL,
-  paddingHorizontal: spacing[4]
+  paddingHorizontal: spacing[4],
 }
 
 const HEADER: TextStyle = {
   paddingTop: spacing[3],
   paddingBottom: spacing[5] - 1,
-  paddingHorizontal: 0
+  paddingHorizontal: 0,
 }
 
 const BOLD: TextStyle = { fontWeight: "bold" }
@@ -32,7 +32,7 @@ const HEADER_TITLE: TextStyle = {
   fontSize: 12,
   lineHeight: 15,
   textAlign: "center",
-  letterSpacing: 1.5
+  letterSpacing: 1.5,
 }
 
 // @inject("mobxstuff")

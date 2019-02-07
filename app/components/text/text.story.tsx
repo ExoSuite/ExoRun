@@ -7,11 +7,11 @@ import { Text } from "./text"
 
 const VIEWSTYLE = {
   flex: 1,
-  backgroundColor: color.storybookDarkBg
+  backgroundColor: color.storybookDarkBg,
 }
 const viewStyleArray: ViewStyle[] = [
   VIEWSTYLE,
-  { backgroundColor: "#7fff00" }
+  { backgroundColor: "#7fff00" },
 ]
 
 storiesOf("Text")

@@ -4,5 +4,5 @@ export default {
   }),
   hide: jest.fn().mockImplementation(() => {
     console.log("hide splash screen")
-  })
+  }),
 }

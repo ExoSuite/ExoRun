@@ -3,6 +3,6 @@ jest.mock("react-native-localize", () => {
     getLocales: () => ["fr", "en"],
     findBestAvailableLanguage: () => {
       return { languageTag: "en", isRTL: false }
-    }
+    },
   }
 })

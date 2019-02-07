@@ -36,7 +36,7 @@ if (__DEV__) {
     display: noop,
     error: noop,
     image: noop,
-    reportError: noop
+    reportError: noop,
   }
 }
 
@@ -62,8 +62,8 @@ export class Reactotron implements IService {
       state: {
         initial: false,
         snapshots: false,
-        ...(config && config.state)
-      }
+        ...(config && config.state),
+      },
     }
   }
 
@@ -106,12 +106,12 @@ export class Reactotron implements IService {
       // configure reactotron
       Tron.configure({
         name: this.config.name || require("../../../package.json").name,
-        host: this.config.host
+        host: this.config.host,
       })
 
       // hookup middleware
       Tron.useReactNative({
-        asyncStorage: this.config.useAsyncStorage ? undefined : false
+        asyncStorage: this.config.useAsyncStorage ? undefined : false,
       })
 
       // ignore some chatty `mobx-state-tree` actions
@@ -120,8 +120,8 @@ export class Reactotron implements IService {
       // hookup mobx-state-tree middleware
       Tron.use(
         mst({
-          filter: event => RX.test(event.name) === false
-        })
+          filter: event => RX.test(event.name) === false,
+        }),
       )
 
       // hookup custom command middleware

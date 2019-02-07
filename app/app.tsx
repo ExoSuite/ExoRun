@@ -47,7 +47,7 @@ export class App extends React.Component<{}, AppState> {
     const store = await setupRootStore()
     this.setState({
       rootStore: store.rootStore,
-      env: store.env
+      env: store.env,
     })
   }
 
@@ -82,17 +82,19 @@ export class App extends React.Component<{}, AppState> {
     // --- am: begin list of stores ---
     const otherStores = {
       api: env.api,
-      soundPlayer: env.soundPlayer
+      soundPlayer: env.soundPlayer,
     }
     // --- am: end list of stores ---
 
     return (
       <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>
         <BackButtonHandler canExit={this.canExit}>
-          <StatefulNavigator/>
-          <DataLoader ref={(ref) => {
-            DataLoader.instance = ref
-          }}/>
+          <StatefulNavigator />
+          <DataLoader
+            ref={ref => {
+              DataLoader.instance = ref
+            }}
+          />
         </BackButtonHandler>
       </Provider>
     )

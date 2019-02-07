@@ -34,7 +34,6 @@ ios/.idea
 .idea/angular-settings.xml
 .idea/tasks.xml
 .idea/compiler.xml
-.idea/misc.xml
 .idea/encodings.xml
 *.iml
 local.properties

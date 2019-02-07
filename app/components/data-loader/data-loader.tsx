@@ -26,30 +26,30 @@ const MODAL_CONTAINER: ViewStyle = {
   alignItems: "center",
   borderRadius: 4,
   minHeight: 200,
-  backgroundColor: color.palette.backgroundDarkerer
+  backgroundColor: color.palette.backgroundDarkerer,
 }
 
 const baseAnimation: Animation = {
   start: 0,
-  end: 240
+  end: 240,
 }
 
 const successAnimation: Animation = {
   start: baseAnimation.start,
-  end: 417
+  end: 417,
 }
 
 const errorAnimation: Animation = {
   start: 658,
-  end: 824
+  end: 824,
 }
 
 const ALIGN_CENTER: ViewStyle = {
-  alignItems: "center"
+  alignItems: "center",
 }
 
 const LOADER_STYLE: ViewStyle = {
-  width: 200
+  width: 200,
 }
 
 type CallbackType = () => void
@@ -66,7 +66,7 @@ export const defaultSoundCallback = () => {
 const baseDelayed: number = 1100
 
 const baseError = {
-  error: []
+  error: [],
 }
 
 /**

@@ -15,7 +15,7 @@ jest.mock("AsyncStorage", () => ({
   getItem: mockGetItem,
   setItem: mockSetItem,
   removeItem: mockRemoveItem,
-  clear: mockClear
+  clear: mockClear,
 }))
 
 // reset mocks after each test

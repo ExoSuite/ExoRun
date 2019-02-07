@@ -15,7 +15,7 @@ const ROOT: ViewStyle = {
   alignItems: "center",
   paddingTop: spacing[5],
   paddingBottom: spacing[5],
-  justifyContent: "flex-start"
+  justifyContent: "flex-start",
 }
 const TITLE: TextStyle = { textAlign: "center" }
 const TITLE_MIDDLE: ViewStyle = { flex: 1, justifyContent: "center" }
@@ -25,7 +25,7 @@ const RIGHT: ViewStyle = { width: 32 }
 const EXORUN_LOGO: ImageStyle = {
   width: 75,
   height: 35,
-  alignSelf: "center"
+  alignSelf: "center",
 }
 
 
@@ -49,7 +49,7 @@ export class Header extends React.Component<HeaderProps, {}> {
       leftIconStyle = {},
       headerText,
       headerTx,
-      titleStyle
+      titleStyle,
     } = this.props
     const header = headerText || (headerTx && translate(headerTx)) || ""
 

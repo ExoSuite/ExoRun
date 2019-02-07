@@ -16,11 +16,11 @@ else
 
 const errors = {
   "email": [
-    "The email field is required."
+    "The email field is required.",
   ],
   "password": [
-    "The password field is required."
-  ]
+    "The password field is required.",
+  ],
 }
 
 storiesOf("Animated Data Loader")
@@ -41,7 +41,7 @@ storiesOf("Animated Data Loader")
           )}
         />
       </DataLoader>
-    </Story>
+    </Story>,
   )
   .add("Error", () =>
     <Story>

@@ -7,11 +7,11 @@ import { color } from "@theme"
 import { ViewStyle } from "react-native"
 
 const TEXT_STYLE_OVERRIDE = {
-  color: color.storybookTextColor
+  color: color.storybookTextColor,
 }
 const arrayStyle: ViewStyle[] = [
   { borderWidth: 5 },
-  { borderColor: "#32cd32" }
+  { borderColor: "#32cd32" },
 ]
 
 storiesOf("FormRow")

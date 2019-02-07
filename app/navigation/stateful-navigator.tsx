@@ -47,7 +47,7 @@ export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {
       dispatch,
       actionSubscribers(),
       {},
-      this.getCurrentNavigation
+      this.getCurrentNavigation,
     )
 
     return (

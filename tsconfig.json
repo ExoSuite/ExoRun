@@ -16,54 +16,22 @@
     "baseUrl": ".",
     "target": "es2015",
     "paths": {
-      "storybook/*": [
-        "storybook/*"
-      ],
-      "@services/*": [
-        "app/services/*"
-      ],
-      "@components/*": [
-        "app/components/*"
-      ],
-      "@components": [
-        "app/components"
-      ],
-      "@models/*": [
-        "app/models/*"
-      ],
-      "@screens/*": [
-        "app/screens/*"
-      ],
-      "@screens": [
-        "app/screens"
-      ],
-      "@theme/*": [
-        "app/theme/*"
-      ],
-      "@theme": [
-        "app/theme"
-      ],
-      "@utils": [
-        "app/utils"
-      ],
-      "@utils/*": [
-        "app/utils/*"
-      ],
-      "@navigation/*": [
-        "app/navigation/*"
-      ],
-      "@i18n/*": [
-        "app/i18n/*"
-      ],
-      "@i18n": [
-        "app/i18n"
-      ],
-      "@exceptions": [
-        "app/exceptions"
-      ],
-      "@exceptions/*": [
-        "app/exceptions/*"
-      ]
+      "storybook/*": ["storybook/*"],
+      "@services/*": ["app/services/*"],
+      "@components/*": ["app/components/*"],
+      "@components": ["app/components"],
+      "@models/*": ["app/models/*"],
+      "@screens/*": ["app/screens/*"],
+      "@screens": ["app/screens"],
+      "@theme/*": ["app/theme/*"],
+      "@theme": ["app/theme"],
+      "@utils": ["app/utils"],
+      "@utils/*": ["app/utils/*"],
+      "@navigation/*": ["app/navigation/*"],
+      "@i18n/*": ["app/i18n/*"],
+      "@i18n": ["app/i18n"],
+      "@exceptions": ["app/exceptions"],
+      "@exceptions/*": ["app/exceptions/*"]
     }
   },
   "exclude": ["node_modules"]

@@ -18,7 +18,7 @@ export const commandMiddleware = (getRootStore: GetRootStore) => {
             getRootStore().navigationStore.reset()
             break
         }
-      }
+      },
     }
   }
 }

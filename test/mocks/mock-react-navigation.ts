@@ -2,7 +2,7 @@ jest.mock("react-navigation", () => {
   return {
     NavigationActions: {
       init: () => {
-      }
+      },
     },
     withOrientation: () => {
     },
@@ -12,9 +12,9 @@ jest.mock("react-navigation", () => {
       return {
         router: {
           getStateForAction: () => {
-          }
-        }
+          },
+        },
       }
-    }
+    },
   }
 })

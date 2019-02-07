@@ -3,7 +3,7 @@ import { IService } from "@services/interfaces"
 
 const mock = {
   play: () => {
-  }
+  },
 }
 
 type mockType = typeof mock

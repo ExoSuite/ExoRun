@@ -7,7 +7,7 @@ jest.mock("TextInput", () => {
       return React.createElement(
         "TextInput",
         { ...this.props, autoFocus: false },
-        this.props.children
+        this.props.children,
       )
     }
   }

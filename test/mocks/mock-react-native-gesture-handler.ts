@@ -7,9 +7,9 @@ NativeModules.RNGestureHandlerModule = {
   updateGestureHandler: jest.fn(),
   forceTouchAvailable: jest.fn(),
   State: {},
-  Directions: {}
+  Directions: {},
 }
 
 NativeModules.PlatformConstants = {
-  forceTouchAvailable: false
+  forceTouchAvailable: false,
 }

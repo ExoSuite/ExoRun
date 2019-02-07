@@ -12,36 +12,36 @@ export interface AuthScreenProps extends NavigationScreenProps<{}> {
 
 const FULL: ViewStyle = {
   flex: 1,
-  backgroundColor: color.background
+  backgroundColor: color.background,
 }
 
 const CONTAINER: ViewStyle = {
   ...FULL,
-  paddingHorizontal: spacing[4]
+  paddingHorizontal: spacing[4],
 }
 
 const EXORUN_TEXT: ImageStyle = {
   width: 150,
   height: 50,
-  alignSelf: "center"
+  alignSelf: "center",
 }
 
 const EXORUN_LOGO: ImageStyle = {
   width: 75,
   height: 35,
-  alignSelf: "center"
+  alignSelf: "center",
 }
 
 const EXOSUITE: ImageStyle = {
   width: 200,
-  height: 100
+  height: 100,
 }
 
 const FOOTER_CONTAINER: ViewStyle = {
   flexDirection: "row",
   alignSelf: "center",
   alignItems: "center",
-  justifyContent: "center"
+  justifyContent: "center",
 }
 
 @observer

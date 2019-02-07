@@ -6,44 +6,44 @@ import { Toggle } from "react-powerplug"
 import { Switch } from "."
 
 const styleArray: ViewStyle[] = [
-  { borderColor: "#686868" }
+  { borderColor: "#686868" },
 ]
 
 const trackOffStyle: ViewStyle[] = [
   { backgroundColor: "#686868" },
   {
     height: 80,
-    borderRadius: 0
-  }
+    borderRadius: 0,
+  },
 ]
 const trackOnStyle: ViewStyle[] = [
   {
     backgroundColor: "#b1008e",
-    borderColor: "#686868"
+    borderColor: "#686868",
   },
   {
     height: 80,
-    borderRadius: 0
-  }
+    borderRadius: 0,
+  },
 
 ]
 const thumbOffStyle: ViewStyle[] = [
   {
     backgroundColor: "#b1008e",
-    borderColor: "#686868"
+    borderColor: "#686868",
   },
   {
     height: 80,
-    borderRadius: 0
-  }
+    borderRadius: 0,
+  },
 ]
 const thumbOnStyle: ViewStyle[] = [
   { backgroundColor: "#f0c" },
   {
     height: 80,
     borderRadius: 0,
-    borderColor: "#686868"
-  }
+    borderColor: "#686868",
+  },
 ]
 
 storiesOf("Switch")
