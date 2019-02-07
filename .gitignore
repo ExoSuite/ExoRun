@@ -24,10 +24,21 @@ DerivedData
 
 # Android/IntelliJ
 #
-.idea
-.gradle
-local.properties
+android/.idea
+ios/.idea
+.idea/libraries
+.idea/dictionaries
+.idea/modules.xml
+.idea/workspace.xml
+.idea/usage.statistics.xml
+.idea/angular-settings.xml
+.idea/tasks.xml
+.idea/compiler.xml
+.idea/misc.xml
+.idea/encodings.xml
 *.iml
+local.properties
+.gradle
 
 # node.js
 #

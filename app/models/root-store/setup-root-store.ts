@@ -44,7 +44,7 @@ export async function setupRootStore() {
 
   return {
     rootStore,
-    env
+    env,
   }
 }
 

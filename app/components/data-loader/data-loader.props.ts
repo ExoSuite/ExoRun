@@ -1,7 +1,7 @@
 import * as React from "react"
 import { ViewStyle } from "react-native"
 
-export interface LoaderProps {
+export interface DataLoaderProps {
   /**
    * An optional style override useful for padding & margin.
    */

@@ -9,7 +9,7 @@ import {
   TextStyle,
   TouchableWithoutFeedback,
   View,
-  ViewStyle
+  ViewStyle,
 } from "react-native"
 import { action, observable } from "mobx"
 import { inject } from "mobx-react/native"
@@ -23,26 +23,29 @@ import { Button, Header, Screen, Text, TextField } from "@components"
 import { color, spacing } from "@theme"
 import { Asset } from "@services/asset"
 import { FormRow } from "@components/form-row"
-import { Loader } from "@components/loader"
-import { Api } from "@services/api"
+import { Api, HttpResponse, ITokenResponse } from "@services/api"
 import { Injection } from "@services/injections"
+import { SoundPlayer } from "@services/sound-player"
+import { DataLoader } from "@components/data-loader"
+import { HttpRequestError } from "@exceptions"
+import { ApiResponse } from "apisauce"
 
 export interface LoginScreenProps extends NavigationScreenProps<{}> {
   api: Api,
-  loader: Loader
+  soundPlayer: SoundPlayer
 }
 
 const EXOSUITE: ImageStyle = {
   width: 200,
-  height: 100
+  height: 100,
 }
 
 const EXTRA_PADDING_TOP: ViewStyle = {
-  paddingTop: spacing[3]
+  paddingTop: spacing[3],
 }
 
 const ZERO_PADDING: ViewStyle = {
-  padding: 0
+  padding: 0,
 }
 
 const FOOTER_CONTAINER: ViewStyle = {
@@ -51,11 +54,11 @@ const FOOTER_CONTAINER: ViewStyle = {
   alignItems: "center",
   justifyContent: "center",
   backgroundColor: color.background,
-  width: "100%"
+  width: "100%",
 }
 
 const EMAIL_TEXT: TextStyle = {
-  paddingTop: spacing[5]
+  paddingTop: spacing[5],
 }
 
 const BOLD: TextStyle = { fontWeight: "bold" }
@@ -63,26 +66,26 @@ const BOLD: TextStyle = { fontWeight: "bold" }
 const HEADER: TextStyle = {
   paddingTop: spacing[2],
   paddingBottom: spacing[2],
-  backgroundColor: color.palette.backgroundDarkerer
+  backgroundColor: color.palette.backgroundDarkerer,
 }
 const HEADER_TITLE: TextStyle = {
   ...BOLD,
   fontSize: 12,
   lineHeight: 15,
   textAlign: "center",
-  letterSpacing: 1.5
+  letterSpacing: 1.5,
 }
 
 const FULL: ViewStyle = {
   flex: 1,
-  backgroundColor: color.palette.backgroundDarkerer
+  backgroundColor: color.palette.backgroundDarkerer,
 }
 
 const CONTAINER: ViewStyle = {
   ...FULL,
   paddingHorizontal: spacing[4],
   flexGrow: 1,
-  justifyContent: "space-evenly"
+  justifyContent: "space-evenly",
 }
 
 const disabled = color.palette.lightGrey
@@ -96,7 +99,7 @@ const DismissKeyboard = ({ children }) => (
   </TouchableWithoutFeedback>
 )
 
-@inject(Injection.Api)
+@inject(Injection.Api, Injection.SoundPlayer)
 @observer
 export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 
@@ -110,15 +113,32 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 
   constructor(props) {
     super(props)
-    console.tron.logImportant(props.loader)
     this.goBack = throttle(props.navigation.goBack, 3000)
     this.authorizeLogin = throttle(this._authorizeLogin, 5000)
   }
 
+  private manageResponseError(response: HttpRequestError) {
+    const { soundPlayer } = this.props
+    DataLoader.instance.hasErrors(response, () => soundPlayer.error())
+  }
+
   @autobind
   async _authorizeLogin() {
-    const { api } = this.props
-    await api.login(this.email, this.password)
+    const { api, soundPlayer } = this.props
+    DataLoader.instance.toggleIsVisible()
+
+    const response: ApiResponse<ITokenResponse> | HttpRequestError =
+      await api.login(this.email, this.password)
+        .catch((e: HttpRequestError) => e)
+
+    if (response instanceof HttpRequestError) {
+      this.manageResponseError(response)
+    } else {
+      console.tron.log(response)
+      DataLoader.instance.success(() => soundPlayer.success(), () => {
+
+      })
+    }
   }
 
   @action.bound
@@ -146,7 +166,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   emailValidator() {
     this.isValidEmail = !(validator.validate(
       { email: this.email },
-      { email: { email: true } }
+      { email: { email: true } },
     ) !== undefined)
   }
 
@@ -175,7 +195,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
       toggleIsPasswordVisible,
       emailValidator,
       RenderIsValidEmail,
-      isValidEmail
+      isValidEmail,
     } = this
     let buttonColor
     if (email && password && isValidEmail) {

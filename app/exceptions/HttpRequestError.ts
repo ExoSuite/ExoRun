@@ -29,4 +29,8 @@ export class HttpRequestError extends BaseError {
     return this.message
   }
 
+  public code(): HttpResponse {
+    return this.status
+  }
+
 }

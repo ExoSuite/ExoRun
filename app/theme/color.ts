@@ -32,7 +32,6 @@ export const color = {
   secondary: palette.green,
 
   success: palette.lightGreen,
-  error: palette.angry,
 
   /**
    * The main tinting color, but darker.

@@ -2,21 +2,12 @@
   "common": {
     "ok": "OK!",
     "cancel": "Cancel",
-    "back": "Back"
+    "back": "Go back"
   },
   "errors": {
-    "invalidEmail": "Invalid email address."
-  },
-  "firstExampleScreen": {
-    "poweredBy": "POWERED BY BOWSER",
-    "readyForLaunch": "Ready for launch.",
-    "continue": "CONTINUE"
-  },
-  "secondExampleScreen": {
-    "howTo": "HOW TO",
-    "title": "What’s In This Stack?",
-    "tagLine": "Congratulations, you’ve got a very advanced React Native app template here.  Take advantage of this boilerplate!",
-    "reactotron": "Demo Reactotron"
+    "invalidEmail": "Invalid email address.",
+    "unauthorized": "Oops! Unauthorized access!",
+    "unknown": "Oops! An unexpected error seems to have occurred."
   },
   "storybook": {
     "placeholder": "Placeholder",

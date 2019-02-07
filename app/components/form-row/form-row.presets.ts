@@ -1,5 +1,5 @@
 import { ViewStyle } from "react-native"
-import { color, spacing } from "../../theme"
+import { color, spacing } from "@theme"
 
 /**
  * The size of the border radius.
@@ -68,6 +68,11 @@ export const PRESETS = {
     ...ROOT,
     borderColor: color.transparent,
     width: "100%"
+  },
+  clearLarge: {
+    ...ROOT,
+    borderColor: color.transparent,
+    width: "75%"
   }
 }
 

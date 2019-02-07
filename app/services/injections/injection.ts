@@ -3,4 +3,5 @@ export enum Injection {
   NavigationStore = "navigationStore",
   Api = "api",
   SoundPlayer = "soundPlayer",
+  DataLoader = "dataLoader"
 }

@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react-native"
 import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { FormRow } from "./form-row"
 import { Text } from "../text"
-import { color } from "../../theme/color"
+import { color } from "@theme"
 import { ViewStyle } from "react-native"
 
 const TEXT_STYLE_OVERRIDE = {

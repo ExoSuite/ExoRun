@@ -2,21 +2,24 @@
 //
 // In this file, we'll be kicking off our app or storybook.
 
+// import lang module
 import "./i18n"
+// import library modules
 import * as React from "react"
 import { AppRegistry } from "react-native"
+import { Provider } from "mobx-react"
+import { contains } from "ramda"
+import SplashScreen from "react-native-splash-screen"
+import Config from "react-native-config"
+// custom imports
 import { StatefulNavigator } from "./navigation"
 import { StorybookUIRoot } from "../storybook"
 import { RootStore, setupRootStore } from "@models/root-store"
-import { Provider } from "mobx-react"
 import { BackButtonHandler } from "@navigation/back-button-handler"
-import { contains } from "ramda"
 import { DEFAULT_NAVIGATION_CONFIG } from "@navigation/navigation-config"
 import { Platform } from "@services/device"
-import SplashScreen from "react-native-splash-screen"
 import { Environment } from "@models/environment"
-import { Loader } from "@components/loader"
-import Config from "react-native-config"
+import { DataLoader } from "@components/data-loader"
 
 interface AppState {
   rootStore?: RootStore
@@ -87,7 +90,9 @@ export class App extends React.Component<{}, AppState> {
       <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>
         <BackButtonHandler canExit={this.canExit}>
           <StatefulNavigator/>
-          <Loader/>
+          <DataLoader ref={(ref) => {
+            DataLoader.instance = ref
+          }}/>
         </BackButtonHandler>
       </Provider>
     )

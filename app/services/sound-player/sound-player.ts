@@ -25,7 +25,7 @@ export class SoundPlayer implements IService {
     this.errorSound = new Sound(require("./assets/NFCFailure.mp3"))
   }
 
-  async setupForTests() {
+  setupForTests() {
     this.successSound = mock
     this.errorSound = mock
   }

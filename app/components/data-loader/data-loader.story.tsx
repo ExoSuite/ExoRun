@@ -1,12 +1,12 @@
 import * as React from "react"
 import { storiesOf } from "@storybook/react-native"
 import { Story, StoryScreen, UseCase } from "../../../storybook/views"
-import { defaultErrorCallback, defaultSuccessCallback, Loader } from "./"
+import { defaultErrorCallback, defaultSuccessCallback, DataLoader } from "./"
 import { Button } from "@components"
 import { SoundPlayer } from "@services/sound-player"
 
-let refSuccess: Loader
-let refError: Loader
+let refSuccess: DataLoader
+let refError: DataLoader
 
 const soundPlayer = new SoundPlayer()
 if (process.env.JEST_WORKER_ID === undefined)
@@ -23,38 +23,38 @@ const errors = {
   ]
 }
 
-storiesOf("Loader")
+storiesOf("Animated Data Loader")
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
-  .add("Success animation", () =>
+  .add("Success", () =>
     <Story>
       <UseCase text="Success" usage="Start the success animation">
         <Button text="click to success" onPress={() => refSuccess.toggleIsVisible()}/>
       </UseCase>
 
-      <Loader ref={(loader: Loader) => refSuccess = loader}>
+      <DataLoader ref={(loader: DataLoader) => refSuccess = loader}>
         <Button
           text="click to show success animation"
           preset="success"
           onPress={() => refSuccess.success(
+            () => soundPlayer.success(),
             defaultSuccessCallback,
-            () => soundPlayer.success()
           )}
         />
-      </Loader>
+      </DataLoader>
     </Story>
   )
-  .add("Error animation", () =>
+  .add("Error", () =>
     <Story>
       <UseCase text="Failed" usage="Start the error animation">
         <Button text="click to error" onPress={() => refError.toggleIsVisible()}/>
       </UseCase>
-      <Loader ref={(loader: Loader) => refError = loader}>
+      <DataLoader ref={(loader: DataLoader) => refError = loader}>
         <Button text="click to animate" preset="error" onPress={() =>
           refError.hasErrors(
             errors,
+            () => soundPlayer.error(),
             defaultErrorCallback,
-            () => soundPlayer.error()
           )
         }/>
-      </Loader>
+      </DataLoader>
     </Story>)
