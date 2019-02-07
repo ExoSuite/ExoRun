@@ -37,17 +37,22 @@
                                                      launchOptions:launchOptions];
     rootView.backgroundColor = [UIColor blackColor];
 
-    NSArray *allPngImageNames = [[NSBundle mainBundle] pathsForResourcesOfType:@"png" inDirectory:nil];
-    for (NSString *imgName in allPngImageNames) {
-        if ([imgName containsString:@"LaunchImage"]) {
-            UIImage *img = [UIImage imageNamed:imgName];
+    NSString *storybookEnabled = [ReactNativeConfig envFor:@"STORYBOOK_ENABLED"];
 
-            if (img.scale == [UIScreen mainScreen].scale && CGSizeEqualToSize(img.size, [UIScreen mainScreen].bounds.size)) {
-                rootView.backgroundColor = [UIColor colorWithPatternImage:img];
+    if ([storybookEnabled isEqualToString:@"true"]) {
+        rootView.backgroundColor = [UIColor whiteColor];
+    } else {
+        NSArray *allPngImageNames = [[NSBundle mainBundle] pathsForResourcesOfType:@"png" inDirectory:nil];
+        for (NSString *imgName in allPngImageNames) {
+            if ([imgName containsString:@"LaunchImage"]) {
+                UIImage *img = [UIImage imageNamed:imgName];
+
+                if (img.scale == [UIScreen mainScreen].scale && CGSizeEqualToSize(img.size, [UIScreen mainScreen].bounds.size)) {
+                    rootView.backgroundColor = [UIColor colorWithPatternImage:img];
+                }
             }
         }
     }
-
 
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     UIViewController *rootViewController = [UIViewController new];
@@ -56,7 +61,6 @@
     [self.window makeKeyAndVisible];
 
     [RNSplashScreen show];
-
     return YES;
 }
 

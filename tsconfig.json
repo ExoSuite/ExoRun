@@ -33,6 +33,5 @@
       "@exceptions": ["app/exceptions"],
       "@exceptions/*": ["app/exceptions/*"]
     }
-  },
-  "exclude": ["node_modules"]
+  }
 }
