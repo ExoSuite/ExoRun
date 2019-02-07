@@ -2630,7 +2630,7 @@ exports[`Storyshots FormRow Assembled 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#1d1d1d",
+                    "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 13,
                   }
@@ -2652,7 +2652,7 @@ exports[`Storyshots FormRow Assembled 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#1d1d1d",
+                    "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -2674,7 +2674,7 @@ exports[`Storyshots FormRow Assembled 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#1d1d1d",
+                    "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 9,
                   }
@@ -2697,7 +2697,7 @@ exports[`Storyshots FormRow Assembled 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#1d1d1d",
+                    "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -2798,7 +2798,7 @@ exports[`Storyshots FormRow Assembled 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#1d1d1d",
+                    "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -2820,7 +2820,7 @@ exports[`Storyshots FormRow Assembled 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#1d1d1d",
+                    "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -2843,7 +2843,7 @@ exports[`Storyshots FormRow Assembled 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#1d1d1d",
+                    "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -2977,7 +2977,7 @@ exports[`Storyshots FormRow Presets 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#1d1d1d",
+                    "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -2988,7 +2988,7 @@ exports[`Storyshots FormRow Presets 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#1d1d1d",
+                    "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -3090,7 +3090,7 @@ exports[`Storyshots FormRow Presets 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#1d1d1d",
+                    "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -3193,7 +3193,7 @@ exports[`Storyshots FormRow Presets 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#1d1d1d",
+                    "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -3204,7 +3204,7 @@ exports[`Storyshots FormRow Presets 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#1d1d1d",
+                    "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -3306,7 +3306,7 @@ exports[`Storyshots FormRow Presets 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#1d1d1d",
+                    "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -3407,7 +3407,7 @@ exports[`Storyshots FormRow Presets 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#1d1d1d",
+                    "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -3508,7 +3508,7 @@ exports[`Storyshots FormRow Presets 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#1d1d1d",
+                    "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -3639,7 +3639,7 @@ exports[`Storyshots FormRow Styling 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#1d1d1d",
+                    "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 15,
                   }
@@ -3761,7 +3761,7 @@ exports[`Storyshots Header Behavior 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#1d1d1d",
+                  "backgroundColor": "#16202a",
                   "flex": 1,
                 }
               }
@@ -3898,7 +3898,7 @@ exports[`Storyshots Header Behavior 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#1d1d1d",
+                  "backgroundColor": "#16202a",
                   "flex": 1,
                 }
               }
@@ -4071,7 +4071,7 @@ exports[`Storyshots Header Behavior 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#1d1d1d",
+                  "backgroundColor": "#16202a",
                   "flex": 1,
                 }
               }
@@ -4968,7 +4968,7 @@ exports[`Storyshots Text Passing Content 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#1d1d1d",
+                  "backgroundColor": "#16202a",
                   "flex": 1,
                 }
               }
@@ -5068,7 +5068,7 @@ exports[`Storyshots Text Passing Content 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#1d1d1d",
+                  "backgroundColor": "#16202a",
                   "flex": 1,
                 }
               }
@@ -5179,7 +5179,7 @@ exports[`Storyshots Text Passing Content 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#1d1d1d",
+                  "backgroundColor": "#16202a",
                   "flex": 1,
                 }
               }
@@ -5279,7 +5279,7 @@ exports[`Storyshots Text Passing Content 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#1d1d1d",
+                  "backgroundColor": "#16202a",
                   "flex": 1,
                 }
               }
@@ -5423,7 +5423,7 @@ exports[`Storyshots Text Style Presets 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#1d1d1d",
+                  "backgroundColor": "#16202a",
                   "flex": 1,
                 }
               }
@@ -5564,7 +5564,7 @@ exports[`Storyshots Text Style Presets 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#1d1d1d",
+                  "backgroundColor": "#16202a",
                   "flex": 1,
                 }
               }
@@ -5665,7 +5665,7 @@ exports[`Storyshots Text Style Presets 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#1d1d1d",
+                  "backgroundColor": "#16202a",
                   "flex": 1,
                 }
               }
@@ -5797,7 +5797,7 @@ exports[`Storyshots Text Styling 1`] = `
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#1d1d1d",
+                    "backgroundColor": "#16202a",
                     "flex": 1,
                   },
                   Object {
