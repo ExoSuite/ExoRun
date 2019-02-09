@@ -20,6 +20,8 @@
     "hack:types-react-navigation": "rimraf node_modules/@types/react-navigation/node_modules/@types",
     "hack:types-react-native": "rimraf node_modules/@types/react-native/node_modules/@types",
     "hack:types-react-test-renderer": "rimraf node_modules/@types/react-test-renderer/node_modules/@types",
+    "hack:lottie-react-native": "./bin/lottie-react-native-hack.sh",
+    "hack:androidX": "sh android/patch/patch-androidX.sh",
     "patch": "patch-package",
     "prepare": "npm-run-all patch hack:*"
   },
@@ -49,9 +51,9 @@
     "react-native-localize": "^1.0.2",
     "react-native-modal": "^7.0.2",
     "react-native-sound": "^0.10.12",
-    "react-native-splash-screen": "3.1.1",
+    "react-native-splash-screen": "3.2.0",
     "react-native-vector-icons": "6.2.0",
-    "react-navigation": "3.1.5",
+    "react-navigation": "3.2.0",
     "reactotron-mst": "2.1.4",
     "reactotron-react-native": "^2.1.5",
     "validate.js": "0.12.0"
@@ -66,7 +68,7 @@
     "@storybook/addon-storyshots": "^4.1.11",
     "@storybook/react-native": "^4.1.11",
     "@types/jest": "24.0.0",
-    "@types/node": "^10.12.21",
+    "@types/node": "^10.12.24",
     "@types/ramda": "0.26.0",
     "@types/react": "16.8.2",
     "@types/react-native": "0.57.34",
@@ -93,7 +95,7 @@
     "solidarity": "2.3.1",
     "tslint": "5.12.1",
     "tslint-config-prettier": "1.18.0",
-    "typescript": "3.3.1"
+    "typescript": "3.3.3"
   },
   "jest": {
     "preset": "jest-preset-ignite"

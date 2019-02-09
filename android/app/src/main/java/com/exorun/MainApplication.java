@@ -2,53 +2,20 @@ package com.exorun;
 
 import android.app.Application;
 
-import com.facebook.react.ReactApplication;
-import com.reactcommunity.rnlocalize.RNLocalizePackage;
-import com.zmxv.RNSound.RNSoundPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
-import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
-import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
-
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
-
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import com.oblador.keychain.KeychainPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
-
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
-
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import com.reactcommunity.rnlanguages.RNLanguagesPackage;
-import com.oblador.keychain.KeychainPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
-
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
-
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import com.reactcommunity.rnlanguages.RNLanguagesPackage;
-import com.oblador.keychain.KeychainPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
-
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
-
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import com.reactcommunity.rnlanguages.RNLanguagesPackage;
-import com.oblador.keychain.KeychainPackage;
-import com.oblador.keychain.KeychainPackage;
-import com.reactcommunity.rnlanguages.RNLanguagesPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
-
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
-
-
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
-
-import com.oblador.keychain.KeychainPackage;
+import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
+import com.oblador.keychain.KeychainPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.reactcommunity.rnlocalize.RNLocalizePackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.zmxv.RNSound.RNSoundPackage;
+
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -65,11 +32,10 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.asList(
                     new MainReactPackage(),
-            new RNLocalizePackage(),
-            new RNSoundPackage(),
-            new LottiePackage(),
+                    new RNLocalizePackage(),
+                    new RNSoundPackage(),
+                    new LottiePackage(),
                     new ReactNativeConfigPackage(),
-                    new RNLanguagesPackage(),
                     new VectorIconsPackage(),
                     new SplashScreenReactPackage(),
                     new KeychainPackage(),
