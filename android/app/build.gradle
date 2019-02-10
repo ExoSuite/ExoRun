@@ -129,7 +129,7 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file('../' + EXORUN_RELEASE_STORE_FILE)
+            storeFile rootProject.file(EXORUN_RELEASE_STORE_FILE)
             storePassword EXORUN_RELEASE_STORE_PASSWORD
             keyAlias EXORUN_RELEASE_KEY_ALIAS
             keyPassword EXORUN_RELEASE_KEY_PASSWORD
