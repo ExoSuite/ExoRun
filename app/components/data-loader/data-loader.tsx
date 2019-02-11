@@ -114,7 +114,7 @@ export class DataLoader extends React.Component<DataLoaderProps> {
     this._instance = value
   }
 
-  private _getErrorFromHttpRequestError(httpRequestError: HttpRequestError): Object {
+  private static _getErrorFromHttpRequestError(httpRequestError: HttpRequestError): Object {
     let errors
     switch (httpRequestError.code()) {
       case HttpResponse.UNAUTHORIZED: {
@@ -122,13 +122,13 @@ export class DataLoader extends React.Component<DataLoaderProps> {
         errors.error = [translate("errors.unauthorized")]
         break
       }
-      case HttpResponse.BAD_DATA: {
-        errors = baseError
-        errors.error = [translate("errors.unknown")]
+      case HttpResponse.UNPROCESSABLE_ENTITY: {
+        errors = httpRequestError.happened()
         break
       }
       default: {
-        errors = httpRequestError.happened()
+        errors = baseError
+        errors.error = [translate("errors.unknown")]
         break
       }
     }
@@ -156,7 +156,7 @@ export class DataLoader extends React.Component<DataLoaderProps> {
     this._isFinalAnimationPlaying = false
 
     if (errors instanceof HttpRequestError) {
-        this._tempErrors = this._getErrorFromHttpRequestError(errors)
+        this._tempErrors = DataLoader._getErrorFromHttpRequestError(errors)
     } else {
       this._tempErrors = errors
     }
@@ -187,11 +187,13 @@ export class DataLoader extends React.Component<DataLoaderProps> {
 
   private successAnimation() {
     const { start, end } = successAnimation
+    this._lottieAnimation.reset()
     this._lottieAnimation.play(start, end)
   }
 
   private errorAnimation() {
     const { start, end } = errorAnimation
+    this._lottieAnimation.reset()
     this._lottieAnimation.play(start, end)
   }
 
@@ -221,8 +223,10 @@ export class DataLoader extends React.Component<DataLoaderProps> {
   }
 
   private delayedErrorDisplay() {
+
     setTimeout(() => runInAction(() => {
       this._errors = this._tempErrors
+      this._animatedTextView.fadeIn()
     }), baseDelayed)
   }
 
@@ -265,7 +269,6 @@ export class DataLoader extends React.Component<DataLoaderProps> {
         formattedErrors.push({ key, value: this._errors[key][0] })
       })
 
-    this._animatedTextView.fadeIn()
     return (
       <View style={ALIGN_CENTER}>
         <FormRow preset="clear">

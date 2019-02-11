@@ -78,6 +78,12 @@ project.ext.react = [
 
 apply from: "../../node_modules/react-native/react.gradle"
 
+project.ext.vectoricons = [
+        iconFontNames: [ 'MaterialIcons.ttf', 'EvilIcons.ttf' ] // Name of the font files you want to copy
+]
+
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
 /**
  * Set this to true to create two separate APKs instead of one:
  *   - An APK that only works on ARM devices
@@ -169,12 +175,12 @@ configurations.all {
 }
 
 dependencies {
+    implementation project(':react-native-vector-icons')
     implementation project(':react-native-localize')
     implementation project(':react-native-sound')
     implementation project(':lottie-react-native')
     implementation project(':react-native-config')
     apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
-    implementation project(':react-native-vector-icons')
     implementation project(':react-native-splash-screen')
     implementation project(':react-native-gesture-handler')
     implementation project(':react-native-keychain')
