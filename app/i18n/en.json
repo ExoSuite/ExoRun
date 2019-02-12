@@ -1,0 +1,35 @@
+{
+  "common": {
+    "ok": "OK!",
+    "cancel": "Cancel",
+    "back": "Go back"
+  },
+  "errors": {
+    "invalidEmail": "Invalid email address.",
+    "unauthorized": "Oops! Unauthorized access!",
+    "unknown": "Oops! An unexpected error seems to have occurred."
+  },
+  "storybook": {
+    "placeholder": "Placeholder",
+    "field": "Field"
+  },
+  "auth": {
+    "powered": "Powered by ",
+    "back": "Go back",
+    "slogan": "Technology for sport.",
+    "login": {
+      "header": "Login",
+      "login": "Log in to ExoRun",
+      "username": "E-mail",
+      "password": "Password",
+      "password-reveal": "Reveal password",
+      "password-hide": "Hide password",
+      "bad-email": "Please enter a valid email.",
+      "good-email": "Great! your email is valid!"
+    },
+    "register": {
+      "header": "Register",
+      "register": "Register me"
+    }
+  }
+}

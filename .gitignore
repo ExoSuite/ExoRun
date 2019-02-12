@@ -20,14 +20,24 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-project.xcworkspace
+*.xcworkspace
 
 # Android/IntelliJ
 #
-.idea
-.gradle
-local.properties
+android/.idea
+ios/.idea
+.idea/libraries
+.idea/dictionaries
+.idea/modules.xml
+.idea/workspace.xml
+.idea/usage.statistics.xml
+.idea/angular-settings.xml
+.idea/tasks.xml
+.idea/compiler.xml
+.idea/encodings.xml
 *.iml
+local.properties
+.gradle
 
 # node.js
 #
@@ -39,20 +49,32 @@ yarn-error.log
 buck-out/
 \.buckd/
 *.keystore
+!android/keystores/exorun.keystore
 
-# fastlane
-#
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
-# screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/
+# VS Code
+.vscode
 
-*/fastlane/report.xml
-*/fastlane/Preview.html
-*/fastlane/screenshots
+# Cocoapods
+ios/Pods
+
 
 # Bundle artifact
 *.jsbundle
 
-ios/ExoRun.xcworkspace
-ios/Pods
+junit.xml
+.env
+coverage
+android/app/src/main/assets/fonts/AntDesign.ttf
+android/app/src/main/assets/fonts/Entypo.ttf
+android/app/src/main/assets/fonts/EvilIcons.ttf
+android/app/src/main/assets/fonts/Feather.ttf
+android/app/src/main/assets/fonts/FontAwesome.ttf
+android/app/src/main/assets/fonts/FontAwesome5_Brands.ttf
+android/app/src/main/assets/fonts/FontAwesome5_Solid.ttf
+android/app/src/main/assets/fonts/Foundation.ttf
+android/app/src/main/assets/fonts/Ionicons.ttf
+android/app/src/main/assets/fonts/MaterialCommunityIcons.ttf
+android/app/src/main/assets/fonts/MaterialIcons.ttf
+android/app/src/main/assets/fonts/Octicons.ttf
+android/app/src/main/assets/fonts/SimpleLineIcons.ttf
+android/app/src/main/assets/fonts/Zocial.ttf

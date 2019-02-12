@@ -10,45 +10,58 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#if RCT_DEV
-#import <React/RCTDevLoadingView.h>
-#endif
+#import <ReactNativeConfig/ReactNativeConfig.h>
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-  NSURL *jsCodeLocation;
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSURL *jsCodeLocation;
 
-  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+#ifdef DEBUG
+    jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+#else
+    jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+#endif
 
-  RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                      moduleName:@"ExoRun"
-                                               initialProperties:nil
-                                                   launchOptions:launchOptions];
-  rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
-  
-  NSArray *allPngImageNames = [[NSBundle mainBundle] pathsForResourcesOfType:@"png" inDirectory:nil];
-  for (NSString *imgName in allPngImageNames){
-    if ([imgName containsString:@"LaunchImage"]){
-      UIImage *img = [UIImage imageNamed:imgName];
-      
-      if (img.scale == [UIScreen mainScreen].scale && CGSizeEqualToSize(img.size, [UIScreen mainScreen].bounds.size)) {
-        rootView.backgroundColor = [UIColor colorWithPatternImage:img];
-      }
+    NSString *serverIP = [ReactNativeConfig envFor:@"SERVER_IP"];
+
+    if ([serverIP length] != 0) {
+        NSString *jsCodeUrlString = [NSString stringWithFormat:@"http://%@:8081/index.bundle?platform=ios&dev=true", serverIP];
+        NSString *jsBundleUrlString = [jsCodeUrlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        jsCodeLocation = [NSURL URLWithString:jsBundleUrlString];
     }
-  }
-  
-  
-  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-  UIViewController *rootViewController = [UIViewController new];
-  rootViewController.view = rootView;
-  self.window.rootViewController = rootViewController;
-  [self.window makeKeyAndVisible];
-  
-  [RNSplashScreen show];
-  
-  return YES;
+
+    RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
+                                                        moduleName:@"ExoRun"
+                                                 initialProperties:nil
+                                                     launchOptions:launchOptions];
+    rootView.backgroundColor = [UIColor blackColor];
+
+    NSString *storybookEnabled = [ReactNativeConfig envFor:@"STORYBOOK_ENABLED"];
+
+    if ([storybookEnabled isEqualToString:@"true"]) {
+        rootView.backgroundColor = [UIColor whiteColor];
+    } else {
+        NSArray *allPngImageNames = [[NSBundle mainBundle] pathsForResourcesOfType:@"png" inDirectory:nil];
+        for (NSString *imgName in allPngImageNames) {
+            if ([imgName containsString:@"LaunchImage"]) {
+                UIImage *img = [UIImage imageNamed:imgName];
+
+                if (img.scale == [UIScreen mainScreen].scale && CGSizeEqualToSize(img.size, [UIScreen mainScreen].bounds.size)) {
+                    rootView.backgroundColor = [UIColor colorWithPatternImage:img];
+                }
+            }
+        }
+    }
+
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    UIViewController *rootViewController = [UIViewController new];
+    rootViewController.view = rootView;
+    self.window.rootViewController = rootViewController;
+    [self.window makeKeyAndVisible];
+
+    [RNSplashScreen show];
+    return YES;
 }
 
 @end

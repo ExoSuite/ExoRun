@@ -1,11 +1,15 @@
 // we always make sure 'react-native' gets included first
-import "react-native";
-
+import "react-native"
 // libraries to mock
-import "./mock-i18n";
-import "./mock-reactotron";
-import "./mock-textinput";
+import "./mocks/mock-react-native-gesture-handler"
+import "./mocks/mock-i18n"
+import "./mocks/mock-reactotron"
+import "./mocks/mock-textinput"
+import "./mocks/mock-react-native-localize"
+import "./mocks/mock-react-native-splash-screen"
+import "./mocks/mock-react-navigation"
+import "./mocks/mock-react-native-sound"
 
 declare global {
-  var __TEST__;
+  let __TEST__
 }

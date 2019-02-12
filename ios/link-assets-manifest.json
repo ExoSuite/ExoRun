@@ -2,91 +2,107 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "src/theme/fonts/Montserrat-Black.ttf",
+      "path": "app/theme/fonts/Montserrat-Black.ttf",
       "sha1": "b7553074657a5fff0d17afcd5a47c99116c72854"
     },
     {
-      "path": "src/theme/fonts/Montserrat-BlackItalic.ttf",
+      "path": "app/theme/fonts/Montserrat-BlackItalic.ttf",
       "sha1": "39dfc95afd317c6e3daf04f6106cf32e22b2951b"
     },
     {
-      "path": "src/theme/fonts/Montserrat-Bold.ttf",
+      "path": "app/theme/fonts/Montserrat-Bold.ttf",
       "sha1": "3320ff5514b32565b0396de4f2064ce17ec9eea4"
     },
     {
-      "path": "src/theme/fonts/Montserrat-BoldItalic.ttf",
+      "path": "app/theme/fonts/Montserrat-BoldItalic.ttf",
       "sha1": "3e4f84f047452d1d3b262a4db5547b4baf390de8"
     },
     {
-      "path": "src/theme/fonts/Montserrat-ExtraBold.ttf",
+      "path": "app/theme/fonts/Montserrat-ExtraBold.ttf",
       "sha1": "6c958d968de367f05f7a6b790609f22076b3910c"
     },
     {
-      "path": "src/theme/fonts/Montserrat-ExtraBoldItalic.ttf",
+      "path": "app/theme/fonts/Montserrat-ExtraBoldItalic.ttf",
       "sha1": "39171d7f4db509f392b1d49696bc0b7e0f1f46b8"
     },
     {
-      "path": "src/theme/fonts/Montserrat-ExtraLight.ttf",
+      "path": "app/theme/fonts/Montserrat-ExtraLight.ttf",
       "sha1": "4925dcc1cf7564cd18d10bf5fb4ced7bc77e661c"
     },
     {
-      "path": "src/theme/fonts/Montserrat-ExtraLightItalic.ttf",
+      "path": "app/theme/fonts/Montserrat-ExtraLightItalic.ttf",
       "sha1": "a23d10b7f93144b877fd53445ca33ee938498ff1"
     },
     {
-      "path": "src/theme/fonts/Montserrat-Italic.ttf",
+      "path": "app/theme/fonts/Montserrat-Italic.ttf",
       "sha1": "2ff6c8d3a64ccd9f3c85dc7eef16a818af7075bc"
     },
     {
-      "path": "src/theme/fonts/Montserrat-Light.ttf",
+      "path": "app/theme/fonts/Montserrat-Light.ttf",
       "sha1": "08e510137064a3c9859b71cff5b999fe8c351e67"
     },
     {
-      "path": "src/theme/fonts/Montserrat-LightItalic.ttf",
+      "path": "app/theme/fonts/Montserrat-LightItalic.ttf",
       "sha1": "1224ee16a3a9807ca5e89fba1c8fd4132565735b"
     },
     {
-      "path": "src/theme/fonts/Montserrat-Medium.ttf",
+      "path": "app/theme/fonts/Montserrat-Medium.ttf",
       "sha1": "ca42fe10fa893f390472859405c7564095e4260f"
     },
     {
-      "path": "src/theme/fonts/Montserrat-MediumItalic.ttf",
+      "path": "app/theme/fonts/Montserrat-MediumItalic.ttf",
       "sha1": "2880cdec269b3e70365a0a41a39e16c0608d1ad5"
     },
     {
-      "path": "src/theme/fonts/Montserrat-Regular.ttf",
+      "path": "app/theme/fonts/Montserrat-Regular.ttf",
       "sha1": "ff1eb5d360a42c0c675d8ecfca9a3e5b709d302a"
     },
     {
-      "path": "src/theme/fonts/Montserrat-SemiBold.ttf",
+      "path": "app/theme/fonts/Montserrat-SemiBold.ttf",
       "sha1": "4ef29a9163b56df34a3486b98b24be3a3d0cdca6"
     },
     {
-      "path": "src/theme/fonts/Montserrat-SemiBoldItalic.ttf",
+      "path": "app/theme/fonts/Montserrat-SemiBoldItalic.ttf",
       "sha1": "2ace9e4e1e9fd4d82f9de86d5acf1407518e0c3f"
     },
     {
-      "path": "src/theme/fonts/Montserrat-Thin.ttf",
+      "path": "app/theme/fonts/Montserrat-Thin.ttf",
       "sha1": "cee83df1ec6934794d570d12e94397d5b5ca5fb5"
     },
     {
-      "path": "src/theme/fonts/Montserrat-ThinItalic.ttf",
+      "path": "app/theme/fonts/Montserrat-ThinItalic.ttf",
       "sha1": "62dcb447998b27a83872d75439ce35124fe08aa7"
     },
     {
-      "path": "src/assets/exorun-logo.png",
+      "path": "app/assets/fonts/FontAwesome5_Pro_Brands.ttf",
+      "sha1": "bc36e10ee56e2fdcd903e667cebfc51dfa0d223c"
+    },
+    {
+      "path": "app/assets/fonts/FontAwesome5_Pro_Light.ttf",
+      "sha1": "2cb62102299e79150cc08b695b7ddf80425098b3"
+    },
+    {
+      "path": "app/assets/fonts/FontAwesome5_Pro_Regular.ttf",
+      "sha1": "40a3071cbc5fa15809a9bb94ecda3b6aed75ef1d"
+    },
+    {
+      "path": "app/assets/fonts/FontAwesome5_Pro_Solid.ttf",
+      "sha1": "9100b3f65cfaadcaf8c456101d0e6ca1844a9ba1"
+    },
+    {
+      "path": "app/assets/img/exorun-logo.png",
       "sha1": "e265c7de51901c5bb20fbf6a3061a389d7bf0a31"
     },
     {
-      "path": "src/assets/exorun-text.png",
+      "path": "app/assets/img/exorun-text.png",
       "sha1": "cc5e2a7e40a0c7cf6020572843741b469d931640"
     },
     {
-      "path": "src/assets/exosuite-loader.png",
+      "path": "app/assets/img/exosuite-loader.png",
       "sha1": "4596f841638a66158c08b66552f38c54207ad2f1"
     },
     {
-      "path": "src/assets/exosuite-logo.png",
+      "path": "app/assets/img/exosuite-logo.png",
       "sha1": "dce5d5208d1ee4d18fc749cece006fd11a1bbd6c"
     }
   ]

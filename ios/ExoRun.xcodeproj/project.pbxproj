@@ -5,13 +5,13 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
 		00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
-		0816E0C49716488088E521ED /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3932E10917C414DB2AD5AD6 /* Montserrat-BoldItalic.ttf */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -20,46 +20,55 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		17DA4B8338AE4E10BD104A80 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E1BFB980A2740958828F030 /* AntDesign.ttf */; };
-		2153A952004E48508FF44D6D /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61FDB2C22E9E4CCF96808E82 /* Montserrat-Thin.ttf */; };
-		2201529568FD483790958A2A /* Montserrat-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C65BFDDD8983410092BCD78B /* Montserrat-ExtraLightItalic.ttf */; };
-		431E7A77F51944D6A1D39ECC /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1E6110B902F94B1892CF5F36 /* Montserrat-Regular.ttf */; };
-		48684A6D91D64CA38FF44D01 /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C0A8771CA484542BD93995B /* Montserrat-BlackItalic.ttf */; };
-		52E37FD345FA4277A3BDF7FE /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34F82F71BF654827A562ECD0 /* Montserrat-SemiBold.ttf */; };
-		57DC7C3FFA3A42F89CC35B17 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC55AF30AD05423D9B8B6891 /* Montserrat-ExtraBoldItalic.ttf */; };
+		19CDF3A248C248F09DF7FF52 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB7AAD770651441AB237C867 /* Montserrat-Bold.ttf */; };
+		1B24482722FA40B1AFC44914 /* Montserrat-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9802B7535DEA4CC6BA8A594B /* Montserrat-ExtraLightItalic.ttf */; };
+		1B9A3D6AA4084836AB45E42B /* exosuite-loader.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAA077044834AD595F8A96A /* exosuite-loader.png */; };
+		24758B93357F4F5D8AFDD2A2 /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A64A4647B974AA089203EBC /* Montserrat-ExtraLight.ttf */; };
+		317943E7024F440F9FF9FFBF /* libRNLocalize.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0304CEC153B541BC8E8DF6E1 /* libRNLocalize.a */; };
+		321C20E3DFA3464FBC0772EA /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 708AFFAE2A154722BCC04C66 /* Montserrat-Black.ttf */; };
+		46245D3D72264FE68EDE77CB /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27F8004B8D744B6B98EAF112 /* Montserrat-Regular.ttf */; };
+		49ABCCE995324BC686E64366 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42A36FF002FF4E94A3EFDA00 /* Montserrat-LightItalic.ttf */; };
+		5C7CB74DB86A84D6B4021A48 /* libPods-ExoRun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73B3C33A95F76653E82774E8 /* libPods-ExoRun.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		61313262163D4573B4264E1E /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 912D70081F3E473896F53DC1 /* Montserrat-Black.ttf */; };
-		658D6F91417FFF9FC45B86DB /* libPods-ExoRun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F2D124ECAF960858A72EF0C /* libPods-ExoRun.a */; };
+		5F801A899BD5414E82D16991 /* FontAwesome5_Pro_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDB2C2C801364564A848AC2A /* FontAwesome5_Pro_Brands.ttf */; };
 		673DED9FC53845AB9A8ABD9E /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7C7569413174DBFA44E8883 /* Entypo.ttf */; };
-		6AF86751A89448478E719538 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29F1BCBCE69D4641B0752CDA /* Montserrat-ThinItalic.ttf */; };
+		6851A9162159494A8697B589 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 274A954A41B24C38A1AAD858 /* Montserrat-ThinItalic.ttf */; };
+		74F1828C465E41708740E79A /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C85D5A0B43CE44619E2B967F /* Montserrat-Light.ttf */; };
+		7A60039FC4364F83ABDD31DE /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0595831E1A5247778BA9B32F /* Montserrat-SemiBoldItalic.ttf */; };
+		7F5B766A2C514F8B98FE8767 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8851333CCDF4E24B5B8033D /* Montserrat-Medium.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		865990F79BF04BA9B8D363FC /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CC0A22805D77482EA834180F /* Feather.ttf */; };
-		88073CF2068647FCB7D9B9A9 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58F517479080411A9137F900 /* Montserrat-SemiBoldItalic.ttf */; };
-		8A1FFE32822F4DB0A97E65E5 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7C1D5548128402B89AFBD6F /* Montserrat-LightItalic.ttf */; };
+		86B8A5BD510348F1A67BDC6A /* FontAwesome5_Pro_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F40D845C4393455F9DBBC726 /* FontAwesome5_Pro_Solid.ttf */; };
+		87FB472175DE469E934897A5 /* exorun-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ABCF0851CFE497DA74C2CE8 /* exorun-text.png */; };
 		929D43BC030E4E8EAC28DE59 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0031303B0C974BB3BA2A8585 /* FontAwesome5_Regular.ttf */; };
-		97429159499742339140F426 /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7243143C95649BCB8B6262D /* Montserrat-MediumItalic.ttf */; };
-		9F09F404AF7B4D30A7236FFF /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6471180C777D436B8D9A4350 /* Montserrat-Bold.ttf */; };
+		971C09C13FD34D648F66DF50 /* FontAwesome5_Pro_Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77C12D0295134EFE83F2972B /* FontAwesome5_Pro_Light.ttf */; };
 		A0B5756C331346C4A329F01C /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B528DC5C00F420A87A6BA0E /* MaterialIcons.ttf */; };
 		A3853C8905E0492DA41C1287 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA1F1436B39547AF96D60A8F /* FontAwesome.ttf */; };
+		A5EF9CCD22BB40C797C86292 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F41A14822EA24F69B56F562E /* Montserrat-Thin.ttf */; };
 		AAE27E35A4D14BBBA398A3A6 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18E9DBFCC6DC4B9DA8C25A1B /* Octicons.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B4BB91CDAA1B454C9F2042C0 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB3CEE548CA44021B5A43FDF /* FontAwesome5_Solid.ttf */; };
-		BDFD5D1D2187B93800678D18 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDFD5D1C2187B91600678D18 /* libSplashScreen.a */; };
+		BD156AB22203E00200340464 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD156A812203E00200340464 /* JavaScriptCore.framework */; };
+		BD1A081E2204B31F000294B9 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD1A081D2204B312000294B9 /* libSplashScreen.a */; };
+		BD5901C321FFFAF900999D3A /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD5901C021FFFADF00999D3A /* libReactNativeConfig.a */; };
 		C38AC06CDB6546C08E4840AF /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A59DA66B10FB4649BE519091 /* MaterialCommunityIcons.ttf */; };
-		D022E6FEB5BC4F30B2DB2C67 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBFB21407A1E48A1A980FA80 /* Montserrat-Italic.ttf */; };
-		D20FE44A6E234B67AD7D836E /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E1AEACC79C04C008DA4721E /* Montserrat-ExtraLight.ttf */; };
+		C9AEC0D76A304F88869DAF17 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA7BABC56F6540068DBE0A10 /* Montserrat-ExtraBoldItalic.ttf */; };
 		D3F11796CDC849F5801E71CC /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2BDD0357CA940AB97F3AEFE /* Zocial.ttf */; };
 		D661EB6C826D461099809324 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC391E74C3714E8990A6BD3F /* FontAwesome5_Brands.ttf */; };
 		D94103F899684432BF62AA94 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D516A1D62EA7423AA0CA390E /* Ionicons.ttf */; };
-		DC7F306EDC2341B9A14E4743 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A8D613EE9564B9DAA18D47F /* Montserrat-ExtraBold.ttf */; };
 		DD1D64E4FC9949B3891611F7 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2632558CE2654500BF5DF621 /* SimpleLineIcons.ttf */; };
 		E02FBF94D0E342D4ADCCE83D /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94D07F81C34047729ADDE2C5 /* EvilIcons.ttf */; };
-		E7CAFDAB67E7440A934FA173 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18FF816F1DBB4944BD710048 /* Montserrat-Light.ttf */; };
-		E8C65E23E4AE4619A4EDE254 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B66A61D78134F728EDA8243 /* Montserrat-Medium.ttf */; };
+		E442013B9C2B4632BFBA0CDD /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D46389703C34A56A42B3F51 /* Montserrat-Italic.ttf */; };
+		E79338CA442E44A59E4F7C3C /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42BF0D12A65244C29F933BCE /* Montserrat-BlackItalic.ttf */; };
+		E85F1B263E3F478380ED6DBF /* FontAwesome5_Pro_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE1020291E04494AA9A3B464 /* FontAwesome5_Pro_Regular.ttf */; };
+		E9C408F760DD42EE9BF4B2DF /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 98456AB3EB0C400E8FC3F768 /* Montserrat-MediumItalic.ttf */; };
+		EC9C9B55571041FD8530DACE /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 329ABDC3593F4F3990945040 /* Montserrat-BoldItalic.ttf */; };
+		F071F6174C684A1F85BEDBAF /* exosuite-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 95B8143427204D5CA1D5BA2C /* exosuite-logo.png */; };
+		F180A72CDEFA46419EBC06A8 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF47452D70664BCCA8DE57C0 /* libRNGestureHandler.a */; };
+		F3C22C1E538F4739AFEB9FAF /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A35727FAEA054B18B341FC02 /* Montserrat-SemiBold.ttf */; };
 		F62F48154FBC4E19A5C484D9 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA744932BEC342F1A41F2F26 /* Foundation.ttf */; };
-		5662EEF8BD8B47F78C92E7D5 /* exosuite-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0340D16059AC4A7498BBF204 /* exosuite-logo.png */; };
-		FCB89281627C4F8ABB447BF9 /* exosuite-loader.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BE3A9CD63334FD99A6E96D2 /* exosuite-loader.png */; };
-		21D669D3CC7240488EA21E8E /* exorun-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5CB407643F498E890ECD85 /* exorun-text.png */; };
-		38862917468F4E32A65F8950 /* exorun-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 31CFE6EFE5DF44E5BF34873B /* exorun-logo.png */; };
+		F70FFBF2695C4AC0946E1F97 /* exorun-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C850D838FEE941FEB6594FA2 /* exorun-logo.png */; };
+		F9C8B6BA08E942249101BC8D /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6516FF5F5F3A4EA580B0B372 /* Montserrat-ExtraBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,20 +191,6 @@
 			remoteGlobalIDString = 3D383D621EBD27B9005632C8;
 			remoteInfo = "double-conversion-tvOS";
 		};
-		2DF0FFEA2056DD460020B375 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9936F3131F5F2E4B0010BF04;
-			remoteInfo = privatedata;
-		};
-		2DF0FFEC2056DD460020B375 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9936F32F1F5F2E5B0010BF04;
-			remoteInfo = "privatedata-tvOS";
-		};
 		3DAD3E831DF850E9000B6D8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */;
@@ -273,20 +268,6 @@
 			remoteGlobalIDString = 3D3CD9321DE5FBEE00167DC4;
 			remoteInfo = "cxxreact-tvOS";
 		};
-		3DAD3EAC1DF850E9000B6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D3CD90B1DE5FBD600167DC4;
-			remoteInfo = jschelpers;
-		};
-		3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
-			remoteInfo = "jschelpers-tvOS";
-		};
 		5E9157321DD0AC6500FF2AA8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
@@ -322,12 +303,75 @@
 			remoteGlobalIDString = 358F4ED71D1E81A9004DF814;
 			remoteInfo = RCTBlob;
 		};
-		BDFD5D1B2187B91600678D18 /* PBXContainerItemProxy */ = {
+		BD156AA72203E00200340464 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BDFD5D172187B91600678D18 /* SplashScreen.xcodeproj */;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EDEBC6D6214B3E7000DD5AC8;
+			remoteInfo = jsi;
+		};
+		BD156AA92203E00200340464 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EDEBC73B214B45A300DD5AC8;
+			remoteInfo = jsiexecutor;
+		};
+		BD156AAB2203E00200340464 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ED296FB6214C9A0900B7C4FE;
+			remoteInfo = "jsi-tvOS";
+		};
+		BD156AAD2203E00200340464 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ED296FEE214C9CF800B7C4FE;
+			remoteInfo = "jsiexecutor-tvOS";
+		};
+		BD1A081C2204B312000294B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BD1A07F02204B312000294B9 /* SplashScreen.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 3D7682761D8E76B80014119E;
 			remoteInfo = SplashScreen;
+		};
+		BD5901BF21FFFADF00999D3A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BD5901BA21FFFADF00999D3A /* ReactNativeConfig.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB2648DF1C7BE17A00B8F155;
+			remoteInfo = ReactNativeConfig;
+		};
+		BD5901C121FFFADF00999D3A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BD5901BA21FFFADF00999D3A /* ReactNativeConfig.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3DF7F6AC203AA09B00D0EAB7;
+			remoteInfo = "ReactNativeConfig-tvOS";
+		};
+		BD6F707B220A323A007DDA8F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FB75D356B1854A83AEAAFBBD /* RNLocalize.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNLocalize;
+		};
+		BD6F707D220A323A007DDA8F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FB75D356B1854A83AEAAFBBD /* RNLocalize.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2D2A28471D9B043800D4039D;
+			remoteInfo = "RNLocalize-tvOS";
+		};
+		BD994B8F21FF816600814133 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76A24A1A8BCF43689614CED9 /* RNGestureHandler.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNGestureHandler;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -339,6 +383,10 @@
 		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
 		00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "../node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
 		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
+		0304CEC153B541BC8E8DF6E1 /* libRNLocalize.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNLocalize.a; sourceTree = "<group>"; };
+		0595831E1A5247778BA9B32F /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBoldItalic.ttf"; path = "../app/theme/fonts/Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		0ABCF0851CFE497DA74C2CE8 /* exorun-text.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "exorun-text.png"; path = "../app/assets/img/exorun-text.png"; sourceTree = "<group>"; };
+		0D46389703C34A56A42B3F51 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Italic.ttf"; path = "../app/theme/fonts/Montserrat-Italic.ttf"; sourceTree = "<group>"; };
 		0E1BFB980A2740958828F030 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
@@ -350,50 +398,58 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ExoRun/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		18E9DBFCC6DC4B9DA8C25A1B /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		18FF816F1DBB4944BD710048 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../src/theme/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
-		1E6110B902F94B1892CF5F36 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../src/theme/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		2632558CE2654500BF5DF621 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
-		29F1BCBCE69D4641B0752CDA /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ThinItalic.ttf"; path = "../src/theme/fonts/Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
-		2B66A61D78134F728EDA8243 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Medium.ttf"; path = "../src/theme/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		274A954A41B24C38A1AAD858 /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ThinItalic.ttf"; path = "../app/theme/fonts/Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
+		27F8004B8D744B6B98EAF112 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../app/theme/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		34F82F71BF654827A562ECD0 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../src/theme/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
-		3F2D124ECAF960858A72EF0C /* libPods-ExoRun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExoRun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		58F517479080411A9137F900 /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBoldItalic.ttf"; path = "../src/theme/fonts/Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		329ABDC3593F4F3990945040 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BoldItalic.ttf"; path = "../app/theme/fonts/Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
+		42A36FF002FF4E94A3EFDA00 /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-LightItalic.ttf"; path = "../app/theme/fonts/Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
+		42BF0D12A65244C29F933BCE /* Montserrat-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BlackItalic.ttf"; path = "../app/theme/fonts/Montserrat-BlackItalic.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
-		61FDB2C22E9E4CCF96808E82 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Thin.ttf"; path = "../src/theme/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; };
-		6471180C777D436B8D9A4350 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../src/theme/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		6516FF5F5F3A4EA580B0B372 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.ttf"; path = "../app/theme/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		6B528DC5C00F420A87A6BA0E /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		6C0A8771CA484542BD93995B /* Montserrat-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BlackItalic.ttf"; path = "../src/theme/fonts/Montserrat-BlackItalic.ttf"; sourceTree = "<group>"; };
+		708AFFAE2A154722BCC04C66 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Black.ttf"; path = "../app/theme/fonts/Montserrat-Black.ttf"; sourceTree = "<group>"; };
+		73B3C33A95F76653E82774E8 /* libPods-ExoRun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExoRun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		76A24A1A8BCF43689614CED9 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
+		77C12D0295134EFE83F2972B /* FontAwesome5_Pro_Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Light.ttf; path = ../app/assets/fonts/FontAwesome5_Pro_Light.ttf; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		7EAA077044834AD595F8A96A /* exosuite-loader.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "exosuite-loader.png"; path = "../app/assets/img/exosuite-loader.png"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		912D70081F3E473896F53DC1 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Black.ttf"; path = "../src/theme/fonts/Montserrat-Black.ttf"; sourceTree = "<group>"; };
+		8A64A4647B974AA089203EBC /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLight.ttf"; path = "../app/theme/fonts/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
 		94D07F81C34047729ADDE2C5 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
-		9A8D613EE9564B9DAA18D47F /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.ttf"; path = "../src/theme/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
-		9E1AEACC79C04C008DA4721E /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLight.ttf"; path = "../src/theme/fonts/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
+		95B8143427204D5CA1D5BA2C /* exosuite-logo.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "exosuite-logo.png"; path = "../app/assets/img/exosuite-logo.png"; sourceTree = "<group>"; };
+		9802B7535DEA4CC6BA8A594B /* Montserrat-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLightItalic.ttf"; path = "../app/theme/fonts/Montserrat-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		98456AB3EB0C400E8FC3F768 /* Montserrat-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-MediumItalic.ttf"; path = "../app/theme/fonts/Montserrat-MediumItalic.ttf"; sourceTree = "<group>"; };
+		A35727FAEA054B18B341FC02 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../app/theme/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		A55FC26425B5B744BE0298D5 /* Pods-ExoRun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExoRun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExoRun/Pods-ExoRun.debug.xcconfig"; sourceTree = "<group>"; };
 		A59DA66B10FB4649BE519091 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		AF47452D70664BCCA8DE57C0 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
 		BA744932BEC342F1A41F2F26 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
-		BC55AF30AD05423D9B8B6891 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBoldItalic.ttf"; path = "../src/theme/fonts/Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		BA7BABC56F6540068DBE0A10 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBoldItalic.ttf"; path = "../app/theme/fonts/Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		BD156A812203E00200340464 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		BD1A07F02204B312000294B9 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		BD4C7A81218E58F400F2000D /* ExoRun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ExoRun.entitlements; path = ExoRun/ExoRun.entitlements; sourceTree = "<group>"; };
-		BDFD5D172187B91600678D18 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
-		C65BFDDD8983410092BCD78B /* Montserrat-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLightItalic.ttf"; path = "../src/theme/fonts/Montserrat-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
-		C7C1D5548128402B89AFBD6F /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-LightItalic.ttf"; path = "../src/theme/fonts/Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
+		BD59016B21FFF79700999D3A /* libreact-native-config.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-config.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD5901BA21FFFADF00999D3A /* ReactNativeConfig.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeConfig.xcodeproj; path = "../node_modules/react-native-config/ios/ReactNativeConfig.xcodeproj"; sourceTree = "<group>"; };
+		BDB9A9152212540400E9B720 /* RNSound.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNSound.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE1020291E04494AA9A3B464 /* FontAwesome5_Pro_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Regular.ttf; path = ../app/assets/fonts/FontAwesome5_Pro_Regular.ttf; sourceTree = "<group>"; };
 		C7C7569413174DBFA44E8883 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		C850D838FEE941FEB6594FA2 /* exorun-logo.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "exorun-logo.png"; path = "../app/assets/img/exorun-logo.png"; sourceTree = "<group>"; };
+		C85D5A0B43CE44619E2B967F /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../app/theme/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		CA1F1436B39547AF96D60A8F /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		CB3CEE548CA44021B5A43FDF /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		CC0A22805D77482EA834180F /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		D516A1D62EA7423AA0CA390E /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		DBFB21407A1E48A1A980FA80 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Italic.ttf"; path = "../src/theme/fonts/Montserrat-Italic.ttf"; sourceTree = "<group>"; };
+		DB7AAD770651441AB237C867 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../app/theme/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		DC391E74C3714E8990A6BD3F /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		E2BDD0357CA940AB97F3AEFE /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		E3932E10917C414DB2AD5AD6 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BoldItalic.ttf"; path = "../src/theme/fonts/Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
-		E7243143C95649BCB8B6262D /* Montserrat-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-MediumItalic.ttf"; path = "../src/theme/fonts/Montserrat-MediumItalic.ttf"; sourceTree = "<group>"; };
+		E8851333CCDF4E24B5B8033D /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Medium.ttf"; path = "../app/theme/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		EB4EA4C5DCAFCDB5B66143BC /* Pods-ExoRun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExoRun.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExoRun/Pods-ExoRun.release.xcconfig"; sourceTree = "<group>"; };
-		0340D16059AC4A7498BBF204 /* exosuite-logo.png */ = {isa = PBXFileReference; name = "exosuite-logo.png"; path = "../src/assets/exosuite-logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0BE3A9CD63334FD99A6E96D2 /* exosuite-loader.png */ = {isa = PBXFileReference; name = "exosuite-loader.png"; path = "../src/assets/exosuite-loader.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5E5CB407643F498E890ECD85 /* exorun-text.png */ = {isa = PBXFileReference; name = "exorun-text.png"; path = "../src/assets/exorun-text.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		31CFE6EFE5DF44E5BF34873B /* exorun-logo.png */ = {isa = PBXFileReference; name = "exorun-logo.png"; path = "../src/assets/exorun-logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F40D845C4393455F9DBBC726 /* FontAwesome5_Pro_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Solid.ttf; path = ../app/assets/fonts/FontAwesome5_Pro_Solid.ttf; sourceTree = "<group>"; };
+		F41A14822EA24F69B56F562E /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Thin.ttf"; path = "../app/theme/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; };
+		FB75D356B1854A83AEAAFBBD /* RNLocalize.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNLocalize.xcodeproj; path = "../node_modules/react-native-localize/ios/RNLocalize.xcodeproj"; sourceTree = "<group>"; };
+		FDB2C2C801364564A848AC2A /* FontAwesome5_Pro_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Brands.ttf; path = ../app/assets/fonts/FontAwesome5_Pro_Brands.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -401,7 +457,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDFD5D1D2187B93800678D18 /* libSplashScreen.a in Frameworks */,
+				BD1A081E2204B31F000294B9 /* libSplashScreen.a in Frameworks */,
+				BD156AB22203E00200340464 /* JavaScriptCore.framework in Frameworks */,
+				BD5901C321FFFAF900999D3A /* libReactNativeConfig.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -415,7 +473,9 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				658D6F91417FFF9FC45B86DB /* libPods-ExoRun.a in Frameworks */,
+				F180A72CDEFA46419EBC06A8 /* libRNGestureHandler.a in Frameworks */,
+				317943E7024F440F9FF9FFBF /* libRNLocalize.a in Frameworks */,
+				5C7CB74DB86A84D6B4021A48 /* libPods-ExoRun.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,16 +567,16 @@
 				3DAD3EA71DF850E9000B6D8A /* libyoga.a */,
 				3DAD3EA91DF850E9000B6D8A /* libcxxreact.a */,
 				3DAD3EAB1DF850E9000B6D8A /* libcxxreact.a */,
-				3DAD3EAD1DF850E9000B6D8A /* libjschelpers.a */,
-				3DAD3EAF1DF850E9000B6D8A /* libjschelpers.a */,
 				2DF0FFDF2056DD460020B375 /* libjsinspector.a */,
 				2DF0FFE12056DD460020B375 /* libjsinspector-tvOS.a */,
 				2DF0FFE32056DD460020B375 /* libthird-party.a */,
 				2DF0FFE52056DD460020B375 /* libthird-party.a */,
 				2DF0FFE72056DD460020B375 /* libdouble-conversion.a */,
 				2DF0FFE92056DD460020B375 /* libdouble-conversion.a */,
-				2DF0FFEB2056DD460020B375 /* libprivatedata.a */,
-				2DF0FFED2056DD460020B375 /* libprivatedata-tvOS.a */,
+				BD156AA82203E00200340464 /* libjsi.a */,
+				BD156AAA2203E00200340464 /* libjsiexecutor.a */,
+				BD156AAC2203E00200340464 /* libjsi-tvOS.a */,
+				BD156AAE2203E00200340464 /* libjsiexecutor-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -524,8 +584,11 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BDB9A9152212540400E9B720 /* RNSound.framework */,
+				BD156A812203E00200340464 /* JavaScriptCore.framework */,
+				BD59016B21FFF79700999D3A /* libreact-native-config.a */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
-				3F2D124ECAF960858A72EF0C /* libPods-ExoRun.a */,
+				73B3C33A95F76653E82774E8 /* libPods-ExoRun.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -551,7 +614,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				BDFD5D172187B91600678D18 /* SplashScreen.xcodeproj */,
+				BD1A07F02204B312000294B9 /* SplashScreen.xcodeproj */,
+				BD5901BA21FFFADF00999D3A /* ReactNativeConfig.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -564,6 +628,8 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
+				76A24A1A8BCF43689614CED9 /* RNGestureHandler.xcodeproj */,
+				FB75D356B1854A83AEAAFBBD /* RNLocalize.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -619,42 +685,52 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BD1A07F12204B312000294B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BD1A081D2204B312000294B9 /* libSplashScreen.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BD5901BB21FFFADF00999D3A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BD5901C021FFFADF00999D3A /* libReactNativeConfig.a */,
+				BD5901C221FFFADF00999D3A /* libReactNativeConfig-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BD6F7077220A323A007DDA8F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BD6F707C220A323A007DDA8F /* libRNLocalize.a */,
+				BD6F707E220A323A007DDA8F /* libRNLocalize-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BD994B8C21FF816600814133 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BD994B9021FF816600814133 /* libRNGestureHandler.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		BDA48B3821876FB90075F523 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
+				AF47452D70664BCCA8DE57C0 /* libRNGestureHandler.a */,
+				0304CEC153B541BC8E8DF6E1 /* libRNLocalize.a */,
 			);
 			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		BDFD5D182187B91600678D18 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				BDFD5D1C2187B91600678D18 /* libSplashScreen.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		C9569C408DDD444CA89A9C39 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				912D70081F3E473896F53DC1 /* Montserrat-Black.ttf */,
-				6C0A8771CA484542BD93995B /* Montserrat-BlackItalic.ttf */,
-				6471180C777D436B8D9A4350 /* Montserrat-Bold.ttf */,
-				E3932E10917C414DB2AD5AD6 /* Montserrat-BoldItalic.ttf */,
-				9A8D613EE9564B9DAA18D47F /* Montserrat-ExtraBold.ttf */,
-				BC55AF30AD05423D9B8B6891 /* Montserrat-ExtraBoldItalic.ttf */,
-				9E1AEACC79C04C008DA4721E /* Montserrat-ExtraLight.ttf */,
-				C65BFDDD8983410092BCD78B /* Montserrat-ExtraLightItalic.ttf */,
-				DBFB21407A1E48A1A980FA80 /* Montserrat-Italic.ttf */,
-				18FF816F1DBB4944BD710048 /* Montserrat-Light.ttf */,
-				C7C1D5548128402B89AFBD6F /* Montserrat-LightItalic.ttf */,
-				2B66A61D78134F728EDA8243 /* Montserrat-Medium.ttf */,
-				E7243143C95649BCB8B6262D /* Montserrat-MediumItalic.ttf */,
-				1E6110B902F94B1892CF5F36 /* Montserrat-Regular.ttf */,
-				34F82F71BF654827A562ECD0 /* Montserrat-SemiBold.ttf */,
-				58F517479080411A9137F900 /* Montserrat-SemiBoldItalic.ttf */,
-				61FDB2C22E9E4CCF96808E82 /* Montserrat-Thin.ttf */,
-				29F1BCBCE69D4641B0752CDA /* Montserrat-ThinItalic.ttf */,
 				C7C7569413174DBFA44E8883 /* Entypo.ttf */,
 				94D07F81C34047729ADDE2C5 /* EvilIcons.ttf */,
 				CA1F1436B39547AF96D60A8F /* FontAwesome.ttf */,
@@ -670,10 +746,32 @@
 				DC391E74C3714E8990A6BD3F /* FontAwesome5_Brands.ttf */,
 				0031303B0C974BB3BA2A8585 /* FontAwesome5_Regular.ttf */,
 				CB3CEE548CA44021B5A43FDF /* FontAwesome5_Solid.ttf */,
-				0340D16059AC4A7498BBF204 /* exosuite-logo.png */,
-				0BE3A9CD63334FD99A6E96D2 /* exosuite-loader.png */,
-				5E5CB407643F498E890ECD85 /* exorun-text.png */,
-				31CFE6EFE5DF44E5BF34873B /* exorun-logo.png */,
+				708AFFAE2A154722BCC04C66 /* Montserrat-Black.ttf */,
+				42BF0D12A65244C29F933BCE /* Montserrat-BlackItalic.ttf */,
+				DB7AAD770651441AB237C867 /* Montserrat-Bold.ttf */,
+				329ABDC3593F4F3990945040 /* Montserrat-BoldItalic.ttf */,
+				6516FF5F5F3A4EA580B0B372 /* Montserrat-ExtraBold.ttf */,
+				BA7BABC56F6540068DBE0A10 /* Montserrat-ExtraBoldItalic.ttf */,
+				8A64A4647B974AA089203EBC /* Montserrat-ExtraLight.ttf */,
+				9802B7535DEA4CC6BA8A594B /* Montserrat-ExtraLightItalic.ttf */,
+				0D46389703C34A56A42B3F51 /* Montserrat-Italic.ttf */,
+				C85D5A0B43CE44619E2B967F /* Montserrat-Light.ttf */,
+				42A36FF002FF4E94A3EFDA00 /* Montserrat-LightItalic.ttf */,
+				E8851333CCDF4E24B5B8033D /* Montserrat-Medium.ttf */,
+				98456AB3EB0C400E8FC3F768 /* Montserrat-MediumItalic.ttf */,
+				27F8004B8D744B6B98EAF112 /* Montserrat-Regular.ttf */,
+				A35727FAEA054B18B341FC02 /* Montserrat-SemiBold.ttf */,
+				0595831E1A5247778BA9B32F /* Montserrat-SemiBoldItalic.ttf */,
+				F41A14822EA24F69B56F562E /* Montserrat-Thin.ttf */,
+				274A954A41B24C38A1AAD858 /* Montserrat-ThinItalic.ttf */,
+				C850D838FEE941FEB6594FA2 /* exorun-logo.png */,
+				0ABCF0851CFE497DA74C2CE8 /* exorun-text.png */,
+				7EAA077044834AD595F8A96A /* exosuite-loader.png */,
+				95B8143427204D5CA1D5BA2C /* exosuite-logo.png */,
+				FDB2C2C801364564A848AC2A /* FontAwesome5_Pro_Brands.ttf */,
+				77C12D0295134EFE83F2972B /* FontAwesome5_Pro_Light.ttf */,
+				BE1020291E04494AA9A3B464 /* FontAwesome5_Pro_Regular.ttf */,
+				F40D845C4393455F9DBBC726 /* FontAwesome5_Pro_Solid.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -690,7 +788,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				117983023D6F08E3BB304BEB /* [CP] Copy Pods Resources */,
+				BF02451C5378309DFE34731B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -781,8 +879,20 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
-					ProductGroup = BDFD5D182187B91600678D18 /* Products */;
-					ProjectRef = BDFD5D172187B91600678D18 /* SplashScreen.xcodeproj */;
+					ProductGroup = BD5901BB21FFFADF00999D3A /* Products */;
+					ProjectRef = BD5901BA21FFFADF00999D3A /* ReactNativeConfig.xcodeproj */;
+				},
+				{
+					ProductGroup = BD994B8C21FF816600814133 /* Products */;
+					ProjectRef = 76A24A1A8BCF43689614CED9 /* RNGestureHandler.xcodeproj */;
+				},
+				{
+					ProductGroup = BD6F7077220A323A007DDA8F /* Products */;
+					ProjectRef = FB75D356B1854A83AEAAFBBD /* RNLocalize.xcodeproj */;
+				},
+				{
+					ProductGroup = BD1A07F12204B312000294B9 /* Products */;
+					ProjectRef = BD1A07F02204B312000294B9 /* SplashScreen.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -912,20 +1022,6 @@
 			remoteRef = 2DF0FFE82056DD460020B375 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		2DF0FFEB2056DD460020B375 /* libprivatedata.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libprivatedata.a;
-			remoteRef = 2DF0FFEA2056DD460020B375 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2DF0FFED2056DD460020B375 /* libprivatedata-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libprivatedata-tvOS.a";
-			remoteRef = 2DF0FFEC2056DD460020B375 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1003,20 +1099,6 @@
 			remoteRef = 3DAD3EAA1DF850E9000B6D8A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3DAD3EAD1DF850E9000B6D8A /* libjschelpers.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libjschelpers.a;
-			remoteRef = 3DAD3EAC1DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3DAD3EAF1DF850E9000B6D8A /* libjschelpers.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libjschelpers.a;
-			remoteRef = 3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1052,11 +1134,74 @@
 			remoteRef = ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BDFD5D1C2187B91600678D18 /* libSplashScreen.a */ = {
+		BD156AA82203E00200340464 /* libjsi.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libjsi.a;
+			remoteRef = BD156AA72203E00200340464 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BD156AAA2203E00200340464 /* libjsiexecutor.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libjsiexecutor.a;
+			remoteRef = BD156AA92203E00200340464 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BD156AAC2203E00200340464 /* libjsi-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libjsi-tvOS.a";
+			remoteRef = BD156AAB2203E00200340464 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BD156AAE2203E00200340464 /* libjsiexecutor-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libjsiexecutor-tvOS.a";
+			remoteRef = BD156AAD2203E00200340464 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BD1A081D2204B312000294B9 /* libSplashScreen.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libSplashScreen.a;
-			remoteRef = BDFD5D1B2187B91600678D18 /* PBXContainerItemProxy */;
+			remoteRef = BD1A081C2204B312000294B9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BD5901C021FFFADF00999D3A /* libReactNativeConfig.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativeConfig.a;
+			remoteRef = BD5901BF21FFFADF00999D3A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BD5901C221FFFADF00999D3A /* libReactNativeConfig-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libReactNativeConfig-tvOS.a";
+			remoteRef = BD5901C121FFFADF00999D3A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BD6F707C220A323A007DDA8F /* libRNLocalize.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNLocalize.a;
+			remoteRef = BD6F707B220A323A007DDA8F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BD6F707E220A323A007DDA8F /* libRNLocalize-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNLocalize-tvOS.a";
+			remoteRef = BD6F707D220A323A007DDA8F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BD994B9021FF816600814133 /* libRNGestureHandler.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNGestureHandler.a;
+			remoteRef = BD994B8F21FF816600814133 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1067,24 +1212,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				61313262163D4573B4264E1E /* Montserrat-Black.ttf in Resources */,
-				48684A6D91D64CA38FF44D01 /* Montserrat-BlackItalic.ttf in Resources */,
-				9F09F404AF7B4D30A7236FFF /* Montserrat-Bold.ttf in Resources */,
-				0816E0C49716488088E521ED /* Montserrat-BoldItalic.ttf in Resources */,
-				DC7F306EDC2341B9A14E4743 /* Montserrat-ExtraBold.ttf in Resources */,
-				57DC7C3FFA3A42F89CC35B17 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
-				D20FE44A6E234B67AD7D836E /* Montserrat-ExtraLight.ttf in Resources */,
-				2201529568FD483790958A2A /* Montserrat-ExtraLightItalic.ttf in Resources */,
-				D022E6FEB5BC4F30B2DB2C67 /* Montserrat-Italic.ttf in Resources */,
-				E7CAFDAB67E7440A934FA173 /* Montserrat-Light.ttf in Resources */,
-				8A1FFE32822F4DB0A97E65E5 /* Montserrat-LightItalic.ttf in Resources */,
-				E8C65E23E4AE4619A4EDE254 /* Montserrat-Medium.ttf in Resources */,
-				97429159499742339140F426 /* Montserrat-MediumItalic.ttf in Resources */,
-				431E7A77F51944D6A1D39ECC /* Montserrat-Regular.ttf in Resources */,
-				52E37FD345FA4277A3BDF7FE /* Montserrat-SemiBold.ttf in Resources */,
-				88073CF2068647FCB7D9B9A9 /* Montserrat-SemiBoldItalic.ttf in Resources */,
-				2153A952004E48508FF44D6D /* Montserrat-Thin.ttf in Resources */,
-				6AF86751A89448478E719538 /* Montserrat-ThinItalic.ttf in Resources */,
 				673DED9FC53845AB9A8ABD9E /* Entypo.ttf in Resources */,
 				E02FBF94D0E342D4ADCCE83D /* EvilIcons.ttf in Resources */,
 				A3853C8905E0492DA41C1287 /* FontAwesome.ttf in Resources */,
@@ -1100,10 +1227,32 @@
 				D661EB6C826D461099809324 /* FontAwesome5_Brands.ttf in Resources */,
 				929D43BC030E4E8EAC28DE59 /* FontAwesome5_Regular.ttf in Resources */,
 				B4BB91CDAA1B454C9F2042C0 /* FontAwesome5_Solid.ttf in Resources */,
-				5662EEF8BD8B47F78C92E7D5 /* exosuite-logo.png in Resources */,
-				FCB89281627C4F8ABB447BF9 /* exosuite-loader.png in Resources */,
-				21D669D3CC7240488EA21E8E /* exorun-text.png in Resources */,
-				38862917468F4E32A65F8950 /* exorun-logo.png in Resources */,
+				321C20E3DFA3464FBC0772EA /* Montserrat-Black.ttf in Resources */,
+				E79338CA442E44A59E4F7C3C /* Montserrat-BlackItalic.ttf in Resources */,
+				19CDF3A248C248F09DF7FF52 /* Montserrat-Bold.ttf in Resources */,
+				EC9C9B55571041FD8530DACE /* Montserrat-BoldItalic.ttf in Resources */,
+				F9C8B6BA08E942249101BC8D /* Montserrat-ExtraBold.ttf in Resources */,
+				C9AEC0D76A304F88869DAF17 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
+				24758B93357F4F5D8AFDD2A2 /* Montserrat-ExtraLight.ttf in Resources */,
+				1B24482722FA40B1AFC44914 /* Montserrat-ExtraLightItalic.ttf in Resources */,
+				E442013B9C2B4632BFBA0CDD /* Montserrat-Italic.ttf in Resources */,
+				74F1828C465E41708740E79A /* Montserrat-Light.ttf in Resources */,
+				49ABCCE995324BC686E64366 /* Montserrat-LightItalic.ttf in Resources */,
+				7F5B766A2C514F8B98FE8767 /* Montserrat-Medium.ttf in Resources */,
+				E9C408F760DD42EE9BF4B2DF /* Montserrat-MediumItalic.ttf in Resources */,
+				46245D3D72264FE68EDE77CB /* Montserrat-Regular.ttf in Resources */,
+				F3C22C1E538F4739AFEB9FAF /* Montserrat-SemiBold.ttf in Resources */,
+				7A60039FC4364F83ABDD31DE /* Montserrat-SemiBoldItalic.ttf in Resources */,
+				A5EF9CCD22BB40C797C86292 /* Montserrat-Thin.ttf in Resources */,
+				6851A9162159494A8697B589 /* Montserrat-ThinItalic.ttf in Resources */,
+				F70FFBF2695C4AC0946E1F97 /* exorun-logo.png in Resources */,
+				87FB472175DE469E934897A5 /* exorun-text.png in Resources */,
+				1B9A3D6AA4084836AB45E42B /* exosuite-loader.png in Resources */,
+				F071F6174C684A1F85BEDBAF /* exosuite-logo.png in Resources */,
+				5F801A899BD5414E82D16991 /* FontAwesome5_Pro_Brands.ttf in Resources */,
+				971C09C13FD34D648F66DF50 /* FontAwesome5_Pro_Light.ttf in Resources */,
+				E85F1B263E3F478380ED6DBF /* FontAwesome5_Pro_Regular.ttf in Resources */,
+				86B8A5BD510348F1A67BDC6A /* FontAwesome5_Pro_Solid.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1122,9 +1271,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=/usr/local/opt/node@8/bin/node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
+			shellScript = "export NODE_BINARY=/usr/local/bin/node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		117983023D6F08E3BB304BEB /* [CP] Copy Pods Resources */ = {
+		BF02451C5378309DFE34731B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1132,7 +1281,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ExoRun/Pods-ExoRun-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ExoRun/Pods-ExoRun-resources.sh",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -1171,7 +1320,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExoRun/Pods-ExoRun-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExoRun/Pods-ExoRun-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E88A4D62A0BA1ED89D1E7B12 /* [CP] Check Pods Manifest.lock */ = {
@@ -1226,10 +1375,15 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager/**",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-localize/ios",
 				);
 				INFOPLIST_FILE = ExoRun/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ExoRun\"",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1255,10 +1409,15 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager/**",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-localize/ios",
 				);
 				INFOPLIST_FILE = ExoRun/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ExoRun\"",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1304,6 +1463,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
+				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1339,6 +1501,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
+				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
