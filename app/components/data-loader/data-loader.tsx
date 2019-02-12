@@ -16,8 +16,6 @@ import { Button, Text } from "@components"
 import { FormRow } from "@components/form-row"
 import { color } from "@theme"
 import { HttpRequestError } from "@exceptions"
-import { HttpResponse } from "@services/api"
-import { translate } from "@i18n"
 import { Platform } from "@services/device"
 
 
@@ -82,9 +80,6 @@ export const defaultSoundCallback = () => {
 const baseDelayedIOS: number = 550
 const baseDelayedAndroid: number = 1100
 
-const baseError = {
-  error: [],
-}
 
 /**
  * Loader with lottie animation on error or success
@@ -128,26 +123,6 @@ export class DataLoader extends React.Component<DataLoaderProps> {
     this._instance = value
   }
 
-  private static _getErrorFromHttpRequestError(httpRequestError: HttpRequestError): Object {
-    let errors
-    switch (httpRequestError.code()) {
-      case HttpResponse.UNAUTHORIZED: {
-        errors = baseError
-        errors.error = [translate("errors.unauthorized")]
-        break
-      }
-      case HttpResponse.UNPROCESSABLE_ENTITY: {
-        errors = httpRequestError.happened()
-        break
-      }
-      default: {
-        errors = baseError
-        errors.error = [translate("errors.unknown")]
-        break
-      }
-    }
-    return errors
-  }
 
   /*
   * call this method when you want to display the error modal
@@ -169,7 +144,7 @@ export class DataLoader extends React.Component<DataLoaderProps> {
     this._status = LoaderState.ERROR
 
     if (errors instanceof HttpRequestError) {
-        this._errors = DataLoader._getErrorFromHttpRequestError(errors)
+        this._errors = errors.formattedErrors()
     } else {
       this._errors = errors
     }
