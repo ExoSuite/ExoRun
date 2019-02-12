@@ -1,6 +1,6 @@
 require("../app/components/text/text.story")
 require("../app/components/button/button.story")
-require("../app/components/loader/loader.story")
+require("../app/components/data-loader/data-loader.story")
 require("../app/components/fontawesome-icon/fontawesome-icon.story")
 require("../app/components/form-row/form-row.story")
 require("../app/components/switch/switch.story")

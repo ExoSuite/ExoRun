@@ -1,5 +1,5 @@
 import * as React from "react"
-import { View, TextInput, TextStyle, ViewStyle } from "react-native"
+import { TextInput, TextStyle, View, ViewStyle } from "react-native"
 import { color, spacing, typography } from "@theme"
 import { translate } from "@i18n"
 import { Text } from "../text"
@@ -39,7 +39,7 @@ const PRESETS: { [name: string]: ViewStyle } = {
 
 const enhance = (style, styleOverride) => {
   if (Array.isArray(styleOverride)) {
-    return reduce((acc,term) => {
+    return reduce((acc, term) => {
       return { ...acc, ...term }
     }, style, styleOverride)
   } else {
@@ -76,7 +76,7 @@ export class TextField extends React.Component<TextFieldProps, {}> {
 
     return (
       <View style={containerStyle}>
-        <Text preset="fieldLabel" tx={labelTx} text={label} />
+        <Text preset="fieldLabel" tx={labelTx} text={label}/>
         <TextInput
           placeholder={actualPlaceholder}
           placeholderTextColor={color.palette.lighterGrey}

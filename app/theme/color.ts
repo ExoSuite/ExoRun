@@ -31,6 +31,8 @@ export const color = {
 
   secondary: palette.green,
 
+  success: palette.lightGreen,
+
   /**
    * The main tinting color, but darker.
    */
@@ -58,12 +60,12 @@ export const color = {
    * Storybook background for Text stories, or any stories where
    * the text color is color.text, which is white by default, and does not show
    * in Stories against the default white background
-  */
-  storybookDarkBg: palette.black,
+   */
+  storybookDarkBg: palette.backgroundDarker,
 
   /**
    * Storybook text color for stories that display Text components against the
    * white background
-  */
-   storybookTextColor: palette.black,
+   */
+  storybookTextColor: palette.white,
 }

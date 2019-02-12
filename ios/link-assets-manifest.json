@@ -74,19 +74,19 @@
       "sha1": "62dcb447998b27a83872d75439ce35124fe08aa7"
     },
     {
-      "path": "app/assets/fonts/fa-brands-400.ttf",
+      "path": "app/assets/fonts/FontAwesome5_Pro_Brands.ttf",
       "sha1": "bc36e10ee56e2fdcd903e667cebfc51dfa0d223c"
     },
     {
-      "path": "app/assets/fonts/fa-light-300.ttf",
+      "path": "app/assets/fonts/FontAwesome5_Pro_Light.ttf",
       "sha1": "2cb62102299e79150cc08b695b7ddf80425098b3"
     },
     {
-      "path": "app/assets/fonts/fa-regular-400.ttf",
+      "path": "app/assets/fonts/FontAwesome5_Pro_Regular.ttf",
       "sha1": "40a3071cbc5fa15809a9bb94ecda3b6aed75ef1d"
     },
     {
-      "path": "app/assets/fonts/fa-solid-900.ttf",
+      "path": "app/assets/fonts/FontAwesome5_Pro_Solid.ttf",
       "sha1": "9100b3f65cfaadcaf8c456101d0e6ca1844a9ba1"
     },
     {

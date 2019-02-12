@@ -1,5 +1,5 @@
 import * as React from "react"
-import { TouchableOpacity, TextStyle, ViewStyle, View } from "react-native"
+import { TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Text } from "../text"
 import { color, spacing } from "../../theme"
 import { CheckboxProps } from "./checkbox.props"
@@ -36,7 +36,7 @@ export function Checkbox(props: CheckboxProps) {
 
   let rootStyle
   if (Array.isArray(props.style)) {
-    rootStyle = reduce((acc,term) => {
+    rootStyle = reduce((acc, term) => {
       return { ...acc, ...term }
     }, ROOT, props.style)
   } else {
@@ -45,7 +45,7 @@ export function Checkbox(props: CheckboxProps) {
 
   let outlineStyle
   if (Array.isArray(props.outlineStyle)) {
-    outlineStyle = reduce((acc,term) => {
+    outlineStyle = reduce((acc, term) => {
       return { ...acc, ...term }
     }, OUTLINE, props.outlineStyle)
   } else {
@@ -54,7 +54,7 @@ export function Checkbox(props: CheckboxProps) {
 
   let fillStyle
   if (Array.isArray(props.fillStyle)) {
-    fillStyle = reduce((acc,term) => {
+    fillStyle = reduce((acc, term) => {
       return { ...acc, ...term }
     }, FILL, props.fillStyle)
   } else {
@@ -69,8 +69,8 @@ export function Checkbox(props: CheckboxProps) {
       onPress={onPress}
       style={rootStyle}
     >
-      <View style={outlineStyle}>{props.value && <View style={fillStyle} />}</View>
-      <Text text={props.text} tx={props.tx} numberOfLines={numberOfLines} style={LABEL} />
+      <View style={outlineStyle}>{props.value && <View style={fillStyle}/>}</View>
+      <Text text={props.text} tx={props.tx} numberOfLines={numberOfLines} style={LABEL}/>
     </TouchableOpacity>
   )
 }

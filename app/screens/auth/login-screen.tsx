@@ -23,13 +23,17 @@ import { Button, Header, Screen, Text, TextField } from "@components"
 import { color, spacing } from "@theme"
 import { Asset } from "@services/asset"
 import { FormRow } from "@components/form-row"
-import { Loader } from "@components/loader"
-import { Api } from "@services/api"
+import { Api, ITokenResponse } from "@services/api"
 import { Injection } from "@services/injections"
+import { SoundPlayer } from "@services/sound-player"
+import { DataLoader } from "@components/data-loader"
+import { HttpRequestError } from "@exceptions"
+import { ApiResponse } from "apisauce"
+import { Platform } from "@services/device"
 
 export interface LoginScreenProps extends NavigationScreenProps<{}> {
   api: Api,
-  loader: Loader
+  soundPlayer: SoundPlayer
 }
 
 const EXOSUITE: ImageStyle = {
@@ -96,7 +100,7 @@ const DismissKeyboard = ({ children }) => (
   </TouchableWithoutFeedback>
 )
 
-@inject(Injection.Api)
+@inject(Injection.Api, Injection.SoundPlayer)
 @observer
 export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 
@@ -110,15 +114,32 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 
   constructor(props) {
     super(props)
-    console.tron.logImportant(props.loader)
     this.goBack = throttle(props.navigation.goBack, 3000)
     this.authorizeLogin = throttle(this._authorizeLogin, 5000)
   }
 
+  private manageResponseError(response: HttpRequestError) {
+    const { soundPlayer } = this.props
+    DataLoader.instance.hasErrors(response, () => soundPlayer.error())
+  }
+
   @autobind
   async _authorizeLogin() {
-    const { api } = this.props
-    await api.login(this.email, this.password)
+    const { api, soundPlayer } = this.props
+    DataLoader.instance.toggleIsVisible()
+
+    const response: ApiResponse<ITokenResponse> | HttpRequestError =
+      await api.login(this.email, this.password)
+        .catch((e: HttpRequestError) => e)
+
+    if (response instanceof HttpRequestError) {
+      this.manageResponseError(response)
+    } else {
+      console.tron.log(response)
+      DataLoader.instance.success(() => soundPlayer.success(), () => {
+
+      })
+    }
   }
 
   @action.bound
@@ -155,12 +176,12 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
     if (!this.isValidEmail && this.email != null) {
       return <Text
         tx={"auth.login.bad-email"}
-        style={[{color: color.palette.orange}, EMAIL_TEXT]
-      }/>
+        style={[{ color: color.palette.orange }, EMAIL_TEXT]
+        }/>
     } else if (this.isValidEmail && this.email) {
       return <Text
         tx={"auth.login.good-email"}
-        style={[{color: color.palette.green}, EMAIL_TEXT]}
+        style={[{ color: color.palette.green }, EMAIL_TEXT]}
       />
     }
     return null
@@ -242,17 +263,19 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
               </Button>
             </FormRow>
 
-            <KeyboardSpacer/>
+            {Platform.iOS && <KeyboardSpacer/>}
           </Screen>
 
-          <View style={FOOTER_CONTAINER}>
-            <Text preset="bold" tx="auth.powered"/>
-            <Image
-              source={Asset.Locator("exosuite-logo")}
-              style={EXOSUITE}
-              resizeMode="contain"
-            />
-          </View>
+          {Platform.iOS && (
+            <View style={FOOTER_CONTAINER}>
+              <Text preset="bold" tx="auth.powered"/>
+              <Image
+                source={Asset.Locator("exosuite-logo")}
+                style={EXOSUITE}
+                resizeMode="contain"
+              />
+            </View>
+          )}
 
         </SafeAreaView>
       </DismissKeyboard>

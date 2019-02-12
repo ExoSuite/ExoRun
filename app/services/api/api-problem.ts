@@ -37,7 +37,7 @@ export type GeneralApiProblem =
   /**
    * The data we received is not in the expected format.
    */
-  | { kind: HttpResponse.BAD_DATA }
+  | { kind: HttpResponse.UNPROCESSABLE_ENTITY }
 
   /**
    * request was not with the correct HTTP method.
@@ -73,7 +73,7 @@ export function getGeneralApiProblem(response: ApiResponse<any>): GeneralApiProb
         case 405:
           return { kind: HttpResponse.METHOD_NOT_ALLOWED }
         case 422:
-          return { kind: HttpResponse.BAD_DATA }
+          return { kind: HttpResponse.UNPROCESSABLE_ENTITY }
         default:
           return { kind: HttpResponse.REJECTED }
       }

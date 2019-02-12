@@ -10,7 +10,7 @@ import { reduce } from "ramda"
 export function FormRow(props: FormRowProps) {
   let viewStyle
   if (Array.isArray(props.style)) {
-    viewStyle = reduce((acc,term) => {
+    viewStyle = reduce((acc, term) => {
       return { ...acc, ...term }
     }, PRESETS[props.preset], props.style)
   } else {

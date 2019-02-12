@@ -11,6 +11,7 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
+    "removeComments": true,
     "sourceMap": true,
     "baseUrl": ".",
     "target": "es2015",

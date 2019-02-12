@@ -2,7 +2,7 @@ import { getGeneralApiProblem, HttpResponse } from "@services/api"
 import { ApiErrorResponse } from "apisauce"
 
 test("handles connection errors", () => {
-  expect(getGeneralApiProblem({ problem: "CONNECTION_ERROR"} as ApiErrorResponse<null>)).toEqual({
+  expect(getGeneralApiProblem({ problem: "CONNECTION_ERROR" } as ApiErrorResponse<null>)).toEqual({
     kind: HttpResponse.CANNOT_CONNECT,
     temporary: true,
   })

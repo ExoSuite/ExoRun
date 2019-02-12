@@ -1,7 +1,7 @@
 import * as React from "react"
 import { View, ViewStyle } from "react-native"
 import { storiesOf } from "@storybook/react-native"
-import { StoryScreen, Story, UseCase } from "../../../storybook/views"
+import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { color } from "@theme"
 import { Text } from "./text"
 
@@ -11,7 +11,7 @@ const VIEWSTYLE = {
 }
 const viewStyleArray: ViewStyle[] = [
   VIEWSTYLE,
-  {backgroundColor: "#7fff00"},
+  { backgroundColor: "#7fff00" },
 ]
 
 storiesOf("Text")
@@ -49,13 +49,13 @@ storiesOf("Text")
         usage="Used when you want to pass a value but don't want to open a child."
       >
         <View style={VIEWSTYLE}>
-          <Text text="Heyo!" />
+          <Text text="Heyo!"/>
         </View>
       </UseCase>
       <UseCase text="tx" usage="Used for looking up i18n keys.">
         <View style={VIEWSTYLE}>
-          <Text tx="common.ok" />
-          <Text tx="omglol" />
+          <Text tx="common.ok"/>
+          <Text tx="omglol"/>
         </View>
       </UseCase>
       <UseCase

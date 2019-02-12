@@ -1,4 +1,4 @@
-import { ViewStyle, TextStyle } from "react-native"
+import { TextStyle, ViewStyle } from "react-native"
 import { color, spacing } from "@theme"
 
 /**
@@ -28,6 +28,10 @@ export const viewPresets = {
   primary: { ...BASE_VIEW, backgroundColor: color.palette.blue } as ViewStyle,
 
   secondary: { ...BASE_VIEW, backgroundColor: color.secondary } as ViewStyle,
+
+  success: { ...BASE_VIEW, backgroundColor: color.success } as ViewStyle,
+
+  error: { ...BASE_VIEW, backgroundColor: color.error } as ViewStyle,
 
   primaryFullWidth: { ...BASE_VIEW, backgroundColor: color.palette.blue, width: "100%" } as ViewStyle,
 

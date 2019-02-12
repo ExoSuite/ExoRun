@@ -4,6 +4,7 @@ import { onSnapshot } from "mobx-state-tree"
 import { DEFAULT_REACTOTRON_CONFIG, ReactotronConfig } from "./reactotron-config"
 import { mst } from "reactotron-mst"
 import { commandMiddleware } from "./command-middleware"
+import { IService } from "@services/interfaces"
 
 // Teach TypeScript about the bad things we want to do.
 declare global {
@@ -44,7 +45,7 @@ if (__DEV__) {
  * instance off of `console.tron`. This is only to be consistent with the other
  * services.
  */
-export class Reactotron {
+export class Reactotron implements IService {
   config: ReactotronConfig
   rootStore: any
 

@@ -26,10 +26,16 @@ export const presets = {
    */
   bold: { ...BASE, fontWeight: "bold" } as TextStyle,
 
+  centeredBold: { ...BASE, fontWeight: "bold", textAlign: "center" } as TextStyle,
+
   /**
    * Large headers.
    */
   header: { ...BASE, fontSize: 24, fontWeight: "bold" } as TextStyle,
+
+  error: {...BASE, color: color.error},
+
+  boldError:  {...BASE, color: color.error, fontWeight: "bold"},
 
   /**
    * Large headers.

@@ -1,7 +1,7 @@
 /**
  * The options used to configure the API.
  */
-import { Build, BuiltFor } from "@services/buildDetector"
+import { Build, BuiltFor } from "@services/build-detector"
 
 export interface ApiConfig {
   /**

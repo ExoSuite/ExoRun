@@ -73,7 +73,7 @@ export class Header extends React.Component<HeaderProps, {}> {
               <View style={TITLE_MIDDLE}>
                 <Text style={{ ...TITLE, ...titleStyle }} text={header}/>
               </View>
-          ) :
+            ) :
             (
               <View style={TITLE_MIDDLE}>
                 <Image

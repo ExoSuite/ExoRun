@@ -22,7 +22,7 @@ export function Text(props: TextProps) {
   const presetToUse = presets[preset] || presets.default
   let style
   if (Array.isArray(styleOverride)) {
-    style = reduce((acc,term) => {
+    style = reduce((acc, term) => {
       return { ...acc, ...term }
     }, presetToUse, styleOverride)
   } else {

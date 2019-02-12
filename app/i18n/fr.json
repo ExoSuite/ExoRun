@@ -2,10 +2,12 @@
   "common": {
     "ok": "OK!",
     "cancel": "Cancel",
-    "back": "Back"
+    "back": "Retour"
   },
   "errors": {
-    "invalidEmail": "Invalid email address."
+    "invalidEmail": "Invalid email address.",
+    "unknown": "Oops! An unexpected error seems to have occurred.",
+    "unauthorized": "Oups ! Accès non autorisé !"
   },
   "firstExampleScreen": {
     "poweredBy": "POWERED BY BOWSER",
@@ -25,7 +27,6 @@
   "auth": {
     "powered": "Powered by ",
     "slogan": "La technologie au service du sport.",
-    "back": "Retour",
     "login": {
       "header": "Se connecter",
       "login": "Se connecter à ExoRun",

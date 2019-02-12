@@ -1,4 +1,4 @@
-import { load, loadString, save, saveString, clear, remove } from "../../app/utils/storage"
+import { clear, load, loadString, remove, save, saveString } from "../../app/utils/storage"
 
 // fixtures
 const VALUE_OBJECT = { x: 1 }

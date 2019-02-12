@@ -11,6 +11,7 @@ jest.mock("TextInput", () => {
       )
     }
   }
+
   TextInput.propTypes = RealComponent.propTypes
   return TextInput
 })

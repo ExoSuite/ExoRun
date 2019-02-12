@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ViewStyle, Animated, Easing, TouchableWithoutFeedback } from "react-native"
+import { Animated, Easing, TouchableWithoutFeedback, ViewStyle } from "react-native"
 import { color } from "@theme"
 import { SwitchProps } from "./switch.props"
 import { reduce } from "ramda"
@@ -48,7 +48,7 @@ const THUMB: ViewStyle = {
 
 const enhance = (style, newStyles) => {
   if (Array.isArray(newStyles)) {
-    return reduce((acc,term) => {
+    return reduce((acc, term) => {
       return { ...acc, ...term }
     }, style, newStyles)
   } else {
@@ -106,10 +106,10 @@ export class Switch extends React.PureComponent<SwitchProps, SwitchState> {
     trackStyle = enhance(trackStyle, {
       backgroundColor: this.props.value ? ON_COLOR : OFF_COLOR,
       borderColor: this.props.value ? BORDER_ON_COLOR : BORDER_OFF_COLOR,
-      })
+    })
     trackStyle = enhance(trackStyle,
       this.props.value ? this.props.trackOnStyle : this.props.trackOffStyle,
-      )
+    )
 
     let thumbStyle = THUMB
     thumbStyle = enhance(thumbStyle, {
@@ -122,7 +122,7 @@ export class Switch extends React.PureComponent<SwitchProps, SwitchState> {
     return (
       <TouchableWithoutFeedback onPress={this.handlePress} style={style}>
         <Animated.View style={trackStyle}>
-          <Animated.View style={thumbStyle} />
+          <Animated.View style={thumbStyle}/>
         </Animated.View>
       </TouchableWithoutFeedback>
     )
