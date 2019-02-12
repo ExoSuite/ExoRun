@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Animated Data SplashScreen Error 1`] = `
+exports[`Storyshots Animated Data Loader Error 1`] = `
 <View
   onLayout={[Function]}
   style={
@@ -311,7 +311,7 @@ exports[`Storyshots Animated Data SplashScreen Error 1`] = `
 </View>
 `;
 
-exports[`Storyshots Animated Data SplashScreen Success 1`] = `
+exports[`Storyshots Animated Data Loader Success 1`] = `
 <View
   onLayout={[Function]}
   style={
@@ -1558,7 +1558,7 @@ exports[`Storyshots Checkbox Styling 1`] = `
                     }
                   }
                 >
-                  We’re an App Design & Development Team. Experts in mobile & web technologies. We create beautiful, functional mobile apps and websites.
+                  We’re an App Design & Development Team. Experts in mobile & web technologies. We create beautiful, functional mobile apps and websites. 
                 </Text>
               </View>
             </View>
@@ -5305,8 +5305,8 @@ exports[`Storyshots Text Passing Content 1`] = `
                   }
                 }
               >
-
-                Hello
+                 
+                Hello 
                 <Text
                   style={
                     Object {
@@ -5462,10 +5462,10 @@ exports[`Storyshots Text Style Presets 1`] = `
                 }
               >
                 Check out
-
+                
 
                 my
-
+                
 
                 line height
               </Text>
@@ -5827,8 +5827,8 @@ exports[`Storyshots Text Styling 1`] = `
                   }
                 }
               >
-
-                Hello
+                 
+                Hello 
                 <Text
                   style={
                     Object {
@@ -6200,7 +6200,7 @@ exports[`Storyshots TextField Ref Forwarding 1`] = `
                 Ref Forwarding
               </Text>
             </View>
-
+            
           </View>
           <View
             style={
