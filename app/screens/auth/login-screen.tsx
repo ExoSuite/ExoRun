@@ -125,12 +125,11 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 
   @autobind
   async _authorizeLogin() {
-    const { api, soundPlayer } = this.props
+    /*const { api, soundPlayer } = this.props
     DataLoader.instance.toggleIsVisible()
 
     const response: ApiResponse<ITokenResponse> | HttpRequestError =
-      await api.login(this.email, this.password)
-        .catch((e: HttpRequestError) => e)
+      await api.login(this.email, this.password).catch((e: HttpRequestError) => e)
 
     if (response instanceof HttpRequestError) {
       this.manageResponseError(response)
@@ -139,7 +138,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
       DataLoader.instance.success(() => soundPlayer.success(), () => {
 
       })
-    }
+    }*/
   }
 
   @action.bound

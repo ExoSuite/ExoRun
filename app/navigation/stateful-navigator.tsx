@@ -5,7 +5,7 @@ import { getNavigation, NavigationScreenProp, NavigationState } from "react-navi
 
 import { RootNavigator } from "./root-navigator"
 import { NavigationStore } from "./navigation-store"
-import { Loader } from "@screens/auth/loader"
+import { SplashScreen, ImageProperties } from "@screens/auth/splash-screen"
 import autobind from "autobind-decorator"
 import { Asset } from "@services/asset"
 import { color } from "@theme"
@@ -16,12 +16,17 @@ interface StatefulNavigatorProps {
   navigationStore?: NavigationStore
 }
 
+const IMAGE_STYLE: ImageProperties = {
+  height: Screen.Height,
+  width: Screen.Width
+}
+
 @inject(Injection.NavigationStore)
 @observer
 export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {}> {
   currentNavProp: NavigationScreenProp<NavigationState>
 
-  loader: Loader = null
+  loader: SplashScreen = null
 
   getCurrentNavigation = () => {
     return this.currentNavProp
@@ -30,6 +35,7 @@ export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {
   @autobind
   removeLoader() {
     this.loader.animate()
+    this.props.navigationStore.navigateTo("HomeScreen")
   }
 
   async componentDidMount() {
@@ -47,18 +53,18 @@ export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {
       dispatch,
       actionSubscribers(),
       {},
-      this.getCurrentNavigation,
+      this.getCurrentNavigation
     )
 
     return (
-      <Loader
-        ref={(ref: Loader) => this.loader = ref}
+      <SplashScreen
+        ref={(ref: SplashScreen) => this.loader = ref}
         backgroundColor={color.palette.backgroundDarker}
-        imageProperties={{ height: Screen.Height, width: Screen.Width }}
+        imageProperties={IMAGE_STYLE}
         imageSource={Asset.Locator("exosuite-loader")}
       >
         <RootNavigator navigation={this.currentNavProp}/>
-      </Loader>
+      </SplashScreen>
     )
   }
 }

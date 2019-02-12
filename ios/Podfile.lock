@@ -53,6 +53,8 @@ PODS:
     - React/Core
   - RNVectorIcons (6.2.0):
     - React
+  - ViroKit_static_lib (1.0)
+  - ViroReact (1.0)
   - yoga (0.58.4.React)
 
 DEPENDENCIES:
@@ -69,6 +71,8 @@ DEPENDENCIES:
   - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNSound (from `../node_modules/react-native-sound`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+  - ViroKit_static_lib (from `../node_modules/react-viro/ios/dist/ViroRenderer/static_lib`)
+  - ViroReact (from `../node_modules/react-viro/ios/`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -93,6 +97,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-sound"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
+  ViroKit_static_lib:
+    :path: "../node_modules/react-viro/ios/dist/ViroRenderer/static_lib"
+  ViroReact:
+    :path: "../node_modules/react-viro/ios/"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -103,12 +111,14 @@ SPEC CHECKSUMS:
   glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
   lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
   lottie-react-native: 216bd1295fa67b159fdbe5562a7d7b6371da6422
-  React: 7af71843a14775cf04b26a9ac62cf10f44d751ed
+  React: 6b36b9732ee830d06b470dc4ecdd6837718abe63
   RNKeychain: 3aa3cf891a09a0d18d306862ab2bb9e106079b24
   RNSound: a1d01988e043aed5dbb476c2152b5ffb02446750
   RNVectorIcons: b6b131d2fdc2e240f7aba41296df869141443793
+  ViroKit_static_lib: ae9c112ac4b128f8d4466fc581c7b07a0264754d
+  ViroReact: 7ec32276dcd1883662b4587eaedfff67f7fc3625
   yoga: a767b95565bc4e939c7bf241a872cc29bad2f984
 
-PODFILE CHECKSUM: b5edfb3cc2cd134183691f0cf8fce26492737dde
+PODFILE CHECKSUM: 94fade78653225839eb5e0f9196f00e90ab8edb7
 
 COCOAPODS: 1.6.0

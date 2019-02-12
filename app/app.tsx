@@ -35,19 +35,20 @@ export class App extends React.Component<{}, AppState> {
    * re-renders when we're good to go.
    */
   async componentDidMount() {
-    // hack to ignore white screen on android
-    if (Platform.Android) {
-      setTimeout(() => {
-        SplashScreen.hide()
-      }, 500)
-    } else {
-      SplashScreen.hide()
-    }
 
     const store = await setupRootStore()
     this.setState({
       rootStore: store.rootStore,
       env: store.env,
+    }, () => {
+      // hack to ignore white screen on android
+      if (Platform.Android) {
+        setTimeout(() => {
+          SplashScreen.hide()
+        }, 500)
+      } else {
+        SplashScreen.hide()
+      }
     })
   }
 

@@ -10420,6 +10420,13 @@ react-treebeard@^3.1.0:
     shallowequal "^1.1.0"
     velocity-react "^1.4.1"
 
+react-viro@^2.13.0:
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/react-viro/-/react-viro-2.13.0.tgz#318fa6708d66e97ac36e10a4cce34f67c86b31f2"
+  integrity sha512-CTc41zMGLJ26+uAaLwPIepBNM/kQ/pEV8bNCklXX8ofY4UQDWn+g6NgNcdEa3r1jOVMOlj33ojDgY3Ifblm3IQ==
+  dependencies:
+    prop-types "^15.5.10"
+
 react@16.6.3:
   version "16.6.3"
   resolved "https://registry.yarnpkg.com/react/-/react-16.6.3.tgz#25d77c91911d6bbdd23db41e70fb094cc1e0871c"

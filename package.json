@@ -20,7 +20,8 @@
     "hack:types-react-navigation": "rimraf node_modules/@types/react-navigation/node_modules/@types",
     "hack:types-react-native": "rimraf node_modules/@types/react-native/node_modules/@types",
     "hack:types-react-test-renderer": "rimraf node_modules/@types/react-test-renderer/node_modules/@types",
-    "hack:lottie-react-native": "./bin/lottie-react-native-hack.sh",
+    "hack:lottie-react-native": "./hacks/lottie-react-native-hack.sh",
+    "hack:viro-react": "./hacks/viro-react-hack.sh",
     "hack:androidX": "sh android/patch/patch-androidX.sh",
     "reload-android": "adb shell input text 'RR'",
     "reactotron-android": "adb reverse tcp:9090 tcp:9090",
@@ -56,6 +57,7 @@
     "react-native-splash-screen": "3.2.0",
     "react-native-vector-icons": "6.2.0",
     "react-navigation": "3.2.1",
+    "react-viro": "^2.13.0",
     "reactotron-mst": "2.1.4",
     "reactotron-react-native": "^2.1.5",
     "validate.js": "0.12.0"

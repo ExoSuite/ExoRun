@@ -8,7 +8,7 @@ import { HttpRequest } from "./api-http-request"
 import { IClient, IGrantRequest, ITokenResponse } from "./api.types"
 import { load, save } from "@utils/keychain"
 import { Server } from "./api.servers"
-import { HttpRequestError } from "@exceptions"
+import { HttpRequestError } from "@exceptions/HttpRequestError"
 import { IService } from "@services/interfaces"
 
 
