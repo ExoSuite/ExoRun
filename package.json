@@ -23,6 +23,7 @@
     "hack:lottie-react-native": "./bin/lottie-react-native-hack.sh",
     "hack:androidX": "sh android/patch/patch-androidX.sh",
     "reload-android": "adb shell input text 'RR'",
+    "reactotron-android": "adb reverse tcp:9090 tcp:9090",
     "patch": "patch-package",
     "prepare": "npm-run-all patch hack:*"
   },

@@ -10,7 +10,7 @@ import { observer } from "mobx-react/native"
 import { View as AnimatedView } from "react-native-animatable"
 // custom imports
 import { Lottie } from "@services/lottie"
-import { Animation, LoaderState } from "@components/data-loader/data-loader.types"
+import { Animation, FinalAnimationStatus, LoaderState } from "@components/data-loader/data-loader.types"
 import { DataLoaderProps } from "./data-loader.props"
 import { Button, Text } from "@components"
 import { FormRow } from "@components/form-row"
@@ -18,6 +18,7 @@ import { color } from "@theme"
 import { HttpRequestError } from "@exceptions"
 import { HttpResponse } from "@services/api"
 import { translate } from "@i18n"
+import { Platform } from "@services/device"
 
 
 const MODAL_CONTAINER: ViewStyle = {
@@ -25,23 +26,23 @@ const MODAL_CONTAINER: ViewStyle = {
   justifyContent: "center",
   alignItems: "center",
   borderRadius: 4,
-  minHeight: 200,
+  minHeight: 225,
   backgroundColor: color.palette.backgroundDarkerer,
 }
 
 const baseAnimation: Animation = {
   start: 0,
-  end: 240,
+  end: 120,
 }
 
 const successAnimation: Animation = {
-  start: baseAnimation.start,
+  start: 240,
   end: 417,
 }
 
 const errorAnimation: Animation = {
   start: 658,
-  end: 824,
+  end: 822,
 }
 
 const ALIGN_CENTER: ViewStyle = {
@@ -50,6 +51,21 @@ const ALIGN_CENTER: ViewStyle = {
 
 const LOADER_STYLE: ViewStyle = {
   width: 200,
+}
+
+const LOADER_CONTAINER_STYLE: ViewStyle = {
+  width: 125,
+  height: 125,
+}
+
+const DEFAULT_CONTAINER_TEXT_STYLE: ViewStyle = {
+  maxHeight: 0,
+  opacity: 0,
+}
+
+const CONTAINER_TEXT_STYLE: ViewStyle = {
+  maxHeight: 500,
+  opacity: 1,
 }
 
 type CallbackType = () => void
@@ -63,7 +79,8 @@ export const defaultSoundCallback = () => {
   console.tron.log("sound callback from animated loader called!")
 }
 
-const baseDelayed: number = 1100
+const baseDelayedIOS: number = 550
+const baseDelayedAndroid: number = 1100
 
 const baseError = {
   error: [],
@@ -82,10 +99,7 @@ export class DataLoader extends React.Component<DataLoaderProps> {
   // will be displayed on error animation has finished
   @observable private _errors: Object
 
-  // will be affected on hasErrors function
-  private _tempErrors: Object
-
-  private _isFinalAnimationPlaying: boolean = false
+  private _finalAnimationStatus: FinalAnimationStatus
 
   // initialize the state to standby
   private _status: LoaderState = LoaderState.STANDBY
@@ -102,7 +116,7 @@ export class DataLoader extends React.Component<DataLoaderProps> {
   //optional sound callback
   private _soundCallback: CallbackType = defaultSoundCallback
 
-  private _animatedTextView
+  private _animatedTextView: AnimatedView
 
   private static _instance: DataLoader = null
 
@@ -153,12 +167,11 @@ export class DataLoader extends React.Component<DataLoaderProps> {
   @action
   hasErrors(errors: Object | HttpRequestError, soundCallback?: CallbackType, errorCallback?: CallbackType) {
     this._status = LoaderState.ERROR
-    this._isFinalAnimationPlaying = false
 
     if (errors instanceof HttpRequestError) {
-        this._tempErrors = DataLoader._getErrorFromHttpRequestError(errors)
+        this._errors = DataLoader._getErrorFromHttpRequestError(errors)
     } else {
-      this._tempErrors = errors
+      this._errors = errors
     }
 
     this._errorCallback = errorCallback || this._errorCallback
@@ -169,13 +182,12 @@ export class DataLoader extends React.Component<DataLoaderProps> {
   @action
   success(soundCallback?: CallbackType, successCallback?: CallbackType) {
     this._status = LoaderState.SUCCESS
-    this._isFinalAnimationPlaying = false
     this._successCallback = successCallback || this._successCallback
     this._soundCallback = soundCallback || this._soundCallback
   }
 
   componentDidUpdate(prevProps: Readonly<DataLoaderProps>, prevState: Readonly<{}>, snapshot?: any): void {
-    if (this._isVisible && this._lottieAnimation) {
+    if (this._isVisible && this._lottieAnimation && this._status !== LoaderState.STOP) {
       this.baseAnimation()
     }
   }
@@ -202,7 +214,7 @@ export class DataLoader extends React.Component<DataLoaderProps> {
     this._isVisible = !this._isVisible
     this._errors = {}
     this._status = LoaderState.STANDBY
-    this._isFinalAnimationPlaying = false
+    this._finalAnimationStatus = FinalAnimationStatus.STANDING_BY
     return this
   }
 
@@ -218,45 +230,86 @@ export class DataLoader extends React.Component<DataLoaderProps> {
     return this._status === LoaderState.ERROR
   }
 
-  private soundCallback() {
-    setTimeout(this._soundCallback, baseDelayed)
+  private static getDelayedTime() {
+    return Platform.iOS ? baseDelayedIOS : baseDelayedAndroid
   }
 
-  private delayedErrorDisplay() {
+  private soundCallback() {
+    if (Platform.iOS)
+      setTimeout(this._soundCallback, DataLoader.getDelayedTime())
+    else
+      this._soundCallback()
+  }
 
-    setTimeout(() => runInAction(() => {
-      this._errors = this._tempErrors
-      this._animatedTextView.fadeIn()
-    }), baseDelayed)
+  private delayedAction(callback: Function) {
+    setTimeout(() => {
+      callback()
+    }, DataLoader.getDelayedTime())
+  }
+
+  finalAnimationStep() {
+    if (this.isSuccessFul()) {
+      runInAction(() => this._isVisible = false)
+      this._successCallback()
+    } else {
+      this._errorCallback()
+    }
+    this._status = LoaderState.STOP
+    this._finalAnimationStatus = FinalAnimationStatus.STOPPED
+  }
+
+  firstAnimationStep() {
+    if (this.isSuccessFul()) {
+      this.delayedAction(() => {
+        this.soundCallback()
+      })
+    } else {
+      this.delayedAction(() => {
+        this.soundCallback()
+        this._animatedTextView.transition(DEFAULT_CONTAINER_TEXT_STYLE, CONTAINER_TEXT_STYLE)
+      })
+    }
   }
 
   // handle all the logic of the animations
   @autobind
   private onAnimationFinish() {
-    // remove the success animation
-    if (this._isFinalAnimationPlaying) {
-      if (this.isSuccessFul()) {
-        this._isVisible = false
-        this._successCallback()
-      } else {
-        this._errorCallback()
+
+    // 2nd step when error or success animation has finished cross or a check
+    // ⚠️ THIS PART WILL ONLY RUN ON ANDROID ⚠️
+    if (this._finalAnimationStatus === FinalAnimationStatus.PLAYED) {
+      this.finalAnimationStep()
+    }
+
+    // ⚠️ after first loop animation ⚠️
+    else if (this._finalAnimationStatus === FinalAnimationStatus.WILL_PLAY) {
+      // on android call the sound animation and success animation after first step
+      if (Platform.Android) {
+        this.firstAnimationStep()
+        this._finalAnimationStatus = FinalAnimationStatus.PLAYED
+      } else { // on ios call the final step
+        this.finalAnimationStep()
+        this._finalAnimationStatus = FinalAnimationStatus.STOPPED
       }
     }
     // display the success animation
-    else if (this.isSuccessFul() && !this._isFinalAnimationPlaying) {
+    else if (this.isSuccessFul()) {
       this.successAnimation()
-      this._isFinalAnimationPlaying = true
-      this.soundCallback()
+      this._finalAnimationStatus = FinalAnimationStatus.WILL_PLAY
+      // on ios call the sound animation and success animation beforehand
+      if (Platform.iOS)
+        this.firstAnimationStep()
     }
     //display the error animation
-    else if (this.hasError() && !this._isFinalAnimationPlaying) {
+    else if (this.hasError()) {
       this.errorAnimation()
-      this._isFinalAnimationPlaying = true
-      this.soundCallback()
-      this.delayedErrorDisplay()
+      this._finalAnimationStatus = FinalAnimationStatus.WILL_PLAY
+      // on ios call the sound animation and success beforehand
+      if (Platform.iOS)
+        this.firstAnimationStep()
     }
     // continue to loop on base animation
-    else if (this.isStandingBy() && !this._isFinalAnimationPlaying) {
+    else if (this.isStandingBy()) {
       this.baseAnimation()
     }
   }
@@ -302,21 +355,27 @@ export class DataLoader extends React.Component<DataLoaderProps> {
         isVisible={_isVisible}
       >
         <View style={MODAL_CONTAINER}>
-          <FormRow preset="clear">
+          <FormRow preset="clear" style={LOADER_CONTAINER_STYLE}>
             <AnimatedLottieView
               ref={(ref) => this._lottieAnimation = ref}
               source={Lottie.LoaderSuccessFailed}
               loop={false}
               speed={1.25}
-              style={LOADER_STYLE}
+              resizeMode={"cover"}
               onAnimationFinish={onAnimationFinish}
             />
           </FormRow>
-          <AnimatedView ref={(ref) => this._animatedTextView = ref}>
-            {!isEmpty(this._errors) && (
+          {!isEmpty(this._errors) && (
+            <AnimatedView
+              ref={(ref) => {
+                // @ts-ignore
+                this._animatedTextView = ref
+              }}
+              style={DEFAULT_CONTAINER_TEXT_STYLE}>
               <Errors/>
-            )}
-          </AnimatedView>
+            </AnimatedView>
+          )}
+
           {children}
         </View>
       </Modal>
