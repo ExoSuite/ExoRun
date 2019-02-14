@@ -23,12 +23,11 @@ import { Button, Header, Screen, Text, TextField } from "@components"
 import { color, spacing } from "@theme"
 import { Asset } from "@services/asset"
 import { FormRow } from "@components/form-row"
-import { Api, ITokenResponse } from "@services/api"
+import { Api } from "@services/api"
 import { Injection } from "@services/injections"
 import { SoundPlayer } from "@services/sound-player"
 import { DataLoader } from "@components/data-loader"
 import { HttpRequestError } from "@exceptions"
-import { ApiResponse } from "apisauce"
 import { Platform } from "@services/device"
 
 export interface LoginScreenProps extends NavigationScreenProps<{}> {
@@ -118,11 +117,6 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
     this.authorizeLogin = throttle(this._authorizeLogin, 5000)
   }
 
-  private manageResponseError(response: HttpRequestError) {
-    const { soundPlayer } = this.props
-    DataLoader.instance.hasErrors(response, () => soundPlayer.error())
-  }
-
   @autobind
   async _authorizeLogin() {
     /*const { api, soundPlayer } = this.props
@@ -185,7 +179,6 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
     }
     return null
   }
-
 
   render() {
     const {
@@ -280,5 +273,10 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
       </DismissKeyboard>
 
     )
+  }
+
+  private manageResponseError(response: HttpRequestError) {
+    const { soundPlayer } = this.props
+    DataLoader.instance.hasErrors(response, () => soundPlayer.error())
   }
 }

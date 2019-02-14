@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.CAMERA" />
 
+
+    <uses-feature android:name="android.hardware.camera.ar" />
+
     <application
             android:name=".MainApplication"
             android:label="@string/app_name"
@@ -22,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity"/>
-        <meta-data android:name="com.google.ar.core" android:value="optional" />
+        <meta-data android:name="com.google.ar.core" android:value="required" />
     </application>
 
 </manifest>

@@ -9,12 +9,12 @@ export interface HomeScreenProps extends NavigationScreenProps<{}> {
 }
 
 const ROOT: ViewStyle = {
-  backgroundColor: color.background
+  backgroundColor: color.background,
 }
 
 @observer
 export class HomeScreen extends React.Component<HomeScreenProps, {}> {
-  render () {
+  render() {
     const { navigation } = this.props
 
     return (

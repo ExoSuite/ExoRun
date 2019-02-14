@@ -48,6 +48,7 @@
 		BCE5C4BECF3144579C3558A8 /* FontAwesome5_Pro_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB20292B44684A42A26FF8F8 /* FontAwesome5_Pro_Regular.ttf */; };
 		BD2B9034221335B600C023A6 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD2B90312213359600C023A6 /* libReactNativeConfig.a */; };
 		BD2B90352213361D00C023A6 /* libRNLocalize.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD2B8FA52213337800C023A6 /* libRNLocalize.a */; };
+		BD84663A2214FD2C00672CF2 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD84660C2214FD2C00672CF2 /* JavaScriptCore.framework */; };
 		BEF013C19654434CA979FDB9 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D835EC2CFF1A4E34BF7F7988 /* Montserrat-SemiBoldItalic.ttf */; };
 		D07A3244099248E785470C33 /* exorun-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 453F4C75EB5447FD94479882 /* exorun-text.png */; };
 		DDEDA939C4144C33B8271D77 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6BBC8BC469734B4C960F6C74 /* Montserrat-SemiBold.ttf */; };
@@ -438,6 +439,7 @@
 		BD2B8FA8221333F300C023A6 /* RNKeychain.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNKeychain.xcodeproj; path = "../node_modules/react-native-keychain/RNKeychain.xcodeproj"; sourceTree = "<group>"; };
 		BD2B902B2213359600C023A6 /* ReactNativeConfig.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeConfig.xcodeproj; path = "../node_modules/react-native-config/ios/ReactNativeConfig.xcodeproj"; sourceTree = "<group>"; };
 		BD2B90B42213392A00C023A6 /* ExoRun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ExoRun.entitlements; path = ExoRun/ExoRun.entitlements; sourceTree = "<group>"; };
+		BD84660C2214FD2C00672CF2 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		C144D9DFF98B4A149913C152 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../app/theme/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		C2BE292A8D844D1F8E8946B0 /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ThinItalic.ttf"; path = "../app/theme/fonts/Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
 		C4CE8967D1004364A3F8F3E9 /* exorun-logo.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "exorun-logo.png"; path = "../app/assets/img/exorun-logo.png"; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD84663A2214FD2C00672CF2 /* JavaScriptCore.framework in Frameworks */,
 				BD2B90352213361D00C023A6 /* libRNLocalize.a in Frameworks */,
 				BD2B9034221335B600C023A6 /* libReactNativeConfig.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
@@ -605,6 +608,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BD84660C2214FD2C00672CF2 /* JavaScriptCore.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
 				53CF96DC4ACC11221E6D8541 /* libPods-ExoRun.a */,
 			);

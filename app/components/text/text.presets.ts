@@ -33,9 +33,9 @@ export const presets = {
    */
   header: { ...BASE, fontSize: 24, fontWeight: "bold" } as TextStyle,
 
-  error: {...BASE, color: color.error},
+  error: { ...BASE, color: color.error },
 
-  boldError:  {...BASE, color: color.error, fontWeight: "bold"},
+  boldError: { ...BASE, color: color.error, fontWeight: "bold" },
 
   /**
    * Large headers.

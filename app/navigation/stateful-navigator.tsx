@@ -5,7 +5,7 @@ import { getNavigation, NavigationScreenProp, NavigationState } from "react-navi
 
 import { RootNavigator } from "./root-navigator"
 import { NavigationStore } from "./navigation-store"
-import { SplashScreen, ImageProperties } from "@screens/auth/splash-screen"
+import { ImageProperties, SplashScreen } from "@screens/auth/splash-screen"
 import autobind from "autobind-decorator"
 import { Asset } from "@services/asset"
 import { color } from "@theme"
@@ -18,7 +18,7 @@ interface StatefulNavigatorProps {
 
 const IMAGE_STYLE: ImageProperties = {
   height: Screen.Height,
-  width: Screen.Width
+  width: Screen.Width,
 }
 
 @inject(Injection.NavigationStore)
@@ -53,7 +53,7 @@ export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {
       dispatch,
       actionSubscribers(),
       {},
-      this.getCurrentNavigation
+      this.getCurrentNavigation,
     )
 
     return (

@@ -6,18 +6,18 @@ import { color } from "@theme"
 export const AppStack = createStackNavigator(
   {
     HomeScreen,
-    AugmentedRealityScreen: AugmentedRealityNavigator
+    AugmentedRealityScreen: AugmentedRealityNavigator,
   }, {
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: color.palette.backgroundDarkerer,
-        borderBottomColor: 'transparent',
-        shadowColor: 'black',
+        borderBottomColor: "transparent",
+        shadowColor: "black",
         shadowOpacity: 0.7,
-        shadowOffset: { width: 2, height: 3 }
+        shadowOffset: { width: 2, height: 3 },
       },
     },
     navigationOptions: {
-      tabBarLabel: 'Home!',
+      tabBarLabel: "Home!",
     },
   })

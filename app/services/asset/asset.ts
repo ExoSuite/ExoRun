@@ -7,12 +7,12 @@ export interface ImageUri {
 // create url for static retrieve of assets
 class Asset {
 
-  private static _locator(assetName: string, fileExtension: FileExtension): string {
-    return Platform.OS === "ios" ? assetName : `asset:/custom/${assetName}.${fileExtension}`
-  }
-
   static Locator(assetName: string, fileExtension: FileExtension = FileExtension.PNG): ImageUri {
     return { uri: this._locator(assetName, fileExtension) }
+  }
+
+  private static _locator(assetName: string, fileExtension: FileExtension): string {
+    return Platform.OS === "ios" ? assetName : `asset:/custom/${assetName}.${fileExtension}`
   }
 }
 

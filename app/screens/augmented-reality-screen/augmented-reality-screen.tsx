@@ -4,14 +4,13 @@ import { ViroARScene, ViroConstants, ViroText } from "react-viro"
 import { NavigationScreenProps } from "react-navigation"
 import { color } from "@theme"
 import { observer } from "mobx-react/native"
-import autobind from "autobind-decorator"
-import { observable, action } from "mobx"
+import { action, observable } from "mobx"
 
 export interface AugmentedRealityScreenProps extends NavigationScreenProps<{}> {
 }
 
 const ROOT: ViewStyle = {
-  backgroundColor: color.background
+  backgroundColor: color.background,
 }
 
 @observer
@@ -41,7 +40,7 @@ export class AugmentedRealityScreen extends React.Component<AugmentedRealityScre
                     fontSize: 30,
                     color: "#ffffff",
                     textAlignVertical: "center",
-                    textAlign: "center"
+                    textAlign: "center",
                   }}
         />
       </ViroARScene>

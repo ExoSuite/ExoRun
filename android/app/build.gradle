@@ -97,7 +97,7 @@ def enableSeparateBuildPerCPUArchitecture = false
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
  */
-def enableProguardInReleaseBuilds = true
+def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -106,6 +106,11 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+        preDexLibraries = false
     }
 
     defaultConfig {
@@ -123,6 +128,7 @@ android {
         packagingOptions {
             pickFirst '**/libgnustl_shared.so'
             pickFirst '**/libjsc.so'
+            pickFirst "lib/armeabi-v7a/libarcore_sdk_c.so"
             exclude "lib/arm64-v8a/librealm-jni.so"
         }
     }
@@ -147,7 +153,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             signingConfig signingConfigs.release
         }
@@ -187,7 +193,8 @@ dependencies {
     implementation project(':react-native-splash-screen')
     implementation project(':react-native-gesture-handler')
     implementation project(':react-native-keychain')
-    implementation project(':arcore_client') // remove this if AR not required
+    implementation 'com.google.ar:core:1.5.0'
+    implementation project(':gvr_common')
     implementation project(path: ':viro_renderer')
     implementation project(path: ':react_viro')
     implementation 'com.google.android.exoplayer:exoplayer:2.7.1'
