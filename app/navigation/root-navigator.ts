@@ -1,11 +1,13 @@
-import { createSwitchNavigator } from "react-navigation"
-import { AuthNavigator } from "./auth-navigator"
+import { createAppContainer, createSwitchNavigator } from "react-navigation"
+import { AuthStack } from "./auth-navigator"
+import { AppStack } from "@navigation/app-navigator"
 
-export const RootNavigator = createSwitchNavigator(
+export const RootNavigator = createAppContainer(createSwitchNavigator(
   {
-    auth: { screen: AuthNavigator },
+    Auth: AuthStack,
+    App: AppStack,
   },
   {
-    initialRouteName: "auth",
+    initialRouteName: "Auth",
   },
-)
+))

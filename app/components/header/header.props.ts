@@ -20,12 +20,6 @@ export interface HeaderProps {
   leftIconSize?: number
   leftIconType?: FontawesomeIconTypes
   leftIconStyle?: ViewStyle
-
-  /**
-   * What happens when you press the left icon
-   */
-  onLeftPress?(): void
-
   /**
    * Icon that should appear on the right
    */
@@ -34,19 +28,22 @@ export interface HeaderProps {
   rightIconSize?: number
   rightIconType?: FontawesomeIconTypes
   rightIconStyle?: ViewStyle
+  /**
+   * Container style overrides.
+   */
+  style?: ViewStyle
+  /**
+   * Title style overrides.
+   */
+  titleStyle?: TextStyle
+
+  /**
+   * What happens when you press the left icon
+   */
+  onLeftPress?(): void
 
   /**
    * What happens when you press the right icon
    */
   onRightPress?(): void
-
-  /**
-   * Container style overrides.
-   */
-  style?: ViewStyle
-
-  /**
-   * Title style overrides.
-   */
-  titleStyle?: TextStyle
 }

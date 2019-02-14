@@ -9,7 +9,7 @@ import { Screen } from "@services/device"
 /**
  */
 @observer
-export class Loader extends React.Component<LoaderProps> {
+export class SplashScreen extends React.Component<LoaderProps> {
 
   @observable appLoaded: boolean = false
 

@@ -123,6 +123,9 @@ export class DataLoader extends React.Component<DataLoaderProps> {
     this._instance = value
   }
 
+  private static getDelayedTime() {
+    return Platform.iOS ? baseDelayedIOS : baseDelayedAndroid
+  }
 
   /*
   * call this method when you want to display the error modal
@@ -144,7 +147,7 @@ export class DataLoader extends React.Component<DataLoaderProps> {
     this._status = LoaderState.ERROR
 
     if (errors instanceof HttpRequestError) {
-        this._errors = errors.formattedErrors()
+      this._errors = errors.formattedErrors()
     } else {
       this._errors = errors
     }
@@ -167,23 +170,6 @@ export class DataLoader extends React.Component<DataLoaderProps> {
     }
   }
 
-  private baseAnimation() {
-    const { start, end } = baseAnimation
-    this._lottieAnimation.play(start, end)
-  }
-
-  private successAnimation() {
-    const { start, end } = successAnimation
-    this._lottieAnimation.reset()
-    this._lottieAnimation.play(start, end)
-  }
-
-  private errorAnimation() {
-    const { start, end } = errorAnimation
-    this._lottieAnimation.reset()
-    this._lottieAnimation.play(start, end)
-  }
-
   @action.bound
   toggleIsVisible(): this {
     this._isVisible = !this._isVisible
@@ -191,35 +177,6 @@ export class DataLoader extends React.Component<DataLoaderProps> {
     this._status = LoaderState.STANDBY
     this._finalAnimationStatus = FinalAnimationStatus.STANDING_BY
     return this
-  }
-
-  private isSuccessFul() {
-    return this._status === LoaderState.SUCCESS
-  }
-
-  private isStandingBy() {
-    return this._status === LoaderState.STANDBY
-  }
-
-  private hasError() {
-    return this._status === LoaderState.ERROR
-  }
-
-  private static getDelayedTime() {
-    return Platform.iOS ? baseDelayedIOS : baseDelayedAndroid
-  }
-
-  private soundCallback() {
-    if (Platform.iOS)
-      setTimeout(this._soundCallback, DataLoader.getDelayedTime())
-    else
-      this._soundCallback()
-  }
-
-  private delayedAction(callback: Function) {
-    setTimeout(() => {
-      callback()
-    }, DataLoader.getDelayedTime())
   }
 
   finalAnimationStep() {
@@ -243,49 +200,6 @@ export class DataLoader extends React.Component<DataLoaderProps> {
         this.soundCallback()
         this._animatedTextView.transition(DEFAULT_CONTAINER_TEXT_STYLE, CONTAINER_TEXT_STYLE)
       })
-    }
-  }
-
-  // handle all the logic of the animations
-  @autobind
-  private onAnimationFinish() {
-
-    // 2nd step when error or success animation has finished cross or a check
-    // ⚠️ THIS PART WILL ONLY RUN ON ANDROID ⚠️
-    if (this._finalAnimationStatus === FinalAnimationStatus.PLAYED) {
-      this.finalAnimationStep()
-    }
-
-    // ⚠️ after first loop animation ⚠️
-    else if (this._finalAnimationStatus === FinalAnimationStatus.WILL_PLAY) {
-      // on android call the sound animation and success animation after first step
-      if (Platform.Android) {
-        this.firstAnimationStep()
-        this._finalAnimationStatus = FinalAnimationStatus.PLAYED
-      } else { // on ios call the final step
-        this.finalAnimationStep()
-        this._finalAnimationStatus = FinalAnimationStatus.STOPPED
-      }
-    }
-    // display the success animation
-    else if (this.isSuccessFul()) {
-      this.successAnimation()
-      this._finalAnimationStatus = FinalAnimationStatus.WILL_PLAY
-      // on ios call the sound animation and success animation beforehand
-      if (Platform.iOS)
-        this.firstAnimationStep()
-    }
-    //display the error animation
-    else if (this.hasError()) {
-      this.errorAnimation()
-      this._finalAnimationStatus = FinalAnimationStatus.WILL_PLAY
-      // on ios call the sound animation and success beforehand
-      if (Platform.iOS)
-        this.firstAnimationStep()
-    }
-    // continue to loop on base animation
-    else if (this.isStandingBy()) {
-      this.baseAnimation()
     }
   }
 
@@ -355,6 +269,91 @@ export class DataLoader extends React.Component<DataLoaderProps> {
         </View>
       </Modal>
     )
+  }
+
+  private baseAnimation() {
+    const { start, end } = baseAnimation
+    this._lottieAnimation.play(start, end)
+  }
+
+  private successAnimation() {
+    const { start, end } = successAnimation
+    this._lottieAnimation.reset()
+    this._lottieAnimation.play(start, end)
+  }
+
+  private errorAnimation() {
+    const { start, end } = errorAnimation
+    this._lottieAnimation.reset()
+    this._lottieAnimation.play(start, end)
+  }
+
+  private isSuccessFul() {
+    return this._status === LoaderState.SUCCESS
+  }
+
+  private isStandingBy() {
+    return this._status === LoaderState.STANDBY
+  }
+
+  private hasError() {
+    return this._status === LoaderState.ERROR
+  }
+
+  private soundCallback() {
+    if (Platform.iOS)
+      setTimeout(this._soundCallback, DataLoader.getDelayedTime())
+    else
+      this._soundCallback()
+  }
+
+  private delayedAction(callback: Function) {
+    setTimeout(() => {
+      callback()
+    }, DataLoader.getDelayedTime())
+  }
+
+  // handle all the logic of the animations
+  @autobind
+  private onAnimationFinish() {
+
+    // 2nd step when error or success animation has finished cross or a check
+    // ⚠️ THIS PART WILL ONLY RUN ON ANDROID ⚠️
+    if (this._finalAnimationStatus === FinalAnimationStatus.PLAYED) {
+      this.finalAnimationStep()
+    }
+
+    // ⚠️ after first loop animation ⚠️
+    else if (this._finalAnimationStatus === FinalAnimationStatus.WILL_PLAY) {
+      // on android call the sound animation and success animation after first step
+      if (Platform.Android) {
+        this.firstAnimationStep()
+        this._finalAnimationStatus = FinalAnimationStatus.PLAYED
+      } else { // on ios call the final step
+        this.finalAnimationStep()
+        this._finalAnimationStatus = FinalAnimationStatus.STOPPED
+      }
+    }
+    // display the success animation
+    else if (this.isSuccessFul()) {
+      this.successAnimation()
+      this._finalAnimationStatus = FinalAnimationStatus.WILL_PLAY
+      // on ios call the sound animation and success animation beforehand
+      if (Platform.iOS)
+        this.firstAnimationStep()
+    }
+    //display the error animation
+    else if (this.hasError()) {
+      this.errorAnimation()
+      this._finalAnimationStatus = FinalAnimationStatus.WILL_PLAY
+      // on ios call the sound animation and success beforehand
+      if (Platform.iOS)
+        this.firstAnimationStep()
+    }
+    // continue to loop on base animation
+    else if (this.isStandingBy()) {
+      this.baseAnimation()
+    }
   }
 
 }

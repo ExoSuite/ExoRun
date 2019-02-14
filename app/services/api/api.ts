@@ -8,7 +8,7 @@ import { HttpRequest } from "./api-http-request"
 import { IClient, IGrantRequest, ITokenResponse } from "./api.types"
 import { load, save } from "@utils/keychain"
 import { Server } from "./api.servers"
-import { HttpRequestError } from "@exceptions"
+import { HttpRequestError } from "@exceptions/HttpRequestError"
 import { IService } from "@services/interfaces"
 
 
@@ -50,6 +50,10 @@ export class Api implements IService {
     }
   }
 
+  private static isITokenResponse(arg: any): arg is ITokenResponse {
+    return typeof (arg) !== "boolean"
+  }
+
   /**
    * Sets up the API.  This will be called during the bootup
    * sequence and will happen before the first React component
@@ -68,39 +72,6 @@ export class Api implements IService {
       httpsAgent: new https.Agent({ keepAlive: true }), // see HTTP keep alive
       adapter: require("axios/lib/adapters/http"), // define real http adapter
     })
-  }
-
-  private static isITokenResponse(arg: any): arg is ITokenResponse {
-    return typeof (arg) !== "boolean"
-  }
-
-  private async checkToken(): Promise<ITokenResponse | boolean> {
-    // get tokens from secure storage
-    const credentials: ITokenResponse | boolean = await load(Server.EXOSUITE_USERS_API)
-    // check if credentials match with type ITokenResponse
-    if (Api.isITokenResponse(credentials)) {
-      // decode token
-      const decoded = jwtDecode(credentials.access_token)
-      // check if token is expired
-      if (decoded.expires_in <= 0) {
-        // assign refresh token to grantRequest
-        this.grantRequest.refresh_token = credentials.refresh_token
-        // call api for new tokens
-        const response = await this.apisauce.post("oauth/token", this.grantRequest)
-        // @ts-ignore
-        const newTokens: ITokenResponse = response.data
-        // save new tokens
-        await save(newTokens, Server.EXOSUITE_USERS_API)
-        // return new tokens
-        return newTokens
-      }
-
-      // return non modified tokens
-      return credentials
-    } else {
-      // if tokens was not provided throw an error
-      throw new Error("Can't load token!")
-    }
   }
 
   /* this function may throw 422  */
@@ -163,5 +134,34 @@ export class Api implements IService {
 
     // return response from api
     return response
+  }
+
+  private async checkToken(): Promise<ITokenResponse | boolean> {
+    // get tokens from secure storage
+    const credentials: ITokenResponse | boolean = await load(Server.EXOSUITE_USERS_API)
+    // check if credentials match with type ITokenResponse
+    if (Api.isITokenResponse(credentials)) {
+      // decode token
+      const decoded = jwtDecode(credentials.access_token)
+      // check if token is expired
+      if (decoded.expires_in <= 0) {
+        // assign refresh token to grantRequest
+        this.grantRequest.refresh_token = credentials.refresh_token
+        // call api for new tokens
+        const response = await this.apisauce.post("oauth/token", this.grantRequest)
+        // @ts-ignore
+        const newTokens: ITokenResponse = response.data
+        // save new tokens
+        await save(newTokens, Server.EXOSUITE_USERS_API)
+        // return new tokens
+        return newTokens
+      }
+
+      // return non modified tokens
+      return credentials
+    } else {
+      // if tokens was not provided throw an error
+      throw new Error("Can't load token!")
+    }
   }
 }

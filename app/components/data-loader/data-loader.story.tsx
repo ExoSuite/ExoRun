@@ -1,7 +1,7 @@
 import * as React from "react"
 import { storiesOf } from "@storybook/react-native"
 import { Story, StoryScreen, UseCase } from "../../../storybook/views"
-import { defaultErrorCallback, defaultSuccessCallback, DataLoader } from "./"
+import { DataLoader, defaultErrorCallback, defaultSuccessCallback } from "./"
 import { Button } from "@components"
 import { SoundPlayer } from "@services/sound-player"
 
