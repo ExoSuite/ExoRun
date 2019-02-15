@@ -1,6 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '9.3'
 
+install! 'cocoapods', :deterministic_uuids => false
 
 # The target name is most likely the name of your project.
 target 'ExoRun' do
@@ -35,4 +36,12 @@ target 'ExoRun' do
 
   pod 'ViroReact', :path => '../node_modules/react-viro/ios/'
   pod 'ViroKit_static_lib', :path => '../node_modules/react-viro/ios/dist/ViroRenderer/static_lib'
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if target.name == "React"
+      target.remove_from_project
+    end
+  end
 end
