@@ -26,7 +26,8 @@
     "reload-android": "adb shell input text 'RR'",
     "reactotron-android": "adb reverse tcp:9090 tcp:9090",
     "patch": "patch-package",
-    "prepare": "npm-run-all patch hack:*"
+    "prepare": "npm-run-all patch hack:*",
+    "postversion": "react-native-version"
   },
   "dependencies": {
     "apisauce": "1.0.2",
@@ -93,6 +94,7 @@
     "react-devtools-core": "3.6.0",
     "react-dom": "16.8.1",
     "react-native-typescript-transformer": "1.2.11",
+    "react-native-version": "^2.6.7",
     "react-powerplug": "1.0.0",
     "react-test-renderer": "16.8.1",
     "rimraf": "2.6.3",
