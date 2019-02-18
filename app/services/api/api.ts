@@ -110,7 +110,6 @@ export class Api implements IService {
     // launch api request
     const response: ApiResponse<any> =
       await this.apisauce[toApiSauceMethod(httpMethod)](url, data)
-    console.tron.log(response)
 
     // the typical ways to die when calling an api fails
     if (!response.ok) {
