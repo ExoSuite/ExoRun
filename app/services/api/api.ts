@@ -4,7 +4,7 @@ import jwtDecode from "jwt-decode"
 import { languageTag } from "@i18n/i18n"
 import { getGeneralApiProblem } from "./api-problem"
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
-import { HttpRequest } from "./api-http-request"
+import { HttpRequest, toApiSauceMethod } from "./api-http-request"
 import { IClient, IGrantRequest, ITokenResponse } from "./api.types"
 import { load, save } from "@utils/keychain"
 import { Server } from "./api.servers"
@@ -70,7 +70,6 @@ export class Api implements IService {
         Accept: "application/json",
       },
       httpsAgent: new https.Agent({ keepAlive: true }), // see HTTP keep alive
-      adapter: require("axios/lib/adapters/http"), // define real http adapter
     })
   }
 
@@ -103,26 +102,15 @@ export class Api implements IService {
     }
 
     headers["X-localization"] = languageTag
-    // console.tron.log(headers)
 
     // set additional headers
     // @ts-ignore
     this.apisauce.setHeaders(headers)
 
-    let apiCall: ApisauceInstance["delete"] | ApisauceInstance["post"]
-      | ApisauceInstance["put"] | ApisauceInstance["patch"]
-      | ApisauceInstance["get"]
-
-    // choose method to use GET/POST/PUT/PATCH/DELETE
-    if (httpMethod === HttpRequest.DELETE) apiCall = this.apisauce.delete
-    else if (httpMethod === HttpRequest.POST) apiCall = this.apisauce.post
-    else if (httpMethod === HttpRequest.PATCH) apiCall = this.apisauce.patch
-    else if (httpMethod === HttpRequest.GET) apiCall = this.apisauce.get
-    else if (httpMethod === HttpRequest.PUT) apiCall = this.apisauce.put
-
     // launch api request
-    // @ts-ignore
-    const response: ApiResponse<any> = await apiCall(url, data)
+    const response: ApiResponse<any> =
+      await this.apisauce[toApiSauceMethod(httpMethod)](url, data)
+    console.tron.log(response)
 
     // the typical ways to die when calling an api fails
     if (!response.ok) {

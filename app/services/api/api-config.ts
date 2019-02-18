@@ -18,7 +18,7 @@ export interface ApiConfig {
 let URL: string
 
 if (Build.is(BuiltFor.DEVELOPMENT) || Build.is(BuiltFor.TESTING)) {
-  URL = "https://api.dev.exosuite.fr"
+  URL = "https://api.teamexosuite.cloud"
 } else {
   URL = "https://api.exosuite.fr"
 }

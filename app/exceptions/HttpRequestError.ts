@@ -10,11 +10,13 @@ const baseError = {
 export class HttpRequestError extends BaseError {
   private readonly status: HttpResponse
   private readonly _data: { errors: Object, message: string }
+  private readonly _problem: GeneralApiProblem
 
   constructor(problem: GeneralApiProblem, response: ApiResponse<any>) {
     super()
     this.status = problem.kind
     this._data = response.data || []
+    this._problem = problem
   }
 
   public is(httpResponse: HttpResponse) {
@@ -60,5 +62,9 @@ export class HttpRequestError extends BaseError {
     }
 
     return errors
+  }
+
+  public problem() {
+    return this._problem
   }
 }

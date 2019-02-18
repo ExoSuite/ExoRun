@@ -35,7 +35,7 @@ export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {
   @autobind
   removeLoader() {
     this.loader.animate()
-    this.props.navigationStore.navigateTo("HomeScreen")
+    //this.props.navigationStore.navigateTo("HomeScreen")
   }
 
   async componentDidMount() {

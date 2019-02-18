@@ -9,4 +9,5 @@ export enum HttpResponse {
   UNKNOWN = "unknown",
   UNPROCESSABLE_ENTITY = "bad-data",
   METHOD_NOT_ALLOWED = "method-not-allowed",
+  OK = 200,
 }
