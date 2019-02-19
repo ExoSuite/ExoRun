@@ -10,6 +10,7 @@ import { load, save } from "@utils/keychain"
 import { Server } from "./api.servers"
 import { HttpRequestError } from "@exceptions/HttpRequestError"
 import { IService } from "@services/interfaces"
+import { LogicErrorState, LogicException } from "@exceptions/LogicException"
 
 
 /**
@@ -39,7 +40,7 @@ export class Api implements IService {
     this.config = config
     this.client = {
       client_id: 1,
-      client_secret: "4eTPOwUpimKkxXiIrUAngSp3n8IuUfCX39YMNNDQ",
+      client_secret: "gUg1sulssC6X1Z3zoSPuIDeYHzFsBwd7eGMmnW2o",
     }
 
     this.grantRequest = {
@@ -97,7 +98,7 @@ export class Api implements IService {
       if (Api.isITokenResponse(token) && token.access_token) {
         headers["Authorization"] = "Bearer " + token.access_token
       } else {
-        throw new Error("Required API authentication but access_token was undefined!")
+        throw new LogicException(LogicErrorState.MALFORMED_API_TOKENS)
       }
     }
 
@@ -114,24 +115,23 @@ export class Api implements IService {
     // the typical ways to die when calling an api fails
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
-      return new Promise((resolve, reject) => {
-        reject(new HttpRequestError(problem, response))
-      })
+      throw new HttpRequestError(problem, response)
     }
 
     // return response from api
     return response
   }
 
-  private async checkToken(): Promise<ITokenResponse | boolean> {
+  public async checkToken(): Promise<ITokenResponse | boolean> {
     // get tokens from secure storage
     const credentials: ITokenResponse | boolean = await load(Server.EXOSUITE_USERS_API)
     // check if credentials match with type ITokenResponse
     if (Api.isITokenResponse(credentials)) {
       // decode token
       const decoded = jwtDecode(credentials.access_token)
+      console.tron.log(Date.now() / 1000 > decoded.exp, "IF JWT IS EXPIRED")
       // check if token is expired
-      if (decoded.expires_in <= 0) {
+      if (Date.now() / 1000 > decoded.exp) {
         // assign refresh token to grantRequest
         this.grantRequest.refresh_token = credentials.refresh_token
         // call api for new tokens
@@ -148,7 +148,7 @@ export class Api implements IService {
       return credentials
     } else {
       // if tokens was not provided throw an error
-      throw new Error("Can't load token!")
+      throw new LogicException(LogicErrorState.CANT_LOAD_API_TOKENS)
     }
   }
 }
