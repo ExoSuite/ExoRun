@@ -4,8 +4,6 @@ import { inject, observer } from "mobx-react"
 import { getNavigation,
   NavigationScreenProp,
   NavigationState,
-  StackActions,
-  NavigationActions,
 } from "react-navigation"
 
 import { RootNavigator } from "./root-navigator"
@@ -42,14 +40,6 @@ export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {
   returnToLogin() {
     const { navigationStore } = this.props
     navigationStore.reset()
-    const resetAction = StackActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({ routeName: "login" }),
-      ],
-      key: null,
-    })
-    navigationStore.dispatch(resetAction)
   }
 
   @autobind
