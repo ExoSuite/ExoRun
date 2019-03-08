@@ -11,6 +11,7 @@ import { Server } from "./api.servers"
 import { HttpRequestError } from "@exceptions/HttpRequestError"
 import { IService } from "@services/interfaces"
 import { LogicErrorState, LogicException } from "@exceptions/LogicException"
+import Config from "react-native-config"
 
 
 /**
@@ -39,8 +40,8 @@ export class Api implements IService {
   constructor(config: ApiConfig = DEFAULT_API_CONFIG) {
     this.config = config
     this.client = {
-      client_id: 1,
-      client_secret: "gUg1sulssC6X1Z3zoSPuIDeYHzFsBwd7eGMmnW2o",
+      client_id: Config.EXOSUITE_USERS_API_CLIENT_ID,
+      client_secret: Config.EXOSUITE_USERS_API_CLIENT_SECRET,
     }
 
     this.grantRequest = {
