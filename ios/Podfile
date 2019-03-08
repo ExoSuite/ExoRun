@@ -31,6 +31,7 @@ target 'ExoRun' do
   pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
 
   pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
+  pod 'lottie-ios', :path => '../node_modules/lottie-ios'
 
   pod 'RNSound', :path => '../node_modules/react-native-sound'
 

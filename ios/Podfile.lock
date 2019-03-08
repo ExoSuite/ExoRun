@@ -6,7 +6,7 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - lottie-ios (2.5.3)
+  - lottie-ios (2.5.0)
   - lottie-react-native (2.5.11):
     - lottie-ios
     - React
@@ -61,6 +61,7 @@ DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - lottie-ios (from `../node_modules/lottie-ios`)
   - lottie-react-native (from `../node_modules/lottie-react-native`)
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
@@ -78,7 +79,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - boost-for-react-native
-    - lottie-ios
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -87,6 +87,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  lottie-ios:
+    :path: "../node_modules/lottie-ios"
   lottie-react-native:
     :path: "../node_modules/lottie-react-native"
   React:
@@ -109,7 +111,7 @@ SPEC CHECKSUMS:
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
   Folly: de497beb10f102453a1afa9edbf8cf8a251890de
   glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
-  lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
+  lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
   lottie-react-native: 216bd1295fa67b159fdbe5562a7d7b6371da6422
   React: 130b87b2d5e2baac646954282cab87be986d98fc
   RNKeychain: 1a121521011702409f5a1009eb8a1effa81000f3
@@ -119,6 +121,6 @@ SPEC CHECKSUMS:
   ViroReact: 7ec32276dcd1883662b4587eaedfff67f7fc3625
   yoga: 32d7ef1081951e9a35a4c72a7be797598b138a48
 
-PODFILE CHECKSUM: 08c2b5a9a9ceca8d425881f51f845752f071a0e4
+PODFILE CHECKSUM: 2f71cdaeaa66bdad9d9043442a80e5048f64ff75
 
 COCOAPODS: 1.6.1
