@@ -6,7 +6,7 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - lottie-ios (2.5.2)
+  - lottie-ios (2.5.3)
   - lottie-react-native (2.5.11):
     - lottie-ios
     - React
@@ -109,7 +109,7 @@ SPEC CHECKSUMS:
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
   Folly: de497beb10f102453a1afa9edbf8cf8a251890de
   glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
-  lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
+  lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
   lottie-react-native: 216bd1295fa67b159fdbe5562a7d7b6371da6422
   React: 130b87b2d5e2baac646954282cab87be986d98fc
   RNKeychain: 1a121521011702409f5a1009eb8a1effa81000f3
