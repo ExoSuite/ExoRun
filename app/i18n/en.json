@@ -25,7 +25,8 @@
       "password-reveal": "Reveal password",
       "password-hide": "Hide password",
       "bad-email": "Please enter a valid email.",
-      "good-email": "Great! your email is valid!"
+      "good-email": "Great! your email is valid!",
+      "reset-password": "Forgot password?"
     },
     "register": {
       "header": "Register",

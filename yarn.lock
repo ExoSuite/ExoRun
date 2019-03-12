@@ -10757,6 +10757,11 @@ react-native-gesture-handler@~1.0.14:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
+react-native-keyboard-accessory@^0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/react-native-keyboard-accessory/-/react-native-keyboard-accessory-0.1.9.tgz#4c842940da1fc4f7da36aec32c69c9a4e9cd8836"
+  integrity sha512-LMBzgQajZzYY7BSCqlA99MIgoAK2xKQH+xRA/CuBv3UNDMn8H//ow0f2qi2t8Oky41nmo4wrL+I43YvSKWF24Q==
+
 react-native-keyboard-spacer@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/react-native-keyboard-spacer/-/react-native-keyboard-spacer-0.4.1.tgz#46f18a320432098a25ea9fa89f5143dd254d332d"

@@ -18,8 +18,9 @@ import throttle from "lodash.throttle"
 import autobind from "autobind-decorator"
 import KeyboardSpacer from "react-native-keyboard-spacer"
 import validator from "validate.js"
+import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
 // custom imports
-import { Button, Header, Screen, Text, TextField } from "@components"
+import { Button, Header, PressableText, Screen, Text, TextField } from "@components"
 import { color, spacing } from "@theme"
 import { Asset } from "@services/asset"
 import { FormRow } from "@components/form-row"
@@ -32,6 +33,7 @@ import { Platform } from "@services/device"
 import { ApiResponse } from "apisauce"
 import { save } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
+import { palette } from "@theme/palette"
 
 export interface LoginScreenProps extends NavigationScreenProps<{}> {
   api: Api,
@@ -81,7 +83,7 @@ const HEADER_TITLE: TextStyle = {
 
 const FULL: ViewStyle = {
   flex: 1,
-  backgroundColor: color.palette.backgroundDarkerer,
+  backgroundColor: color.backgroundDarkerer,
 }
 
 const CONTAINER: ViewStyle = {
@@ -89,6 +91,23 @@ const CONTAINER: ViewStyle = {
   paddingHorizontal: spacing[4],
   flexGrow: 1,
   justifyContent: "space-evenly",
+}
+
+const KEYBOARD_ACCESSORY_VIEW: ViewStyle = {
+  backgroundColor: color.backgroundDarkerer,
+  marginTop: spacing[2],
+  marginBottom: spacing[2],
+  paddingLeft: spacing[1],
+  paddingRight: spacing[1],
+  paddingTop: spacing[1],
+}
+
+const KEYBOARD_ACCESSORY_VIEW_ROW_CONTAINER: ViewStyle = {
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "space-between",
+  paddingLeft: spacing[2],
+  paddingRight: spacing[2],
 }
 
 const disabled = color.palette.lightGrey
@@ -210,7 +229,6 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
     return (
       <DismissKeyboard>
         <SafeAreaView style={FULL}>
-
           <Header
             leftIcon="chevron-left"
             leftIconType="solid"
@@ -253,17 +271,6 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
               </FormRow>
             </FormRow>
 
-            <FormRow preset="clearFullWidth">
-              <Button
-                style={{ backgroundColor: buttonColor }}
-                onPress={this.authorizeLogin}
-                disabled={buttonColor != enabled} // can we press on the login button?
-                preset="primaryFullWidth"
-              >
-                <Text preset="bold" tx="auth.login.header"/>
-              </Button>
-            </FormRow>
-
             {Platform.iOS && <KeyboardSpacer/>}
           </Screen>
 
@@ -277,6 +284,31 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
               />
             </View>
           )}
+
+          <KeyboardAccessoryView
+              animateOn="all"
+              alwaysVisible
+              style={KEYBOARD_ACCESSORY_VIEW}
+              inSafeAreaView
+              androidAdjustResize
+          >
+            <View style={KEYBOARD_ACCESSORY_VIEW_ROW_CONTAINER}>
+              <PressableText
+                preset="bold"
+                tx="auth.login.reset-password"
+                style={{color: palette.lightBlue}}
+                onPress={() => {}}
+              />
+              <Button
+                style={{ backgroundColor: buttonColor, width: "20%", alignSelf: "flex-end" }}
+                onPress={this.authorizeLogin}
+                disabled={buttonColor != enabled} // can we press on the login button?
+                preset="primaryFullWidth"
+              >
+                <Text preset="bold" tx="auth.login.header"/>
+              </Button>
+            </View>
+          </KeyboardAccessoryView>
 
         </SafeAreaView>
       </DismissKeyboard>

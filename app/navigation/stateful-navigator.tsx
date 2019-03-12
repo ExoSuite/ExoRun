@@ -18,7 +18,7 @@ import { Api } from "@services/api"
 
 interface StatefulNavigatorProps {
   navigationStore?: NavigationStore,
-  api: Api
+  api?: Api
 }
 
 const IMAGE_STYLE: ImageProperties = {
@@ -39,7 +39,9 @@ export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {
 
   returnToLogin() {
     const { navigationStore } = this.props
-    navigationStore.reset()
+    if (navigationStore.findCurrentRoute().routeName === "Home") {
+      navigationStore.reset()
+    }
   }
 
   @autobind
