@@ -37,6 +37,8 @@ target 'ExoRun' do
 
   pod 'ViroReact', :path => '../node_modules/react-viro/ios/'
   pod 'ViroKit_static_lib', :path => '../node_modules/react-viro/ios/dist/ViroRenderer/static_lib'
+  pod 'react-native-async-storage', :path => '../node_modules/@react-native-community/async-storage'
+
 end
 
 post_install do |installer|

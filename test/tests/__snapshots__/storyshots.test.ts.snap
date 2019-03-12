@@ -2205,7 +2205,7 @@ exports[`Storyshots FontawesomeIcon Example 1`] = `
                   },
                   undefined,
                   Object {
-                    "fontFamily": "Font Awesome 5 Pro",
+                    "fontFamily": "FontAwesome5Pro-Light",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
                   },
@@ -2307,7 +2307,7 @@ exports[`Storyshots FontawesomeIcon Example 1`] = `
                   },
                   undefined,
                   Object {
-                    "fontFamily": "Font Awesome 5 Pro",
+                    "fontFamily": "FontAwesome5Pro-Solid",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
                   },
@@ -2401,7 +2401,6 @@ exports[`Storyshots FontawesomeIcon Example 1`] = `
           >
             <Text
               allowFontScaling={false}
-              regular={true}
               style={
                 Array [
                   Object {
@@ -2410,7 +2409,7 @@ exports[`Storyshots FontawesomeIcon Example 1`] = `
                   },
                   undefined,
                   Object {
-                    "fontFamily": "Font Awesome 5 Pro",
+                    "fontFamily": "FontAwesome5Pro-Regular",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
                   },
@@ -2504,7 +2503,6 @@ exports[`Storyshots FontawesomeIcon Example 1`] = `
           >
             <Text
               allowFontScaling={false}
-              brand={true}
               style={
                 Array [
                   Object {
@@ -2513,7 +2511,7 @@ exports[`Storyshots FontawesomeIcon Example 1`] = `
                   },
                   undefined,
                   Object {
-                    "fontFamily": "Font Awesome 5 Brands",
+                    "fontFamily": "FontAwesome5Brands-Regular",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
                   },
@@ -3965,7 +3963,7 @@ exports[`Storyshots Header Behavior 1`] = `
                         },
                         undefined,
                         Object {
-                          "fontFamily": "Font Awesome 5 Pro",
+                          "fontFamily": "FontAwesome5Pro-Solid",
                           "fontStyle": "normal",
                           "fontWeight": "normal",
                         },
@@ -4166,7 +4164,7 @@ exports[`Storyshots Header Behavior 1`] = `
                         },
                         undefined,
                         Object {
-                          "fontFamily": "Font Awesome 5 Pro",
+                          "fontFamily": "FontAwesome5Pro-Solid",
                           "fontStyle": "normal",
                           "fontWeight": "normal",
                         },
