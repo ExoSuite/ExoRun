@@ -74,20 +74,24 @@
       "sha1": "62dcb447998b27a83872d75439ce35124fe08aa7"
     },
     {
+      "path": "app/assets/.DS_Store",
+      "sha1": "10a78bf15e66ff00b5fca5b76b7bb345cee99169"
+    },
+    {
       "path": "app/assets/fonts/FontAwesome5_Pro_Brands.ttf",
-      "sha1": "eac41b624992fd479004177a663436c7ecef24c4"
+      "sha1": "8033b8ddfd8e56fd8a5a9ebb5e326e72d33ee733"
     },
     {
       "path": "app/assets/fonts/FontAwesome5_Pro_Light.ttf",
-      "sha1": "dddf9aa1114d23e93d08d41ab33e32a78af9b057"
+      "sha1": "da7c081bbe8b9bc04a9056372205758dd35ba4e6"
     },
     {
       "path": "app/assets/fonts/FontAwesome5_Pro_Regular.ttf",
-      "sha1": "d54a4befba1125130ab023bcd1d141e312c42a84"
+      "sha1": "d8ee8eb256fe1b707f38f653946e458c397f4883"
     },
     {
       "path": "app/assets/fonts/FontAwesome5_Pro_Solid.ttf",
-      "sha1": "4134dca44bfa21b9b3f2a4496727641fb4117d4c"
+      "sha1": "f21980c6e3d23cd133d7405be0303b7d5a643f24"
     },
     {
       "path": "app/assets/img/exorun-logo.png",

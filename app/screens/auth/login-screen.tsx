@@ -278,7 +278,6 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
           )}
 
           <KeyboardAccessoryView
-              animateOn="all"
               alwaysVisible
               style={KEYBOARD_ACCESSORY_VIEW}
               inSafeAreaView
@@ -292,7 +291,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
                 onPress={() => {}}
               />
               <Button
-                style={{ backgroundColor: buttonColor, width: "20%", alignSelf: "flex-end" }}
+                style={{ backgroundColor: buttonColor, alignSelf: "flex-end", maxWidth: "30%", minWidth: "20%" }}
                 onPress={this.authorizeLogin}
                 disabled={buttonColor != enabled} // can we press on the login button?
                 preset="primaryFullWidth"

@@ -59,7 +59,7 @@ PODS:
     - RNSound/Core (= 0.10.12)
   - RNSound/Core (0.10.12):
     - React/Core
-  - RNVectorIcons (6.4.0):
+  - RNVectorIcons (6.4.1):
     - React
   - ViroKit_static_lib (1.0)
   - ViroReact (1.0)
@@ -128,7 +128,7 @@ SPEC CHECKSUMS:
   react-native-async-storage: 572b0e6bbb368eeb3d303f2505d642517a9396de
   RNKeychain: 1a121521011702409f5a1009eb8a1effa81000f3
   RNSound: a1d01988e043aed5dbb476c2152b5ffb02446750
-  RNVectorIcons: 58701e9fef0e09b93eb9e902d689ec34bd396a99
+  RNVectorIcons: 09d03dfe7c9fc158c3dce50d891101637d428bb3
   ViroKit_static_lib: ae9c112ac4b128f8d4466fc581c7b07a0264754d
   ViroReact: 7ec32276dcd1883662b4587eaedfff67f7fc3625
   yoga: 26673abd38bbdf0c33e134ad9e690c5fbf16e8fc

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "yarn react-native start",
     "clean": "rm -rf $TMPDIR/react-*",
     "clean:android": "cd android/ && ./gradlew clean && cd .. && react-native run-android",
     "test": "jest",
@@ -25,6 +25,7 @@
     "hack:androidX": "sh android/patch/patch-androidX.sh",
     "reload-android": "adb shell input text 'RR'",
     "reactotron-android": "adb reverse tcp:9090 tcp:9090",
+    "packager-android": "adb reverse tcp:8081 tcp:8081",
     "patch": "patch-package",
     "prepare": "npm-run-all patch hack:*",
     "postversion": "react-native-version"
@@ -58,7 +59,7 @@
     "react-native-modal": "^9.0.0",
     "react-native-sound": "^0.10.12",
     "react-native-splash-screen": "3.2.0",
-    "react-native-vector-icons": "6.4.0",
+    "react-native-vector-icons": "^6.4.1",
     "react-navigation": "3.3.2",
     "react-viro": "^2.13.0",
     "reactotron-mst": "3.1.0",
@@ -75,10 +76,10 @@
     "@storybook/addon-storyshots": "^4.1.14",
     "@storybook/react-native": "^4.1.14",
     "@types/jest": "24.0.11",
-    "@types/node": "^11.11.2",
+    "@types/node": "^11.11.3",
     "@types/ramda": "0.26.3",
     "@types/react": "16.8.8",
-    "@types/react-native": "0.57.39",
+    "@types/react-native": "0.57.40",
     "@types/react-navigation": "3.0.5",
     "@types/react-test-renderer": "16.8.1",
     "@types/validate.js": "0.11.0",
@@ -101,9 +102,10 @@
     "react-test-renderer": "16.8.4",
     "rimraf": "2.6.3",
     "solidarity": "2.3.1",
-    "tslint": "5.13.1",
+    "tslint": "5.14.0",
     "tslint-config-prettier": "1.18.0",
-    "typescript": "3.3.3333"
+    "typescript": "3.3.3333",
+    "typescript-tslint-plugin": "^0.3.1"
   },
   "jest": {
     "preset": "jest-preset-ignite"

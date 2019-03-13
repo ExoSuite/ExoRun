@@ -22,9 +22,13 @@ platform :ios do
     gym(
         workspace: "ExoRun.xcworkspace",
         scheme: "ExoRun",
-        xcargs: "-UseNewBuildSystem=NO -allowProvisioningUpdates",
-        export_method: "ad-hoc"
-    ) # Build your app - more options available
+        export_options: {
+            method: "ad-hoc",
+            provisioningProfiles: {
+              "com.ExoSuite.ExoRun" => "Provisioning Profile For ExoRun",
+            }
+        }
+    )
   end
 
   desc "Submit a new Beta Build to Apple TestFlight"
@@ -34,7 +38,6 @@ platform :ios do
     gym(
       workspace: "ExoRun.xcworkspace",
       scheme: "ExoRun",
-      xcargs: "-UseNewBuildSystem=NO"
     ) # Build your app - more options available
     pilot
   end
@@ -45,7 +48,6 @@ platform :ios do
     gym(
       workspace: "ExoRun.xcworkspace",
       scheme: "ExoRun",
-      xcargs: "-UseNewBuildSystem=NO"
     )
     deliver(force: true)
   end
