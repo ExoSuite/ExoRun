@@ -182,7 +182,6 @@ export class DataLoader extends React.Component<DataLoaderProps> {
   finalAnimationStep() {
     if (this.isSuccessFul()) {
       runInAction(() => this._isVisible = false)
-      this._successCallback()
     } else {
       this._errorCallback()
     }
@@ -242,6 +241,7 @@ export class DataLoader extends React.Component<DataLoaderProps> {
     return (
       <Modal
         isVisible={_isVisible}
+        onModalHide={() => this._successCallback()}
       >
         <View style={MODAL_CONTAINER}>
           <FormRow preset="clear" style={LOADER_CONTAINER_STYLE}>

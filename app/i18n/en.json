@@ -18,7 +18,7 @@
     "back": "Go back",
     "slogan": "Technology for sport.",
     "login": {
-      "header": "Login",
+      "header": "Log in",
       "login": "Log in to ExoRun",
       "username": "E-mail",
       "password": "Password",
@@ -29,8 +29,8 @@
       "reset-password": "Forgot password?"
     },
     "register": {
-      "header": "Register",
-      "register": "Register me"
+      "header": "Create your ExoSuite account",
+      "register": "Sign Up"
     }
   }
 }

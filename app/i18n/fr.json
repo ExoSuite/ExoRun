@@ -39,8 +39,8 @@
       "reset-password": "Mot de passe oublié ?"
     },
     "register": {
-      "header": "S'enregistrer",
-      "register": "Enregistrer moi"
+      "header": "Créer votre compte ExoSuite",
+      "register": "S'inscrire"
     }
   }
 }

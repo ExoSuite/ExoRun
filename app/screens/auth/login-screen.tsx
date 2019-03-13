@@ -4,10 +4,8 @@ import { observer } from "mobx-react"
 import {
   Image,
   ImageStyle,
-  Keyboard,
   SafeAreaView,
   TextStyle,
-  TouchableWithoutFeedback,
   View,
   ViewStyle,
 } from "react-native"
@@ -20,7 +18,7 @@ import KeyboardSpacer from "react-native-keyboard-spacer"
 import validator from "validate.js"
 import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
 // custom imports
-import { Button, Header, PressableText, Screen, Text, TextField } from "@components"
+import { Button, DismissKeyboard, Header, PressableText, Screen, Text, TextField } from "@components"
 import { color, spacing } from "@theme"
 import { Asset } from "@services/asset"
 import { FormRow } from "@components/form-row"
@@ -114,12 +112,6 @@ const disabled = color.palette.lightGrey
 const enabled = color.secondary
 const hidePassword = "auth.login.password-hide"
 const revealPassword = "auth.login.password-reveal"
-
-const DismissKeyboard = ({ children }) => (
-  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-    {children}
-  </TouchableWithoutFeedback>
-)
 
 @inject(Injection.Api, Injection.SoundPlayer)
 @observer
