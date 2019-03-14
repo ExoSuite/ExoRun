@@ -82,7 +82,7 @@ export class AuthScreen extends React.Component<AuthScreenProps, {}> {
             <Text preset="bold" tx="auth.login.header"/>
           </Button>
           <Button style={{ width: "80%" }} onPress={navigateToRegister} preset="secondary">
-            <Text preset="bold" tx="auth.register.header"/>
+            <Text preset="bold" tx="auth.register.register"/>
           </Button>
         </Screen>
         <View style={FOOTER_CONTAINER}>

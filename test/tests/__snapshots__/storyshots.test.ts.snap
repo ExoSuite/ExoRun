@@ -143,6 +143,8 @@ exports[`Storyshots Animated Data Loader Error 1`] = `
           hardwareAccelerated={false}
           hideModalContentWhileAnimating={false}
           onModalHide={[Function]}
+          onModalWillHide={[Function]}
+          onModalWillShow={[Function]}
           onRequestClose={[Function]}
           scrollOffset={0}
           scrollOffsetMax={0}
@@ -182,6 +184,8 @@ exports[`Storyshots Animated Data Loader Error 1`] = `
           <View
             hideModalContentWhileAnimating={false}
             onModalHide={[Function]}
+            onModalWillHide={[Function]}
+            onModalWillShow={[Function]}
             pointerEvents="box-none"
             scrollOffset={0}
             scrollOffsetMax={0}
@@ -454,6 +458,8 @@ exports[`Storyshots Animated Data Loader Success 1`] = `
           hardwareAccelerated={false}
           hideModalContentWhileAnimating={false}
           onModalHide={[Function]}
+          onModalWillHide={[Function]}
+          onModalWillShow={[Function]}
           onRequestClose={[Function]}
           scrollOffset={0}
           scrollOffsetMax={0}
@@ -493,6 +499,8 @@ exports[`Storyshots Animated Data Loader Success 1`] = `
           <View
             hideModalContentWhileAnimating={false}
             onModalHide={[Function]}
+            onModalWillHide={[Function]}
+            onModalWillShow={[Function]}
             pointerEvents="box-none"
             scrollOffset={0}
             scrollOffsetMax={0}
@@ -2085,6 +2093,156 @@ exports[`Storyshots Checkbox Styling 1`] = `
 </View>
 `;
 
+exports[`Storyshots DismissKeyboard Style Presets 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                DismissKeyboard
+              </Text>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              Click on input and click in the screen to dissmiss
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "paddingVertical": 12,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#939AA4",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 13,
+                  }
+                }
+              />
+              <TextInput
+                accessible={true}
+                autoFocus={false}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                placeholderTextColor="#CDD4DA"
+                style={
+                  Object {
+                    "backgroundColor": "#ffffff",
+                    "borderRadius": 10,
+                    "color": "#ffffff",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 18,
+                    "minHeight": 44,
+                    "paddingHorizontal": 5,
+                  }
+                }
+                underlineColorAndroid="rgba(0, 0, 0, 0)"
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
 exports[`Storyshots FontawesomeIcon Example 1`] = `
 <View
   onLayout={[Function]}
@@ -2197,12 +2355,12 @@ exports[`Storyshots FontawesomeIcon Example 1`] = `
                   },
                   undefined,
                   Object {
-                    "fontFamily": "Font Awesome 5 Pro",
+                    "fontFamily": "FontAwesome5Pro-Light",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
                   },
                   Object {
-                    "fontWeight": "100",
+                    "fontWeight": "300",
                   },
                 ]
               }
@@ -2299,12 +2457,12 @@ exports[`Storyshots FontawesomeIcon Example 1`] = `
                   },
                   undefined,
                   Object {
-                    "fontFamily": "Font Awesome 5 Pro",
+                    "fontFamily": "FontAwesome5Pro-Solid",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
                   },
                   Object {
-                    "fontWeight": "700",
+                    "fontWeight": "900",
                   },
                 ]
               }
@@ -2393,7 +2551,6 @@ exports[`Storyshots FontawesomeIcon Example 1`] = `
           >
             <Text
               allowFontScaling={false}
-              regular={true}
               style={
                 Array [
                   Object {
@@ -2402,7 +2559,7 @@ exports[`Storyshots FontawesomeIcon Example 1`] = `
                   },
                   undefined,
                   Object {
-                    "fontFamily": "Font Awesome 5 Pro",
+                    "fontFamily": "FontAwesome5Pro-Regular",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
                   },
@@ -2496,7 +2653,6 @@ exports[`Storyshots FontawesomeIcon Example 1`] = `
           >
             <Text
               allowFontScaling={false}
-              brand={true}
               style={
                 Array [
                   Object {
@@ -2505,7 +2661,7 @@ exports[`Storyshots FontawesomeIcon Example 1`] = `
                   },
                   undefined,
                   Object {
-                    "fontFamily": "Font Awesome 5 Brands",
+                    "fontFamily": "FontAwesome5Brands-Regular",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
                   },
@@ -3957,12 +4113,12 @@ exports[`Storyshots Header Behavior 1`] = `
                         },
                         undefined,
                         Object {
-                          "fontFamily": "Font Awesome 5 Pro",
+                          "fontFamily": "FontAwesome5Pro-Solid",
                           "fontStyle": "normal",
                           "fontWeight": "normal",
                         },
                         Object {
-                          "fontWeight": "700",
+                          "fontWeight": "900",
                         },
                       ]
                     }
@@ -4158,12 +4314,12 @@ exports[`Storyshots Header Behavior 1`] = `
                         },
                         undefined,
                         Object {
-                          "fontFamily": "Font Awesome 5 Pro",
+                          "fontFamily": "FontAwesome5Pro-Solid",
                           "fontStyle": "normal",
                           "fontWeight": "normal",
                         },
                         Object {
-                          "fontWeight": "700",
+                          "fontWeight": "900",
                         },
                       ]
                     }
@@ -4172,6 +4328,144 @@ exports[`Storyshots Header Behavior 1`] = `
                   </Text>
                 </View>
               </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
+exports[`Storyshots PressableText Style Presets 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                PressableText
+              </Text>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              PressableText
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "black",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 15,
+                    "fontWeight": "bold",
+                  }
+                }
+              >
+                PressableText
+              </Text>
             </View>
           </View>
         </View>

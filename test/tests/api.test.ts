@@ -1,29 +1,47 @@
 import { Api, HttpRequest, HttpResponse } from "@services/api"
 import { HttpRequestError } from "@exceptions"
+import { LogicErrorState, LogicException } from "@exceptions/LogicException"
 
-it("should initialize API without crashing", () => {
+test("should initialize API and throw HttpRequestError", async () => {
   const instance = new Api()
-  instance.setup()
-  return instance
-    .request(HttpRequest.GET, "auth/register", {}, {}, false)
-    .then(() => {
-      fail("Request must throw an error")
-    })
-    .catch((e: HttpRequestError) => {
-      if (!e.isNot || e.isNot(HttpResponse.METHOD_NOT_ALLOWED))
-        fail(e.what ? e.what() : e)
-    })
+  await instance.setup()
+
+  const error = await expect(
+    instance.request(HttpRequest.GET, "user/me", {}, {}, false),
+  ).rejects
+  await error.toThrow()
+  await error.toThrowError(HttpRequestError)
 })
 
-it("should return 404", function() {
+test("should throw LogicException with LogicErrorState.CANT_LOAD_API_TOKENS", async () => {
   const instance = new Api()
-  instance.setup()
-  return instance
-    .request(HttpRequest.GET, "", {}, {}, false)
-    .then(() => {
-      fail()
-    })
-    .catch((e: HttpRequestError) => {
-      if (!e.is || e.is(HttpResponse.METHOD_NOT_ALLOWED)) fail(e.what ? e.what() : e)
-    })
+  await instance.setup()
+
+  const error = await expect(
+    instance.request(HttpRequest.GET, "user/me", {}, {}, true),
+  ).rejects
+  await error.toThrow()
+  await error.toThrowError(LogicException)
+
+  try {
+    await instance.request(HttpRequest.GET, "user/me", {}, {}, true)
+  } catch (e) {
+    expect(e.code()).toEqual(LogicErrorState.CANT_LOAD_API_TOKENS)
+  }
+})
+
+
+test("Api test should return OK on /monitoring/alive", async () => {
+  const instance = new Api()
+  await instance.setup()
+
+  const response = await instance.request(
+    HttpRequest.GET,
+    "monitoring/alive",
+    {},
+    {},
+    false,
+  )
+  expect(response.status).toEqual(HttpResponse.OK)
+  expect(response.data).toEqual("OK")
 })

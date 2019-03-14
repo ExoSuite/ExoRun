@@ -1,7 +1,10 @@
 import * as React from "react"
 import { inject, observer } from "mobx-react"
 // @ts-ignore: until they update @type/react-navigation
-import { getNavigation, NavigationScreenProp, NavigationState } from "react-navigation"
+import { getNavigation,
+  NavigationScreenProp,
+  NavigationState,
+} from "react-navigation"
 
 import { RootNavigator } from "./root-navigator"
 import { NavigationStore } from "./navigation-store"
@@ -11,9 +14,11 @@ import { Asset } from "@services/asset"
 import { color } from "@theme"
 import { Screen } from "@services/device"
 import { Injection } from "@services/injections"
+import { Api } from "@services/api"
 
 interface StatefulNavigatorProps {
-  navigationStore?: NavigationStore
+  navigationStore?: NavigationStore,
+  api?: Api
 }
 
 const IMAGE_STYLE: ImageProperties = {
@@ -21,7 +26,7 @@ const IMAGE_STYLE: ImageProperties = {
   width: Screen.Width,
 }
 
-@inject(Injection.NavigationStore)
+@inject(Injection.NavigationStore, Injection.Api)
 @observer
 export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {}> {
   currentNavProp: NavigationScreenProp<NavigationState>
@@ -32,14 +37,27 @@ export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {
     return this.currentNavProp
   }
 
+  returnToLogin() {
+    const { navigationStore } = this.props
+    if (navigationStore.findCurrentRoute().routeName === "Home") {
+      navigationStore.reset()
+    }
+  }
+
   @autobind
-  removeLoader() {
+  async removeLoader() {
+    const { api, navigationStore } = this.props
+    try {
+      await api.checkToken()
+      navigationStore.navigateTo("HomeScreen")
+    } catch (e) {
+      this.returnToLogin()
+    }
     this.loader.animate()
-    this.props.navigationStore.navigateTo("HomeScreen")
   }
 
   async componentDidMount() {
-    setTimeout(this.removeLoader, 2000)
+    await this.removeLoader()
   }
 
   render() {

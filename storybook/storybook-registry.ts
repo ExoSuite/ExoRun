@@ -1,3 +1,5 @@
+require("../app/components/dismiss-keyboard/dismiss-keyboard.story")
+require("../app/components/pressable-text/pressable-text.story")
 require("../app/components/text/text.story")
 require("../app/components/button/button.story")
 require("../app/components/data-loader/data-loader.story")

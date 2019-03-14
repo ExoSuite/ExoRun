@@ -12,7 +12,7 @@ export type FontawesomeIconTypes = "brand" | "light" | "solid" | "regular"
  */
 export function FontawesomeIcon(props: FontawesomeIconProps) {
   // grab the props
-  const { name, type, size = 16, color = themeColor.primary, style } = props
+  const { name, type = "solid", size = 16, color = themeColor.primary, style } = props
 
   const fontProps = { name, size, color }
 

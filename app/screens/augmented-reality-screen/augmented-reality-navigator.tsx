@@ -14,10 +14,6 @@ const FULL: ViewStyle = {
 
 export class AugmentedRealityNavigator extends React.Component<AugmentedRealityNavigatorProps> {
 
-  static navigationOptions = {
-    header: null,
-  }
-
   render(): React.ReactNode {
     const { navigation } = this.props
 

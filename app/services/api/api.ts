@@ -4,12 +4,14 @@ import jwtDecode from "jwt-decode"
 import { languageTag } from "@i18n/i18n"
 import { getGeneralApiProblem } from "./api-problem"
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
-import { HttpRequest } from "./api-http-request"
+import { HttpRequest, toApiSauceMethod } from "./api-http-request"
 import { IClient, IGrantRequest, ITokenResponse } from "./api.types"
 import { load, save } from "@utils/keychain"
 import { Server } from "./api.servers"
 import { HttpRequestError } from "@exceptions/HttpRequestError"
 import { IService } from "@services/interfaces"
+import { LogicErrorState, LogicException } from "@exceptions/LogicException"
+import Config from "react-native-config"
 
 
 /**
@@ -38,8 +40,8 @@ export class Api implements IService {
   constructor(config: ApiConfig = DEFAULT_API_CONFIG) {
     this.config = config
     this.client = {
-      client_id: 1,
-      client_secret: "4eTPOwUpimKkxXiIrUAngSp3n8IuUfCX39YMNNDQ",
+      client_id: Config.EXOSUITE_USERS_API_CLIENT_ID,
+      client_secret: Config.EXOSUITE_USERS_API_CLIENT_SECRET,
     }
 
     this.grantRequest = {
@@ -70,7 +72,6 @@ export class Api implements IService {
         Accept: "application/json",
       },
       httpsAgent: new https.Agent({ keepAlive: true }), // see HTTP keep alive
-      adapter: require("axios/lib/adapters/http"), // define real http adapter
     })
   }
 
@@ -98,53 +99,40 @@ export class Api implements IService {
       if (Api.isITokenResponse(token) && token.access_token) {
         headers["Authorization"] = "Bearer " + token.access_token
       } else {
-        throw new Error("Required API authentication but access_token was undefined!")
+        throw new LogicException(LogicErrorState.MALFORMED_API_TOKENS)
       }
     }
 
     headers["X-localization"] = languageTag
-    // console.tron.log(headers)
 
     // set additional headers
     // @ts-ignore
     this.apisauce.setHeaders(headers)
 
-    let apiCall: ApisauceInstance["delete"] | ApisauceInstance["post"]
-      | ApisauceInstance["put"] | ApisauceInstance["patch"]
-      | ApisauceInstance["get"]
-
-    // choose method to use GET/POST/PUT/PATCH/DELETE
-    if (httpMethod === HttpRequest.DELETE) apiCall = this.apisauce.delete
-    else if (httpMethod === HttpRequest.POST) apiCall = this.apisauce.post
-    else if (httpMethod === HttpRequest.PATCH) apiCall = this.apisauce.patch
-    else if (httpMethod === HttpRequest.GET) apiCall = this.apisauce.get
-    else if (httpMethod === HttpRequest.PUT) apiCall = this.apisauce.put
-
     // launch api request
-    // @ts-ignore
-    const response: ApiResponse<any> = await apiCall(url, data)
+    const response: ApiResponse<any> =
+      await this.apisauce[toApiSauceMethod(httpMethod)](url, data)
 
     // the typical ways to die when calling an api fails
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
-      return new Promise((resolve, reject) => {
-        reject(new HttpRequestError(problem, response))
-      })
+      throw new HttpRequestError(problem, response)
     }
 
     // return response from api
     return response
   }
 
-  private async checkToken(): Promise<ITokenResponse | boolean> {
+  public async checkToken(): Promise<ITokenResponse | boolean> {
     // get tokens from secure storage
     const credentials: ITokenResponse | boolean = await load(Server.EXOSUITE_USERS_API)
     // check if credentials match with type ITokenResponse
     if (Api.isITokenResponse(credentials)) {
       // decode token
       const decoded = jwtDecode(credentials.access_token)
+      console.tron.log(Date.now() / 1000 > decoded.exp, "IF JWT IS EXPIRED")
       // check if token is expired
-      if (decoded.expires_in <= 0) {
+      if (Date.now() / 1000 > decoded.exp) {
         // assign refresh token to grantRequest
         this.grantRequest.refresh_token = credentials.refresh_token
         // call api for new tokens
@@ -161,7 +149,7 @@ export class Api implements IService {
       return credentials
     } else {
       // if tokens was not provided throw an error
-      throw new Error("Can't load token!")
+      throw new LogicException(LogicErrorState.CANT_LOAD_API_TOKENS)
     }
   }
 }

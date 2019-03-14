@@ -1,46 +1,46 @@
 PODS:
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.6)
-  - Folly (2018.10.22.00):
+  - Folly (2016.10.31.00):
     - boost-for-react-native
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - lottie-ios (2.5.2)
+  - lottie-ios (2.5.0)
   - lottie-react-native (2.5.11):
     - lottie-ios
     - React
-  - React (0.58.4):
-    - React/Core (= 0.58.4)
-  - React/Core (0.58.4):
-    - yoga (= 0.58.4.React)
-  - React/CxxBridge (0.58.4):
-    - Folly (= 2018.10.22.00)
+  - React (0.57.7):
+    - React/Core (= 0.57.7)
+  - react-native-async-storage (1.2.0):
+    - React
+  - React/Core (0.57.7):
+    - yoga (= 0.57.7.React)
+  - React/CxxBridge (0.57.7):
+    - Folly (= 2016.10.31.00)
     - React/Core
     - React/cxxreact
-    - React/jsiexecutor
-  - React/cxxreact (0.58.4):
+  - React/cxxreact (0.57.7):
     - boost-for-react-native (= 1.63.0)
-    - Folly (= 2018.10.22.00)
+    - Folly (= 2016.10.31.00)
+    - React/jschelpers
     - React/jsinspector
-  - React/DevSupport (0.58.4):
+  - React/DevSupport (0.57.7):
     - React/Core
     - React/RCTWebSocket
-  - React/fishhook (0.58.4)
-  - React/jsi (0.58.4):
-    - Folly (= 2018.10.22.00)
-  - React/jsiexecutor (0.58.4):
-    - Folly (= 2018.10.22.00)
-    - React/cxxreact
-    - React/jsi
-  - React/jsinspector (0.58.4)
-  - React/RCTBlob (0.58.4):
+  - React/fishhook (0.57.7)
+  - React/jschelpers (0.57.7):
+    - Folly (= 2016.10.31.00)
+    - React/PrivateDatabase
+  - React/jsinspector (0.57.7)
+  - React/PrivateDatabase (0.57.7)
+  - React/RCTBlob (0.57.7):
     - React/Core
-  - React/RCTNetwork (0.58.4):
+  - React/RCTNetwork (0.57.7):
     - React/Core
-  - React/RCTText (0.58.4):
+  - React/RCTText (0.57.7):
     - React/Core
-  - React/RCTWebSocket (0.58.4):
+  - React/RCTWebSocket (0.57.7):
     - React/Core
     - React/fishhook
     - React/RCTBlob
@@ -51,17 +51,19 @@ PODS:
     - RNSound/Core (= 0.10.12)
   - RNSound/Core (0.10.12):
     - React/Core
-  - RNVectorIcons (6.3.0):
+  - RNVectorIcons (6.4.1):
     - React
   - ViroKit_static_lib (1.0)
   - ViroReact (1.0)
-  - yoga (0.58.4.React)
+  - yoga (0.57.7.React)
 
 DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - lottie-ios (from `../node_modules/lottie-ios`)
   - lottie-react-native (from `../node_modules/lottie-react-native`)
+  - "react-native-async-storage (from `../node_modules/@react-native-community/async-storage`)"
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
@@ -78,7 +80,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - boost-for-react-native
-    - lottie-ios
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -87,10 +88,14 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  lottie-ios:
+    :path: "../node_modules/lottie-ios"
   lottie-react-native:
     :path: "../node_modules/lottie-react-native"
   React:
     :path: "../node_modules/react-native"
+  react-native-async-storage:
+    :path: "../node_modules/@react-native-community/async-storage"
   RNKeychain:
     :path: "../node_modules/react-native-keychain"
   RNSound:
@@ -107,18 +112,19 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
-  Folly: de497beb10f102453a1afa9edbf8cf8a251890de
-  glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
-  lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
+  Folly: c89ac2d5c6ab169cd7397ef27485c44f35f742c7
+  glog: e8acf0ebbf99759d3ff18c86c292a5898282dcde
+  lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
   lottie-react-native: 216bd1295fa67b159fdbe5562a7d7b6371da6422
-  React: 6b36b9732ee830d06b470dc4ecdd6837718abe63
+  React: 67899bbb285ceb9b4ee1c88b3991602ba5772ad2
+  react-native-async-storage: 572b0e6bbb368eeb3d303f2505d642517a9396de
   RNKeychain: 1a121521011702409f5a1009eb8a1effa81000f3
   RNSound: a1d01988e043aed5dbb476c2152b5ffb02446750
-  RNVectorIcons: cb42a5653c046f12ca16c9480c571b52620559e8
+  RNVectorIcons: 09d03dfe7c9fc158c3dce50d891101637d428bb3
   ViroKit_static_lib: ae9c112ac4b128f8d4466fc581c7b07a0264754d
   ViroReact: 7ec32276dcd1883662b4587eaedfff67f7fc3625
-  yoga: a767b95565bc4e939c7bf241a872cc29bad2f984
+  yoga: 192d724e53380b783e09b7d687a55cd8ed5188be
 
-PODFILE CHECKSUM: 94fade78653225839eb5e0f9196f00e90ab8edb7
+PODFILE CHECKSUM: 5849e3743b4fbfac8faf7360eef7a7b3f1c89a65
 
-COCOAPODS: 1.6.0
+COCOAPODS: 1.6.1

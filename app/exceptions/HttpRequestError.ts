@@ -8,21 +8,13 @@ const baseError = {
 }
 
 export class HttpRequestError extends BaseError {
-  private readonly status: HttpResponse
   private readonly _data: { errors: Object, message: string }
+  private readonly _problem: GeneralApiProblem
 
   constructor(problem: GeneralApiProblem, response: ApiResponse<any>) {
-    super()
-    this.status = problem.kind
+    super(problem.kind)
     this._data = response.data || []
-  }
-
-  public is(httpResponse: HttpResponse) {
-    return this.status === httpResponse
-  }
-
-  public isNot(httpResponse: HttpResponse) {
-    return this.status !== httpResponse
+    this._problem = problem
   }
 
   public happened(): Object {
@@ -33,11 +25,6 @@ export class HttpRequestError extends BaseError {
   public what(): string {
     return this.message
   }
-
-  public code(): HttpResponse {
-    return this.status
-  }
-
 
   public formattedErrors() {
     let errors
@@ -60,5 +47,9 @@ export class HttpRequestError extends BaseError {
     }
 
     return errors
+  }
+
+  public problem() {
+    return this._problem
   }
 }

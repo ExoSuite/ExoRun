@@ -9,6 +9,7 @@ import "./mocks/mock-react-native-localize"
 import "./mocks/mock-react-native-splash-screen"
 import "./mocks/mock-react-navigation"
 import "./mocks/mock-react-native-sound"
+import "./mocks/mock-react-native-keychain"
 
 declare global {
   let __TEST__
