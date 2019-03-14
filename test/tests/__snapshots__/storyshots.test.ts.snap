@@ -2360,7 +2360,7 @@ exports[`Storyshots FontawesomeIcon Example 1`] = `
                     "fontWeight": "normal",
                   },
                   Object {
-                    "fontWeight": "100",
+                    "fontWeight": "300",
                   },
                 ]
               }
@@ -2462,7 +2462,7 @@ exports[`Storyshots FontawesomeIcon Example 1`] = `
                     "fontWeight": "normal",
                   },
                   Object {
-                    "fontWeight": "700",
+                    "fontWeight": "900",
                   },
                 ]
               }
@@ -4118,7 +4118,7 @@ exports[`Storyshots Header Behavior 1`] = `
                           "fontWeight": "normal",
                         },
                         Object {
-                          "fontWeight": "700",
+                          "fontWeight": "900",
                         },
                       ]
                     }
@@ -4319,7 +4319,7 @@ exports[`Storyshots Header Behavior 1`] = `
                           "fontWeight": "normal",
                         },
                         Object {
-                          "fontWeight": "700",
+                          "fontWeight": "900",
                         },
                       ]
                     }

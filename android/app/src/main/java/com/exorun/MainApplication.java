@@ -34,7 +34,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.asList(
                     new MainReactPackage(),
-            new AsyncStoragePackage(),
+                    new AsyncStoragePackage(),
                     new RNLocalizePackage(),
                     new RNSoundPackage(),
                     new LottiePackage(),
@@ -43,7 +43,7 @@ public class MainApplication extends Application implements ReactApplication {
                     new SplashScreenReactPackage(),
                     new KeychainPackage(),
                     new RNGestureHandlerPackage(),
-                    new ReactViroPackage(ReactViroPackage.ViroPlatform.GVR)
+                    new ReactViroPackage(ReactViroPackage.ViroPlatform.AR)
             );
         }
 

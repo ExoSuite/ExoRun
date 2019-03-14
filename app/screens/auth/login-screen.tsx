@@ -86,6 +86,7 @@ const FULL: ViewStyle = {
 
 const CONTAINER: ViewStyle = {
   ...FULL,
+  paddingVertical: spacing[6],
   paddingHorizontal: spacing[4],
   flexGrow: 1,
   justifyContent: "space-evenly",
