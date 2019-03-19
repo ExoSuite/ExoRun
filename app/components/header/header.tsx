@@ -1,12 +1,12 @@
+import { Button } from "@components/button"
+import { FontawesomeIcon } from "@components/fontawesome-icon"
+import { Text } from "@components/text"
+import { translate } from "@i18n"
+import { Asset } from "@services/asset"
+import { spacing } from "@theme"
 import * as React from "react"
 import { Image, ImageStyle, TextStyle, View, ViewStyle } from "react-native"
-import { HeaderProps } from "./header.props"
-import { spacing } from "@theme"
-import { translate } from "@i18n"
-import { FontawesomeIcon } from "@components/fontawesome-icon"
-import { Button } from "@components/button"
-import { Text } from "@components/text"
-import { Asset } from "@services/asset"
+import { IHeaderProps } from "./header.props"
 
 // static styles
 const ROOT: ViewStyle = {
@@ -28,12 +28,11 @@ const EXORUN_LOGO: ImageStyle = {
   alignSelf: "center",
 }
 
-
 /**
  * Header that appears on many screens. Will hold navigation buttons and screen title.
  */
-export class Header extends React.Component<HeaderProps, {}> {
-  render() {
+export class Header extends React.Component<IHeaderProps> {
+  public render(): React.ReactNode {
     const {
       onLeftPress,
       onRightPress,

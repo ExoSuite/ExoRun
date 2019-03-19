@@ -1,5 +1,5 @@
-import { createStackNavigator } from "react-navigation"
 import { AuthScreen, LoginScreen, RegisterScreen } from "@screens/auth"
+import { createStackNavigator } from "react-navigation"
 
 export const AuthStack = createStackNavigator(
   {

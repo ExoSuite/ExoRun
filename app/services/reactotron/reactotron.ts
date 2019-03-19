@@ -1,10 +1,11 @@
-import Tron from "reactotron-react-native"
+// tslint:disable
 import { RootStore } from "@models/root-store"
-import { onSnapshot } from "mobx-state-tree"
-import { DEFAULT_REACTOTRON_CONFIG, ReactotronConfig } from "./reactotron-config"
-import { mst } from "reactotron-mst"
-import { commandMiddleware } from "./command-middleware"
 import { IService } from "@services/interfaces"
+import { onSnapshot } from "mobx-state-tree"
+import { mst } from "reactotron-mst"
+import Tron from "reactotron-react-native"
+import { commandMiddleware } from "./command-middleware"
+import { DEFAULT_REACTOTRON_CONFIG, ReactotronConfig } from "./reactotron-config"
 
 // Teach TypeScript about the bad things we want to do.
 declare global {
@@ -42,12 +43,10 @@ if (__DEV__) {
 
 /**
  * You'll probably never use the service like this since we hang the Reactotron
- * instance off of `console.tron`. This is only to be consistent with the other
+ * Instance off of `console.tron`. This is only to be consistent with the other
  * services.
  */
 export class Reactotron implements IService {
-  config: ReactotronConfig
-  rootStore: any
 
   /**
    * Create the Reactotron service.
@@ -66,6 +65,8 @@ export class Reactotron implements IService {
       },
     }
   }
+  public config: ReactotronConfig
+  public rootStore: any
 
   /**
    * Hook into the root store for doing awesome state-related things.
@@ -73,7 +74,7 @@ export class Reactotron implements IService {
    * @param rootStore The root store
    * @param initialData
    */
-  setRootStore(rootStore: any, initialData: any) {
+  public setRootStore(rootStore: any, initialData: any) {
     if (__DEV__) {
       rootStore = rootStore as RootStore // typescript hack
       this.rootStore = rootStore
@@ -87,7 +88,7 @@ export class Reactotron implements IService {
       }
       // log state changes?
       if (snapshots) {
-        onSnapshot(rootStore, snapshot => {
+        onSnapshot(rootStore, (snapshot) => {
           console.tron.display({ name, value: snapshot, preview: "New State" })
         })
       }
@@ -100,7 +101,7 @@ export class Reactotron implements IService {
   /**
    * Configure reactotron based on the the config settings passed in, then connect if we need to.
    */
-  async setup() {
+  public async setup() {
     // only run this in dev... metro bundler will ignore this block: 🎉
     if (__DEV__) {
       // configure reactotron
@@ -120,7 +121,7 @@ export class Reactotron implements IService {
       // hookup mobx-state-tree middleware
       Tron.use(
         mst({
-          filter: event => RX.test(event.name) === false,
+          filter: (event) => !RX.test(event.name),
         }),
       )
 

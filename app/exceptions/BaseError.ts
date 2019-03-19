@@ -1,24 +1,30 @@
+import { LogicErrorState } from "@exceptions/LogicException"
 import { HttpResponse } from "@services/api"
-import { LogicException } from "@exceptions/LogicException"
 
+type IStatus = HttpResponse | LogicErrorState
+
+/**
+ * * BaseError class define an abstract pattern who can be used to create your own Exception class.
+ */
 export abstract class BaseError extends Error {
-  private readonly _status: HttpResponse | LogicException
 
-  protected constructor(status) {
+  protected constructor(status: IStatus) {
     super()
     Error.apply(this, arguments)
-    this._status = status
+    this.status = status
   }
 
-  public is(status) {
-    return this._status === status
+  private readonly status: IStatus
+
+  public code(): IStatus {
+    return this.status
   }
 
-  public isNot(status) {
-    return this._status !== status
+  public is(status: IStatus): boolean {
+    return this.status === status
   }
 
-  public code() {
-    return this._status
+  public isNot(status: IStatus): boolean {
+    return this.status !== status
   }
 }

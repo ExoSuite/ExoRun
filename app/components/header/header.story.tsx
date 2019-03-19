@@ -5,13 +5,15 @@ import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { Header } from "./header"
 import { color } from "@theme"
 
+// tslint:disable jsx-no-lambda typedef
+
 const VIEWSTYLE = {
   flex: 1,
   backgroundColor: color.storybookDarkBg,
 }
 
 storiesOf("Header")
-  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
+  .addDecorator((fn) => <StoryScreen>{fn()}</StoryScreen>)
   .add("Behavior", () => (
     <Story>
       <UseCase noPad text="default" usage="The default usage">
@@ -28,7 +30,9 @@ storiesOf("Header")
             leftIcon="head-vr"
             leftIconType="solid"
             leftIconSize={30}
-            onLeftPress={() => window.alert("left nav")}
+            onLeftPress={() => {
+              window.alert("left nav")
+            }}
           />
         </View>
       </UseCase>
@@ -39,7 +43,9 @@ storiesOf("Header")
             rightIcon="head-vr"
             rightIconType="solid"
             rightIconSize={30}
-            onRightPress={() => window.alert("right nav")}
+            onRightPress={() => {
+              window.alert("right nav")
+            }}
           />
         </View>
       </UseCase>

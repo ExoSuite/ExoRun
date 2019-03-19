@@ -1,9 +1,11 @@
+// tslint:disable
+
 jest.mock("TextInput", () => {
   const RealComponent = jest.requireActual("TextInput")
   const React = require("React")
 
   class TextInput extends React.Component {
-    render() {
+    public render() {
       return React.createElement(
         "TextInput",
         { ...this.props, autoFocus: false },
@@ -13,5 +15,6 @@ jest.mock("TextInput", () => {
   }
 
   TextInput.propTypes = RealComponent.propTypes
+
   return TextInput
 })

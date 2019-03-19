@@ -1,3 +1,7 @@
+/**
+ * define Lottie assets
+ * @class Lottie
+ */
 export class Lottie {
-  static readonly LoaderSuccessFailed = require("./assets/loader-success-failed")
+  public static readonly LoaderSuccessFailed = require("./assets/loader-success-failed")
 }

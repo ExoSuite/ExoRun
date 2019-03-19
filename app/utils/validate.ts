@@ -1,12 +1,13 @@
 const ValidateJS = require("validate.js")
 import { contains } from "ramda"
 
-// HACK(steve): wierd typescript situation because of strange typings
+// weird typescript situation because of strange typings
 const Validate: any = ValidateJS.default ? ValidateJS.default : ValidateJS
 
 /**
  * Validates that 1 attribute doesn't appear in another's attributes content.
  */
+// tslint:disable-next-line
 Validate.validators.excludes = function custom(value, options, key, attributes) {
   const list = attributes[options.attribute] || []
   if (value && contains(value, list)) {
@@ -17,6 +18,7 @@ Validate.validators.excludes = function custom(value, options, key, attributes) 
 /**
  * Validates that another attribute isn't true.
  */
+// tslint:disable-next-line
 Validate.validators.tripped = function custom(value, options, key, attributes) {
   if (value && attributes[options.attribute] === true) {
     return options.message || `${options.attribute} is true`
@@ -42,7 +44,7 @@ Validate.validators.tripped = function custom(value, options, key, attributes) {
  * See https://validatejs.org/#validators for more examples.
  *
  */
-export interface ValidationRules {
+export interface IValidationRules {
   [key: string]: {}
 }
 
@@ -60,7 +62,7 @@ export interface ValidationRules {
  * }
  * ```
  */
-export interface ValidationErrors {
+export interface IValidationErrors {
   [key: string]: {}
 }
 
@@ -70,9 +72,10 @@ export interface ValidationErrors {
  * @param rules The rules to apply.
  * @param data The object to validate.
  */
-export function validate(rules: ValidationRules, data: {}): ValidationErrors {
+export function validate(rules: IValidationRules, data: {}): IValidationErrors {
   if (typeof data !== "object") {
     return {}
   }
+
   return Validate(data, rules, { fullMessages: false }) || {}
 }

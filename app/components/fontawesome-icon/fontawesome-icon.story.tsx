@@ -3,8 +3,10 @@ import { storiesOf } from "@storybook/react-native"
 import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { FontawesomeIcon } from "./"
 
+// tslint:disable typedef
+
 storiesOf("FontawesomeIcon")
-  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
+  .addDecorator((fn) => <StoryScreen>{fn()}</StoryScreen>)
   .add("Example", () => (
     <Story>
       <UseCase text="Light" usage="Chevron left light">

@@ -32,7 +32,6 @@
       "@i18n": ["app/i18n"],
       "@exceptions": ["app/exceptions"],
       "@exceptions/*": ["app/exceptions/*"]
-    },
-    "plugins": [{ "name": "typescript-tslint-plugin" }]
+    }
   }
 }

@@ -1,3 +1,5 @@
+// tslint:disable
+
 jest.mock("react-navigation", () => {
   return {
     NavigationActions: {

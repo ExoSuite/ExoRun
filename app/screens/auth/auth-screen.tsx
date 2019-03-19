@@ -1,13 +1,13 @@
-import * as React from "react"
-import { observer } from "mobx-react"
-import { Image, ImageStyle, SafeAreaView, View, ViewStyle } from "react-native"
 import { Button, Screen, Text } from "@components"
-import { color, spacing } from "@theme"
-import { NavigationScreenProps } from "react-navigation"
-import autobind from "autobind-decorator"
 import { Asset } from "@services/asset"
+import { color, spacing } from "@theme"
+import autobind from "autobind-decorator"
+import { observer } from "mobx-react"
+import * as React from "react"
+import { Image, ImageStyle, SafeAreaView, View, ViewStyle } from "react-native"
+import { NavigationScreenProps } from "react-navigation"
 
-export interface AuthScreenProps extends NavigationScreenProps<{}> {
+export interface IAuthScreenProps extends NavigationScreenProps<{}> {
 }
 
 const FULL: ViewStyle = {
@@ -44,33 +44,40 @@ const FOOTER_CONTAINER: ViewStyle = {
   justifyContent: "center",
 }
 
+const exorunTextAsset = Asset.Locator("exorun-text")
+const exorunLogoAsset = Asset.Locator("exorun-logo")
+const exosuiteLogoAsset = Asset.Locator("exosuite-logo")
+
+/**
+ * AuthScreen component is used to show login and register buttons
+ */
 @observer
-export class AuthScreen extends React.Component<AuthScreenProps, {}> {
+export class AuthScreen extends React.Component<IAuthScreenProps> {
 
   @autobind
-  navigateToRegister() {
-    const { navigation } = this.props
-    navigation.navigate("register")
-  }
-
-  @autobind
-  navigateToLogin() {
+  public navigateToLogin(): void {
     const { navigation } = this.props
     navigation.navigate("login")
   }
 
-  render() {
+  @autobind
+  public navigateToRegister(): void {
+    const { navigation } = this.props
+    navigation.navigate("register")
+  }
+
+  public render(): React.ReactNode {
     const { navigateToRegister, navigateToLogin } = this
 
     return (
       <SafeAreaView style={FULL}>
         <Image
-          source={Asset.Locator("exorun-text")}
+          source={exorunTextAsset}
           style={EXORUN_TEXT}
           resizeMode="contain"
         />
         <Image
-          source={Asset.Locator("exorun-logo")}
+          source={exorunLogoAsset}
           style={EXORUN_LOGO}
           resizeMode="contain"
         />
@@ -88,7 +95,7 @@ export class AuthScreen extends React.Component<AuthScreenProps, {}> {
         <View style={FOOTER_CONTAINER}>
           <Text preset="bold" tx="auth.powered"/>
           <Image
-            source={Asset.Locator("exosuite-logo")}
+            source={exosuiteLogoAsset}
             style={EXOSUITE}
             resizeMode="contain"
           />

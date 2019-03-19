@@ -1,15 +1,6 @@
 import { ViewStyle } from "react-native"
 
-export interface CheckboxProps {
-  /**
-   * Additional container style. Useful for margins.
-   */
-  style?: ViewStyle | ViewStyle[]
-
-  /**
-   * Additional outline style.
-   */
-  outlineStyle?: ViewStyle | ViewStyle[]
+export interface ICheckboxProps {
 
   /**
    * Additional fill style. Only visible when checked.
@@ -17,9 +8,18 @@ export interface CheckboxProps {
   fillStyle?: ViewStyle | ViewStyle[]
 
   /**
-   * Is the checkbox checked?
+   * Multiline or clipped single line?
    */
-  value?: boolean
+  multiline?: boolean
+
+  /**
+   * Additional outline style.
+   */
+  outlineStyle?: ViewStyle | ViewStyle[]
+  /**
+   * Additional container style. Useful for margins.
+   */
+  style?: ViewStyle | ViewStyle[]
 
   /**
    * The text to display if there isn't a tx.
@@ -32,12 +32,13 @@ export interface CheckboxProps {
   tx?: string
 
   /**
-   * Multiline or clipped single line?
+   * Is the checkbox checked?
    */
-  multiline?: boolean
+  value?: boolean
 
   /**
    * Fires when the user tabs to change the value.
    */
-  onToggle?: (newValue: boolean) => void
+  // tslint:disable-next-line no-flag-args
+  onToggle?(newValue: boolean): void;
 }

@@ -1,15 +1,15 @@
 // this file is for define api responses
 
 export interface ITokenResponse {
-  token_type: string
-  expires_in: number
   access_token: string
+  expires_in: number
   refresh_token: string
+  token_type: string
 }
 
 export interface IClient {
-  client_secret: string
   client_id: number
+  client_secret: string
 }
 
 export interface IGrantRequest extends IClient {
@@ -18,8 +18,7 @@ export interface IGrantRequest extends IClient {
   scope: string
 }
 
-
-export interface User {
+export interface IUser {
   id: number
   name: string
 }

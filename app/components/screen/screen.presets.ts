@@ -1,7 +1,7 @@
 // @ts-ignore
-import { ScrollViewStyle, ViewStyle } from "react-native"
 import { color } from "@theme"
 import { isEmpty, isNil } from "ramda"
+import { ScrollViewStyle, ViewStyle } from "react-native"
 
 /**
  * The base shape & color.
@@ -84,7 +84,7 @@ export type ScreenPresets = keyof typeof presets
  *
  * @param preset The preset to check
  */
-export function isNonScrolling(preset: ScreenPresets) {
+export function isNonScrolling(preset: ScreenPresets): boolean {
   // any of these things will make you scroll
   return !(
     isNil(preset) ||

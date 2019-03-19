@@ -1,54 +1,46 @@
-// library imports
-import * as React from "react"
-import { observer } from "mobx-react"
-import {
-  Image,
-  ImageStyle,
-  SafeAreaView,
-  TextStyle,
-  View,
-  ViewStyle,
-} from "react-native"
-import { action, observable } from "mobx"
-import { inject } from "mobx-react/native"
-import { NavigationScreenProps } from "react-navigation"
-import throttle from "lodash.throttle"
-import autobind from "autobind-decorator"
-import KeyboardSpacer from "react-native-keyboard-spacer"
-import validator from "validate.js"
-import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
-// custom imports
 import { Button, DismissKeyboard, Header, PressableText, Screen, Text, TextField } from "@components"
-import { color, spacing } from "@theme"
-import { Asset } from "@services/asset"
+import { DataLoader } from "@components/data-loader"
 import { FormRow } from "@components/form-row"
+import { HttpRequestError } from "@exceptions"
 import { Api, ITokenResponse } from "@services/api"
+import { Server } from "@services/api/api.servers"
+import { Asset } from "@services/asset"
+import { Platform } from "@services/device"
 import { Injection } from "@services/injections"
 import { SoundPlayer } from "@services/sound-player"
-import { DataLoader } from "@components/data-loader"
-import { HttpRequestError } from "@exceptions"
-import { Platform } from "@services/device"
-import { ApiResponse } from "apisauce"
-import { save } from "@utils/keychain"
-import { Server } from "@services/api/api.servers"
+import { color, spacing } from "@theme"
 import { palette } from "@theme/palette"
+import { save } from "@utils/keychain"
+import { ApiResponse } from "apisauce"
+import autobind from "autobind-decorator"
+import throttle from "lodash.throttle"
+import { action, observable } from "mobx"
+import { observer } from "mobx-react"
+import { inject } from "mobx-react/native"
+import * as React from "react"
+import { Image, ImageStyle, SafeAreaView, TextStyle, View, ViewStyle } from "react-native"
+import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
+import KeyboardSpacer from "react-native-keyboard-spacer"
+import { NavigationScreenProps } from "react-navigation"
+import { IValidationRules, validate } from "@utils/validate"
+import isEmpty from "lodash.isempty"
 
-export interface LoginScreenProps extends NavigationScreenProps<{}> {
+export interface ILoginScreenProps extends NavigationScreenProps<{}> {
   api: Api,
   soundPlayer: SoundPlayer
 }
 
 const EXOSUITE: ImageStyle = {
   width: 200,
-  height: 100,
+  height: 100
 }
 
 const EXTRA_PADDING_TOP: ViewStyle = {
-  paddingTop: spacing[3],
+  paddingTop: spacing[3]
 }
 
 const ZERO_PADDING: ViewStyle = {
-  padding: 0,
+  padding: 0
 }
 
 const FOOTER_CONTAINER: ViewStyle = {
@@ -57,11 +49,11 @@ const FOOTER_CONTAINER: ViewStyle = {
   alignItems: "center",
   justifyContent: "center",
   backgroundColor: color.background,
-  width: "100%",
+  width: "100%"
 }
 
 const EMAIL_TEXT: TextStyle = {
-  paddingTop: spacing[5],
+  paddingTop: spacing[5]
 }
 
 const BOLD: TextStyle = { fontWeight: "bold" }
@@ -69,19 +61,19 @@ const BOLD: TextStyle = { fontWeight: "bold" }
 const HEADER: TextStyle = {
   paddingTop: spacing[2],
   paddingBottom: spacing[2],
-  backgroundColor: color.palette.backgroundDarkerer,
+  backgroundColor: color.palette.backgroundDarkerer
 }
 const HEADER_TITLE: TextStyle = {
   ...BOLD,
   fontSize: 12,
   lineHeight: 15,
   textAlign: "center",
-  letterSpacing: 1.5,
+  letterSpacing: 1.5
 }
 
 const FULL: ViewStyle = {
   flex: 1,
-  backgroundColor: color.backgroundDarkerer,
+  backgroundColor: color.backgroundDarkerer
 }
 
 const CONTAINER: ViewStyle = {
@@ -89,7 +81,7 @@ const CONTAINER: ViewStyle = {
   paddingVertical: spacing[6],
   paddingHorizontal: spacing[4],
   flexGrow: 1,
-  justifyContent: "space-evenly",
+  justifyContent: "space-evenly"
 }
 
 const KEYBOARD_ACCESSORY_VIEW: ViewStyle = {
@@ -98,7 +90,7 @@ const KEYBOARD_ACCESSORY_VIEW: ViewStyle = {
   marginBottom: spacing[2],
   paddingLeft: spacing[1],
   paddingRight: spacing[1],
-  paddingTop: spacing[1],
+  paddingTop: spacing[1]
 }
 
 const KEYBOARD_ACCESSORY_VIEW_ROW_CONTAINER: ViewStyle = {
@@ -106,7 +98,7 @@ const KEYBOARD_ACCESSORY_VIEW_ROW_CONTAINER: ViewStyle = {
   alignItems: "center",
   justifyContent: "space-between",
   paddingLeft: spacing[2],
-  paddingRight: spacing[2],
+  paddingRight: spacing[2]
 }
 
 const disabled = color.palette.lightGrey
@@ -114,93 +106,86 @@ const enabled = color.secondary
 const hidePassword = "auth.login.password-hide"
 const revealPassword = "auth.login.password-reveal"
 
+const onResetPasswordPress = (): null => null
+
+const RULES: IValidationRules = { email: { email: true } }
+
+/**
+ * LoginScreen will handle multiple user login
+ * by calling the ExoSuite Users API
+ */
 @inject(Injection.Api, Injection.SoundPlayer)
 @observer
-export class LoginScreen extends React.Component<LoginScreenProps, {}> {
+export class LoginScreen extends React.Component<ILoginScreenProps> {
 
-  @observable email: string = null
-  @observable password: string = null
-  @observable isPasswordVisible = false
-  @observable isValidEmail = false
-
-  private readonly goBack: Function
-  private readonly authorizeLogin: (event) => void
-
-  constructor(props) {
+  constructor(props: ILoginScreenProps) {
     super(props)
     this.goBack = throttle(props.navigation.goBack, 3000)
     this.authorizeLogin = throttle(this._authorizeLogin, 5000)
   }
 
-  private manageResponseError(response: HttpRequestError) {
+  private readonly authorizeLogin: () => void
+  private readonly goBack: Function
+
+  @observable public email: string = null
+  @observable public isPasswordVisible = false
+  @observable public isValidEmail = false
+  @observable public password: string = null
+
+  private manageResponseError(response: HttpRequestError): void {
     const { soundPlayer } = this.props
-    DataLoader.instance.hasErrors(response, () => soundPlayer.error())
-  }
-
-  @autobind
-  async _authorizeLogin() {
-    const { api, soundPlayer, navigation } = this.props
-    DataLoader.instance.toggleIsVisible()
-
-    const response: ApiResponse<ITokenResponse> | HttpRequestError =
-      await api.login(this.email, this.password).catch((e: HttpRequestError) => e)
-
-    if (response instanceof HttpRequestError) {
-      this.manageResponseError(response)
-    } else {
-      DataLoader.instance.success(() => soundPlayer.success(), async () => {
-        await save(response.data, Server.EXOSUITE_USERS_API)
-        navigation.navigate("HomeScreen")
-      })
-    }
+    DataLoader.Instance.hasErrors(response, () => {
+      soundPlayer.error()
+    })
   }
 
   @action.bound
-  toggleIsPasswordVisible() {
-    this.isPasswordVisible = !this.isPasswordVisible
-  }
-
-  @action.bound
-  setEmail(email: string) {
+  private setEmail(email: string): void {
     this.email = email
     this.emailValidator()
   }
 
   @action.bound
-  setPassword(password: string) {
+  private setPassword(password: string): void {
     this.password = password
   }
 
   @autobind
-  back() {
+  public async _authorizeLogin(): Promise<void> {
+    const { api, soundPlayer, navigation } = this.props
+    DataLoader.Instance.toggleIsVisible()
+
+    const response: ApiResponse<ITokenResponse> | HttpRequestError =
+      await api.login(this.email, this.password)
+        .catch((error: HttpRequestError): HttpRequestError => error)
+
+    if (response instanceof HttpRequestError) {
+      this.manageResponseError(response)
+
+      return
+    }
+
+    DataLoader.Instance.success(
+      () => {
+        soundPlayer.success()
+      },
+      async () => {
+        await save(response.data, Server.EXOSUITE_USERS_API)
+        navigation.navigate("HomeScreen")
+      })
+  }
+
+  @autobind
+  public back(): void {
     this.goBack()
   }
 
   @action.bound
-  emailValidator() {
-    this.isValidEmail = !(validator.validate(
-      { email: this.email },
-      { email: { email: true } },
-    ) !== undefined)
+  public emailValidator(): void {
+    this.isValidEmail = isEmpty(validate(RULES, { email: this.email }))
   }
 
-  @autobind
-  RenderIsValidEmail() {
-    if (!this.isValidEmail && this.email != null) {
-      return <Text
-        tx={"auth.login.bad-email"}
-        style={[{ color: color.palette.orange }, EMAIL_TEXT]
-        }/>
-    } else if (this.isValidEmail && this.email) {
-      return <Text
-        tx={"auth.login.good-email"}
-        style={[{ color: color.palette.green }, EMAIL_TEXT]}
-      />
-    }
-    return null
-  }
-
-  render() {
+  public render(): React.ReactNode {
     const {
       email,
       password,
@@ -208,15 +193,11 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
       toggleIsPasswordVisible,
       emailValidator,
       RenderIsValidEmail,
-      isValidEmail,
+      isValidEmail
     } = this
-    let buttonColor
-    if (email && password && isValidEmail) {
-      buttonColor = enabled
-    } else {
-      buttonColor = disabled
-    }
 
+    let buttonColor
+    email && password && isValidEmail ? buttonColor = enabled : buttonColor = disabled
     const passwordToggleText = isPasswordVisible ? hidePassword : revealPassword
 
     return (
@@ -227,7 +208,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
             leftIconType="solid"
             leftIconSize={20}
             leftIconColor={color.palette.lightBlue}
-            onLeftPress={() => this.goBack()}
+            onLeftPress={this.back}
             style={HEADER}
             titleStyle={HEADER_TITLE}
           />
@@ -279,22 +260,22 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
           )}
 
           <KeyboardAccessoryView
-              alwaysVisible
-              style={KEYBOARD_ACCESSORY_VIEW}
-              inSafeAreaView
-              androidAdjustResize
+            alwaysVisible
+            style={KEYBOARD_ACCESSORY_VIEW}
+            inSafeAreaView
+            androidAdjustResize
           >
             <View style={KEYBOARD_ACCESSORY_VIEW_ROW_CONTAINER}>
               <PressableText
                 preset="bold"
                 tx="auth.login.reset-password"
-                style={{color: palette.lightBlue}}
-                onPress={() => {}}
+                style={{ color: palette.lightBlue }}
+                onPress={onResetPasswordPress}
               />
               <Button
                 style={{ backgroundColor: buttonColor, alignSelf: "flex-end", maxWidth: "30%", minWidth: "20%" }}
                 onPress={this.authorizeLogin}
-                disabled={buttonColor != enabled} // can we press on the login button?
+                disabled={buttonColor !== enabled} // can we press on the login button?
                 preset="primaryFullWidth"
               >
                 <Text preset="bold" tx="auth.login.header"/>
@@ -306,5 +287,34 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
       </DismissKeyboard>
 
     )
+  }
+
+  @autobind
+  // tslint:disable-next-line typedef
+  public RenderIsValidEmail() {
+    if (!this.isValidEmail && this.email !== undefined) {
+      return (
+        <Text
+          tx={"auth.login.bad-email"}
+          style={[{ color: color.palette.orange }, EMAIL_TEXT]}
+        />
+      )
+    }
+
+    if (this.isValidEmail && this.email) {
+      return (
+        <Text
+          tx={"auth.login.good-email"}
+          style={[{ color: color.palette.green }, EMAIL_TEXT]}
+        />
+      )
+    }
+
+    return null
+  }
+
+  @action.bound
+  public toggleIsPasswordVisible(): void {
+    this.isPasswordVisible = !this.isPasswordVisible
   }
 }

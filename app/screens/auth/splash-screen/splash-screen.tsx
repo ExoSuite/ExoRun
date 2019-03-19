@@ -1,21 +1,28 @@
-import * as React from "react"
-import { Animated, StyleSheet, View } from "react-native"
 import { observable, runInAction } from "mobx"
 import { observer } from "mobx-react"
+import * as React from "react"
+import { Animated, StyleSheet, View } from "react-native"
 
-import { LoaderProps } from "./loader.props"
 import { Screen } from "@services/device"
+import { ILoaderProps } from "@screens/auth"
+
+const styles = StyleSheet.create({
+  fullScreen: {
+    flex: 1,
+  },
+})
 
 /**
+ * SplashScreen will handle the animation when we launch the app
  */
 @observer
-export class SplashScreen extends React.Component<LoaderProps> {
+export class SplashScreen extends React.Component<ILoaderProps> {
 
-  @observable appLoaded: boolean = false
+  public animation: Animated.Value = new Animated.Value(0)
 
-  animation: Animated.Value = new Animated.Value(0)
+  @observable public appLoaded = false
 
-  animate() {
+  public animate(): void {
     const { animation } = this
     Animated.timing(animation, {
       toValue: 100,
@@ -24,7 +31,8 @@ export class SplashScreen extends React.Component<LoaderProps> {
     }).start(() => runInAction(() => this.appLoaded = true))
   }
 
-  render() {
+  // tslint:disable-next-line no-feature-envy
+  public render(): React.ReactNode {
     const { children, backgroundColor, imageProperties, imageSource } = this.props
     const { animation, appLoaded } = this
 
@@ -77,13 +85,4 @@ export class SplashScreen extends React.Component<LoaderProps> {
       </View>
     )
   }
-
 }
-
-const styles = StyleSheet.create({
-  fullScreen: {
-    flex: 1,
-  },
-})
-
-

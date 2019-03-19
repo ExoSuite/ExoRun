@@ -1,18 +1,18 @@
-import * as React from "react"
-import { SafeAreaView, TextStyle, View, ViewStyle, Image, ImageStyle } from "react-native"
-import { NavigationScreenProps } from "react-navigation"
-import { observer } from "mobx-react"
-import throttle from "lodash.throttle"
-import KeyboardSpacer from "react-native-keyboard-spacer"
-import { Button, DismissKeyboard, Header, PressableText, Screen, Text, TextField } from "@components"
-import { color, spacing } from "@theme"
+import { Button, DismissKeyboard, Header, Screen, Text, TextField } from "@components"
 import { FormRow } from "@components/form-row"
-import { Platform } from "@services/device"
 import { Asset } from "@services/asset"
-import { palette } from "@theme/palette"
+import { Platform } from "@services/device"
+import { color, spacing } from "@theme"
+import throttle from "lodash.throttle"
+import { observer } from "mobx-react"
+import * as React from "react"
+import { Image, ImageStyle, SafeAreaView, TextStyle, View, ViewStyle } from "react-native"
 import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
+import KeyboardSpacer from "react-native-keyboard-spacer"
+import { NavigationScreenProps } from "react-navigation"
+import autobind from "autobind-decorator"
 
-export interface RegisterScreenProps extends NavigationScreenProps<{}> {
+export interface IRegisterScreenProps extends NavigationScreenProps<{}> {
 }
 
 const EXOSUITE: ImageStyle = {
@@ -69,21 +69,27 @@ const KEYBOARD_ACCESSORY_VIEW: ViewStyle = {
   paddingTop: spacing[1],
 }
 
+/**
+ * RegisterScreen will handle the register of an user
+ * by calling /auth/register
+ */
 @observer
-export class RegisterScreen extends React.Component<RegisterScreenProps, {}> {
+export class RegisterScreen extends React.Component<IRegisterScreenProps> {
 
-  private readonly goBack: Function
-
-  constructor(props) {
+  constructor(props: IRegisterScreenProps) {
     super(props)
     this.goBack = throttle(props.navigation.goBack, 3000)
   }
 
-  back() {
+  private readonly goBack: Function
+
+  @autobind
+  public back(): void {
     this.goBack()
   }
 
-  render() {
+  // tslint:disable-next-line no-feature-envy
+  public render(): React.ReactNode {
 
     return (
       <DismissKeyboard>
@@ -93,7 +99,7 @@ export class RegisterScreen extends React.Component<RegisterScreenProps, {}> {
             leftIconType="solid"
             leftIconSize={20}
             leftIconColor={color.palette.lightBlue}
-            onLeftPress={() => this.goBack()}
+            onLeftPress={this.back}
             style={HEADER}
             titleStyle={HEADER_TITLE}
           />
@@ -110,7 +116,7 @@ export class RegisterScreen extends React.Component<RegisterScreenProps, {}> {
                 placeholderTx="auth.login.username"
                 inputStyle={{ backgroundColor: "transparent" }}
                 placeholderTextColor={color.palette.lightGrey}
-                onChangeText={() => {}}
+                // onChangeText={() => {}}
               />
 
               <TextField
@@ -118,7 +124,7 @@ export class RegisterScreen extends React.Component<RegisterScreenProps, {}> {
                 placeholderTx="auth.login.password"
                 inputStyle={{ backgroundColor: "transparent" }}
                 placeholderTextColor={color.palette.lightGrey}
-                onChangeText={() => {}}
+                //  onChangeText={() => {}}
               />
             </FormRow>
             {Platform.iOS && <KeyboardSpacer/>}
@@ -144,7 +150,7 @@ export class RegisterScreen extends React.Component<RegisterScreenProps, {}> {
           >
             <Button
               style={{ backgroundColor: "grey", width: "20%", alignSelf: "flex-end", paddingRight: spacing[1] }}
-              onPress={() => {}}
+              //  onPress={() => {}}
               disabled={false} // can we press on the login button?
               preset="primaryFullWidth"
             >

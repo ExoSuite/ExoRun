@@ -9,11 +9,16 @@ export enum BuiltFor {
   TESTING = "test",
 }
 
+/**
+ * check if app is running with local build etc...
+ * @class Build
+ */
 export class Build {
-  static is(builtFor: BuiltFor) {
+  public static is(builtFor: BuiltFor): boolean {
     if (ENV === undefined) {
       return includes(builtFor, Config.APP_ENV)
     }
+
     return ENV === builtFor
   }
 }

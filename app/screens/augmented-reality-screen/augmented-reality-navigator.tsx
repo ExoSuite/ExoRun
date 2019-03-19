@@ -1,21 +1,24 @@
-import React from "react"
-import { ViewStyle } from "react-native"
-import { ViroARSceneNavigator } from "react-viro"
 import { AugmentedRealityScreen } from "@screens/augmented-reality-screen/augmented-reality-screen"
 import { ReactViroConfig } from "@utils/react-viro-cfg"
+import React from "react"
+import { ViewStyle } from "react-native"
 import { NavigationScreenProps } from "react-navigation"
+import { ViroARSceneNavigator } from "react-viro"
 
-export interface AugmentedRealityNavigatorProps extends NavigationScreenProps<{}> {
+export interface IAugmentedRealityNavigatorProps extends NavigationScreenProps<{}> {
 }
 
 const FULL: ViewStyle = {
   flex: 1,
 }
 
-export class AugmentedRealityNavigator extends React.Component<AugmentedRealityNavigatorProps> {
+/**
+ * AugmentedRealityNavigator will handle multiple AR screens
+ */
+export class AugmentedRealityNavigator extends React.Component<IAugmentedRealityNavigatorProps> {
 
-  render(): React.ReactNode {
-    const { navigation } = this.props
+  // tslint:disable-next-line prefer-function-over-method
+  public render(): React.ReactNode {
 
     return (
       <ViroARSceneNavigator

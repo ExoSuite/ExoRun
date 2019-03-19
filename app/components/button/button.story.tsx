@@ -1,6 +1,6 @@
+import { storiesOf } from "@storybook/react-native"
 import * as React from "react"
 import { TextStyle, ViewStyle } from "react-native"
-import { storiesOf } from "@storybook/react-native"
 import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { Button } from "./"
 
@@ -9,29 +9,33 @@ const buttonStyleArray: ViewStyle[] = [
   { borderRadius: 0 },
 ]
 
+const buttonTextStyleArray: TextStyle[] = [
+  { fontSize: 20 },
+  { color: "#a511dc" },
+]
+
+const alert = (): void => {
+  window.alert("pressed");
+}
+
 storiesOf("Button")
-  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
-  .add("Style Presets", () => (
+  .addDecorator((fn: Function) => <StoryScreen>{fn()}</StoryScreen>)
+  .add("Style Presets", (): React.ReactNode => (
     <Story>
       <UseCase text="Primary" usage="The primary button.">
-        <Button text="Click It" preset="primary" onPress={() => window.alert("pressed")}/>
+        <Button text="Click It" preset="primary" onPress={alert}/>
       </UseCase>
       <UseCase text="Disabled" usage="The disabled behaviour of the primary button.">
-        <Button text="Click It" preset="primary" onPress={() => window.alert("pressed")} disabled/>
+        <Button text="Click It" preset="primary" onPress={alert} disabled/>
       </UseCase>
       <UseCase text="Array Style" usage="Button with array style">
         <Button
           text="Click It"
           preset="primary"
-          onPress={() => window.alert("pressed")}
+          onPress={alert}
           style={buttonStyleArray}
           textStyle={buttonTextStyleArray}
         />
       </UseCase>
     </Story>
   ))
-
-const buttonTextStyleArray: TextStyle[] = [
-  { fontSize: 20 },
-  { color: "#a511dc" },
-]

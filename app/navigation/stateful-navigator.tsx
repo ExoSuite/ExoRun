@@ -1,10 +1,7 @@
 import * as React from "react"
 import { inject, observer } from "mobx-react"
 // @ts-ignore: until they update @type/react-navigation
-import { getNavigation,
-  NavigationScreenProp,
-  NavigationState,
-} from "react-navigation"
+import { getNavigation, NavigationScreenProp, NavigationState } from "react-navigation"
 
 import { RootNavigator } from "./root-navigator"
 import { NavigationStore } from "./navigation-store"
@@ -16,9 +13,9 @@ import { Screen } from "@services/device"
 import { Injection } from "@services/injections"
 import { Api } from "@services/api"
 
-interface StatefulNavigatorProps {
-  navigationStore?: NavigationStore,
+interface IStatefulNavigatorProps {
   api?: Api
+  navigationStore?: NavigationStore,
 }
 
 const IMAGE_STYLE: ImageProperties = {
@@ -26,18 +23,30 @@ const IMAGE_STYLE: ImageProperties = {
   width: Screen.Width,
 }
 
+/**
+ * StatefulNavigator will handle the SplashScreen component
+ * user can be redirected to login or home screen.
+ */
 @inject(Injection.NavigationStore, Injection.Api)
 @observer
-export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {}> {
-  currentNavProp: NavigationScreenProp<NavigationState>
+export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> {
+  private currentNavProp: NavigationScreenProp<NavigationState>
 
-  loader: SplashScreen = null
+  private loader: SplashScreen = null
 
-  getCurrentNavigation = () => {
-    return this.currentNavProp
+  @autobind
+  private async removeLoader(): Promise<void> {
+    const { api, navigationStore } = this.props
+    try {
+      await api.checkToken()
+      navigationStore.navigateTo("HomeScreen")
+    } catch (exception) {
+      this.returnToLogin()
+    }
+    this.loader.animate()
   }
 
-  returnToLogin() {
+  private returnToLogin(): void {
     const { navigationStore } = this.props
     if (navigationStore.findCurrentRoute().routeName === "Home") {
       navigationStore.reset()
@@ -45,22 +54,19 @@ export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {
   }
 
   @autobind
-  async removeLoader() {
-    const { api, navigationStore } = this.props
-    try {
-      await api.checkToken()
-      navigationStore.navigateTo("HomeScreen")
-    } catch (e) {
-      this.returnToLogin()
-    }
-    this.loader.animate()
+  private setSplashScreenRef(ref: SplashScreen): void {
+    this.loader = ref
   }
 
-  async componentDidMount() {
+  public async componentDidMount(): Promise<void> {
     await this.removeLoader()
   }
 
-  render() {
+  public getCurrentNavigation = (): NavigationScreenProp<NavigationState> => {
+    return this.currentNavProp
+  }
+
+  public render(): React.ReactNode {
     // grab our state & dispatch from our navigation store
     const { state, dispatch, actionSubscribers } = this.props.navigationStore
 
@@ -76,7 +82,7 @@ export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {
 
     return (
       <SplashScreen
-        ref={(ref: SplashScreen) => this.loader = ref}
+        ref={this.setSplashScreenRef}
         backgroundColor={color.palette.backgroundDarker}
         imageProperties={IMAGE_STYLE}
         imageSource={Asset.Locator("exosuite-loader")}

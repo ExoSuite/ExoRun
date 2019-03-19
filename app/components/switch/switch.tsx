@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Animated, Easing, TouchableWithoutFeedback, ViewStyle } from "react-native"
 import { color } from "@theme"
-import { SwitchProps } from "./switch.props"
+import { ISwitchProps } from "./switch.props"
 import { reduce } from "ramda"
 
 // dimensions
@@ -22,7 +22,7 @@ const BORDER_OFF_COLOR = "rgba(0, 0, 0, 0.1)"
 const DURATION = 250
 
 // the track always has these props
-const TRACK = {
+const TRACK: ViewStyle = {
   height: THUMB_SIZE + MARGIN,
   width: WIDTH,
   borderRadius: BORDER_RADIUS,
@@ -46,55 +46,50 @@ const THUMB: ViewStyle = {
   elevation: 2,
 }
 
-const enhance = (style, newStyles) => {
+const enhance = (style: Object, newStyles: Object): ViewStyle => {
   if (Array.isArray(newStyles)) {
-    return reduce((acc, term) => {
+    return reduce((acc: Object, term: Object) => {
       return { ...acc, ...term }
     }, style, newStyles)
-  } else {
-    return {
-      ...style,
-      ...newStyles,
-    }
   }
+
+  return {
+    ...style,
+    ...newStyles,
+  } as ViewStyle
 }
 
-
-interface SwitchState {
+interface ISwitchState {
   timer: Animated.Value
 }
 
-export class Switch extends React.PureComponent<SwitchProps, SwitchState> {
-  state = {
+/**
+ * * Switch Component with ability to toggle the value on tap.
+ */
+export class Switch extends React.PureComponent<ISwitchProps, ISwitchState> {
+  public state: ISwitchState = {
     timer: new Animated.Value(this.props.value ? 1 : 0),
   }
 
-  startAnimation(newValue: boolean) {
-    const toValue = newValue ? 1 : 0
-    const easing = Easing.out(Easing.circle)
-    Animated.timing(this.state.timer, {
-      toValue,
-      duration: DURATION,
-      easing,
-      useNativeDriver: true,
-    }).start()
+  /**
+   * Fires when we tap the touchable.
+   */
+  private readonly handlePress = (): void => {
+    if (this.props.onToggle) {
+      this.props.onToggle(!this.props.value)
+    }
   }
 
-  componentWillReceiveProps(newProps: SwitchProps) {
+  public componentWillReceiveProps(newProps: ISwitchProps): void {
     if (newProps.value !== this.props.value) {
       this.startAnimation(newProps.value)
     }
   }
 
   /**
-   * Fires when we tap the touchable.
-   */
-  handlePress = () => this.props.onToggle && this.props.onToggle(!this.props.value)
-
-  /**
    * Render the component.
    */
-  render() {
+  public render(): React.ReactNode {
     const translateX = this.state.timer.interpolate({
       inputRange: [0, 1],
       outputRange: [OFF_POSITION, ON_POSITION],
@@ -126,5 +121,17 @@ export class Switch extends React.PureComponent<SwitchProps, SwitchState> {
         </Animated.View>
       </TouchableWithoutFeedback>
     )
+  }
+
+  // tslint:disable-next-line no-flag-args
+  public startAnimation(newValue: boolean): void {
+    const toValue = newValue ? 1 : 0
+    const easing = Easing.out(Easing.circle)
+    Animated.timing(this.state.timer, {
+      toValue,
+      duration: DURATION,
+      easing,
+      useNativeDriver: true,
+    }).start()
   }
 }
