@@ -142,6 +142,13 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
   @observable private loading: boolean
   @observable private password: string = null
 
+  @action.bound
+  private emailValidator(): void {
+    this.email === null ?
+      this.isValidEmail = false :
+      this.isValidEmail = isEmpty(validate(RULES, { email: this.email }))
+  }
+
   private manageResponseError(response: HttpRequestError): void {
     const { soundPlayer } = this.props
     DataLoader.Instance.hasErrors(response, () => {
@@ -158,6 +165,11 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
   @action.bound
   private setPassword(password: string): void {
     this.password = password
+  }
+
+  @action.bound
+  private toggleIsPasswordVisible(): void {
+    this.isPasswordVisible = !this.isPasswordVisible
   }
 
   @autobind
@@ -190,11 +202,6 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
     this.goBack()
   }
 
-  @action.bound
-  public emailValidator(): void {
-    this.isValidEmail = isEmpty(validate(RULES, { email: this.email }))
-  }
-
   public render(): React.ReactNode {
     const {
       email,
@@ -209,11 +216,12 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
     email && password && isValidEmail ? buttonColor = enabled : buttonColor = disabled
     const passwordToggleText = isPasswordVisible ? hidePassword : revealPassword
 
-    let test = this.isValidEmail ? AnimatedInteractiveInputState.SUCCESS : AnimatedInteractiveInputState.ERROR;
+    let test = this.isValidEmail ? AnimatedInteractiveInputState.SUCCESS : AnimatedInteractiveInputState.ERROR
 
-    /*if (this.loading && !this.isValidEmail) {
-      test = AnimatedInteractiveInputState.LOADING;
-    }*/
+    // TODO: REMOVE THAT
+    if (this.loading && !this.isValidEmail) {
+      test = AnimatedInteractiveInputState.LOADING
+    }
 
     return (
       <DismissKeyboard>
@@ -262,7 +270,8 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
               />
               <FormRow preset={"clear"} style={[ZERO_PADDING, { paddingTop: spacing[2] }]}>
                 <Button preset="link" tx={passwordToggleText} onPress={() => runInAction(() => {
-                  this.loading = true;
+                  // TODO: CHANGE CALL BY toggleIsPasswordVisible
+                  this.loading = true
                 })}/>
               </FormRow>
             </FormRow>
@@ -312,10 +321,5 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
       </DismissKeyboard>
 
     )
-  }
-
-  @action.bound
-  public toggleIsPasswordVisible(): void {
-    this.isPasswordVisible = !this.isPasswordVisible
   }
 }

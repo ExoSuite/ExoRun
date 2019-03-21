@@ -87,8 +87,6 @@ export class AnimatedInteractiveInput extends React.PureComponent<ITextFieldProp
     nextProps: Readonly<ITextFieldProps & IAnimatedInteractiveInputProps>,
     nextContext: any
   ): void {
-
-    console.tron.log(nextProps.inputState === AnimatedInteractiveInputState.LOADING)
     this.animatedIconMorph(nextProps.inputState)
   }
 
