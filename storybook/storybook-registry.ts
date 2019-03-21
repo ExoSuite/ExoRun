@@ -1,3 +1,5 @@
+require("../app/components/animated-interactive-input/animated-interactive-input.story")
+require("../app/components/logo-header/logo-header.story")
 require("../app/components/dismiss-keyboard/dismiss-keyboard.story")
 require("../app/components/pressable-text/pressable-text.story")
 require("../app/components/text/text.story")

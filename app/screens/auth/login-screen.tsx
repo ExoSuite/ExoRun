@@ -1,4 +1,4 @@
-import { Button, DismissKeyboard, Header, PressableText, Screen, Text, TextField } from "@components"
+import { Button, DismissKeyboard, Header, PressableText, Screen, Text } from "@components"
 import { DataLoader } from "@components/data-loader"
 import { FormRow } from "@components/form-row"
 import { HttpRequestError } from "@exceptions"
@@ -9,12 +9,11 @@ import { Platform } from "@services/device"
 import { Injection } from "@services/injections"
 import { SoundPlayer } from "@services/sound-player"
 import { color, spacing } from "@theme"
-import { palette } from "@theme/palette"
 import { save } from "@utils/keychain"
 import { ApiResponse } from "apisauce"
 import autobind from "autobind-decorator"
 import throttle from "lodash.throttle"
-import { action, observable } from "mobx"
+import { action, observable, runInAction } from "mobx"
 import { observer } from "mobx-react"
 import { inject } from "mobx-react/native"
 import * as React from "react"
@@ -24,6 +23,8 @@ import KeyboardSpacer from "react-native-keyboard-spacer"
 import { NavigationScreenProps } from "react-navigation"
 import { IValidationRules, validate } from "@utils/validate"
 import isEmpty from "lodash.isempty"
+import { footerShadow } from "@utils/footer-shadow"
+import { AnimatedInteractiveInput, AnimatedInteractiveInputState } from "@components/animated-interactive-input"
 
 export interface ILoginScreenProps extends NavigationScreenProps<{}> {
   api: Api,
@@ -86,11 +87,8 @@ const CONTAINER: ViewStyle = {
 
 const KEYBOARD_ACCESSORY_VIEW: ViewStyle = {
   backgroundColor: color.backgroundDarkerer,
-  marginTop: spacing[2],
-  marginBottom: spacing[2],
-  paddingLeft: spacing[1],
-  paddingRight: spacing[1],
-  paddingTop: spacing[1]
+  borderTopWidth: 0,
+  ...footerShadow
 }
 
 const KEYBOARD_ACCESSORY_VIEW_ROW_CONTAINER: ViewStyle = {
@@ -99,6 +97,17 @@ const KEYBOARD_ACCESSORY_VIEW_ROW_CONTAINER: ViewStyle = {
   justifyContent: "space-between",
   paddingLeft: spacing[2],
   paddingRight: spacing[2]
+}
+
+const LOGIN_BUTTON: ViewStyle = {
+  alignSelf: "flex-end",
+  maxWidth: "35%",
+  minWidth: "20%",
+  margin: spacing[1]
+}
+
+const RESET_PASSWORD: TextStyle = {
+  color: color.palette.lightBlue
 }
 
 const disabled = color.palette.lightGrey
@@ -125,12 +134,13 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
   }
 
   private readonly authorizeLogin: () => void
-  private readonly goBack: Function
 
-  @observable public email: string = null
-  @observable public isPasswordVisible = false
-  @observable public isValidEmail = false
-  @observable public password: string = null
+  @observable private email: string = null
+  private readonly goBack: Function
+  @observable private isPasswordVisible = false
+  @observable private isValidEmail = false
+  @observable private loading: boolean
+  @observable private password: string = null
 
   private manageResponseError(response: HttpRequestError): void {
     const { soundPlayer } = this.props
@@ -192,13 +202,18 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
       isPasswordVisible,
       toggleIsPasswordVisible,
       emailValidator,
-      RenderIsValidEmail,
       isValidEmail
     } = this
 
     let buttonColor
     email && password && isValidEmail ? buttonColor = enabled : buttonColor = disabled
     const passwordToggleText = isPasswordVisible ? hidePassword : revealPassword
+
+    let test = this.isValidEmail ? AnimatedInteractiveInputState.SUCCESS : AnimatedInteractiveInputState.ERROR;
+
+    /*if (this.loading && !this.isValidEmail) {
+      test = AnimatedInteractiveInputState.LOADING;
+    }*/
 
     return (
       <DismissKeyboard>
@@ -221,27 +236,34 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
           <Screen style={CONTAINER} backgroundColor={color.background} preset="fixed">
 
             <FormRow preset={"clearFullWidth"} style={{ marginBottom: spacing[4] }}>
-              <RenderIsValidEmail/>
-              <TextField
-                preset={"loginScreen"}
-                autoCapitalize={"none"}
+
+              <AnimatedInteractiveInput
+                preset="auth"
+                autoCapitalize="none"
                 placeholderTx="auth.login.username"
                 inputStyle={{ backgroundColor: "transparent" }}
+                withBottomBorder
+                inputState={test}
                 onEndEditing={emailValidator}
                 placeholderTextColor={color.palette.lightGrey}
                 onChangeText={this.setEmail}
               />
 
-              <TextField
-                preset={"loginScreen"}
+              <AnimatedInteractiveInput
+                preset="auth"
+                autoCapitalize="none"
                 placeholderTx="auth.login.password"
+                withBottomBorder
+                inputState={this.password ? AnimatedInteractiveInputState.SUCCESS : AnimatedInteractiveInputState.ERROR}
                 inputStyle={{ backgroundColor: "transparent" }}
                 placeholderTextColor={color.palette.lightGrey}
                 secureTextEntry={!isPasswordVisible}
                 onChangeText={this.setPassword}
               />
               <FormRow preset={"clear"} style={[ZERO_PADDING, { paddingTop: spacing[2] }]}>
-                <Button preset="link" tx={passwordToggleText} onPress={toggleIsPasswordVisible}/>
+                <Button preset="link" tx={passwordToggleText} onPress={() => runInAction(() => {
+                  this.loading = true;
+                })}/>
               </FormRow>
             </FormRow>
 
@@ -269,11 +291,14 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
               <PressableText
                 preset="bold"
                 tx="auth.login.reset-password"
-                style={{ color: palette.lightBlue }}
+                style={RESET_PASSWORD}
                 onPress={onResetPasswordPress}
               />
               <Button
-                style={{ backgroundColor: buttonColor, alignSelf: "flex-end", maxWidth: "30%", minWidth: "20%" }}
+                style={{
+                  backgroundColor: buttonColor,
+                  ...LOGIN_BUTTON
+                }}
                 onPress={this.authorizeLogin}
                 disabled={buttonColor !== enabled} // can we press on the login button?
                 preset="primaryFullWidth"
@@ -287,30 +312,6 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
       </DismissKeyboard>
 
     )
-  }
-
-  @autobind
-  // tslint:disable-next-line typedef
-  public RenderIsValidEmail() {
-    if (!this.isValidEmail && this.email !== undefined) {
-      return (
-        <Text
-          tx={"auth.login.bad-email"}
-          style={[{ color: color.palette.orange }, EMAIL_TEXT]}
-        />
-      )
-    }
-
-    if (this.isValidEmail && this.email) {
-      return (
-        <Text
-          tx={"auth.login.good-email"}
-          style={[{ color: color.palette.green }, EMAIL_TEXT]}
-        />
-      )
-    }
-
-    return null
   }
 
   @action.bound

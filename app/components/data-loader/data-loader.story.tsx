@@ -26,7 +26,7 @@ const errors = {
   ]
 }
 
-storiesOf("Animated Data Loader")
+storiesOf("Animated Data Loader", module)
   .addDecorator((fn) => <StoryScreen>{fn()}</StoryScreen>)
   .add("Success", () =>
     (

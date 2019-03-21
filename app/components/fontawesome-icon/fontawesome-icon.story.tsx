@@ -5,7 +5,7 @@ import { FontawesomeIcon } from "./"
 
 // tslint:disable typedef
 
-storiesOf("FontawesomeIcon")
+storiesOf("FontawesomeIcon", module)
   .addDecorator((fn) => <StoryScreen>{fn()}</StoryScreen>)
   .add("Example", () => (
     <Story>

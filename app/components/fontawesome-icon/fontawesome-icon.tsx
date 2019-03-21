@@ -21,16 +21,16 @@ export function FontawesomeIcon(props: IFontawesomeIconProps) {
 
   switch (type) {
     case "brand":
-      component = <FontAwesome5Pro {...fontProps} brand {...style}/>
+      component = <FontAwesome5Pro {...fontProps} brand style={style}/>
       break;
     case "regular":
-      component = <FontAwesome5Pro {...fontProps} regular {...style}/>
+      component = <FontAwesome5Pro {...fontProps} regular style={style}/>
       break;
     case "solid":
-      component = <FontAwesome5Pro {...fontProps} solid {...style}/>
+      component = <FontAwesome5Pro {...fontProps} solid style={style}/>
       break;
     default:
-      component = <FontAwesome5Pro {...fontProps} light {...style}/>
+      component = <FontAwesome5Pro {...fontProps} light style={style}/>
   }
 
   return component

@@ -18,7 +18,7 @@ const alert = (): void => {
   window.alert("pressed");
 }
 
-storiesOf("Button")
+storiesOf("Button", module)
   .addDecorator((fn: Function) => <StoryScreen>{fn()}</StoryScreen>)
   .add("Style Presets", (): React.ReactNode => (
     <Story>

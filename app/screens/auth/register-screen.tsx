@@ -1,16 +1,16 @@
-import { Button, DismissKeyboard, Header, Screen, Text, TextField } from "@components"
+import { Button, DismissKeyboard, Screen, Text, TextField } from "@components"
 import { FormRow } from "@components/form-row"
 import { Asset } from "@services/asset"
 import { Platform } from "@services/device"
 import { color, spacing } from "@theme"
-import throttle from "lodash.throttle"
 import { observer } from "mobx-react"
 import * as React from "react"
-import { Image, ImageStyle, SafeAreaView, TextStyle, View, ViewStyle } from "react-native"
+import { Image, ImageStyle, SafeAreaView, View, ViewStyle } from "react-native"
 import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
 import KeyboardSpacer from "react-native-keyboard-spacer"
 import { NavigationScreenProps } from "react-navigation"
-import autobind from "autobind-decorator"
+import { observable } from "mobx"
+import { footerShadow } from "@utils/footer-shadow"
 
 export interface IRegisterScreenProps extends NavigationScreenProps<{}> {
 }
@@ -33,21 +33,6 @@ const FOOTER_CONTAINER: ViewStyle = {
   width: "100%",
 }
 
-const BOLD: TextStyle = { fontWeight: "bold" }
-
-const HEADER: TextStyle = {
-  paddingTop: spacing[2],
-  paddingBottom: spacing[2],
-  backgroundColor: color.palette.backgroundDarkerer,
-}
-const HEADER_TITLE: TextStyle = {
-  ...BOLD,
-  fontSize: 12,
-  lineHeight: 15,
-  textAlign: "center",
-  letterSpacing: 1.5,
-}
-
 const FULL: ViewStyle = {
   flex: 1,
   backgroundColor: color.backgroundDarkerer,
@@ -62,12 +47,11 @@ const CONTAINER: ViewStyle = {
 
 const KEYBOARD_ACCESSORY_VIEW: ViewStyle = {
   backgroundColor: color.backgroundDarkerer,
-  marginTop: spacing[2],
-  marginBottom: spacing[2],
-  paddingLeft: spacing[1],
-  paddingRight: spacing[1],
-  paddingTop: spacing[1],
+  borderTopWidth: 0,
+  ...footerShadow
 }
+
+
 
 /**
  * RegisterScreen will handle the register of an user
@@ -76,17 +60,7 @@ const KEYBOARD_ACCESSORY_VIEW: ViewStyle = {
 @observer
 export class RegisterScreen extends React.Component<IRegisterScreenProps> {
 
-  constructor(props: IRegisterScreenProps) {
-    super(props)
-    this.goBack = throttle(props.navigation.goBack, 3000)
-  }
-
-  private readonly goBack: Function
-
-  @autobind
-  public back(): void {
-    this.goBack()
-  }
+  @observable private canGoNextStep: boolean;
 
   // tslint:disable-next-line no-feature-envy
   public render(): React.ReactNode {
@@ -94,16 +68,6 @@ export class RegisterScreen extends React.Component<IRegisterScreenProps> {
     return (
       <DismissKeyboard>
         <SafeAreaView style={FULL}>
-          <Header
-            leftIcon="chevron-left"
-            leftIconType="solid"
-            leftIconSize={20}
-            leftIconColor={color.palette.lightBlue}
-            onLeftPress={this.back}
-            style={HEADER}
-            titleStyle={HEADER_TITLE}
-          />
-
           <FormRow preset={"clear"} style={[EXTRA_PADDING_TOP, { backgroundColor: color.background }]}>
             <Text tx="auth.register.header" preset="registerHeaderCentered" allowFontScaling/>
           </FormRow>
@@ -142,16 +106,16 @@ export class RegisterScreen extends React.Component<IRegisterScreenProps> {
           )}
 
           <KeyboardAccessoryView
-            animateOn="all"
             alwaysVisible
             style={KEYBOARD_ACCESSORY_VIEW}
             inSafeAreaView
             androidAdjustResize
           >
             <Button
-              style={{ backgroundColor: "grey", width: "20%", alignSelf: "flex-end", paddingRight: spacing[1] }}
-              //  onPress={() => {}}
-              disabled={false} // can we press on the login button?
+              style={{ backgroundColor: 'blue', alignSelf: "flex-end", maxWidth: "35%", minWidth: "20%",
+                margin: spacing[1], minHeight: 45 }}
+              // onPress={this.authorizeLogin}
+              // disabled={buttonColor !== enabled} // can we press on the login button?
               preset="primaryFullWidth"
             >
               <Text preset="bold" tx="auth.login.header"/>

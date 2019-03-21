@@ -31,7 +31,7 @@ const EXORUN_LOGO: ImageStyle = {
 /**
  * Header that appears on many screens. Will hold navigation buttons and screen title.
  */
-export class Header extends React.Component<IHeaderProps> {
+export class  Header extends React.Component<IHeaderProps> {
   public render(): React.ReactNode {
     const {
       onLeftPress,

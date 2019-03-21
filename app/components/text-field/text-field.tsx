@@ -25,11 +25,8 @@ const INPUT: TextStyle = {
 // currently we have no presets, but that changes quickly when you build your app.
 const PRESETS: { [name: string]: ViewStyle } = {
   default: {},
-  loginScreen: {
-    width: "100%",
-    borderBottomColor: color.palette.lighterGrey,
-    borderBottomWidth: 0.5,
-    backgroundColor: "transparent",
+  auth: {
+   flex: 1
   },
   transparentInput: {
     backgroundColor: "transparent",

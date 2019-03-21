@@ -12,7 +12,7 @@ const VIEWSTYLE = {
   backgroundColor: color.storybookDarkBg,
 }
 
-storiesOf("Header")
+storiesOf("Header", module)
   .addDecorator((fn) => <StoryScreen>{fn()}</StoryScreen>)
   .add("Behavior", () => (
     <Story>

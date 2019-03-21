@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -297,33 +298,33 @@
 			remoteGlobalIDString = 358F4ED71D1E81A9004DF814;
 			remoteInfo = RCTBlob;
 		};
-		BD2B8F4D221332A600C023A6 /* PBXContainerItemProxy */ = {
+		BD031FA92241A42B00E5E0C8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EDEBC6D6214B3E7000DD5AC8;
-			remoteInfo = jsi;
+			remoteGlobalIDString = 3D3CD90B1DE5FBD600167DC4;
+			remoteInfo = jschelpers;
 		};
-		BD2B8F4F221332A600C023A6 /* PBXContainerItemProxy */ = {
+		BD031FAB2241A42B00E5E0C8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EDEBC73B214B45A300DD5AC8;
-			remoteInfo = jsiexecutor;
+			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
+			remoteInfo = "jschelpers-tvOS";
 		};
-		BD2B8F51221332A600C023A6 /* PBXContainerItemProxy */ = {
+		BD031FAD2241A42B00E5E0C8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = ED296FB6214C9A0900B7C4FE;
-			remoteInfo = "jsi-tvOS";
+			remoteGlobalIDString = 9936F3131F5F2E4B0010BF04;
+			remoteInfo = privatedata;
 		};
-		BD2B8F53221332A600C023A6 /* PBXContainerItemProxy */ = {
+		BD031FAF2241A42B00E5E0C8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = ED296FEE214C9CF800B7C4FE;
-			remoteInfo = "jsiexecutor-tvOS";
+			remoteGlobalIDString = 9936F32F1F5F2E5B0010BF04;
+			remoteInfo = "privatedata-tvOS";
 		};
 		BD2B8F5C221332A700C023A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -597,16 +598,16 @@
 				3DAD3EA71DF850E9000B6D8A /* libyoga.a */,
 				3DAD3EA91DF850E9000B6D8A /* libcxxreact.a */,
 				3DAD3EAB1DF850E9000B6D8A /* libcxxreact.a */,
+				BD031FAA2241A42B00E5E0C8 /* libjschelpers.a */,
+				BD031FAC2241A42B00E5E0C8 /* libjschelpers.a */,
 				2DF0FFDF2056DD460020B375 /* libjsinspector.a */,
 				2DF0FFE12056DD460020B375 /* libjsinspector-tvOS.a */,
 				2DF0FFE32056DD460020B375 /* libthird-party.a */,
 				2DF0FFE52056DD460020B375 /* libthird-party.a */,
 				2DF0FFE72056DD460020B375 /* libdouble-conversion.a */,
 				2DF0FFE92056DD460020B375 /* libdouble-conversion.a */,
-				BD2B8F4E221332A600C023A6 /* libjsi.a */,
-				BD2B8F50221332A600C023A6 /* libjsiexecutor.a */,
-				BD2B8F52221332A600C023A6 /* libjsi-tvOS.a */,
-				BD2B8F54221332A600C023A6 /* libjsiexecutor-tvOS.a */,
+				BD031FAE2241A42B00E5E0C8 /* libprivatedata.a */,
+				BD031FB02241A42B00E5E0C8 /* libprivatedata-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1193,32 +1194,32 @@
 			remoteRef = ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BD2B8F4E221332A600C023A6 /* libjsi.a */ = {
+		BD031FAA2241A42B00E5E0C8 /* libjschelpers.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libjsi.a;
-			remoteRef = BD2B8F4D221332A600C023A6 /* PBXContainerItemProxy */;
+			path = libjschelpers.a;
+			remoteRef = BD031FA92241A42B00E5E0C8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BD2B8F50221332A600C023A6 /* libjsiexecutor.a */ = {
+		BD031FAC2241A42B00E5E0C8 /* libjschelpers.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libjsiexecutor.a;
-			remoteRef = BD2B8F4F221332A600C023A6 /* PBXContainerItemProxy */;
+			path = libjschelpers.a;
+			remoteRef = BD031FAB2241A42B00E5E0C8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BD2B8F52221332A600C023A6 /* libjsi-tvOS.a */ = {
+		BD031FAE2241A42B00E5E0C8 /* libprivatedata.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libjsi-tvOS.a";
-			remoteRef = BD2B8F51221332A600C023A6 /* PBXContainerItemProxy */;
+			path = libprivatedata.a;
+			remoteRef = BD031FAD2241A42B00E5E0C8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BD2B8F54221332A600C023A6 /* libjsiexecutor-tvOS.a */ = {
+		BD031FB02241A42B00E5E0C8 /* libprivatedata-tvOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libjsiexecutor-tvOS.a";
-			remoteRef = BD2B8F53221332A600C023A6 /* PBXContainerItemProxy */;
+			path = "libprivatedata-tvOS.a";
+			remoteRef = BD031FAF2241A42B00E5E0C8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		BD2B8F5D221332A700C023A6 /* libRNGestureHandler.a */ = {
@@ -1582,7 +1583,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = ExoRun/ExoRun.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
