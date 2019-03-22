@@ -5,6 +5,9 @@ export enum LogicErrorState {
   MALFORMED_API_TOKENS,
 }
 
+/**
+ * * LogicException can be thrown when a logic exception occurs like
+ */
 export class LogicException extends BaseError {
 
   constructor(status: LogicErrorState) {

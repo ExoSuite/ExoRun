@@ -1,16 +1,17 @@
 import * as React from "react"
+import { reduce } from "ramda"
 import { TouchableOpacity } from "react-native"
 import { Text } from "../text"
 import { textPresets, viewPresets } from "./button.presets"
-import { ButtonProps } from "./button.props"
-import { reduce } from "ramda"
+import { IButtonProps } from "./button.props"
 
 /**
  * For your text displaying needs.
  *
  * This component is a HOC over the built-in React Native one.
  */
-export function Button(props: ButtonProps) {
+// tslint:disable-next-line: typedef
+export function Button(props: IButtonProps) {
   // grab the props
   const { preset = "primary", tx, text, style: styleOverride, textStyle: textStyleOverride, children, ...rest } = props
 
@@ -20,7 +21,7 @@ export function Button(props: ButtonProps) {
 
   let viewStyle
   if (Array.isArray(styleOverride)) {
-    viewStyle = reduce((acc, term) => {
+    viewStyle = reduce((acc: Object, term: Object) => {
       return { ...acc, ...term }
     }, viewPresetToUse, styleOverride)
   } else {
@@ -29,7 +30,7 @@ export function Button(props: ButtonProps) {
 
   let textStyle
   if (Array.isArray(textStyleOverride)) {
-    textStyle = reduce((acc, term) => {
+    textStyle = reduce((acc: Object, term: Object) => {
       return { ...acc, ...term }
     }, textPresetToUse, textStyleOverride)
   } else {

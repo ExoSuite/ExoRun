@@ -1,5 +1,5 @@
-import { Reactotron } from "@services/reactotron"
 import { Api } from "@services/api"
+import { Reactotron } from "@services/reactotron"
 import { SoundPlayer } from "@services/sound-player"
 
 /**
@@ -7,18 +7,18 @@ import { SoundPlayer } from "@services/sound-player"
  * models live.  They are made available to every model via dependency injection.
  */
 export class Environment {
+
+  /**
+   * Our api class to call ExoSuite Users API
+   */
+  public api: Api
   /**
    * Reactotron is only available in dev.
    */
-  reactotron: Reactotron
-
-  /**
-   * Our api.
-   */
-  api: Api
+  public reactotron: Reactotron
 
   /**
    * Our sound-player.
    */
-  soundPlayer: SoundPlayer
+  public soundPlayer: SoundPlayer
 }

@@ -1,9 +1,11 @@
+import { storiesOf } from "@storybook/react-native"
 import * as React from "react"
 import { View, ViewStyle } from "react-native"
-import { storiesOf } from "@storybook/react-native"
+import { Toggle } from "react-powerplug"
 import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { Checkbox } from "./"
-import { Toggle } from "react-powerplug"
+
+// tslint:disable typedef
 
 const arrayStyle: ViewStyle[] = [
   { paddingVertical: 40 },
@@ -18,8 +20,8 @@ const arrayFillStyle: ViewStyle[] = [
   { backgroundColor: "#55e0ff" },
 ]
 
-storiesOf("Checkbox")
-  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
+storiesOf("Checkbox", module)
+  .addDecorator((fn) => <StoryScreen>{fn()}</StoryScreen>)
   .add("Behaviour", () => (
     <Story>
       <UseCase text="The Checkbox" usage="Use the checkbox to represent on/off states.">
@@ -28,7 +30,7 @@ storiesOf("Checkbox")
         </Toggle>
       </UseCase>
       <UseCase text="value = true" usage="This is permanently on.">
-        <Checkbox value={true} text="Always on"/>
+        <Checkbox value text="Always on"/>
       </UseCase>
       <UseCase text="value = false" usage="This is permanantly off.">
         <Checkbox value={false} text="Always off"/>
@@ -39,10 +41,10 @@ storiesOf("Checkbox")
     <Story>
       <UseCase text="multiline = true" usage="For really really long text">
         <Toggle initial={false}>
-          {({ on, toggle }) => (
+          {({ on, toggle }): React.ReactNode => (
             <View>
               <Checkbox
-                text="We’re an App Design & Development Team. Experts in mobile & web technologies. We create beautiful, functional mobile apps and websites. "
+                text="We’re an App Design & Development Team "
                 value={on}
                 multiline
                 onToggle={toggle}

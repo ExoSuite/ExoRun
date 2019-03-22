@@ -6,6 +6,6 @@ export enum HttpRequest {
   DELETE = "DELETE",
 }
 
-export function toApiSauceMethod(request: HttpRequest) {
+export function toApiSauceMethod(request: HttpRequest): string {
   return request.toLowerCase()
 }

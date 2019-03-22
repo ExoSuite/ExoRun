@@ -29,28 +29,29 @@ const HEADER: ViewStyle = {
 }
 const COMPONENT: ViewStyle = { backgroundColor: "#fff" }
 
-export interface UseCaseProps {
-  /** The title. */
-  text: string
-  /** When should we be using this? */
-  usage?: string
-  /** The component use case. */
+export interface IUseCaseProps {
+  // The component use case. */
   children: React.ReactNode
-  /** A style override. Rarely used. */
-  style?: ViewStyle
-  /** Don't use any padding because it's important to see the spacing. */
-  noPad?: boolean
-  /** Don't use background color because it's important to see the color. */
+  // Don't use background color because it's important to see the color.
   noBackground?: boolean
+  // Don't use any padding because it's important to see the spacing. */
+  noPad?: boolean
+  // A style override. Rarely used. */
+  style?: ViewStyle
+  // The title. */
+  text: string
+  // When should we be using this? */
+  usage?: string
 }
-
-export function UseCase(props: UseCaseProps) {
+// tslint:disable-next-line
+export function UseCase(props: IUseCaseProps) {
   const style = {
     ...COMPONENT,
     ...{ padding: props.noPad ? 0 : 10 },
     ...{ backgroundColor: props.noBackground ? "rgba(0,0,0,0)" : COMPONENT.backgroundColor },
     ...props.style,
   }
+
   return (
     <View style={ROOT}>
       <View style={HEADER}>

@@ -1,7 +1,7 @@
-import { HomeScreen } from "@screens/home-screen"
-import { createStackNavigator } from "react-navigation"
 import { AugmentedRealityNavigator } from "@screens/augmented-reality-screen"
+import { HomeScreen } from "@screens/home-screen"
 import { color } from "@theme"
+import { createStackNavigator } from "react-navigation"
 
 export const AppStack = createStackNavigator(
   {

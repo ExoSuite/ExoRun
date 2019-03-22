@@ -8,13 +8,6 @@ test("handles connection errors", () => {
   })
 })
 
-test("handles network errors", () => {
-  expect(getGeneralApiProblem({ problem: "NETWORK_ERROR" } as ApiErrorResponse<null>)).toEqual({
-    kind: HttpResponse.CANNOT_CONNECT,
-    temporary: true,
-  })
-})
-
 test("handles timeouts", () => {
   expect(getGeneralApiProblem({ problem: "TIMEOUT_ERROR" } as ApiErrorResponse<null>)).toEqual({
     kind: HttpResponse.TIMEOUT,

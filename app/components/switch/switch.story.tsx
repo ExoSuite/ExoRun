@@ -5,6 +5,8 @@ import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { Toggle } from "react-powerplug"
 import { Switch } from "."
 
+// tslint:disable typedef
+
 const styleArray: ViewStyle[] = [
   { borderColor: "#686868" },
 ]
@@ -46,8 +48,8 @@ const thumbOnStyle: ViewStyle[] = [
   },
 ]
 
-storiesOf("Switch")
-  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
+storiesOf("Switch", module)
+  .addDecorator((fn) => <StoryScreen>{fn()}</StoryScreen>)
   .add("Behaviour", () => (
     <Story>
       <UseCase text="The Toggle Switch" usage="Use the switch to represent on/off states.">
@@ -56,7 +58,7 @@ storiesOf("Switch")
         </Toggle>
       </UseCase>
       <UseCase text="value = true" usage="This is permanently on.">
-        <Switch value={true}/>
+        <Switch value/>
       </UseCase>
       <UseCase text="value = false" usage="This is permanantly off.">
         <Switch value={false}/>

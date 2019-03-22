@@ -1,6 +1,6 @@
 import { clear, load, loadString, remove, save, saveString } from "@utils/storage"
 
-// fixtures
+// tslint:disable-next-line
 const VALUE_OBJECT = { x: 1 }
 const VALUE_STRING = JSON.stringify(VALUE_OBJECT)
 

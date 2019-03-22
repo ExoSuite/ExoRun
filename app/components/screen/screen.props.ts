@@ -2,16 +2,16 @@ import * as React from "react"
 import { ViewStyle } from "react-native"
 import { ScreenPresets } from "./screen.presets"
 
-export interface ScreenProps {
+export interface IScreenProps {
+
+  /**
+   * An optional background color
+   */
+  backgroundColor?: string
   /**
    * Children components.
    */
   children?: React.ReactNode
-
-  /**
-   * An optional style override useful for padding & margin.
-   */
-  style?: ViewStyle
 
   /**
    * One of the different types of presets.
@@ -19,7 +19,7 @@ export interface ScreenProps {
   preset?: ScreenPresets
 
   /**
-   * An optional background color
+   * An optional style override useful for padding & margin.
    */
-  backgroundColor?: string
+  style?: ViewStyle
 }

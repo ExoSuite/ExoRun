@@ -6,6 +6,8 @@ import { Text } from "../text"
 import { color } from "@theme"
 import { ViewStyle } from "react-native"
 
+// tslint:disable typedef
+
 const TEXT_STYLE_OVERRIDE = {
   color: color.storybookTextColor,
 }
@@ -14,8 +16,8 @@ const arrayStyle: ViewStyle[] = [
   { borderColor: "#32cd32" },
 ]
 
-storiesOf("FormRow")
-  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
+storiesOf("FormRow", module)
+  .addDecorator((fn) => <StoryScreen>{fn()}</StoryScreen>)
   .add("Assembled", () => (
     <Story>
       <UseCase

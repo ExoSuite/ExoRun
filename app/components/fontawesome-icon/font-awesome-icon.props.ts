@@ -1,21 +1,16 @@
-import { ViewStyle } from "react-native"
 import { FontawesomeIconTypes } from "@components/fontawesome-icon/fontawesome-icon"
+import { ViewStyle } from "react-native"
 
-export interface FontawesomeIconProps {
-  /**
-   * name of the font awesome icon
-   */
-  name: string
-
-  /**
-   * type of icon
-   */
-  type?: FontawesomeIconTypes
+export interface IFontawesomeIconProps {
 
   /**
    * color of icon
    */
   color?: string
+  /**
+   * name of the font awesome icon
+   */
+  name: string
 
   /**
    * size of icon
@@ -26,4 +21,9 @@ export interface FontawesomeIconProps {
    * An optional style override useful for padding & margin.
    */
   style?: ViewStyle
+
+  /**
+   * type of icon
+   */
+  type?: FontawesomeIconTypes
 }

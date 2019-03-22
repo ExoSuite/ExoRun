@@ -5,12 +5,9 @@ export interface ImageProperties {
   width: number
 }
 
-export interface LoaderProps {
-  children: React.ReactNode
-
+export interface ILoaderProps {
   backgroundColor: string
-
+  children: React.ReactNode
   imageProperties: ImageProperties
-
   imageSource: any
 }

@@ -1,15 +1,16 @@
 import * as React from "react"
 import { ScrollView, View, ViewStyle } from "react-native"
-import { ScreenProps } from "./screen.props"
 import { isNonScrolling, presets } from "./screen.presets"
+import { IScreenProps } from "./screen.props"
 
 /**
  * This screen does not scroll.
  *
  * @param props The screen props
  */
-function ScreenWithoutScrolling(props: ScreenProps) {
-  const preset = presets[props.preset] || presets["fixed"]
+// tslint:disable-next-line typedef
+function ScreenWithoutScrolling(props: IScreenProps) {
+  const preset = presets[props.preset] || presets.fixed
   const style = { ...preset.nonScroll, ...props.style }
   const backgroundStyle = props.backgroundColor ? { backgroundColor: props.backgroundColor } : {}
 
@@ -21,8 +22,9 @@ function ScreenWithoutScrolling(props: ScreenProps) {
  *
  * @param props The screen props
  */
-function ScreenWithScrolling(props: ScreenProps) {
-  const preset = presets[props.preset] || presets["scroll"]
+// tslint:disable-next-line typedef
+function ScreenWithScrolling(props: IScreenProps) {
+  const preset = presets[props.preset] || presets.scroll
   const outerStyle = preset.scrollOuter
   const backgroundStyle = props.backgroundColor ? { backgroundColor: props.backgroundColor } : {}
   const innerStyle = { ...preset.scrollInner, ...props.style } as ViewStyle
@@ -39,10 +41,11 @@ function ScreenWithScrolling(props: ScreenProps) {
  *
  * @param props The screen props
  */
-export function Screen(props: ScreenProps) {
+// tslint:disable-next-line typedef
+export function Screen(props: IScreenProps) {
   if (isNonScrolling(props.preset)) {
     return <ScreenWithoutScrolling {...props} />
-  } else {
-    return <ScreenWithScrolling {...props} />
   }
+
+  return <ScreenWithScrolling {...props} />
 }

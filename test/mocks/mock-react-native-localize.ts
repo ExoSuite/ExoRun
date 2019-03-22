@@ -1,3 +1,5 @@
+// tslint:disable
+
 jest.mock("react-native-localize", () => {
   return {
     getLocales: () => ["fr", "en"],

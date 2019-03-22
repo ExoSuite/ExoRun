@@ -1,6 +1,6 @@
+import { AppStack } from "@navigation/app-navigator"
 import { createAppContainer, createSwitchNavigator } from "react-navigation"
 import { AuthStack } from "./auth-navigator"
-import { AppStack } from "@navigation/app-navigator"
 
 export const RootNavigator = createAppContainer(createSwitchNavigator(
   {

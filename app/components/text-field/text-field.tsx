@@ -1,10 +1,10 @@
+import { translate } from "@i18n"
+import { color, spacing, typography } from "@theme"
+import { reduce } from "ramda"
 import * as React from "react"
 import { TextInput, TextStyle, View, ViewStyle } from "react-native"
-import { color, spacing, typography } from "@theme"
-import { translate } from "@i18n"
 import { Text } from "../text"
-import { TextFieldProps } from "./text-field.props"
-import { reduce } from "ramda"
+import { ITextFieldProps } from "./text-field.props"
 
 // the base styling for the container
 const CONTAINER: ViewStyle = {
@@ -25,37 +25,32 @@ const INPUT: TextStyle = {
 // currently we have no presets, but that changes quickly when you build your app.
 const PRESETS: { [name: string]: ViewStyle } = {
   default: {},
-  loginScreen: {
-    width: "100%",
-    borderBottomColor: color.palette.lighterGrey,
-    borderBottomWidth: 0.5,
-    backgroundColor: "transparent",
+  auth: {
+   flex: 1
   },
   transparentInput: {
     backgroundColor: "transparent",
   },
 }
 
-
-const enhance = (style, styleOverride) => {
+const enhance = (style: ViewStyle, styleOverride: ViewStyle | ViewStyle[]): ViewStyle => {
   if (Array.isArray(styleOverride)) {
-    return reduce((acc, term) => {
+    return reduce((acc: Object, term: Object) => {
       return { ...acc, ...term }
     }, style, styleOverride)
-  } else {
-    return {
-      ...style,
-      ...styleOverride,
-    }
+  }
+
+  return {
+    ...style,
+    ...styleOverride,
   }
 }
-
 
 /**
  * A component which has a label and an input together.
  */
-export class TextField extends React.Component<TextFieldProps, {}> {
-  render() {
+export class TextField extends React.Component<ITextFieldProps> {
+  public render(): React.ReactNode {
     const {
       placeholderTx,
       placeholder,

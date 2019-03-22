@@ -1,32 +1,28 @@
-import { BaseError } from "./BaseError"
+import { translate } from "@i18n"
 import { GeneralApiProblem, HttpResponse } from "@services/api"
 import { ApiResponse } from "apisauce"
-import { translate } from "@i18n"
+import { BaseError } from "./BaseError"
 
 const baseError = {
   error: [],
 }
 
+/**
+ * * HttpRequestError will be thrown by api.ts:134:7 in case of an HTTP error
+ */
 export class HttpRequestError extends BaseError {
-  private readonly _data: { errors: Object, message: string }
-  private readonly _problem: GeneralApiProblem
 
   constructor(problem: GeneralApiProblem, response: ApiResponse<any>) {
     super(problem.kind)
-    this._data = response.data || []
+    this.data = response.data || []
     this._problem = problem
   }
 
-  public happened(): Object {
-    return this._data.errors || {}
-  }
+  // tslint:disable-next-line variable-name
+  private readonly _problem: GeneralApiProblem
+  private readonly data: { errors: Object; message: string }
 
-  // base message
-  public what(): string {
-    return this.message
-  }
-
-  public formattedErrors() {
+  public formattedErrors(): Object {
     let errors
     switch (this.code()) {
       case HttpResponse.UNAUTHORIZED: {
@@ -49,7 +45,16 @@ export class HttpRequestError extends BaseError {
     return errors
   }
 
-  public problem() {
+  public happened(): Object {
+    return this.data.errors || {}
+  }
+
+  public problem(): GeneralApiProblem {
     return this._problem
+  }
+
+  // base message
+  public what(): string {
+    return this.message
   }
 }

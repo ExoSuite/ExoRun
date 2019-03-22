@@ -6,7 +6,7 @@ test("should initialize API and throw HttpRequestError", async () => {
   const instance = new Api()
   await instance.setup()
 
-  const error = await expect(
+  const error = expect(
     instance.request(HttpRequest.GET, "user/me", {}, {}, false),
   ).rejects
   await error.toThrow()
@@ -17,7 +17,7 @@ test("should throw LogicException with LogicErrorState.CANT_LOAD_API_TOKENS", as
   const instance = new Api()
   await instance.setup()
 
-  const error = await expect(
+  const error = expect(
     instance.request(HttpRequest.GET, "user/me", {}, {}, true),
   ).rejects
   await error.toThrow()
@@ -25,23 +25,18 @@ test("should throw LogicException with LogicErrorState.CANT_LOAD_API_TOKENS", as
 
   try {
     await instance.request(HttpRequest.GET, "user/me", {}, {}, true)
-  } catch (e) {
-    expect(e.code()).toEqual(LogicErrorState.CANT_LOAD_API_TOKENS)
+  } catch (exception) {
+    expect(exception.code())
+      .toEqual(LogicErrorState.CANT_LOAD_API_TOKENS)
   }
 })
-
 
 test("Api test should return OK on /monitoring/alive", async () => {
   const instance = new Api()
   await instance.setup()
 
-  const response = await instance.request(
-    HttpRequest.GET,
-    "monitoring/alive",
-    {},
-    {},
-    false,
-  )
+  const response = await instance.request(HttpRequest.GET, "monitoring/alive", {}, {}, false)
   expect(response.status).toEqual(HttpResponse.OK)
-  expect(response.data).toEqual("OK")
+  expect(response.data)
+    .toEqual("OK")
 })

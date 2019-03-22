@@ -1,15 +1,15 @@
-import { TextStyle, ViewStyle } from "react-native"
 import { color, spacing } from "@theme"
+import { TextStyle, ViewStyle } from "react-native"
 
 /**
  * All text will start off looking like this.
  */
 const BASE_VIEW: ViewStyle = {
-  paddingVertical: spacing[2],
-  paddingHorizontal: spacing[2],
+  alignItems: "center",
   borderRadius: 4,
   justifyContent: "center",
-  alignItems: "center",
+  paddingHorizontal: spacing[2],
+  paddingVertical: spacing[2],
 }
 
 const BASE_TEXT: TextStyle = {

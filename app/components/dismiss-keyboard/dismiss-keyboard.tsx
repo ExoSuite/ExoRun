@@ -1,12 +1,12 @@
 import * as React from "react"
-import {
-  Keyboard,
-  TouchableWithoutFeedback,
-} from "react-native"
+import { Keyboard, TouchableWithoutFeedback } from "react-native"
 
-export interface DismissKeyboardProps {
-
+export interface IDismissKeyboardProps {
   children: React.ReactNode
+}
+
+const dismiss = (): void => {
+  Keyboard.dismiss()
 }
 
 /**
@@ -14,12 +14,13 @@ export interface DismissKeyboardProps {
  *
  * Component description here for TypeScript tips.
  */
-export function DismissKeyboard(props: DismissKeyboardProps) {
+// tslint:disable-next-line: typedef
+export function DismissKeyboard(props: IDismissKeyboardProps) {
   // grab the props
   const { children } = props
 
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    <TouchableWithoutFeedback onPress={dismiss}>
       {children}
     </TouchableWithoutFeedback>
   )

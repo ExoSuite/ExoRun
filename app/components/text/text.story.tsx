@@ -14,8 +14,8 @@ const viewStyleArray: ViewStyle[] = [
   { backgroundColor: "#7fff00" },
 ]
 
-storiesOf("Text")
-  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
+storiesOf("Text", module)
+  .addDecorator((fn: Function) => <StoryScreen>{fn()}</StoryScreen>)
   .add("Style Presets", () => (
     <Story>
       <UseCase text="default" usage="Used for normal body text.">
