@@ -21,14 +21,7 @@
     "interface-over-type-literal": false,
     "align": true,
     "trailing-comma": false,
-    "typedef": [
-      true,
-      "call-signature",
-      "parameter",
-      "arrow-call-signature",
-      "property-declaration",
-      "arrow-parameter"
-    ],
+    "typedef": [true, "call-signature", "parameter", "arrow-call-signature", "property-declaration", "arrow-parameter"],
     "no-inferrable-types": true,
     "ban-types": false,
     "no-relative-imports": false,

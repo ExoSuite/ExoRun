@@ -2,7 +2,8 @@
   "common": {
     "ok": "OK!",
     "cancel": "Cancel",
-    "back": "Go back"
+    "back": "Go back",
+    "next": "Next"
   },
   "errors": {
     "invalidEmail": "Invalid email address.",
@@ -30,7 +31,10 @@
     },
     "register": {
       "header": "Create your ExoSuite account",
-      "register": "Sign Up"
+      "register": "Sign Up",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "nickName": "Username (optional)"
     }
   }
 }

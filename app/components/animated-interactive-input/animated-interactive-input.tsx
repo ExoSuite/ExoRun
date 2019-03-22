@@ -62,6 +62,15 @@ const isIconWanted = (inputState: AnimatedInteractiveInputState): boolean => {
     || inputState === AnimatedInteractiveInputState.SUCCESS
 }
 
+// tslint:disable-next-line no-flag-args
+export function booleanToInputState(value: boolean): AnimatedInteractiveInputState {
+  return value ? AnimatedInteractiveInputState.SUCCESS : AnimatedInteractiveInputState.ERROR
+}
+
+export function stringToBoolean(value: string): boolean {
+  return value !== null && value !== "";
+}
+
 /**
  * Stateless functional component for your needs
  *

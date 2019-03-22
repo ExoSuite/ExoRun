@@ -1,6 +1,6 @@
 import * as React from "react"
 import { createStackNavigator, HeaderBackButtonProps } from "react-navigation"
-import { RegisterScreen } from "@screens/auth"
+import { FirstStepRegisterScreen } from "@screens/auth"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import { color } from "@theme"
 import { LogoHeader } from "@components/logo-header"
@@ -24,7 +24,7 @@ const platformShadow = Platform.select({
 
 export const RegisterFlow = createStackNavigator(
   {
-    register: { screen: RegisterScreen }
+    register: { screen: FirstStepRegisterScreen }
   }, {
     initialRouteName: "register",
     headerMode: "screen",

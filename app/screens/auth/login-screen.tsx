@@ -13,7 +13,7 @@ import { save } from "@utils/keychain"
 import { ApiResponse } from "apisauce"
 import autobind from "autobind-decorator"
 import throttle from "lodash.throttle"
-import { action, observable, runInAction } from "mobx"
+import { action, observable } from "mobx"
 import { observer } from "mobx-react"
 import { inject } from "mobx-react/native"
 import * as React from "react"
@@ -24,7 +24,7 @@ import { NavigationScreenProps } from "react-navigation"
 import { IValidationRules, validate } from "@utils/validate"
 import isEmpty from "lodash.isempty"
 import { footerShadow } from "@utils/footer-shadow"
-import { AnimatedInteractiveInput, AnimatedInteractiveInputState } from "@components/animated-interactive-input"
+import { AnimatedInteractiveInput, booleanToInputState, stringToBoolean } from "@components/animated-interactive-input"
 
 export interface ILoginScreenProps extends NavigationScreenProps<{}> {
   api: Api,
@@ -34,10 +34,6 @@ export interface ILoginScreenProps extends NavigationScreenProps<{}> {
 const EXOSUITE: ImageStyle = {
   width: 200,
   height: 100
-}
-
-const EXTRA_PADDING_TOP: ViewStyle = {
-  paddingTop: spacing[3]
 }
 
 const ZERO_PADDING: ViewStyle = {
@@ -51,10 +47,6 @@ const FOOTER_CONTAINER: ViewStyle = {
   justifyContent: "center",
   backgroundColor: color.background,
   width: "100%"
-}
-
-const EMAIL_TEXT: TextStyle = {
-  paddingTop: spacing[5]
 }
 
 const BOLD: TextStyle = { fontWeight: "bold" }
@@ -110,6 +102,19 @@ const RESET_PASSWORD: TextStyle = {
   color: color.palette.lightBlue
 }
 
+const TRANSPARENT: ViewStyle = {
+  backgroundColor: color.transparent
+}
+
+const MAIN_CONTAINER: ViewStyle = {
+  marginBottom: spacing[4]
+}
+
+const TITLE: ViewStyle = {
+  paddingTop: spacing[3],
+  backgroundColor: color.background
+}
+
 const disabled = color.palette.lightGrey
 const enabled = color.secondary
 const hidePassword = "auth.login.password-hide"
@@ -139,7 +144,6 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
   private readonly goBack: Function
   @observable private isPasswordVisible = false
   @observable private isValidEmail = false
-  @observable private loading: boolean
   @observable private password: string = null
 
   @action.bound
@@ -216,12 +220,9 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
     email && password && isValidEmail ? buttonColor = enabled : buttonColor = disabled
     const passwordToggleText = isPasswordVisible ? hidePassword : revealPassword
 
-    let test = this.isValidEmail ? AnimatedInteractiveInputState.SUCCESS : AnimatedInteractiveInputState.ERROR
-
-    // TODO: REMOVE THAT
-    if (this.loading && !this.isValidEmail) {
-      test = AnimatedInteractiveInputState.LOADING
-    }
+    const emailInputState = booleanToInputState(isValidEmail)
+    const passwordInputState = booleanToInputState(stringToBoolean(password))
+    console.tron.log(stringToBoolean(password))
 
     return (
       <DismissKeyboard>
@@ -236,22 +237,22 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
             titleStyle={HEADER_TITLE}
           />
 
-          <FormRow preset={"clear"} style={[EXTRA_PADDING_TOP, { backgroundColor: color.background }]}>
+          <FormRow preset={"clear"} style={TITLE}>
             <Text tx="auth.login.login" preset="headerCentered" allowFontScaling/>
           </FormRow>
 
           {/* Email / Password / Login button */}
           <Screen style={CONTAINER} backgroundColor={color.background} preset="fixed">
 
-            <FormRow preset={"clearFullWidth"} style={{ marginBottom: spacing[4] }}>
+            <FormRow preset="clearFullWidth" style={MAIN_CONTAINER}>
 
               <AnimatedInteractiveInput
                 preset="auth"
                 autoCapitalize="none"
                 placeholderTx="auth.login.username"
-                inputStyle={{ backgroundColor: "transparent" }}
+                inputStyle={TRANSPARENT}
                 withBottomBorder
-                inputState={test}
+                inputState={emailInputState}
                 onEndEditing={emailValidator}
                 placeholderTextColor={color.palette.lightGrey}
                 onChangeText={this.setEmail}
@@ -262,17 +263,14 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
                 autoCapitalize="none"
                 placeholderTx="auth.login.password"
                 withBottomBorder
-                inputState={this.password ? AnimatedInteractiveInputState.SUCCESS : AnimatedInteractiveInputState.ERROR}
-                inputStyle={{ backgroundColor: "transparent" }}
+                inputState={passwordInputState}
+                inputStyle={TRANSPARENT}
                 placeholderTextColor={color.palette.lightGrey}
                 secureTextEntry={!isPasswordVisible}
                 onChangeText={this.setPassword}
               />
               <FormRow preset={"clear"} style={[ZERO_PADDING, { paddingTop: spacing[2] }]}>
-                <Button preset="link" tx={passwordToggleText} onPress={() => runInAction(() => {
-                  // TODO: CHANGE CALL BY toggleIsPasswordVisible
-                  this.loading = true
-                })}/>
+                <Button preset="link" tx={passwordToggleText} onPress={toggleIsPasswordVisible}/>
               </FormRow>
             </FormRow>
 
