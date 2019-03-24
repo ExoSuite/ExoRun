@@ -13,5 +13,5 @@ const { languageTag } = RNLocalize.findBestAvailableLanguage(Object.keys(I18n.tr
 I18n.locale = languageTag
 
 export {
-  languageTag,
+  languageTag
 }

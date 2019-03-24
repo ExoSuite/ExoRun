@@ -6,16 +6,16 @@ import { Button } from "./"
 
 const buttonStyleArray: ViewStyle[] = [
   { paddingVertical: 100 },
-  { borderRadius: 0 },
+  { borderRadius: 0 }
 ]
 
 const buttonTextStyleArray: TextStyle[] = [
   { fontSize: 20 },
-  { color: "#a511dc" },
+  { color: "#a511dc" }
 ]
 
 const alert = (): void => {
-  window.alert("pressed");
+  window.alert("pressed")
 }
 
 storiesOf("Button", module)

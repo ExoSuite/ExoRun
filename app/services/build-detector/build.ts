@@ -1,5 +1,5 @@
 import { ENV } from "@utils/environment-variables"
-import includes from "lodash.includes"
+import { includes } from "lodash"
 import Config from "react-native-config"
 
 export enum BuiltFor {

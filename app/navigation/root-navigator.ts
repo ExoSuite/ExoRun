@@ -5,9 +5,9 @@ import { AuthStack } from "./auth-navigator"
 export const RootNavigator = createAppContainer(createSwitchNavigator(
   {
     Auth: AuthStack,
-    App: AppStack,
+    App: AppStack
   },
   {
-    initialRouteName: "Auth",
-  },
+    initialRouteName: "Auth"
+  }
 ))

@@ -8,13 +8,13 @@ type IStatus = HttpResponse | LogicErrorState
  */
 export abstract class BaseError extends Error {
 
+  private readonly status: IStatus
+
   protected constructor(status: IStatus) {
     super()
     Error.apply(this, arguments)
     this.status = status
   }
-
-  private readonly status: IStatus
 
   public code(): IStatus {
     return this.status

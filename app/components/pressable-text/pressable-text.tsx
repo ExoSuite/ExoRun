@@ -33,7 +33,7 @@ export function PressableText(props: IPressableTextProps) {
 
   return (
     <TouchableOpacity onPress={onPress}>
-      <Text tx={tx} text={text} style={style} preset={preset} />
+      <Text tx={tx} text={text} style={style} preset={preset}/>
     </TouchableOpacity>
   )
 }

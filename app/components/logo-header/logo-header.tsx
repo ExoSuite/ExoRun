@@ -2,11 +2,11 @@ import * as React from "react"
 import { Image, ImageStyle } from "react-native"
 import { Asset } from "@services/asset"
 
-const exorunLogo = Asset.Locator("exorun-logo");
+const exorunLogo = Asset.Locator("exorun-logo")
 
 const EXORUN_LOGO: ImageStyle = {
   width: 75,
-  height: 35,
+  height: 35
 }
 
 /**

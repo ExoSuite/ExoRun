@@ -9,15 +9,15 @@ import { Checkbox } from "./"
 
 const arrayStyle: ViewStyle[] = [
   { paddingVertical: 40 },
-  { alignSelf: "flex-end" },
+  { alignSelf: "flex-end" }
 ]
 const arrayOutlineStyle: ViewStyle[] =
   [
     { borderColor: "#b443c9" },
-    { borderWidth: 25 },
+    { borderWidth: 25 }
   ]
 const arrayFillStyle: ViewStyle[] = [
-  { backgroundColor: "#55e0ff" },
+  { backgroundColor: "#55e0ff" }
 ]
 
 storiesOf("Checkbox", module)
@@ -64,7 +64,7 @@ storiesOf("Checkbox", module)
                   backgroundColor: "purple",
                   marginLeft: 40,
                   paddingVertical: 30,
-                  paddingLeft: 60,
+                  paddingLeft: 60
                 }}
                 onToggle={toggle}
               />
@@ -84,7 +84,7 @@ storiesOf("Checkbox", module)
                   borderRadius: 10,
                   borderWidth: 4,
                   width: 60,
-                  height: 20,
+                  height: 20
                 }}
                 onToggle={toggle}
               />

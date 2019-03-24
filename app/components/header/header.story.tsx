@@ -9,7 +9,7 @@ import { color } from "@theme"
 
 const VIEWSTYLE = {
   flex: 1,
-  backgroundColor: color.storybookDarkBg,
+  backgroundColor: color.storybookDarkBg
 }
 
 storiesOf("Header", module)

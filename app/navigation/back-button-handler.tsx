@@ -1,6 +1,6 @@
+import * as React from "react"
 import { Injection } from "@services/injections"
 import { inject, observer } from "mobx-react"
-import * as React from "react"
 import { BackHandler } from "react-native"
 import { NavigationActions } from "react-navigation"
 import { NavigationStore } from "./navigation-store"

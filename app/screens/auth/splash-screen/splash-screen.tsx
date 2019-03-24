@@ -1,4 +1,4 @@
-import { observable, runInAction } from "mobx"
+import { action, observable, runInAction } from "mobx"
 import { observer } from "mobx-react"
 import * as React from "react"
 import { Animated, StyleSheet, View } from "react-native"
@@ -8,8 +8,8 @@ import { ILoaderProps } from "@screens/auth"
 
 const styles = StyleSheet.create({
   fullScreen: {
-    flex: 1,
-  },
+    flex: 1
+  }
 })
 
 /**
@@ -27,7 +27,7 @@ export class SplashScreen extends React.Component<ILoaderProps> {
     Animated.timing(animation, {
       toValue: 100,
       duration: 1250,
-      useNativeDriver: true,
+      useNativeDriver: true
     }).start(() => runInAction(() => this.appLoaded = true))
   }
 
@@ -40,8 +40,8 @@ export class SplashScreen extends React.Component<ILoaderProps> {
       opacity: animation.interpolate({
         inputRange: [0, 15, 30],
         outputRange: [0, 0, 1],
-        extrapolate: "clamp",
-      }),
+        extrapolate: "clamp"
+      })
     }
 
     const appScale = {
@@ -49,10 +49,10 @@ export class SplashScreen extends React.Component<ILoaderProps> {
         {
           scale: animation.interpolate({
             inputRange: [0, 7, 100],
-            outputRange: [1.1, 1.03, 1],
-          }),
-        },
-      ],
+            outputRange: [1.1, 1.03, 1]
+          })
+        }
+      ]
     }
 
     const solidStyle = {
@@ -65,10 +65,10 @@ export class SplashScreen extends React.Component<ILoaderProps> {
         {
           scale: animation.interpolate({
             inputRange: [0, 10, 100],
-            outputRange: [1, 0.8, 70],
-          }),
-        },
-      ],
+            outputRange: [1, 0.8, 70]
+          })
+        }
+      ]
     }
 
     const fullScreenBackgroundLayer = appLoaded ? null : (
@@ -84,5 +84,11 @@ export class SplashScreen extends React.Component<ILoaderProps> {
         </Animated.View>
       </View>
     )
+  }
+
+  @action
+  public reset(): void {
+    this.appLoaded = false
+    this.animation = new Animated.Value(0)
   }
 }

@@ -30,6 +30,7 @@ export interface ISwitchProps {
    * On or off.
    */
   value?: boolean
+
   /**
    * Fires when the on/off switch triggers.
    *

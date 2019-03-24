@@ -2,7 +2,6 @@ import * as React from "react"
 import { inject, observer } from "mobx-react"
 // @ts-ignore: until they update @type/react-navigation
 import { getNavigation, NavigationScreenProp, NavigationState } from "react-navigation"
-
 import { RootNavigator } from "./root-navigator"
 import { NavigationStore } from "./navigation-store"
 import { ImageProperties, SplashScreen } from "@screens/auth/splash-screen"
@@ -12,16 +11,31 @@ import { color } from "@theme"
 import { Screen } from "@services/device"
 import { Injection } from "@services/injections"
 import { Api } from "@services/api"
+import { AppScreens } from "@navigation/navigation-definitions"
+import { IVoidFunction } from "@types"
 
 interface IStatefulNavigatorProps {
   api?: Api
   navigationStore?: NavigationStore,
 }
 
+interface IScreenProps {
+  animateSplashScreen: IVoidFunction,
+  showSplashScreen: IVoidFunction
+}
+
+export interface INavigationScreenProps {
+  navigation: {
+    getScreenProps: IScreenProps
+  }
+}
+
 const IMAGE_STYLE: ImageProperties = {
   height: Screen.Height,
-  width: Screen.Width,
+  width: Screen.Width
 }
+
+const exosuiteLoader = Asset.Locator("exosuite-loader")
 
 /**
  * StatefulNavigator will handle the SplashScreen component
@@ -39,11 +53,11 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
     const { api, navigationStore } = this.props
     try {
       await api.checkToken()
-      navigationStore.navigateTo("HomeScreen")
+      navigationStore.navigateTo(AppScreens.HOME)
     } catch (exception) {
       this.returnToLogin()
     }
-    this.loader.animate()
+    this.animateSplashScreen()
   }
 
   private returnToLogin(): void {
@@ -58,6 +72,11 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
     this.loader = ref
   }
 
+  @autobind
+  public animateSplashScreen(): void {
+    this.loader.animate()
+  }
+
   public async componentDidMount(): Promise<void> {
     await this.removeLoader()
   }
@@ -69,6 +88,12 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
   public render(): React.ReactNode {
     // grab our state & dispatch from our navigation store
     const { state, dispatch, actionSubscribers } = this.props.navigationStore
+    const { showSplashScreen, animateSplashScreen } = this
+
+    const screenNavigationParams: IScreenProps = {
+      showSplashScreen,
+      animateSplashScreen
+    }
 
     // create a custom navigation implementation
     this.currentNavProp = getNavigation(
@@ -76,7 +101,7 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
       state,
       dispatch,
       actionSubscribers(),
-      {},
+      screenNavigationParams,
       this.getCurrentNavigation,
     )
 
@@ -85,10 +110,15 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
         ref={this.setSplashScreenRef}
         backgroundColor={color.palette.backgroundDarker}
         imageProperties={IMAGE_STYLE}
-        imageSource={Asset.Locator("exosuite-loader")}
+        imageSource={exosuiteLoader}
       >
         <RootNavigator navigation={this.currentNavProp}/>
       </SplashScreen>
     )
+  }
+
+  @autobind
+  public showSplashScreen(): void {
+    this.loader.reset()
   }
 }

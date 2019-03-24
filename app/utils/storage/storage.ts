@@ -70,7 +70,7 @@ export async function remove(key: string): Promise<void> {
   try {
     await AsyncStorage.removeItem(key)
   } catch {
-    return;
+    return
   }
 }
 
@@ -81,6 +81,6 @@ export async function clear(): Promise<void> {
   try {
     await AsyncStorage.clear()
   } catch {
-    return;
+    return
   }
 }

@@ -10,20 +10,20 @@ import { TextStyle, ViewStyle } from "react-native"
 
 const styleArray: ViewStyle[] = [
   { paddingHorizontal: 30 },
-  { borderWidth: 30 },
+  { borderWidth: 30 }
 ]
 
 const inputStyleArray: TextStyle[] = [
   {
     backgroundColor: "rebeccapurple",
     color: "white",
-    padding: 40,
+    padding: 40
   },
   {
     borderWidth: 10,
     borderRadius: 4,
-    borderColor: "#7fff00",
-  },
+    borderColor: "#7fff00"
+  }
 ]
 let alertWhenFocused = true
 
@@ -102,7 +102,7 @@ storiesOf("TextField", module)
                 padding: 40,
                 borderWidth: 10,
                 borderRadius: 4,
-                borderColor: "hotpink",
+                borderColor: "hotpink"
               }}
             />
           )}
@@ -147,7 +147,7 @@ storiesOf("TextField", module)
                 padding: 40,
                 borderWidth: 10,
                 borderRadius: 4,
-                borderColor: "hotpink",
+                borderColor: "hotpink"
               }}
               forwardedRef={(ref) => ref}
               onFocus={() => {

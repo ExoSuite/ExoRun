@@ -4,7 +4,7 @@ import { ApiResponse } from "apisauce"
 import { BaseError } from "./BaseError"
 
 const baseError = {
-  error: [],
+  error: []
 }
 
 /**
@@ -12,15 +12,15 @@ const baseError = {
  */
 export class HttpRequestError extends BaseError {
 
+  // tslint:disable-next-line variable-name
+  private readonly _problem: GeneralApiProblem
+  private readonly data: { errors: Object; message: string }
+
   constructor(problem: GeneralApiProblem, response: ApiResponse<any>) {
     super(problem.kind)
     this.data = response.data || []
     this._problem = problem
   }
-
-  // tslint:disable-next-line variable-name
-  private readonly _problem: GeneralApiProblem
-  private readonly data: { errors: Object; message: string }
 
   public formattedErrors(): Object {
     let errors

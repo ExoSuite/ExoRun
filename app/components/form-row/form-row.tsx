@@ -17,7 +17,7 @@ export function FormRow(props: IFormRowProps) {
   } else {
     viewStyle = {
       ...PRESETS[props.preset],
-      ...props.style,
+      ...props.style
     }
   }
 

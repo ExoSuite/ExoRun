@@ -12,7 +12,7 @@ storiesOf("DismissKeyboard", module)
     <Story>
       <UseCase text="DismissKeyboard" usage="Click on input and click in the screen to dissmiss">
         <DismissKeyboard>
-          <TextField />
+          <TextField/>
         </DismissKeyboard>
       </UseCase>
     </Story>
