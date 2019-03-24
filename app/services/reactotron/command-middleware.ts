@@ -9,7 +9,9 @@ export const commandMiddleware = (getRootStore: GetRootStore) => {
   return (tron) => {
     return {
       onCommand: async (command) => {
-        if (command.type !== "custom") { return }
+        if (command.type !== "custom") {
+          return
+        }
         switch (command.payload) {
           case "resetStore":
             console.tron.log("resetting store")
@@ -19,7 +21,7 @@ export const commandMiddleware = (getRootStore: GetRootStore) => {
             console.tron.log("resetting navigation store")
             getRootStore().navigationStore.reset()
         }
-      },
+      }
     }
   }
 }

@@ -36,16 +36,11 @@
     "i18n-js": "^3.2.1",
     "jsc-android": "^236355.1.1",
     "jwt-decode": "^2.2.0",
-    "lodash.assign": "^4.2.0",
-    "lodash.get": "^4.4.2",
-    "lodash.includes": "^4.3.0",
-    "lodash.isempty": "^4.4.0",
-    "lodash.merge": "^4.6.1",
-    "lodash.throttle": "4.1.1",
+    "lodash-es": "^4.17.11",
     "lottie-react-native": "^2.6.0",
     "mobx": "5.9.0",
     "mobx-react": "5.4.3",
-    "mobx-state-tree": "3.12.1",
+    "mobx-state-tree": "3.12.2",
     "node-libs-react-native": "^1.0.3",
     "ramda": "0.26.1",
     "react": "16.6.3",
@@ -77,8 +72,8 @@
     "@storybook/addon-storyshots": "^4.1.14",
     "@storybook/react-native": "^4.1.14",
     "@types/jest": "24.0.11",
-    "@types/node": "^11.11.4",
-    "@types/ramda": "0.26.4",
+    "@types/node": "^11.11.6",
+    "@types/ramda": "0.26.5",
     "@types/react": "16.8.8",
     "@types/react-native": "0.57.41",
     "@types/react-navigation": "3.0.5",
@@ -92,7 +87,7 @@
     "jest-preset-ignite": "0.6.1",
     "metro-react-native-babel-preset": "0.53.1",
     "npm-run-all": "4.1.5",
-    "patch-package": "6.0.5",
+    "patch-package": "6.0.6",
     "postinstall-prepare": "1.0.1",
     "prettier": "1.16.4",
     "react-devtools-core": "3.6.1",
@@ -131,9 +126,6 @@
     "titleTemplate": "{classname}-{title}",
     "ancestorSeparator": " › ",
     "usePathForSuiteName": "true"
-  },
-  "resolutions": {
-    "@types/react": "16.8.8"
   },
   "rnpm": {
     "assets": [

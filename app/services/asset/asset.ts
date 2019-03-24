@@ -27,5 +27,5 @@ class Asset {
 
 export {
   Asset,
-  FileExtension,
+  FileExtension
 }

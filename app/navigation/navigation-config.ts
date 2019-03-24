@@ -14,5 +14,5 @@ export interface INavigationConfig {
  * to override this for testing.
  */
 export const DEFAULT_NAVIGATION_CONFIG: INavigationConfig = {
-  exitRoutes: ["firstExample"],
+  exitRoutes: ["firstExample"]
 }

@@ -1,6 +1,17 @@
-import { Button, DismissKeyboard, Header, PressableText, Screen, Text } from "@components"
+import * as React from "react"
+import { Image, ImageStyle, SafeAreaView, TextInput, TextStyle, View, ViewStyle } from "react-native"
+import {
+  AnimatedInteractiveInput,
+  booleanToInputState,
+  Button,
+  DismissKeyboard,
+  FormRow,
+  Header,
+  PressableText,
+  Screen,
+  Text
+} from "@components"
 import { DataLoader } from "@components/data-loader"
-import { FormRow } from "@components/form-row"
 import { HttpRequestError } from "@exceptions"
 import { Api, ITokenResponse } from "@services/api"
 import { Server } from "@services/api/api.servers"
@@ -12,19 +23,17 @@ import { color, spacing } from "@theme"
 import { save } from "@utils/keychain"
 import { ApiResponse } from "apisauce"
 import autobind from "autobind-decorator"
-import throttle from "lodash.throttle"
+import { isEmpty, throttle } from "lodash-es"
 import { action, observable } from "mobx"
 import { observer } from "mobx-react"
 import { inject } from "mobx-react/native"
-import * as React from "react"
-import { Image, ImageStyle, SafeAreaView, TextStyle, View, ViewStyle } from "react-native"
 import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
 import KeyboardSpacer from "react-native-keyboard-spacer"
 import { NavigationScreenProps } from "react-navigation"
 import { IValidationRules, validate } from "@utils/validate"
-import isEmpty from "lodash.isempty"
-import { footerShadow } from "@utils/footer-shadow"
-import { AnimatedInteractiveInput, booleanToInputState, stringToBoolean } from "@components/animated-interactive-input"
+import { footerShadow } from "@utils/shadows"
+import { AppScreens } from "@navigation/navigation-definitions"
+import { IVoidFunction } from "@types"
 
 export interface ILoginScreenProps extends NavigationScreenProps<{}> {
   api: Api,
@@ -117,8 +126,8 @@ const TITLE: ViewStyle = {
 
 const disabled = color.palette.lightGrey
 const enabled = color.secondary
-const hidePassword = "auth.login.password-hide"
-const revealPassword = "auth.login.password-reveal"
+const hidePassword = "common.password-hide"
+const revealPassword = "common.password-reveal"
 
 const onResetPasswordPress = (): null => null
 
@@ -132,32 +141,36 @@ const RULES: IValidationRules = { email: { email: true } }
 @observer
 export class LoginScreen extends React.Component<ILoginScreenProps> {
 
+  private readonly authorizeLogin: IVoidFunction
+  @observable private email: string = null
+  private readonly goBack: Function
+  @observable private isPasswordVisible = false
+  @observable private isValidEmail = false
+  @observable private password: string = null
+  private passwordInputRef: TextInput
+
   constructor(props: ILoginScreenProps) {
     super(props)
     this.goBack = throttle(props.navigation.goBack, 3000)
     this.authorizeLogin = throttle(this._authorizeLogin, 5000)
   }
 
-  private readonly authorizeLogin: () => void
-
-  @observable private email: string = null
-  private readonly goBack: Function
-  @observable private isPasswordVisible = false
-  @observable private isValidEmail = false
-  @observable private password: string = null
-
   @action.bound
   private emailValidator(): void {
+    const { email } = this
     this.email === null ?
       this.isValidEmail = false :
-      this.isValidEmail = isEmpty(validate(RULES, { email: this.email }))
+      this.isValidEmail = isEmpty(validate(RULES, { email }))
   }
 
   private manageResponseError(response: HttpRequestError): void {
     const { soundPlayer } = this.props
-    DataLoader.Instance.hasErrors(response, () => {
-      soundPlayer.error()
-    })
+    DataLoader.Instance.hasErrors(response, soundPlayer.error)
+  }
+
+  @autobind
+  private onEmailPressNext(): void {
+    this.passwordInputRef.focus();
   }
 
   @action.bound
@@ -169,6 +182,11 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
   @action.bound
   private setPassword(password: string): void {
     this.password = password
+  }
+
+  @autobind
+  private setPasswordInputRef(ref: TextInput): void {
+    this.passwordInputRef = ref
   }
 
   @action.bound
@@ -188,16 +206,14 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
     if (response instanceof HttpRequestError) {
       this.manageResponseError(response)
 
-      return
+      return;
     }
 
     DataLoader.Instance.success(
-      () => {
-        soundPlayer.success()
-      },
+      soundPlayer.success,
       async () => {
         await save(response.data, Server.EXOSUITE_USERS_API)
-        navigation.navigate("HomeScreen")
+        navigation.navigate(AppScreens.HOME)
       })
   }
 
@@ -221,8 +237,7 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
     const passwordToggleText = isPasswordVisible ? hidePassword : revealPassword
 
     const emailInputState = booleanToInputState(isValidEmail)
-    const passwordInputState = booleanToInputState(stringToBoolean(password))
-    console.tron.log(stringToBoolean(password))
+    const passwordInputState = booleanToInputState(!isEmpty(password))
 
     return (
       <DismissKeyboard>
@@ -249,25 +264,32 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
               <AnimatedInteractiveInput
                 preset="auth"
                 autoCapitalize="none"
-                placeholderTx="auth.login.username"
+                placeholderTx="common.username"
                 inputStyle={TRANSPARENT}
                 withBottomBorder
                 inputState={emailInputState}
                 onEndEditing={emailValidator}
                 placeholderTextColor={color.palette.lightGrey}
                 onChangeText={this.setEmail}
+                keyboardType="email-address"
+                returnKeyType="next"
+                onSubmitEditing={this.onEmailPressNext}
+                autoFocus
               />
 
               <AnimatedInteractiveInput
                 preset="auth"
                 autoCapitalize="none"
-                placeholderTx="auth.login.password"
+                placeholderTx="common.password"
                 withBottomBorder
                 inputState={passwordInputState}
                 inputStyle={TRANSPARENT}
                 placeholderTextColor={color.palette.lightGrey}
                 secureTextEntry={!isPasswordVisible}
                 onChangeText={this.setPassword}
+                returnKeyType="send"
+                forwardedRef={this.setPasswordInputRef}
+                onSubmitEditing={this.authorizeLogin}
               />
               <FormRow preset={"clear"} style={[ZERO_PADDING, { paddingTop: spacing[2] }]}>
                 <Button preset="link" tx={passwordToggleText} onPress={toggleIsPasswordVisible}/>

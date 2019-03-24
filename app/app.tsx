@@ -3,7 +3,6 @@
 // In this file, we'll be kicking off our app or storybook.
 // import library modules
 import * as React from "react"
-import { DataLoader } from "@components/data-loader"
 import { Environment } from "@models/environment"
 import { RootStore, setupRootStore } from "@models/root-store"
 import { BackButtonHandler } from "@navigation/back-button-handler"
@@ -17,6 +16,7 @@ import SplashScreen from "react-native-splash-screen"
 import { StorybookUIRoot } from "../storybook"
 import "./i18n"
 import { StatefulNavigator } from "./navigation"
+import { DataLoader } from "@components/data-loader"
 
 interface IAppState {
   env?: Environment

@@ -12,7 +12,7 @@ export async function save(tokens: ITokenResponse, server: Server): Promise<bool
   await ReactNativeKeychain.setInternetCredentials(
     server,
     "ExoRun",
-    JSON.stringify(tokens),
+    JSON.stringify(tokens)
   )
 
   return true
@@ -37,7 +37,7 @@ export async function load(server: Server): Promise<ITokenResponse | boolean> {
  *
  * @param server The server which has these creds
  */
-export async function reset(server: string): Promise<boolean> {
+export async function reset(server: Server): Promise<boolean> {
   await ReactNativeKeychain.resetInternetCredentials(server)
 
   return true

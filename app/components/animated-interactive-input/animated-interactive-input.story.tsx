@@ -8,7 +8,7 @@ storiesOf("AuthInput", module)
   .add("Style Presets", () => (
     <Story>
       <UseCase text="Primary" usage="The primary.">
-        <AnimatedInteractiveInput />
+        <AnimatedInteractiveInput/>
       </UseCase>
     </Story>
   ))

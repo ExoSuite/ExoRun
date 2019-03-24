@@ -1,8 +1,9 @@
-const ValidateJS = require("validate.js")
-import { contains } from "ramda"
+// tslint:disable-next-line
+import ValidateJS, { ValidateJS as ValidateJSType } from "validate.js"
+import { includes } from "ramda"
 
 // weird typescript situation because of strange typings
-const Validate: any = ValidateJS.default ? ValidateJS.default : ValidateJS
+const Validate: ValidateJSType = ValidateJS
 
 /**
  * Validates that 1 attribute doesn't appear in another's attributes content.
@@ -10,7 +11,7 @@ const Validate: any = ValidateJS.default ? ValidateJS.default : ValidateJS
 // tslint:disable-next-line
 Validate.validators.excludes = function custom(value, options, key, attributes) {
   const list = attributes[options.attribute] || []
-  if (value && contains(value, list)) {
+  if (value && includes(value, list)) {
     return options.message || `${value} is in the list`
   }
 }

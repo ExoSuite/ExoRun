@@ -3,7 +3,12 @@
     "ok": "OK!",
     "cancel": "Cancel",
     "back": "Retour",
-    "next": "Suivant"
+    "next": "Suivant",
+    "username": "Adresse électronique",
+    "password": "Mot de passe",
+    "password-reveal": "Révéler le mot de passe",
+    "password-hide": "Masquer le mot de passe",
+    "password-confirmation": "Confirmer le mot de passe"
   },
   "errors": {
     "invalidEmail": "Invalid email address.",
@@ -31,10 +36,6 @@
     "login": {
       "header": "Se connecter",
       "login": "Se connecter à ExoRun",
-      "username": "E-mail",
-      "password": "Mot de passe",
-      "password-reveal": "Révéler le mot de passe",
-      "password-hide": "Masquer le mot de passe",
       "bad-email": "S'il vous plaît entrer un email valide.",
       "good-email": "Génial ! votre email est valide !",
       "reset-password": "Mot de passe oublié ?"

@@ -19,9 +19,11 @@ const ROOT_STYLE: ViewStyle = {
 /**
  * NavigationBackButton will handle the tap on the chevron-left button in the header
  */
-export class NavigationBackButton extends React.PureComponent<HeaderBackButtonProps &
+export class NavigationBackButton extends React.PureComponent<
+  HeaderBackButtonProps &
   INavigationBackButtonProps &
-  NavigationScreenProps> {
+  Partial<NavigationScreenProps>
+  > {
 
   @autobind
   private nestedStackNavigatorGoBack(): void {

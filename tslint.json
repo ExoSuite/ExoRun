@@ -38,15 +38,15 @@
       true,
       {
         "order": [
-          "private-constructor",
-          "protected-constructor",
-          "public-constructor",
           "private-instance-field",
           "protected-instance-field",
           "public-instance-field",
           "private-static-field",
           "protected-static-field",
           "public-static-field",
+          "private-constructor",
+          "protected-constructor",
+          "public-constructor",
           "private-static-method",
           "protected-static-method",
           "public-static-method",

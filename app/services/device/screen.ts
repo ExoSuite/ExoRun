@@ -12,10 +12,10 @@ export class Screen {
   public static Width = width
 
   public static middleHeight(): number {
-    return Screen.Height / 2;
+    return Screen.Height / 2
   }
 
   public static middleWidth(): number {
-    return Screen.Width / 2;
+    return Screen.Width / 2
   }
 }

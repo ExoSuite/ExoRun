@@ -53,7 +53,7 @@ export async function setupRootStore(): Promise<ISetupRootStore> {
 
   return {
     rootStore,
-    env,
+    env
   }
 }
 

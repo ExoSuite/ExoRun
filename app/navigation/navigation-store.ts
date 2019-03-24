@@ -2,6 +2,7 @@ import { Instance, types } from "mobx-state-tree"
 import { NavigationAction, NavigationActions, NavigationLeafRoute } from "react-navigation"
 import { NavigationEvents } from "./navigation-events"
 import { RootNavigator } from "./root-navigator"
+import { IVoidFunction } from "@types"
 
 const DEFAULT_STATE = RootNavigator.router.getStateForAction(NavigationActions.init(), null)
 
@@ -30,7 +31,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      * the navigation state tree (Frozen here means it is immutable.)
      */
     // @ts-ignore
-    state: types.optional(types.frozen(), DEFAULT_STATE),
+    state: types.optional(types.frozen(), DEFAULT_STATE)
   })
   .actions((self: any) => ({
 
@@ -65,12 +66,17 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
       self.state = DEFAULT_STATE
     },
 
+    smoothReset(callback: IVoidFunction): void {
+      self.reset()
+      callback()
+    },
+
     /**
      * Finds the current route.
      */
     findCurrentRoute(): NavigationLeafRoute {
       return findCurrentRoute(self.state)
-    },
+    }
   }))
   .actions((self: any) => ({
     /**
@@ -80,7 +86,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      */
     navigateTo(routeName: string): void {
       self.dispatch(NavigationActions.navigate({ routeName }))
-    },
+    }
   }))
 
 export type NavigationStore = Instance<typeof NavigationStoreModel>

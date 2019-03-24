@@ -16,7 +16,7 @@ storiesOf("PressableText", module)
           text="PressableText"
           preset="bold"
           onPress={onPress}
-          style={{color: "black"}}
+          style={{ color: "black" }}
         />
       </UseCase>
     </Story>

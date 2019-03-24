@@ -7,7 +7,7 @@ import { TextStyle } from "react-native"
 const BASE: TextStyle = {
   fontFamily: typography.primary,
   color: color.text,
-  fontSize: 15,
+  fontSize: 15
 }
 
 /**
@@ -57,7 +57,7 @@ export const presets = {
   /**
    * A smaller piece of secondard information.
    */
-  secondary: { ...BASE, fontSize: 9, color: color.dim } as TextStyle,
+  secondary: { ...BASE, fontSize: 9, color: color.dim } as TextStyle
 }
 
 /**

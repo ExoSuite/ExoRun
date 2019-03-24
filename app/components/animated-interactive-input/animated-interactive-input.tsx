@@ -3,7 +3,7 @@ import { View, ViewStyle } from "react-native"
 import { ITextFieldProps, TextField } from "@components/text-field"
 import { FontawesomeIcon } from "@components/fontawesome-icon"
 import { color, spacing } from "@theme"
-import merge from "lodash.merge"
+import { merge } from "lodash-es"
 import * as Animatable from "react-native-animatable"
 import autobind from "autobind-decorator"
 import AnimatedLottieView from "lottie-react-native"
@@ -32,7 +32,7 @@ const BOTTOM_BORDER: ViewStyle = {
 }
 
 const ICON: ViewStyle = {
-  marginTop: spacing[3],
+  marginTop: spacing[3]
 }
 
 const NOT_VISIBLE: ViewStyle = {
@@ -65,10 +65,6 @@ const isIconWanted = (inputState: AnimatedInteractiveInputState): boolean => {
 // tslint:disable-next-line no-flag-args
 export function booleanToInputState(value: boolean): AnimatedInteractiveInputState {
   return value ? AnimatedInteractiveInputState.SUCCESS : AnimatedInteractiveInputState.ERROR
-}
-
-export function stringToBoolean(value: string): boolean {
-  return value !== null && value !== "";
 }
 
 /**
@@ -129,7 +125,7 @@ export class AnimatedInteractiveInput extends React.PureComponent<ITextFieldProp
                 source={Lottie.InputLoader}
                 loop
                 autoPlay
-                style={{height: 50, marginLeft: 3}}
+                style={{ height: 50, marginLeft: 3 }}
               />
             )
           }

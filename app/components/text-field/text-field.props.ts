@@ -1,8 +1,9 @@
 import { TextInputProps, TextStyle, ViewStyle } from "react-native"
+import { ITextInputRef } from "@types"
 
 export interface ITextFieldProps extends TextInputProps {
 
-  forwardedRef?: any
+  forwardedRef?: ITextInputRef
 
   /**
    * Optional style overrides for the input.

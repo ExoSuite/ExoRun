@@ -1,44 +1,30 @@
 import * as React from "react"
 import { createStackNavigator, HeaderBackButtonProps } from "react-navigation"
-import { FirstStepRegisterScreen } from "@screens/auth"
+import { FirstStepRegisterScreen, SecondStepRegisterScreen } from "@screens/auth"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import { color } from "@theme"
 import { LogoHeader } from "@components/logo-header"
-import { Platform } from "react-native"
-
-const platformShadow = Platform.select({
-  android: {
-    elevation: 3,
-  },
-  ios: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-  },
-  default: {},
-});
+import { RegisterScreens } from "@navigation/navigation-definitions"
+import { headerShadow } from "@utils/shadows"
 
 export const RegisterFlow = createStackNavigator(
   {
-    register: { screen: FirstStepRegisterScreen }
+    [RegisterScreens.FIRST]: { screen: FirstStepRegisterScreen },
+    [RegisterScreens.SECOND]: { screen: SecondStepRegisterScreen }
   }, {
-    initialRouteName: "register",
-    headerMode: "screen",
+    initialRouteName: RegisterScreens.FIRST,
+    headerMode: "float",
     // @ts-ignore
     defaultNavigationOptions: {
       headerLeft: (props: HeaderBackButtonProps): React.ReactNode => (
-          <NavigationBackButtonWithNestedStackNavigator {...props}/>
+        <NavigationBackButtonWithNestedStackNavigator {...props}/>
       ),
       headerTitle: (props: any): React.ReactNode => <LogoHeader/>,
       headerStyle: {
         backgroundColor: color.backgroundDarkerer,
         borderBottomWidth: 0,
-        ...platformShadow
-      },
+        ...headerShadow
+      }
     }
   }
 )

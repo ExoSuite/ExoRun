@@ -29,6 +29,6 @@ export const DEFAULT_REACTOTRON_CONFIG: ReactotronConfig = {
   useAsyncStorage: true,
   state: {
     initial: true,
-    snapshots: false,
-  },
+    snapshots: false
+  }
 }

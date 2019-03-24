@@ -1,25 +1,28 @@
-import { Button, DismissKeyboard, Screen, Text } from "@components"
-import { FormRow } from "@components/form-row"
+import * as React from "react"
+import { Image, ImageStyle, SafeAreaView, TextInput, View, ViewStyle } from "react-native"
+import { observer } from "mobx-react"
+import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
+import KeyboardSpacer from "react-native-keyboard-spacer"
+import { isEmpty, pickBy } from "lodash"
+import { NavigationScreenProps } from "react-navigation"
+import { action, observable } from "mobx"
+import { footerShadow } from "@utils/shadows"
+import {
+  AnimatedInteractiveInput,
+  booleanToInputState,
+  Button,
+  DismissKeyboard,
+  FormRow,
+  Screen,
+  Text
+} from "@components"
 import { Asset } from "@services/asset"
 import { Platform } from "@services/device"
 import { color, spacing } from "@theme"
-import { observer } from "mobx-react"
-import * as React from "react"
-import { Image, ImageStyle, SafeAreaView, View, ViewStyle } from "react-native"
-import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
-import KeyboardSpacer from "react-native-keyboard-spacer"
-import { NavigationScreenProps } from "react-navigation"
-import { observable } from "mobx"
-import { footerShadow } from "@utils/footer-shadow"
-import {
-  AnimatedInteractiveInput,
-  AnimatedInteractiveInputState,
-  booleanToInputState,
-  stringToBoolean
-} from "@components/animated-interactive-input"
 import autobind from "autobind-decorator"
+import { RegisterScreens } from "@navigation/navigation-definitions"
 
-export interface IRegisterScreenProps extends NavigationScreenProps<{}> {
+export interface IFirstStepRegisterScreen extends NavigationScreenProps<{}> {
 }
 
 const EXOSUITE: ImageStyle = {
@@ -74,11 +77,6 @@ const MAIN_CONTAINER: ViewStyle = {
   marginBottom: spacing[4]
 }
 
-const INPUT_STATE = {
-  true: AnimatedInteractiveInputState.SUCCESS,
-  false: AnimatedInteractiveInputState.ERROR
-}
-
 const disabled = color.palette.lightGrey
 const enabled = color.secondary
 
@@ -86,37 +84,72 @@ const enabled = color.secondary
  * FirstStepRegisterScreen will handle the first step of the user registration
  */
 @observer
-export class FirstStepRegisterScreen extends React.Component<IRegisterScreenProps> {
+export class FirstStepRegisterScreen extends React.Component<IFirstStepRegisterScreen> {
+  @observable private firstName: string = null
+  @observable private lastName: string = null
 
-  @observable private firstName: string
-  @observable private lastName: string
-  @observable private nickName?: string
+  private lastNameInputRef: TextInput
+  @observable private nickName?: string = null
+  private nickNameInputRef: TextInput
 
   @autobind
+  private focusOnLastName(): void {
+    this.lastNameInputRef.focus()
+  }
+
+  @autobind
+  private focusOnNickName(): void {
+    this.nickNameInputRef.focus()
+  }
+
+  @autobind
+  private goToSecondStep(): void {
+    const { navigation } = this.props
+    const { nickName, lastName, firstName } = this;
+    navigation.navigate(RegisterScreens.SECOND, pickBy({ nickName, lastName, firstName }))
+  }
+
+  @autobind
+  private onNickNameSubmit(): void {
+    this.nickNameInputRef.blur()
+    this.goToSecondStep()
+  }
+
+  @action.bound
   private setFirstName(firstName: string): void {
     this.firstName = firstName
   }
 
-  @autobind
+  @action.bound
   private setLastName(lastName: string): void {
     this.lastName = lastName
   }
 
   @autobind
+  private setLastNameInputRef(ref: TextInput): void {
+    this.lastNameInputRef = ref
+  }
+
+  @action.bound
   private setNickName(nickName: string): void {
     this.nickName = nickName
   }
 
+  @autobind
+  private setNickNameInputRef(ref: TextInput): void {
+    this.nickNameInputRef = ref
+  }
+
   // tslint:disable-next-line no-feature-envy
   public render(): React.ReactNode {
-    const { firstName, lastName, nickName } = this
+    const { firstName, lastName, nickName, goToSecondStep } = this
 
     let buttonColor
     firstName && lastName ? buttonColor = enabled : buttonColor = disabled
 
-    const firstNameInputState = booleanToInputState(stringToBoolean(firstName))
-    const lastNameInputState = booleanToInputState(stringToBoolean(lastName))
-    const nickNameInputState = booleanToInputState(stringToBoolean(nickName))
+    const firstNameInputState = booleanToInputState(!isEmpty(firstName))
+    const lastNameInputState = booleanToInputState(!isEmpty(lastName))
+    const nickNameInputState = booleanToInputState(!isEmpty(nickName))
 
     return (
       <DismissKeyboard>
@@ -134,9 +167,13 @@ export class FirstStepRegisterScreen extends React.Component<IRegisterScreenProp
                 placeholderTx="auth.register.firstName"
                 inputStyle={TRANSPARENT}
                 withBottomBorder
+                autoCorrect={false}
                 placeholderTextColor={color.palette.lightGrey}
                 onChangeText={this.setFirstName}
                 inputState={firstNameInputState}
+                returnKeyType="next"
+                onSubmitEditing={this.focusOnLastName}
+                autoFocus
               />
 
               <AnimatedInteractiveInput
@@ -145,9 +182,13 @@ export class FirstStepRegisterScreen extends React.Component<IRegisterScreenProp
                 placeholderTx="auth.register.lastName"
                 inputStyle={TRANSPARENT}
                 withBottomBorder
+                autoCorrect={false}
                 placeholderTextColor={color.palette.lightGrey}
                 onChangeText={this.setLastName}
                 inputState={lastNameInputState}
+                forwardedRef={this.setLastNameInputRef}
+                returnKeyType="next"
+                onSubmitEditing={this.focusOnNickName}
               />
 
               <AnimatedInteractiveInput
@@ -156,9 +197,13 @@ export class FirstStepRegisterScreen extends React.Component<IRegisterScreenProp
                 placeholderTx="auth.register.nickName"
                 inputStyle={TRANSPARENT}
                 withBottomBorder
+                autoCorrect={false}
                 placeholderTextColor={color.palette.lightGrey}
                 onChangeText={this.setNickName}
                 inputState={nickNameInputState}
+                forwardedRef={this.setNickNameInputRef}
+                returnKeyType="next"
+                onSubmitEditing={this.onNickNameSubmit}
               />
 
             </FormRow>
@@ -187,7 +232,7 @@ export class FirstStepRegisterScreen extends React.Component<IRegisterScreenProp
                 backgroundColor: buttonColor,
                 ...NEXT_STEP_BUTTON
               }}
-              // onPress={this.authorizeLogin}
+              onPress={goToSecondStep}
               disabled={buttonColor !== enabled} // can we press on the login button?
               preset="primaryFullWidth"
             >

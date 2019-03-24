@@ -3,7 +3,7 @@ import { Button, Text } from "@components"
 import { FinalAnimationStatus, IAnimation, LoaderState } from "@components/data-loader/data-loader.types"
 import { FormRow } from "@components/form-row"
 import autobind from "autobind-decorator"
-import isEmpty from "lodash.isempty"
+import { isEmpty } from "lodash-es"
 import AnimatedLottieView from "lottie-react-native"
 import { action, observable, runInAction } from "mobx"
 import { observer } from "mobx-react/native"
@@ -102,26 +102,18 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
   }
 
   private animatedTextView: AnimatedView
-
   // optional failure callback
   private errorCallback: CallbackType = defaultErrorCallback
-
   // will be displayed on error animation has finished
-  @observable private errors: Object
-
+  @observable private errors: Object = {}
   private finalAnimationStatus: FinalAnimationStatus
-
   @observable private isVisible: boolean
-
   // will be fill on the LottieView was mounted take a look to <AnimatedLottieView ref/>
   private lottieAnimation: AnimatedLottieView
-
   // optional sound callback
   private soundCallback: CallbackType = defaultSoundCallback
-
   // initialize the state to standby
   private status: LoaderState = LoaderState.STANDBY
-
   // optional success callback
   private successCallback: CallbackType = defaultSuccessCallback
 
@@ -153,7 +145,7 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
           {
             Object.keys(this.errors)
               .map((key: string) => {
-                const value = this.errors[key][0];
+                const value = this.errors[key][0]
 
                 return <Text preset="centeredBold" text={value} {...{ key }}/>
               })
@@ -162,11 +154,10 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
         <FormRow preset="clear">
           <Button
             preset="success"
-            tx="auth.back"
             onPress={this.toggleIsVisible}
             style={LOADER_STYLE}
           >
-            <Text preset="bold" tx="auth.back"/>
+            <Text preset="bold" tx="common.back"/>
           </Button>
         </FormRow>
       </View>
@@ -296,6 +287,7 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
     errorCallback?: CallbackType
   ): void {
     this.status = LoaderState.ERROR
+    this.isVisible = true
 
     this.errors = errors instanceof HttpRequestError ? errors.formattedErrors() : errors
 

@@ -1,8 +1,9 @@
 import { IService } from "@services/interfaces"
 import Sound from "react-native-sound"
+import autobind from "autobind-decorator"
 
 const mock = {
-  play: (): null => null,
+  play: (): null => null
 }
 
 type mockType = typeof mock
@@ -14,6 +15,7 @@ export class SoundPlayer implements IService {
   private errorSound: Sound | mockType
   private successSound: Sound | mockType
 
+  @autobind
   public error(): void {
     this.errorSound.play()
   }
@@ -28,6 +30,7 @@ export class SoundPlayer implements IService {
     this.errorSound = mock
   }
 
+  @autobind
   public success(): void {
     this.successSound.play()
   }

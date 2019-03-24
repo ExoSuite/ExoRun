@@ -15,7 +15,7 @@ const ROOT: ViewStyle = {
   alignItems: "center",
   paddingTop: spacing[5],
   paddingBottom: spacing[5],
-  justifyContent: "flex-start",
+  justifyContent: "flex-start"
 }
 const TITLE: TextStyle = { textAlign: "center" }
 const TITLE_MIDDLE: ViewStyle = { flex: 1, justifyContent: "center" }
@@ -25,13 +25,13 @@ const RIGHT: ViewStyle = { width: 32 }
 const EXORUN_LOGO: ImageStyle = {
   width: 75,
   height: 35,
-  alignSelf: "center",
+  alignSelf: "center"
 }
 
 /**
  * Header that appears on many screens. Will hold navigation buttons and screen title.
  */
-export class  Header extends React.Component<IHeaderProps> {
+export class Header extends React.Component<IHeaderProps> {
   public render(): React.ReactNode {
     const {
       onLeftPress,
@@ -48,7 +48,7 @@ export class  Header extends React.Component<IHeaderProps> {
       leftIconStyle = {},
       headerText,
       headerTx,
-      titleStyle,
+      titleStyle
     } = this.props
     const header = headerText || (headerTx && translate(headerTx)) || ""
 
