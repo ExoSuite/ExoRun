@@ -12,7 +12,6 @@ import { HttpRequest, toApiSauceMethod } from "./api-http-request"
 import { getGeneralApiProblem } from "./api-problem"
 import { Server } from "./api.servers"
 import { IClient, IGrantRequest, ITokenResponse } from "./api.types"
-import { Clipboard } from "react-native"
 
 interface IHeaders extends Object {
   Authorization?: string
@@ -90,8 +89,6 @@ export class Api implements IService {
 
     // the typical ways to die when calling an api fails
     if (!response.ok) {
-      // tslint:disable-next-line
-      Clipboard.setString(response.config.url + response.config.baseURL + " | api-config: " + JSON.stringify(this.config) + " | " + url + " | " + Config)
       const problem = getGeneralApiProblem(response)
       throw new HttpRequestError(problem, response)
     }
