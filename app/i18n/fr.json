@@ -15,17 +15,6 @@
     "unknown": "Oups! Une erreur inattendue semble s'être produite.",
     "unauthorized": "Oups ! Accès non autorisé !"
   },
-  "firstExampleScreen": {
-    "poweredBy": "POWERED BY BOWSER",
-    "readyForLaunch": "Ready for launch.",
-    "continue": "CONTINUE"
-  },
-  "secondExampleScreen": {
-    "howTo": "HOW TO",
-    "title": "What’s In This Stack?",
-    "tagLine": "Congratulations, you’ve got a very advanced React Native app template here.  Take advantage of this boilerplate!",
-    "reactotron": "Demo Reactotron"
-  },
   "storybook": {
     "placeholder": "Placeholder",
     "field": "Field"
