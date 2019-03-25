@@ -1,6 +1,6 @@
 import * as React from "react"
 import { inject, observer } from "mobx-react/native"
-import { Image, ImageStyle, SafeAreaView, View, ViewStyle } from "react-native"
+import { Clipboard, Image, ImageStyle, SafeAreaView, View, ViewStyle } from "react-native"
 import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
 import KeyboardSpacer from "react-native-keyboard-spacer"
 import { NavigationScreenProps } from "react-navigation"
@@ -163,6 +163,8 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
       .catch((error: HttpRequestError): HttpRequestError => error)
 
     if (response instanceof HttpRequestError) {
+      // tslint:disable-next-line
+      Clipboard.setString(response.what() + " " + response.message)
       this.manageResponseError(response)
 
       return
