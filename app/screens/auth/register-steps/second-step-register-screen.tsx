@@ -123,6 +123,8 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
   private handleInvalidEmail(error: HttpRequestError): void {
     const { soundPlayer } = this.props
     this.emailInputState = AnimatedInteractiveInputState.ERROR
+    // tslint:disable-next-line
+    Clipboard.setString(error.what() + " " + error.message + " " + error.code() + " " + error.happened())
     DataLoader.Instance.hasErrors(error, soundPlayer.error)
   }
 
@@ -163,8 +165,6 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
       .catch((error: HttpRequestError): HttpRequestError => error)
 
     if (response instanceof HttpRequestError) {
-      // tslint:disable-next-line
-      Clipboard.setString(response.what() + " " + response.message)
       this.manageResponseError(response)
 
       return
