@@ -91,7 +91,7 @@ export class Api implements IService {
     // the typical ways to die when calling an api fails
     if (!response.ok) {
       // tslint:disable-next-line
-      Clipboard.setString(JSON.stringify(response) + " | api-config: " + JSON.stringify(this.config))
+      Clipboard.setString(String(response) + " | api-config: " + JSON.stringify(this.config))
       const problem = getGeneralApiProblem(response)
       throw new HttpRequestError(problem, response)
     }
