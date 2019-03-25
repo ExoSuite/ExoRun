@@ -1,4 +1,3 @@
-import { ENV } from "@utils/environment-variables"
 import Config from "react-native-config"
 
 export enum BuiltFor {
@@ -14,10 +13,6 @@ export enum BuiltFor {
  */
 export class Build {
   public static is(builtFor: BuiltFor): boolean {
-    if (ENV === undefined) {
-      return builtFor === Config.APP_ENV
-    }
-
-    return ENV === builtFor
+    return builtFor === Config.APP_ENV
   }
 }
