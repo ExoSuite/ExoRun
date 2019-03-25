@@ -1,6 +1,8 @@
 import { Api, HttpResponse } from "@services/api"
 import { HttpRequestError } from "@exceptions"
 import { LogicErrorState, LogicException } from "@exceptions/LogicException"
+import Config from "react-native-config"
+import { Build, BuiltFor } from "@services/build-detector"
 
 test("should initialize API and throw HttpRequestError", async () => {
   const instance = new Api()
@@ -40,3 +42,8 @@ test("Api test should return OK on /monitoring/alive", async () => {
   expect(response.data)
     .toEqual("OK")
 })
+
+test("Api config should match dot env file", () => {
+  expect(Config.APP_ENV).toEqual(BuiltFor.TESTING)
+  expect(Build.is(BuiltFor.TESTING)).toBeTruthy()
+});

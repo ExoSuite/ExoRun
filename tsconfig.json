@@ -15,6 +15,7 @@
     "sourceMap": true,
     "baseUrl": ".",
     "target": "es2015",
+    "plugins": [{ "name": "typescript-tslint-plugin" }],
     "paths": {
       "storybook/*": ["storybook/*"],
       "@services/*": ["app/services/*"],
