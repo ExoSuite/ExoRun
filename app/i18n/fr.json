@@ -11,8 +11,8 @@
     "password-confirmation": "Confirmer le mot de passe"
   },
   "errors": {
-    "invalidEmail": "Invalid email address.",
-    "unknown": "Oops! An unexpected error seems to have occurred.",
+    "invalidEmail": "Adresse électronique invalide.",
+    "unknown": "Oups! Une erreur inattendue semble s'être produite.",
     "unauthorized": "Oups ! Accès non autorisé !"
   },
   "firstExampleScreen": {
