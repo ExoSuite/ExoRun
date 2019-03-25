@@ -124,7 +124,7 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
     const { soundPlayer } = this.props
     this.emailInputState = AnimatedInteractiveInputState.ERROR
     // tslint:disable-next-line
-    Clipboard.setString(error.what() + " " + error.message + " " + error.code() + " " + error.happened())
+    Clipboard.setString(error.what() + " " + error.problem().kind)
     DataLoader.Instance.hasErrors(error, soundPlayer.error)
   }
 

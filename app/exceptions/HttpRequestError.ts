@@ -38,7 +38,6 @@ export class HttpRequestError extends BaseError {
       default: {
         errors = baseError
         errors.error = [translate("errors.unknown")]
-        break
       }
     }
 
