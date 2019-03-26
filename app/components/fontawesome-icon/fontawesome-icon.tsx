@@ -1,7 +1,8 @@
 import { IFontawesomeIconProps } from "@components/fontawesome-icon/font-awesome-icon.props"
 import { color as themeColor } from "@theme"
 import * as React from "react"
-import FontAwesome5Pro from "react-native-vector-icons/FontAwesome5Pro"
+// tslint:disable-next-line: match-default-export-name
+import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5Pro"
 
 export type FontawesomeIconTypes = "brand" | "light" | "solid" | "regular"
 
@@ -21,16 +22,17 @@ export function FontawesomeIcon(props: IFontawesomeIconProps) {
 
   switch (type) {
     case "brand":
-      component = <FontAwesome5Pro {...fontProps} brand style={style}/>
+      component = <FontAwesome5Icon {...fontProps} brand style={style}/>
       break
     case "regular":
-      component = <FontAwesome5Pro {...fontProps} regular style={style}/>
+      // @ts-ignore
+      component = <FontAwesome5Icon {...fontProps} regular style={style}/>
       break
     case "solid":
-      component = <FontAwesome5Pro {...fontProps} solid style={style}/>
+      component = <FontAwesome5Icon {...fontProps} solid style={style}/>
       break
     default:
-      component = <FontAwesome5Pro {...fontProps} light style={style}/>
+      component = <FontAwesome5Icon {...fontProps} light style={style}/>
   }
 
   return component

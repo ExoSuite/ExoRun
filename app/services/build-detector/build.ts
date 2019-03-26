@@ -15,4 +15,8 @@ export class Build {
   public static is(builtFor: BuiltFor): boolean {
     return builtFor === Config.APP_ENV
   }
+
+  public static isNot(builtFor: BuiltFor): boolean {
+    return !Build.is(builtFor)
+  }
 }

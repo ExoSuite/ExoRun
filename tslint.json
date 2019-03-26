@@ -104,6 +104,7 @@
     "newline-before-return": true,
     "no-any": false,
     "newspaper-order": false,
-    "variable-name": [true, "allow-pascal-case", "allow-snake-case", "check-format"]
+    "variable-name": [true, "allow-pascal-case", "allow-snake-case", "check-format"],
+    "mocha-no-side-effect-code": false
   }
 }
