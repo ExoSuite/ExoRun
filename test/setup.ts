@@ -10,7 +10,7 @@ import "./__mocks__/mock-setup-root-store"
 import { WebSocket } from "mock-socket"
 
 // @ts-ignore
-global.WebSocket = WebSocket;
+global.WebSocket = WebSocket
 jest.useFakeTimers()
 
 declare global {
