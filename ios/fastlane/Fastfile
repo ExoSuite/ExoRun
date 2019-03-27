@@ -10,24 +10,19 @@
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
 
-# Uncomment the line if you want fastlane to automatically update itself
-update_fastlane
-
 default_platform(:ios)
 
 platform :ios do
 
   desc "create an ios ipa file in build folder"
   lane :staging do
+    match(type: "adhoc")
+    add_badge(alpha: true)
     gym(
         workspace: "ExoRun.xcworkspace",
         scheme: "ExoRun",
-        export_options: {
-            method: "ad-hoc",
-            provisioningProfiles: {
-              "com.ExoSuite.ExoRun" => "Provisioning Profile For ExoRun",
-            }
-        }
+        output_name: "ExoRun",
+        xcargs: "-UseModernBuildSystem=NO -configuration Release"
     )
   end
 
@@ -35,9 +30,11 @@ platform :ios do
   desc "This will also make sure the profile is up to date"
   lane :beta do
     match(type: "appstore") # more information: https://codesigning.guide
+    add_badge
     gym(
       workspace: "ExoRun.xcworkspace",
       scheme: "ExoRun",
+      xcargs: "-UseModernBuildSystem=NO -configuration Release"
     ) # Build your app - more options available
     pilot
   end
@@ -48,6 +45,7 @@ platform :ios do
     gym(
       workspace: "ExoRun.xcworkspace",
       scheme: "ExoRun",
+      xcargs: "-UseModernBuildSystem=NO -configuration Release"
     )
     deliver(force: true)
   end
