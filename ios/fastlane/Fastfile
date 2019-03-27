@@ -18,6 +18,8 @@ platform :ios do
   lane :staging do
     match(type: "adhoc")
     add_badge(alpha: true)
+    cert
+    sigh(adhoc: true)
     gym(
         workspace: "ExoRun.xcworkspace",
         scheme: "ExoRun",
