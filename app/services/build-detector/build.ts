@@ -1,4 +1,5 @@
 import Config from "react-native-config"
+import VersionInfo from "react-native-version-info"
 
 export enum BuiltFor {
   PRODUCTION = "production",
@@ -18,5 +19,14 @@ export class Build {
 
   public static isNot(builtFor: BuiltFor): boolean {
     return !Build.is(builtFor)
+  }
+
+  public static version(): string {
+    let version = `${VersionInfo.appVersion}-${VersionInfo.buildVersion}`
+    if (Config.VERSION !== undefined) {
+      version += `-${Config.VERSION}`
+    }
+
+    return version
   }
 }

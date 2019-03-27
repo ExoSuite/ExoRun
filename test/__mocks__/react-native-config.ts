@@ -2,7 +2,8 @@ import { BuiltFor } from "@services/build-detector"
 
 const conf = {
   APP_ENV: BuiltFor.TESTING,
-  STORYBOOK_ENABLED: "false"
+  STORYBOOK_ENABLED: "false",
+  VERSION: BuiltFor.TESTING,
 }
 
 // tslint:disable

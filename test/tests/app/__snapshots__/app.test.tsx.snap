@@ -49,6 +49,28 @@ Array [
     <View
       style={
         Object {
+          "alignSelf": "center",
+          "bottom": 8,
+          "position": "absolute",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "Montserrat",
+            "fontSize": 15,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Version: 0.14447560204988896-0.08002635348300724-test
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
           "flex": 1,
           "opacity": 0,
           "transform": Array [
@@ -98,6 +120,28 @@ Array [
             }
           }
         />
+        <View
+          style={
+            Object {
+              "alignSelf": "center",
+              "bottom": 8,
+              "position": "absolute",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontFamily": "Montserrat",
+                "fontSize": 15,
+                "fontWeight": "bold",
+              }
+            }
+          >
+            Version: 0.14447560204988896-0.08002635348300724-test
+          </Text>
+        </View>
         <View
           style={
             Object {

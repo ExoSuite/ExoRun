@@ -16,7 +16,7 @@ import com.viromedia.bridge.ReactViroPackage;
 import com.reactcommunity.rnlocalize.RNLocalizePackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.zmxv.RNSound.RNSoundPackage;
-
+import cx.evermeet.versioninfo.RNVersionInfoPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
 import java.util.Arrays;
@@ -43,7 +43,8 @@ public class MainApplication extends Application implements ReactApplication {
                     new SplashScreenReactPackage(),
                     new KeychainPackage(),
                     new RNGestureHandlerPackage(),
-                    new ReactViroPackage(ReactViroPackage.ViroPlatform.AR)
+                    new ReactViroPackage(ReactViroPackage.ViroPlatform.AR),
+                    new RNVersionInfoPackage()
             );
         }
 

@@ -43,6 +43,7 @@
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		AF14EF3B728546C5AC36FEAB /* exorun-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C4CE8967D1004364A3F8F3E9 /* exorun-logo.png */; };
 		B490CB0D119A4272BE1B5117 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01B222B84B044446BCA48BD9 /* Montserrat-Light.ttf */; };
+		BD059C2C224C298400EA3C60 /* libRNVersionInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD059C2A224C295C00EA3C60 /* libRNVersionInfo.a */; };
 		BD2B9034221335B600C023A6 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD2B90312213359600C023A6 /* libReactNativeConfig.a */; };
 		BD2B90352213361D00C023A6 /* libRNLocalize.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD2B8FA52213337800C023A6 /* libRNLocalize.a */; };
 		BD84663A2214FD2C00672CF2 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD84660C2214FD2C00672CF2 /* JavaScriptCore.framework */; };
@@ -326,6 +327,13 @@
 			remoteGlobalIDString = 9936F32F1F5F2E5B0010BF04;
 			remoteInfo = "privatedata-tvOS";
 		};
+		BD059C29224C295C00EA3C60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BD059BF8224C295C00EA3C60 /* RNVersionInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNVersionInfo;
+		};
 		BD2B8F5C221332A700C023A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9442E18C7FF145368D5EECD1 /* RNGestureHandler.xcodeproj */;
@@ -441,6 +449,7 @@
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		B42FD36676544528A7363D7C /* FontAwesome5_Pro_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Regular.ttf; path = ../app/assets/fonts/FontAwesome5_Pro_Regular.ttf; sourceTree = "<group>"; };
 		B7CDA76588C541B0BA8A7E79 /* exosuite-loader.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "exosuite-loader.png"; path = "../app/assets/img/exosuite-loader.png"; sourceTree = "<group>"; };
+		BD059BF8224C295C00EA3C60 /* RNVersionInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNVersionInfo.xcodeproj; path = "../node_modules/react-native-version-info/ios/RNVersionInfo.xcodeproj"; sourceTree = "<group>"; };
 		BD2B8F9F2213337800C023A6 /* RNLocalize.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNLocalize.xcodeproj; path = "../node_modules/react-native-localize/ios/RNLocalize.xcodeproj"; sourceTree = "<group>"; };
 		BD2B8FA8221333F300C023A6 /* RNKeychain.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNKeychain.xcodeproj; path = "../node_modules/react-native-keychain/RNKeychain.xcodeproj"; sourceTree = "<group>"; };
 		BD2B902B2213359600C023A6 /* ReactNativeConfig.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeConfig.xcodeproj; path = "../node_modules/react-native-config/ios/ReactNativeConfig.xcodeproj"; sourceTree = "<group>"; };
@@ -471,6 +480,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD059C2C224C298400EA3C60 /* libRNVersionInfo.a in Frameworks */,
 				BD84663A2214FD2C00672CF2 /* JavaScriptCore.framework in Frameworks */,
 				BD2B90352213361D00C023A6 /* libRNLocalize.a in Frameworks */,
 				BD2B9034221335B600C023A6 /* libReactNativeConfig.a in Frameworks */,
@@ -685,6 +695,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				BD059BF8224C295C00EA3C60 /* RNVersionInfo.xcodeproj */,
 				BD2B902B2213359600C023A6 /* ReactNativeConfig.xcodeproj */,
 				BD2B8FA8221333F300C023A6 /* RNKeychain.xcodeproj */,
 				BD2B8F9F2213337800C023A6 /* RNLocalize.xcodeproj */,
@@ -746,6 +757,14 @@
 			children = (
 				ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */,
 				2D16E6721FA4F8DC00B85C8A /* libRCTBlob-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BD059BF9224C295C00EA3C60 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BD059C2A224C295C00EA3C60 /* libRNVersionInfo.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -949,6 +968,10 @@
 				{
 					ProductGroup = BD2B8FA02213337800C023A6 /* Products */;
 					ProjectRef = BD2B8F9F2213337800C023A6 /* RNLocalize.xcodeproj */;
+				},
+				{
+					ProductGroup = BD059BF9224C295C00EA3C60 /* Products */;
+					ProjectRef = BD059BF8224C295C00EA3C60 /* RNVersionInfo.xcodeproj */;
 				},
 				{
 					ProductGroup = BD2B8F55221332A600C023A6 /* Products */;
@@ -1223,6 +1246,13 @@
 			remoteRef = BD031FAF2241A42B00E5E0C8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		BD059C2A224C295C00EA3C60 /* libRNVersionInfo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNVersionInfo.a;
+			remoteRef = BD059C29224C295C00EA3C60 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		BD2B8F5D221332A700C023A6 /* libRNGestureHandler.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1491,14 +1521,7 @@
 				INFOPLIST_FILE = ExoRunTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1525,14 +1548,7 @@
 				INFOPLIST_FILE = ExoRunTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",

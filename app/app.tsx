@@ -18,7 +18,7 @@ import "./i18n"
 import { StatefulNavigator } from "./navigation"
 import { DataLoader } from "@components/data-loader"
 
-interface IAppState {
+export interface IAppState {
   env?: Environment
   rootStore?: RootStore
 }

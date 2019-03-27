@@ -1,16 +1,21 @@
 import { action, observable, runInAction } from "mobx"
 import { observer } from "mobx-react"
 import * as React from "react"
-import { Animated, StyleSheet, View } from "react-native"
+import { Animated, StyleSheet, View, ViewStyle } from "react-native"
 
 import { Screen } from "@services/device"
 import { ILoaderProps } from "@screens/auth"
+import { Text } from "@components/text"
+import { spacing } from "@theme"
+import { Build } from "@services/build-detector"
 
 const styles = StyleSheet.create({
   fullScreen: {
     flex: 1
   }
 })
+
+const buildVersionText = `Version: ${Build.version()}`
 
 /**
  * SplashScreen will handle the animation when we launch the app
@@ -55,12 +60,7 @@ export class SplashScreen extends React.Component<ILoaderProps> {
       ]
     }
 
-    const solidStyle = {
-      position: "absolute",
-      height: imageProperties.height,
-      width: imageProperties.width,
-      top: (-imageProperties.height / 2) + (Screen.Height / 2),
-      left: (-imageProperties.width / 2) + (Screen.Width / 2),
+    const transform = {
       transform: [
         {
           scale: animation.interpolate({
@@ -71,6 +71,21 @@ export class SplashScreen extends React.Component<ILoaderProps> {
       ]
     }
 
+    const solidStyle = {
+      position: "absolute",
+      height: imageProperties.height,
+      width: imageProperties.width,
+      top: (-imageProperties.height / 2) + (Screen.Height / 2),
+      left: (-imageProperties.width / 2) + (Screen.Width / 2),
+      ...transform
+    }
+
+    const textStyle: ViewStyle = {
+      position: "absolute",
+      alignSelf: "center",
+      bottom: spacing[2],
+    }
+
     const fullScreenBackgroundLayer = appLoaded ? null : (
       <View style={[StyleSheet.absoluteFill, { backgroundColor }]}/>
     )
@@ -79,6 +94,9 @@ export class SplashScreen extends React.Component<ILoaderProps> {
       <View style={styles.fullScreen}>
         {fullScreenBackgroundLayer}
         <Animated.Image source={imageSource} style={solidStyle}/>
+        <View style={textStyle}>
+          <Text preset="bold" text={buildVersionText}/>
+        </View>
         <Animated.View style={[styles.fullScreen, appScale, opacityClearToVisible]}>
           {children}
         </Animated.View>
