@@ -65,7 +65,7 @@ Array [
           }
         }
       >
-        Version: 0.14447560204988896-0.08002635348300724-test
+        version: 3456-23456-test
       </Text>
     </View>
     <View
@@ -139,7 +139,7 @@ Array [
               }
             }
           >
-            Version: 0.14447560204988896-0.08002635348300724-test
+            version: 3456-23456-test
           </Text>
         </View>
         <View

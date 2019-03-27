@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const buildVersionText = `Version: ${Build.version()}`
+const buildVersionText = `version: ${Build.version()}`
 
 /**
  * SplashScreen will handle the animation when we launch the app
