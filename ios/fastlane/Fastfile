@@ -12,27 +12,22 @@
 
 default_platform(:ios)
 
+APP_ID = "com.ExoSuite.ExoRun"
+TEAM = "Loïc Lopez"
+
 platform :ios do
 
   desc "create an ios ipa file in build folder"
   lane :staging do
     match(type: "adhoc")
     add_badge(alpha: true)
-    update_project_provisioning(
-      xcodeproj: 'ExoRun.xcodeproj',
-      profile:ENV["sigh_com.ExoSuite.ExoRun_adhoc_profile-path"],
-      build_configuration: "Release"
-    )
-    update_project_provisioning(
-          xcodeproj: 'ExoRun.xcworkspace',
-          profile:ENV["sigh_com.ExoSuite.ExoRun_adhoc_profile-path"],
-          build_configuration: "Release"
-    )
     gym(
         workspace: "ExoRun.xcworkspace",
         scheme: "ExoRun",
         output_name: "ExoRun",
-        xcargs: "-UseModernBuildSystem=NO -allowProvisioningUpdates",
+        xcargs: {
+            "-UseModernBuildSystem=" => "NO"
+        },
         export_method: "ad-hoc"
     )
   end
