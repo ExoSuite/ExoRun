@@ -25,6 +25,7 @@ platform :ios do
     )
     gym(
         workspace: "ExoRun.xcworkspace",
+        clean: true,
         scheme: "ExoRun",
         output_name: "ExoRun",
         xcargs: "-UseModernBuildSystem=NO",
