@@ -22,8 +22,7 @@ platform :ios do
         workspace: "ExoRun.xcworkspace",
         scheme: "ExoRun",
         output_name: "ExoRun",
-        xcargs: "-UseModernBuildSystem=NO -configuration Release",
-        export_xcargs: "-allowProvisioningUpdates",
+        xcargs: "-UseModernBuildSystem=NO -configuration Release -allowProvisioningUpdates",
         export_method: "ad-hoc"
     )
   end
