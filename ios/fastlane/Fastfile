@@ -12,24 +12,11 @@
 
 default_platform(:ios)
 
-def ensure_temp_keychain(name)
-  delete_keychain(
-    name: name
-  ) if File.exist? File.expand_path("~/Library/Keychains/#{name}-db")
-  create_keychain(
-    name: name,
-    password: 'temppassword',
-    unlock: true,
-    timeout: false
-  )
-end
-
 platform :ios do
 
   desc "create an ios ipa file in build folder"
   lane :staging do
-    ensure_temp_keychain 'exosuite-ci'
-    match(type: "adhoc", keychain_name: 'exosuite-ci')
+    match(type: "adhoc")
     add_badge(alpha: true)
     update_project_provisioning(
       xcodeproj: 'ExoRun.xcodeproj',
