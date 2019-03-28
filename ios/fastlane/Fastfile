@@ -14,24 +14,17 @@ default_platform(:ios)
 
 platform :ios do
 
-  before_all do
-    desc "for keychain unlock"
-    keychain_entry_builder = CredentialsManager::AccountManager.new(user: "dev@exosuite.fr")
-    password_builder = keychain_entry_builder.password
-    ENV["USER_PASS"] = "#{password_builder}"
-  end
-
   desc "create an ios ipa file in build folder"
   lane :staging do
     match(type: "adhoc")
     add_badge(alpha: true)
-    cert
-    sigh(adhoc: true)
     gym(
         workspace: "ExoRun.xcworkspace",
         scheme: "ExoRun",
         output_name: "ExoRun",
-        xcargs: "-UseModernBuildSystem=NO -configuration Release"
+        xcargs: "-UseModernBuildSystem=NO -configuration Release",
+        export_xcargs: "-allowProvisioningUpdates",
+        export_method: "ad-hoc"
     )
   end
 
@@ -43,7 +36,8 @@ platform :ios do
     gym(
       workspace: "ExoRun.xcworkspace",
       scheme: "ExoRun",
-      xcargs: "-UseModernBuildSystem=NO -configuration Release"
+      xcargs: "-UseModernBuildSystem=NO -configuration Release",
+      export_method: "app-store"
     ) # Build your app - more options available
     pilot
   end
@@ -54,7 +48,8 @@ platform :ios do
     gym(
       workspace: "ExoRun.xcworkspace",
       scheme: "ExoRun",
-      xcargs: "-UseModernBuildSystem=NO -configuration Release"
+      xcargs: "-UseModernBuildSystem=NO -configuration Release",
+      export_method: "app-store"
     )
     deliver(force: true)
   end
