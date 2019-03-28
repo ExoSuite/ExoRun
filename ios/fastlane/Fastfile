@@ -17,7 +17,12 @@ platform :ios do
   desc "create an ios ipa file in build folder"
   lane :staging do
     match(type: "adhoc")
-    add_badge(alpha: true)
+    #add_badge(alpha: true)
+    update_project_provisioning(
+      xcodeproj: 'ExoRun.xcodeproj',
+      profile:ENV["sigh_com.ExoSuite.ExoRun_adhoc_profile-path"],
+      build_configuration: "Release"
+    )
     gym(
         workspace: "ExoRun.xcworkspace",
         scheme: "ExoRun",
