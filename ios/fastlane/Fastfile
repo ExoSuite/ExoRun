@@ -18,9 +18,18 @@ platform :ios do
   lane :staging do
     match(type: "adhoc")
     add_badge(alpha: true)
+    update_project_provisioning(
+      xcodeproj: 'ExoRun.xcodeproj',
+      profile:ENV["sigh_com.ExoSuite.ExoRun_adhoc_profile-path"],
+      build_configuration: "Release"
+    )
+    update_project_provisioning(
+          xcodeproj: 'ExoRun.xcworkspace',
+          profile:ENV["sigh_com.ExoSuite.ExoRun_adhoc_profile-path"],
+          build_configuration: "Release"
+    )
     gym(
         workspace: "ExoRun.xcworkspace",
-        clean: true,
         scheme: "ExoRun",
         output_name: "ExoRun",
         xcargs: "-UseModernBuildSystem=NO -allowProvisioningUpdates",
