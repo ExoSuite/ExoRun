@@ -19,7 +19,7 @@ platform :ios do
 
   desc "create an ios ipa file in build folder"
   lane :staging do
-    match(type: "adhoc")
+    match(type: "adhoc", force_for_new_devices: true)
     add_badge(alpha: true)
     unlock_keychain(password: "pleasegiveuscreditsandfifthyear")
     gym(

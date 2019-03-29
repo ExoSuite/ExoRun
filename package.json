@@ -37,7 +37,7 @@
     "jsc-android": "^236355.1.1",
     "jwt-decode": "^2.2.0",
     "lodash-es": "^4.17.11",
-    "lottie-react-native": "^2.6.0",
+    "lottie-react-native": "^2.6.1",
     "mobx": "5.9.0",
     "mobx-react": "5.4.3",
     "mobx-state-tree": "3.12.2",
@@ -76,7 +76,7 @@
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "24.0.11",
     "@types/lodash": "^4.14.123",
-    "@types/node": "^11.12.0",
+    "@types/node": "^11.12.1",
     "@types/ramda": "0.26.5",
     "@types/react": "16.8.10",
     "@types/react-native": "0.57.42",
@@ -118,7 +118,7 @@
     "tslint-microsoft-contrib": "^6.1.0",
     "tslint-react": "^4.0.0",
     "tslint-sonarts": "^1.9.0",
-    "typescript": "3.3.4000",
+    "typescript": "3.4.1",
     "typescript-tslint-plugin": "^0.3.1"
   },
   "jest": {
