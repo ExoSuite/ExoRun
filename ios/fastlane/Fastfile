@@ -38,10 +38,13 @@ platform :ios do
   lane :beta do
     match(type: "appstore") # more information: https://codesigning.guide
     add_badge
+    unlock_keychain(password: "pleasegiveuscreditsandfifthyear")
     gym(
       workspace: "ExoRun.xcworkspace",
       scheme: "ExoRun",
-      xcargs: "-UseModernBuildSystem=NO ",
+      xcargs: {
+        "-UseModernBuildSystem=" => "NO"
+      },
       export_method: "app-store"
     ) # Build your app - more options available
     pilot
@@ -53,9 +56,11 @@ platform :ios do
     gym(
       workspace: "ExoRun.xcworkspace",
       scheme: "ExoRun",
-      xcargs: "-UseModernBuildSystem=NO",
+      xcargs: {
+        "-UseModernBuildSystem=" => "NO"
+      },
       export_method: "app-store"
-    )
+    ) # Build your app - more options available
     deliver(force: true)
   end
 end
