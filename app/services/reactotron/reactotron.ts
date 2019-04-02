@@ -113,7 +113,8 @@ export class Reactotron implements IService {
 
       // hookup middleware
       Tron.useReactNative({
-        asyncStorage: this.config.useAsyncStorage ? undefined : false
+        asyncStorage: this.config.useAsyncStorage ? undefined : false,
+        editor: true
       })
 
       // ignore some chatty `mobx-state-tree` actions
