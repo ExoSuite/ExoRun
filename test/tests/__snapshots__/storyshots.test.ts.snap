@@ -5247,20 +5247,22 @@ exports[`Storyshots LogoHeader Style Presets 1`] = `
               }
             }
           >
-            <Image
-              resizeMode="contain"
-              source={
-                Object {
-                  "uri": "exorun-logo",
+            <View>
+              <Image
+                resizeMode="contain"
+                source={
+                  Object {
+                    "uri": "exorun-logo",
+                  }
                 }
-              }
-              style={
-                Object {
-                  "height": 35,
-                  "width": 75,
+                style={
+                  Object {
+                    "height": 35,
+                    "width": 75,
+                  }
                 }
-              }
-            />
+              />
+            </View>
           </View>
         </View>
       </View>
