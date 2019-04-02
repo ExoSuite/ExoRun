@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Image, ImageStyle } from "react-native"
+import { Image, ImageStyle, View } from "react-native"
 import { Asset } from "@services/asset"
 
 const exorunLogo = Asset.Locator("exorun-logo")
@@ -15,13 +15,17 @@ const EXORUN_LOGO: ImageStyle = {
  * Component description here for TypeScript tips.
  */
 // tslint:disable-next-line typedef
-export function LogoHeader() {
+export function LogoHeader(props) {
+  const { style, onLayout } = props
 
   return (
-    <Image
-      source={exorunLogo}
-      style={EXORUN_LOGO}
-      resizeMode="contain"
-    />
+    <View {...{ style, onLayout }}>
+      <Image
+        source={exorunLogo}
+        style={EXORUN_LOGO}
+        resizeMode="contain"
+      />
+    </View>
+
   )
 }

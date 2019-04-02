@@ -9,11 +9,9 @@ import { Text } from "@components/text"
 import { spacing } from "@theme"
 import { Build } from "@services/build-detector"
 
-const styles = StyleSheet.create({
-  fullScreen: {
-    flex: 1
-  }
-})
+const FULL_SCREEN: ViewStyle = {
+  flex: 1
+}
 
 const buildVersionText = `version: ${Build.version()}`
 
@@ -91,13 +89,13 @@ export class SplashScreen extends React.Component<ILoaderProps> {
     )
 
     return (
-      <View style={styles.fullScreen}>
+      <View style={FULL_SCREEN}>
         {fullScreenBackgroundLayer}
         <Animated.Image source={imageSource} style={solidStyle}/>
         <View style={textStyle}>
           <Text preset="bold" text={buildVersionText}/>
         </View>
-        <Animated.View style={[styles.fullScreen, appScale, opacityClearToVisible]}>
+        <Animated.View style={[FULL_SCREEN, appScale, opacityClearToVisible]}>
           {children}
         </Animated.View>
       </View>

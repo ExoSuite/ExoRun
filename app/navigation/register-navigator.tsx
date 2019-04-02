@@ -19,12 +19,12 @@ export const RegisterFlow = createStackNavigator(
       headerLeft: (props: HeaderBackButtonProps): React.ReactNode => (
         <NavigationBackButtonWithNestedStackNavigator {...props}/>
       ),
-      headerTitle: (props: any): React.ReactNode => <LogoHeader/>,
+      headerTitle: (props: any): React.ReactNode => <LogoHeader {...props}/>,
       headerStyle: {
         backgroundColor: color.backgroundDarkerer,
         borderBottomWidth: 0,
         ...headerShadow
-      }
-    }
+      },
+    },
   }
 )

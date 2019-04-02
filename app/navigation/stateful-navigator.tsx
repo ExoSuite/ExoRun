@@ -4,7 +4,7 @@ import { inject, observer } from "mobx-react"
 import { getNavigation, NavigationScreenProp, NavigationState } from "react-navigation"
 import { RootNavigator } from "./root-navigator"
 import { NavigationStore } from "./navigation-store"
-import { ImageProperties, SplashScreen } from "@screens/auth/splash-screen"
+import { IImageProperties, SplashScreen } from "@screens/auth/splash-screen"
 import autobind from "autobind-decorator"
 import { Asset } from "@services/asset"
 import { color } from "@theme"
@@ -30,7 +30,7 @@ export interface INavigationScreenProps {
   }
 }
 
-const IMAGE_STYLE: ImageProperties = {
+const IMAGE_STYLE: IImageProperties = {
   height: Screen.Height,
   width: Screen.Width
 }

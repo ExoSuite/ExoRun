@@ -1,6 +1,6 @@
 import { Platform } from "react-native"
 
-export interface ImageUri {
+export interface IImageUri {
   uri: string
 }
 
@@ -20,7 +20,7 @@ class Asset {
     return Platform.OS === "ios" ? assetName : `asset:/custom/${assetName}.${fileExtension}`
   }
 
-  public static Locator(assetName: string, fileExtension: FileExtension = FileExtension.PNG): ImageUri {
+  public static Locator(assetName: string, fileExtension: FileExtension = FileExtension.PNG): IImageUri {
     return { uri: Asset._locator(assetName, fileExtension) }
   }
 }
