@@ -15,26 +15,30 @@ export const AppBottomTabNavigator = createMaterialBottomTabNavigator(
     [AppScreens.HOME]: {
       screen: HomeNavigator,
       navigationOptions: {
-        tabBarIcon: TabBarIcon({ name: "poll-people", size: tabBarIconSize })
+        tabBarIcon: TabBarIcon({ name: "poll-people", size: tabBarIconSize }),
+        tabBarColor: color.backgroundDarkerer
       }
     },
     [AppScreens.NOTIFICATIONS]: {
       screen: NotificationsScreen,
       navigationOptions: {
-        tabBarIcon: TabBarIcon({ name: "bell", size: tabBarIconSize })
+        tabBarIcon: TabBarIcon({ name: "bell", size: tabBarIconSize }),
+        tabBarColor: color.palette.orangeDarker
       }
     },
 
     [AppScreens.AUGMENTED_REALITY]: {
       screen: AugmentedRealityNavigator,
       navigationOptions: {
-        tabBarIcon: TabBarIcon({ name: "running", size: 22 })
+        tabBarIcon: TabBarIcon({ name: "running", size: 22 }),
+        tabBarColor: color.palette.lightGreen
       }
     },
     [AppScreens.GROUPS]: {
       screen: GroupScreen,
       navigationOptions: {
-        tabBarIcon: TabBarIcon({ name: "user-friends", size: tabBarIconSize })
+        tabBarIcon: TabBarIcon({ name: "user-friends", size: tabBarIconSize }),
+        tabBarColor: color.palette.lightBlue
       }
     }
   }, {
