@@ -1,5 +1,5 @@
-import { FontawesomeIconTypes } from "@components/fontawesome-icon"
 import { TextStyle, ViewStyle } from "react-native"
+import { FontAwesome5IconVariants, FontAwesomeIconNames } from "@components/fontawesome-icon/font-awesome-icon.props"
 
 export interface IHeaderProps {
 
@@ -15,19 +15,19 @@ export interface IHeaderProps {
   /**
    * Icon that should appear on the left
    */
-  leftIcon?: string
+  leftIcon?: FontAwesomeIconNames
   leftIconColor?: string
   leftIconSize?: number
   leftIconStyle?: ViewStyle
-  leftIconType?: FontawesomeIconTypes
+  leftIconType?: FontAwesome5IconVariants
   /**
    * Icon that should appear on the right
    */
-  rightIcon?: string
+  rightIcon?: FontAwesomeIconNames
   rightIconColor?: string
   rightIconSize?: number
   rightIconStyle?: ViewStyle
-  rightIconType?: FontawesomeIconTypes
+  rightIconType?: FontAwesome5IconVariants
   /**
    * Container style overrides.
    */

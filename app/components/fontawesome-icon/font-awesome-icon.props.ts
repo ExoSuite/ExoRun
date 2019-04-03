@@ -1,5 +1,9 @@
-import { FontawesomeIconTypes } from "@components/fontawesome-icon/fontawesome-icon"
 import { ViewStyle } from "react-native"
+import { IconName } from "@fortawesome/fontawesome-common-types"
+import { FA5Style } from "react-native-vector-icons/FontAwesome5Pro"
+
+export type FontAwesome5IconVariants = keyof typeof FA5Style;
+export type FontAwesomeIconNames = IconName
 
 export interface IFontawesomeIconProps {
 
@@ -10,7 +14,7 @@ export interface IFontawesomeIconProps {
   /**
    * name of the font awesome icon
    */
-  name: string
+  name: FontAwesomeIconNames
 
   /**
    * size of icon
@@ -25,5 +29,5 @@ export interface IFontawesomeIconProps {
   /**
    * type of icon
    */
-  type?: FontawesomeIconTypes
+  type?: FontAwesome5IconVariants
 }

@@ -1236,6 +1236,11 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.2.tgz#63985d3d8b02530e0869962f4da09142ee8e200e"
   integrity sha512-n/VQ4mbfr81aqkx/XmVicOLjviMuy02eenSdJY33SVA7S2J42EU0P1H0mOogfYedb3wXA0d/LVtBrgTSm04WEA==
 
+"@fortawesome/fontawesome-common-types@^0.2.17":
+  version "0.2.17"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.17.tgz#d8c36e6f6f3b3415fa1f83eaffe4f41bd313715c"
+  integrity sha512-DEYsEb/iiGVoMPQGjhG2uOylLVuMzTxOxysClkabZ5n80Q3oFDWGnshCLKvOvKoeClsgmKhWVrnnqvsMI1cAbw==
+
 "@jest/console@^24.3.0":
   version "24.3.0"
   resolved "https://registry.yarnpkg.com/@jest/console/-/console-24.3.0.tgz#7bd920d250988ba0bf1352c4493a48e1cb97671e"
@@ -1826,10 +1831,10 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-"@types/react@16.8.10":
-  version "16.8.10"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.10.tgz#1ccb6fde17f71a62ef055382ec68bdc379d4d8d9"
-  integrity sha512-7bUQeZKP4XZH/aB4i7k1i5yuwymDu/hnLMhD9NjVZvQQH7ZUgRN3d6iu8YXzx4sN/tNr0bj8jgguk8hhObzGvA==
+"@types/react@16.8.11":
+  version "16.8.11"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.11.tgz#2b13a7ab797b7ed1309e3cbf69994405d2391623"
+  integrity sha512-xEqvjpe7L5xAMlbZYUxxrgo3+ZXBvdnbhDtLWE/Md5LRw/quMRebZBIbqyKCl/77i64rqVtC2/WVDuYmO/diJQ==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
