@@ -5,7 +5,9 @@ export enum RegisterScreens {
 
 export enum AppScreens {
   HOME = "home",
-  AUGMENTED_REALITY = "augmented-reality"
+  AUGMENTED_REALITY = "augmented-reality",
+  GROUPS = "groups",
+  NOTIFICATIONS = "notifications"
 }
 
 export enum AuthScreens {

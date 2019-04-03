@@ -25,6 +25,7 @@ jest.mock("react-navigation", () => ({
   createAppContainer: () => ContainerMock,
   withOrientation: jest.fn(),
   createStackNavigator: jest.fn(),
-  createSwitchNavigator: jest.fn()
+  createSwitchNavigator: jest.fn(),
+  createDrawerNavigator: jest.fn()
 }))
 

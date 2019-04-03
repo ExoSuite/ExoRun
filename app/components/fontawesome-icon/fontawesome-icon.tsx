@@ -5,6 +5,7 @@ import * as React from "react"
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5Pro"
 
 export type FontawesomeIconTypes = "brand" | "light" | "solid" | "regular"
+export const defaultSize = 16
 
 /**
  * Stateless functional component for your needs
@@ -14,7 +15,7 @@ export type FontawesomeIconTypes = "brand" | "light" | "solid" | "regular"
 // tslint:disable-next-line: typedef
 export function FontawesomeIcon(props: IFontawesomeIconProps) {
   // grab the props
-  const { name, type = "solid", size = 16, color = themeColor.primary, style } = props
+  const { name, type = "solid", size = defaultSize, color = themeColor.primary, style } = props
 
   const fontProps = { name, size, color }
 

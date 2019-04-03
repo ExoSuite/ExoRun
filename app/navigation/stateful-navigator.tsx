@@ -48,12 +48,17 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
 
   private loader: SplashScreen = null
 
+  private async canLogin(): Promise<void> {
+    const { api, navigationStore } = this.props
+
+    await api.checkToken()
+    navigationStore.navigateTo(AppScreens.HOME)
+  }
+
   @autobind
   private async removeLoader(): Promise<void> {
-    const { api, navigationStore } = this.props
     try {
-      await api.checkToken()
-      navigationStore.navigateTo(AppScreens.HOME)
+      await this.canLogin()
     } catch (exception) {
       this.returnToLogin()
     }
@@ -62,7 +67,8 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
 
   private returnToLogin(): void {
     const { navigationStore } = this.props
-    if (navigationStore.findCurrentRoute().routeName === "Home") {
+
+    if (navigationStore.reset) {
       navigationStore.reset()
     }
   }

@@ -3,7 +3,7 @@ import VersionInfo from "react-native-version-info"
 
 export enum BuiltFor {
   PRODUCTION = "production",
-  DEVELOPMENT = "development",
+  DEVELOPMENT = "dev",
   STAGING = "staging",
   TESTING = "test",
 }
