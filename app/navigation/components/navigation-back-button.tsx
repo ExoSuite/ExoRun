@@ -15,6 +15,7 @@ const ROOT_STYLE: ViewStyle = {
   width: spacing[6],
   height: spacing[6],
   marginLeft: spacing[2],
+  alignSelf: "center",
   alignItems: "center"
 }
 

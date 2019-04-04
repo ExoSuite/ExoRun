@@ -1,6 +1,5 @@
 import { createStackNavigator } from "react-navigation"
 import { AppScreens } from "@navigation/navigation-definitions"
-import * as React from "react"
 import { LogoHeader } from "@components/logo-header"
 import { color } from "@theme"
 import { headerShadow } from "@utils/shadows"
@@ -11,11 +10,12 @@ export const AppStackNavigator = createStackNavigator({
 }, {
   // @ts-ignore
   defaultNavigationOptions: {
-    headerTitle: (props: any): React.ReactNode => <LogoHeader {...props}/>,
+    headerTitle: LogoHeader,
     headerStyle: {
       backgroundColor: color.backgroundDarkerer,
       borderBottomWidth: 0,
       ...headerShadow
     }
-  }
+  },
+  headerLayoutPreset: "center"
 })

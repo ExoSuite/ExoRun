@@ -3,6 +3,7 @@
 // In this file, we'll be kicking off our app or storybook.
 // import library modules
 import * as React from "react"
+import "./i18n"
 import { Environment } from "@models/environment"
 import { RootStore, setupRootStore } from "@models/root-store"
 import { BackButtonHandler } from "@navigation/back-button-handler"
@@ -14,14 +15,16 @@ import { AppRegistry } from "react-native"
 import Config from "react-native-config"
 import SplashScreen from "react-native-splash-screen"
 import { StorybookUIRoot } from "../storybook"
-import "./i18n"
 import { StatefulNavigator } from "./navigation"
 import { DataLoader } from "@components/data-loader"
+import { useScreens } from "react-native-screens"
 
 export interface IAppState {
   env?: Environment
   rootStore?: RootStore
 }
+
+useScreens();
 
 /**
  * This is the root component of our app.

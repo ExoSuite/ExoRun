@@ -23,7 +23,7 @@ export const AppBottomTabNavigator = createMaterialBottomTabNavigator(
       screen: NotificationsScreen,
       navigationOptions: {
         tabBarIcon: TabBarIcon({ name: "bell", size: tabBarIconSize }),
-        tabBarColor: color.palette.orangeDarker
+        tabBarColor: "#2b872b"
       }
     },
 
@@ -31,14 +31,14 @@ export const AppBottomTabNavigator = createMaterialBottomTabNavigator(
       screen: AugmentedRealityNavigator,
       navigationOptions: {
         tabBarIcon: TabBarIcon({ name: "running", size: 22 }),
-        tabBarColor: color.palette.lightGreen
+        tabBarColor: "#892943"
       }
     },
     [AppScreens.GROUPS]: {
       screen: GroupScreen,
       navigationOptions: {
         tabBarIcon: TabBarIcon({ name: "user-friends", size: tabBarIconSize }),
-        tabBarColor: color.palette.lightBlue
+        tabBarColor: "#0087c7"
       }
     }
   }, {
