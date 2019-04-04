@@ -81,7 +81,7 @@ export class SplashScreen extends React.Component<ILoaderProps> {
     const textStyle: ViewStyle = {
       position: "absolute",
       alignSelf: "center",
-      bottom: spacing[2],
+      bottom: spacing[2]
     }
 
     const fullScreenBackgroundLayer = appLoaded ? null : (

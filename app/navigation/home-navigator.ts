@@ -6,6 +6,6 @@ export const HomeNavigator = createStackNavigator({
   [AppScreens.HOME]: { screen: HomeScreen }
 }, {
   defaultNavigationOptions: {
-    header: null,
-  },
+    header: null
+  }
 })

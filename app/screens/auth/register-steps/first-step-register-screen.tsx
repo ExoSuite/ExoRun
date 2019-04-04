@@ -105,7 +105,7 @@ export class FirstStepRegisterScreen extends React.Component<IFirstStepRegisterS
   @autobind
   private goToSecondStep(): void {
     const { navigation } = this.props
-    const { nickName, lastName, firstName } = this;
+    const { nickName, lastName, firstName } = this
     navigation.navigate(RegisterScreens.SECOND, pickBy({ nickName, lastName, firstName }))
   }
 

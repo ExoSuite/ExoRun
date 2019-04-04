@@ -10,7 +10,7 @@ import { Button } from "@components"
 
 function getRandomState(): AnimatedInteractiveInputState {
 // tslint:disable-next-line: insecure-random
-  return Math.floor(Math.random() * Object.keys(AnimatedInteractiveInputState).length / 2);
+  return Math.floor(Math.random() * Object.keys(AnimatedInteractiveInputState).length / 2)
 }
 
 @observer
@@ -50,9 +50,9 @@ class AnimatedInteractiveInputStory extends React.Component<any> {
   }
 }
 
-let successInputRef: AnimatedInteractiveInputStory;
-let errorInputRef: AnimatedInteractiveInputStory;
-let loadingInputRef: AnimatedInteractiveInputStory;
+let successInputRef: AnimatedInteractiveInputStory
+let errorInputRef: AnimatedInteractiveInputStory
+let loadingInputRef: AnimatedInteractiveInputStory
 
 storiesOf("AnimatedInteractiveInput", module)
   .addDecorator((fn: Function) => <StoryScreen>{fn()}</StoryScreen>)

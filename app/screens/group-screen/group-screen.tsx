@@ -9,7 +9,7 @@ export interface IGroupScreenProps extends NavigationScreenProps<{}> {
 }
 
 const ROOT: ViewStyle = {
-  backgroundColor: color.palette.black,
+  backgroundColor: color.palette.black
 }
 
 // tslint:disable-next-line: completed-docs
@@ -19,7 +19,7 @@ export class GroupScreen extends React.Component<IGroupScreenProps> {
   public render(): React.ReactNode {
     return (
       <Screen style={ROOT} preset="fixedCenter">
-        <Text preset="header" text="GROUP" />
+        <Text preset="header" text="GROUP"/>
       </Screen>
     )
   }

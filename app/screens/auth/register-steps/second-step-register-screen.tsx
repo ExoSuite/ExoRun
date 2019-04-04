@@ -172,7 +172,7 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
 
     const response: HttpRequestError | ApiResponse<any> =
       await api.post("auth/register", data, {}, false)
-      .catch((error: HttpRequestError): HttpRequestError => error)
+        .catch((error: HttpRequestError): HttpRequestError => error)
 
     if (response instanceof HttpRequestError) {
       this.manageResponseError(response)
@@ -232,12 +232,12 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
 
   @autobind
   private setPasswordConfirmationInputRef(ref: TextInput): void {
-    this.passwordConfirmationRef = ref;
+    this.passwordConfirmationRef = ref
   }
 
   @autobind
   private setPasswordInputRef(ref: TextInput): void {
-    this.passwordInputRef = ref;
+    this.passwordInputRef = ref
   }
 
   @action.bound

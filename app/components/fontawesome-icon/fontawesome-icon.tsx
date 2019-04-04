@@ -20,10 +20,10 @@ export function FontawesomeIcon(props: IFontawesomeIconProps) {
     regular: false,
     light: false,
     solid: false,
-    brand: false,
+    brand: false
   }
 
-  iconTypes[type] = true;
+  iconTypes[type] = true
 
   const fontProps = { name, size, color }
 

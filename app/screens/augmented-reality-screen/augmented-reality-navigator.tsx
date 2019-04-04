@@ -22,7 +22,7 @@ export class AugmentedRealityNavigator extends React.Component<IAugmentedReality
     // @ts-ignore
     headerLeft: (props: HeaderBackButtonProps): React.ReactNode => (
       <NavigationBackButton {...props}/>
-    ),
+    )
   }
 
   // tslint:disable-next-line prefer-function-over-method

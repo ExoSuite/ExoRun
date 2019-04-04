@@ -9,7 +9,7 @@ export interface INotificationsScreenProps extends NavigationScreenProps<{}> {
 }
 
 const ROOT: ViewStyle = {
-  backgroundColor: color.palette.black,
+  backgroundColor: color.palette.black
 }
 
 // @inject("mobxstuff")
@@ -20,7 +20,7 @@ export class NotificationsScreen extends React.Component<INotificationsScreenPro
   public render(): React.ReactNode {
     return (
       <Screen style={ROOT} preset="fixedCenter">
-        <Text preset="header" tx="notificationsScreen.header" />
+        <Text preset="header" tx="notificationsScreen.header"/>
       </Screen>
     )
   }

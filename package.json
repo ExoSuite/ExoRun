@@ -28,7 +28,6 @@
     "postversion": "react-native-version"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-common-types": "^0.2.17",
     "@react-native-community/async-storage": "^1.2.2",
     "apisauce": "1.0.2",
     "autobind-decorator": "^2.4.0",
@@ -67,6 +66,7 @@
     "validate.js": "0.12.0"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-common-types": "^0.2.17",
     "@babel/core": "^7.4.3",
     "@babel/plugin-proposal-decorators": "^7.4.0",
     "@babel/plugin-proposal-optional-catch-binding": "^7.2.0",

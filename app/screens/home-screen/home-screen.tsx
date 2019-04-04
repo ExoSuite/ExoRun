@@ -47,7 +47,7 @@ export class HomeScreen extends React.Component<IHomeScreenProps> {
         <Button
           text="se déconnecter"
           onPress={this.logout}
-          style={{marginTop: 30}}
+          style={{ marginTop: 30 }}
         />
       </Screen>
     )
