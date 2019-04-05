@@ -1,5 +1,5 @@
 {
   "hooks": {
-    "post-receive": "yarn run react-native-version"
+    "pre-commit": "yarn run react-native-version --never-amend"
   }
 }
