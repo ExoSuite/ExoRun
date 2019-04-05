@@ -1438,6 +1438,161 @@ exports[`Storyshots AnimatedInteractiveInput Style Presets 1`] = `
 </View>
 `;
 
+exports[`Storyshots Avatar Style Presets 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                Primary
+              </Text>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              The primary.
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "marginLeft": 8,
+                  "opacity": 1,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#6200ee",
+                      "borderRadius": 17,
+                      "height": 34,
+                      "width": 34,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://api.adorable.io/avatars/285",
+                    }
+                  }
+                  style={
+                    Object {
+                      "borderRadius": 17,
+                      "height": 34,
+                      "width": 34,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
 exports[`Storyshots Button Style Presets 1`] = `
 <View
   onLayout={[Function]}
@@ -5247,22 +5402,20 @@ exports[`Storyshots LogoHeader Style Presets 1`] = `
               }
             }
           >
-            <View>
-              <Image
-                resizeMode="contain"
-                source={
-                  Object {
-                    "uri": "exorun-logo",
-                  }
+            <Image
+              resizeMode="contain"
+              source={
+                Object {
+                  "uri": "exorun-logo",
                 }
-                style={
-                  Object {
-                    "height": 35,
-                    "width": 75,
-                  }
+              }
+              style={
+                Object {
+                  "height": 35,
+                  "width": 75,
                 }
-              />
-            </View>
+              }
+            />
           </View>
         </View>
       </View>

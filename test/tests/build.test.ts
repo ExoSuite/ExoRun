@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 import { Build, BuiltFor } from "@services/build-detector"
 import { appVersion, buildVersion } from "../__mocks__/react-native-version-info"
 

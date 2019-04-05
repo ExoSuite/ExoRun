@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 import { Api, HttpResponse } from "@services/api"
 import { HttpRequestError } from "@exceptions"
 import { LogicErrorState, LogicException } from "@exceptions/LogicException"
