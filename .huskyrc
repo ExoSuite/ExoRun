@@ -1,5 +1,5 @@
 {
   "hooks": {
-    "pre-commit": "yarn run react-native-version --never-amend"
+    "pre-applypatch": "yarn run react-native-version"
   }
 }
