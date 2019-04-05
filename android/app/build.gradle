@@ -114,7 +114,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         multiDexEnabled true
         versionCode 65
-        versionName "0.0.9"
+        versionName "0.0.10"
 
         ndk {
             abiFilters "armeabi-v7a", "x86"
