@@ -113,7 +113,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         multiDexEnabled true
-        versionCode 199
+        versionCode 200
         versionName "0.0.12"
 
         ndk {
