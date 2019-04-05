@@ -1,6 +1,0 @@
-{
-  "hooks": {
-    "pre-commit": "yarn run react-native-version --never-amend",
-    "post-commit": "git add android ios && git commit -am 'bump build version' --no-verify"
-  }
-}
