@@ -18,16 +18,13 @@ import { StorybookUIRoot } from "../storybook"
 import { StatefulNavigator } from "./navigation"
 import { DataLoader } from "@components/data-loader"
 import { useScreens } from "react-native-screens"
-import { Build, BuiltFor } from "@services/build-detector"
 
 export interface IAppState {
   env?: Environment
   rootStore?: RootStore
 }
 
-if (Build.isNot(BuiltFor.TESTING)) {
-  useScreens()
-}
+useScreens()
 
 /**
  * This is the root component of our app.
