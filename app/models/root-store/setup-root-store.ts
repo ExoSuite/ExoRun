@@ -1,20 +1,25 @@
-import { onSnapshot } from "mobx-state-tree"
-import { RootStore, RootStoreModel } from "./root-store"
 import { Environment } from "@models/environment"
-import * as storage from "@utils/storage"
-import { Reactotron } from "@services/reactotron"
 import { Api } from "@services/api"
+import { Reactotron } from "@services/reactotron"
 import { SoundPlayer } from "@services/sound-player"
+import * as storage from "@utils/storage"
+import { onSnapshot } from "mobx-state-tree"
+import { RootStore, RootStoreModel, RootStoreSnapshot } from "./root-store"
 
 /**
  * The key we'll be saving our state as within async storage.
  */
 const ROOT_STATE_STORAGE_KEY = "root"
 
+interface ISetupRootStore {
+  env: Environment
+  rootStore: RootStore,
+}
+
 /**
  * Setup the root state.
  */
-export async function setupRootStore() {
+export async function setupRootStore(): Promise<ISetupRootStore> {
   let rootStore: RootStore
   let data: any
 
@@ -24,14 +29,16 @@ export async function setupRootStore() {
     // load data from storage
     data = (await storage.load(ROOT_STATE_STORAGE_KEY)) || {}
     rootStore = RootStoreModel.create(data)
-  } catch (e) {
+  } catch (error) {
     // if there's any problems loading, then let's at least fallback to an empty state
     // instead of crashing.
     // @ts-ignore
     rootStore = RootStoreModel.create({})
 
     // but please inform us what happened
-    __DEV__ && console.tron.error(e.message, null)
+    if (__DEV__) {
+      console.tron.error(error.message, null)
+    }
   }
 
   // reactotron logging
@@ -40,11 +47,13 @@ export async function setupRootStore() {
   }
 
   // track changes & save to storage
-  onSnapshot(rootStore, snapshot => storage.save(ROOT_STATE_STORAGE_KEY, snapshot))
+  onSnapshot(rootStore, (snapshot: RootStoreSnapshot): Promise<boolean> => (
+    storage.save(ROOT_STATE_STORAGE_KEY, snapshot)
+  ))
 
   return {
     rootStore,
-    env,
+    env
   }
 }
 
@@ -55,7 +64,7 @@ export async function setupRootStore() {
  * of the models that get created later. This is how we loosly couple things
  * like events between models.
  */
-export async function createEnvironment() {
+export async function createEnvironment(): Promise<Environment> {
   const env = new Environment()
 
   // create each service

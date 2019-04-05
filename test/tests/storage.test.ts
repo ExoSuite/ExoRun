@@ -1,22 +1,11 @@
-import { clear, load, loadString, remove, save, saveString } from "../../app/utils/storage"
-
-// fixtures
-const VALUE_OBJECT = { x: 1 }
-const VALUE_STRING = JSON.stringify(VALUE_OBJECT)
-
-// mocks
-const mockGetItem = jest.fn().mockReturnValue(Promise.resolve(VALUE_STRING))
-const mockSetItem = jest.fn()
-const mockRemoveItem = jest.fn()
-const mockClear = jest.fn()
-
-// replace AsyncStorage
-jest.mock("AsyncStorage", () => ({
-  getItem: mockGetItem,
-  setItem: mockSetItem,
-  removeItem: mockRemoveItem,
-  clear: mockClear,
-}))
+import { clear, load, loadString, remove, save, saveString } from "@utils/storage"
+import {
+  mockClear,
+  mockRemoveItem,
+  mockSetItem,
+  VALUE_OBJECT,
+  VALUE_STRING
+} from "../__mocks__/@react-native-community/async-storage/"
 
 // reset mocks after each test
 afterEach(() => jest.clearAllMocks())

@@ -2,21 +2,16 @@ import * as React from "react"
 import { TextProps as TextProperties, TextStyle } from "react-native"
 import { TextPresets } from "./text.presets"
 
-export interface TextProps extends TextProperties {
+export interface ITextProps extends TextProperties {
   /**
    * Children components.
    */
   children?: React.ReactNode
 
   /**
-   * Text which is looked up via i18n.
+   * One of the different types of text presets.
    */
-  tx?: string
-
-  /**
-   * The text to display if not using `tx` or nested components.
-   */
-  text?: string
+  preset?: TextPresets
 
   /**
    * An optional style override useful for padding & margin.
@@ -24,7 +19,12 @@ export interface TextProps extends TextProperties {
   style?: TextStyle | TextStyle[]
 
   /**
-   * One of the different types of text presets.
+   * The text to display if not using `tx` or nested components.
    */
-  preset?: TextPresets
+  text?: string
+
+  /**
+   * Text which is looked up via i18n.
+   */
+  tx?: string
 }

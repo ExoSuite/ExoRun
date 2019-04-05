@@ -78,12 +78,6 @@ project.ext.react = [
 
 apply from: "../../node_modules/react-native/react.gradle"
 
-project.ext.vectoricons = [
-        iconFontNames: [ 'MaterialIcons.ttf', 'EvilIcons.ttf' ] // Name of the font files you want to copy
-]
-
-apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
-
 /**
  * Set this to true to create two separate APKs instead of one:
  *   - An APK that only works on ARM devices
@@ -97,23 +91,30 @@ def enableSeparateBuildPerCPUArchitecture = false
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
  */
-def enableProguardInReleaseBuilds = true
+def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
+    flavorDimensions "platform"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    dexOptions {
+        javaMaxHeapSize "4g"
+        preDexLibraries = false
+    }
+
     defaultConfig {
         applicationId "com.exorun"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        multiDexEnabled true
+        versionCode 6
+        versionName "0.0.1"
 
         ndk {
             abiFilters "armeabi-v7a", "x86"
@@ -125,14 +126,16 @@ android {
             exclude "lib/arm64-v8a/librealm-jni.so"
         }
     }
+
     splits {
         abi {
             reset()
             enable enableSeparateBuildPerCPUArchitecture
             universalApk false  // If true, also generate a universal APK
-            include "armeabi-v7a", "x86", "arm64-v8a"
+            include "armeabi-v7a", "x86"
         }
     }
+
     signingConfigs {
         release {
             storeFile rootProject.file(EXORUN_RELEASE_STORE_FILE)
@@ -175,6 +178,7 @@ configurations.all {
 }
 
 dependencies {
+    implementation project(':@react-native-community_async-storage')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-localize')
     implementation project(':react-native-sound')
@@ -184,8 +188,19 @@ dependencies {
     implementation project(':react-native-splash-screen')
     implementation project(':react-native-gesture-handler')
     implementation project(':react-native-keychain')
+    implementation project(':gvr_common')
+    implementation project(':arcore_client')
+    implementation project(path: ':react_viro')
+    implementation project(path: ':viro_renderer')
+    implementation 'com.google.android.exoplayer:exoplayer:2.7.1'
+    implementation 'com.google.protobuf.nano:protobuf-javanano:3.0.0-alpha-7'
+    implementation 'com.amazonaws:aws-android-sdk-core:2.7.7'
+    implementation 'com.amazonaws:aws-android-sdk-ddb:2.7.7'
+    implementation 'com.amazonaws:aws-android-sdk-ddb-mapper:2.7.7'
+    implementation 'com.amazonaws:aws-android-sdk-cognito:2.7.7'
+    implementation 'com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.7.7'
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "androidx.appcompat:appcompat:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"  // From node_modules
 }
 

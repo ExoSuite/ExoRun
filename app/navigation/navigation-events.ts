@@ -7,7 +7,7 @@ import { EventType, NavigationEventCallback } from "react-navigation"
  *
  * You use can `compose` or build directly off this to mixin these features.
  */
-export const NavigationEvents = types.model("NavigationEvents").volatile(self => {
+export const NavigationEvents = types.model("NavigationEvents").volatile((self: any): any => {
   // who is currently subscribed to react-navigation events
   const subs = new Set<NavigationEventCallback>()
 
@@ -19,14 +19,14 @@ export const NavigationEvents = types.model("NavigationEvents").volatile(self =>
    * @param oldState The previous navigation state.
    * @param newState The next navigation state.
    */
-  const fireSubscribers = (action: any, oldState: any, newState: any) => {
+  const fireSubscribers = (action: any, oldState: any, newState: any): void => {
     // tell each subscriber out this
-    subs.forEach(subscriber => {
+    subs.forEach((subscriber: Function) => {
       subscriber({
         type: "action",
         action,
         state: newState,
-        lastState: oldState,
+        lastState: oldState
       })
     })
   }
@@ -38,11 +38,12 @@ export const NavigationEvents = types.model("NavigationEvents").volatile(self =>
    * @param eventName The event.
    * @param handler Some strange handler
    */
-  const addListener = (eventName: EventType, handler: NavigationEventCallback) => {
+  const addListener = (eventName: EventType, handler: NavigationEventCallback): Object => {
     if (eventName !== "action") {
       return {
-        remove: () => {
-        },
+        remove: (): null => {
+          return null
+        }
       }
     }
 
@@ -51,7 +52,7 @@ export const NavigationEvents = types.model("NavigationEvents").volatile(self =>
 
     // return the instructions on how to unsubscribe
     return {
-      remove: () => subs.delete(handler),
+      remove: (): boolean => subs.delete(handler)
     }
   }
 

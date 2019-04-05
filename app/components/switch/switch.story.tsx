@@ -5,49 +5,51 @@ import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { Toggle } from "react-powerplug"
 import { Switch } from "."
 
+// tslint:disable typedef
+
 const styleArray: ViewStyle[] = [
-  { borderColor: "#686868" },
+  { borderColor: "#686868" }
 ]
 
 const trackOffStyle: ViewStyle[] = [
   { backgroundColor: "#686868" },
   {
     height: 80,
-    borderRadius: 0,
-  },
+    borderRadius: 0
+  }
 ]
 const trackOnStyle: ViewStyle[] = [
   {
     backgroundColor: "#b1008e",
-    borderColor: "#686868",
+    borderColor: "#686868"
   },
   {
     height: 80,
-    borderRadius: 0,
-  },
+    borderRadius: 0
+  }
 
 ]
 const thumbOffStyle: ViewStyle[] = [
   {
     backgroundColor: "#b1008e",
-    borderColor: "#686868",
+    borderColor: "#686868"
   },
   {
     height: 80,
-    borderRadius: 0,
-  },
+    borderRadius: 0
+  }
 ]
 const thumbOnStyle: ViewStyle[] = [
   { backgroundColor: "#f0c" },
   {
     height: 80,
     borderRadius: 0,
-    borderColor: "#686868",
-  },
+    borderColor: "#686868"
+  }
 ]
 
-storiesOf("Switch")
-  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
+storiesOf("Switch", module)
+  .addDecorator((fn) => <StoryScreen>{fn()}</StoryScreen>)
   .add("Behaviour", () => (
     <Story>
       <UseCase text="The Toggle Switch" usage="Use the switch to represent on/off states.">
@@ -56,7 +58,7 @@ storiesOf("Switch")
         </Toggle>
       </UseCase>
       <UseCase text="value = true" usage="This is permanently on.">
-        <Switch value={true}/>
+        <Switch value/>
       </UseCase>
       <UseCase text="value = false" usage="This is permanantly off.">
         <Switch value={false}/>

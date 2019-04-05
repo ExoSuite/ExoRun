@@ -1,45 +1,28 @@
-import { BaseError } from "./BaseError"
+import { translate } from "@i18n"
 import { GeneralApiProblem, HttpResponse } from "@services/api"
 import { ApiResponse } from "apisauce"
-import { translate } from "@i18n"
+import { BaseError } from "./BaseError"
 
 const baseError = {
-  error: [],
+  error: []
 }
 
+/**
+ * * HttpRequestError will be thrown by api.ts:134:7 in case of an HTTP error
+ */
 export class HttpRequestError extends BaseError {
-  private readonly status: HttpResponse
-  private readonly _data: { errors: Object, message: string }
+
+  // tslint:disable-next-line variable-name
+  private readonly _problem: GeneralApiProblem
+  private readonly data: { errors: Object; message: string }
 
   constructor(problem: GeneralApiProblem, response: ApiResponse<any>) {
-    super()
-    this.status = problem.kind
-    this._data = response.data || []
+    super(problem.kind)
+    this.data = response.data || []
+    this._problem = problem
   }
 
-  public is(httpResponse: HttpResponse) {
-    return this.status === httpResponse
-  }
-
-  public isNot(httpResponse: HttpResponse) {
-    return this.status !== httpResponse
-  }
-
-  public happened(): Object {
-    return this._data.errors || {}
-  }
-
-  // base message
-  public what(): string {
-    return this.message
-  }
-
-  public code(): HttpResponse {
-    return this.status
-  }
-
-
-  public formattedErrors() {
+  public formattedErrors(): Object {
     let errors
     switch (this.code()) {
       case HttpResponse.UNAUTHORIZED: {
@@ -55,10 +38,22 @@ export class HttpRequestError extends BaseError {
       default: {
         errors = baseError
         errors.error = [translate("errors.unknown")]
-        break
       }
     }
 
     return errors
+  }
+
+  public happened(): Object {
+    return this.data.errors || {}
+  }
+
+  public problem(): GeneralApiProblem {
+    return this._problem
+  }
+
+  // base message
+  public what(): string {
+    return this.message
   }
 }

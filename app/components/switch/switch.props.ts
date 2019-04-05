@@ -1,16 +1,6 @@
 import { ViewStyle } from "react-native"
 
-export interface SwitchProps {
-  /**
-   * On or off.
-   */
-  value?: boolean
-  /**
-   * Fires when the on/off switch triggers.
-   *
-   * @param newValue The new value we're switching to.
-   */
-  onToggle?: (newValue: boolean) => void
+export interface ISwitchProps {
 
   /**
    * A style override to apply to the container.  Useful for margins and paddings.
@@ -18,14 +8,9 @@ export interface SwitchProps {
   style?: ViewStyle | ViewStyle[]
 
   /**
-   * Additional track styling when on.
+   * Additional thumb styling when off.
    */
-  trackOnStyle?: ViewStyle | ViewStyle[]
-
-  /**
-   * Additional track styling when off.
-   */
-  trackOffStyle?: ViewStyle | ViewStyle[]
+  thumbOffStyle?: ViewStyle | ViewStyle[]
 
   /**
    * Additional thumb styling when on.
@@ -33,7 +18,24 @@ export interface SwitchProps {
   thumbOnStyle?: ViewStyle | ViewStyle[]
 
   /**
-   * Additional thumb styling when off.
+   * Additional track styling when off.
    */
-  thumbOffStyle?: ViewStyle | ViewStyle[]
+  trackOffStyle?: ViewStyle | ViewStyle[]
+
+  /**
+   * Additional track styling when on.
+   */
+  trackOnStyle?: ViewStyle | ViewStyle[]
+  /**
+   * On or off.
+   */
+  value?: boolean
+
+  /**
+   * Fires when the on/off switch triggers.
+   *
+   * @param newValue The new value we're switching to.
+   */
+  // tslint:disable-next-line no-flag-args
+  onToggle?(newValue: boolean): void;
 }

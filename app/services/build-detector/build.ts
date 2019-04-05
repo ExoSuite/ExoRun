@@ -1,5 +1,3 @@
-import { ENV } from "@utils/environment-variables"
-import includes from "lodash.includes"
 import Config from "react-native-config"
 
 export enum BuiltFor {
@@ -9,11 +7,12 @@ export enum BuiltFor {
   TESTING = "test",
 }
 
+/**
+ * check if app is running with local build etc...
+ * @class Build
+ */
 export class Build {
-  static is(builtFor: BuiltFor) {
-    if (ENV === undefined) {
-      return includes(builtFor, Config.APP_ENV)
-    }
-    return ENV === builtFor
+  public static is(builtFor: BuiltFor): boolean {
+    return builtFor === Config.APP_ENV
   }
 }

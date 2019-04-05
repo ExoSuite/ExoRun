@@ -15,6 +15,7 @@
     "sourceMap": true,
     "baseUrl": ".",
     "target": "es2015",
+    "plugins": [{ "name": "typescript-tslint-plugin" }],
     "paths": {
       "storybook/*": ["storybook/*"],
       "@services/*": ["app/services/*"],
@@ -31,7 +32,9 @@
       "@i18n/*": ["app/i18n/*"],
       "@i18n": ["app/i18n"],
       "@exceptions": ["app/exceptions"],
-      "@exceptions/*": ["app/exceptions/*"]
+      "@exceptions/*": ["app/exceptions/*"],
+      "@types": ["app/types"],
+      "@types/*": ["app/types/*"]
     }
   }
 }

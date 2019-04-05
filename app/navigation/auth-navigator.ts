@@ -1,12 +1,14 @@
+import { AuthScreen, LoginScreen } from "@screens/auth"
 import { createStackNavigator } from "react-navigation"
-import { AuthScreen, LoginScreen, RegisterScreen } from "@screens/auth"
+import { RegisterFlow } from "@navigation/register-navigator"
+import { AuthScreens } from "@navigation/navigation-definitions"
 
-export const AuthNavigator = createStackNavigator(
+export const AuthStack = createStackNavigator(
   {
-    auth: { screen: AuthScreen },
-    login: { screen: LoginScreen },
-    register: { screen: RegisterScreen },
+    [AuthScreens.AUTH]: { screen: AuthScreen },
+    [AuthScreens.LOGIN]: { screen: LoginScreen },
+    [AuthScreens.REGISTER]: { screen: RegisterFlow }
   },
   {
-    headerMode: "none",
+    headerMode: "none"
   })

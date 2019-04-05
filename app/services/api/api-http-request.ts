@@ -5,3 +5,7 @@ export enum HttpRequest {
   PATCH = "PATCH",
   DELETE = "DELETE",
 }
+
+export function toApiSauceMethod(request: HttpRequest): string {
+  return request.toLowerCase()
+}

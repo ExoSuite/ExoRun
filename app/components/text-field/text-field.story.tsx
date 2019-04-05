@@ -6,34 +6,36 @@ import { TextField } from "./"
 import { State } from "react-powerplug"
 import { TextStyle, ViewStyle } from "react-native"
 
+// tslint:disable
+
 const styleArray: ViewStyle[] = [
   { paddingHorizontal: 30 },
-  { borderWidth: 30 },
+  { borderWidth: 30 }
 ]
 
 const inputStyleArray: TextStyle[] = [
   {
     backgroundColor: "rebeccapurple",
     color: "white",
-    padding: 40,
+    padding: 40
   },
   {
     borderWidth: 10,
     borderRadius: 4,
-    borderColor: "#7fff00",
-  },
+    borderColor: "#7fff00"
+  }
 ]
-var alertWhenFocused = true
+let alertWhenFocused = true
 
-storiesOf("TextField")
-  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
+storiesOf("TextField", module)
+  .addDecorator((fn) => <StoryScreen>{fn()}</StoryScreen>)
   .add("Labelling", () => (
     <Story>
       <UseCase text="Normal text" usage="Use placeholder and label to set the text.">
         <State initial={{ value: "" }}>
           {({ state, setState }) => (
             <TextField
-              onChangeText={value => setState({ value })}
+              onChangeText={(value) => setState({ value })}
               value={state.value}
               label="Name"
               placeholder="omg your name"
@@ -46,7 +48,7 @@ storiesOf("TextField")
         <State initial={{ value: "" }}>
           {({ state, setState }) => (
             <TextField
-              onChangeText={value => setState({ value })}
+              onChangeText={(value) => setState({ value })}
               value={state.value}
               placeholderTx="storybook.placeholder"
               labelTx="storybook.field"
@@ -66,7 +68,7 @@ storiesOf("TextField")
         <State initial={{ value: "Inigo" }}>
           {({ state, setState }) => (
             <TextField
-              onChangeText={value => setState({ value })}
+              onChangeText={(value) => setState({ value })}
               value={state.value}
               label="First Name"
               style={{ paddingTop: 0, paddingHorizontal: 40 }}
@@ -76,7 +78,7 @@ storiesOf("TextField")
         <State initial={{ value: "Montoya" }}>
           {({ state, setState }) => (
             <TextField
-              onChangeText={value => setState({ value })}
+              onChangeText={(value) => setState({ value })}
               value={state.value}
               label="Last Name"
               style={{ paddingBottom: 0 }}
@@ -91,7 +93,7 @@ storiesOf("TextField")
         <State initial={{ value: "fancy colour" }}>
           {({ state, setState }) => (
             <TextField
-              onChangeText={value => setState({ value })}
+              onChangeText={(value) => setState({ value })}
               value={state.value}
               label="Name"
               inputStyle={{
@@ -100,7 +102,7 @@ storiesOf("TextField")
                 padding: 40,
                 borderWidth: 10,
                 borderRadius: 4,
-                borderColor: "hotpink",
+                borderColor: "hotpink"
               }}
             />
           )}
@@ -115,7 +117,7 @@ storiesOf("TextField")
         <State initial={{ value: "fancy colour" }}>
           {({ state, setState }) => (
             <TextField
-              onChangeText={value => setState({ value })}
+              onChangeText={(value) => setState({ value })}
               value={state.value}
               label="Name"
               style={styleArray}
@@ -136,7 +138,7 @@ storiesOf("TextField")
         <State initial={{ value: "fancy colour" }}>
           {({ state, setState }) => (
             <TextField
-              onChangeText={value => setState({ value })}
+              onChangeText={(value) => setState({ value })}
               value={state.value}
               label="Name"
               inputStyle={{
@@ -145,9 +147,9 @@ storiesOf("TextField")
                 padding: 40,
                 borderWidth: 10,
                 borderRadius: 4,
-                borderColor: "hotpink",
+                borderColor: "hotpink"
               }}
-              forwardedRef={ref => ref}
+              forwardedRef={(ref) => ref}
               onFocus={() => {
                 if (alertWhenFocused) {
                   // Prevent text field focus from being repeatedly triggering alert

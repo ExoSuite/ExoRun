@@ -2,7 +2,13 @@
   "common": {
     "ok": "OK!",
     "cancel": "Cancel",
-    "back": "Go back"
+    "back": "Go back",
+    "next": "Next",
+    "username": "E-mail",
+    "password": "Password",
+    "password-reveal": "Reveal password",
+    "password-hide": "Hide password",
+    "password-confirmation": "Confirm password"
   },
   "errors": {
     "invalidEmail": "Invalid email address.",
@@ -15,21 +21,20 @@
   },
   "auth": {
     "powered": "Powered by ",
-    "back": "Go back",
     "slogan": "Technology for sport.",
     "login": {
-      "header": "Login",
+      "header": "Log in",
       "login": "Log in to ExoRun",
-      "username": "E-mail",
-      "password": "Password",
-      "password-reveal": "Reveal password",
-      "password-hide": "Hide password",
       "bad-email": "Please enter a valid email.",
-      "good-email": "Great! your email is valid!"
+      "good-email": "Great! your email is valid!",
+      "reset-password": "Forgot password?"
     },
     "register": {
-      "header": "Register",
-      "register": "Register me"
+      "header": "Create your ExoSuite account",
+      "register": "Sign Up",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "nickName": "Username (optional)"
     }
   }
 }

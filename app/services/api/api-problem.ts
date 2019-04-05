@@ -44,7 +44,6 @@ export type GeneralApiProblem =
    */
   | { kind: HttpResponse.METHOD_NOT_ALLOWED }
 
-
 /**
  * Attempts to get a common cause of problems from an api response.
  *
@@ -63,6 +62,7 @@ export function getGeneralApiProblem(response: ApiResponse<any>): GeneralApiProb
     case "UNKNOWN_ERROR":
       return { kind: HttpResponse.UNKNOWN, temporary: true }
     case "CLIENT_ERROR":
+      // tslint:disable-next-line no-nested-switch
       switch (response.status) {
         case 401:
           return { kind: HttpResponse.UNAUTHORIZED }
@@ -78,6 +78,8 @@ export function getGeneralApiProblem(response: ApiResponse<any>): GeneralApiProb
           return { kind: HttpResponse.REJECTED }
       }
     case "CANCEL_ERROR":
+      return null
+    default:
       return null
   }
 

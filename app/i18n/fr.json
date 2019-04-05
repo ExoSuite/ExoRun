@@ -2,23 +2,18 @@
   "common": {
     "ok": "OK!",
     "cancel": "Cancel",
-    "back": "Retour"
+    "back": "Retour",
+    "next": "Suivant",
+    "username": "Adresse électronique",
+    "password": "Mot de passe",
+    "password-reveal": "Révéler le mot de passe",
+    "password-hide": "Masquer le mot de passe",
+    "password-confirmation": "Confirmer le mot de passe"
   },
   "errors": {
-    "invalidEmail": "Invalid email address.",
-    "unknown": "Oops! An unexpected error seems to have occurred.",
+    "invalidEmail": "Adresse électronique invalide.",
+    "unknown": "Oups! Une erreur inattendue semble s'être produite.",
     "unauthorized": "Oups ! Accès non autorisé !"
-  },
-  "firstExampleScreen": {
-    "poweredBy": "POWERED BY BOWSER",
-    "readyForLaunch": "Ready for launch.",
-    "continue": "CONTINUE"
-  },
-  "secondExampleScreen": {
-    "howTo": "HOW TO",
-    "title": "What’s In This Stack?",
-    "tagLine": "Congratulations, you’ve got a very advanced React Native app template here.  Take advantage of this boilerplate!",
-    "reactotron": "Demo Reactotron"
   },
   "storybook": {
     "placeholder": "Placeholder",
@@ -30,16 +25,16 @@
     "login": {
       "header": "Se connecter",
       "login": "Se connecter à ExoRun",
-      "username": "E-mail",
-      "password": "Mot de passe",
-      "password-reveal": "Révéler le mot de passe",
-      "password-hide": "Masquer le mot de passe",
       "bad-email": "S'il vous plaît entrer un email valide.",
-      "good-email": "Génial ! votre email est valide !"
+      "good-email": "Génial ! votre email est valide !",
+      "reset-password": "Mot de passe oublié ?"
     },
     "register": {
-      "header": "S'enregistrer",
-      "register": "Enregistrer moi"
+      "header": "Créer votre compte ExoSuite",
+      "register": "S'inscrire",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "nickName": "Nom d'utilisateur (optionnel)"
     }
   }
 }

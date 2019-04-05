@@ -1,4 +1,4 @@
-export interface NavigationConfig {
+export interface INavigationConfig {
   /**
    * A list of routes from which we're allowed to leave the app when
    * the user presses the back button on Android.
@@ -13,6 +13,6 @@ export interface NavigationConfig {
  * The default navigation config for this app. You'd only really need
  * to override this for testing.
  */
-export const DEFAULT_NAVIGATION_CONFIG: NavigationConfig = {
-  exitRoutes: ["firstExample"],
+export const DEFAULT_NAVIGATION_CONFIG: INavigationConfig = {
+  exitRoutes: ["firstExample"]
 }

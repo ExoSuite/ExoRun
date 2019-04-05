@@ -1,7 +1,7 @@
 // @ts-ignore
-import { ScrollViewStyle, ViewStyle } from "react-native"
 import { color } from "@theme"
 import { isEmpty, isNil } from "ramda"
+import { ScrollViewStyle, ViewStyle } from "react-native"
 
 /**
  * The base shape & color.
@@ -32,7 +32,7 @@ export const presets = {
   fixed: {
     nonScroll: DOES_NOT_SCROLL,
     scrollOuter: NOPE,
-    scrollInner: NOPE,
+    scrollInner: NOPE
   },
 
   /**
@@ -41,7 +41,7 @@ export const presets = {
   fixedStack: {
     nonScroll: { ...DOES_NOT_SCROLL, alignItems: "stretch" } as ViewStyle,
     scrollOuter: NOPE,
-    scrollInner: NOPE,
+    scrollInner: NOPE
   },
 
   /**
@@ -50,7 +50,7 @@ export const presets = {
   fixedCenter: {
     nonScroll: { ...DOES_NOT_SCROLL, justifyContent: "center", alignItems: "center" } as ViewStyle,
     scrollOuter: NOPE,
-    scrollInner: NOPE,
+    scrollInner: NOPE
   },
 
   /**
@@ -61,7 +61,7 @@ export const presets = {
   scroll: {
     nonScroll: NOPE,
     scrollOuter: SHAPE,
-    scrollInner: { ...CONTENTS } as ViewStyle,
+    scrollInner: { ...CONTENTS } as ViewStyle
   },
 
   /**
@@ -70,8 +70,8 @@ export const presets = {
   scrollStack: {
     nonScroll: NOPE,
     scrollOuter: SHAPE,
-    scrollInner: { ...CONTENTS, alignItems: "stretch" } as ViewStyle,
-  },
+    scrollInner: { ...CONTENTS, alignItems: "stretch" } as ViewStyle
+  }
 }
 
 /**
@@ -84,7 +84,7 @@ export type ScreenPresets = keyof typeof presets
  *
  * @param preset The preset to check
  */
-export function isNonScrolling(preset: ScreenPresets) {
+export function isNonScrolling(preset: ScreenPresets): boolean {
   // any of these things will make you scroll
   return !(
     isNil(preset) ||

@@ -1,7 +1,9 @@
-import React from "react"
 import { configure, getStorybookUI } from "@storybook/react-native"
-import SplashScreen from "react-native-splash-screen"
+import React from "react"
 import Config from "react-native-config"
+import SplashScreen from "react-native-splash-screen"
+
+// tslint:disable prefer-function-over-method prefer-conditional-expression
 
 configure(() => {
   require("./storybook-registry")
@@ -15,9 +17,13 @@ if (Config.SERVER_IP) {
 }
 
 // RN hot module must be in a class for HMR
+/**
+ * StorybookUIRoot will handle splashscreen and will display the StorybookUI
+ */
 export class StorybookUIRoot extends React.Component {
-  async componentDidMount() {
+  public async componentDidMount(): Promise<void> {
     SplashScreen.hide()
+    // tslint:disable-next-line
     if (typeof __TEST__ === "undefined" || !__TEST__) {
       const Reactotron = require("../app/services/reactotron")
       const reactotron = new Reactotron.Reactotron()
@@ -25,7 +31,7 @@ export class StorybookUIRoot extends React.Component {
     }
   }
 
-  render() {
+  public render(): React.ReactNode {
     return <StorybookUI />
   }
 }

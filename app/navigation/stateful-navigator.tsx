@@ -2,43 +2,98 @@ import * as React from "react"
 import { inject, observer } from "mobx-react"
 // @ts-ignore: until they update @type/react-navigation
 import { getNavigation, NavigationScreenProp, NavigationState } from "react-navigation"
-
 import { RootNavigator } from "./root-navigator"
 import { NavigationStore } from "./navigation-store"
-import { Loader } from "@screens/auth/loader"
+import { ImageProperties, SplashScreen } from "@screens/auth/splash-screen"
 import autobind from "autobind-decorator"
 import { Asset } from "@services/asset"
 import { color } from "@theme"
 import { Screen } from "@services/device"
 import { Injection } from "@services/injections"
+import { Api } from "@services/api"
+import { AppScreens } from "@navigation/navigation-definitions"
+import { IVoidFunction } from "@types"
 
-interface StatefulNavigatorProps {
-  navigationStore?: NavigationStore
+interface IStatefulNavigatorProps {
+  api?: Api
+  navigationStore?: NavigationStore,
 }
 
-@inject(Injection.NavigationStore)
+interface IScreenProps {
+  animateSplashScreen: IVoidFunction,
+  showSplashScreen: IVoidFunction
+}
+
+export interface INavigationScreenProps {
+  navigation: {
+    getScreenProps: IScreenProps
+  }
+}
+
+const IMAGE_STYLE: ImageProperties = {
+  height: Screen.Height,
+  width: Screen.Width
+}
+
+const exosuiteLoader = Asset.Locator("exosuite-loader")
+
+/**
+ * StatefulNavigator will handle the SplashScreen component
+ * user can be redirected to login or home screen.
+ */
+@inject(Injection.NavigationStore, Injection.Api)
 @observer
-export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {}> {
-  currentNavProp: NavigationScreenProp<NavigationState>
+export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> {
+  private currentNavProp: NavigationScreenProp<NavigationState>
 
-  loader: Loader = null
+  private loader: SplashScreen = null
 
-  getCurrentNavigation = () => {
-    return this.currentNavProp
+  @autobind
+  private async removeLoader(): Promise<void> {
+    const { api, navigationStore } = this.props
+    try {
+      await api.checkToken()
+      navigationStore.navigateTo(AppScreens.HOME)
+    } catch (exception) {
+      this.returnToLogin()
+    }
+    this.animateSplashScreen()
+  }
+
+  private returnToLogin(): void {
+    const { navigationStore } = this.props
+    if (navigationStore.findCurrentRoute().routeName === "Home") {
+      navigationStore.reset()
+    }
   }
 
   @autobind
-  removeLoader() {
+  private setSplashScreenRef(ref: SplashScreen): void {
+    this.loader = ref
+  }
+
+  @autobind
+  public animateSplashScreen(): void {
     this.loader.animate()
   }
 
-  async componentDidMount() {
-    setTimeout(this.removeLoader, 2000)
+  public async componentDidMount(): Promise<void> {
+    await this.removeLoader()
   }
 
-  render() {
+  public getCurrentNavigation = (): NavigationScreenProp<NavigationState> => {
+    return this.currentNavProp
+  }
+
+  public render(): React.ReactNode {
     // grab our state & dispatch from our navigation store
     const { state, dispatch, actionSubscribers } = this.props.navigationStore
+    const { showSplashScreen, animateSplashScreen } = this
+
+    const screenNavigationParams: IScreenProps = {
+      showSplashScreen,
+      animateSplashScreen
+    }
 
     // create a custom navigation implementation
     this.currentNavProp = getNavigation(
@@ -46,19 +101,24 @@ export class StatefulNavigator extends React.Component<StatefulNavigatorProps, {
       state,
       dispatch,
       actionSubscribers(),
-      {},
+      screenNavigationParams,
       this.getCurrentNavigation,
     )
 
     return (
-      <Loader
-        ref={(ref: Loader) => this.loader = ref}
+      <SplashScreen
+        ref={this.setSplashScreenRef}
         backgroundColor={color.palette.backgroundDarker}
-        imageProperties={{ height: Screen.Height, width: Screen.Width }}
-        imageSource={Asset.Locator("exosuite-loader")}
+        imageProperties={IMAGE_STYLE}
+        imageSource={exosuiteLoader}
       >
         <RootNavigator navigation={this.currentNavProp}/>
-      </Loader>
+      </SplashScreen>
     )
+  }
+
+  @autobind
+  public showSplashScreen(): void {
+    this.loader.reset()
   }
 }

@@ -6,9 +6,9 @@ export enum LoaderState {
   STOP,
 }
 
-export interface Animation {
-  start: number,
+export interface IAnimation {
   end: number
+  start: number,
 }
 
 export enum FinalAnimationStatus {
