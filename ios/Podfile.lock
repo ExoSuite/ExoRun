@@ -12,7 +12,7 @@ PODS:
     - React
   - React (0.57.8):
     - React/Core (= 0.57.8)
-  - react-native-async-storage (1.2.2):
+  - react-native-async-storage (1.2.3):
     - React
   - React/Core (0.57.8):
     - yoga (= 0.57.8.React)
@@ -122,7 +122,7 @@ SPEC CHECKSUMS:
   lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
   lottie-react-native: 3d8181d43619b1fe804c828bd5a09d20fe8bdea7
   React: adbac0757ce35e92fbd447ab98c810209d27d9b0
-  react-native-async-storage: eccd2790b0c17d50e81fb8be5f6b20bef3dc0f7e
+  react-native-async-storage: 9b20cc571d3740e7893004887784d2911720d39c
   RNKeychain: 1a121521011702409f5a1009eb8a1effa81000f3
   RNScreens: 720a9e6968beb73e8196239801e887d8401f86ed
   RNSound: a1d01988e043aed5dbb476c2152b5ffb02446750

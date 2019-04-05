@@ -29,7 +29,7 @@
     "update-version": "npm version patch -m 'Upgrade to %s'"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.2.2",
+    "@react-native-community/async-storage": "^1.2.3",
     "apisauce": "1.0.2",
     "autobind-decorator": "^2.4.0",
     "es6-symbol": "^3.1.1",
@@ -110,7 +110,7 @@
     "react-devtools-core": "3.6.1",
     "react-dom": "16.8.6",
     "react-native-typescript-transformer": "1.2.12",
-    "react-native-version": "^2.7.0",
+    "react-native-version": "^3.0.0",
     "react-powerplug": "1.0.0",
     "react-test-renderer": "16.8.6",
     "rimraf": "2.6.3",
