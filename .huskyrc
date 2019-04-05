@@ -1,5 +1,5 @@
 {
   "hooks": {
-    "pre-applypatch": "yarn run react-native-version"
+    "pre-push": "yarn run react-native-version && git push --no-verify"
   }
 }
