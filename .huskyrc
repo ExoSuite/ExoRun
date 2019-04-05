@@ -1,5 +1,5 @@
 {
   "hooks": {
-    "pre-push": "yarn run react-native-version"
+    "post-update": "yarn run react-native-version"
   }
 }
