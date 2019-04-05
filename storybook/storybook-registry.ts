@@ -1,3 +1,4 @@
+require("../app/components/avatar/avatar.story")
 require("../app/components/animated-interactive-input/animated-interactive-input.story")
 require("../app/components/logo-header/logo-header.story")
 require("../app/components/dismiss-keyboard/dismiss-keyboard.story")

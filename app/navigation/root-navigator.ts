@@ -1,11 +1,11 @@
-import { AppStack } from "@navigation/app-navigator"
+import { AppNavigator } from "@navigation/app-navigator"
 import { createAppContainer, createSwitchNavigator } from "react-navigation"
 import { AuthStack } from "./auth-navigator"
 
 export const RootNavigator = createAppContainer(createSwitchNavigator(
   {
     Auth: AuthStack,
-    App: AppStack
+    App: AppNavigator
   },
   {
     initialRouteName: "Auth"

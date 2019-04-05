@@ -16,7 +16,6 @@ const EXORUN_LOGO: ImageStyle = {
  */
 // tslint:disable-next-line typedef
 export function LogoHeader() {
-
   return (
     <Image
       source={exorunLogo}

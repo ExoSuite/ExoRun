@@ -5,7 +5,6 @@ import { FontawesomeIcon } from "@components/fontawesome-icon"
 import { color, spacing } from "@theme"
 import { Button } from "@components"
 import { ViewStyle } from "react-native"
-import { View } from "react-native-animatable"
 import { IVoidFunction } from "@types"
 
 export interface INavigationBackButtonProps {
@@ -13,17 +12,19 @@ export interface INavigationBackButtonProps {
 }
 
 const ROOT_STYLE: ViewStyle = {
-  padding: spacing[2]
+  width: spacing[6],
+  height: spacing[6],
+  marginLeft: spacing[2],
+  alignSelf: "center",
+  alignItems: "center"
 }
 
 /**
  * NavigationBackButton will handle the tap on the chevron-left button in the header
  */
-export class NavigationBackButton extends React.PureComponent<
-  HeaderBackButtonProps &
+export class NavigationBackButton extends React.PureComponent<HeaderBackButtonProps &
   INavigationBackButtonProps &
-  Partial<NavigationScreenProps>
-  > {
+  Partial<NavigationScreenProps>> {
 
   @autobind
   private nestedStackNavigatorGoBack(): void {
@@ -35,19 +36,18 @@ export class NavigationBackButton extends React.PureComponent<
     const goBack: IVoidFunction = enableNestedStackNavigatorGoBack ? this.nestedStackNavigatorGoBack : onPress
 
     return (
-      <View style={ROOT_STYLE}>
-        <Button
-          preset="link"
-          onPress={goBack}
-        >
-          <FontawesomeIcon
-            type="solid"
-            size={20}
-            name="chevron-left"
-            color={color.palette.lightBlue}
-          />
-        </Button>
-      </View>
+      <Button
+        style={ROOT_STYLE}
+        preset="link"
+        onPress={goBack}
+      >
+        <FontawesomeIcon
+          type="solid"
+          size={20}
+          name="chevron-left"
+          color={color.palette.lightBlue}
+        />
+      </Button>
     )
   }
 }

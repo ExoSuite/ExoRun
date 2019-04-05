@@ -7,12 +7,12 @@ PODS:
     - glog
   - glog (0.3.5)
   - lottie-ios (2.5.0)
-  - lottie-react-native (2.6.0):
-    - lottie-ios
+  - lottie-react-native (2.6.1):
+    - lottie-ios (~> 2.5.0)
     - React
   - React (0.57.8):
     - React/Core (= 0.57.8)
-  - react-native-async-storage (1.2.1):
+  - react-native-async-storage (1.2.3):
     - React
   - React/Core (0.57.8):
     - yoga (= 0.57.8.React)
@@ -46,6 +46,8 @@ PODS:
     - React/RCTBlob
   - RNKeychain (3.1.1):
     - React
+  - RNScreens (1.0.0-alpha.22):
+    - React
   - RNSound (0.10.12):
     - React/Core
     - RNSound/Core (= 0.10.12)
@@ -71,6 +73,7 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
   - RNKeychain (from `../node_modules/react-native-keychain`)
+  - RNScreens (from `../node_modules/react-native-screens`)
   - RNSound (from `../node_modules/react-native-sound`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - ViroKit_static_lib (from `../node_modules/react-viro/ios/dist/ViroRenderer/static_lib`)
@@ -98,6 +101,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/async-storage"
   RNKeychain:
     :path: "../node_modules/react-native-keychain"
+  RNScreens:
+    :path: "../node_modules/react-native-screens"
   RNSound:
     :path: "../node_modules/react-native-sound"
   RNVectorIcons:
@@ -115,16 +120,17 @@ SPEC CHECKSUMS:
   Folly: c89ac2d5c6ab169cd7397ef27485c44f35f742c7
   glog: e8acf0ebbf99759d3ff18c86c292a5898282dcde
   lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
-  lottie-react-native: 05b6e2dd502d7a91ff128036c4f0984363e5eb4a
+  lottie-react-native: 3d8181d43619b1fe804c828bd5a09d20fe8bdea7
   React: adbac0757ce35e92fbd447ab98c810209d27d9b0
-  react-native-async-storage: fe962994ac710376da9a7a98c43c474b9392b558
+  react-native-async-storage: 9b20cc571d3740e7893004887784d2911720d39c
   RNKeychain: 1a121521011702409f5a1009eb8a1effa81000f3
+  RNScreens: 720a9e6968beb73e8196239801e887d8401f86ed
   RNSound: a1d01988e043aed5dbb476c2152b5ffb02446750
   RNVectorIcons: 6607bd3a30291d0edb56f9bbe7ae411ee2b928b0
   ViroKit_static_lib: ae9c112ac4b128f8d4466fc581c7b07a0264754d
   ViroReact: 7ec32276dcd1883662b4587eaedfff67f7fc3625
   yoga: 74cdf036c30820443b25ade59916236b1e95ee93
 
-PODFILE CHECKSUM: 5849e3743b4fbfac8faf7360eef7a7b3f1c89a65
+PODFILE CHECKSUM: d140b9d9d07a64ec4ca3e7659ff3413ad1ba4154
 
 COCOAPODS: 1.6.1

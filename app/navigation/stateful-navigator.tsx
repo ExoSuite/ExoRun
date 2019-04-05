@@ -4,7 +4,7 @@ import { inject, observer } from "mobx-react"
 import { getNavigation, NavigationScreenProp, NavigationState } from "react-navigation"
 import { RootNavigator } from "./root-navigator"
 import { NavigationStore } from "./navigation-store"
-import { ImageProperties, SplashScreen } from "@screens/auth/splash-screen"
+import { IImageProperties, SplashScreen } from "@screens/auth/splash-screen"
 import autobind from "autobind-decorator"
 import { Asset } from "@services/asset"
 import { color } from "@theme"
@@ -30,7 +30,7 @@ export interface INavigationScreenProps {
   }
 }
 
-const IMAGE_STYLE: ImageProperties = {
+const IMAGE_STYLE: IImageProperties = {
   height: Screen.Height,
   width: Screen.Width
 }
@@ -48,12 +48,17 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
 
   private loader: SplashScreen = null
 
+  private async canLogin(): Promise<void> {
+    const { api, navigationStore } = this.props
+
+    await api.checkToken()
+    navigationStore.navigateTo(AppScreens.HOME)
+  }
+
   @autobind
   private async removeLoader(): Promise<void> {
-    const { api, navigationStore } = this.props
     try {
-      await api.checkToken()
-      navigationStore.navigateTo(AppScreens.HOME)
+      await this.canLogin()
     } catch (exception) {
       this.returnToLogin()
     }
@@ -62,7 +67,8 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
 
   private returnToLogin(): void {
     const { navigationStore } = this.props
-    if (navigationStore.findCurrentRoute().routeName === "Home") {
+
+    if (navigationStore.reset) {
       navigationStore.reset()
     }
   }
@@ -102,7 +108,7 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
       dispatch,
       actionSubscribers(),
       screenNavigationParams,
-      this.getCurrentNavigation,
+      this.getCurrentNavigation
     )
 
     return (

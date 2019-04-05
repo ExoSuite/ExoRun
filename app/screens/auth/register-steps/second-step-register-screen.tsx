@@ -1,6 +1,6 @@
 import * as React from "react"
 import { inject, observer } from "mobx-react/native"
-import { Image, ImageStyle, SafeAreaView, View, ViewStyle } from "react-native"
+import { Image, ImageStyle, SafeAreaView, TextInput, View, ViewStyle } from "react-native"
 import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
 import KeyboardSpacer from "react-native-keyboard-spacer"
 import { NavigationScreenProps } from "react-navigation"
@@ -118,6 +118,18 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
   @observable private isPasswordVisible = false
   @observable private password: string = null
   @observable private passwordConfirmation: string = null
+  private passwordConfirmationRef: TextInput
+  private passwordInputRef: TextInput
+
+  @autobind
+  private focusOnPassword(): void {
+    this.passwordInputRef.focus()
+  }
+
+  @autobind
+  private focusOnPasswordConfirmation(): void {
+    this.passwordConfirmationRef.focus()
+  }
 
   @action.bound
   private handleInvalidEmail(error: HttpRequestError): void {
@@ -160,7 +172,7 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
 
     const response: HttpRequestError | ApiResponse<any> =
       await api.post("auth/register", data, {}, false)
-      .catch((error: HttpRequestError): HttpRequestError => error)
+        .catch((error: HttpRequestError): HttpRequestError => error)
 
     if (response instanceof HttpRequestError) {
       this.manageResponseError(response)
@@ -218,6 +230,16 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
     this.passwordConfirmation = passwordConfirmation
   }
 
+  @autobind
+  private setPasswordConfirmationInputRef(ref: TextInput): void {
+    this.passwordConfirmationRef = ref
+  }
+
+  @autobind
+  private setPasswordInputRef(ref: TextInput): void {
+    this.passwordInputRef = ref
+  }
+
   @action.bound
   private toggleIsPasswordVisible(): void {
     this.isPasswordVisible = !this.isPasswordVisible
@@ -254,6 +276,8 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
                 placeholderTextColor={color.palette.lightGrey}
                 onChangeText={this.setEmail}
                 inputState={emailInputState}
+                returnKeyType="next"
+                onSubmitEditing={this.focusOnPassword}
                 autoFocus
               />
 
@@ -267,6 +291,9 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
                 secureTextEntry={!isPasswordVisible}
                 placeholderTextColor={color.palette.lightGrey}
                 onChangeText={this.setPassword}
+                forwardedRef={this.setPasswordInputRef}
+                returnKeyType="next"
+                onSubmitEditing={this.focusOnPasswordConfirmation}
                 inputState={passwordInputState}
               />
 
@@ -284,6 +311,7 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
                 secureTextEntry={!isPasswordVisible}
                 placeholderTextColor={color.palette.lightGrey}
                 onChangeText={this.setPasswordConfirmation}
+                forwardedRef={this.setPasswordConfirmationInputRef}
                 inputState={passwordConfirmationInputState}
               />
 

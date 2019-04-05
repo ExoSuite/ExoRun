@@ -28,11 +28,11 @@ export class Api implements IService {
    */
   private apisauce: ApisauceInstance
   private readonly client: IClient
+  private readonly grantRequest: IGrantRequest
   /**
    * Configurable options.
    */
-  private readonly config: IApiConfig
-  private readonly grantRequest: IGrantRequest
+  public readonly config: IApiConfig
 
   /**
    * Creates the api.

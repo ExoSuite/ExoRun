@@ -5,11 +5,13 @@ import * as React from "react"
 import { ViewStyle } from "react-native"
 import { NavigationScreenProps } from "react-navigation"
 import autobind from "autobind-decorator"
-import { AppScreens } from "@navigation/navigation-definitions"
 import { inject } from "mobx-react/native"
 import { Injection } from "@services/injections"
 import { NavigationStore } from "@navigation/navigation-store"
 import { INavigationScreenProps } from "@navigation/stateful-navigator"
+import { Build, BuiltFor } from "@services/build-detector"
+import { Server } from "@services/api/api.servers"
+import { reset } from "@utils/keychain"
 
 type HomeNavigationScreenPropsType = INavigationScreenProps & NavigationScreenProps<{}>
 
@@ -33,14 +35,9 @@ export class HomeScreen extends React.Component<IHomeScreenProps> {
     const { navigationStore, navigation } = this.props
     navigation.getScreenProps.showSplashScreen()
     navigationStore.smoothReset(navigation.getScreenProps.animateSplashScreen)
-    // tslint:disable-next-line
-    // await reset(Server.EXOSUITE_USERS_API)
-  }
-
-  @autobind
-  private navigateToAR(): void {
-    const { navigation } = this.props
-    navigation.navigate(AppScreens.AUGMENTED_REALITY)
+    if (Build.isNot(BuiltFor.DEVELOPMENT)) {
+      await reset(Server.EXOSUITE_USERS_API)
+    }
   }
 
   public render(): React.ReactNode {
@@ -48,13 +45,9 @@ export class HomeScreen extends React.Component<IHomeScreenProps> {
     return (
       <Screen style={ROOT} preset="fixedCenter">
         <Button
-          text="aller vers l'AR"
-          onPress={this.navigateToAR}
-        />
-        <Button
           text="se déconnecter"
           onPress={this.logout}
-          style={{marginTop: 30}}
+          style={{ marginTop: 30 }}
         />
       </Screen>
     )

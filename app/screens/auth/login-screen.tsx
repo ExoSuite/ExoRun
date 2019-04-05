@@ -170,7 +170,7 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
 
   @autobind
   private onEmailPressNext(): void {
-    this.passwordInputRef.focus();
+    this.passwordInputRef.focus()
   }
 
   @action.bound
@@ -206,7 +206,7 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
     if (response instanceof HttpRequestError) {
       this.manageResponseError(response)
 
-      return;
+      return
     }
 
     DataLoader.Instance.success(

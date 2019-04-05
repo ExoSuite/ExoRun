@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 import { getGeneralApiProblem, HttpResponse } from "@services/api"
 import { ApiErrorResponse } from "apisauce"
 

@@ -80,3 +80,8 @@ android/app/src/main/assets/fonts/SimpleLineIcons.ttf
 android/app/src/main/assets/fonts/Zocial.ttf
 /ios/fastlane/report.xml
 /android/fastlane/report.xml
+
+
+**/vendor
+**/.bundle
+android/app/src/main/assets/fonts/FontAwesome5_Regular.ttf

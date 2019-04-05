@@ -1,11 +1,13 @@
-module.exports = {
-  presets: [
+{
+  "presets": [
     "module:metro-react-native-babel-preset"
   ],
-  env: {
-    "production": {}
+  "env": {
+    "production": {
+      "plugins": ["react-native-paper/babel"]
+    }
   },
-  plugins: [
+  "plugins": [
     [
       "@babel/plugin-proposal-decorators",
       {

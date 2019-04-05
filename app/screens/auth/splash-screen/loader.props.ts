@@ -1,6 +1,6 @@
 import * as React from "react"
 
-export interface ImageProperties {
+export interface IImageProperties {
   height: number
   width: number
 }
@@ -8,6 +8,6 @@ export interface ImageProperties {
 export interface ILoaderProps {
   backgroundColor: string
   children: React.ReactNode
-  imageProperties: ImageProperties
+  imageProperties: IImageProperties
   imageSource: any
 }

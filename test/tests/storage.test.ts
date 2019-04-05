@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 import { clear, load, loadString, remove, save, saveString } from "@utils/storage"
 import {
   mockClear,

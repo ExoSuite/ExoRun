@@ -106,7 +106,7 @@ This is a great place to put miscellaneous helpers and utilities. Things like da
 
 **However if there is no index.ts you can do:**
 
-####Example:
+#### Example:
 `import { Api } from '@services/api'`
 
 ### ./ignite directory

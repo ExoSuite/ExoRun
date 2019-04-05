@@ -16,16 +16,11 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## Android
-### android test
-```
-fastlane android test
-```
-Runs all the tests
 ### android staging
 ```
 fastlane android staging
 ```
-
+Create a new apk for staging
 ### android beta
 ```
 fastlane android beta

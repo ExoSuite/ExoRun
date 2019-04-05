@@ -3,6 +3,7 @@
 // In this file, we'll be kicking off our app or storybook.
 // import library modules
 import * as React from "react"
+import "./i18n"
 import { Environment } from "@models/environment"
 import { RootStore, setupRootStore } from "@models/root-store"
 import { BackButtonHandler } from "@navigation/back-button-handler"
@@ -14,14 +15,16 @@ import { AppRegistry } from "react-native"
 import Config from "react-native-config"
 import SplashScreen from "react-native-splash-screen"
 import { StorybookUIRoot } from "../storybook"
-import "./i18n"
 import { StatefulNavigator } from "./navigation"
 import { DataLoader } from "@components/data-loader"
+import { useScreens } from "react-native-screens"
 
-interface IAppState {
+export interface IAppState {
   env?: Environment
   rootStore?: RootStore
 }
+
+useScreens()
 
 /**
  * This is the root component of our app.
@@ -58,7 +61,7 @@ export class App extends React.Component<{}, IAppState> {
     this.setState(
       {
         env: store.env,
-        rootStore: store.rootStore,
+        rootStore: store.rootStore
       },
       () => {
         // hack to ignore white screen on android
@@ -69,7 +72,7 @@ export class App extends React.Component<{}, IAppState> {
         } else {
           SplashScreen.hide()
         }
-      },
+      }
     )
   }
 
@@ -95,15 +98,15 @@ export class App extends React.Component<{}, IAppState> {
     // --- am: begin list of stores ---
     const otherStores = {
       api: env.api,
-      soundPlayer: env.soundPlayer,
+      soundPlayer: env.soundPlayer
     }
     // --- am: end list of stores ---
 
     return (
       <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>
         <BackButtonHandler canExit={App.canExit}>
-          <StatefulNavigator />
-          <DataLoader ref={App.setDataLoaderInstance} />
+          <StatefulNavigator/>
+          <DataLoader ref={App.setDataLoaderInstance}/>
         </BackButtonHandler>
       </Provider>
     )

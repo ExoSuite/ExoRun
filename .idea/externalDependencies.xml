@@ -5,6 +5,7 @@
     <plugin id="com.atlassian.bitbucket.references" />
     <plugin id="com.jinsihou.react.snippets" />
     <plugin id="com.suming.react.PropTypes" />
+    <plugin id="izhangzhihao.rainbow.brackets" />
     <plugin id="mobi.hsz.idea.gitignore" />
     <plugin id="org.editorconfig.editorconfigjetbrains" />
     <plugin id="ru.adelf.idea.dotenv" />

@@ -3,7 +3,7 @@ import { RootStore } from "@models/root-store"
 import { IService } from "@services/interfaces"
 import { onSnapshot } from "mobx-state-tree"
 import { mst } from "reactotron-mst"
-import Tron from "reactotron-react-native"
+import Tron, { openInEditor } from "reactotron-react-native"
 import { commandMiddleware } from "./command-middleware"
 import { DEFAULT_REACTOTRON_CONFIG, ReactotronConfig } from "./reactotron-config"
 
@@ -113,7 +113,8 @@ export class Reactotron implements IService {
 
       // hookup middleware
       Tron.useReactNative({
-        asyncStorage: this.config.useAsyncStorage ? undefined : false
+        asyncStorage: this.config.useAsyncStorage ? undefined : false,
+        editor: true
       })
 
       // ignore some chatty `mobx-state-tree` actions
@@ -125,6 +126,8 @@ export class Reactotron implements IService {
           filter: (event) => !RX.test(event.name)
         })
       )
+
+      Tron.use(openInEditor())
 
       // hookup custom command middleware
       Tron.use(commandMiddleware(() => this.rootStore))
