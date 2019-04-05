@@ -25,7 +25,8 @@
     "packager-android": "adb reverse tcp:8081 tcp:8081",
     "patch": "patch-package",
     "prepare": "npm-run-all patch hack:*",
-    "postversion": "react-native-version"
+    "postversion": "react-native-version --never-increment-build",
+    "update-version": "npm version patch -m 'Upgrade to %s'"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.2.2",
