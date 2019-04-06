@@ -4,7 +4,7 @@
 import { ModalMock } from "./ModalMock"
 import * as React from "react"
 import { App } from "../../../app/app"
-import { mount } from "enzyme"
+import { shallow } from "enzyme"
 import { spy } from "sinon"
 import { StatefulNavigator } from "@navigation/stateful-navigator"
 import { store } from "../../__mocks__/mock-setup-root-store"
@@ -26,12 +26,12 @@ describe("App tested with airbnb enzyme", () => {
   })
 
   test("mount call componentDidMount", () => {
-    mount<App>(<App />)
+    shallow<App>(<App />)
     expect(App.prototype.componentDidMount).toHaveProperty("callCount", 1);
   })
 
   test("render correctly", () => {
-    const wrapper = mount<App>(<App />)
+    const wrapper = shallow<App>(<App />)
     // @ts-ignore
     wrapper.setState(store)
     expect(wrapper.find(StatefulNavigator)).toExist()
