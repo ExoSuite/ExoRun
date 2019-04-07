@@ -120,5 +120,4 @@ This directory will hold your Jest configs and mocks, as well as your [storyshot
 From the command line in your generated app's root directory, enter `yarn run storybook`
 This starts up the storybook server.
 
-In `app/app.tsx`, change `SHOW_STORYBOOK` to `true` and reload the app.
 
