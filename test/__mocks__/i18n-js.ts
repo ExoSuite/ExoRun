@@ -1,5 +1,5 @@
 // tslint:disable
 
 export default {
-  t: (key) => `${key}.test`,
-};
+  t: (key) => `${key}.test`
+}

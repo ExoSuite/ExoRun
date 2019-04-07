@@ -11,13 +11,13 @@ const USE_CASE_WRAPPER: ViewStyle = {
   right: 0,
   borderTopColor: "#e6e6e6",
   borderTopWidth: 1,
-  flexDirection: "row",
+  flexDirection: "row"
 }
 const USE_CASE: TextStyle = {
   fontSize: 10,
   color: "#666",
   paddingHorizontal: 4,
-  paddingBottom: 2,
+  paddingBottom: 2
 }
 const USAGE: TextStyle = { color: "#666", fontSize: 10, paddingTop: 0 }
 const HEADER: ViewStyle = {
@@ -25,7 +25,7 @@ const HEADER: ViewStyle = {
   paddingBottom: 10,
   paddingHorizontal: 10,
   borderBottomColor: "#e6e6e6",
-  borderBottomWidth: 1,
+  borderBottomWidth: 1
 }
 const COMPONENT: ViewStyle = { backgroundColor: "#fff" }
 
@@ -43,13 +43,14 @@ export interface IUseCaseProps {
   // When should we be using this? */
   usage?: string
 }
+
 // tslint:disable-next-line
 export function UseCase(props: IUseCaseProps) {
   const style = {
     ...COMPONENT,
     ...{ padding: props.noPad ? 0 : 10 },
     ...{ backgroundColor: props.noBackground ? "rgba(0,0,0,0)" : COMPONENT.backgroundColor },
-    ...props.style,
+    ...props.style
   }
 
   return (

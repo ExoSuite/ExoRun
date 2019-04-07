@@ -18,7 +18,7 @@ ContainerMock.defaultProps = {
 
 jest.mock("react-navigation", () => ({
   NavigationActions: {
-    init: () => 0,
+    init: () => 0
   },
   getNavigation: (): {} => ({}),
   withNavigation: jest.fn(),

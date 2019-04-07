@@ -7,25 +7,25 @@ import { store } from "../../__mocks__/mock-setup-root-store"
 describe("App tested with react-test-renderer", () => {
   beforeAll(() => {
     jest.mock("Platform", () => {
-      const Platform = jest.requireActual("Platform");
-      Platform.OS = "ios";
+      const Platform = jest.requireActual("Platform")
+      Platform.OS = "ios"
 
-      return Platform;
-    });
+      return Platform
+    })
 
-    jest.mock("react-native-modal", () => ModalMock);
+    jest.mock("react-native-modal", () => ModalMock)
   })
 
   test("App match snapshot ReactTestRenderer", () => {
 
     const app: ReactTestRenderer = renderer.create(
-      <App />
-    );
+      <App/>
+    )
 
     // @ts-ignore
     app.root.instance.setState(store)
 
     const json = app.toJSON()
-    expect(json).toMatchSnapshot();
-  });
+    expect(json).toMatchSnapshot()
+  })
 })

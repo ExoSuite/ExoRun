@@ -32,6 +32,6 @@ export class StorybookUIRoot extends React.Component {
   }
 
   public render(): React.ReactNode {
-    return <StorybookUI />
+    return <StorybookUI/>
   }
 }

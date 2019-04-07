@@ -6,7 +6,7 @@ jest.mock("react-native-keychain", () => ({
   resetGenericPassword: jest.fn(),
   getInternetCredentials: () => {
     return {
-      password: "",
+      password: ""
     }
-  },
+  }
 }))
