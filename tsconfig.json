@@ -4,7 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "jsx": "react-native",
-    "module": "es2015",
+    "module": "es6",
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "noImplicitAny": false,
@@ -14,7 +14,7 @@
     "removeComments": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "target": "es2015",
+    "target": "es6",
     "plugins": [{ "name": "typescript-tslint-plugin" }],
     "paths": {
       "storybook/*": ["storybook/*"],
