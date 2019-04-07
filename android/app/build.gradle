@@ -113,8 +113,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         multiDexEnabled true
-        versionCode 228
-        versionName "0.0.40"
+        versionCode 229
+        versionName "0.0.41"
 
         ndk {
             abiFilters "armeabi-v7a", "x86"
