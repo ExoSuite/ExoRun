@@ -1,14 +1,5 @@
 # ExoRun
 
-# Trigger a build from bamboo
-
-### include in your commit message one of these keywords:
-**build | update | add | create | modify**
-
-## The latest and greatest boilerplate for Infinite Red opinions
-
-This is the boilerplate that [Infinite Red](https://infinite.red) uses as a way to test bleeding-edge changes to our React Native stack.
-
 ## Quick Start
 
 The ExoRun project's structure will look similar to this:
