@@ -13,7 +13,7 @@ test("should initialize API and throw HttpRequestError", async () => {
   await instance.setup()
 
   const error = expect(
-    instance.get("user/me", {}, {}, false),
+    instance.get("user/me", {}, {}, false)
   ).rejects
   await error.toThrow()
   await error.toThrowError(HttpRequestError)
@@ -24,7 +24,7 @@ test("should throw LogicException with LogicErrorState.CANT_LOAD_API_TOKENS", as
   await instance.setup()
 
   const error = expect(
-    instance.get("user/me", {}, {}, true),
+    instance.get("user/me", {}, {}, true)
   ).rejects
   await error.toThrow()
   await error.toThrowError(LogicException)
@@ -50,4 +50,4 @@ test("Api test should return OK on /monitoring/alive", async () => {
 test("Api config should match dot env file", () => {
   expect(Config.APP_ENV).toEqual(BuiltFor.TESTING)
   expect(Build.is(BuiltFor.TESTING)).toBeTruthy()
-});
+})

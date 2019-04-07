@@ -6,7 +6,7 @@ const store = {
   rootStore: {
     navigationStore: {
       actionSubscribers: (): {} => ({}),
-      findCurrentRoute: (): {routeName: string} => ({routeName: ""})
+      findCurrentRoute: (): { routeName: string } => ({ routeName: "" })
     }
   }
 }
