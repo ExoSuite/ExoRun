@@ -1,6 +1,9 @@
 # ExoRun
 
-[![CircleCI](https://circleci.com/gh/infinitered/ignite-bowser.svg?style=svg)](https://circleci.com/gh/infinitered/ignite-bowser)
+# Trigger a build from bamboo
+
+### include in your commit message one of these keywords:
+**build | update | add | create | modify**
 
 ## The latest and greatest boilerplate for Infinite Red opinions
 
