@@ -7,6 +7,6 @@ module.exports = {
   },
   resolver: {
     extraNodeModules: require("node-libs-react-native"),
-    assetExts: ["mp3", "ttf", "ogg", "png", "vrx", "hdr", "gltf", "glb", "arobject", "obj", "mtl"],
-  },
+    assetExts: ["mp3", "ttf", "ogg", "png", "vrx", "hdr", "gltf", "glb", "arobject", "obj", "mtl"]
+  }
 }
