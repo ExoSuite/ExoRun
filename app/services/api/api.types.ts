@@ -32,21 +32,22 @@ export interface IPersonalToken {
   accessToken: string,
 }
 
+export interface IToken {
+  client_id: number,
+  id: string,
+  name: string,
+  revoked: boolean,
+  scopes: string[],
+  user_id: string,
+}
+
 export interface IPersonalTokenResponse extends IPersonalToken {
-  accessToken: string,
-  token: {
-    client_id: number,
-    id: string,
-    name: string,
-    revoked: boolean,
-    scopes: string[],
-    user_id: string,
-  }
+  token: IToken
 }
 
 export interface IPersonalTokens {
-  "connect-io-exorun": string,
-  "group-exorun": string,
-  "message-exorun": string
-  "view-picture-exorun": string,
+  "connect-io-exorun": IPersonalTokenResponse,
+  "group-exorun": IPersonalTokenResponse,
+  "message-exorun": IPersonalTokenResponse
+  "view-picture-exorun": IPersonalTokenResponse,
 }

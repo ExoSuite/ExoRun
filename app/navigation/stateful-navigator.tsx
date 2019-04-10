@@ -10,7 +10,7 @@ import { Asset } from "@services/asset"
 import { color } from "@theme"
 import { Screen } from "@services/device"
 import { Injection } from "@services/injections"
-import { Api, ApiRoutes, IPersonalTokenResponse, IPersonalTokens, IScope } from "@services/api"
+import { Api, ApiRoutes, IPersonalTokenResponse, IPersonalTokens, IScope, IToken } from "@services/api"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { IVoidFunction } from "@types"
 import { ApiResponse } from "apisauce"
@@ -61,15 +61,35 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
   }
 
   private async getOrCreatePersonalTokens(): Promise<void> {
-    const { api } = this.props
-    const localTokenStorage = await load(Server.EXOSUITE_USERS_API_PERSONAL)
+    const localPersonalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
 
-    if (localTokenStorage) {
-      console.tron.log(localTokenStorage)
-      return;
+    if (localPersonalTokens) {
+      return this.onLocalTokensFulfilled(localPersonalTokens);
     }
 
     return this.onNoPersonalTokensCreateTokenSet()
+  }
+
+  // tslint:disable-next-line: no-feature-envy
+  private async onLocalTokensFulfilled(localPersonalTokens: IPersonalTokens): Promise<void> {
+    const { api } = this.props
+
+    let localTokensHasBeenModified = false
+
+    const response: ApiResponse<IToken[]> = await api.get(ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS)
+    response.data.forEach(async (token: IToken) => {
+      if (token.revoked && token.name in localPersonalTokens) {
+        await api.delete(`${ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS}/${token.id}`)
+        const newPersonalToken:  ApiResponse<IPersonalTokenResponse> =
+          await api.post(ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS, { name: token.name, scopes: token.scopes })
+        localPersonalTokens[token.name] = newPersonalToken.data
+        localTokensHasBeenModified = true
+      }
+    })
+
+    if (localTokensHasBeenModified) {
+      await save(localPersonalTokens, Server.EXOSUITE_USERS_API_PERSONAL)
+    }
   }
 
   // tslint:disable-next-line: no-feature-envy
@@ -96,11 +116,11 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
     })
 
     const responseSet = await axios.all(requestTokenPromises)
-    // @ts-ignore
-    const tokens: IPersonalTokens = {};
+
+    const tokens: IPersonalTokens = {} as IPersonalTokens;
 
     responseSet.forEach((personalAccessTokenResponse: ApiResponse<IPersonalTokenResponse>) => {
-      tokens[personalAccessTokenResponse.data.token.name] = personalAccessTokenResponse.data.accessToken
+      tokens[personalAccessTokenResponse.data.token.name] = personalAccessTokenResponse.data
     })
 
     await save(tokens, Server.EXOSUITE_USERS_API_PERSONAL)
