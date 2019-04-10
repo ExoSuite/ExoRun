@@ -145,6 +145,7 @@
       "allow-snake-case",
       "check-format"
     ],
-    "mocha-no-side-effect-code": false
+    "mocha-no-side-effect-code": false,
+    "no-backbone-get-set-outside-model": false
   }
 }

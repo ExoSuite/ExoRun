@@ -4,7 +4,7 @@ export interface IImageUri {
   uri: string
 }
 
-enum FileExtension {
+export enum FileExtension {
   PNG = "png",
   JPG = "jpg",
   JSON = "json",
@@ -14,7 +14,7 @@ enum FileExtension {
  * create url for static retrieve of assets
  * @class Asset
  */
-class Asset {
+export class Asset {
 
   private static _locator(assetName: string, fileExtension: FileExtension): string {
     return Platform.OS === "ios" ? assetName : `asset:/custom/${assetName}.${fileExtension}`
@@ -23,9 +23,4 @@ class Asset {
   public static Locator(assetName: string, fileExtension: FileExtension = FileExtension.PNG): IImageUri {
     return { uri: Asset._locator(assetName, fileExtension) }
   }
-}
-
-export {
-  Asset,
-  FileExtension
 }

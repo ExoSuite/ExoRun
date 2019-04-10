@@ -19,6 +19,34 @@ export interface IGrantRequest extends IClient {
 }
 
 export interface IUser {
-  id: number
+  id: string
   name: string
+}
+
+export interface IScope {
+  description: string
+  id: string,
+}
+
+export interface IPersonalToken {
+  accessToken: string,
+}
+
+export interface IPersonalTokenResponse extends IPersonalToken {
+  accessToken: string,
+  token: {
+    client_id: number,
+    id: string,
+    name: string,
+    revoked: boolean,
+    scopes: string[],
+    user_id: string,
+  }
+}
+
+export interface IPersonalTokens {
+  "connect-io-exorun": string,
+  "group-exorun": string,
+  "message-exorun": string
+  "view-picture-exorun": string,
 }

@@ -10,9 +10,13 @@ import { Asset } from "@services/asset"
 import { color } from "@theme"
 import { Screen } from "@services/device"
 import { Injection } from "@services/injections"
-import { Api } from "@services/api"
+import { Api, ApiRoutes, IPersonalTokenResponse, IPersonalTokens, IScope } from "@services/api"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { IVoidFunction } from "@types"
+import { ApiResponse } from "apisauce"
+import { load, save } from "@utils/keychain"
+import { Server } from "@services/api/api.servers"
+import axios from "axios"
 
 interface IStatefulNavigatorProps {
   api?: Api
@@ -52,7 +56,55 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
     const { api, navigationStore } = this.props
 
     await api.checkToken()
+    await this.getOrCreatePersonalTokens()
     navigationStore.navigateTo(AppScreens.HOME)
+  }
+
+  private async getOrCreatePersonalTokens(): Promise<void> {
+    const { api } = this.props
+    const localTokenStorage = await load(Server.EXOSUITE_USERS_API_PERSONAL)
+
+    if (localTokenStorage) {
+      console.tron.log(localTokenStorage)
+      return;
+    }
+
+    return this.onNoPersonalTokensCreateTokenSet()
+  }
+
+  // tslint:disable-next-line: no-feature-envy
+  private async onNoPersonalTokensCreateTokenSet(): Promise<void> {
+    const { api } = this.props
+    const oauthScopes: ApiResponse<IScope[]> = await api.get(ApiRoutes.OAUTH_SCOPES)
+    const requestTokenPromises = [];
+    oauthScopes.data.forEach((scope: IScope) => {
+      const requestedScopes: string[] = [
+        scope.id
+      ]
+      if (scope.id === "message") {
+        requestedScopes.push("group")
+      }
+
+      requestTokenPromises.push(api.post(
+        ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS,
+        {
+          name: `${scope.id}-exorun`,
+          scopes: requestedScopes
+        }
+        )
+      )
+    })
+
+    const responseSet = await axios.all(requestTokenPromises)
+    // @ts-ignore
+    const tokens: IPersonalTokens = {};
+
+    responseSet.forEach((personalAccessTokenResponse: ApiResponse<IPersonalTokenResponse>) => {
+      tokens[personalAccessTokenResponse.data.token.name] = personalAccessTokenResponse.data.accessToken
+    })
+
+    await save(tokens, Server.EXOSUITE_USERS_API_PERSONAL)
+
   }
 
   @autobind

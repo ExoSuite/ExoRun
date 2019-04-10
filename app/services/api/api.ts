@@ -104,7 +104,6 @@ export class Api implements IService {
     if (Api.isITokenResponse(credentials)) {
       // decode token
       const decoded = jwtDecode(credentials.access_token)
-      console.tron.log(Date.now() / 1000 > decoded.exp, "IF JWT IS EXPIRED")
       // check if token is expired
       if (Date.now() / 1000 > decoded.exp) {
         // assign refresh token to grantRequest
