@@ -10,6 +10,10 @@
     "password-hide": "Masquer le mot de passe",
     "password-confirmation": "Confirmer le mot de passe"
   },
+  "drawer": {
+    "my-profile": "Mon Profil",
+    "app-settings": "Paramètres"
+  },
   "errors": {
     "invalidEmail": "Adresse électronique invalide.",
     "unknown": "Oups! Une erreur inattendue semble s'être produite.",

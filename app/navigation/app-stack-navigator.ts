@@ -5,9 +5,13 @@ import { color } from "@theme"
 import { headerShadow } from "@utils/shadows"
 import { AppBottomTabNavigator } from "@navigation/app-bottom-tab-navigator"
 import { AvatarLeftHeader } from "@navigation/components/avatar-left-header"
+import { UserProfileScreen } from "@screens/user-profile-screen"
+import { ApplicationSettingsScreen } from "@screens/application-settings-screen"
 
 export const AppStackNavigator = createStackNavigator({
-  [AppScreens.HOME]: AppBottomTabNavigator
+  [AppScreens.HOME]: AppBottomTabNavigator,
+  [AppScreens.PERSONAL_PROFILE]: UserProfileScreen,
+  [AppScreens.APP_SETTINGS]: ApplicationSettingsScreen
 }, {
   // @ts-ignore
   defaultNavigationOptions: {

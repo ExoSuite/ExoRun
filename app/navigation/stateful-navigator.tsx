@@ -10,11 +10,12 @@ import { Asset } from "@services/asset"
 import { color } from "@theme"
 import { Screen } from "@services/device"
 import { Injection } from "@services/injections"
-import { Api, ApiRoutes, IPersonalTokenResponse, IPersonalTokens, IScope, IToken } from "@services/api"
+import { Api, ApiRoutes, IPersonalTokenResponse, IPersonalTokens, IScope, IToken, IUser } from "@services/api"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { IVoidFunction } from "@types"
 import { ApiResponse } from "apisauce"
 import { load, save } from "@utils/keychain"
+import { load as loadFromStorage, save as saveFromStorage, StorageTypes } from "@utils/storage"
 import { Server } from "@services/api/api.servers"
 import axios from "axios"
 
@@ -57,6 +58,7 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
 
     await api.checkToken()
     await this.getOrCreatePersonalTokens()
+    await this.getProfile()
     navigationStore.navigateTo(AppScreens.HOME)
   }
 
@@ -68,6 +70,16 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
     }
 
     return this.onNoPersonalTokensCreateTokenSet()
+  }
+
+  private async getProfile(): Promise<void> {
+    const { api } = this.props
+    const userProfile: IUser | null = await loadFromStorage(StorageTypes.USER_PROFILE)
+
+    if (!userProfile) {
+      const userProfileRequest: ApiResponse<IUser> = await api.get(ApiRoutes.USER_ME)
+      await saveFromStorage(StorageTypes.USER_PROFILE, userProfileRequest.data)
+    }
   }
 
   // tslint:disable-next-line: no-feature-envy
@@ -129,6 +141,8 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
 
   @autobind
   private async removeLoader(): Promise<void> {
+    const { navigationStore } = this.props
+    navigationStore.reset()
     try {
       await this.canLogin()
     } catch (exception) {

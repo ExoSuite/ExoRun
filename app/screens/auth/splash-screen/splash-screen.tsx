@@ -5,15 +5,10 @@ import { Animated, StyleSheet, View, ViewStyle } from "react-native"
 
 import { Screen } from "@services/device"
 import { ILoaderProps } from "@screens/auth"
-import { Text } from "@components/text"
-import { spacing } from "@theme"
-import { Build } from "@services/build-detector"
 
 const FULL_SCREEN: ViewStyle = {
   flex: 1
 }
-
-const buildVersionText = `version: ${Build.version()}`
 
 /**
  * SplashScreen will handle the animation when we launch the app
@@ -78,12 +73,6 @@ export class SplashScreen extends React.Component<ILoaderProps> {
       ...transform
     }
 
-    const textStyle: ViewStyle = {
-      position: "absolute",
-      alignSelf: "center",
-      bottom: spacing[2]
-    }
-
     const fullScreenBackgroundLayer = appLoaded ? null : (
       <View style={[StyleSheet.absoluteFill, { backgroundColor }]}/>
     )
@@ -92,9 +81,6 @@ export class SplashScreen extends React.Component<ILoaderProps> {
       <View style={FULL_SCREEN}>
         {fullScreenBackgroundLayer}
         <Animated.Image source={imageSource} style={solidStyle}/>
-        <View style={textStyle}>
-          <Text preset="bold" text={buildVersionText}/>
-        </View>
         <Animated.View style={[FULL_SCREEN, appScale, opacityClearToVisible]}>
           {children}
         </Animated.View>

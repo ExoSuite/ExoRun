@@ -1,22 +1,32 @@
 import * as React from "react"
-import { ImageSourcePropType, TouchableOpacity, ViewStyle } from "react-native"
-import { observer } from "mobx-react/native"
+import { ImageSourcePropType, ImageStyle, TouchableOpacity, ViewStyle } from "react-native"
+import { inject, observer } from "mobx-react/native"
 import { NavigationScreenProps } from "react-navigation"
 import { action, observable } from "mobx"
 import autobind from "autobind-decorator"
 import { Avatar as RnpAvatar } from "react-native-paper"
 import { IVoidFunction } from "@types"
 import { spacing } from "@theme"
+import { load } from "@utils/keychain"
+import { load as loadFromStorage, StorageTypes } from "@utils/storage"
+import { Server } from "@services/api/api.servers"
+import { Injection } from "@services/injections"
+import { Api, ApiRoutes, IPersonalTokens, IUser } from "@services/api"
 
 export interface IAvatarProps {
+  api?: Api
   disableOnPress?: boolean,
   onPress?: IVoidFunction,
   rootStyle?: ViewStyle,
-  size?: number
+  size?: number,
 }
 
 const ROOT: ViewStyle = {
   marginLeft: spacing[2]
+}
+
+const IMAGE: ImageStyle = {
+  backgroundColor: "transparent"
 }
 
 export const defaultSize = 34
@@ -25,6 +35,7 @@ export const DefaultRnpAvatarSize = 64
 /**
  * The avatar will be visible on the left of the header component.
  */
+@inject(Injection.Api)
 @observer
 export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScreenProps<any>>> {
 
@@ -32,13 +43,16 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
 
   @autobind
   private openDrawer(): void {
-    console.tron.log(this.props.navigation.dangerouslyGetParent().openDrawer)
     this.props.navigation.dangerouslyGetParent().openDrawer()
   }
 
   @action
   public async componentWillMount(): Promise<void> {
-    this.avatarUrl = "https://api.adorable.io/avatars/285"
+    const { api } = this.props
+    const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
+    const userProfile: IUser = await loadFromStorage(StorageTypes.USER_PROFILE)
+    this.avatarUrl =
+      `${api.Url}/user/${userProfile.id}/${ApiRoutes.PROFILE_PICTURE_AVATAR}?token=${personalTokens["view-picture-exorun"].accessToken}`
   }
 
   public render(): React.ReactNode {
@@ -60,6 +74,7 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
         <RnpAvatar.Image
           size={avatarSize}
           source={avatarSource}
+          style={IMAGE}
         />
       </TouchableOpacity>
     )

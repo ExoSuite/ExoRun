@@ -11,7 +11,8 @@ import { DEFAULT_API_CONFIG, IApiConfig } from "./api-config"
 import { HttpRequest, toApiSauceMethod } from "./api-http-request"
 import { getGeneralApiProblem } from "./api-problem"
 import { Server } from "./api.servers"
-import { IClient, IGrantRequest, ITokenResponse } from "./api.types"
+import { IClient, IGrantRequest, IPersonalToken, ITokenResponse } from "./api.types"
+import { ApiRoutes } from "@services/api/api.routes"
 
 interface IHeaders extends Object {
   Authorization?: string
@@ -54,8 +55,21 @@ export class Api implements IService {
     }
   }
 
-  private static isITokenResponse(arg: any): arg is ITokenResponse {
+  /**
+   * get the url from api-config
+   */
+  public get Url(): string {
+    return this.config.url;
+  }
+
+  private static IsITokenResponse(arg: any): arg is ITokenResponse {
     return typeof (arg) !== "boolean"
+  }
+
+  public static BuildAuthorizationHeader(tokenInstance: IPersonalToken | ITokenResponse): IHeaders {
+    return {
+      Authorization: `Bearer ${"access_token" in tokenInstance ? tokenInstance.access_token : tokenInstance.accessToken}`
+    }
   }
 
   // tslint:disable-next-line max-func-args
@@ -68,9 +82,9 @@ export class Api implements IService {
     requireAuth: boolean = true
   ): Promise<ApiResponse<any>> {
 
-    if (requireAuth) {
+    if (requireAuth && headers.Authorization === null) {
       const token: ITokenResponse | boolean = await this.checkToken()
-      if (Api.isITokenResponse(token) && token.access_token) {
+      if (Api.IsITokenResponse(token) && token.access_token) {
         headers.Authorization = `Bearer ${token.access_token}`
       } else {
         throw new LogicException(LogicErrorState.MALFORMED_API_TOKENS)
@@ -99,9 +113,9 @@ export class Api implements IService {
 
   public async checkToken(): Promise<ITokenResponse | boolean> {
     // get tokens from secure storage
-    const credentials: ITokenResponse | boolean = await load(Server.EXOSUITE_USERS_API)
+    const credentials: ITokenResponse = await load(Server.EXOSUITE_USERS_API) as ITokenResponse
     // check if credentials match with type ITokenResponse
-    if (Api.isITokenResponse(credentials)) {
+    if (Api.IsITokenResponse(credentials)) {
       // decode token
       const decoded = jwtDecode(credentials.access_token)
       // check if token is expired
@@ -148,7 +162,7 @@ export class Api implements IService {
 
   // this function may throw 422
   public async login(email: string, password: string): Promise<ApiResponse<ITokenResponse>> {
-    return this.post("auth/login", { email, password, ...this.client }, {}, false)
+    return this.post(ApiRoutes.AUTH_LOGIN, { email, password, ...this.client }, {}, false)
   }
 
   // tslint:disable-next-line max-func-args

@@ -4,7 +4,7 @@ import { AppStackNavigator } from "@navigation/app-stack-navigator"
 import { DrawerNavigation } from "@navigation/components/drawer-navigation"
 
 export const AppNavigator = createDrawerNavigator({
-  [AppScreens.HOME]: AppStackNavigator
+  [AppScreens.HOME]: AppStackNavigator,
 }, {
   contentComponent: DrawerNavigation
 })

@@ -22,7 +22,7 @@ import { color, spacing } from "@theme"
 import { IValidationRules, validate } from "@utils/validate"
 import { equals } from "ramda"
 import { isEmpty, merge, snakeCase, transform } from "lodash"
-import { Api, ITokenResponse } from "@services/api"
+import { Api, ApiRoutes, ITokenResponse } from "@services/api"
 import { Injection } from "@services/injections"
 import { HttpRequestError } from "@exceptions"
 import { DataLoader } from "@components/data-loader"
@@ -171,7 +171,7 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
     merge(data, { email, password, password_confirmation: passwordConfirmation })
 
     const response: HttpRequestError | ApiResponse<any> =
-      await api.post("auth/register", data, {}, false)
+      await api.post(ApiRoutes.AUTH_REGISTER, data, {}, false)
         .catch((error: HttpRequestError): HttpRequestError => error)
 
     if (response instanceof HttpRequestError) {
