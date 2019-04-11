@@ -82,7 +82,7 @@ export class Api implements IService {
     requireAuth: boolean = true
   ): Promise<ApiResponse<any>> {
 
-    if (requireAuth && headers.Authorization === null) {
+    if (requireAuth && !headers.Authorization) {
       const token: ITokenResponse | boolean = await this.checkToken()
       if (Api.IsITokenResponse(token) && token.access_token) {
         headers.Authorization = `Bearer ${token.access_token}`

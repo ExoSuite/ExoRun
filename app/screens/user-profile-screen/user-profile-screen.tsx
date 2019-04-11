@@ -1,9 +1,8 @@
 import * as React from "react"
 import { observer } from "mobx-react"
 import { ViewStyle } from "react-native"
-import { Text } from "../../components/text"
-import { Screen } from "../../components/screen"
-import { color } from "../../theme"
+import { Screen, Text } from "@components"
+import { color } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 
@@ -19,7 +18,7 @@ const ROOT: ViewStyle = {
  */
 // @inject("mobxstuff")
 @observer
-export class UserProfileScreen extends React.Component<IPersonalProfileScreenProps, {}> {
+export class UserProfileScreen extends React.Component<IPersonalProfileScreenProps> {
   public static navigationOptions = {
     headerLeft: NavigationBackButtonWithNestedStackNavigator,
   }

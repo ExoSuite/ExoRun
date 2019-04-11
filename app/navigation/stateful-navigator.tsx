@@ -17,7 +17,7 @@ import { ApiResponse } from "apisauce"
 import { load, save } from "@utils/keychain"
 import { load as loadFromStorage, save as saveFromStorage, StorageTypes } from "@utils/storage"
 import { Server } from "@services/api/api.servers"
-import axios from "axios"
+import Axios from "axios"
 
 interface IStatefulNavigatorProps {
   api?: Api
@@ -127,7 +127,7 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
       )
     })
 
-    const responseSet = await axios.all(requestTokenPromises)
+    const responseSet = await Axios.all(requestTokenPromises)
 
     const tokens: IPersonalTokens = {} as IPersonalTokens;
 
@@ -141,8 +141,6 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
 
   @autobind
   private async removeLoader(): Promise<void> {
-    const { navigationStore } = this.props
-    navigationStore.reset()
     try {
       await this.canLogin()
     } catch (exception) {

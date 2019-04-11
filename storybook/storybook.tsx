@@ -1,9 +1,14 @@
-import { configure, getStorybookUI } from "@storybook/react-native"
+import { addDecorator, configure, getStorybookUI } from "@storybook/react-native"
 import React from "react"
 import Config from "react-native-config"
 import SplashScreen from "react-native-splash-screen"
+import { Provider } from "mobx-react/native"
 
 // tslint:disable prefer-function-over-method prefer-conditional-expression
+
+addDecorator((fn: Function) => {
+  return <Provider api={{}}>{fn()}</Provider>
+})
 
 configure(() => {
   require("./storybook-registry")
@@ -32,6 +37,6 @@ export class StorybookUIRoot extends React.Component {
   }
 
   public render(): React.ReactNode {
-    return <StorybookUI/>
+    return <StorybookUI />
   }
 }

@@ -23,6 +23,7 @@ const ROOT: ViewStyle = {
 @observer
 export class HomeScreen extends React.Component<IHomeScreenProps> {
 
+  // tslint:disable-next-line: prefer-function-over-method
   public render(): React.ReactNode {
 
     return (

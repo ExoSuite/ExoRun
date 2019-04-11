@@ -49,28 +49,6 @@ Array [
     <View
       style={
         Object {
-          "alignSelf": "center",
-          "bottom": 8,
-          "position": "absolute",
-        }
-      }
-    >
-      <Text
-        style={
-          Object {
-            "color": "#ffffff",
-            "fontFamily": "Montserrat",
-            "fontSize": 15,
-            "fontWeight": "bold",
-          }
-        }
-      >
-        version: 3456-23456-test
-      </Text>
-    </View>
-    <View
-      style={
-        Object {
           "flex": 1,
           "opacity": 0,
           "transform": Array [
@@ -120,28 +98,6 @@ Array [
             }
           }
         />
-        <View
-          style={
-            Object {
-              "alignSelf": "center",
-              "bottom": 8,
-              "position": "absolute",
-            }
-          }
-        >
-          <Text
-            style={
-              Object {
-                "color": "#ffffff",
-                "fontFamily": "Montserrat",
-                "fontSize": 15,
-                "fontWeight": "bold",
-              }
-            }
-          >
-            version: 3456-23456-test
-          </Text>
-        </View>
         <View
           style={
             Object {
