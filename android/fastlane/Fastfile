@@ -17,19 +17,28 @@ platform :android do
   desc "Create a new apk for staging"
   lane :staging do
     add_badge(alpha: true, glob: "./android/app/src/main/res/mipmap-*/ic_launcher.png")
-    gradle(task: "clean assembleRelease")
+    gradle(
+        task: 'assemble',
+        build_type: 'Release'
+     )
   end
 
-  desc "Submit a new Beta Build to Crashlytics Beta"
+  desc "Submit a new Beta Build"
   lane :beta do
     add_badge(glob: "./android/app/src/main/res/mipmap-*/ic_launcher.png")
-    gradle(task: "clean assembleRelease")
-    crashlytics
+    gradle(
+        task: 'assemble',
+        build_type: 'Release'
+     )
+    upload_to_play_store(track: 'beta')
   end
 
   desc "Deploy a new version to the Google Play"
   lane :deploy do
-    gradle(task: "clean assembleRelease")
+    gradle(
+        task: 'assemble',
+        build_type: 'Release'
+    )
     upload_to_play_store
   end
 end

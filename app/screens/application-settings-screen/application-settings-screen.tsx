@@ -6,7 +6,6 @@ import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import autobind from "autobind-decorator"
-import { Build, BuiltFor } from "@services/build-detector"
 import { reset } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
 import { inject } from "mobx-react/native"
@@ -41,10 +40,8 @@ export class ApplicationSettingsScreen extends React.Component<IApplicationSetti
     const { navigationStore, navigation } = this.props
     navigation.getScreenProps.showSplashScreen()
     navigationStore.smoothReset(navigation.getScreenProps.animateSplashScreen)
-    if (Build.isNot(BuiltFor.DEVELOPMENT)) {
-      await reset(Server.EXOSUITE_USERS_API)
-      await clear()
-    }
+    await reset(Server.EXOSUITE_USERS_API)
+    await clear()
   }
 
   // tslint:disable-next-line: prefer-function-over-method
