@@ -17,7 +17,7 @@ import { Build } from "@services/build-detector"
 const buildVersionText = `version: ${Build.Version()}`
 
 const ROOT: ViewStyle = {
-  backgroundColor: color.backgroundDarkerer,
+  backgroundColor: color.background,
   flex: 1
 }
 
@@ -113,9 +113,7 @@ export class DrawerNavigation extends React.Component<DrawerItemsProps> {
             <Text tx="drawer.app-settings"  preset="header"/>
           </TouchableOpacity>
         </Screen>
-        <View>
-          <Text preset="bold" text={buildVersionText} style={{textAlign: "center"}}/>
-        </View>
+        <Text preset="bold" text={buildVersionText} style={{textAlign: "center"}}/>
       </View>
     )
   }
