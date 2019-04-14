@@ -15,15 +15,15 @@ export type GeneralApiProblem =
    */
   | { kind: HttpResponse.SERVER_ERROR }
   /**
-   * We're not allowed because we haven't identified ourself. This is 401.
+   * We're not allowed because we haven't identified ourself. This Is 401.
    */
   | { kind: HttpResponse.UNAUTHORIZED }
   /**
-   * We don't have access to perform that request. This is 403.
+   * We don't have access to perform that request. This Is 403.
    */
   | { kind: HttpResponse.FORBIDDEN }
   /**
-   * Unable to find that resource.  This is a 404.
+   * Unable to find that resource.  This Is a 404.
    */
   | { kind: HttpResponse.NOT_FOUND }
   /**
@@ -31,11 +31,11 @@ export type GeneralApiProblem =
    */
   | { kind: HttpResponse.REJECTED }
   /**
-   * Something truly unexpected happened. Most likely can try again. This is a catch all.
+   * Something truly unexpected happened. Most likely can try again. This Is a catch all.
    */
   | { kind: HttpResponse.UNKNOWN; temporary: true }
   /**
-   * The data we received is not in the expected format.
+   * The data we received Is not in the expected format.
    */
   | { kind: HttpResponse.UNPROCESSABLE_ENTITY }
 

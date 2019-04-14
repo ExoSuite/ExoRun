@@ -11,8 +11,20 @@ import { DEFAULT_API_CONFIG, IApiConfig } from "./api-config"
 import { HttpRequest, toApiSauceMethod } from "./api-http-request"
 import { getGeneralApiProblem } from "./api-problem"
 import { Server } from "./api.servers"
-import { IClient, IGrantRequest, IPersonalToken, ITokenResponse } from "./api.types"
+import {
+  IClient,
+  IGrantRequest,
+  IPersonalToken,
+  IPersonalTokenResponse,
+  IPersonalTokens,
+  IScope,
+  IToken,
+  ITokenResponse,
+  IUser
+} from "./api.types"
 import { ApiRoutes } from "@services/api/api.routes"
+import { load as loadFromStorage, save as saveFromStorage, StorageTypes } from "@utils/storage"
+import Axios from "axios"
 
 interface IHeaders extends Object {
   Authorization?: string
@@ -23,6 +35,13 @@ interface IHeaders extends Object {
  */
 // tslint:disable-next-line min-class-cohesion
 export class Api implements IService {
+
+  /**
+   * get the url from api-config
+   */
+  public get Url(): string {
+    return this.config.url
+  }
 
   /**
    * The underlying apisauce Instance which performs the requests.
@@ -55,13 +74,6 @@ export class Api implements IService {
     }
   }
 
-  /**
-   * get the url from api-config
-   */
-  public get Url(): string {
-    return this.config.url;
-  }
-
   private static IsITokenResponse(arg: any): arg is ITokenResponse {
     return typeof (arg) !== "boolean"
   }
@@ -70,6 +82,60 @@ export class Api implements IService {
     return {
       Authorization: `Bearer ${"access_token" in tokenInstance ? tokenInstance.access_token : tokenInstance.accessToken}`
     }
+  }
+
+  // tslint:disable-next-line: no-feature-envy
+  private async onLocalTokensFulfilled(localPersonalTokens: IPersonalTokens): Promise<void> {
+    let localTokensHasBeenModified = false
+
+    const response: ApiResponse<IToken[]> = await this.get(ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS)
+    response.data.forEach(async (token: IToken) => {
+      if (token.revoked && token.name in localPersonalTokens) {
+        await this.delete(`${ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS}/${token.id}`)
+        const newPersonalToken: ApiResponse<IPersonalTokenResponse> =
+          await this.post(ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS, { name: token.name, scopes: token.scopes })
+        localPersonalTokens[token.name] = newPersonalToken.data
+        localTokensHasBeenModified = true
+      }
+    })
+
+    if (localTokensHasBeenModified) {
+      await save(localPersonalTokens, Server.EXOSUITE_USERS_API_PERSONAL)
+    }
+  }
+
+  // tslint:disable-next-line: no-feature-envy
+  private async onNoPersonalTokensCreateTokenSet(): Promise<void> {
+    const oauthScopes: ApiResponse<IScope[]> = await this.get(ApiRoutes.OAUTH_SCOPES)
+    const requestTokenPromises = []
+    oauthScopes.data.forEach((scope: IScope) => {
+      const requestedScopes: string[] = [
+        scope.id
+      ]
+      if (scope.id === "message") {
+        requestedScopes.push("group")
+      }
+
+      requestTokenPromises.push(this.post(
+        ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS,
+        {
+          name: `${scope.id}-exorun`,
+          scopes: requestedScopes
+        }
+        )
+      )
+    })
+
+    const responseSet = await Axios.all(requestTokenPromises)
+
+    const tokens: IPersonalTokens = {} as IPersonalTokens
+
+    responseSet.forEach((personalAccessTokenResponse: ApiResponse<IPersonalTokenResponse>) => {
+      tokens[personalAccessTokenResponse.data.token.name] = personalAccessTokenResponse.data
+    })
+
+    await save(tokens, Server.EXOSUITE_USERS_API_PERSONAL)
+
   }
 
   // tslint:disable-next-line max-func-args
@@ -118,7 +184,7 @@ export class Api implements IService {
     if (Api.IsITokenResponse(credentials)) {
       // decode token
       const decoded = jwtDecode(credentials.access_token)
-      // check if token is expired
+      // check if token Is expired
       if (Date.now() / 1000 > decoded.exp) {
         // assign refresh token to grantRequest
         this.grantRequest.refresh_token = credentials.refresh_token
@@ -160,6 +226,25 @@ export class Api implements IService {
     return this.request(HttpRequest.GET, url, data, headers, requireAuth)
   }
 
+  public async getOrCreatePersonalTokens(): Promise<void> {
+    const localPersonalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
+
+    if (localPersonalTokens) {
+      return this.onLocalTokensFulfilled(localPersonalTokens)
+    }
+
+    return this.onNoPersonalTokensCreateTokenSet()
+  }
+
+  public async getProfile(): Promise<void> {
+    const userProfile: IUser | null = await loadFromStorage(StorageTypes.USER_PROFILE)
+
+    if (!userProfile) {
+      const userProfileRequest: ApiResponse<IUser> = await this.get(ApiRoutes.USER_ME)
+      await saveFromStorage(StorageTypes.USER_PROFILE, userProfileRequest.data)
+    }
+  }
+
   // this function may throw 422
   public async login(email: string, password: string): Promise<ApiResponse<ITokenResponse>> {
     return this.post(ApiRoutes.AUTH_LOGIN, { email, password, ...this.client }, {}, false)
@@ -198,7 +283,7 @@ export class Api implements IService {
   /**
    * Sets up the API.  This will be called during the bootup
    * sequence and will happen before the first React component
-   * is mounted.
+   * Is mounted.
    *
    * Be as quick as possible in here.
    */

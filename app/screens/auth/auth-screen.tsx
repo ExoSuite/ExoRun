@@ -67,7 +67,7 @@ const navigateToRegisterContainer: ViewStyle = {
 }
 
 /**
- * AuthScreen component is used to show login and register buttons
+ * AuthScreen component Is used to show login and register buttons
  */
 @observer
 export class AuthScreen extends React.Component<IAuthScreenProps> {

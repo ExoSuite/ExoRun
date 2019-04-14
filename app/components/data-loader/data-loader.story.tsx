@@ -19,10 +19,10 @@ if (process.env.JEST_WORKER_ID === undefined) {
 
 const errors = {
   "email": [
-    "The email field is required."
+    "The email field Is required."
   ],
   "password": [
-    "The password field is required."
+    "The password field Is required."
   ]
 }
 

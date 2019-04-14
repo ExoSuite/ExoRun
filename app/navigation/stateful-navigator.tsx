@@ -10,14 +10,9 @@ import { Asset } from "@services/asset"
 import { color } from "@theme"
 import { Screen } from "@services/device"
 import { Injection } from "@services/injections"
-import { Api, ApiRoutes, IPersonalTokenResponse, IPersonalTokens, IScope, IToken, IUser } from "@services/api"
+import { Api } from "@services/api"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { IVoidFunction } from "@types"
-import { ApiResponse } from "apisauce"
-import { load, save } from "@utils/keychain"
-import { load as loadFromStorage, save as saveFromStorage, StorageTypes } from "@utils/storage"
-import { Server } from "@services/api/api.servers"
-import Axios from "axios"
 
 interface IStatefulNavigatorProps {
   api?: Api
@@ -53,90 +48,12 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
 
   private loader: SplashScreen = null
 
+  // tslint:disable-next-line: no-feature-envy
   private async canLogin(): Promise<void> {
     const { api, navigationStore } = this.props
 
-    await api.checkToken()
-    await this.getOrCreatePersonalTokens()
-    await this.getProfile()
+    await Promise.all([api.checkToken(), api.getOrCreatePersonalTokens(), api.getProfile()])
     navigationStore.navigateTo(AppScreens.HOME)
-  }
-
-  private async getOrCreatePersonalTokens(): Promise<void> {
-    const localPersonalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
-
-    if (localPersonalTokens) {
-      return this.onLocalTokensFulfilled(localPersonalTokens);
-    }
-
-    return this.onNoPersonalTokensCreateTokenSet()
-  }
-
-  private async getProfile(): Promise<void> {
-    const { api } = this.props
-    const userProfile: IUser | null = await loadFromStorage(StorageTypes.USER_PROFILE)
-
-    if (!userProfile) {
-      const userProfileRequest: ApiResponse<IUser> = await api.get(ApiRoutes.USER_ME)
-      await saveFromStorage(StorageTypes.USER_PROFILE, userProfileRequest.data)
-    }
-  }
-
-  // tslint:disable-next-line: no-feature-envy
-  private async onLocalTokensFulfilled(localPersonalTokens: IPersonalTokens): Promise<void> {
-    const { api } = this.props
-
-    let localTokensHasBeenModified = false
-
-    const response: ApiResponse<IToken[]> = await api.get(ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS)
-    response.data.forEach(async (token: IToken) => {
-      if (token.revoked && token.name in localPersonalTokens) {
-        await api.delete(`${ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS}/${token.id}`)
-        const newPersonalToken:  ApiResponse<IPersonalTokenResponse> =
-          await api.post(ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS, { name: token.name, scopes: token.scopes })
-        localPersonalTokens[token.name] = newPersonalToken.data
-        localTokensHasBeenModified = true
-      }
-    })
-
-    if (localTokensHasBeenModified) {
-      await save(localPersonalTokens, Server.EXOSUITE_USERS_API_PERSONAL)
-    }
-  }
-
-  // tslint:disable-next-line: no-feature-envy
-  private async onNoPersonalTokensCreateTokenSet(): Promise<void> {
-    const { api } = this.props
-    const oauthScopes: ApiResponse<IScope[]> = await api.get(ApiRoutes.OAUTH_SCOPES)
-    const requestTokenPromises = [];
-    oauthScopes.data.forEach((scope: IScope) => {
-      const requestedScopes: string[] = [
-        scope.id
-      ]
-      if (scope.id === "message") {
-        requestedScopes.push("group")
-      }
-
-      requestTokenPromises.push(api.post(
-        ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS,
-        {
-          name: `${scope.id}-exorun`,
-          scopes: requestedScopes
-        }
-        )
-      )
-    })
-
-    const responseSet = await Axios.all(requestTokenPromises)
-
-    const tokens: IPersonalTokens = {} as IPersonalTokens;
-
-    responseSet.forEach((personalAccessTokenResponse: ApiResponse<IPersonalTokenResponse>) => {
-      tokens[personalAccessTokenResponse.data.token.name] = personalAccessTokenResponse.data
-    })
-
-    await save(tokens, Server.EXOSUITE_USERS_API_PERSONAL)
-
   }
 
   @autobind

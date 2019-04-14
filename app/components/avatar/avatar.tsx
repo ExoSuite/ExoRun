@@ -12,6 +12,7 @@ import { load as loadFromStorage, StorageTypes } from "@utils/storage"
 import { Server } from "@services/api/api.servers"
 import { Injection } from "@services/injections"
 import { Api, ApiRoutes, IPersonalTokens, IUser } from "@services/api"
+import { Build } from "@services/build-detector"
 
 export interface IAvatarProps {
   api?: Api
@@ -49,12 +50,17 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
   @action
   public async componentWillMount(): Promise<void> {
     const { api } = this.props
-    const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
-    const userProfile: IUser = await loadFromStorage(StorageTypes.USER_PROFILE)
-    const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
 
-    this.avatarUrl =
-      `${api.Url}/user/${userProfile.id}/${ApiRoutes.PROFILE_PICTURE_AVATAR}?token=${token}`
+    if (Build.RunningOnStoryBook()) {
+      this.avatarUrl = "https://api.adorable.io/avatars/285"
+    } else  {
+      const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
+      const userProfile: IUser = await loadFromStorage(StorageTypes.USER_PROFILE)
+      const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
+
+      this.avatarUrl =
+        `${api.Url}/user/${userProfile.id}/${ApiRoutes.PROFILE_PICTURE_AVATAR}?token=${token}`
+    }
   }
 
   public render(): React.ReactNode {

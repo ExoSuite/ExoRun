@@ -6,8 +6,10 @@ import { Provider } from "mobx-react/native"
 
 // tslint:disable prefer-function-over-method prefer-conditional-expression
 
+const api = {};
+
 addDecorator((fn: Function) => {
-  return <Provider api={{}}>{fn()}</Provider>
+  return <Provider api={api}>{fn()}</Provider>
 })
 
 configure(() => {

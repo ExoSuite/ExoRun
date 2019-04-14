@@ -11,7 +11,7 @@ export interface ITextFieldProps extends TextInputProps {
   inputStyle?: TextStyle | TextStyle[]
 
   /**
-   * The label text if no labelTx is provided.
+   * The label text if no labelTx Is provided.
    */
   label?: string
 
@@ -21,7 +21,7 @@ export interface ITextFieldProps extends TextInputProps {
   labelTx?: string
 
   /**
-   * The Placeholder text if no placeholderTx is provided.
+   * The Placeholder text if no placeholderTx Is provided.
    */
   placeholder?: string
   /**

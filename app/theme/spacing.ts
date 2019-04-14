@@ -4,7 +4,7 @@
  * Spacing should consistent and whitespace thought of as a first class technique up
  * there with color and typefaces.
  *
- * Which type of scale you use is based on the design.
+ * Which type of scale you use Is based on the design.
  *
  * If you've got simpler app, you may only need 6 items.  Or maybe you want a spacing scale
  * to be named:

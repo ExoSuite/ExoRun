@@ -18,7 +18,7 @@ const ROOT: ViewStyle = {
 }
 
 /**
- * HomeScreen when an user is logged in, he will be redirected here.
+ * HomeScreen when an user Is logged in, he will be redirected here.
  */
 @observer
 export class HomeScreen extends React.Component<IHomeScreenProps> {

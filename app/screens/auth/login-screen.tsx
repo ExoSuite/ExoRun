@@ -212,7 +212,11 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
     DataLoader.Instance.success(
       soundPlayer.success,
       async () => {
-        await save(response.data, Server.EXOSUITE_USERS_API)
+        await save(response.data, Server.EXOSUITE_USERS_API);
+        await Promise.all([
+          api.getOrCreatePersonalTokens(),
+          api.getProfile()
+        ])
         navigation.navigate(AppScreens.HOME)
       })
   }

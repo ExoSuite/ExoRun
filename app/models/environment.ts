@@ -3,7 +3,7 @@ import { Reactotron } from "@services/reactotron"
 import { SoundPlayer } from "@services/sound-player"
 
 /**
- * The environment is a place where services and shared dependencies between
+ * The environment Is a place where services and shared dependencies between
  * models live.  They are made available to every model via dependency injection.
  */
 export class Environment {
@@ -13,7 +13,7 @@ export class Environment {
    */
   public api: Api
   /**
-   * Reactotron is only available in dev.
+   * Reactotron Is only available in dev.
    */
   public reactotron: Reactotron
 

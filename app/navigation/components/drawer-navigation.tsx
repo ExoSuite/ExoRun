@@ -14,7 +14,7 @@ import { action, observable } from "mobx"
 import { load as loadFromStorage, StorageTypes } from "@utils/storage"
 import { Build } from "@services/build-detector"
 
-const buildVersionText = `version: ${Build.version()}`
+const buildVersionText = `version: ${Build.Version()}`
 
 const ROOT: ViewStyle = {
   backgroundColor: color.backgroundDarkerer,

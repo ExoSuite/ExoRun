@@ -27,12 +27,12 @@ export interface IAppState {
 useScreens()
 
 /**
- * This is the root component of our app.
+ * This Is the root component of our app.
  */
 export class App extends React.Component<{}, IAppState> {
   /**
-   * Are we allowed to exit the app?  This is called when the back button
-   * is pressed on android.
+   * Are we allowed to exit the app?  This Is called when the back button
+   * Is pressed on android.
    *
    * @param routeName The currently active route name.
    */
@@ -53,7 +53,7 @@ export class App extends React.Component<{}, IAppState> {
   }
 
   /**
-   * When the component is mounted. This happens asynchronously and simply
+   * When the component Is mounted. This happens asynchronously and simply
    * re-renders when we're good to go.
    */
   public async componentDidMount(): Promise<void> {
@@ -84,7 +84,7 @@ export class App extends React.Component<{}, IAppState> {
     // This step should be completely covered over by the splash screen though.
     //
     // You're welcome to swap in your own component to render if your boot up
-    // sequence is too slow though.
+    // sequence Is too slow though.
 
     if (this.stateNotReady("rootStore") === undefined || this.stateNotReady("env") === undefined) {
       return null

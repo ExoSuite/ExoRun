@@ -193,7 +193,11 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
     DataLoader.Instance.success(
       soundPlayer.success,
       async () => {
-        await save(loginResponse.data, Server.EXOSUITE_USERS_API)
+        await save(response.data, Server.EXOSUITE_USERS_API);
+        await Promise.all([
+          api.getOrCreatePersonalTokens(),
+          api.getProfile()
+        ])
         navigation.navigate(AppScreens.HOME)
       })
   }

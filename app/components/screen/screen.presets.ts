@@ -45,7 +45,7 @@ export const presets = {
   },
 
   /**
-   * No scrolling. Content is centered on the screen.
+   * No scrolling. Content Is centered on the screen.
    */
   fixedCenter: {
     nonScroll: { ...DOES_NOT_SCROLL, justifyContent: "center", alignItems: "center" } as ViewStyle,

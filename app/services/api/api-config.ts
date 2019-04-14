@@ -18,7 +18,7 @@ export interface IApiConfig {
 let URL: string
 
 // tslint:disable-next-line prefer-conditional-expression
-if (Build.is(BuiltFor.DEVELOPMENT) || Build.is(BuiltFor.TESTING) || Build.is(BuiltFor.STAGING)) {
+if (Build.Is(BuiltFor.DEVELOPMENT) || Build.Is(BuiltFor.TESTING) || Build.Is(BuiltFor.STAGING)) {
   URL = "https://api.teamexosuite.cloud"
 } else {
   URL = "https://api.exosuite.fr"

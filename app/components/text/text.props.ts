@@ -24,7 +24,7 @@ export interface ITextProps extends TextProperties {
   text?: string
 
   /**
-   * Text which is looked up via i18n.
+   * Text which Is looked up via i18n.
    */
   tx?: string
 }

@@ -35,7 +35,7 @@ export class BackButtonHandler extends React.Component<IBackButtonHandlerProps> 
   }
 
   /**
-   * Fires when the back button is pressed on android.
+   * Fires when the back button Is pressed on android.
    */
   public onBackPress = (): boolean => {
     // grab the current route

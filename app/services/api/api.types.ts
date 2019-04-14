@@ -1,4 +1,4 @@
-// this file is for define api responses
+// this file Is for define api responses
 
 export interface ITokenResponse {
   access_token: string
