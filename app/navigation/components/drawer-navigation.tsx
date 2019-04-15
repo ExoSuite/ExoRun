@@ -13,6 +13,7 @@ import { IUser } from "@services/api"
 import { action, observable } from "mobx"
 import { load as loadFromStorage, StorageTypes } from "@utils/storage"
 import { Build } from "@services/build-detector"
+import { IPersonalProfileNavigationScreenProps } from "@screens/user-profile-screen"
 
 const buildVersionText = `version: ${Build.Version()}`
 
@@ -48,6 +49,10 @@ const PROFILE_CONTAINER: ViewStyle = {
   width: "100%"
 }
 
+const profileNavigationParams: IPersonalProfileNavigationScreenProps = {
+  me: true
+}
+
 /**
  * The DrawerNavigation will be visible when someone swipe to the left or tap on the avatar-left-header.tsx
  */
@@ -57,9 +62,9 @@ export class DrawerNavigation extends React.Component<DrawerItemsProps> {
   @observable
   private userProfile: IUser = {} as IUser
 
-  private readonly navigateToScreen = (screen: AppScreens): IVoidFunction => (
+  private readonly navigateToScreen = (screen: AppScreens, params: Object = {}): IVoidFunction => (
     (): void => {
-      this.props.navigation.navigate(screen)
+      this.props.navigation.navigate(screen, params)
     }
   )
 
@@ -80,7 +85,7 @@ export class DrawerNavigation extends React.Component<DrawerItemsProps> {
             <Avatar
               rootStyle={{ marginLeft: 0, marginBottom: spacing[2] }}
               size={DefaultRnpAvatarSize}
-              onPress={this.navigateToScreen(AppScreens.PERSONAL_PROFILE)}
+              onPress={this.navigateToScreen(AppScreens.PERSONAL_PROFILE, profileNavigationParams)}
             />
           </ProfileCover>
         </View>
@@ -92,7 +97,7 @@ export class DrawerNavigation extends React.Component<DrawerItemsProps> {
 
           <TouchableOpacity
             style={TOUCHABLE}
-            onPress={this.navigateToScreen(AppScreens.PERSONAL_PROFILE)}
+            onPress={this.navigateToScreen(AppScreens.PERSONAL_PROFILE, profileNavigationParams)}
           >
             <FontawesomeIcon
               name="user-circle"

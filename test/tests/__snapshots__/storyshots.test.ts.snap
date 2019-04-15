@@ -767,7 +767,7 @@ exports[`Storyshots AnimatedInteractiveInput Style Presets 1`] = `
                     Object {
                       "backgroundColor": "#ffffff",
                       "borderRadius": 10,
-                      "color": "#ffffff",
+                      "color": "black",
                       "fontFamily": "Montserrat",
                       "fontSize": 18,
                       "minHeight": 44,
@@ -970,7 +970,7 @@ exports[`Storyshots AnimatedInteractiveInput Style Presets 1`] = `
                     Object {
                       "backgroundColor": "#ffffff",
                       "borderRadius": 10,
-                      "color": "#ffffff",
+                      "color": "black",
                       "fontFamily": "Montserrat",
                       "fontSize": 18,
                       "minHeight": 44,
@@ -1173,7 +1173,7 @@ exports[`Storyshots AnimatedInteractiveInput Style Presets 1`] = `
                     Object {
                       "backgroundColor": "#ffffff",
                       "borderRadius": 10,
-                      "color": "#ffffff",
+                      "color": "black",
                       "fontFamily": "Montserrat",
                       "fontSize": 18,
                       "minHeight": 44,
@@ -1376,7 +1376,7 @@ exports[`Storyshots AnimatedInteractiveInput Style Presets 1`] = `
                     Object {
                       "backgroundColor": "#ffffff",
                       "borderRadius": 10,
-                      "color": "#ffffff",
+                      "color": "black",
                       "fontFamily": "Montserrat",
                       "fontSize": 18,
                       "minHeight": 44,

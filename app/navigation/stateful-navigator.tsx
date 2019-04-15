@@ -52,7 +52,9 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
   private async canLogin(): Promise<void> {
     const { api, navigationStore } = this.props
 
-    await Promise.all([api.checkToken(), api.getOrCreatePersonalTokens(), api.getProfile()])
+    await api.checkToken();
+    await api.getOrCreatePersonalTokens();
+    await api.getProfile();
     navigationStore.navigateTo(AppScreens.HOME)
   }
 

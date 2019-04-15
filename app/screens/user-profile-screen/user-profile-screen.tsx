@@ -6,7 +6,11 @@ import { color } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 
-export interface IPersonalProfileScreenProps extends NavigationScreenProps<{}> {
+export interface IPersonalProfileNavigationScreenProps {
+  me: boolean
+}
+
+export interface IPersonalProfileScreenProps extends NavigationScreenProps<IPersonalProfileNavigationScreenProps> {
 }
 
 const ROOT: ViewStyle = {
