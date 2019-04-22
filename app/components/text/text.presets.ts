@@ -57,7 +57,7 @@ export const presets = {
   /**
    * Field labels that appear on forms above the inputs.
    */
-  fieldLabelLight: { ...BASE, fontSize: 13, color: color.palette.lighterGrey } as TextStyle,
+  nicknameLight: { ...BASE, fontSize: 13, color: color.palette.lighterGrey } as TextStyle,
 
   /**
    * A smaller piece of secondard information.

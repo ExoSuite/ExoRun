@@ -64,6 +64,7 @@ export class DrawerNavigation extends React.Component<DrawerItemsProps> {
 
   private readonly navigateToScreen = (screen: AppScreens, params: Object = {}): IVoidFunction => (
     (): void => {
+      this.props.navigation.closeDrawer();
       this.props.navigation.navigate(screen, params)
     }
   )
@@ -92,7 +93,7 @@ export class DrawerNavigation extends React.Component<DrawerItemsProps> {
         <Screen preset="fixed">
           <View style={PROFILE_CONTAINER}>
             <Text preset="headerCentered" text={`${this.userProfile.first_name} ${this.userProfile.last_name}`}/>
-            <Text preset="fieldLabelLight" text={this.userProfile.nick_name} style={NICK_NAME}/>
+            <Text preset="nicknameLight" text={this.userProfile.nick_name} style={NICK_NAME}/>
           </View>
 
           <TouchableOpacity

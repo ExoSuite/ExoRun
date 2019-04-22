@@ -16,10 +16,12 @@ import { Build } from "@services/build-detector"
 
 export interface IAvatarProps {
   api?: Api
+  avatarUrl?: string
   disableOnPress?: boolean,
   onPress?: IVoidFunction,
   rootStyle?: ViewStyle,
   size?: number,
+  urlFromParent: boolean
 }
 
 const ROOT: ViewStyle = {
@@ -40,7 +42,7 @@ export const DefaultRnpAvatarSize = 64
 @observer
 export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScreenProps<any>>> {
 
-  @observable private avatarUrl: string
+  @observable private avatarUrl: string = null
 
   @autobind
   private openDrawer(): void {
@@ -50,6 +52,10 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
   @action
   public async componentWillMount(): Promise<void> {
     const { api } = this.props
+
+    if (this.props.urlFromParent) {
+      return;
+    }
 
     if (Build.RunningOnStoryBook()) {
       this.avatarUrl = "https://api.adorable.io/avatars/285"
@@ -63,6 +69,10 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
     }
   }
 
+  private get getAvatarUrl(): string {
+    return this.avatarUrl || this.props.avatarUrl
+  }
+
   public render(): React.ReactNode {
     const { rootStyle, disableOnPress, onPress, size, navigation } = this.props
     const containerStyle = { ...ROOT, ...rootStyle }
@@ -70,7 +80,7 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
     const onTouchableOpacityPressed = navigation ? this.openDrawer : onPress
     const avatarSize = size ? size : defaultSize
     const avatarSource: ImageSourcePropType = {
-      uri: this.avatarUrl
+      uri: this.getAvatarUrl
     }
 
     return (

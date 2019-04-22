@@ -30,6 +30,7 @@
     ],
     [
       "@babel/plugin-transform-runtime"
-    ]
+    ],
+    ["babel-plugin-idx"]
   ]
 }
