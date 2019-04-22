@@ -72,7 +72,6 @@ const FIXED_HEADER: ViewStyle = {
   ...headerShadow
 }
 
-
 interface IPersonalProfileScreenState {
   scrollY: Animated.Value
 }
