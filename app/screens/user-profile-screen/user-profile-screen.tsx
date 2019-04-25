@@ -105,6 +105,7 @@ export class UserProfileScreen extends React.Component<IPersonalProfileScreenPro
     if (this.props.navigation.getParam("me")) {
       this.userProfile = await whenVisitingMyProfile()
     } else {
+      // tslint:disable-next-line:no-commented-code no-commented-out-code
       // this.userProfile = await this.whenVisitingMyProfile();
     }
 
