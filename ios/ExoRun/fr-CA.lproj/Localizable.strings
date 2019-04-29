@@ -1,0 +1,12 @@
+/*
+ Localizable.strings
+ ExoRun
+ 
+ Created by Loïc Lopez on 29/04/2019.
+ */
+
+"NSLocationAlwaysUsageDescription" = "Utilisé avec en combinaison avec la réalité augmentée.";
+"NSPhotoLibraryUsageDescription" = "Cette application ne nécessite pas d'accès à la bibliothèque de photos.";
+"NSMicrophoneUsageDescription" = "Cette application ne nécessite pas d'accès au microphone.";
+"NSCameraUsageDescription" = "Utilisé pour afficher le mode réalité augmentée.";
+"NSLocationWhenInUseUsageDescription" = "Utilisé avec en combinaison avec la réalité augmentée.";

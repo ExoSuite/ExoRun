@@ -1,0 +1,12 @@
+/*
+ Localizable.strings
+ ExoRun
+ 
+ Created by Loïc Lopez on 29/04/2019.
+ */
+
+"NSLocationAlwaysUsageDescription" = "Used with in combination with AR.";
+"NSPhotoLibraryUsageDescription" = "This app does not require access to the library.";
+"NSMicrophoneUsageDescription" = "This app does not require access to the microphone.";
+"NSCameraUsageDescription" = "Used to show AR mode.";
+"NSLocationWhenInUseUsageDescription" = "Used with in combination with AR.";
