@@ -23,9 +23,6 @@
         "name": "typescript-tslint-plugin"
       }
     ],
-    "exclude": [
-      "node_modules"
-    ],
     "paths": {
       "storybook/*": ["storybook/*"],
       "@services/*": ["app/services/*"],
@@ -46,5 +43,8 @@
       "@types": ["app/types"],
       "@types/*": ["app/types/*"]
     }
-  }
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
