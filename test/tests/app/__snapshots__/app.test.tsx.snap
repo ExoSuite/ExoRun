@@ -122,6 +122,7 @@ Array [
     onModalWillHide={[Function]}
     onModalWillShow={[Function]}
     onRequestClose={[Function]}
+    scrollHorizontal={false}
     scrollOffset={0}
     scrollOffsetMax={0}
     scrollTo={null}
@@ -163,6 +164,7 @@ Array [
       onModalWillHide={[Function]}
       onModalWillShow={[Function]}
       pointerEvents="box-none"
+      scrollHorizontal={false}
       scrollOffset={0}
       scrollOffsetMax={0}
       scrollTo={null}
