@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -46,6 +47,7 @@
 		BD2B9034221335B600C023A6 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD2B90312213359600C023A6 /* libReactNativeConfig.a */; };
 		BD2B90352213361D00C023A6 /* libRNLocalize.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD2B8FA52213337800C023A6 /* libRNLocalize.a */; };
 		BD84663A2214FD2C00672CF2 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD84660C2214FD2C00672CF2 /* JavaScriptCore.framework */; };
+		BDEEA7672277AFB6009CBF6E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BDEEA7652277AFB5009CBF6E /* Localizable.strings */; };
 		BEF013C19654434CA979FDB9 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D835EC2CFF1A4E34BF7F7988 /* Montserrat-SemiBoldItalic.ttf */; };
 		D07A3244099248E785470C33 /* exorun-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 453F4C75EB5447FD94479882 /* exorun-text.png */; };
 		D08A31FB4F76482384442113 /* FontAwesome5_Pro_Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FD9CFE92941E6898B64EF /* FontAwesome5_Pro_Light.ttf */; };
@@ -298,34 +300,6 @@
 			remoteGlobalIDString = 358F4ED71D1E81A9004DF814;
 			remoteInfo = RCTBlob;
 		};
-		BD031FA92241A42B00E5E0C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D3CD90B1DE5FBD600167DC4;
-			remoteInfo = jschelpers;
-		};
-		BD031FAB2241A42B00E5E0C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
-			remoteInfo = "jschelpers-tvOS";
-		};
-		BD031FAD2241A42B00E5E0C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9936F3131F5F2E4B0010BF04;
-			remoteInfo = privatedata;
-		};
-		BD031FAF2241A42B00E5E0C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9936F32F1F5F2E5B0010BF04;
-			remoteInfo = "privatedata-tvOS";
-		};
 		BD059C29224C295C00EA3C60 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BD059BF8224C295C00EA3C60 /* RNVersionInfo.xcodeproj */;
@@ -396,6 +370,34 @@
 			remoteGlobalIDString = B5C32A36220C603B000FFB8D;
 			remoteInfo = "RNGestureHandler-tvOS";
 		};
+		BDEEA74C2277AF51009CBF6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EDEBC6D6214B3E7000DD5AC8;
+			remoteInfo = jsi;
+		};
+		BDEEA74E2277AF51009CBF6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EDEBC73B214B45A300DD5AC8;
+			remoteInfo = jsiexecutor;
+		};
+		BDEEA7502277AF51009CBF6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ED296FB6214C9A0900B7C4FE;
+			remoteInfo = "jsi-tvOS";
+		};
+		BDEEA7522277AF51009CBF6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ED296FEE214C9CF800B7C4FE;
+			remoteInfo = "jsiexecutor-tvOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -454,6 +456,10 @@
 		BD2B902B2213359600C023A6 /* ReactNativeConfig.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeConfig.xcodeproj; path = "../node_modules/react-native-config/ios/ReactNativeConfig.xcodeproj"; sourceTree = "<group>"; };
 		BD2B90B42213392A00C023A6 /* ExoRun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ExoRun.entitlements; path = ExoRun/ExoRun.entitlements; sourceTree = "<group>"; };
 		BD84660C2214FD2C00672CF2 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		BDEEA7662277AFB5009CBF6E /* fr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fr; path = ExoRun/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BDEEA7682277AFC1009CBF6E /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en; path = ExoRun/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BDEEA7692277B07B009CBF6E /* fr-CA */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = "fr-CA"; path = "ExoRun/fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		BDEEA76A2277B084009CBF6E /* en-GB */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = "en-GB"; path = "ExoRun/en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C144D9DFF98B4A149913C152 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../app/theme/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		C2BE292A8D844D1F8E8946B0 /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ThinItalic.ttf"; path = "../app/theme/fonts/Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
 		C4CE8967D1004364A3F8F3E9 /* exorun-logo.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "exorun-logo.png"; path = "../app/assets/img/exorun-logo.png"; sourceTree = "<group>"; };
@@ -587,6 +593,7 @@
 		13B07FAE1A68108700A75B9A /* ExoRun */ = {
 			isa = PBXGroup;
 			children = (
+				BDEEA7652277AFB5009CBF6E /* Localizable.strings */,
 				BD2B90B42213392A00C023A6 /* ExoRun.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -607,16 +614,16 @@
 				3DAD3EA71DF850E9000B6D8A /* libyoga.a */,
 				3DAD3EA91DF850E9000B6D8A /* libcxxreact.a */,
 				3DAD3EAB1DF850E9000B6D8A /* libcxxreact.a */,
-				BD031FAA2241A42B00E5E0C8 /* libjschelpers.a */,
-				BD031FAC2241A42B00E5E0C8 /* libjschelpers.a */,
 				2DF0FFDF2056DD460020B375 /* libjsinspector.a */,
 				2DF0FFE12056DD460020B375 /* libjsinspector-tvOS.a */,
 				2DF0FFE32056DD460020B375 /* libthird-party.a */,
 				2DF0FFE52056DD460020B375 /* libthird-party.a */,
 				2DF0FFE72056DD460020B375 /* libdouble-conversion.a */,
 				2DF0FFE92056DD460020B375 /* libdouble-conversion.a */,
-				BD031FAE2241A42B00E5E0C8 /* libprivatedata.a */,
-				BD031FB02241A42B00E5E0C8 /* libprivatedata-tvOS.a */,
+				BDEEA74D2277AF51009CBF6E /* libjsi.a */,
+				BDEEA74F2277AF51009CBF6E /* libjsiexecutor.a */,
+				BDEEA7512277AF51009CBF6E /* libjsi-tvOS.a */,
+				BDEEA7532277AF51009CBF6E /* libjsiexecutor-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -896,9 +903,11 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
+				fr,
+				"fr-CA",
+				"en-GB",
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -1217,34 +1226,6 @@
 			remoteRef = ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BD031FAA2241A42B00E5E0C8 /* libjschelpers.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libjschelpers.a;
-			remoteRef = BD031FA92241A42B00E5E0C8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		BD031FAC2241A42B00E5E0C8 /* libjschelpers.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libjschelpers.a;
-			remoteRef = BD031FAB2241A42B00E5E0C8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		BD031FAE2241A42B00E5E0C8 /* libprivatedata.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libprivatedata.a;
-			remoteRef = BD031FAD2241A42B00E5E0C8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		BD031FB02241A42B00E5E0C8 /* libprivatedata-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libprivatedata-tvOS.a";
-			remoteRef = BD031FAF2241A42B00E5E0C8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		BD059C2A224C295C00EA3C60 /* libRNVersionInfo.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1315,6 +1296,34 @@
 			remoteRef = BD41B01F2231F2BA00467218 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		BDEEA74D2277AF51009CBF6E /* libjsi.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libjsi.a;
+			remoteRef = BDEEA74C2277AF51009CBF6E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BDEEA74F2277AF51009CBF6E /* libjsiexecutor.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libjsiexecutor.a;
+			remoteRef = BDEEA74E2277AF51009CBF6E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BDEEA7512277AF51009CBF6E /* libjsi-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libjsi-tvOS.a";
+			remoteRef = BDEEA7502277AF51009CBF6E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BDEEA7532277AF51009CBF6E /* libjsiexecutor-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libjsiexecutor-tvOS.a";
+			remoteRef = BDEEA7522277AF51009CBF6E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1346,6 +1355,7 @@
 				990A15675A434ABBA4779AEC /* Montserrat-Regular.ttf in Resources */,
 				DDEDA939C4144C33B8271D77 /* Montserrat-SemiBold.ttf in Resources */,
 				BEF013C19654434CA979FDB9 /* Montserrat-SemiBoldItalic.ttf in Resources */,
+				BDEEA7672277AFB6009CBF6E /* Localizable.strings in Resources */,
 				4D2521C41305465A918FF571 /* Montserrat-Thin.ttf in Resources */,
 				3EC2B7FF1F7643A5B3A6C779 /* Montserrat-ThinItalic.ttf in Resources */,
 				AF14EF3B728546C5AC36FEAB /* exorun-logo.png in Resources */,
@@ -1500,6 +1510,20 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		BDEEA7652277AFB5009CBF6E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BDEEA7662277AFB5009CBF6E /* fr */,
+				BDEEA7682277AFC1009CBF6E /* en */,
+				BDEEA7692277B07B009CBF6E /* fr-CA */,
+				BDEEA76A2277B084009CBF6E /* en-GB */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1567,7 +1591,7 @@
 				CODE_SIGN_ENTITLEMENTS = ExoRun/ExoRun.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 171;
+				CURRENT_PROJECT_VERSION = 172;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
@@ -1601,7 +1625,7 @@
 				CODE_SIGN_ENTITLEMENTS = ExoRun/ExoRun.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 171;
+				CURRENT_PROJECT_VERSION = 172;
 				DEVELOPMENT_TEAM = 59JKX7F3X8;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
