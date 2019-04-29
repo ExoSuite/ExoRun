@@ -34,7 +34,6 @@
     "autobind-decorator": "^2.4.0",
     "i18n-js": "^3.2.1",
     "idx": "^2.5.5",
-    "jsc-android": "^236355.1.1",
     "jwt-decode": "^2.2.0",
     "lodash-es": "^4.17.11",
     "lottie-react-native": "^2.6.1",

@@ -14,7 +14,7 @@ addDecorator((fn: Function) => {
 
 configure(() => {
   require("./storybook-registry")
-})
+}, module)
 
 let StorybookUI
 if (Config.SERVER_IP) {
