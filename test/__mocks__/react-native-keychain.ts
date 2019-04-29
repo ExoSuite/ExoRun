@@ -6,7 +6,18 @@ jest.mock("react-native-keychain", () => ({
   resetGenericPassword: jest.fn(),
   getInternetCredentials: () => {
     return {
-      password: ""
+      "connect-io-exorun": {
+        accessToken: "eazrztyh"
+      },
+      "group-exorun": {
+        accessToken: "eazrztyh"
+      },
+      "message-exorun": {
+        accessToken: "eazrztyh"
+      },
+      "view-picture-exorun": {
+        accessToken: "eazrztyh"
+      },
     }
   }
 }))

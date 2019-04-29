@@ -1,3 +1,3 @@
-// this is the native storybook entry point
+// this Is the native storybook entry point
 
 export * from "./storybook"

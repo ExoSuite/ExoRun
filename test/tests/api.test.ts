@@ -49,5 +49,5 @@ test("Api test should return OK on /monitoring/alive", async () => {
 
 test("Api config should match dot env file", () => {
   expect(Config.APP_ENV).toEqual(BuiltFor.TESTING)
-  expect(Build.is(BuiltFor.TESTING)).toBeTruthy()
+  expect(Build.Is(BuiltFor.TESTING)).toBeTruthy()
 })

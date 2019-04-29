@@ -1,5 +1,5 @@
 // tslint:disable-next-line
-export const VALUE_OBJECT = { x: 1 }
+export const VALUE_OBJECT = { x: 1, id: 2 }
 export const VALUE_STRING = JSON.stringify(VALUE_OBJECT);
 
 // mocks

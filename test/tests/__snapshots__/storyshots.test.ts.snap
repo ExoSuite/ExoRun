@@ -146,6 +146,7 @@ exports[`Storyshots Animated Data Loader Error 1`] = `
           onModalWillHide={[Function]}
           onModalWillShow={[Function]}
           onRequestClose={[Function]}
+          scrollHorizontal={false}
           scrollOffset={0}
           scrollOffsetMax={0}
           scrollTo={null}
@@ -187,6 +188,7 @@ exports[`Storyshots Animated Data Loader Error 1`] = `
             onModalWillHide={[Function]}
             onModalWillShow={[Function]}
             pointerEvents="box-none"
+            scrollHorizontal={false}
             scrollOffset={0}
             scrollOffsetMax={0}
             scrollTo={null}
@@ -461,6 +463,7 @@ exports[`Storyshots Animated Data Loader Success 1`] = `
           onModalWillHide={[Function]}
           onModalWillShow={[Function]}
           onRequestClose={[Function]}
+          scrollHorizontal={false}
           scrollOffset={0}
           scrollOffsetMax={0}
           scrollTo={null}
@@ -502,6 +505,7 @@ exports[`Storyshots Animated Data Loader Success 1`] = `
             onModalWillHide={[Function]}
             onModalWillShow={[Function]}
             pointerEvents="box-none"
+            scrollHorizontal={false}
             scrollOffset={0}
             scrollOffsetMax={0}
             scrollTo={null}
@@ -767,7 +771,7 @@ exports[`Storyshots AnimatedInteractiveInput Style Presets 1`] = `
                     Object {
                       "backgroundColor": "#ffffff",
                       "borderRadius": 10,
-                      "color": "#ffffff",
+                      "color": "black",
                       "fontFamily": "Montserrat",
                       "fontSize": 18,
                       "minHeight": 44,
@@ -970,7 +974,7 @@ exports[`Storyshots AnimatedInteractiveInput Style Presets 1`] = `
                     Object {
                       "backgroundColor": "#ffffff",
                       "borderRadius": 10,
-                      "color": "#ffffff",
+                      "color": "black",
                       "fontFamily": "Montserrat",
                       "fontSize": 18,
                       "minHeight": 44,
@@ -1173,7 +1177,7 @@ exports[`Storyshots AnimatedInteractiveInput Style Presets 1`] = `
                     Object {
                       "backgroundColor": "#ffffff",
                       "borderRadius": 10,
-                      "color": "#ffffff",
+                      "color": "black",
                       "fontFamily": "Montserrat",
                       "fontSize": 18,
                       "minHeight": 44,
@@ -1376,7 +1380,7 @@ exports[`Storyshots AnimatedInteractiveInput Style Presets 1`] = `
                     Object {
                       "backgroundColor": "#ffffff",
                       "borderRadius": 10,
-                      "color": "#ffffff",
+                      "color": "black",
                       "fontFamily": "Montserrat",
                       "fontSize": 18,
                       "minHeight": 44,
@@ -1560,19 +1564,21 @@ exports[`Storyshots Avatar Style Presets 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "#6200ee",
+                      "backgroundColor": "transparent",
                       "borderRadius": 17,
                       "height": 34,
                       "width": 34,
                     },
-                    undefined,
+                    Object {
+                      "backgroundColor": "transparent",
+                    },
                   ]
                 }
               >
                 <Image
                   source={
                     Object {
-                      "uri": "https://api.adorable.io/avatars/285",
+                      "uri": undefined,
                     }
                   }
                   style={
@@ -5562,6 +5568,149 @@ exports[`Storyshots PressableText Style Presets 1`] = `
 </View>
 `;
 
+exports[`Storyshots ProfileCover Style Presets 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                Primary
+              </Text>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              The primary.
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <View
+              accessibilityIgnoresInvertColors={true}
+              style={
+                Object {
+                  "backgroundColor": "red",
+                }
+              }
+            >
+              <Image
+                resizeMode="cover"
+                source={
+                  Object {
+                    "uri": undefined,
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "bottom": 0,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                    Object {
+                      "height": undefined,
+                      "width": undefined,
+                    },
+                    undefined,
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
 exports[`Storyshots Switch Behaviour 1`] = `
 <View
   onLayout={[Function]}
@@ -7581,7 +7730,17 @@ exports[`Storyshots TextField Ref Forwarding 1`] = `
                 Ref Forwarding
               </Text>
             </View>
-            
+            <Text
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              forward a ref
+            </Text>
           </View>
           <View
             style={

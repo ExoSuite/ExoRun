@@ -11,8 +11,7 @@ export const defaultSize = 16
  *
  * Component description here for TypeScript tips.
  */
-// tslint:disable-next-line: typedef
-export function FontawesomeIcon(props: IFontawesomeIconProps) {
+export function FontawesomeIcon(props: IFontawesomeIconProps): React.ReactElement {
   // grab the props
   const { name, type = "solid", size = defaultSize, color = themeColor.primary, style } = props
 

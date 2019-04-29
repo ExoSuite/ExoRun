@@ -1,4 +1,4 @@
-import { ITokenResponse } from "@services/api"
+import { IPersonalTokens, ITokenResponse } from "@services/api"
 import { Server } from "@services/api/api.servers"
 import * as ReactNativeKeychain from "react-native-keychain"
 
@@ -8,7 +8,7 @@ import * as ReactNativeKeychain from "react-native-keychain"
  * @param tokens
  * @param server The server these creds are for.
  */
-export async function save(tokens: ITokenResponse, server: Server): Promise<boolean> {
+export async function save(tokens: ITokenResponse | IPersonalTokens, server: Server): Promise<boolean> {
   await ReactNativeKeychain.setInternetCredentials(
     server,
     "ExoRun",
@@ -23,7 +23,7 @@ export async function save(tokens: ITokenResponse, server: Server): Promise<bool
  *
  * @param server The server that these creds are for
  */
-export async function load(server: Server): Promise<ITokenResponse | boolean> {
+export async function load(server: Server): Promise<ITokenResponse | IPersonalTokens | boolean> {
   const creds = await ReactNativeKeychain.getInternetCredentials(server)
   if (creds.password) {
     return JSON.parse(creds.password)

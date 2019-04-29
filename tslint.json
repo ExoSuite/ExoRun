@@ -6,18 +6,11 @@
     "tslint-react",
     "tslint-clean-code/recommended_ruleset"
   ],
-  "rulesDirectory": [
-    "node_modules/tslint-clean-code/dist/src/"
-  ],
+  "rulesDirectory": ["node_modules/tslint-clean-code/dist/src/"],
   "rules": {
     "no-use-before-declare": true,
     "no-function-expression": true,
-    "quotemark": [
-      true,
-      "double",
-      "jsx-double",
-      "backtick"
-    ],
+    "quotemark": [true, "double", "jsx-double", "backtick"],
     "no-console": false,
     "arrow-parens": true,
     "object-literal-key-quotes": false,
@@ -28,14 +21,7 @@
     "interface-over-type-literal": false,
     "align": true,
     "trailing-comma": false,
-    "typedef": [
-      true,
-      "call-signature",
-      "parameter",
-      "arrow-call-signature",
-      "property-declaration",
-      "arrow-parameter"
-    ],
+    "typedef": [true, "call-signature", "parameter", "arrow-call-signature", "property-declaration", "arrow-parameter"],
     "no-inferrable-types": true,
     "ban-types": false,
     "no-relative-imports": false,
@@ -47,10 +33,7 @@
     "no-parameter-reassignment": true,
     "no-unsafe-any": false,
     "no-implicit-dependencies": false,
-    "member-access": [
-      true,
-      "check-accessor"
-    ],
+    "member-access": [true, "check-accessor"],
     "member-ordering": [
       true,
       {
@@ -78,11 +61,7 @@
     "no-import-side-effect": false,
     "newline-per-chained-call": false,
     "no-object-literal-type-assertion": false,
-    "promise-function-async": [
-      true,
-      "check-function-declaration",
-      "check-method-declaration"
-    ],
+    "promise-function-async": [true, "check-function-declaration", "check-method-declaration"],
     "prefer-type-cast": false,
     "no-null-keyword": false,
     "import-name": false,
@@ -101,16 +80,10 @@
     "no-unnecessary-qualifier": true,
     "no-boolean-literal-compare": true,
     "no-angle-bracket-type-assertion": true,
-    "interface-name": [
-      true,
-      "always-prefix"
-    ],
+    "interface-name": [true, "always-prefix"],
     "increment-decrement": true,
     "arrow-return-shorthand": true,
-    "array-type": [
-      true,
-      "array"
-    ],
+    "array-type": [true, "array"],
     "prefer-readonly": true,
     "prefer-const": true,
     "cyclomatic-complexity": true,
@@ -126,10 +99,7 @@
     "no-this-assignment": false,
     "no-submodule-imports": false,
     "jsx-no-multiline-js": false,
-    "jsx-boolean-value": [
-      true,
-      "never"
-    ],
+    "jsx-boolean-value": [true, "never"],
     "max-func-body-length": [
       true,
       {
@@ -139,12 +109,8 @@
     "newline-before-return": true,
     "no-any": false,
     "newspaper-order": false,
-    "variable-name": [
-      true,
-      "allow-pascal-case",
-      "allow-snake-case",
-      "check-format"
-    ],
-    "mocha-no-side-effect-code": false
+    "variable-name": [true, "allow-pascal-case", "allow-snake-case", "check-format"],
+    "mocha-no-side-effect-code": false,
+    "no-backbone-get-set-outside-model": false
   }
 }

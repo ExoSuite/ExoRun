@@ -8,7 +8,7 @@ import { ITextProps } from "./text.props"
 /**
  * For your text displaying needs.
  *
- * This component is a HOC over the built-in React Native one.
+ * This component Is a HOC over the built-in React Native one.
  */
 // tslint:disable-next-line typedef
 export function Text(props: ITextProps) {

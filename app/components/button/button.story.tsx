@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react-native"
 import * as React from "react"
-import { TextStyle, ViewStyle } from "react-native"
+import { TextStyle, ViewStyle, Alert } from "react-native"
 import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { Button } from "./"
 
@@ -15,7 +15,7 @@ const buttonTextStyleArray: TextStyle[] = [
 ]
 
 const alert = (): void => {
-  window.alert("pressed")
+  Alert.alert("pressed")
 }
 
 storiesOf("Button", module)

@@ -7,8 +7,7 @@ import { IFormRowProps } from "./form-row.props"
 /**
  * A horizontal container component used to hold a row of a form.
  */
-// tslint:disable-next-line: typedef
-export function FormRow(props: IFormRowProps) {
+export function FormRow(props: IFormRowProps): React.ReactElement {
   let viewStyle
   if (Array.isArray(props.style)) {
     viewStyle = reduce((acc: Object, term: Object) => {

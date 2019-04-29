@@ -17,7 +17,9 @@ import com.viromedia.bridge.ReactViroPackage;
 import com.reactcommunity.rnlocalize.RNLocalizePackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.zmxv.RNSound.RNSoundPackage;
+
 import cx.evermeet.versioninfo.RNVersionInfoPackage;
+
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
 import java.util.Arrays;
@@ -35,7 +37,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.asList(
                     new MainReactPackage(),
-            new RNScreensPackage(),
+                    new RNScreensPackage(),
                     new AsyncStoragePackage(),
                     new RNLocalizePackage(),
                     new RNSoundPackage(),

@@ -61,7 +61,7 @@ export async function setupRootStore(): Promise<ISetupRootStore> {
  * Setup the environment that all the models will be sharing.
  *
  * The environment includes other functions that will be picked from some
- * of the models that get created later. This is how we loosly couple things
+ * of the models that get created later. This Is how we loosly couple things
  * like events between models.
  */
 export async function createEnvironment(): Promise<Environment> {

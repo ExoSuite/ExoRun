@@ -1,22 +1,35 @@
 import * as React from "react"
-import { ImageSourcePropType, TouchableOpacity, ViewStyle } from "react-native"
-import { observer } from "mobx-react/native"
+import { ImageSourcePropType, ImageStyle, TouchableOpacity, ViewStyle } from "react-native"
+import { inject, observer } from "mobx-react/native"
 import { NavigationScreenProps } from "react-navigation"
 import { action, observable } from "mobx"
 import autobind from "autobind-decorator"
 import { Avatar as RnpAvatar } from "react-native-paper"
 import { IVoidFunction } from "@types"
 import { spacing } from "@theme"
+import { load } from "@utils/keychain"
+import { load as loadFromStorage, StorageTypes } from "@utils/storage"
+import { Server } from "@services/api/api.servers"
+import { Injection } from "@services/injections"
+import { Api, ApiRoutes, IPersonalTokens, IUser } from "@services/api"
+import { Build } from "@services/build-detector"
 
 export interface IAvatarProps {
+  api?: Api
+  avatarUrl?: string
   disableOnPress?: boolean,
   onPress?: IVoidFunction,
   rootStyle?: ViewStyle,
-  size?: number
+  size?: number,
+  urlFromParent: boolean
 }
 
 const ROOT: ViewStyle = {
   marginLeft: spacing[2]
+}
+
+const IMAGE: ImageStyle = {
+  backgroundColor: "transparent"
 }
 
 export const defaultSize = 34
@@ -25,20 +38,39 @@ export const DefaultRnpAvatarSize = 64
 /**
  * The avatar will be visible on the left of the header component.
  */
+@inject(Injection.Api)
 @observer
 export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScreenProps<any>>> {
 
-  @observable private avatarUrl: string
+  @observable private avatarUrl: string = null
 
   @autobind
   private openDrawer(): void {
-    console.tron.log(this.props.navigation.dangerouslyGetParent().openDrawer)
     this.props.navigation.dangerouslyGetParent().openDrawer()
   }
 
   @action
   public async componentWillMount(): Promise<void> {
-    this.avatarUrl = "https://api.adorable.io/avatars/285"
+    const { api } = this.props
+
+    if (this.props.urlFromParent) {
+      return;
+    }
+
+    if (Build.RunningOnStoryBook()) {
+      this.avatarUrl = "https://api.adorable.io/avatars/285"
+    } else  {
+      const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
+      const userProfile: IUser = await loadFromStorage(StorageTypes.USER_PROFILE)
+      const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
+
+      this.avatarUrl =
+        `${api.Url}/user/${userProfile.id}/${ApiRoutes.PROFILE_PICTURE_AVATAR}?token=${token}`
+    }
+  }
+
+  private get getAvatarUrl(): string {
+    return this.avatarUrl || this.props.avatarUrl
   }
 
   public render(): React.ReactNode {
@@ -48,7 +80,7 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
     const onTouchableOpacityPressed = navigation ? this.openDrawer : onPress
     const avatarSize = size ? size : defaultSize
     const avatarSource: ImageSourcePropType = {
-      uri: this.avatarUrl
+      uri: this.getAvatarUrl
     }
 
     return (
@@ -60,6 +92,7 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
         <RnpAvatar.Image
           size={avatarSize}
           source={avatarSource}
+          style={IMAGE}
         />
       </TouchableOpacity>
     )

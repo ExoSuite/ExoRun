@@ -43,7 +43,7 @@ if (__DEV__) {
 
 /**
  * You'll probably never use the service like this since we hang the Reactotron
- * Instance off of `console.tron`. This is only to be consistent with the other
+ * Instance off of `console.tron`. This Is only to be consistent with the other
  * services.
  */
 export class Reactotron implements IService {

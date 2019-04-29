@@ -4,7 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "jsx": "react-native",
-    "module": "es6",
+    "module": "esnext",
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "noImplicitAny": false,
@@ -14,67 +14,37 @@
     "removeComments": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "target": "es6",
+    "target": "es2018",
+    "lib": ["es2018"],
+    "noEmit": true,
+    "importHelpers": true,
     "plugins": [
       {
         "name": "typescript-tslint-plugin"
       }
     ],
     "paths": {
-      "storybook/*": [
-        "storybook/*"
-      ],
-      "@services/*": [
-        "app/services/*"
-      ],
-      "@components/*": [
-        "app/components/*"
-      ],
-      "@components": [
-        "app/components"
-      ],
-      "@models/*": [
-        "app/models/*"
-      ],
-      "@screens/*": [
-        "app/screens/*"
-      ],
-      "@screens": [
-        "app/screens"
-      ],
-      "@theme/*": [
-        "app/theme/*"
-      ],
-      "@theme": [
-        "app/theme"
-      ],
-      "@utils": [
-        "app/utils"
-      ],
-      "@utils/*": [
-        "app/utils/*"
-      ],
-      "@navigation/*": [
-        "app/navigation/*"
-      ],
-      "@i18n/*": [
-        "app/i18n/*"
-      ],
-      "@i18n": [
-        "app/i18n"
-      ],
-      "@exceptions": [
-        "app/exceptions"
-      ],
-      "@exceptions/*": [
-        "app/exceptions/*"
-      ],
-      "@types": [
-        "app/types"
-      ],
-      "@types/*": [
-        "app/types/*"
-      ]
+      "storybook/*": ["storybook/*"],
+      "@services/*": ["app/services/*"],
+      "@components/*": ["app/components/*"],
+      "@components": ["app/components"],
+      "@models/*": ["app/models/*"],
+      "@screens/*": ["app/screens/*"],
+      "@screens": ["app/screens"],
+      "@theme/*": ["app/theme/*"],
+      "@theme": ["app/theme"],
+      "@utils": ["app/utils"],
+      "@utils/*": ["app/utils/*"],
+      "@navigation/*": ["app/navigation/*"],
+      "@i18n/*": ["app/i18n/*"],
+      "@i18n": ["app/i18n"],
+      "@exceptions": ["app/exceptions"],
+      "@exceptions/*": ["app/exceptions/*"],
+      "@types": ["app/types"],
+      "@types/*": ["app/types/*"]
     }
-  }
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }

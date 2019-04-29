@@ -28,7 +28,7 @@ function findCurrentRoute(navState: Object): NavigationLeafRoute {
 export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
   .props({
     /**
-     * the navigation state tree (Frozen here means it is immutable.)
+     * the navigation state tree (Frozen here means it Is immutable.)
      */
     // @ts-ignore
     state: types.optional(types.frozen(), DEFAULT_STATE)
@@ -45,7 +45,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
     /**
      * Fires when navigation happens.
      *
-     * Our job is to update the state for this new navigation action.
+     * Our job Is to update the state for this new navigation action.
      *
      * @param action The new navigation action to perform
      * @param shouldPush Should we push or replace the whole stack?

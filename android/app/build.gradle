@@ -113,18 +113,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         multiDexEnabled true
-        versionCode 231
-        versionName "0.1.1"
-
-        ndk {
-            abiFilters "armeabi-v7a", "x86"
-        }
-
-        packagingOptions {
-            pickFirst '**/libgnustl_shared.so'
-            pickFirst '**/libjsc.so'
-            exclude "lib/arm64-v8a/librealm-jni.so"
-        }
+        versionCode 237
+        versionName "0.3.0"
     }
 
     splits {
@@ -132,7 +122,7 @@ android {
             reset()
             enable enableSeparateBuildPerCPUArchitecture
             universalApk false  // If true, also generate a universal APK
-            include "armeabi-v7a", "x86"
+            include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
         }
     }
 
@@ -157,21 +147,11 @@ android {
         variant.outputs.each { output ->
             // For each separate APK per architecture, set a unique version code as described here:
             // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
-            def versionCodes = ["armeabi-v7a": 1, "x86": 2, "arm64-v8a": 3]
+            def versionCodes = ["armeabi-v7a":1, "x86":2, "arm64-v8a": 3, "x86_64": 4]
             def abi = output.getFilter(OutputFile.ABI)
             if (abi != null) {  // null for the universal-debug, universal-release variants
                 output.versionCodeOverride =
                         versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
-            }
-        }
-    }
-}
-
-configurations.all {
-    resolutionStrategy {
-        eachDependency { details ->
-            if (details.requested.name == 'android-jsc') {
-                details.useTarget group: details.requested.group, name: 'android-jsc-intl', version: 'r236355'
             }
         }
     }

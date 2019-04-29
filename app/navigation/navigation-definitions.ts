@@ -7,7 +7,9 @@ export enum AppScreens {
   HOME = "home",
   AUGMENTED_REALITY = "augmented-reality",
   GROUPS = "groups",
-  NOTIFICATIONS = "notifications"
+  NOTIFICATIONS = "notifications",
+  PERSONAL_PROFILE = "personal-profile",
+  APP_SETTINGS = "application-settings"
 }
 
 export enum AuthScreens {

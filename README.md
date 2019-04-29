@@ -101,6 +101,7 @@ This is a great place to put miscellaneous helpers and utilities. Things like da
 **However if there is no index.ts you can do:**
 
 #### Example:
+
 `import { Api } from '@services/api'`
 
 ### ./ignite directory
@@ -119,5 +120,3 @@ This directory will hold your Jest configs and mocks, as well as your [storyshot
 
 From the command line in your generated app's root directory, enter `yarn run storybook`
 This starts up the storybook server.
-
-

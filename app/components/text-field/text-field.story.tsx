@@ -4,7 +4,7 @@ import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { Text } from "../text"
 import { TextField } from "./"
 import { State } from "react-powerplug"
-import { TextStyle, ViewStyle } from "react-native"
+import { TextStyle, ViewStyle, Alert } from "react-native"
 
 // tslint:disable
 
@@ -133,7 +133,7 @@ storiesOf("TextField", module)
     <Story>
       <UseCase
         text="Ref Forwarding"
-        usage=""
+        usage="forward a ref"
       >
         <State initial={{ value: "fancy colour" }}>
           {({ state, setState }) => (
@@ -154,7 +154,7 @@ storiesOf("TextField", module)
                 if (alertWhenFocused) {
                   // Prevent text field focus from being repeatedly triggering alert
                   alertWhenFocused = false
-                  window.alert("Text field focuesed with forwarded ref!")
+                  Alert.alert("Text field focuesed with forwarded ref!")
                 }
               }}
             />

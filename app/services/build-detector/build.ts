@@ -9,19 +9,23 @@ export enum BuiltFor {
 }
 
 /**
- * check if app is running with local build etc...
+ * check if app Is running with local build etc...
  * @class Build
  */
 export class Build {
-  public static is(builtFor: BuiltFor): boolean {
+  public static Is(builtFor: BuiltFor): boolean {
     return builtFor === Config.APP_ENV
   }
 
-  public static isNot(builtFor: BuiltFor): boolean {
-    return !Build.is(builtFor)
+  public static IsNot(builtFor: BuiltFor): boolean {
+    return !Build.Is(builtFor)
   }
 
-  public static version(): string {
+  public static RunningOnStoryBook(): boolean {
+    return JSON.parse(Config.STORYBOOK_ENABLED)
+  }
+
+  public static Version(): string {
     let version = `${VersionInfo.appVersion}-${VersionInfo.buildVersion}`
     if (Config.VERSION !== undefined) {
       version += `-${Config.VERSION}`

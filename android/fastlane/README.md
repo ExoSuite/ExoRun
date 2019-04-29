@@ -25,7 +25,7 @@ Create a new apk for staging
 ```
 fastlane android beta
 ```
-Submit a new Beta Build to Crashlytics Beta
+Submit a new Beta Build
 ### android deploy
 ```
 fastlane android deploy

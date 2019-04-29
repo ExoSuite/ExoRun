@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "RNSplashScreen.h"
 
+#import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <ReactNativeConfig/ReactNativeConfig.h>
@@ -15,26 +16,13 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSURL *jsCodeLocation;
 
-#ifdef DEBUG
-    jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
-#else
-    jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-#endif
+    RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
 
-    NSString *serverIP = [ReactNativeConfig envFor:@"SERVER_IP"];
 
-    if ([serverIP length] != 0) {
-        NSString *jsCodeUrlString = [NSString stringWithFormat:@"http://%@:8081/index.bundle?platform=ios&dev=true", serverIP];
-        NSString *jsBundleUrlString = [jsCodeUrlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        jsCodeLocation = [NSURL URLWithString:jsBundleUrlString];
-    }
-
-    RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                        moduleName:@"ExoRun"
-                                                 initialProperties:nil
-                                                     launchOptions:launchOptions];
+    RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
+                                                   moduleName:@"ExoRun"
+                                            initialProperties:nil];
     rootView.backgroundColor = [UIColor blackColor];
 
     NSString *storybookEnabled = [ReactNativeConfig envFor:@"STORYBOOK_ENABLED"];
@@ -64,4 +52,27 @@
     return YES;
 }
 
+- (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
+{
+   NSURL *jsCodeLocation;
+  
+  
+#if DEBUG
+  jsCodeLocation =  [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+#else
+  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+#endif
+  
+  NSString *serverIP = [ReactNativeConfig envFor:@"SERVER_IP"];
+  
+  if ([serverIP length] != 0) {
+    NSString *jsCodeUrlString = [NSString stringWithFormat:@"http://%@:8081/index.bundle?platform=ios&dev=true", serverIP];
+    NSString *jsBundleUrlString = [jsCodeUrlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    jsCodeLocation = [NSURL URLWithString:jsBundleUrlString];
+  }
+  
+  return jsCodeLocation;
+}
+
 @end
+

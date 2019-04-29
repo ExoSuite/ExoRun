@@ -48,10 +48,13 @@ export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> 
 
   private loader: SplashScreen = null
 
+  // tslint:disable-next-line: no-feature-envy
   private async canLogin(): Promise<void> {
     const { api, navigationStore } = this.props
 
-    await api.checkToken()
+    await api.checkToken();
+    await api.getOrCreatePersonalTokens();
+    await api.getProfile();
     navigationStore.navigateTo(AppScreens.HOME)
   }
 

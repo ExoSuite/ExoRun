@@ -136,8 +136,7 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
   }
 
   @autobind
-  // tslint:disable-next-line: typedef
-  private Errors() {
+  private Errors(): React.ReactElement {
 
     return (
       <View style={ALIGN_CENTER}>
@@ -273,10 +272,10 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
   * example :
   *  {
   *   "email": [
-  *      "The email field is required."
+  *      "The email field Is required."
   *    ],
   *    "password": [
-  *      "The password field is required."
+  *      "The password field Is required."
   *    ]
   *  }
   */

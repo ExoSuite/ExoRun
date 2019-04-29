@@ -2,6 +2,7 @@ import { BaseError } from "@exceptions/BaseError"
 
 export enum LogicErrorState {
   CANT_LOAD_API_TOKENS,
+  CANT_FETCH_PERSONAL_TOKENS,
   MALFORMED_API_TOKENS,
 }
 

@@ -11,7 +11,7 @@ import { palette } from "./palette"
  */
 export const color = {
   /**
-   * The palette is available to use, but prefer using the name.
+   * The palette Is available to use, but prefer using the name.
    */
   palette,
   /**
@@ -60,7 +60,7 @@ export const color = {
 
   /**
    * Storybook background for Text stories, or any stories where
-   * the text color is color.text, which is white by default, and does not show
+   * the text color Is color.text, which Is white by default, and does not show
    * in Stories against the default white background
    */
   storybookDarkBg: palette.backgroundDarker,
