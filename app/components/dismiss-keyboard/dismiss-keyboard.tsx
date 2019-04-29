@@ -14,8 +14,7 @@ const dismiss = (): void => {
  *
  * Component description here for TypeScript tips.
  */
-// tslint:disable-next-line: typedef
-export function DismissKeyboard(props: IDismissKeyboardProps) {
+export function DismissKeyboard(props: IDismissKeyboardProps): React.ReactElement {
   // grab the props
   const { children } = props
 

@@ -87,6 +87,7 @@ export class DrawerNavigation extends React.Component<DrawerItemsProps> {
               rootStyle={{ marginLeft: 0, marginBottom: spacing[2] }}
               size={DefaultRnpAvatarSize}
               onPress={this.navigateToScreen(AppScreens.PERSONAL_PROFILE, profileNavigationParams)}
+              urlFromParent={false}
             />
           </ProfileCover>
         </View>

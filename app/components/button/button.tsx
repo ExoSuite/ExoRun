@@ -10,8 +10,7 @@ import { IButtonProps } from "./button.props"
  *
  * This component Is a HOC over the built-in React Native one.
  */
-// tslint:disable-next-line: typedef
-export function Button(props: IButtonProps) {
+export function Button(props: IButtonProps): React.ReactElement {
   // grab the props
   const { preset = "primary", tx, text, style: styleOverride, textStyle: textStyleOverride, children, ...rest } = props
 

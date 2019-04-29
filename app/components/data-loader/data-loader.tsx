@@ -136,8 +136,7 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
   }
 
   @autobind
-  // tslint:disable-next-line: typedef
-  private Errors() {
+  private Errors(): React.ReactElement {
 
     return (
       <View style={ALIGN_CENTER}>

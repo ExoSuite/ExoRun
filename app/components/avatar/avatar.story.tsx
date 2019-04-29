@@ -10,7 +10,7 @@ storiesOf("Avatar", module)
   .add("Style Presets", () => (
     <Story>
       <UseCase text="Primary" usage="The primary.">
-        <Avatar/>
+        <Avatar urlFromParent={false}/>
       </UseCase>
     </Story>
   ))

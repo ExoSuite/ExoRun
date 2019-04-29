@@ -31,8 +31,7 @@ const FILL: ViewStyle = {
 
 const LABEL: TextStyle = { paddingLeft: spacing[2] }
 
-// tslint:disable-next-line: typedef
-export function Checkbox(props: ICheckboxProps) {
+export function Checkbox(props: ICheckboxProps): React.ReactElement {
   const numberOfLines = props.multiline ? 0 : 1
 
   let rootStyle

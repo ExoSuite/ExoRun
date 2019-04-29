@@ -26,8 +26,7 @@ export interface IPressableTextProps {
  *
  * Component description here for TypeScript tips.
  */
-// tslint:disable-next-line: typedef
-export function PressableText(props: IPressableTextProps) {
+export function PressableText(props: IPressableTextProps): React.ReactElement {
   // grab the props
   const { tx, text, preset, onPress, style } = props
 
