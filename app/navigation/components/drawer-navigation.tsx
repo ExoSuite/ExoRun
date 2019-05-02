@@ -49,6 +49,10 @@ const PROFILE_CONTAINER: ViewStyle = {
   width: "100%"
 }
 
+const capitalizedUser: TextStyle = {
+  textTransform: "capitalize"
+}
+
 const profileNavigationParams: IPersonalProfileNavigationScreenProps = {
   me: true
 }
@@ -93,7 +97,11 @@ export class DrawerNavigation extends React.Component<DrawerItemsProps> {
         </View>
         <Screen preset="fixed">
           <View style={PROFILE_CONTAINER}>
-            <Text preset="headerCentered" text={`${this.userProfile.first_name} ${this.userProfile.last_name}`}/>
+            <Text
+              preset="headerCentered"
+              text={`${this.userProfile.first_name} ${this.userProfile.last_name}`}
+              style={capitalizedUser}
+            />
             <Text preset="nicknameLight" text={this.userProfile.nick_name} style={NICK_NAME}/>
           </View>
 

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ImageBackground, ImageSourcePropType, ImageStyle } from "react-native"
+import { ImageStyle } from "react-native"
 import { action, observable } from "mobx"
 import { inject, observer } from "mobx-react/native"
 import { Api, ApiRoutes, IPersonalTokens, IUser } from "@services/api"
@@ -8,6 +8,7 @@ import { Server } from "@services/api/api.servers"
 import { load as loadFromStorage, StorageTypes } from "@utils/storage"
 import { Injection } from "@services/injections"
 import { Build } from "@services/build-detector"
+import { CachedBackgroundImage } from "@components/cached-image/cached-background-image"
 
 export interface IProfileCoverProps {
   api?: Api
@@ -42,21 +43,23 @@ export class ProfileCover extends React.Component<IProfileCoverProps> {
     }
   }
 
+  private get getPictureCoverUrl(): string {
+    return this.pictureCoverUrl || this.props.api.defaultCoverUrl
+  }
+
   public render(): React.ReactNode {
     // grab the props
-    const { children, style } = this.props
-    const coverSource: ImageSourcePropType = {
-      uri: this.pictureCoverUrl
-    }
+    const { children, style, api } = this.props
 
     return (
-      <ImageBackground
+      <CachedBackgroundImage
         style={style}
-        source={coverSource}
+        uri={this.getPictureCoverUrl}
         resizeMode="cover"
+        defaultUrl={api.defaultCoverUrl}
       >
         {children}
-      </ImageBackground>
+      </CachedBackgroundImage>
     )
   }
 }

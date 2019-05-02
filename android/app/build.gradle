@@ -96,16 +96,10 @@ def enableProguardInReleaseBuilds = false
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
-    flavorDimensions "platform"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    dexOptions {
-        javaMaxHeapSize "4g"
-        preDexLibraries = false
     }
 
     defaultConfig {
@@ -115,6 +109,9 @@ android {
         multiDexEnabled true
         versionCode 238
         versionName "0.4.0"
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
     }
 
     splits {
@@ -158,7 +155,8 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-screens')
+    implementation project(':react-native-fs')
+    implementation project(':react-native-screens')
     implementation project(':@react-native-community_async-storage')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-localize')
@@ -169,11 +167,11 @@ dependencies {
     implementation project(':react-native-splash-screen')
     implementation project(':react-native-gesture-handler')
     implementation project(':react-native-keychain')
-    implementation project(':gvr_common')
-    implementation project(':arcore_client')
-    implementation project(path: ':react_viro')
-    implementation project(path: ':viro_renderer')
     implementation project(':react-native-version-info')
+    implementation project(':arcore_client') // remove this if AR not required
+    implementation project(':gvr_common')
+    implementation project(path: ':viro_renderer')
+    implementation project(path: ':react_viro')
     implementation 'com.google.android.exoplayer:exoplayer:2.7.1'
     implementation 'com.google.protobuf.nano:protobuf-javanano:3.0.0-alpha-7'
     implementation 'com.amazonaws:aws-android-sdk-core:2.7.7'

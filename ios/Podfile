@@ -14,7 +14,8 @@ target 'ExoRun' do
       'DevSupport', # Include this to enable In-App Devmenu if RN >= 0.43
       'RCTText',
       'RCTNetwork',
-      'RCTWebSocket'
+      'RCTWebSocket',
+      'RCTImage'
   # Add any other subspecs you want to use in your project
   ]
   # Explicitly include Yoga if you are using RN >= 0.42.0
@@ -40,6 +41,8 @@ target 'ExoRun' do
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
 
   pod 'RNScreens', :path => '../node_modules/react-native-screens'
+
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
 
 end
 

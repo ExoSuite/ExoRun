@@ -76,6 +76,10 @@ interface IPersonalProfileScreenState {
   scrollY: Animated.Value
 }
 
+interface IAnimationObjects {
+  [prop: string]: Animated.AnimatedInterpolation
+}
+
 const whenVisitingMyProfile = async (): Promise<IUser> => loadFromStorage(StorageTypes.USER_PROFILE)
 
 /**
@@ -95,6 +99,33 @@ export class UserProfileScreen extends React.Component<IPersonalProfileScreenPro
 
   public static navigationOptions = {
     headerLeft: NavigationBackButtonWithNestedStackNavigator
+  }
+
+  private animate(): IAnimationObjects {
+    const coverMovement = this.state.scrollY.interpolate({
+      inputRange: [0, 94, 95],
+      outputRange: [0, -94, -94]
+    })
+    const headerOpacity = this.state.scrollY.interpolate({
+      inputRange: [95, 180, 181],
+      outputRange: [0, 0.75, 0.75]
+    })
+    const headerContentOpacity = this.state.scrollY.interpolate({
+      inputRange: [0, 180, 210],
+      outputRange: [0, 0, 1]
+    })
+    const avatarMovement = this.state.scrollY.interpolate({
+      inputRange: [0, 150, 151],
+      outputRange: [0, -150, -150]
+    })
+    const avatarOpacity = this.state.scrollY.interpolate({
+      inputRange: [0, 94, 95],
+      outputRange: [1, 0, 0]
+    })
+
+    return {
+      avatarMovement, avatarOpacity, headerContentOpacity, headerOpacity, coverMovement
+    }
   }
 
   @action
@@ -117,29 +148,9 @@ export class UserProfileScreen extends React.Component<IPersonalProfileScreenPro
 
   // tslint:disable-next-line:prefer-function-over-method no-feature-envy
   public render(): React.ReactNode {
-    const coverMovement = this.state.scrollY.interpolate({
-      inputRange: [0, 94, 95],
-      outputRange: [0, -94, -94]
-    })
-    const headerOpacity = this.state.scrollY.interpolate({
-      inputRange: [95, 180, 181],
-      outputRange: [0, 0.75, 0.75]
-    })
-    const headerContentOpacity = this.state.scrollY.interpolate({
-      inputRange: [0, 180, 210],
-      outputRange: [0, 0, 1]
-    })
-    const avatarMovement = this.state.scrollY.interpolate({
-      inputRange: [0, 150, 151],
-      outputRange: [0, -150, -150]
-    })
-    const avatarOpacity = this.state.scrollY.interpolate({
-      inputRange: [0, 94, 95],
-      outputRange: [1, 0, 0]
-    })
-
+    const { avatarMovement, avatarOpacity, headerContentOpacity, headerOpacity, coverMovement } = this.animate();
     // @ts-ignore
-    const description = idx(this.userProfile, (_: any) => _.profile.description) as string;
+    const description = idx(this.userProfile, (_: any) => _.profile.description) as string
 
     return (
       <Screen style={ROOT} preset="fixed">
@@ -151,7 +162,11 @@ export class UserProfileScreen extends React.Component<IPersonalProfileScreenPro
         <Animated.View style={[{ opacity: headerOpacity }, HEADER]}>
           <Animated.View style={[{ opacity: headerContentOpacity }, HEADER_CONTENT]}>
             <Avatar size={42} urlFromParent avatarUrl={this.avatarUrl}/>
-            <Text style={{marginRight: spacing[2]}} preset="header" text={`${this.userProfile.first_name} ${this.userProfile.last_name}`} />
+            <Text
+              style={{ marginRight: spacing[2] }}
+              preset="header"
+              text={`${this.userProfile.first_name} ${this.userProfile.last_name}`}
+            />
           </Animated.View>
         </Animated.View>
         <Animated.View
@@ -174,11 +189,6 @@ export class UserProfileScreen extends React.Component<IPersonalProfileScreenPro
           <View style={StyleSheet.flatten([FIXED_HEADER, { marginTop: 150 }])}>
             <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
               <Button/>
-              <Button/>
-              <Button
-              >
-                <Text style={{ color: "red" }}>Follow</Text>
-              </Button>
             </View>
           </View>
 

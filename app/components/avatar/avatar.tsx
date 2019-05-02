@@ -1,10 +1,9 @@
 import * as React from "react"
-import { ImageSourcePropType, ImageStyle, TouchableOpacity, ViewStyle } from "react-native"
+import { ImageStyle, TouchableOpacity, ViewStyle } from "react-native"
 import { inject, observer } from "mobx-react/native"
 import { NavigationScreenProps } from "react-navigation"
 import { action, observable } from "mobx"
 import autobind from "autobind-decorator"
-import { Avatar as RnpAvatar } from "react-native-paper"
 import { IVoidFunction } from "@types"
 import { spacing } from "@theme"
 import { load } from "@utils/keychain"
@@ -13,6 +12,7 @@ import { Server } from "@services/api/api.servers"
 import { Injection } from "@services/injections"
 import { Api, ApiRoutes, IPersonalTokens, IUser } from "@services/api"
 import { Build } from "@services/build-detector"
+import { AvatarImageReactNativePaper } from "@components/avatar/avatar-image-react-native-paper"
 
 export interface IAvatarProps {
   api?: Api
@@ -42,7 +42,7 @@ export const DefaultRnpAvatarSize = 64
 @observer
 export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScreenProps<any>>> {
 
-  @observable private avatarUrl: string = null
+  @observable private avatarUrl: string
 
   @autobind
   private openDrawer(): void {
@@ -70,7 +70,7 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
   }
 
   private get getAvatarUrl(): string {
-    return this.avatarUrl || this.props.avatarUrl
+    return this.avatarUrl || this.props.avatarUrl || this.props.api.defaultAvatarUrl
   }
 
   public render(): React.ReactNode {
@@ -79,9 +79,6 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
     const touchable = disableOnPress
     const onTouchableOpacityPressed = navigation ? this.openDrawer : onPress
     const avatarSize = size ? size : defaultSize
-    const avatarSource: ImageSourcePropType = {
-      uri: this.getAvatarUrl
-    }
 
     return (
       <TouchableOpacity
@@ -89,9 +86,9 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
         style={containerStyle}
         disabled={touchable}
       >
-        <RnpAvatar.Image
+        <AvatarImageReactNativePaper
           size={avatarSize}
-          source={avatarSource}
+          uri={this.getAvatarUrl}
           style={IMAGE}
         />
       </TouchableOpacity>

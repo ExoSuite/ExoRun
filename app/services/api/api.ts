@@ -23,7 +23,7 @@ import {
   IUser
 } from "./api.types"
 import { ApiRoutes } from "@services/api/api.routes"
-import { load as loadFromStorage, save as saveFromStorage, StorageTypes } from "@utils/storage"
+import { save as saveFromStorage, StorageTypes } from "@utils/storage"
 import Axios from "axios"
 
 interface IHeaders extends Object {
@@ -206,6 +206,14 @@ export class Api implements IService {
     throw new LogicException(LogicErrorState.CANT_LOAD_API_TOKENS)
   }
 
+  public get defaultAvatarUrl(): string {
+    return `${this.config.url}/user/default-media/avatar.png`
+  }
+
+  public get defaultCoverUrl(): string {
+    return `${this.config.url}/user/default-media/cover.jpg`
+  }
+
   // tslint:disable-next-line max-func-args
   public async delete(
     url: string,
@@ -237,12 +245,8 @@ export class Api implements IService {
   }
 
   public async getProfile(): Promise<void> {
-    const userProfile: IUser | null = await loadFromStorage(StorageTypes.USER_PROFILE)
-
-    if (!userProfile) {
-      const userProfileRequest: ApiResponse<IUser> = await this.get(ApiRoutes.USER_ME)
-      await saveFromStorage(StorageTypes.USER_PROFILE, userProfileRequest.data)
-    }
+    const userProfileRequest: ApiResponse<IUser> = await this.get(ApiRoutes.USER_ME)
+    await saveFromStorage(StorageTypes.USER_PROFILE, userProfileRequest.data)
   }
 
   // this function may throw 422
