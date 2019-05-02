@@ -128,6 +128,14 @@ export class UserProfileScreen extends React.Component<IPersonalProfileScreenPro
     }
   }
 
+  private get getAvatarUrl(): string {
+    return this.avatarUrl || this.props.api.defaultAvatarUrl
+  }
+
+  private get getCoverUrl(): string {
+    return this.coverUrl || this.props.api.defaultCoverUrl
+  }
+
   @action
   public async componentWillMount(): Promise<void> {
     const { api } = this.props
@@ -155,13 +163,13 @@ export class UserProfileScreen extends React.Component<IPersonalProfileScreenPro
     return (
       <Screen style={ROOT} preset="fixed">
         <Animated.Image
-          source={{ uri: this.coverUrl }}
+          source={{ uri: this.getCoverUrl }}
           style={[{ transform: [{ translateY: coverMovement }] }, PROFILE_COVER]}
           resizeMode="cover"
         />
         <Animated.View style={[{ opacity: headerOpacity }, HEADER]}>
           <Animated.View style={[{ opacity: headerContentOpacity }, HEADER_CONTENT]}>
-            <Avatar size={42} urlFromParent avatarUrl={this.avatarUrl}/>
+            <Avatar size={42} urlFromParent avatarUrl={this.getAvatarUrl}/>
             <Text
               style={{ marginRight: spacing[2] }}
               preset="header"

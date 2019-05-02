@@ -36,27 +36,18 @@ export interface IAvatarImageReactNativePaperProps {
  * );
  * ```
  */
-@inject(Injection.Api)
-class AvatarImageReactNativePaperImpl extends React.Component<IAvatarImageReactNativePaperProps> {
-
-  private readonly defaultAvatarUrl: string
+class AvatarImageReactNativePaperImpl extends React.PureComponent<IAvatarImageReactNativePaperProps> {
 
   public static defaultProps = {
     size: 64
   }
   public static displayName = "Avatar.Image"
 
-  constructor(props: IAvatarImageReactNativePaperProps) {
-    super(props)
-    this.defaultAvatarUrl = props.api.defaultAvatarUrl
-  }
-
   public render(): React.ReactNode {
-    const { size, uri, style, theme } = this.props;
-    const { colors } = theme;
+    const { size, uri, style } = this.props;
     console.tron.log(uri)
 
-    const { backgroundColor = colors.primary } = StyleSheet.flatten(style) || {};
+    const { backgroundColor = "transparent" } = StyleSheet.flatten(style) || {};
 
     return (
       <View
@@ -73,7 +64,6 @@ class AvatarImageReactNativePaperImpl extends React.Component<IAvatarImageReactN
         <CachedImage
           uri={uri}
           style={{ width: size, height: size, borderRadius: size / 2 }}
-          defaultUrl={this.defaultAvatarUrl}
         />
       </View>
     )

@@ -5,7 +5,6 @@ import shorthash from "shorthash";
 import { Platform } from "@services/device"
 
 export interface ICachedImageProps {
-  defaultUrl: string
   style: ImageStyle
   uri: string,
 }
@@ -21,20 +20,12 @@ export class CachedBackgroundImage extends React.Component<ICachedImageProps & P
 
   public state: ICachedImageState = { source: null }
 
-  constructor(props: ICachedImageProps) {
-    super(props)
-    this.state.source = { uri: props.defaultUrl }
-  }
-
   private downloadFile(uri: string, path: string): void {
-    const { defaultUrl } = this.props;
     RNFS.downloadFile({ fromUrl: uri, toFile: path }).promise
       .then(() => {
         this.loadFile(path)
       })
-      .catch(() => {
-        this.loadFile(defaultUrl)
-      })
+      .catch()
   }
 
   private loadFile(path: string): void {

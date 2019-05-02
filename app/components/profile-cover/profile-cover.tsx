@@ -49,14 +49,13 @@ export class ProfileCover extends React.Component<IProfileCoverProps> {
 
   public render(): React.ReactNode {
     // grab the props
-    const { children, style, api } = this.props
+    const { children, style } = this.props
 
     return (
       <CachedBackgroundImage
         style={style}
         uri={this.getPictureCoverUrl}
         resizeMode="cover"
-        defaultUrl={api.defaultCoverUrl}
       >
         {children}
       </CachedBackgroundImage>
