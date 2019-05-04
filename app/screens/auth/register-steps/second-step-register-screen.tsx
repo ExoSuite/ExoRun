@@ -105,9 +105,7 @@ const RULES: IValidationRules = { email: { email: true } }
 /**
  * FirstStepRegisterScreen will handle the first step of the user registration
  */
-@inject(Injection.Api, Injection.SoundPlayer)
-@observer
-export class SecondStepRegisterScreen extends React.Component<ISecondStepRegisterScreen> {
+export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepRegisterScreen> {
 
   @observable private email: string = null
   @observable private emailInputState: AnimatedInteractiveInputState
@@ -355,3 +353,5 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
     )
   }
 }
+
+export const SecondStepRegisterScreen = inject(Injection.Api, Injection.SoundPlayer)(observer(SecondStepRegisterScreenImpl))
