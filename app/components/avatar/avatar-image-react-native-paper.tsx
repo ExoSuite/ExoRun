@@ -1,13 +1,9 @@
-import * as React from "react";
+import * as React from "react"
 import { ImageStyle, StyleSheet, View } from "react-native"
-import { CachedImage } from "@components/cached-image/cached-image"
-import { inject } from "mobx-react/native"
-import { Injection } from "@services/injections"
-import { Api } from "@services/api"
+import { CachedImage, CachedImageType } from "@components/cached-image/cached-image"
 import { Theme, withTheme } from "react-native-paper"
 
 export interface IAvatarImageReactNativePaperProps {
-  api?: Api
   /**
    * Size of the avatar.
    */
@@ -64,6 +60,7 @@ class AvatarImageReactNativePaperImpl extends React.PureComponent<IAvatarImageRe
         <CachedImage
           uri={uri}
           style={{ width: size, height: size, borderRadius: size / 2 }}
+          type={CachedImageType.IMAGE}
         />
       </View>
     )

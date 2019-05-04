@@ -7,6 +7,7 @@ import "./__mocks__/react-navigation"
 import "./__mocks__/react-native-splash-screen"
 import "./__mocks__/mock-setup-root-store"
 import "./__mocks__/reactotron"
+import "./__mocks__/react-native-fs"
 import { WebSocket } from "mock-socket"
 
 // @ts-ignore

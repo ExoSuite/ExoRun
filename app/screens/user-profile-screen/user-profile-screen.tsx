@@ -15,7 +15,8 @@ import { load as loadFromStorage, StorageTypes } from "@utils/storage"
 import { inject } from "mobx-react/native"
 import { Injection } from "@services/injections"
 import { action, observable } from "mobx"
-import idx from "idx";
+import idx from "idx"
+import { CachedImage, CachedImageType } from "@components/cached-image/cached-image"
 
 // tslint:disable:id-length
 
@@ -154,18 +155,18 @@ export class UserProfileScreen extends React.Component<IPersonalProfileScreenPro
       `${api.Url}/user/${this.userProfile.id}/${ApiRoutes.PROFILE_PICTURE_COVER}?token=${token}`
   }
 
-  // tslint:disable-next-line:prefer-function-over-method no-feature-envy
   public render(): React.ReactNode {
-    const { avatarMovement, avatarOpacity, headerContentOpacity, headerOpacity, coverMovement } = this.animate();
-    // @ts-ignore
-    const description = idx(this.userProfile, (_: any) => _.profile.description) as string
+    const { avatarMovement, avatarOpacity, headerContentOpacity, headerOpacity, coverMovement } = this.animate()
+
+    const description = idx<IUser, string>(this.userProfile, (_: any) => _.profile.description)
 
     return (
       <Screen style={ROOT} preset="fixed">
-        <Animated.Image
-          source={{ uri: this.getCoverUrl }}
+        <CachedImage
+          uri={this.getCoverUrl}
           style={[{ transform: [{ translateY: coverMovement }] }, PROFILE_COVER]}
           resizeMode="cover"
+          type={CachedImageType.ANIMATED_IMAGE}
         />
         <Animated.View style={[{ opacity: headerOpacity }, HEADER]}>
           <Animated.View style={[{ opacity: headerContentOpacity }, HEADER_CONTENT]}>

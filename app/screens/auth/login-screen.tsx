@@ -13,12 +13,11 @@ import {
 } from "@components"
 import { DataLoader } from "@components/data-loader"
 import { HttpRequestError } from "@exceptions"
-import { Api, ITokenResponse } from "@services/api"
+import { ITokenResponse } from "@services/api"
 import { Server } from "@services/api/api.servers"
 import { Asset } from "@services/asset"
 import { Platform } from "@services/device"
-import { Injection } from "@services/injections"
-import { SoundPlayer } from "@services/sound-player"
+import { Injection, InjectionProps } from "@services/injections"
 import { color, spacing } from "@theme"
 import { save } from "@utils/keychain"
 import { ApiResponse } from "apisauce"
@@ -34,11 +33,6 @@ import { IValidationRules, validate } from "@utils/validate"
 import { footerShadow } from "@utils/shadows"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { IVoidFunction } from "@types"
-
-export interface ILoginScreenProps extends NavigationScreenProps<{}> {
-  api: Api,
-  soundPlayer: SoundPlayer
-}
 
 const EXOSUITE: ImageStyle = {
   width: 200,
@@ -133,13 +127,15 @@ const onResetPasswordPress = (): null => null
 
 const RULES: IValidationRules = { email: { email: true } }
 
+type TLoginScreenProps = NavigationScreenProps & InjectionProps
+
 /**
  * LoginScreen will handle multiple user login
  * by calling the ExoSuite Users API
  */
 @inject(Injection.Api, Injection.SoundPlayer)
 @observer
-export class LoginScreen extends React.Component<ILoginScreenProps> {
+export class LoginScreen extends React.Component<TLoginScreenProps> {
 
   private readonly authorizeLogin: IVoidFunction
   @observable private email: string = null
@@ -149,7 +145,7 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
   @observable private password: string = null
   private passwordInputRef: TextInput
 
-  constructor(props: ILoginScreenProps) {
+  constructor(props: TLoginScreenProps) {
     super(props)
     this.goBack = throttle(props.navigation.goBack, 3000)
     this.authorizeLogin = throttle(this._authorizeLogin, 5000)
@@ -209,7 +205,7 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
       return
     }
 
-    await save(response.data, Server.EXOSUITE_USERS_API);
+    await save(response.data, Server.EXOSUITE_USERS_API)
     await Promise.all([
       api.getOrCreatePersonalTokens(),
       api.getProfile()

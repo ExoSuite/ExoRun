@@ -9,13 +9,12 @@ import { spacing } from "@theme"
 import { load } from "@utils/keychain"
 import { load as loadFromStorage, StorageTypes } from "@utils/storage"
 import { Server } from "@services/api/api.servers"
-import { Injection } from "@services/injections"
-import { Api, ApiRoutes, IPersonalTokens, IUser } from "@services/api"
+import { Injection, InjectionProps } from "@services/injections"
+import { ApiRoutes, IPersonalTokens, IUser } from "@services/api"
 import { Build } from "@services/build-detector"
 import { AvatarImageReactNativePaper } from "@components/avatar/avatar-image-react-native-paper"
 
-export interface IAvatarProps {
-  api?: Api
+export interface IAvatarProps extends InjectionProps {
   avatarUrl?: string
   disableOnPress?: boolean,
   onPress?: IVoidFunction,
@@ -58,7 +57,7 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
     }
 
     if (Build.RunningOnStoryBook()) {
-      this.avatarUrl = "https://api.adorable.io/avatars/285"
+      this.avatarUrl = api.defaultAvatarUrl
     } else  {
       const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
       const userProfile: IUser = await loadFromStorage(StorageTypes.USER_PROFILE)

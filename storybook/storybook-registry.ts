@@ -1,3 +1,4 @@
+require("../app/components/cached-image/cached-image.story")
 require("../app/components/profile-cover/profile-cover.story")
 require("../app/components/avatar/avatar.story")
 require("../app/components/animated-interactive-input/animated-interactive-input.story")

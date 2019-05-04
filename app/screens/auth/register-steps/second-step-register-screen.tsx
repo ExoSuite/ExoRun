@@ -22,11 +22,10 @@ import { color, spacing } from "@theme"
 import { IValidationRules, validate } from "@utils/validate"
 import { equals } from "ramda"
 import { isEmpty, merge, snakeCase, transform } from "lodash"
-import { Api, ApiRoutes, ITokenResponse } from "@services/api"
-import { Injection } from "@services/injections"
+import { ApiRoutes, ITokenResponse } from "@services/api"
+import { Injection, InjectionProps } from "@services/injections"
 import { HttpRequestError } from "@exceptions"
 import { DataLoader } from "@components/data-loader"
-import { SoundPlayer } from "@services/sound-player"
 import autobind from "autobind-decorator"
 import { ApiResponse } from "apisauce"
 import { save } from "@utils/keychain"
@@ -39,10 +38,7 @@ export interface ISecondStepRegisterScreenNavigationParams {
   nickName?: string,
 }
 
-export interface ISecondStepRegisterScreen extends NavigationScreenProps<ISecondStepRegisterScreenNavigationParams> {
-  api: Api,
-  soundPlayer: SoundPlayer
-}
+type ISecondStepRegisterScreen = NavigationScreenProps<ISecondStepRegisterScreenNavigationParams> & InjectionProps
 
 const EXOSUITE: ImageStyle = {
   width: 200,

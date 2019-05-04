@@ -2,16 +2,15 @@ import * as React from "react"
 import { ImageStyle } from "react-native"
 import { action, observable } from "mobx"
 import { inject, observer } from "mobx-react/native"
-import { Api, ApiRoutes, IPersonalTokens, IUser } from "@services/api"
+import { ApiRoutes, IPersonalTokens, IUser } from "@services/api"
 import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
 import { load as loadFromStorage, StorageTypes } from "@utils/storage"
-import { Injection } from "@services/injections"
+import { Injection, InjectionProps } from "@services/injections"
 import { Build } from "@services/build-detector"
-import { CachedBackgroundImage } from "@components/cached-image/cached-background-image"
+import { CachedImage, CachedImageType } from "@components/cached-image/cached-image"
 
-export interface IProfileCoverProps {
-  api?: Api
+export interface IProfileCoverProps extends InjectionProps {
   children?: any,
   style: ImageStyle,
 }
@@ -32,7 +31,7 @@ export class ProfileCover extends React.Component<IProfileCoverProps> {
     const { api } = this.props
 
     if (Build.RunningOnStoryBook()) {
-      this.pictureCoverUrl = "https://api.adorable.io/avatars/285"
+      this.pictureCoverUrl = api.defaultCoverUrl
     } else  {
       const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
       const userProfile: IUser = await loadFromStorage(StorageTypes.USER_PROFILE)
@@ -52,13 +51,14 @@ export class ProfileCover extends React.Component<IProfileCoverProps> {
     const { children, style } = this.props
 
     return (
-      <CachedBackgroundImage
+      <CachedImage
         style={style}
         uri={this.getPictureCoverUrl}
         resizeMode="cover"
+        type={CachedImageType.BACKGROUND_IMAGE}
       >
         {children}
-      </CachedBackgroundImage>
+      </CachedImage>
     )
   }
 }

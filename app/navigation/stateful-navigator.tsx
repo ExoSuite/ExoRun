@@ -3,21 +3,14 @@ import { inject, observer } from "mobx-react"
 // @ts-ignore: until they update @type/react-navigation
 import { getNavigation, NavigationScreenProp, NavigationState } from "react-navigation"
 import { RootNavigator } from "./root-navigator"
-import { NavigationStore } from "./navigation-store"
 import { IImageProperties, SplashScreen } from "@screens/auth/splash-screen"
 import autobind from "autobind-decorator"
 import { Asset } from "@services/asset"
 import { color } from "@theme"
 import { Screen } from "@services/device"
-import { Injection } from "@services/injections"
-import { Api } from "@services/api"
+import { Injection, InjectionProps } from "@services/injections"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { IVoidFunction } from "@types"
-
-interface IStatefulNavigatorProps {
-  api?: Api
-  navigationStore?: NavigationStore,
-}
 
 interface IScreenProps {
   animateSplashScreen: IVoidFunction,
@@ -43,7 +36,7 @@ const exosuiteLoader = Asset.Locator("exosuite-loader")
  */
 @inject(Injection.NavigationStore, Injection.Api)
 @observer
-export class StatefulNavigator extends React.Component<IStatefulNavigatorProps> {
+export class StatefulNavigator extends React.Component<InjectionProps> {
   private currentNavProp: NavigationScreenProp<NavigationState>
 
   private loader: SplashScreen = null

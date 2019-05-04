@@ -1,5 +1,5 @@
 import { Dimensions } from "react-native"
-import { getStatusBarHeight } from "react-native-status-bar-height";
+import { getStatusBarHeight } from "react-native-status-bar-height"
 
 // tslint:disable-next-line
 const { height, width } = Dimensions.get("window")
