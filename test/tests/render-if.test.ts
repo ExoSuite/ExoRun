@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 import chai, {expect} from "chai";
-import Sinon from "Sinon";
+import Sinon from "sinon";
 import sinonChai from "sinon-chai";
 import { renderIf } from "@utils/render-if"
 
