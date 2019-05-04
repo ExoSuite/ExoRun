@@ -12,6 +12,7 @@ import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
 
 describe("second step register screen loader tests", () => {
   test("render correctly", () => {
+    // @ts-ignore
     const wrapper = mount<SecondStepRegisterScreenImpl>(<SecondStepRegisterScreenImpl navigation={{}}/>)
 
     expect(wrapper.find(SafeAreaView)).toExist()
@@ -22,4 +23,3 @@ describe("second step register screen loader tests", () => {
     expect(wrapper.find(KeyboardAccessoryView)).toExist()
   })
 })
-
