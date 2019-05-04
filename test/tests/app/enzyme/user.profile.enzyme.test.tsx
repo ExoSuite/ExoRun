@@ -36,7 +36,6 @@ describe("user profile tests", () => {
       )
     )
 
-
     expect(wrapper).not.toBeEmptyRender()
     expect(wrapper.find(CachedImage)).toExist()
     expect(wrapper.find(Animated.View)).toExist()

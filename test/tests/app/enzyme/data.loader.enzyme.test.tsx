@@ -11,7 +11,6 @@ import AnimatedLottieView from "lottie-react-native"
 import { View as AnimatedView } from "react-native-animatable"
 import { FormRow } from "@components/form-row"
 import { LoaderState } from "@components/data-loader/data-loader.types"
-import { spy } from "sinon"
 
 describe("data loader tests", () => {
   let wrapper
@@ -56,7 +55,6 @@ describe("data loader tests", () => {
   test("on dataloader toggle status change", () => {
     wrapper.instance().toggleIsVisible()
     expect(wrapper.instance().status).toEqual(LoaderState.STANDBY)
-    expect(wrapper.instance().isVisible).toBeTruthy()
   })
 
 })
