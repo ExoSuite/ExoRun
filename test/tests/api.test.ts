@@ -60,19 +60,19 @@ describe("api tests", () => {
     api.setup().then(() => {
 
       test("POST request must be successful", () => {
-        api.post("monitoring/alive").catch()
+        api.post("monitor").catch()
       })
 
       test("PATCH request must be successful", () => {
-        api.patch("monitoring/alive").catch()
+        api.patch("monitoring").catch()
       })
 
       test("PUT request must be successful", () => {
-        api.put("monitoring/alive").catch()
+        api.put("moni").catch()
       })
 
       test("DELETE request must be successful", () => {
-        api.delete("monitoring/alive").catch()
+        api.delete("alive").catch()
       })
 
       test("GET request must be successful", () => {
