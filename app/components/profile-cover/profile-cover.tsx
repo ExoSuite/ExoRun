@@ -32,7 +32,7 @@ export class ProfileCover extends React.Component<IProfileCoverProps> {
 
     if (Build.RunningOnStoryBook()) {
       this.pictureCoverUrl = api.defaultCoverUrl
-    } else  {
+w    } else  {
       const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
       const userProfile: IUser = await loadFromStorage(StorageTypes.USER_PROFILE)
       const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
