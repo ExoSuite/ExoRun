@@ -53,15 +53,15 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
     const { api } = this.props
 
     if (this.props.urlFromParent) {
-      return;
+      return
     }
 
     if (Build.RunningOnStoryBook()) {
       this.avatarUrl = api.defaultAvatarUrl
-    } else  {
+    } else {
       const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
       const userProfile: IUser = await loadFromStorage(StorageTypes.USER_PROFILE)
-      const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
+      const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
 
       this.avatarUrl =
         `${api.Url}/user/${userProfile.id}/${ApiRoutes.PROFILE_PICTURE_AVATAR}?token=${token}`

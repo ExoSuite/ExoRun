@@ -68,7 +68,7 @@ export class DrawerNavigation extends React.Component<DrawerItemsProps> {
 
   private readonly navigateToScreen = (screen: AppScreens, params: Object = {}): IVoidFunction => (
     (): void => {
-      this.props.navigation.closeDrawer();
+      this.props.navigation.closeDrawer()
       this.props.navigation.navigate(screen, params)
     }
   )
@@ -125,10 +125,10 @@ export class DrawerNavigation extends React.Component<DrawerItemsProps> {
               color="white"
               size={30}
             />
-            <Text tx="drawer.app-settings"  preset="header"/>
+            <Text tx="drawer.app-settings" preset="header"/>
           </TouchableOpacity>
         </Screen>
-        <Text preset="bold" text={buildVersionText} style={{textAlign: "center"}}/>
+        <Text preset="bold" text={buildVersionText} style={{ textAlign: "center" }}/>
       </View>
     )
   }

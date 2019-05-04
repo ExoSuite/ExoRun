@@ -40,10 +40,10 @@ class AvatarImageReactNativePaperImpl extends React.PureComponent<IAvatarImageRe
   public static displayName = "Avatar.Image"
 
   public render(): React.ReactNode {
-    const { size, uri, style } = this.props;
+    const { size, uri, style } = this.props
     console.tron.log(uri)
 
-    const { backgroundColor = "transparent" } = StyleSheet.flatten(style) || {};
+    const { backgroundColor = "transparent" } = StyleSheet.flatten(style) || {}
 
     return (
       <View

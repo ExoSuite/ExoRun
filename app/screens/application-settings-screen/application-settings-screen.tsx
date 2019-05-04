@@ -32,7 +32,7 @@ const ROOT: ViewStyle = {
 @observer
 export class ApplicationSettingsScreen extends React.Component<IApplicationSettingsScreenProps> {
   public static navigationOptions = {
-    headerLeft: NavigationBackButtonWithNestedStackNavigator,
+    headerLeft: NavigationBackButtonWithNestedStackNavigator
   }
 
   @autobind

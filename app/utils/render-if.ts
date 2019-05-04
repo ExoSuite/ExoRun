@@ -1,115 +1,115 @@
 // tslint:disable
 
-const isFunction = input => typeof input === 'function';
+const isFunction = input => typeof input === "function"
 
-function renderElemOrThunk (elemOrThunk) {
+function renderElemOrThunk(elemOrThunk) {
   if (isFunction(elemOrThunk)) {
     return elemOrThunk()
   }
-  return elemOrThunk;
+  return elemOrThunk
 }
 
-function renderIf (predicate) {
-  return elemOrThunk => predicate ? renderElemOrThunk(elemOrThunk) : null;
+function renderIf(predicate) {
+  return elemOrThunk => predicate ? renderElemOrThunk(elemOrThunk) : null
 }
 
-renderIf.if = function multiStatement (initialCondition) {
-  return renderIf.multi().if(initialCondition);
+renderIf.if = function multiStatement(initialCondition) {
+  return renderIf.multi().if(initialCondition)
 }
 
-renderIf.switch = function switchStatement (subject) {
-  const cases = [];
+renderIf.switch = function switchStatement(subject) {
+  const cases = []
 
-  function switchCase (value) {
-    return function switchComponent (elemOrThunk) {
+  function switchCase(value) {
+    return function switchComponent(elemOrThunk) {
       cases.push({
         default: false,
         elemOrThunk,
         value
-      });
+      })
 
-      return api;
+      return api
     }
   }
 
-  function switchDefault (elemOrThunk) {
+  function switchDefault(elemOrThunk) {
     cases.push({
       default: true,
       elemOrThunk
-    });
+    })
 
-    return api;
+    return api
   }
 
   function evaluate() {
     // @ts-ignore
-    const sortedCase = cases.sort((a, b) => a.default && !b.default);
+    const sortedCase = cases.sort((a, b) => a.default && !b.default)
 
     for (let i = 0; i < sortedCase.length; i++) {
-      const currentCase = sortedCase[i];
+      const currentCase = sortedCase[i]
 
       if (!currentCase.default) {
         if (currentCase.value === subject) {
-          return renderElemOrThunk(currentCase.elemOrThunk);
+          return renderElemOrThunk(currentCase.elemOrThunk)
         }
       } else if (currentCase.default) {
-        return renderElemOrThunk(currentCase.elemOrThunk);
+        return renderElemOrThunk(currentCase.elemOrThunk)
       }
     }
 
-    return null;
+    return null
   }
 
   const api = {
     case: switchCase,
     default: switchDefault,
     evaluate
-  };
+  }
 
-  return api;
+  return api
 }
 
-renderIf.multi = function () {
-  const cases = [];
+renderIf.multi = function() {
+  const cases = []
 
-  function createCondition (priority) {
-    return function conditionCase (condition) {
-      return function conditionComponent (elemOrThunk) {
+  function createCondition(priority) {
+    return function conditionCase(condition) {
+      return function conditionComponent(elemOrThunk) {
         cases.push({
           priority,
           condition,
           elemOrThunk
-        });
+        })
 
-        return api;
+        return api
       }
     }
   }
 
-  function elseCondition (elemOrThunk) {
+  function elseCondition(elemOrThunk) {
     cases.push({
       priority: 2,
       condition: true,
       elemOrThunk
-    });
+    })
 
-    return api;
+    return api
   }
 
   function evaluate() {
     // @ts-ignore
-    let sortedCases = cases.sort((a, b) => a.priority > b.priority);
+    let sortedCases = cases.sort((a, b) => a.priority > b.priority)
 
     for (let i = 0; i < sortedCases.length; i++) {
       if (sortedCases[i].condition) {
         if (isFunction(sortedCases[i].elemOrThunk)) {
-          return sortedCases[i].elemOrThunk();
+          return sortedCases[i].elemOrThunk()
         }
-        return sortedCases[i].elemOrThunk;
+        return sortedCases[i].elemOrThunk
       }
     }
 
-    return null;
+    return null
   }
 
   const api = {
@@ -117,9 +117,9 @@ renderIf.multi = function () {
     elseIf: createCondition(1),
     else: elseCondition,
     evaluate
-  };
+  }
 
-  return api;
+  return api
 }
 
 export {

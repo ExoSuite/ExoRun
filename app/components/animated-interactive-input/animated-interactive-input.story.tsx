@@ -41,7 +41,7 @@ class AnimatedInteractiveInputStory extends React.Component<any> {
         {...rest}
         onChangeText={this.onChangeText}
         inputState={state}
-        inputStyle={{color: "black"}}
+        inputStyle={{ color: "black" }}
       />
     )
   }

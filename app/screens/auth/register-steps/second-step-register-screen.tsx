@@ -186,7 +186,7 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
       return
     }
 
-    await save(loginResponse.data, Server.EXOSUITE_USERS_API);
+    await save(loginResponse.data, Server.EXOSUITE_USERS_API)
     await Promise.all([
       api.getOrCreatePersonalTokens(),
       api.getProfile()

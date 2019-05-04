@@ -32,7 +32,7 @@ export const presets = {
   fixed: {
     nonScroll: DOES_NOT_SCROLL,
     scrollOuter: NOPE,
-    scrollInner: NOPE,
+    scrollInner: NOPE
   },
 
   /**

@@ -4,7 +4,7 @@ import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { CachedImage, CachedImageType } from "./"
 import { Api } from "@services/api"
 
-const api = new Api();
+const api = new Api()
 
 storiesOf("CachedImage", module)
   .addDecorator((fn: Function) => <StoryScreen>{fn()}</StoryScreen>)
@@ -14,7 +14,7 @@ storiesOf("CachedImage", module)
         <CachedImage
           uri={api.defaultAvatarUrl}
           type={CachedImageType.IMAGE}
-          style={{width: 50, height: 50}}
+          style={{ width: 50, height: 50 }}
           resizeMode="cover"
         />
       </UseCase>
@@ -22,7 +22,7 @@ storiesOf("CachedImage", module)
         <CachedImage
           uri={api.defaultCoverUrl}
           type={CachedImageType.IMAGE}
-          style={{width: "100%", height: 100}}
+          style={{ width: "100%", height: 100 }}
           resizeMode="cover"
         />
       </UseCase>

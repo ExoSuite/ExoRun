@@ -21,6 +21,6 @@ export class Screen {
   }
 
   public static get getStatusBarHeight(): number {
-    return getStatusBarHeight(true);
+    return getStatusBarHeight(true)
   }
 }
