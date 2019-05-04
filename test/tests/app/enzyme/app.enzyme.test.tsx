@@ -1,13 +1,13 @@
 /**
  * @jest-environment jsdom
  */
-import { ModalMock } from "./ModalMock"
+import { ModalMock } from "../ModalMock"
 import * as React from "react"
-import { App } from "../../../app/app"
+import { App } from "../../../../app/app"
 import { shallow } from "enzyme"
 import { spy } from "sinon"
 import { StatefulNavigator } from "@navigation/stateful-navigator"
-import { store } from "../../__mocks__/mock-setup-root-store"
+import { store } from "../../../__mocks__/mock-setup-root-store"
 import { DataLoader } from "@components/data-loader"
 
 spy(App.prototype, "componentDidMount")

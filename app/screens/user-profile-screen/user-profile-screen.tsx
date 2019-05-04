@@ -5,7 +5,7 @@ import { Button, Screen, Text } from "@components"
 import { spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
-import { Api, ApiRoutes, IPersonalTokens, IUser } from "@services/api"
+import { ApiRoutes, IPersonalTokens, IUser } from "@services/api"
 import { Avatar, DefaultRnpAvatarSize } from "@components/avatar"
 import { palette } from "@theme/palette"
 import { headerShadow } from "@utils/shadows"
@@ -13,7 +13,7 @@ import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
 import { load as loadFromStorage, StorageTypes } from "@utils/storage"
 import { inject } from "mobx-react/native"
-import { Injection } from "@services/injections"
+import { Injection, InjectionProps } from "@services/injections"
 import { action, observable } from "mobx"
 import idx from "idx"
 import { CachedImage, CachedImageType } from "@components/cached-image/cached-image"
@@ -25,9 +25,7 @@ export interface IPersonalProfileNavigationScreenProps {
   user?: IUser
 }
 
-export interface IPersonalProfileScreenProps extends NavigationScreenProps<IPersonalProfileNavigationScreenProps> {
-  api: Api
-}
+type IPersonalProfileScreenProps = NavigationScreenProps<IPersonalProfileNavigationScreenProps> & InjectionProps
 
 const ROOT: ViewStyle = {
   width: "100%"
@@ -84,11 +82,9 @@ interface IAnimationObjects {
 const whenVisitingMyProfile = async (): Promise<IUser> => loadFromStorage(StorageTypes.USER_PROFILE)
 
 /**
- * UserProfileScreen will handle a user profile
+ * UserProfileScreenImpl will handle a user profile
  */
-@inject(Injection.Api)
-@observer
-export class UserProfileScreen extends React.Component<IPersonalProfileScreenProps, IPersonalProfileScreenState> {
+export class UserProfileScreenImpl extends React.Component<IPersonalProfileScreenProps, IPersonalProfileScreenState> {
 
   @observable private avatarUrl = ""
   @observable private coverUrl = ""
@@ -237,3 +233,5 @@ export class UserProfileScreen extends React.Component<IPersonalProfileScreenPro
     )
   }
 }
+
+export const UserProfileScreen = inject(Injection.Api)(observer(UserProfileScreenImpl))
