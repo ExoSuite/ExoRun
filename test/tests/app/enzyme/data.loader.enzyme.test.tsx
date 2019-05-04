@@ -10,7 +10,7 @@ import { View } from "react-native"
 import AnimatedLottieView from "lottie-react-native"
 import { View as AnimatedView } from "react-native-animatable"
 import { FormRow } from "@components/form-row"
-import { LoaderState } from "@components/data-loader/data-loader.types"
+import { FinalAnimationStatus, LoaderState } from "@components/data-loader/data-loader.types"
 
 describe("data loader tests", () => {
   let wrapper
@@ -55,6 +55,15 @@ describe("data loader tests", () => {
   test("on dataloader toggle status change", () => {
     wrapper.instance().toggleIsVisible()
     expect(wrapper.instance().status).toEqual(LoaderState.STANDBY)
+  })
+
+  test("on success and onAnimationFinish should test status", () => {
+    wrapper.instance().success()
+    expect(wrapper.instance().status).toEqual(LoaderState.SUCCESS)
+    wrapper.instance().onAnimationFinish()
+    expect(wrapper.instance().finalAnimationStatus).toEqual(FinalAnimationStatus.WILL_PLAY)
+    wrapper.instance().onAnimationFinish()
+    expect(wrapper.instance().finalAnimationStatus).toEqual(FinalAnimationStatus.STOPPED)
   })
 
 })
