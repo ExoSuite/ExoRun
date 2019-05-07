@@ -21,7 +21,11 @@ export function Text(props: ITextProps): React.ReactElement {
   const style = mergeAll(flatten([presets[preset] || presets.default, styleOverride]))
 
   return (
-    <ReactNativeText {...rest} style={style}>
+    <ReactNativeText
+      // @ts-ignore
+      style={style}
+      {...rest}
+    >
       {content}
     </ReactNativeText>
   )

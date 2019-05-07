@@ -2,7 +2,7 @@ import * as React from "react"
 import { observer } from "mobx-react"
 import { Animated, ImageStyle, StyleSheet, View, ViewStyle } from "react-native"
 import { Button, Screen, Text } from "@components"
-import { spacing } from "@theme"
+import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import { ApiRoutes, IPersonalTokens, IUser } from "@services/api"
@@ -14,9 +14,12 @@ import { Server } from "@services/api/api.servers"
 import { load as loadFromStorage, StorageTypes } from "@utils/storage"
 import { inject } from "mobx-react/native"
 import { Injection, InjectionProps } from "@services/injections"
-import { observable, runInAction } from "mobx"
+import { action, observable, runInAction } from "mobx"
 import idx from "idx"
 import { CachedImage, CachedImageType } from "@components/cached-image/cached-image"
+import { renderIf } from "@utils/render-if"
+import autobind from "autobind-decorator"
+import { AppScreens } from "@navigation/navigation-definitions"
 
 // tslint:disable:id-length
 
@@ -84,7 +87,16 @@ const whenVisitingMyProfile = async (): Promise<IUser> => loadFromStorage(Storag
 /**
  * UserProfileScreenImpl will handle a user profile
  */
+@observer
 export class UserProfileScreenImpl extends React.Component<IPersonalProfileScreenProps, IPersonalProfileScreenState> {
+
+  public get getAvatarUrl(): string {
+    return this.avatarUrl || this.props.api.defaultAvatarUrl
+  }
+
+  public get getCoverUrl(): string {
+    return this.coverUrl || this.props.api.defaultCoverUrl
+  }
 
   @observable private avatarUrl = ""
   @observable private coverUrl = ""
@@ -125,40 +137,39 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     }
   }
 
-  private get getAvatarUrl(): string {
-    return this.avatarUrl || this.props.api.defaultAvatarUrl
+  @autobind
+  private onEditMyProfile(): void {
+    this.props.navigation.navigate(AppScreens.EDIT_MY_PROFILE , {
+      userProfile: this.userProfile,
+      avatarUrl: this.avatarUrl,
+      coverUrl: this.coverUrl
+    })
   }
 
-  private get getCoverUrl(): string {
-    return this.coverUrl || this.props.api.defaultCoverUrl
-  }
-
+  @action
   public async componentDidMount(): Promise<void> {
     const { api } = this.props
     const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
     const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
 
-    let userProfile: IUser
     if (this.props.navigation.getParam("me")) {
-      userProfile = await whenVisitingMyProfile()
+      this.userProfile = await whenVisitingMyProfile()
     } else {
       // tslint:disable-next-line:no-commented-code no-commented-out-code
       // this.userProfile = await this.whenVisitingMyProfile();
     }
 
-    runInAction(() => {
-      this.userProfile = userProfile
-      this.avatarUrl =
-        `${api.Url}/user/${this.userProfile.id}/${ApiRoutes.PROFILE_PICTURE_AVATAR}?token=${token}`
-      this.coverUrl =
-        `${api.Url}/user/${this.userProfile.id}/${ApiRoutes.PROFILE_PICTURE_COVER}?token=${token}`
-    })
+    this.avatarUrl =
+      `${api.Url}/user/${this.userProfile.id}/${ApiRoutes.PROFILE_PICTURE_AVATAR}?token=${token}`
+    this.coverUrl =
+      `${api.Url}/user/${this.userProfile.id}/${ApiRoutes.PROFILE_PICTURE_COVER}?token=${token}`
   }
 
   public render(): React.ReactNode {
     const { avatarMovement, avatarOpacity, headerContentOpacity, headerOpacity, coverMovement } = this.animate()
 
     const description = idx<IUser, string>(this.userProfile, (_: any) => _.profile.description)
+    const me = this.props.navigation.getParam("me")
 
     return (
       <Screen style={ROOT} preset="fixed">
@@ -198,7 +209,9 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
         >
           <View style={StyleSheet.flatten([FIXED_HEADER, { marginTop: 150 }])}>
             <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-              <Button/>
+              {renderIf(me)((
+                <Button tx="profile.edit" textPreset="primaryBold" onPress={this.onEditMyProfile}/>
+              ))}
             </View>
           </View>
 
@@ -239,4 +252,4 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   }
 }
 
-export const UserProfileScreen = inject(Injection.Api)(observer(UserProfileScreenImpl))
+export const UserProfileScreen = inject(Injection.Api)(UserProfileScreenImpl)

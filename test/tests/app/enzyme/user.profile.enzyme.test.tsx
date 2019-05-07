@@ -2,26 +2,14 @@
  * @jest-environment jsdom
  */
 import * as React from "react"
-import { mount, shallow } from "enzyme"
-import { UserProfileScreenImpl, UserProfileScreen } from "@screens/user-profile-screen"
-import { spy } from "sinon"
+import { mount } from "enzyme"
+import { UserProfileScreen, UserProfileScreenImpl } from "@screens/user-profile-screen"
 import { Api } from "@services/api"
-import { Provider } from "mobx-react/native"
 import { CachedImage } from "@components/cached-image"
 import { Animated, Text, View } from "react-native"
-
-spy(UserProfileScreenImpl.prototype, "componentDidMount")
+import { Provider } from "mobx-react/native"
 
 describe("user profile tests", () => {
-
-  test("mount call componentDidMount", () => {
-    mount<UserProfileScreenImpl>((
-      // @ts-ignore
-      <UserProfileScreenImpl api={new Api()} navigation={{getParam: (): boolean => true}}/>
-    ))
-
-    expect(UserProfileScreenImpl.prototype.componentDidMount).toHaveProperty("callCount", 1)
-  })
 
   test("render correctly", () => {
     const api: Api = new Api()
@@ -30,7 +18,10 @@ describe("user profile tests", () => {
       React.createElement(
         (props: any) => (
           <Provider api={api}>
-            <UserProfileScreen navigation={{getParam: (): boolean => true}}/>
+            <UserProfileScreen
+              // @ts-ignore
+              navigation={{getParam: (): boolean => true}}
+            />
           </Provider>
         )
       )

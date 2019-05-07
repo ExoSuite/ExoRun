@@ -7,8 +7,9 @@ import autobind from "autobind-decorator"
 import { IRenderFunction } from "@types"
 
 interface ICachedImageProps {
+  children?: React.ReactNode
   type: CachedImageType
-  uri: string
+  uri: string,
 }
 
 interface ICachedImageState {
@@ -65,10 +66,12 @@ export class CachedImage extends React.PureComponent<ICachedImageProps & Partial
 
   @autobind
   private imageBackground(): React.ReactNode {
-    const { style, ...rest } = this.props
+    const { style, children, ...rest } = this.props
 
     return (
-      <ImageBackground style={style} source={this.state.source} {...rest}/>
+      <ImageBackground style={style} source={this.state.source} {...rest}>
+        {children}
+      </ImageBackground>
     )
   }
 

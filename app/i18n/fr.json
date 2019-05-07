@@ -8,7 +8,8 @@
     "password": "Mot de passe",
     "password-reveal": "Révéler le mot de passe",
     "password-hide": "Masquer le mot de passe",
-    "password-confirmation": "Confirmer le mot de passe"
+    "password-confirmation": "Confirmer le mot de passe",
+    "update": "Mettre à jour"
   },
   "drawer": {
     "my-profile": "Mon Profil",
@@ -16,12 +17,18 @@
   },
   "errors": {
     "invalidEmail": "Adresse électronique invalide.",
-    "unknown": "Oups! Une erreur inattendue semble s'être produite.",
+    "unknown": "Oups ! Une erreur inattendue semble s'être produite.",
     "unauthorized": "Oups ! Accès non autorisé !"
   },
   "storybook": {
     "placeholder": "Placeholder",
     "field": "Field"
+  },
+  "profile": {
+    "edit": "Modifier le profil",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "nickName": "Nom d'utilisateur"
   },
   "auth": {
     "powered": "Powered by ",

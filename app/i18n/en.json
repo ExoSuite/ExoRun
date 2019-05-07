@@ -8,7 +8,8 @@
     "password": "Password",
     "password-reveal": "Reveal password",
     "password-hide": "Hide password",
-    "password-confirmation": "Confirm password"
+    "password-confirmation": "Confirm password",
+    "update": "Update"
   },
   "drawer": {
     "my-profile": "Profile",
@@ -23,6 +24,12 @@
     "placeholder": "Placeholder",
     "field": "Field"
   },
+  "profile": {
+    "edit": "Edit profile",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "nickName": "Username"
+  },
   "auth": {
     "powered": "Powered by ",
     "slogan": "Technology for sport.",
@@ -36,8 +43,8 @@
     "register": {
       "header": "Create your ExoSuite account",
       "register": "Sign Up",
-      "firstName": "First Name",
-      "lastName": "Last Name",
+      "firstName": "First name",
+      "lastName": "Last name",
       "nickName": "Username (optional)"
     }
   }

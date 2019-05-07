@@ -1,9 +1,9 @@
 import * as React from "react"
 import { TouchableOpacity } from "react-native"
 import { Text } from "../text"
-import { viewPresets, textPresets } from "./button.presets"
+import { textPresets, viewPresets } from "./button.presets"
 import { IButtonProps } from "./button.props"
-import { mergeAll, flatten } from "ramda"
+import { flatten, mergeAll } from "ramda"
 
 /**
  * For your text displaying needs.
@@ -12,12 +12,16 @@ import { mergeAll, flatten } from "ramda"
  */
 export function Button(props: IButtonProps): React.ReactElement {
   // grab the props
-  const { preset = "primary", tx, text, style: styleOverride, textStyle: textStyleOverride, children, ...rest } = props
+  const {
+    preset = "primary", textPreset = "primary", tx, text,
+    style: styleOverride, textStyle: textStyleOverride, children,
+    ...rest
+  } = props
 
   const viewStyle = mergeAll(flatten([viewPresets[preset] || viewPresets.primary, styleOverride]))
-  const textStyle = mergeAll(flatten([textPresets[preset] || textPresets.primary, textStyleOverride]))
+  const textStyle = mergeAll(flatten([textPresets[textPreset] || textPresets.primary, textStyleOverride]))
 
-  const content = children || <Text tx={tx} text={text} style={textStyle} />
+  const content = children || <Text tx={tx} text={text} style={textStyle}/>
 
   return (
     <TouchableOpacity style={viewStyle} {...rest}>

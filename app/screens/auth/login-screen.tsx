@@ -29,7 +29,7 @@ import { inject } from "mobx-react/native"
 import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
 import KeyboardSpacer from "react-native-keyboard-spacer"
 import { NavigationScreenProps } from "react-navigation"
-import { IValidationRules, validate } from "@utils/validate"
+import { ValidationRules, validate } from "@utils/validate"
 import { footerShadow } from "@utils/shadows"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { IVoidFunction } from "@types"
@@ -125,7 +125,7 @@ const revealPassword = "common.password-reveal"
 
 const onResetPasswordPress = (): null => null
 
-const RULES: IValidationRules = { email: { email: true } }
+const RULES: ValidationRules = { email: { email: true } }
 
 type TLoginScreenProps = NavigationScreenProps & InjectionProps
 
