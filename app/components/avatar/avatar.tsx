@@ -49,7 +49,7 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
   }
 
   @action
-  public async componentWillMount(): Promise<void> {
+  public async componentDidMount(): Promise<void> {
     const { api } = this.props
 
     if (this.props.urlFromParent) {

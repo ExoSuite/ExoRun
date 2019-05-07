@@ -10,17 +10,17 @@ import { Provider } from "mobx-react/native"
 import { CachedImage } from "@components/cached-image"
 import { Animated, Text, View } from "react-native"
 
-spy(UserProfileScreenImpl.prototype, "componentWillMount")
+spy(UserProfileScreenImpl.prototype, "componentDidMount")
 
 describe("user profile tests", () => {
 
   test("mount call componentDidMount", () => {
-    shallow<UserProfileScreenImpl>((
+    mount<UserProfileScreenImpl>((
       // @ts-ignore
       <UserProfileScreenImpl api={new Api()} navigation={{getParam: (): boolean => true}}/>
     ))
 
-    expect(UserProfileScreenImpl.prototype.componentWillMount).toHaveProperty("callCount", 1)
+    expect(UserProfileScreenImpl.prototype.componentDidMount).toHaveProperty("callCount", 1)
   })
 
   test("render correctly", () => {

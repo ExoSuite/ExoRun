@@ -27,7 +27,7 @@ export class ProfileCover extends React.Component<IProfileCoverProps> {
   @observable private pictureCoverUrl: string
 
   @action
-  public async componentWillMount(): Promise<void> {
+  public async componentDidMount(): Promise<void> {
     const { api } = this.props
 
     if (Build.RunningOnStoryBook()) {

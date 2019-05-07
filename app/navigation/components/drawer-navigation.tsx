@@ -74,7 +74,7 @@ export class DrawerNavigation extends React.Component<DrawerItemsProps> {
   )
 
   @action
-  public async componentWillMount(): Promise<void> {
+  public async componentDidMount(): Promise<void> {
     this.userProfile = await loadFromStorage(StorageTypes.USER_PROFILE)
   }
 

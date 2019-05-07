@@ -767,7 +767,6 @@ exports[`Storyshots AnimatedInteractiveInput Error animation 1`] = `
               <View
                 style={
                   Object {
-                    "flex": 1,
                     "paddingVertical": 12,
                   }
                 }
@@ -789,12 +788,10 @@ exports[`Storyshots AnimatedInteractiveInput Error animation 1`] = `
                   style={
                     Object {
                       "backgroundColor": "#ffffff",
-                      "borderRadius": 10,
                       "color": "black",
                       "fontFamily": "Montserrat",
                       "fontSize": 18,
                       "minHeight": 44,
-                      "paddingHorizontal": 5,
                     }
                   }
                   underlineColorAndroid="rgba(0, 0, 0, 0)"
@@ -995,7 +992,6 @@ exports[`Storyshots AnimatedInteractiveInput Loading animation 1`] = `
               <View
                 style={
                   Object {
-                    "flex": 1,
                     "paddingVertical": 12,
                   }
                 }
@@ -1017,12 +1013,10 @@ exports[`Storyshots AnimatedInteractiveInput Loading animation 1`] = `
                   style={
                     Object {
                       "backgroundColor": "#ffffff",
-                      "borderRadius": 10,
                       "color": "black",
                       "fontFamily": "Montserrat",
                       "fontSize": 18,
                       "minHeight": 44,
-                      "paddingHorizontal": 5,
                     }
                   }
                   underlineColorAndroid="rgba(0, 0, 0, 0)"
@@ -1189,7 +1183,6 @@ exports[`Storyshots AnimatedInteractiveInput Random animation 1`] = `
               <View
                 style={
                   Object {
-                    "flex": 1,
                     "paddingVertical": 12,
                   }
                 }
@@ -1211,12 +1204,10 @@ exports[`Storyshots AnimatedInteractiveInput Random animation 1`] = `
                   style={
                     Object {
                       "backgroundColor": "#ffffff",
-                      "borderRadius": 10,
                       "color": "black",
                       "fontFamily": "Montserrat",
                       "fontSize": 18,
                       "minHeight": 44,
-                      "paddingHorizontal": 5,
                     }
                   }
                   underlineColorAndroid="rgba(0, 0, 0, 0)"
@@ -1417,7 +1408,6 @@ exports[`Storyshots AnimatedInteractiveInput Success animation 1`] = `
               <View
                 style={
                   Object {
-                    "flex": 1,
                     "paddingVertical": 12,
                   }
                 }
@@ -1439,12 +1429,10 @@ exports[`Storyshots AnimatedInteractiveInput Success animation 1`] = `
                   style={
                     Object {
                       "backgroundColor": "#ffffff",
-                      "borderRadius": 10,
                       "color": "black",
                       "fontFamily": "Montserrat",
                       "fontSize": 18,
                       "minHeight": 44,
-                      "paddingHorizontal": 5,
                     }
                   }
                   underlineColorAndroid="rgba(0, 0, 0, 0)"
@@ -2782,7 +2770,7 @@ exports[`Storyshots Checkbox Styling 1`] = `
                     }
                   }
                 >
-                  We’re an App Design & Development Team 
+                  We’re an App Design & Development Team. Experts in mobile & web technologies. We create beautiful, functional mobile apps and websites. 
                 </Text>
               </View>
             </View>
@@ -3435,12 +3423,10 @@ exports[`Storyshots DismissKeyboard Style Presets 1`] = `
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
-                    "borderRadius": 10,
                     "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 18,
                     "minHeight": 44,
-                    "paddingHorizontal": 5,
                   }
                 }
                 underlineColorAndroid="rgba(0, 0, 0, 0)"
@@ -7683,12 +7669,10 @@ exports[`Storyshots TextField Labelling 1`] = `
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
-                    "borderRadius": 10,
                     "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 18,
                     "minHeight": 44,
-                    "paddingHorizontal": 5,
                   }
                 }
                 underlineColorAndroid="rgba(0, 0, 0, 0)"
@@ -7801,12 +7785,10 @@ exports[`Storyshots TextField Labelling 1`] = `
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
-                    "borderRadius": 10,
                     "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 18,
                     "minHeight": 44,
-                    "paddingHorizontal": 5,
                   }
                 }
                 underlineColorAndroid="rgba(0, 0, 0, 0)"
@@ -7952,7 +7934,6 @@ exports[`Storyshots TextField Ref Forwarding 1`] = `
                     "fontSize": 18,
                     "minHeight": 44,
                     "padding": 40,
-                    "paddingHorizontal": 5,
                   }
                 }
                 underlineColorAndroid="rgba(0, 0, 0, 0)"
@@ -8102,12 +8083,10 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
-                    "borderRadius": 10,
                     "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 18,
                     "minHeight": 44,
-                    "paddingHorizontal": 5,
                   }
                 }
                 underlineColorAndroid="rgba(0, 0, 0, 0)"
@@ -8140,12 +8119,10 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
-                    "borderRadius": 10,
                     "color": "#ffffff",
                     "fontFamily": "Montserrat",
                     "fontSize": 18,
                     "minHeight": 44,
-                    "paddingHorizontal": 5,
                   }
                 }
                 underlineColorAndroid="rgba(0, 0, 0, 0)"
@@ -8265,7 +8242,6 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                     "fontSize": 18,
                     "minHeight": 44,
                     "padding": 40,
-                    "paddingHorizontal": 5,
                   }
                 }
                 underlineColorAndroid="rgba(0, 0, 0, 0)"
@@ -8398,7 +8374,6 @@ exports[`Storyshots TextField Style Overrides 1`] = `
                     "fontSize": 18,
                     "minHeight": 44,
                     "padding": 40,
-                    "paddingHorizontal": 5,
                   }
                 }
                 underlineColorAndroid="rgba(0, 0, 0, 0)"

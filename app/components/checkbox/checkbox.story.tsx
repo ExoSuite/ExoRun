@@ -1,39 +1,38 @@
-import { storiesOf } from "@storybook/react-native"
+// tslint:disable
 import * as React from "react"
 import { View, ViewStyle } from "react-native"
-import { Toggle } from "react-powerplug"
-import { Story, StoryScreen, UseCase } from "../../../storybook/views"
+import { storiesOf } from "@storybook/react-native"
+import { StoryScreen, Story, UseCase } from "../../../storybook/views"
 import { Checkbox } from "./"
-
-// tslint:disable typedef
+import { Toggle } from "react-powerplug"
 
 const arrayStyle: ViewStyle[] = [
-  { paddingVertical: 40 },
-  { alignSelf: "flex-end" }
+  {paddingVertical: 40},
+  {alignSelf: "flex-end"},
 ]
 const arrayOutlineStyle: ViewStyle[] =
   [
-    { borderColor: "#b443c9" },
-    { borderWidth: 25 }
+    {borderColor: "#b443c9"},
+    {borderWidth: 25},
   ]
 const arrayFillStyle: ViewStyle[] = [
-  { backgroundColor: "#55e0ff" }
+  {backgroundColor: "#55e0ff"},
 ]
 
 storiesOf("Checkbox", module)
-  .addDecorator((fn) => <StoryScreen>{fn()}</StoryScreen>)
+  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Behaviour", () => (
     <Story>
       <UseCase text="The Checkbox" usage="Use the checkbox to represent on/off states.">
         <Toggle initial={false}>
-          {({ on, toggle }) => <Checkbox value={on} onToggle={toggle} text="Toggle me"/>}
+          {({ on, toggle }) => <Checkbox value={on} onToggle={toggle} text="Toggle me" />}
         </Toggle>
       </UseCase>
       <UseCase text="value = true" usage="This is permanently on.">
-        <Checkbox value text="Always on"/>
+        <Checkbox value={true} text="Always on" />
       </UseCase>
       <UseCase text="value = false" usage="This is permanantly off.">
-        <Checkbox value={false} text="Always off"/>
+        <Checkbox value={false} text="Always off" />
       </UseCase>
     </Story>
   ))
@@ -41,10 +40,10 @@ storiesOf("Checkbox", module)
     <Story>
       <UseCase text="multiline = true" usage="For really really long text">
         <Toggle initial={false}>
-          {({ on, toggle }): React.ReactNode => (
+          {({ on, toggle }) => (
             <View>
               <Checkbox
-                text="We’re an App Design & Development Team "
+                text="We’re an App Design & Development Team. Experts in mobile & web technologies. We create beautiful, functional mobile apps and websites. "
                 value={on}
                 multiline
                 onToggle={toggle}
@@ -64,7 +63,7 @@ storiesOf("Checkbox", module)
                   backgroundColor: "purple",
                   marginLeft: 40,
                   paddingVertical: 30,
-                  paddingLeft: 60
+                  paddingLeft: 60,
                 }}
                 onToggle={toggle}
               />
@@ -84,7 +83,7 @@ storiesOf("Checkbox", module)
                   borderRadius: 10,
                   borderWidth: 4,
                   width: 60,
-                  height: 20
+                  height: 20,
                 }}
                 onToggle={toggle}
               />

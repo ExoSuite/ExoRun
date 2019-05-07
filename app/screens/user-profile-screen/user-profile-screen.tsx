@@ -14,7 +14,7 @@ import { Server } from "@services/api/api.servers"
 import { load as loadFromStorage, StorageTypes } from "@utils/storage"
 import { inject } from "mobx-react/native"
 import { Injection, InjectionProps } from "@services/injections"
-import { action, observable } from "mobx"
+import { observable, runInAction } from "mobx"
 import idx from "idx"
 import { CachedImage, CachedImageType } from "@components/cached-image/cached-image"
 
@@ -133,22 +133,26 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     return this.coverUrl || this.props.api.defaultCoverUrl
   }
 
-  @action
-  public async componentWillMount(): Promise<void> {
+  public async componentDidMount(): Promise<void> {
     const { api } = this.props
     const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
     const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
+
+    let userProfile: IUser
     if (this.props.navigation.getParam("me")) {
-      this.userProfile = await whenVisitingMyProfile()
+      userProfile = await whenVisitingMyProfile()
     } else {
       // tslint:disable-next-line:no-commented-code no-commented-out-code
       // this.userProfile = await this.whenVisitingMyProfile();
     }
 
-    this.avatarUrl =
-      `${api.Url}/user/${this.userProfile.id}/${ApiRoutes.PROFILE_PICTURE_AVATAR}?token=${token}`
-    this.coverUrl =
-      `${api.Url}/user/${this.userProfile.id}/${ApiRoutes.PROFILE_PICTURE_COVER}?token=${token}`
+    runInAction(() => {
+      this.userProfile = userProfile
+      this.avatarUrl =
+        `${api.Url}/user/${this.userProfile.id}/${ApiRoutes.PROFILE_PICTURE_AVATAR}?token=${token}`
+      this.coverUrl =
+        `${api.Url}/user/${this.userProfile.id}/${ApiRoutes.PROFILE_PICTURE_COVER}?token=${token}`
+    })
   }
 
   public render(): React.ReactNode {
@@ -160,6 +164,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
       <Screen style={ROOT} preset="fixed">
         <CachedImage
           uri={this.getCoverUrl}
+          // @ts-ignore
           style={[{ transform: [{ translateY: coverMovement }] }, PROFILE_COVER]}
           resizeMode="cover"
           type={CachedImageType.ANIMATED_IMAGE}

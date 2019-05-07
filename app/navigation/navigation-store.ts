@@ -1,8 +1,7 @@
 import { Instance, types } from "mobx-state-tree"
-import { NavigationAction, NavigationActions, NavigationLeafRoute } from "react-navigation"
-import { NavigationEvents } from "./navigation-events"
 import { RootNavigator } from "./root-navigator"
-import { IVoidFunction } from "@types"
+import { NavigationActions, NavigationAction, NavigationLeafRoute } from "react-navigation"
+import { NavigationEvents } from "./navigation-events"
 
 const DEFAULT_STATE = RootNavigator.router.getStateForAction(NavigationActions.init(), null)
 
@@ -28,13 +27,28 @@ function findCurrentRoute(navState: Object): NavigationLeafRoute {
 export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
   .props({
     /**
-     * the navigation state tree (Frozen here means it Is immutable.)
+     * the navigation state tree (Frozen here means it is immutable.)
      */
-    // @ts-ignore
-    state: types.optional(types.frozen(), DEFAULT_STATE)
+    state: types.optional(types.frozen(), DEFAULT_STATE),
   })
-  .actions((self: any) => ({
+  // tslint:disable-next-line:typedef deprecation
+  .preProcessSnapshot((snapshot) => {
+    if (!snapshot || !Boolean(snapshot.state)) {
+      return snapshot
+    }
 
+    try {
+      // make sure react-navigation can handle our state
+      RootNavigator.router.getPathAndParamsForState(snapshot.state)
+
+      return snapshot
+    } catch (err) {
+      // otherwise restore default state
+      return { ...snapshot, state: DEFAULT_STATE }
+    }
+  })
+  // tslint:disable-next-line:typedef
+  .actions((self) => ({
     /**
      * Return all subscribers
      */
@@ -45,7 +59,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
     /**
      * Fires when navigation happens.
      *
-     * Our job Is to update the state for this new navigation action.
+     * Our job is to update the state for this new navigation action.
      *
      * @param action The new navigation action to perform
      * @param shouldPush Should we push or replace the whole stack?
@@ -66,17 +80,12 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
       self.state = DEFAULT_STATE
     },
 
-    smoothReset(callback: IVoidFunction): void {
-      self.reset()
-      callback()
-    },
-
     /**
      * Finds the current route.
      */
     findCurrentRoute(): NavigationLeafRoute {
       return findCurrentRoute(self.state)
-    }
+    },
   }))
   .actions((self: any) => ({
     /**
@@ -86,7 +95,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      */
     navigateTo(routeName: string): void {
       self.dispatch(NavigationActions.navigate({ routeName }))
-    }
+    },
   }))
 
 export type NavigationStore = Instance<typeof NavigationStoreModel>
