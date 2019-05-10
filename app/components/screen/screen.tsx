@@ -1,6 +1,5 @@
 import * as React from "react"
-import { KeyboardAvoidingView, ScrollView, StatusBar, View, ViewStyle } from "react-native"
-import { SafeAreaView } from "react-navigation"
+import { KeyboardAvoidingView, ScrollView, StatusBar, View, ViewStyle, SafeAreaView } from "react-native"
 import { IScreenProps } from "./screen.props"
 import { isNonScrolling, offsets, presets } from "./screen.presets"
 import { Platform } from "@services/device"
