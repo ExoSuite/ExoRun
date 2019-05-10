@@ -791,10 +791,10 @@
     hoist-non-react-statics "^2.2.2"
     prop-types "^15.5.10"
 
-"@fortawesome/fontawesome-common-types@^0.2.17":
-  version "0.2.17"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.17.tgz#d8c36e6f6f3b3415fa1f83eaffe4f41bd313715c"
-  integrity sha512-DEYsEb/iiGVoMPQGjhG2uOylLVuMzTxOxysClkabZ5n80Q3oFDWGnshCLKvOvKoeClsgmKhWVrnnqvsMI1cAbw==
+"@fortawesome/fontawesome-common-types@^0.2.18":
+  version "0.2.18"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.18.tgz#c0d8f073a5116b2de0a2c8a7aba66093a6956ce7"
+  integrity sha512-834DrzO2Ne3upCW+mJJPC/E6BsFcj+2Z1HmPIhbpbj8UaKmXWum4NClqLpUiMetugRlHuG4jbIHNdv2/lc3c1Q==
 
 "@jest/console@^24.7.1":
   version "24.7.1"
@@ -1360,10 +1360,17 @@
   dependencies:
     "@types/jest-diff" "*"
 
-"@types/lodash@^4.14.123":
-  version "4.14.123"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.123.tgz#39be5d211478c8dd3bdae98ee75bb7efe4abfe4d"
-  integrity sha512-pQvPkc4Nltyx7G1Ww45OjVqUsJP4UsZm+GWJpigXgkikZqJgRm4c48g027o6tdgubWHwFRF15iFd+Y4Pmqv6+Q==
+"@types/lodash-es@^4.17.3":
+  version "4.17.3"
+  resolved "https://registry.yarnpkg.com/@types/lodash-es/-/lodash-es-4.17.3.tgz#87eb0b3673b076b8ee655f1890260a136af09a2d"
+  integrity sha512-iHI0i7ZAL1qepz1Y7f3EKg/zUMDwDfTzitx+AlHhJJvXwenP682ZyGbgPSc5Ej3eEAKVbNWKFuwOadCj5vBbYQ==
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash@*":
+  version "4.14.125"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.125.tgz#b5fa71f3080a2136ba2702c390ffe528ec1e3980"
+  integrity sha512-s29jU/MIOSddXeji0TSZPJjf0agnfJYpWeKlr79BbtXlfuYamGVyCNQA2IRi5/plaQiNSxMmNGdvFbdtMMJ3nw==
 
 "@types/node@*", "@types/node@^11.13.8":
   version "11.13.8"
@@ -2542,7 +2549,7 @@ caseless@~0.12.0:
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
-chai@latest:
+chai@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/chai/-/chai-4.2.0.tgz#760aa72cf20e3795e84b12877ce0e83737aa29e5"
   integrity sha512-XQU3bhBukrOsQCuwZndwGcCVQHyZi53fQ6Ys1Fym7E4olpIqqZZhhoFJoaKVvV17lWQoXYwgWN2nF5crA8J2jw==
@@ -4505,10 +4512,10 @@ https-browserify@^1.0.0:
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
   integrity sha1-7AbBDgo0wPL68Zn3/X/Hj//QPHM=
 
-i18n-js@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/i18n-js/-/i18n-js-3.2.1.tgz#26cea8e327207bebccf1030baa761c5245ceb63b"
-  integrity sha512-AN8Ol+7QMcRml338l5W7JeNsJgXZqXHOwF+e2iKu6gqRM87bmbxk3g2CAfapo7+5ASKOhl+0PiH+YP8OjN+rXg==
+i18n-js@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/i18n-js/-/i18n-js-3.2.2.tgz#9f7f552320c0e4cc6b35c50a790cc50465c7dc90"
+  integrity sha512-CSTJelBrTDa54Utpj5BNEcplB4i/kXytjVNdQe4k/OQv1r9rVHtRZHWnhvRwkOrhdeJn7Wt05cv/rj5UT9Efhg==
 
 iconv-lite@0.4.24, iconv-lite@^0.4.17, iconv-lite@^0.4.4, iconv-lite@~0.4.13:
   version "0.4.24"
@@ -4527,10 +4534,10 @@ ieee754@^1.1.4:
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.13.tgz#ec168558e95aa181fd87d37f55c32bbcb6708b84"
   integrity sha512-4vf7I2LYV/HaWerSo3XmlMkp5eZ83i+/CDluXi/IGTs/O1sejBNhTtnxzmRZfvOUqj7lZjqHkeTvpgSFDlWZTg==
 
-ignite-bowser@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/ignite-bowser/-/ignite-bowser-4.1.1.tgz#48b233cc6ea84aa5ccaa0becd336cbbea03eabf7"
-  integrity sha512-O7ln1x4QeSv0j/zzKqQmHMQYqBcNOXoYMg0Ltg+IpG34uWlXzG3JInaGabYT35YBEpiHJ9FkFc0vRnAKBEUG5A==
+ignite-bowser@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/ignite-bowser/-/ignite-bowser-4.3.0.tgz#2040b1c8c15dcb4bc01633d6b258f806d2d9f863"
+  integrity sha512-HioPaen+1uHM10WEjwgIzmTxwm9/sXSZzrvFJ5atEw0hESN+DBkE3R0Bs4Q0BIMyMh9YQREhQgTnwU5btSYsdg==
   dependencies:
     ramda "^0.25.0"
 
@@ -6821,7 +6828,7 @@ mock-socket@^8.0.5:
   dependencies:
     url-parse "^1.2.0"
 
-moment@^2.19.0:
+moment@^2.19.0, moment@^2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
@@ -8248,7 +8255,7 @@ react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-native-animatable@^1.3.1, react-native-animatable@^1.3.2:
+react-native-animatable@^1.2.4, react-native-animatable@^1.3.1, react-native-animatable@^1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.3.2.tgz#4783ee1a73dc98815aef234ce6b819f80bfe7d80"
   integrity sha512-rmah3KQ63ft8DxkzFUwJSuZeq+oSYwldoGF4DTOR5WM2WR5wiWLgBAtrAHlI3Di3by323uOR21s+MlqPcHz2Kw==
@@ -8310,6 +8317,13 @@ react-native-gifted-chat@^0.8.0:
     react-native-video "^3.2.1"
     uuid "3.3.0"
 
+react-native-input-scroll-view@^1.9.2:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/react-native-input-scroll-view/-/react-native-input-scroll-view-1.9.2.tgz#2d641b78a6926cadb72a9cec0e65601c60e9b47f"
+  integrity sha512-AB2PbM/0gIdMmiDC37lKHyxEZQptm9YD5fe8Uq26MJifQUjW3UBYI5IfMTFedSfpzq76WtTJ5D2Csu9Q58F3IA==
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-keyboard-accessory@^0.1.9:
   version "0.1.9"
   resolved "https://registry.yarnpkg.com/react-native-keyboard-accessory/-/react-native-keyboard-accessory-0.1.9.tgz#4c842940da1fc4f7da36aec32c69c9a4e9cd8836"
@@ -8337,6 +8351,14 @@ react-native-localize@^1.1.2:
   resolved "https://registry.yarnpkg.com/react-native-localize/-/react-native-localize-1.1.2.tgz#738b2b3bc86a9a451e0989f67b11ac289971b8b2"
   integrity sha512-evyah0AVmJ0YuaPOFy4cfeQvxZdDHKbhw+IpN6QA9t6jqsaF+GfQxm95IoPig5T7lGCVVXyAorD3/0axsZZPzw==
 
+react-native-modal-datetime-picker@^7.4.0:
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-7.4.0.tgz#29c8a51cf4ca79c71c723551e3bbc788d11df3db"
+  integrity sha512-lq39cVE2MYktv0usF0k/EwW0gyIvERiYFT9yDXmHIhJFihnR0ZV1kK1Pni4pfLNuqWIWbkb5Y3kzpSKcMzdXSA==
+  dependencies:
+    prop-types "^15.7.2"
+    react-native-modal "^9.0.0"
+
 react-native-modal@^10.0.0:
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-10.0.0.tgz#1b0b15cc6cda9584f122cced106a9f9f37befc08"
@@ -8344,6 +8366,14 @@ react-native-modal@^10.0.0:
   dependencies:
     prop-types "^15.6.2"
     react-native-animatable "^1.3.1"
+
+react-native-modal@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-9.0.0.tgz#0bfd0770361a2e5c6e0072bfdb0f1277f9662dba"
+  integrity sha512-j4xeIK9noHU/ksp2Ndc8NI1qJvjApToqGvqLEu2wtYeaISanbhtd0S3V4hZkSlCa3DZtegl6aaMZBLeH1q6xfA==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-animatable "^1.2.4"
 
 react-native-paper@^2.15.2:
   version "2.15.2"
@@ -8488,10 +8518,10 @@ react-native-video@^4.4.1:
     prop-types "^15.5.10"
     shaka-player "^2.4.4"
 
-react-native@0.59.5:
-  version "0.59.5"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.59.5.tgz#79500d2885a3dc83216715e1fc6effa878ad6ea9"
-  integrity sha512-8Q/9cS6IMsGNiFhJgzmncbUeuacXQMe5EJl0c63fW30DvjEjeTVCvhM08eGzSpsNlOvL2XDRa4YOiCrwI7S1TA==
+react-native@0.59.8:
+  version "0.59.8"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.59.8.tgz#ade4141c777c60f5ec4889d9811d0f80a9d56547"
+  integrity sha512-x1T+/pEXrjgdH9uDzd5doJy5aFlBqW04j7ljDKIGALchhnvdFbtXXrUZ/1PfWHMrIdZxtaDt4tkSttp662GSQA==
   dependencies:
     "@babel/runtime" "^7.0.0"
     "@react-native-community/cli" "^1.2.1"
@@ -8656,10 +8686,10 @@ react@^16.7.0:
     prop-types "^15.6.2"
     scheduler "^0.13.6"
 
-reactotron-core-client@^2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/reactotron-core-client/-/reactotron-core-client-2.6.1.tgz#9e9bcbc3ff921fdfa080167ccb6f7e8579a966d8"
-  integrity sha512-WPIwqguoLdKgnPRzj1VO6gL3JTbSnYbXCFfyuiOAJV+APgANvjS3ixcZPkiVXTdfiGNhVpwnelTXGfhwqEiKBw==
+reactotron-core-client@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/reactotron-core-client/-/reactotron-core-client-2.7.0.tgz#f2cf769a059ddb7d39bc573eee930036c89db564"
+  integrity sha512-K44DOvB9OfIHfK7I/oE4dtAUuhu3mP2qu8qSCKDihCLeyQqyoJ70xoKNBzBY2gW4EN8Lz6sNbsKngidsmBHsdw==
 
 reactotron-mst@3.1.1:
   version "3.1.1"
@@ -8668,14 +8698,14 @@ reactotron-mst@3.1.1:
   dependencies:
     ramda "^0.25.0"
 
-reactotron-react-native@^3.4.1:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/reactotron-react-native/-/reactotron-react-native-3.4.1.tgz#22efdb32bb7388988288092b15d32d445545f501"
-  integrity sha512-oW//69saYrT5x8PaxIm9afvEgvMjIdFyI/Oo2sI1vs4byL2AjIJbjL8/MQysC0z9AcWgYKYxPTI+4FMshe8Qog==
+reactotron-react-native@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/reactotron-react-native/-/reactotron-react-native-3.5.0.tgz#bd1fc22740e8d557b0114502accb756b85daf489"
+  integrity sha512-eOkCAyotWUJfRhPKR00yzDDvyPJX4BpFwgiUWqn0+2cCEqYQe5wx2BF0yqqFuRgdsI5iiX8UloRHe48TNJm2vA==
   dependencies:
     mitt "^1.1.3"
     query-string "^6.4.2"
-    reactotron-core-client "^2.6.1"
+    reactotron-core-client "^2.7.0"
     rn-host-detect "^1.1.5"
 
 read-pkg-up@^2.0.0:
@@ -9358,7 +9388,7 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-sinon-chai@latest:
+sinon-chai@3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/sinon-chai/-/sinon-chai-3.3.0.tgz#8084ff99451064910fbe2c2cb8ab540c00b740ea"
   integrity sha512-r2JhDY7gbbmh5z3Q62pNbrjxZdOAjpsqW/8yxAZRSqLZqowmfGZPGUZPFf3UX36NLis0cv8VEM5IJh9HgkSOAA==

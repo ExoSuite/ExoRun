@@ -24,6 +24,7 @@ const CONTAINER: ViewStyle = {
 const EXORUN_TEXT: ImageStyle = {
   width: 150,
   height: 50,
+  marginTop: spacing[3],
   alignSelf: "center"
 }
 

@@ -28,7 +28,10 @@
     "edit": "Modifier le profil",
     "firstName": "Prénom",
     "lastName": "Nom",
-    "nickName": "Nom d'utilisateur"
+    "nickName": "Nom d'utilisateur",
+    "description": "Description",
+    "city": "Ville",
+    "birthday": "Date de naissance"
   },
   "auth": {
     "powered": "Powered by ",

@@ -20,7 +20,8 @@ export interface ITouchableGreyscaledIconProps {
 }
 
 const ROOT_CONTAINER: ViewStyle = {
-  flex: 1
+  flex: 1,
+  maxHeight: 150
 }
 
 const GREYSCALED_VIEW: ViewStyle = {

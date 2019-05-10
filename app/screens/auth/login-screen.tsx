@@ -133,7 +133,7 @@ type TLoginScreenProps = NavigationScreenProps & InjectionProps
  * LoginScreen will handle multiple user login
  * by calling the ExoSuite Users API
  */
-@inject(Injection.Api, Injection.SoundPlayer)
+@inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel)
 @observer
 export class LoginScreen extends React.Component<TLoginScreenProps> {
 
@@ -192,7 +192,7 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
 
   @autobind
   public async _authorizeLogin(): Promise<void> {
-    const { api, soundPlayer, navigation } = this.props
+    const { api, soundPlayer, navigation, userModel } = this.props
     DataLoader.Instance.toggleIsVisible()
 
     const response: ApiResponse<ITokenResponse> | HttpRequestError =
@@ -208,7 +208,7 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
     await save(response.data, Server.EXOSUITE_USERS_API)
     await Promise.all([
       api.getOrCreatePersonalTokens(),
-      api.getProfile()
+      api.getProfile(userModel)
     ])
 
     DataLoader.Instance.success(
@@ -292,7 +292,7 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
                 forwardedRef={this.setPasswordInputRef}
                 onSubmitEditing={this.authorizeLogin}
               />
-              <FormRow preset={"clear"} style={[ZERO_PADDING, { paddingTop: spacing[2] }]}>
+              <FormRow preset="clear" style={[ZERO_PADDING, { paddingTop: spacing[2] }]}>
                 <Button preset="link" tx={passwordToggleText} onPress={toggleIsPasswordVisible}/>
               </FormRow>
             </FormRow>

@@ -1,11 +1,11 @@
 import * as React from "react"
 import { observer } from "mobx-react"
-import { Animated, ImageStyle, TextInput, View, ViewStyle } from "react-native"
-import { Screen } from "@components/screen"
+import { ImageStyle, View, ViewStyle } from "react-native"
+import InputScrollView from "react-native-input-scroll-view";
 import { NavigationScreenProps } from "react-navigation"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import { IUser } from "@services/api"
-import { observable, runInAction } from "mobx"
+import { action, observable, runInAction } from "mobx"
 import { CachedImage, CachedImageType } from "@components/cached-image"
 import { TouchableGreyscaledIcon } from "@components/touchable-greyscaled-icon"
 import autobind from "autobind-decorator"
@@ -15,6 +15,15 @@ import { TextField } from "@components/text-field"
 import { color } from "@theme/color"
 import { IOnChangeTextCallback } from "@types"
 import { Button } from "@components/button"
+import idx from "idx"
+import DateTimePicker from "react-native-modal-datetime-picker";
+import { inject } from "mobx-react/native"
+import { Injection, InjectionProps } from "@services/injections"
+import moment from "moment"
+import lodash, { clone } from "lodash-es"
+import ramda from "ramda"
+import { DataLoader } from "@components/data-loader"
+import { save as saveFromStorage, StorageTypes } from "@utils/storage"
 
 interface IEditMyProfileScreenNavigationScreenProps {
   avatarUrl: string
@@ -22,7 +31,12 @@ interface IEditMyProfileScreenNavigationScreenProps {
   userProfile: IUser
 }
 
-export interface IEditMyProfileScreenProps extends NavigationScreenProps<IEditMyProfileScreenNavigationScreenProps> {
+export interface IEditMyProfileScreenProps
+  extends NavigationScreenProps<IEditMyProfileScreenNavigationScreenProps>, InjectionProps {
+}
+
+const CONTAINER: ViewStyle = {
+  backgroundColor: color.background
 }
 
 const PROFILE_COVER: ImageStyle = {
@@ -46,17 +60,16 @@ const INPUT_STYLE: ViewStyle = {
   backgroundColor: color.transparent
 }
 
-type userProfileField = keyof IUser
-
 /**
  * EditMyProfileScreen will handle the modification of the user profile
  */
+@inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel)
 @observer
 export class EditMyProfileScreen extends React.Component<IEditMyProfileScreenProps> {
-
-  @observable private avatarUrl = ""
-  @observable private coverUrl = ""
-  @observable private userProfile: IUser = {} as IUser
+  @observable private readonly avatarUrl
+  @observable private readonly coverUrl
+  @observable private isDateTimePickerVisible = false
+  @observable private readonly userProfile: IUser = {} as IUser
 
   public static navigationOptions = {
     headerLeft: NavigationBackButtonWithNestedStackNavigator
@@ -66,7 +79,13 @@ export class EditMyProfileScreen extends React.Component<IEditMyProfileScreenPro
     super(props)
     this.avatarUrl = props.navigation.getParam("avatarUrl")
     this.coverUrl = props.navigation.getParam("coverUrl")
-    this.userProfile = props.navigation.getParam("userProfile")
+    this.userProfile = clone(props.userModel)
+  }
+
+  @action.bound
+  private handleDatePicked(date: Date): void {
+    this.userProfile.profile.birthday = moment(date).format("YYYY-MM-DD");
+    this.toggleIsDateTimePickerVisible()
   }
 
   @autobind
@@ -75,23 +94,59 @@ export class EditMyProfileScreen extends React.Component<IEditMyProfileScreenPro
 
   }
 
-  private updateProfile(field: userProfileField): IOnChangeTextCallback {
+  @autobind
+  private async sendUpdateToServer(): Promise<void> {
+    const { api, soundPlayer, userModel } = this.props
+    DataLoader.Instance.toggleIsVisible()
+
+    // pick only wanted data from profile and user
+    const userData = ramda.pick(["first_name", "last_name", "nick_name"], this.userProfile)
+    const userProfileData = ramda.pick(["description", "city", "birthday"], this.userProfile.profile)
+
+    // remove potential falsey values
+    const userUpdatePromise = api.patch("user/me", lodash.pickBy(userData, lodash.identity))
+    const userProfileUpdatePromise = api.patch("user/me/profile", lodash.pickBy(userProfileData, lodash.identity))
+
+    await Promise.all([userUpdatePromise, userProfileUpdatePromise])
+      .then(async () => {
+        const freshUserProfile = clone(this.userProfile)
+        await saveFromStorage(StorageTypes.USER_PROFILE, freshUserProfile)
+        userModel.updateNickName(freshUserProfile.nick_name)
+        console.tron.log(userModel)
+        DataLoader.Instance.success(soundPlayer.success)
+      })
+      .catch((err: any) => {
+        DataLoader.Instance.hasErrors(err, soundPlayer.error)
+      })
+  }
+
+  @action.bound
+  private toggleIsDateTimePickerVisible(): void {
+    this.isDateTimePickerVisible = !this.isDateTimePickerVisible
+  }
+
+  private updateProfile(field: string): IOnChangeTextCallback {
     return (text: string): void => {
       runInAction(() => {
-        if (this.userProfile[field]) {
+        if (this.userProfile[field] !== undefined) {
           this.userProfile[field] = text
         } else {
           this.userProfile.profile[field] = text
         }
-
-        console.tron.log(this.userProfile)
       })
     }
   }
 
   public render(): React.ReactNode {
+    const description = idx<IUser, string>(this.userProfile, (accessor: any) => accessor.profile.description)
+    const city = idx<IUser, string>(this.userProfile, (accessor: any) => accessor.profile.city)
+    let birthday = idx<IUser, string>(this.userProfile, (accessor: any) => accessor.profile.birthday)
+    if (birthday) {
+      birthday = moment(birthday).format("LL")
+    }
+
     return (
-      <Screen preset="scroll">
+      <InputScrollView style={CONTAINER} useAnimatedScrollView>
         <TouchableGreyscaledIcon
           iconName="camera-alt"
           iconSize={32}
@@ -124,37 +179,77 @@ export class EditMyProfileScreen extends React.Component<IEditMyProfileScreenPro
             inputStyle={[INPUT_STYLE, BOTTOM_BORDER]}
             placeholderTextColor={color.palette.lightGrey}
             returnKeyType="next"
-            autoFocus
             defaultValue={this.userProfile.nick_name}
             onChangeText={this.updateProfile("nick_name")}
           />
           <TextField
-            autoCapitalize="none"
+            autoCapitalize="words"
             labelTx="profile.firstName"
             placeholderTx="profile.firstName"
             inputStyle={[INPUT_STYLE, BOTTOM_BORDER]}
             placeholderTextColor={color.palette.lightGrey}
             returnKeyType="next"
-            autoFocus
             defaultValue={this.userProfile.first_name}
             onChangeText={this.updateProfile("first_name")}
           />
           <TextField
             labelTx="profile.lastName"
-            autoCapitalize="none"
+            autoCapitalize="words"
             placeholderTx="profile.lastName"
             inputStyle={[INPUT_STYLE, BOTTOM_BORDER]}
             placeholderTextColor={color.palette.lightGrey}
             returnKeyType="next"
-            autoFocus
             defaultValue={this.userProfile.last_name}
             onChangeText={this.updateProfile("last_name")}
           />
-          <View style={{marginTop: spacing[8]}}>
-            <Button tx="common.update"  preset="success"  textPreset="primaryBoldLarge" />
+          <TextField
+            labelTx="profile.description"
+            autoCapitalize="none"
+            placeholderTx="profile.description"
+            inputStyle={[INPUT_STYLE, BOTTOM_BORDER]}
+            placeholderTextColor={color.palette.lightGrey}
+            returnKeyType="next"
+            defaultValue={description}
+            multiline
+            onChangeText={this.updateProfile("description")}
+          />
+          <TextField
+            labelTx="profile.city"
+            autoCapitalize="none"
+            placeholderTx="profile.city"
+            inputStyle={[INPUT_STYLE, BOTTOM_BORDER]}
+            placeholderTextColor={color.palette.lightGrey}
+            returnKeyType="next"
+            defaultValue={city}
+            onChangeText={this.updateProfile("city")}
+          />
+          <TextField
+            onTouchStart={this.toggleIsDateTimePickerVisible}
+            labelTx="profile.birthday"
+            autoCapitalize="none"
+            placeholderTx="profile.birthday"
+            inputStyle={[INPUT_STYLE, BOTTOM_BORDER]}
+            placeholderTextColor={color.palette.lightGrey}
+            returnKeyType="next"
+            defaultValue={birthday}
+            editable={false}
+          />
+
+          <View style={{marginTop: spacing[6]}}>
+            <Button
+              tx="common.update"
+              preset="success"
+              textPreset="primaryBoldLarge"
+              onPress={this.sendUpdateToServer}
+            />
           </View>
         </View>
-      </Screen>
+        <DateTimePicker
+          isVisible={this.isDateTimePickerVisible}
+          onConfirm={this.handleDatePicked}
+          onCancel={this.toggleIsDateTimePickerVisible}
+        />
+      </InputScrollView>
     )
   }
 }

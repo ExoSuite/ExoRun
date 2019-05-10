@@ -23,6 +23,12 @@ const INPUT: TextStyle = {
 // currently we have no presets, but that changes quickly when you build your app.
 const PRESETS: { [name: string]: ViewStyle } = {
   default: {},
+  auth: {
+    flex: 1
+  },
+  transparentInput: {
+    backgroundColor: "transparent"
+  }
 }
 
 const enhance = (style: object, styleOverride: object): object => {
@@ -32,7 +38,7 @@ const enhance = (style: object, styleOverride: object): object => {
 /**
  * A component which has a label and an input together.
  */
-export class TextField extends React.Component<ITextFieldProps> {
+export class TextField extends React.PureComponent<ITextFieldProps> {
   public render(): React.ReactNode {
     const {
       placeholderTx,

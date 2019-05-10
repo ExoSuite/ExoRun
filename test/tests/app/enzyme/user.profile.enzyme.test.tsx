@@ -8,6 +8,7 @@ import { Api } from "@services/api"
 import { CachedImage } from "@components/cached-image"
 import { Animated, Text, View } from "react-native"
 import { Provider } from "mobx-react/native"
+import { UserModelMock } from "../../../__mocks__/stores/UserModelMock"
 
 describe("user profile tests", () => {
 
@@ -17,7 +18,7 @@ describe("user profile tests", () => {
     const wrapper = mount<UserProfileScreenImpl>(
       React.createElement(
         (props: any) => (
-          <Provider api={api}>
+          <Provider api={api} userModel={UserModelMock}>
             <UserProfileScreen
               // @ts-ignore
               navigation={{getParam: (): boolean => true}}

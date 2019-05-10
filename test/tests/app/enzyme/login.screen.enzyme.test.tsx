@@ -12,6 +12,7 @@ import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
 import { Provider } from "mobx-react/native"
 import { Api } from "@services/api"
 import { SoundPlayer } from "@services/sound-player"
+import { UserModelMock } from "../../../__mocks__/stores/UserModelMock"
 
 describe("login tests", () => {
   const api: Api = new Api()
@@ -19,7 +20,7 @@ describe("login tests", () => {
 
   test("login render correctly", () => {
     const wrapper = mount<LoginScreen>((
-      <Provider api={api} soundPlayer={soundPlayer}>
+      <Provider api={api} soundPlayer={soundPlayer} userModel={UserModelMock}>
         <LoginScreen navigation={{goBack: (): boolean => true}}/>
       </Provider>
     ))

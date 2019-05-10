@@ -19,7 +19,7 @@ import {
 import { Asset } from "@services/asset"
 import { Platform } from "@services/device"
 import { color, spacing } from "@theme"
-import { IValidationRules, validate } from "@utils/validate"
+import { ValidationRules as IValidationRules, validate } from "@utils/validate"
 import { equals } from "ramda"
 import { isEmpty, merge, snakeCase, transform } from "lodash"
 import { ApiRoutes, ITokenResponse } from "@services/api"
@@ -153,13 +153,13 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
 
   @autobind
   private async register(): Promise<void> {
-    const { api, navigation, soundPlayer } = this.props
+    const { api, navigation, soundPlayer, userModel } = this.props
     const { email, password, passwordConfirmation } = this
     DataLoader.Instance.toggleIsVisible()
 
     const data = transform(
       navigation.state.params,
-      (resultObject: Object, value: string, key: string) => resultObject[snakeCase(key)] = value
+      (resultObject: object, value: string, key: string) => resultObject[snakeCase(key)] = value
     )
 
     merge(data, { email, password, password_confirmation: passwordConfirmation })
@@ -187,7 +187,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
     await save(loginResponse.data, Server.EXOSUITE_USERS_API)
     await Promise.all([
       api.getOrCreatePersonalTokens(),
-      api.getProfile()
+      api.getProfile(userModel)
     ])
 
     DataLoader.Instance.success(
@@ -354,4 +354,5 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
   }
 }
 
-export const SecondStepRegisterScreen = inject(Injection.Api, Injection.SoundPlayer)(observer(SecondStepRegisterScreenImpl))
+export const SecondStepRegisterScreen =
+  inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel)(observer(SecondStepRegisterScreenImpl))

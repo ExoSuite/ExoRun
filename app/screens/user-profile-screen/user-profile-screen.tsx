@@ -2,19 +2,18 @@ import * as React from "react"
 import { observer } from "mobx-react"
 import { Animated, ImageStyle, StyleSheet, View, ViewStyle } from "react-native"
 import { Button, Screen, Text } from "@components"
-import { color, spacing } from "@theme"
+import { spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
-import { ApiRoutes, IPersonalTokens, IUser } from "@services/api"
+import { IPersonalTokens, IUser } from "@services/api"
 import { Avatar, DefaultRnpAvatarSize } from "@components/avatar"
 import { palette } from "@theme/palette"
 import { headerShadow } from "@utils/shadows"
 import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
-import { load as loadFromStorage, StorageTypes } from "@utils/storage"
 import { inject } from "mobx-react/native"
 import { Injection, InjectionProps } from "@services/injections"
-import { action, observable, runInAction } from "mobx"
+import { action, observable } from "mobx"
 import idx from "idx"
 import { CachedImage, CachedImageType } from "@components/cached-image/cached-image"
 import { renderIf } from "@utils/render-if"
@@ -82,8 +81,6 @@ interface IAnimationObjects {
   [prop: string]: Animated.AnimatedInterpolation
 }
 
-const whenVisitingMyProfile = async (): Promise<IUser> => loadFromStorage(StorageTypes.USER_PROFILE)
-
 /**
  * UserProfileScreenImpl will handle a user profile
  */
@@ -140,7 +137,6 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   @autobind
   private onEditMyProfile(): void {
     this.props.navigation.navigate(AppScreens.EDIT_MY_PROFILE , {
-      userProfile: this.userProfile,
       avatarUrl: this.avatarUrl,
       coverUrl: this.coverUrl
     })
@@ -148,21 +144,19 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
 
   @action
   public async componentDidMount(): Promise<void> {
-    const { api } = this.props
+    const { api, userModel } = this.props
     const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
     const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
 
     if (this.props.navigation.getParam("me")) {
-      this.userProfile = await whenVisitingMyProfile()
+      this.userProfile = userModel
     } else {
       // tslint:disable-next-line:no-commented-code no-commented-out-code
       // this.userProfile = await this.whenVisitingMyProfile();
     }
 
-    this.avatarUrl =
-      `${api.Url}/user/${this.userProfile.id}/${ApiRoutes.PROFILE_PICTURE_AVATAR}?token=${token}`
-    this.coverUrl =
-      `${api.Url}/user/${this.userProfile.id}/${ApiRoutes.PROFILE_PICTURE_COVER}?token=${token}`
+    this.avatarUrl = api.buildAvatarUrl(this.userProfile.id, token)
+    this.coverUrl = api.buildCoverUrl(this.userProfile.id, token)
   }
 
   public render(): React.ReactNode {
@@ -252,4 +246,4 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   }
 }
 
-export const UserProfileScreen = inject(Injection.Api)(UserProfileScreenImpl)
+export const UserProfileScreen = inject(Injection.Api, Injection.UserModel)(UserProfileScreenImpl)

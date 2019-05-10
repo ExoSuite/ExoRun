@@ -19,23 +19,23 @@ export interface IGrantRequest extends IClient {
 }
 
 export interface IUser {
-  created_at: Date
+  created_at: string
   email: string
   first_name: string
   id: string
   last_name: string
   nick_name?: string
   profile: {
-    avatar_id?: null,
-    birthday?: null,
-    city?: null,
-    cover_id?: null
-    created_at: Date,
-    description?: null,
+    avatar_id?: string,
+    birthday?: string,
+    city?: string,
+    cover_id?: string
+    created_at: string,
+    description?: string,
     id: string,
-    updated_at: Date,
+    updated_at: string,
   }
-  updated_at: Date,
+  updated_at: string,
 }
 
 export interface IScope {

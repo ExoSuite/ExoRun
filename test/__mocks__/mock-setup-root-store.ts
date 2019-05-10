@@ -1,3 +1,5 @@
+import { UserModelMock } from "./stores/UserModelMock"
+
 const store = {
   env: {
     api: {},
@@ -8,7 +10,8 @@ const store = {
       actionSubscribers: (): {} => ({}),
       findCurrentRoute: (): { routeName: string } => ({ routeName: "" })
     }
-  }
+  },
+  userModel: UserModelMock
 }
 
 export {

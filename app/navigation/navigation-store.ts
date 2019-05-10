@@ -10,7 +10,7 @@ const DEFAULT_STATE = RootNavigator.router.getStateForAction(NavigationActions.i
  *
  * @param navState the current nav state
  */
-function findCurrentRoute(navState: Object): NavigationLeafRoute {
+function findCurrentRoute(navState: object): NavigationLeafRoute {
   // @ts-ignore
   const route = navState.routes[navState.index]
   if (route.routes) {

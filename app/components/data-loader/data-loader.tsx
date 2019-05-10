@@ -105,7 +105,7 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
   // optional failure callback
   private errorCallback: CallbackType = defaultErrorCallback
   // will be displayed on error animation has finished
-  @observable private errors: Object = {}
+  @observable private errors: object = {}
   private finalAnimationStatus: FinalAnimationStatus
   @observable private isVisible: boolean
   // will be fill on the LottieView was mounted take a look to <AnimatedLottieView ref/>
@@ -281,7 +281,7 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
   */
   @action
   public hasErrors(
-    errors: Object | HttpRequestError,
+    errors: object | HttpRequestError,
     soundCallback?: CallbackType,
     errorCallback?: CallbackType
   ): void {

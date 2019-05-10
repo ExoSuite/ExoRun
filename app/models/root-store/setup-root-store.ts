@@ -5,6 +5,7 @@ import { SoundPlayer } from "@services/sound-player"
 import * as storage from "@utils/storage"
 import { onSnapshot } from "mobx-state-tree"
 import { RootStore, RootStoreModel, RootStoreSnapshot } from "./root-store"
+import { IUserModel, UserModel } from "@models/user-profile"
 
 /**
  * The key we'll be saving our state as within async storage.
@@ -14,6 +15,7 @@ const ROOT_STATE_STORAGE_KEY = "root"
 interface ISetupRootStore {
   env: Environment
   rootStore: RootStore,
+  userModel: IUserModel
 }
 
 /**
@@ -51,9 +53,13 @@ export async function setupRootStore(): Promise<ISetupRootStore> {
     storage.save(ROOT_STATE_STORAGE_KEY, snapshot)
   ))
 
+  const userData = await storage.load(storage.StorageTypes.USER_PROFILE)
+  const userModel = UserModel.create(userData);
+
   return {
     rootStore,
-    env
+    env,
+    userModel
   }
 }
 

@@ -28,7 +28,10 @@
     "edit": "Edit profile",
     "firstName": "First name",
     "lastName": "Last name",
-    "nickName": "Username"
+    "nickName": "Username",
+    "description": "Description",
+    "city": "City",
+    "birthday": "Birthday"
   },
   "auth": {
     "powered": "Powered by ",
