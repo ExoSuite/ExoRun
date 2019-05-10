@@ -74,9 +74,10 @@ const FULL: ViewStyle = {
 
 const CONTAINER: ViewStyle = {
   ...FULL,
-  paddingVertical: spacing[6],
+  paddingVertical: spacing[8],
   paddingHorizontal: spacing[4],
   flexGrow: 1,
+  backgroundColor: color.background,
   justifyContent: "space-evenly"
 }
 
@@ -258,7 +259,7 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
           </FormRow>
 
           {/* Email / Password / Login button */}
-          <Screen style={CONTAINER} backgroundColor={color.background} preset="fixed">
+          <Screen style={CONTAINER} preset="fixed">
 
             <FormRow preset="clearFullWidth" style={MAIN_CONTAINER}>
 

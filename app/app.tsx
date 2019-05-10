@@ -107,7 +107,7 @@ export class App extends React.Component<{}, IAppState> {
     const otherStores = {
       api: env.api,
       soundPlayer: env.soundPlayer,
-      userModel
+      userModel: userModel
     }
     // --- am: end list of stores ---
 

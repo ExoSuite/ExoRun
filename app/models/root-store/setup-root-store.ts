@@ -3,9 +3,11 @@ import { Api } from "@services/api"
 import { Reactotron } from "@services/reactotron"
 import { SoundPlayer } from "@services/sound-player"
 import * as storage from "@utils/storage"
-import { onSnapshot } from "mobx-state-tree"
+import { onPatch, onSnapshot } from "mobx-state-tree"
 import { RootStore, RootStoreModel, RootStoreSnapshot } from "./root-store"
-import { IUserModel, UserModel } from "@models/user-profile"
+import { IUserModel, IUserModelSnapshot, UserModel } from "@models/user-profile"
+import { save as saveFromStorage } from "@utils/storage"
+import { StorageTypes } from "@utils/storage"
 
 /**
  * The key we'll be saving our state as within async storage.
@@ -55,6 +57,14 @@ export async function setupRootStore(): Promise<ISetupRootStore> {
 
   const userData = await storage.load(storage.StorageTypes.USER_PROFILE)
   const userModel = UserModel.create(userData);
+  onSnapshot(userModel, (snapshot: IUserModelSnapshot): Promise<boolean> => {
+    console.tron.log("SNAPSHOT!")
+
+    return  storage.save(StorageTypes.USER_PROFILE, snapshot)
+  })
+  onPatch(userModel, (patch: any) => {
+    console.tron.log(patch, "PATCHED")
+  })
 
   return {
     rootStore,

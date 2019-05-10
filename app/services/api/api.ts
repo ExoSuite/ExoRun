@@ -25,7 +25,7 @@ import {
 import { ApiRoutes } from "@services/api/api.routes"
 import { save as saveFromStorage, StorageTypes } from "@utils/storage"
 import Axios from "axios"
-import { IUserModel } from "@models/user-profile"
+import { IUserModel, updateUserModel } from "@models/user-profile"
 
 interface IHeaders extends Object {
   Authorization?: string
@@ -36,6 +36,14 @@ interface IHeaders extends Object {
  */
 // tslint:disable-next-line min-class-cohesion
 export class Api implements IService {
+
+  public get defaultAvatarUrl(): string {
+    return `${this.config.url}/user/default-media/avatar.png`
+  }
+
+  public get defaultCoverUrl(): string {
+    return `${this.config.url}/user/default-media/cover.jpg`
+  }
 
   /**
    * get the url from api-config
@@ -83,14 +91,6 @@ export class Api implements IService {
     return {
       Authorization: `Bearer ${"access_token" in tokenInstance ? tokenInstance.access_token : tokenInstance.accessToken}`
     }
-  }
-
-  public buildAvatarUrl(userId: string, token: string): string {
-    return `${this.Url}/user/${userId}/${ApiRoutes.PROFILE_PICTURE_AVATAR}?token=${token}`
-  }
-
-  public buildCoverUrl(userId: string, token: string): string {
-    return `${this.Url}/user/${userId}/${ApiRoutes.PROFILE_PICTURE_COVER}?token=${token}`
   }
 
   // tslint:disable-next-line: no-feature-envy
@@ -185,6 +185,14 @@ export class Api implements IService {
     return response
   }
 
+  public buildAvatarUrl(userId: string, token: string): string {
+    return `${this.Url}/user/${userId}/${ApiRoutes.PROFILE_PICTURE_AVATAR}?token=${token}`
+  }
+
+  public buildCoverUrl(userId: string, token: string): string {
+    return `${this.Url}/user/${userId}/${ApiRoutes.PROFILE_PICTURE_COVER}?token=${token}`
+  }
+
   public async checkToken(): Promise<ITokenResponse | boolean> {
     // get tokens from secure storage
     const credentials: ITokenResponse = await load(Server.EXOSUITE_USERS_API) as ITokenResponse
@@ -212,14 +220,6 @@ export class Api implements IService {
 
     // if tokens was not provided throw an error
     throw new LogicException(LogicErrorState.CANT_LOAD_API_TOKENS)
-  }
-
-  public get defaultAvatarUrl(): string {
-    return `${this.config.url}/user/default-media/avatar.png`
-  }
-
-  public get defaultCoverUrl(): string {
-    return `${this.config.url}/user/default-media/cover.jpg`
   }
 
   // tslint:disable-next-line max-func-args
@@ -256,7 +256,7 @@ export class Api implements IService {
     const userProfileRequest: ApiResponse<IUser> = await this.get(ApiRoutes.USER_ME)
     await saveFromStorage(StorageTypes.USER_PROFILE, userProfileRequest.data)
     if (userModel) {
-      userModel.updateUser(userProfileRequest.data)
+      updateUserModel(userProfileRequest.data, userModel)
     }
   }
 

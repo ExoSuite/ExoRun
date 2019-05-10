@@ -110,9 +110,7 @@ export class EditMyProfileScreen extends React.Component<IEditMyProfileScreenPro
     await Promise.all([userUpdatePromise, userProfileUpdatePromise])
       .then(async () => {
         const freshUserProfile = clone(this.userProfile)
-        await saveFromStorage(StorageTypes.USER_PROFILE, freshUserProfile)
-        userModel.updateNickName(freshUserProfile.nick_name)
-        console.tron.log(userModel)
+        userModel.updateUser(freshUserProfile)
         DataLoader.Instance.success(soundPlayer.success)
       })
       .catch((err: any) => {

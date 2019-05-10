@@ -53,7 +53,8 @@ const CONTAINER: ViewStyle = {
   ...FULL,
   paddingHorizontal: spacing[4],
   flexGrow: 1,
-  justifyContent: "space-evenly"
+  justifyContent: "space-evenly",
+  backgroundColor: color.background,
 }
 
 const KEYBOARD_ACCESSORY_VIEW: ViewStyle = {
