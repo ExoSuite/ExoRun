@@ -1,3 +1,4 @@
+require("../app/components/user-row/user-row.story")
 require("../app/components/touchable-greyscaled-icon/touchable-greyscaled-icon.story")
 require("../app/components/cached-image/cached-image.story")
 require("../app/components/profile-cover/profile-cover.story")

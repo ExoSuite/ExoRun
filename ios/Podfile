@@ -28,7 +28,6 @@ target 'ExoRun' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-
   pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
 
   pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'

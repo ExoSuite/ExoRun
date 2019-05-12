@@ -7,6 +7,7 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
 import { footerShadow } from "@utils/shadows"
 import { color } from "@theme"
 import { HomeNavigator } from "@navigation/home-navigator"
+import { SearchScreen } from "@screens/search-screen"
 
 const tabBarIconSize = 20
 
@@ -26,7 +27,6 @@ export const AppBottomTabNavigator = createMaterialBottomTabNavigator(
         tabBarColor: "#2b872b"
       }
     },
-
     [AppScreens.AUGMENTED_REALITY]: {
       screen: AugmentedRealityNavigator,
       navigationOptions: {
@@ -39,6 +39,13 @@ export const AppBottomTabNavigator = createMaterialBottomTabNavigator(
       navigationOptions: {
         tabBarIcon: TabBarIcon({ name: "user-friends", size: tabBarIconSize }),
         tabBarColor: "#0087c7"
+      }
+    },
+    [AppScreens.SEARCH]: {
+      screen: SearchScreen,
+      navigationOptions: {
+        tabBarIcon: TabBarIcon({ name: "search", size: tabBarIconSize }),
+        tabBarColor: "#474f89"
       }
     }
   }, {

@@ -10,7 +10,8 @@ export enum AppScreens {
   NOTIFICATIONS = "notifications",
   PERSONAL_PROFILE = "personal-profile",
   APP_SETTINGS = "application-settings",
-  EDIT_MY_PROFILE = "edit-my-profile"
+  EDIT_MY_PROFILE = "edit-my-profile",
+  SEARCH = "search"
 }
 
 export enum AuthScreens {
