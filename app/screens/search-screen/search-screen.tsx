@@ -54,12 +54,9 @@ export class SearchScreen extends React.Component<ISearchScreenProps> {
 
   @autobind
   private onEndReached(): void {
-    console.tron.logImportant("start loading next page", this.currentPage, this.maxPage)
     if (this.currentPage < this.maxPage && !this.onEndReachedCalledDuringMomentum) {
       this.currentPage += 1
-      console.tron.logImportant("loading next page", this.currentPage, this.maxPage)
-      // tslint:disable-next-line: no-floating-promises
-      this.onUserTypeToSearch(this.lastQuery, true).catch(e => console.tron.logImportant(e.message))
+      this.onUserTypeToSearch(this.lastQuery, true).catch()
     }
   }
 
