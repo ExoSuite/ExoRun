@@ -81,7 +81,7 @@
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/runtime": "^7.4.4",
     "@fortawesome/fontawesome-common-types": "^0.2.18",
-    "@storybook/addon-storyshots": "^5.0.11",
+    "@storybook/addon-storyshots": "^5.2.0-alpha.5",
     "@storybook/react-native": "^5.2.0-alpha.5",
     "@types/enzyme": "^3.9.1",
     "@types/enzyme-adapter-react-16": "^1.0.5",
