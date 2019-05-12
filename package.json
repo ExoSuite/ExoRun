@@ -97,7 +97,7 @@
     "chai": "^4.2.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
-    "ignite-bowser": "^4.3.0",
+    "ignite-bowser": "^4.4.1",
     "ignite-vector-icons": "^1.1.1",
     "jest": "24.8.0",
     "jest-enzyme": "^7.0.2",
