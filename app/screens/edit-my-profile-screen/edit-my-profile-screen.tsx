@@ -146,7 +146,7 @@ export class EditMyProfileScreen extends React.Component<IEditMyProfileScreenPro
 
     return (
       <InputScrollView style={CONTAINER} useAnimatedScrollView>
-        <TouchableGreyscaledIcon
+     {/*   <TouchableGreyscaledIcon
           iconName="camera-alt"
           iconSize={32}
           onPress={this.onProfileCoverPressed}
@@ -169,7 +169,7 @@ export class EditMyProfileScreen extends React.Component<IEditMyProfileScreenPro
           >
             <Avatar size={DefaultRnpAvatarSize} urlFromParent avatarUrl={this.avatarUrl} withMargin={false}/>
           </TouchableGreyscaledIcon>
-        </View>
+        </View>*/}
         <View style={{marginTop: spacing[6], width: "100%", padding: spacing[6]}}>
           <TextField
             autoCapitalize="none"
