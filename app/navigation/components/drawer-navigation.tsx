@@ -8,12 +8,10 @@ import { AppScreens } from "@navigation/navigation-definitions"
 import { IVoidFunction } from "@types"
 import { Screen, Text } from "@components"
 import { FontawesomeIcon } from "@components/fontawesome-icon"
-import { observer } from "mobx-react/native"
-import { IUser } from "@services/api"
-import { action, observable } from "mobx"
-import { load as loadFromStorage, StorageTypes } from "@utils/storage"
+import { inject, observer } from "mobx-react/native"
 import { Build } from "@services/build-detector"
 import { IPersonalProfileNavigationScreenProps } from "@screens/user-profile-screen"
+import { Injection, InjectionProps } from "@services/injections"
 
 const buildVersionText = `version: ${Build.Version()}`
 
@@ -49,6 +47,10 @@ const PROFILE_CONTAINER: ViewStyle = {
   width: "100%"
 }
 
+const capitalizedUser: TextStyle = {
+  textTransform: "capitalize"
+}
+
 const profileNavigationParams: IPersonalProfileNavigationScreenProps = {
   me: true
 }
@@ -56,25 +58,20 @@ const profileNavigationParams: IPersonalProfileNavigationScreenProps = {
 /**
  * The DrawerNavigation will be visible when someone swipe to the left or tap on the avatar-left-header.tsx
  */
+@inject(Injection.UserModel)
 @observer
-export class DrawerNavigation extends React.Component<DrawerItemsProps> {
+export class DrawerNavigation extends React.Component<DrawerItemsProps & InjectionProps> {
 
-  @observable
-  private userProfile: IUser = {} as IUser
-
-  private readonly navigateToScreen = (screen: AppScreens, params: Object = {}): IVoidFunction => (
+  private readonly navigateToScreen = (screen: AppScreens, params: object = {}): IVoidFunction => (
     (): void => {
-      this.props.navigation.closeDrawer();
+      this.props.navigation.closeDrawer()
       this.props.navigation.navigate(screen, params)
+      this.props.navigation.closeDrawer()
     }
   )
 
-  @action
-  public async componentWillMount(): Promise<void> {
-    this.userProfile = await loadFromStorage(StorageTypes.USER_PROFILE)
-  }
-
   public render(): React.ReactNode {
+    const { userModel } = this.props
 
     return (
       // @ts-ignore
@@ -93,8 +90,12 @@ export class DrawerNavigation extends React.Component<DrawerItemsProps> {
         </View>
         <Screen preset="fixed">
           <View style={PROFILE_CONTAINER}>
-            <Text preset="headerCentered" text={`${this.userProfile.first_name} ${this.userProfile.last_name}`}/>
-            <Text preset="nicknameLight" text={this.userProfile.nick_name} style={NICK_NAME}/>
+            <Text
+              preset="headerCentered"
+              text={`${userModel.first_name} ${userModel.last_name}`}
+              style={capitalizedUser}
+            />
+            <Text preset="nicknameLight" text={userModel.nick_name} style={NICK_NAME}/>
           </View>
 
           <TouchableOpacity
@@ -117,10 +118,10 @@ export class DrawerNavigation extends React.Component<DrawerItemsProps> {
               color="white"
               size={30}
             />
-            <Text tx="drawer.app-settings"  preset="header"/>
+            <Text tx="drawer.app-settings" preset="header"/>
           </TouchableOpacity>
         </Screen>
-        <Text preset="bold" text={buildVersionText} style={{textAlign: "center"}}/>
+        <Text preset="bold" text={buildVersionText} style={{ textAlign: "center" }}/>
       </View>
     )
   }

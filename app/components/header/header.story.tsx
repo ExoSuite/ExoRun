@@ -1,5 +1,5 @@
 import * as React from "react"
-import { View, Alert } from "react-native"
+import { Alert, View } from "react-native"
 import { storiesOf } from "@storybook/react-native"
 import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { Header } from "./header"

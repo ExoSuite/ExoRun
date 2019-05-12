@@ -1,12 +1,13 @@
-import { addDecorator, configure, getStorybookUI } from "@storybook/react-native"
 import React from "react"
+import { addDecorator, configure, getStorybookUI } from "@storybook/react-native"
 import Config from "react-native-config"
 import SplashScreen from "react-native-splash-screen"
 import { Provider } from "mobx-react/native"
+import { Api } from "@services/api"
 
 // tslint:disable prefer-function-over-method prefer-conditional-expression
 
-const api = {}
+const api = new Api()
 
 addDecorator((fn: Function) => {
   return <Provider api={api}>{fn()}</Provider>
@@ -34,7 +35,7 @@ export class StorybookUIRoot extends React.Component {
     if (typeof __TEST__ === "undefined" || !__TEST__) {
       const Reactotron = require("../app/services/reactotron")
       const reactotron = new Reactotron.Reactotron()
-      reactotron.setup()
+      await reactotron.setup()
     }
   }
 

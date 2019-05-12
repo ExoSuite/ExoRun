@@ -13,12 +13,11 @@ import {
 } from "@components"
 import { DataLoader } from "@components/data-loader"
 import { HttpRequestError } from "@exceptions"
-import { Api, ITokenResponse } from "@services/api"
+import { ITokenResponse } from "@services/api"
 import { Server } from "@services/api/api.servers"
 import { Asset } from "@services/asset"
 import { Platform } from "@services/device"
-import { Injection } from "@services/injections"
-import { SoundPlayer } from "@services/sound-player"
+import { Injection, InjectionProps } from "@services/injections"
 import { color, spacing } from "@theme"
 import { save } from "@utils/keychain"
 import { ApiResponse } from "apisauce"
@@ -30,15 +29,10 @@ import { inject } from "mobx-react/native"
 import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
 import KeyboardSpacer from "react-native-keyboard-spacer"
 import { NavigationScreenProps } from "react-navigation"
-import { IValidationRules, validate } from "@utils/validate"
+import { ValidationRules, validate } from "@utils/validate"
 import { footerShadow } from "@utils/shadows"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { IVoidFunction } from "@types"
-
-export interface ILoginScreenProps extends NavigationScreenProps<{}> {
-  api: Api,
-  soundPlayer: SoundPlayer
-}
 
 const EXOSUITE: ImageStyle = {
   width: 200,
@@ -80,9 +74,10 @@ const FULL: ViewStyle = {
 
 const CONTAINER: ViewStyle = {
   ...FULL,
-  paddingVertical: spacing[6],
+  paddingVertical: spacing[8],
   paddingHorizontal: spacing[4],
   flexGrow: 1,
+  backgroundColor: color.background,
   justifyContent: "space-evenly"
 }
 
@@ -131,15 +126,17 @@ const revealPassword = "common.password-reveal"
 
 const onResetPasswordPress = (): null => null
 
-const RULES: IValidationRules = { email: { email: true } }
+const RULES: ValidationRules = { email: { email: true } }
+
+type TLoginScreenProps = NavigationScreenProps & InjectionProps
 
 /**
  * LoginScreen will handle multiple user login
  * by calling the ExoSuite Users API
  */
-@inject(Injection.Api, Injection.SoundPlayer)
+@inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel)
 @observer
-export class LoginScreen extends React.Component<ILoginScreenProps> {
+export class LoginScreen extends React.Component<TLoginScreenProps> {
 
   private readonly authorizeLogin: IVoidFunction
   @observable private email: string = null
@@ -149,7 +146,7 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
   @observable private password: string = null
   private passwordInputRef: TextInput
 
-  constructor(props: ILoginScreenProps) {
+  constructor(props: TLoginScreenProps) {
     super(props)
     this.goBack = throttle(props.navigation.goBack, 3000)
     this.authorizeLogin = throttle(this._authorizeLogin, 5000)
@@ -196,7 +193,7 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
 
   @autobind
   public async _authorizeLogin(): Promise<void> {
-    const { api, soundPlayer, navigation } = this.props
+    const { api, soundPlayer, navigation, userModel } = this.props
     DataLoader.Instance.toggleIsVisible()
 
     const response: ApiResponse<ITokenResponse> | HttpRequestError =
@@ -209,10 +206,10 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
       return
     }
 
-    await save(response.data, Server.EXOSUITE_USERS_API);
+    await save(response.data, Server.EXOSUITE_USERS_API)
     await Promise.all([
       api.getOrCreatePersonalTokens(),
-      api.getProfile()
+      api.getProfile(userModel)
     ])
 
     DataLoader.Instance.success(
@@ -262,7 +259,7 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
           </FormRow>
 
           {/* Email / Password / Login button */}
-          <Screen style={CONTAINER} backgroundColor={color.background} preset="fixed">
+          <Screen style={CONTAINER} preset="fixed">
 
             <FormRow preset="clearFullWidth" style={MAIN_CONTAINER}>
 
@@ -296,7 +293,7 @@ export class LoginScreen extends React.Component<ILoginScreenProps> {
                 forwardedRef={this.setPasswordInputRef}
                 onSubmitEditing={this.authorizeLogin}
               />
-              <FormRow preset={"clear"} style={[ZERO_PADDING, { paddingTop: spacing[2] }]}>
+              <FormRow preset="clear" style={[ZERO_PADDING, { paddingTop: spacing[2] }]}>
                 <Button preset="link" tx={passwordToggleText} onPress={toggleIsPasswordVisible}/>
               </FormRow>
             </FormRow>

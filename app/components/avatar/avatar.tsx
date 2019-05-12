@@ -1,27 +1,27 @@
 import * as React from "react"
-import { ImageSourcePropType, ImageStyle, TouchableOpacity, ViewStyle } from "react-native"
+import { ImageStyle, TouchableOpacity, ViewStyle } from "react-native"
 import { inject, observer } from "mobx-react/native"
 import { NavigationScreenProps } from "react-navigation"
 import { action, observable } from "mobx"
 import autobind from "autobind-decorator"
-import { Avatar as RnpAvatar } from "react-native-paper"
 import { IVoidFunction } from "@types"
 import { spacing } from "@theme"
 import { load } from "@utils/keychain"
 import { load as loadFromStorage, StorageTypes } from "@utils/storage"
 import { Server } from "@services/api/api.servers"
-import { Injection } from "@services/injections"
-import { Api, ApiRoutes, IPersonalTokens, IUser } from "@services/api"
+import { Injection, InjectionProps } from "@services/injections"
+import { ApiRoutes, IPersonalTokens, IUser } from "@services/api"
 import { Build } from "@services/build-detector"
+import { AvatarImageReactNativePaper } from "@components/avatar/avatar-image-react-native-paper"
 
-export interface IAvatarProps {
-  api?: Api
+export interface IAvatarProps extends InjectionProps {
   avatarUrl?: string
-  disableOnPress?: boolean,
-  onPress?: IVoidFunction,
-  rootStyle?: ViewStyle,
-  size?: number,
+  disableOnPress?: boolean
+  onPress?: IVoidFunction
+  rootStyle?: ViewStyle
+  size?: number
   urlFromParent: boolean
+  withMargin?: boolean
 }
 
 const ROOT: ViewStyle = {
@@ -42,7 +42,7 @@ export const DefaultRnpAvatarSize = 64
 @observer
 export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScreenProps<any>>> {
 
-  @observable private avatarUrl: string = null
+  @observable private avatarUrl: string
 
   @autobind
   private openDrawer(): void {
@@ -50,19 +50,19 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
   }
 
   @action
-  public async componentWillMount(): Promise<void> {
+  public async componentDidMount(): Promise<void> {
     const { api } = this.props
 
     if (this.props.urlFromParent) {
-      return;
+      return
     }
 
     if (Build.RunningOnStoryBook()) {
-      this.avatarUrl = "https://api.adorable.io/avatars/285"
-    } else  {
+      this.avatarUrl = api.defaultAvatarUrl
+    } else {
       const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
       const userProfile: IUser = await loadFromStorage(StorageTypes.USER_PROFILE)
-      const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
+      const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
 
       this.avatarUrl =
         `${api.Url}/user/${userProfile.id}/${ApiRoutes.PROFILE_PICTURE_AVATAR}?token=${token}`
@@ -70,17 +70,18 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
   }
 
   private get getAvatarUrl(): string {
-    return this.avatarUrl || this.props.avatarUrl
+    return this.avatarUrl || this.props.avatarUrl || this.props.api.defaultAvatarUrl
   }
 
   public render(): React.ReactNode {
-    const { rootStyle, disableOnPress, onPress, size, navigation } = this.props
-    const containerStyle = { ...ROOT, ...rootStyle }
+    const { rootStyle, disableOnPress, onPress, size, navigation, withMargin = true } = this.props
+    const containerStyle: ViewStyle = { ...ROOT, ...rootStyle }
     const touchable = disableOnPress
     const onTouchableOpacityPressed = navigation ? this.openDrawer : onPress
     const avatarSize = size ? size : defaultSize
-    const avatarSource: ImageSourcePropType = {
-      uri: this.getAvatarUrl
+
+    if (!withMargin) {
+      containerStyle.marginLeft = 0
     }
 
     return (
@@ -89,9 +90,9 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
         style={containerStyle}
         disabled={touchable}
       >
-        <RnpAvatar.Image
+        <AvatarImageReactNativePaper
           size={avatarSize}
-          source={avatarSource}
+          uri={this.getAvatarUrl}
           style={IMAGE}
         />
       </TouchableOpacity>

@@ -23,8 +23,8 @@ import {
   IUser
 } from "./api.types"
 import { ApiRoutes } from "@services/api/api.routes"
-import { load as loadFromStorage, save as saveFromStorage, StorageTypes } from "@utils/storage"
 import Axios from "axios"
+import { IUserModel, updateUserModel } from "@models/user-profile"
 
 interface IHeaders extends Object {
   Authorization?: string
@@ -35,6 +35,14 @@ interface IHeaders extends Object {
  */
 // tslint:disable-next-line min-class-cohesion
 export class Api implements IService {
+
+  public get defaultAvatarUrl(): string {
+    return `${this.config.url}/user/default-media/avatar.png`
+  }
+
+  public get defaultCoverUrl(): string {
+    return `${this.config.url}/user/default-media/cover.jpg`
+  }
 
   /**
    * get the url from api-config
@@ -121,8 +129,7 @@ export class Api implements IService {
         {
           name: `${scope.id}-exorun`,
           scopes: requestedScopes
-        }
-        )
+        })
       )
     })
 
@@ -142,7 +149,7 @@ export class Api implements IService {
   private async request(
     httpMethod: HttpRequest,
     url: string,
-    data: Object = {},
+    data: object = {},
     headers: IHeaders = { Authorization: null },
     // tslint:disable-next-line no-inferrable-types no-flag-args
     requireAuth: boolean = true
@@ -177,6 +184,14 @@ export class Api implements IService {
     return response
   }
 
+  public buildAvatarUrl(userId: string, token: string): string {
+    return `${this.Url}/user/${userId}/${ApiRoutes.PROFILE_PICTURE_AVATAR}?token=${token}`
+  }
+
+  public buildCoverUrl(userId: string, token: string): string {
+    return `${this.Url}/user/${userId}/${ApiRoutes.PROFILE_PICTURE_COVER}?token=${token}`
+  }
+
   public async checkToken(): Promise<ITokenResponse | boolean> {
     // get tokens from secure storage
     const credentials: ITokenResponse = await load(Server.EXOSUITE_USERS_API) as ITokenResponse
@@ -209,7 +224,7 @@ export class Api implements IService {
   // tslint:disable-next-line max-func-args
   public async delete(
     url: string,
-    data: Object = {},
+    data: object = {},
     headers: IHeaders = { Authorization: null },
     // tslint:disable-next-line no-inferrable-types no-flag-args
     requireAuth: boolean = true): Promise<ApiResponse<any>> {
@@ -219,7 +234,7 @@ export class Api implements IService {
   // tslint:disable-next-line max-func-args
   public async get(
     url: string,
-    data: Object = {},
+    data: object = {},
     headers: IHeaders = { Authorization: null },
     // tslint:disable-next-line no-inferrable-types no-flag-args
     requireAuth: boolean = true): Promise<ApiResponse<any>> {
@@ -236,12 +251,10 @@ export class Api implements IService {
     return this.onNoPersonalTokensCreateTokenSet()
   }
 
-  public async getProfile(): Promise<void> {
-    const userProfile: IUser | null = await loadFromStorage(StorageTypes.USER_PROFILE)
-
-    if (!userProfile) {
-      const userProfileRequest: ApiResponse<IUser> = await this.get(ApiRoutes.USER_ME)
-      await saveFromStorage(StorageTypes.USER_PROFILE, userProfileRequest.data)
+  public async getProfile(userModel?: IUserModel): Promise<void> {
+    const userProfileRequest: ApiResponse<IUser> = await this.get(ApiRoutes.USER_ME)
+    if (userModel) {
+      updateUserModel(userProfileRequest.data, userModel)
     }
   }
 
@@ -253,7 +266,7 @@ export class Api implements IService {
   // tslint:disable-next-line max-func-args
   public async patch(
     url: string,
-    data: Object = {},
+    data: object = {},
     headers: IHeaders = { Authorization: null },
     // tslint:disable-next-line no-inferrable-types no-flag-args
     requireAuth: boolean = true): Promise<ApiResponse<any>> {
@@ -263,7 +276,7 @@ export class Api implements IService {
   // tslint:disable-next-line max-func-args
   public async post(
     url: string,
-    data: Object = {},
+    data: object = {},
     headers: IHeaders = { Authorization: null },
     // tslint:disable-next-line no-inferrable-types no-flag-args
     requireAuth: boolean = true): Promise<ApiResponse<any>> {
@@ -273,7 +286,7 @@ export class Api implements IService {
   // tslint:disable-next-line max-func-args
   public async put(
     url: string,
-    data: Object = {},
+    data: object = {},
     headers: IHeaders = { Authorization: null },
     // tslint:disable-next-line no-inferrable-types no-flag-args
     requireAuth: boolean = true): Promise<ApiResponse<any>> {

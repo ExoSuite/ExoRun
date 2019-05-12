@@ -22,7 +22,7 @@ import { color, spacing } from "@theme"
 import autobind from "autobind-decorator"
 import { RegisterScreens } from "@navigation/navigation-definitions"
 
-export interface IFirstStepRegisterScreen extends NavigationScreenProps<{}> {
+interface IFirstStepRegisterScreenProps extends NavigationScreenProps<{}> {
 }
 
 const EXOSUITE: ImageStyle = {
@@ -53,7 +53,8 @@ const CONTAINER: ViewStyle = {
   ...FULL,
   paddingHorizontal: spacing[4],
   flexGrow: 1,
-  justifyContent: "space-evenly"
+  justifyContent: "space-evenly",
+  backgroundColor: color.background,
 }
 
 const KEYBOARD_ACCESSORY_VIEW: ViewStyle = {
@@ -84,7 +85,7 @@ const enabled = color.secondary
  * FirstStepRegisterScreen will handle the first step of the user registration
  */
 @observer
-export class FirstStepRegisterScreen extends React.Component<IFirstStepRegisterScreen> {
+export class FirstStepRegisterScreen extends React.Component<IFirstStepRegisterScreenProps> {
   @observable private firstName: string = null
   @observable private lastName: string = null
 

@@ -6,14 +6,14 @@ const mock = {
   play: (): null => null
 }
 
-type mockType = typeof mock
+export type SoundPlayerMock = typeof mock
 
 /**
  * SoundPlayer will be the controller to handle app sounds and ringtones
  */
 export class SoundPlayer implements IService {
-  private errorSound: Sound | mockType
-  private successSound: Sound | mockType
+  private errorSound: Sound | SoundPlayerMock
+  private successSound: Sound | SoundPlayerMock
 
   @autobind
   public error(): void {
@@ -25,9 +25,9 @@ export class SoundPlayer implements IService {
     this.errorSound = new Sound(require("./assets/NFCFailure.mp3"))
   }
 
-  public setupForTests(): void {
-    this.successSound = mock
-    this.errorSound = mock
+  public setupForTests(successSoundMock?: any, errorSoundMock?: any): void {
+    this.successSound = successSoundMock || mock
+    this.errorSound = errorSoundMock || mock
   }
 
   @autobind

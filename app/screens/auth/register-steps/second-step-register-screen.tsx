@@ -19,14 +19,13 @@ import {
 import { Asset } from "@services/asset"
 import { Platform } from "@services/device"
 import { color, spacing } from "@theme"
-import { IValidationRules, validate } from "@utils/validate"
+import { ValidationRules as IValidationRules, validate } from "@utils/validate"
 import { equals } from "ramda"
 import { isEmpty, merge, snakeCase, transform } from "lodash"
-import { Api, ApiRoutes, ITokenResponse } from "@services/api"
-import { Injection } from "@services/injections"
+import { ApiRoutes, ITokenResponse } from "@services/api"
+import { Injection, InjectionProps } from "@services/injections"
 import { HttpRequestError } from "@exceptions"
 import { DataLoader } from "@components/data-loader"
-import { SoundPlayer } from "@services/sound-player"
 import autobind from "autobind-decorator"
 import { ApiResponse } from "apisauce"
 import { save } from "@utils/keychain"
@@ -39,10 +38,7 @@ export interface ISecondStepRegisterScreenNavigationParams {
   nickName?: string,
 }
 
-export interface ISecondStepRegisterScreen extends NavigationScreenProps<ISecondStepRegisterScreenNavigationParams> {
-  api: Api,
-  soundPlayer: SoundPlayer
-}
+type ISecondStepRegisterScreen = NavigationScreenProps<ISecondStepRegisterScreenNavigationParams> & InjectionProps
 
 const EXOSUITE: ImageStyle = {
   width: 200,
@@ -76,7 +72,8 @@ const CONTAINER: ViewStyle = {
   ...FULL,
   paddingHorizontal: spacing[4],
   flexGrow: 1,
-  justifyContent: "space-evenly"
+  justifyContent: "space-evenly",
+  backgroundColor: color.background,
 }
 
 const KEYBOARD_ACCESSORY_VIEW: ViewStyle = {
@@ -109,9 +106,7 @@ const RULES: IValidationRules = { email: { email: true } }
 /**
  * FirstStepRegisterScreen will handle the first step of the user registration
  */
-@inject(Injection.Api, Injection.SoundPlayer)
-@observer
-export class SecondStepRegisterScreen extends React.Component<ISecondStepRegisterScreen> {
+export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepRegisterScreen> {
 
   @observable private email: string = null
   @observable private emailInputState: AnimatedInteractiveInputState
@@ -159,13 +154,13 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
 
   @autobind
   private async register(): Promise<void> {
-    const { api, navigation, soundPlayer } = this.props
+    const { api, navigation, soundPlayer, userModel } = this.props
     const { email, password, passwordConfirmation } = this
     DataLoader.Instance.toggleIsVisible()
 
     const data = transform(
       navigation.state.params,
-      (resultObject: Object, value: string, key: string) => resultObject[snakeCase(key)] = value
+      (resultObject: object, value: string, key: string) => resultObject[snakeCase(key)] = value
     )
 
     merge(data, { email, password, password_confirmation: passwordConfirmation })
@@ -190,10 +185,10 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
       return
     }
 
-    await save(loginResponse.data, Server.EXOSUITE_USERS_API);
+    await save(loginResponse.data, Server.EXOSUITE_USERS_API)
     await Promise.all([
       api.getOrCreatePersonalTokens(),
-      api.getProfile()
+      api.getProfile(userModel)
     ])
 
     DataLoader.Instance.success(
@@ -359,3 +354,6 @@ export class SecondStepRegisterScreen extends React.Component<ISecondStepRegiste
     )
   }
 }
+
+export const SecondStepRegisterScreen =
+  inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel)(observer(SecondStepRegisterScreenImpl))

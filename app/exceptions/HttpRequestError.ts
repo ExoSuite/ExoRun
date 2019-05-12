@@ -14,7 +14,7 @@ export class HttpRequestError extends BaseError {
 
   // tslint:disable-next-line variable-name
   private readonly _problem: GeneralApiProblem
-  private readonly data: { errors: Object; message: string }
+  private readonly data: { errors: object; message: string }
 
   constructor(problem: GeneralApiProblem, response: ApiResponse<any>) {
     super(problem.kind)
@@ -22,7 +22,7 @@ export class HttpRequestError extends BaseError {
     this._problem = problem
   }
 
-  public formattedErrors(): Object {
+  public formattedErrors(): object {
     let errors
     switch (this.code()) {
       case HttpResponse.UNAUTHORIZED: {
@@ -44,7 +44,7 @@ export class HttpRequestError extends BaseError {
     return errors
   }
 
-  public happened(): Object {
+  public happened(): object {
     return this.data.errors || {}
   }
 

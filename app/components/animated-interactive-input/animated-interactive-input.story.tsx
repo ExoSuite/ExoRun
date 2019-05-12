@@ -41,7 +41,7 @@ class AnimatedInteractiveInputStory extends React.Component<any> {
         {...rest}
         onChangeText={this.onChangeText}
         inputState={state}
-        inputStyle={{color: "black"}}
+        inputStyle={{ color: "black" }}
       />
     )
   }
@@ -57,7 +57,7 @@ let loadingInputRef: AnimatedInteractiveInputStory
 
 storiesOf("AnimatedInteractiveInput", module)
   .addDecorator((fn: Function) => <StoryScreen>{fn()}</StoryScreen>)
-  .add("Style Presets", () => (
+  .add("Random animation", () => (
     <Story>
       <UseCase text="Random animation" usage="On typing it will get a random animation">
         <AnimatedInteractiveInputStory
@@ -65,6 +65,10 @@ storiesOf("AnimatedInteractiveInput", module)
           autoCapitalize="none"
         />
       </UseCase>
+    </Story>
+  ))
+  .add("Success animation", () => (
+    <Story>
       <UseCase text="success animation" usage="press button to show success animation">
         <Button text="press me" onPress={(): void => successInputRef.success()}/>
         <AnimatedInteractiveInputStory
@@ -73,7 +77,10 @@ storiesOf("AnimatedInteractiveInput", module)
           ref={(ref: AnimatedInteractiveInputStory): AnimatedInteractiveInputStory => successInputRef = ref}
         />
       </UseCase>
-
+    </Story>
+  ))
+  .add("Loading animation", () => (
+    <Story>
       <UseCase text="loading animation" usage="press button to show loading animation">
         <Button text="press me" onPress={(): void => loadingInputRef.loading()}/>
         <AnimatedInteractiveInputStory
@@ -82,7 +89,10 @@ storiesOf("AnimatedInteractiveInput", module)
           ref={(ref: AnimatedInteractiveInputStory): AnimatedInteractiveInputStory => loadingInputRef = ref}
         />
       </UseCase>
-
+    </Story>
+  ))
+  .add("Error animation", () => (
+    <Story>
       <UseCase text="error animation" usage="press button to show error animation">
         <Button text="press me" onPress={(): void => errorInputRef.error()}/>
         <AnimatedInteractiveInputStory
@@ -91,6 +101,5 @@ storiesOf("AnimatedInteractiveInput", module)
           ref={(ref: AnimatedInteractiveInputStory): AnimatedInteractiveInputStory => errorInputRef = ref}
         />
       </UseCase>
-
     </Story>
   ))

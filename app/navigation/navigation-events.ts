@@ -7,8 +7,8 @@ import { EventType, NavigationEventCallback } from "react-navigation"
  *
  * You use can `compose` or build directly off this to mixin these features.
  */
-export const NavigationEvents = types.model("NavigationEvents").volatile((self: any): any => {
-  // who Is currently subscribed to react-navigation events
+export const NavigationEvents = types.model("NavigationEvents").volatile(() => {
+  // who is currently subscribed to react-navigation events
   const subs = new Set<NavigationEventCallback>()
 
   /**
@@ -19,14 +19,14 @@ export const NavigationEvents = types.model("NavigationEvents").volatile((self: 
    * @param oldState The previous navigation state.
    * @param newState The next navigation state.
    */
-  const fireSubscribers = (action: any, oldState: any, newState: any): void => {
+  const fireSubscribers = (action: any, oldState: any, newState: any): any => {
     // tell each subscriber out this
     subs.forEach((subscriber: Function) => {
       subscriber({
         type: "action",
         action,
         state: newState,
-        lastState: oldState
+        lastState: oldState,
       })
     })
   }
@@ -38,13 +38,10 @@ export const NavigationEvents = types.model("NavigationEvents").volatile((self: 
    * @param eventName The event.
    * @param handler Some strange handler
    */
-  const addListener = (eventName: EventType, handler: NavigationEventCallback): Object => {
+  const addListener = (eventName: EventType, handler: NavigationEventCallback): any => {
     if (eventName !== "action") {
-      return {
-        remove: (): null => {
-          return null
-        }
-      }
+      // tslint:disable-next-line:typedef no-empty
+      return { remove: () => {} }
     }
 
     // subscribe
@@ -52,9 +49,10 @@ export const NavigationEvents = types.model("NavigationEvents").volatile((self: 
 
     // return the instructions on how to unsubscribe
     return {
-      remove: (): boolean => subs.delete(handler)
+      // tslint:disable-next-line:typedef
+      remove: () => subs.delete(handler),
     }
   }
 
-  return { addListener, fireSubscribers, subs }
+  return { addListener, fireSubscribers, subs}
 })

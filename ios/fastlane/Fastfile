@@ -48,6 +48,7 @@ platform :ios do
       export_method: "app-store"
     ) # Build your app - more options available
     pilot
+    #distribute_external: true
   end
 
   desc "Deploy a new version to the App Store"

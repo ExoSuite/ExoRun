@@ -1,13 +1,13 @@
 /**
  * @jest-environment jsdom
  */
-import { ModalMock } from "./ModalMock"
 import * as React from "react"
-import { App } from "../../../app/app"
-import { shallow } from "enzyme"
+import { ModalMock } from "../ModalMock"
+import { App } from "../../../../app/app"
+import { mount } from "enzyme"
 import { spy } from "sinon"
 import { StatefulNavigator } from "@navigation/stateful-navigator"
-import { store } from "../../__mocks__/mock-setup-root-store"
+import { store } from "../../../__mocks__/mock-setup-root-store"
 import { DataLoader } from "@components/data-loader"
 
 spy(App.prototype, "componentDidMount")
@@ -26,12 +26,12 @@ describe("App tested with airbnb enzyme", () => {
   })
 
   test("mount call componentDidMount", () => {
-    shallow<App>(<App/>)
+    mount<App>(<App/>)
     expect(App.prototype.componentDidMount).toHaveProperty("callCount", 1)
   })
 
   test("render correctly", () => {
-    const wrapper = shallow<App>(<App/>)
+    const wrapper = mount<App>(<App/>)
     // @ts-ignore
     wrapper.setState(store)
     expect(wrapper.find(StatefulNavigator)).toExist()

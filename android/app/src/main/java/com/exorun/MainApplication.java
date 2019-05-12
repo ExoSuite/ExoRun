@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.airbnb.android.react.lottie.LottiePackage;
 import com.facebook.react.ReactApplication;
+import com.rnfs.RNFSPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -37,6 +38,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.asList(
                     new MainReactPackage(),
+            new RNFSPackage(),
                     new RNScreensPackage(),
                     new AsyncStoragePackage(),
                     new RNLocalizePackage(),

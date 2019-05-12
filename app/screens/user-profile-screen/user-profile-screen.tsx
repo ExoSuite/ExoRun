@@ -5,17 +5,20 @@ import { Button, Screen, Text } from "@components"
 import { spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
-import { Api, ApiRoutes, IPersonalTokens, IUser } from "@services/api"
+import { IPersonalTokens, IUser } from "@services/api"
 import { Avatar, DefaultRnpAvatarSize } from "@components/avatar"
 import { palette } from "@theme/palette"
 import { headerShadow } from "@utils/shadows"
 import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
-import { load as loadFromStorage, StorageTypes } from "@utils/storage"
 import { inject } from "mobx-react/native"
-import { Injection } from "@services/injections"
+import { Injection, InjectionProps } from "@services/injections"
 import { action, observable } from "mobx"
-import idx from "idx";
+import idx from "idx"
+import { CachedImage, CachedImageType } from "@components/cached-image/cached-image"
+import { renderIf } from "@utils/render-if"
+import autobind from "autobind-decorator"
+import { AppScreens } from "@navigation/navigation-definitions"
 
 // tslint:disable:id-length
 
@@ -24,9 +27,7 @@ export interface IPersonalProfileNavigationScreenProps {
   user?: IUser
 }
 
-export interface IPersonalProfileScreenProps extends NavigationScreenProps<IPersonalProfileNavigationScreenProps> {
-  api: Api
-}
+type IPersonalProfileScreenProps = NavigationScreenProps<IPersonalProfileNavigationScreenProps> & InjectionProps
 
 const ROOT: ViewStyle = {
   width: "100%"
@@ -76,18 +77,27 @@ interface IPersonalProfileScreenState {
   scrollY: Animated.Value
 }
 
-const whenVisitingMyProfile = async (): Promise<IUser> => loadFromStorage(StorageTypes.USER_PROFILE)
+interface IAnimationObjects {
+  [prop: string]: Animated.AnimatedInterpolation
+}
 
 /**
- * UserProfileScreen will handle a user profile
+ * UserProfileScreenImpl will handle a user profile
  */
-@inject(Injection.Api)
 @observer
-export class UserProfileScreen extends React.Component<IPersonalProfileScreenProps, IPersonalProfileScreenState> {
+export class UserProfileScreenImpl extends React.Component<IPersonalProfileScreenProps, IPersonalProfileScreenState> {
+
+  public get getAvatarUrl(): string {
+    return this.avatarUrl || this.props.api.defaultAvatarUrl
+  }
+
+  public get getCoverUrl(): string {
+    return this.coverUrl || this.props.api.defaultCoverUrl
+  }
 
   @observable private avatarUrl = ""
   @observable private coverUrl = ""
-  @observable private userProfile: IUser = {} as IUser
+  @observable private readonly userProfile: IUser = {} as IUser
 
   public state = {
     scrollY: new Animated.Value(0)
@@ -97,26 +107,17 @@ export class UserProfileScreen extends React.Component<IPersonalProfileScreenPro
     headerLeft: NavigationBackButtonWithNestedStackNavigator
   }
 
-  @action
-  public async componentWillMount(): Promise<void> {
-    const { api } = this.props
-    const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
-    const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
-    if (this.props.navigation.getParam("me")) {
-      this.userProfile = await whenVisitingMyProfile()
+  constructor(props: IPersonalProfileScreenProps) {
+    super(props)
+    if (props.navigation.getParam("me")) {
+      this.userProfile = props.userModel
     } else {
       // tslint:disable-next-line:no-commented-code no-commented-out-code
       // this.userProfile = await this.whenVisitingMyProfile();
     }
-
-    this.avatarUrl =
-      `${api.Url}/user/${this.userProfile.id}/${ApiRoutes.PROFILE_PICTURE_AVATAR}?token=${token}`
-    this.coverUrl =
-      `${api.Url}/user/${this.userProfile.id}/${ApiRoutes.PROFILE_PICTURE_COVER}?token=${token}`
   }
 
-  // tslint:disable-next-line:prefer-function-over-method no-feature-envy
-  public render(): React.ReactNode {
+  private animate(): IAnimationObjects {
     const coverMovement = this.state.scrollY.interpolate({
       inputRange: [0, 94, 95],
       outputRange: [0, -94, -94]
@@ -138,20 +139,52 @@ export class UserProfileScreen extends React.Component<IPersonalProfileScreenPro
       outputRange: [1, 0, 0]
     })
 
-    // @ts-ignore
-    const description = idx(this.userProfile, (_: any) => _.profile.description) as string;
+    return {
+      avatarMovement, avatarOpacity, headerContentOpacity, headerOpacity, coverMovement
+    }
+  }
+
+  @autobind
+  private onEditMyProfile(): void {
+    this.props.navigation.navigate(AppScreens.EDIT_MY_PROFILE , {
+      avatarUrl: this.avatarUrl,
+      coverUrl: this.coverUrl
+    })
+  }
+
+  @action
+  public async componentDidMount(): Promise<void> {
+    const { api } = this.props
+    const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
+    const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
+
+    this.avatarUrl = api.buildAvatarUrl(this.userProfile.id, token)
+    this.coverUrl = api.buildCoverUrl(this.userProfile.id, token)
+  }
+
+  public render(): React.ReactNode {
+    const { avatarMovement, avatarOpacity, headerContentOpacity, headerOpacity, coverMovement } = this.animate()
+
+    const description = idx<IUser, string>(this.userProfile, (_: any) => _.profile.description)
+    const me = this.props.navigation.getParam("me")
 
     return (
       <Screen style={ROOT} preset="fixed">
-        <Animated.Image
-          source={{ uri: this.coverUrl }}
+        <CachedImage
+          uri={this.getCoverUrl}
+          // @ts-ignore
           style={[{ transform: [{ translateY: coverMovement }] }, PROFILE_COVER]}
           resizeMode="cover"
+          type={CachedImageType.ANIMATED_IMAGE}
         />
         <Animated.View style={[{ opacity: headerOpacity }, HEADER]}>
           <Animated.View style={[{ opacity: headerContentOpacity }, HEADER_CONTENT]}>
-            <Avatar size={42} urlFromParent avatarUrl={this.avatarUrl}/>
-            <Text style={{marginRight: spacing[2]}} preset="header" text={`${this.userProfile.first_name} ${this.userProfile.last_name}`} />
+            <Avatar size={42} urlFromParent avatarUrl={this.getAvatarUrl}/>
+            <Text
+              style={{ marginRight: spacing[2] }}
+              preset="header"
+              text={`${this.userProfile.first_name} ${this.userProfile.last_name}`}
+            />
           </Animated.View>
         </Animated.View>
         <Animated.View
@@ -173,12 +206,9 @@ export class UserProfileScreen extends React.Component<IPersonalProfileScreenPro
         >
           <View style={StyleSheet.flatten([FIXED_HEADER, { marginTop: 150 }])}>
             <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-              <Button/>
-              <Button/>
-              <Button
-              >
-                <Text style={{ color: "red" }}>Follow</Text>
-              </Button>
+              {renderIf(me)((
+                <Button tx="profile.edit" textPreset="primaryBold" onPress={this.onEditMyProfile}/>
+              ))}
             </View>
           </View>
 
@@ -218,3 +248,5 @@ export class UserProfileScreen extends React.Component<IPersonalProfileScreenPro
     )
   }
 }
+
+export const UserProfileScreen = inject(Injection.Api, Injection.UserModel)(UserProfileScreenImpl)

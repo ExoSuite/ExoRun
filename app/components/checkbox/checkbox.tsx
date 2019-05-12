@@ -1,14 +1,14 @@
-import { reduce } from "ramda"
 import * as React from "react"
-import { TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
-import { color, spacing } from "@theme"
+import { TouchableOpacity, TextStyle, ViewStyle, View } from "react-native"
 import { Text } from "../text"
+import { color, spacing } from "../../theme"
 import { ICheckboxProps } from "./checkbox.props"
+import { mergeAll, flatten } from "ramda"
 
 const ROOT: ViewStyle = {
   flexDirection: "row",
   paddingVertical: spacing[1],
-  alignSelf: "flex-start"
+  alignSelf: "flex-start",
 }
 
 const DIMENSIONS = { width: 16, height: 16 }
@@ -20,13 +20,13 @@ const OUTLINE: ViewStyle = {
   alignItems: "center",
   borderWidth: 1,
   borderColor: color.primaryDarker,
-  borderRadius: 1
+  borderRadius: 1,
 }
 
 const FILL: ViewStyle = {
   width: DIMENSIONS.width - 4,
   height: DIMENSIONS.height - 4,
-  backgroundColor: color.primary
+  backgroundColor: color.primary,
 }
 
 const LABEL: TextStyle = { paddingLeft: spacing[2] }
@@ -34,38 +34,12 @@ const LABEL: TextStyle = { paddingLeft: spacing[2] }
 export function Checkbox(props: ICheckboxProps): React.ReactElement {
   const numberOfLines = props.multiline ? 0 : 1
 
-  let rootStyle
-  if (Array.isArray(props.style)) {
-    rootStyle = reduce((acc: Object, term: Object) => {
-      return { ...acc, ...term }
-    }, ROOT, props.style)
-  } else {
-    rootStyle = { ...ROOT, ...props.style } as ViewStyle
-  }
+  const rootStyle = mergeAll(flatten([ROOT, props.style]))
+  const outlineStyle = mergeAll(flatten([OUTLINE, props.outlineStyle]))
+  const fillStyle = mergeAll(flatten([FILL, props.fillStyle]))
 
-  let outlineStyle
-  if (Array.isArray(props.outlineStyle)) {
-    outlineStyle = reduce((acc: Object, term: Object) => {
-      return { ...acc, ...term }
-    }, OUTLINE, props.outlineStyle)
-  } else {
-    outlineStyle = { ...OUTLINE, ...props.outlineStyle } as ViewStyle
-  }
-
-  let fillStyle
-  if (Array.isArray(props.fillStyle)) {
-    fillStyle = reduce((acc: Object, term: Object) => {
-      return { ...acc, ...term }
-    }, FILL, props.fillStyle)
-  } else {
-    fillStyle = { ...FILL, ...props.fillStyle } as ViewStyle
-  }
-
-  const onPress = (): void => {
-    if (props.onToggle) {
-      props.onToggle(!props.value)
-    }
-  }
+  // tslint:disable-next-line:typedef no-void-expression
+  const onPress = props.onToggle ? () => props.onToggle && props.onToggle(!props.value) : null
 
   return (
     <TouchableOpacity
@@ -74,8 +48,8 @@ export function Checkbox(props: ICheckboxProps): React.ReactElement {
       onPress={onPress}
       style={rootStyle}
     >
-      <View style={outlineStyle}>{props.value && <View style={fillStyle}/>}</View>
-      <Text text={props.text} tx={props.tx} numberOfLines={numberOfLines} style={LABEL}/>
+      <View style={outlineStyle}>{props.value && <View style={fillStyle} />}</View>
+      <Text text={props.text} tx={props.tx} numberOfLines={numberOfLines} style={LABEL} />
     </TouchableOpacity>
   )
 }

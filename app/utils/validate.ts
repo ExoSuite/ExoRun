@@ -1,17 +1,16 @@
-// tslint:disable-next-line
-import ValidateJS, { ValidateJS as ValidateJSType } from "validate.js"
-import { includes } from "ramda"
+const ValidateJS = require("validate.js")
+import { contains } from "ramda"
+// tslint:disable
 
-// weird typescript situation because of strange typings
-const Validate: ValidateJSType = ValidateJS
+// HACK(steve): wierd typescript situation because of strange typings
+const Validate: any = ValidateJS.default ? ValidateJS.default : ValidateJS
 
 /**
  * Validates that 1 attribute doesn't appear in another's attributes content.
  */
-// tslint:disable-next-line
 Validate.validators.excludes = function custom(value, options, key, attributes) {
   const list = attributes[options.attribute] || []
-  if (value && includes(value, list)) {
+  if (value && contains(value, list)) {
     return options.message || `${value} is in the list`
   }
 }
@@ -19,7 +18,6 @@ Validate.validators.excludes = function custom(value, options, key, attributes) 
 /**
  * Validates that another attribute isn't true.
  */
-// tslint:disable-next-line
 Validate.validators.tripped = function custom(value, options, key, attributes) {
   if (value && attributes[options.attribute] === true) {
     return options.message || `${options.attribute} is true`
@@ -45,7 +43,7 @@ Validate.validators.tripped = function custom(value, options, key, attributes) {
  * See https://validatejs.org/#validators for more examples.
  *
  */
-export interface IValidationRules {
+export interface ValidationRules {
   [key: string]: {}
 }
 
@@ -63,7 +61,7 @@ export interface IValidationRules {
  * }
  * ```
  */
-export interface IValidationErrors {
+export interface ValidationErrors {
   [key: string]: {}
 }
 
@@ -73,10 +71,9 @@ export interface IValidationErrors {
  * @param rules The rules to apply.
  * @param data The object to validate.
  */
-export function validate(rules: IValidationRules, data: {}): IValidationErrors {
+export function validate(rules: ValidationRules, data: {}): ValidationErrors {
   if (typeof data !== "object") {
-    return {}
+    return {} as ValidationErrors
   }
-
   return Validate(data, rules, { fullMessages: false }) || {}
 }

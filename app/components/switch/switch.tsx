@@ -1,8 +1,8 @@
 import * as React from "react"
-import { Animated, Easing, TouchableWithoutFeedback, ViewStyle } from "react-native"
-import { color } from "@theme"
+import { ViewStyle, Animated, Easing, TouchableWithoutFeedback } from "react-native"
+import { color } from "../../theme"
 import { ISwitchProps } from "./switch.props"
-import { reduce } from "ramda"
+import { mergeAll, flatten } from "ramda"
 
 // dimensions
 const THUMB_SIZE = 30
@@ -27,7 +27,7 @@ const TRACK: ViewStyle = {
   width: WIDTH,
   borderRadius: BORDER_RADIUS,
   borderWidth: MARGIN / 2,
-  backgroundColor: color.background
+  backgroundColor: color.background,
 }
 
 // the thumb always has these props
@@ -43,20 +43,11 @@ const THUMB: ViewStyle = {
   shadowOffset: { width: 1, height: 2 },
   shadowOpacity: 1,
   shadowRadius: 2,
-  elevation: 2
+  elevation: 2,
 }
 
-const enhance = (style: Object, newStyles: Object): ViewStyle => {
-  if (Array.isArray(newStyles)) {
-    return reduce((acc: Object, term: Object) => {
-      return { ...acc, ...term }
-    }, style, newStyles)
-  }
-
-  return {
-    ...style,
-    ...newStyles
-  } as ViewStyle
+const enhance = (style: object, newStyles: object): object => {
+  return mergeAll(flatten([style, newStyles]))
 }
 
 interface ISwitchState {
@@ -67,17 +58,8 @@ interface ISwitchState {
  * * Switch Component with ability to toggle the value on tap.
  */
 export class Switch extends React.PureComponent<ISwitchProps, ISwitchState> {
-  public state: ISwitchState = {
-    timer: new Animated.Value(this.props.value ? 1 : 0)
-  }
-
-  /**
-   * Fires when we tap the touchable.
-   */
-  private readonly handlePress = (): void => {
-    if (this.props.onToggle) {
-      this.props.onToggle(!this.props.value)
-    }
+  public state = {
+    timer: new Animated.Value(this.props.value ? 1 : 0),
   }
 
   public componentWillReceiveProps(newProps: ISwitchProps): void {
@@ -87,12 +69,21 @@ export class Switch extends React.PureComponent<ISwitchProps, ISwitchState> {
   }
 
   /**
+   * Fires when we tap the touchable.
+   */
+  public handlePress = (): void => {
+    if (this.props.onToggle) {
+      this.props.onToggle(!this.props.value)
+    }
+  }
+
+  /**
    * Render the component.
    */
   public render(): React.ReactNode {
     const translateX = this.state.timer.interpolate({
       inputRange: [0, 1],
-      outputRange: [OFF_POSITION, ON_POSITION]
+      outputRange: [OFF_POSITION, ON_POSITION],
     })
 
     const style = enhance({}, this.props.style)
@@ -100,30 +91,30 @@ export class Switch extends React.PureComponent<ISwitchProps, ISwitchState> {
     let trackStyle = TRACK
     trackStyle = enhance(trackStyle, {
       backgroundColor: this.props.value ? ON_COLOR : OFF_COLOR,
-      borderColor: this.props.value ? BORDER_ON_COLOR : BORDER_OFF_COLOR
+      borderColor: this.props.value ? BORDER_ON_COLOR : BORDER_OFF_COLOR,
     })
     trackStyle = enhance(trackStyle,
-      this.props.value ? this.props.trackOnStyle : this.props.trackOffStyle
+      this.props.value ? this.props.trackOnStyle : this.props.trackOffStyle,
     )
 
     let thumbStyle = THUMB
     thumbStyle = enhance(thumbStyle, {
-      transform: [{ translateX }]
+      transform: [{ translateX }],
     })
     thumbStyle = enhance(thumbStyle,
-      this.props.value ? this.props.thumbOnStyle : this.props.thumbOffStyle
+      this.props.value ? this.props.thumbOnStyle : this.props.thumbOffStyle,
     )
 
     return (
       <TouchableWithoutFeedback onPress={this.handlePress} style={style}>
         <Animated.View style={trackStyle}>
-          <Animated.View style={thumbStyle}/>
+          <Animated.View style={thumbStyle} />
         </Animated.View>
       </TouchableWithoutFeedback>
     )
   }
 
-  // tslint:disable-next-line no-flag-args
+  // tslint:disable-next-line:no-flag-args
   public startAnimation(newValue: boolean): void {
     const toValue = newValue ? 1 : 0
     const easing = Easing.out(Easing.circle)
@@ -131,7 +122,7 @@ export class Switch extends React.PureComponent<ISwitchProps, ISwitchState> {
       toValue,
       duration: DURATION,
       easing,
-      useNativeDriver: true
+      useNativeDriver: true,
     }).start()
   }
 }

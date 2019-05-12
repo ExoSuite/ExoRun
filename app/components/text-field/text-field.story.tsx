@@ -4,7 +4,7 @@ import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { Text } from "../text"
 import { TextField } from "./"
 import { State } from "react-powerplug"
-import { TextStyle, ViewStyle, Alert } from "react-native"
+import { Alert, TextStyle, ViewStyle } from "react-native"
 
 // tslint:disable
 

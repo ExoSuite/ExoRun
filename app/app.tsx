@@ -18,10 +18,12 @@ import { StorybookUIRoot } from "../storybook"
 import { StatefulNavigator } from "./navigation"
 import { DataLoader } from "@components/data-loader"
 import { useScreens } from "react-native-screens"
+import { IUserModel } from "@models/user-profile"
 
 export interface IAppState {
   env?: Environment
-  rootStore?: RootStore
+  rootStore?: RootStore,
+  userModel?: IUserModel
 }
 
 useScreens()
@@ -44,7 +46,7 @@ export class App extends React.Component<{}, IAppState> {
     DataLoader.Instance = ref
   }
 
-  private stateNotReady(property: string): Object | undefined {
+  private stateNotReady(property: string): object | undefined {
     try {
       return this.state[property]
     } catch (error) {
@@ -56,12 +58,14 @@ export class App extends React.Component<{}, IAppState> {
    * When the component Is mounted. This happens asynchronously and simply
    * re-renders when we're good to go.
    */
+  // tslint:disable-next-line: no-feature-envy
   public async componentDidMount(): Promise<void> {
     const store = await setupRootStore()
     this.setState(
       {
         env: store.env,
         rootStore: store.rootStore,
+        userModel: store.userModel
       },
       () => {
         // hack to ignore white screen on android
@@ -86,12 +90,16 @@ export class App extends React.Component<{}, IAppState> {
     // You're welcome to swap in your own component to render if your boot up
     // sequence Is too slow though.
 
-    if (this.stateNotReady("rootStore") === undefined || this.stateNotReady("env") === undefined) {
+    if (this.stateNotReady("rootStore") === undefined
+      || this.stateNotReady("env") === undefined
+      || this.stateNotReady("userModel") === undefined
+    ) {
       return null
     }
 
     const rootStore = this.state.rootStore
     const env = this.state.env
+    const userModel = this.state.userModel
 
     // otherwise, we're ready to render the app
 
@@ -99,6 +107,7 @@ export class App extends React.Component<{}, IAppState> {
     const otherStores = {
       api: env.api,
       soundPlayer: env.soundPlayer,
+      userModel: userModel
     }
     // --- am: end list of stores ---
 

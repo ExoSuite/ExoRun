@@ -1,6 +1,6 @@
 import * as React from "react"
 import { TextStyle, TouchableOpacityProps, ViewStyle } from "react-native"
-import { ButtonPresetNames } from "./button.presets"
+import { ButtonPresetNames, ButtonTextPresetNames } from "./button.presets"
 
 export interface IButtonProps extends TouchableOpacityProps {
 
@@ -28,6 +28,7 @@ export interface IButtonProps extends TouchableOpacityProps {
    * The text to display if not using `tx` or nested components.
    */
   text?: string
+  textPreset?: ButtonTextPresetNames
 
   /**
    * An optional style override useful for the button text.

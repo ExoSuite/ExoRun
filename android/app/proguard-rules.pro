@@ -69,3 +69,4 @@
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 -dontwarn okio.**
 
+-keep,includedescriptorclasses class com.google.common.**

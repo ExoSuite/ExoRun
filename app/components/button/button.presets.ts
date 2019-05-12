@@ -50,15 +50,18 @@ export const viewPresets = {
 
 export const textPresets = {
   primary: { ...BASE_TEXT, fontSize: 9, color: color.palette.white } as TextStyle,
+  primaryBold: {...BASE_TEXT, fontSize: 9, color: color.palette.white, fontWeight: "bold" } as TextStyle,
+  primaryBoldLarge: {...BASE_TEXT, color: color.palette.white, fontWeight: "bold" } as TextStyle,
   link: {
     ...BASE_TEXT,
     color: color.text,
     paddingHorizontal: 0,
     paddingVertical: 0
-  } as TextStyle
+  } as TextStyle,
 }
 
 /**
  * A list of preset names.
  */
 export type ButtonPresetNames = keyof typeof viewPresets
+export type ButtonTextPresetNames = keyof typeof textPresets
