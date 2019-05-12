@@ -303,6 +303,7 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
       <Modal
         isVisible={isVisible}
         onModalHide={this.successCallback}
+        useNativeDriver
       >
         <View style={MODAL_CONTAINER}>
           <FormRow preset="clear" style={LOADER_CONTAINER_STYLE}>
@@ -311,7 +312,7 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
               source={Lottie.LoaderSuccessFailed}
               loop={false}
               speed={1.25}
-              resizeMode={"cover"}
+              resizeMode="cover"
               onAnimationFinish={onAnimationFinish}
             />
           </FormRow>

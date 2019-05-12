@@ -23,7 +23,7 @@ import moment from "moment"
 import lodash, { clone } from "lodash-es"
 import ramda from "ramda"
 import { DataLoader } from "@components/data-loader"
-import { save as saveFromStorage, StorageTypes } from "@utils/storage"
+import { updateUserModel } from "@models/user-profile"
 
 interface IEditMyProfileScreenNavigationScreenProps {
   avatarUrl: string
@@ -80,6 +80,7 @@ export class EditMyProfileScreen extends React.Component<IEditMyProfileScreenPro
     this.avatarUrl = props.navigation.getParam("avatarUrl")
     this.coverUrl = props.navigation.getParam("coverUrl")
     this.userProfile = clone(props.userModel)
+    this.userProfile.profile = clone(props.userModel.profile)
   }
 
   @action.bound
@@ -110,7 +111,7 @@ export class EditMyProfileScreen extends React.Component<IEditMyProfileScreenPro
     await Promise.all([userUpdatePromise, userProfileUpdatePromise])
       .then(async () => {
         const freshUserProfile = clone(this.userProfile)
-        userModel.updateUser(freshUserProfile)
+        updateUserModel(freshUserProfile, userModel)
         DataLoader.Instance.success(soundPlayer.success)
       })
       .catch((err: any) => {

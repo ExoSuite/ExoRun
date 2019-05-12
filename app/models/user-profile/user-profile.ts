@@ -34,7 +34,7 @@ export const UserModel = types
 
 export function updateUserModel(newUser: IUser, userModel: IUserModel): void {
   Object.entries(newUser).forEach(
-    ([key, value]: [string, string]) => {
+    ([key, value]: [string, string]): void => {
       userModel.updateUserField(key, value)
     }
   );

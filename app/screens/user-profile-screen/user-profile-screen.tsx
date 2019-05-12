@@ -107,6 +107,16 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     headerLeft: NavigationBackButtonWithNestedStackNavigator
   }
 
+  constructor(props: IPersonalProfileScreenProps) {
+    super(props)
+    if (props.navigation.getParam("me")) {
+      this.userProfile = props.userModel
+    } else {
+      // tslint:disable-next-line:no-commented-code no-commented-out-code
+      // this.userProfile = await this.whenVisitingMyProfile();
+    }
+  }
+
   private animate(): IAnimationObjects {
     const coverMovement = this.state.scrollY.interpolate({
       inputRange: [0, 94, 95],
@@ -144,16 +154,9 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
 
   @action
   public async componentDidMount(): Promise<void> {
-    const { api, userModel } = this.props
+    const { api } = this.props
     const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
     const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
-
-    if (this.props.navigation.getParam("me")) {
-      this.userProfile = userModel
-    } else {
-      // tslint:disable-next-line:no-commented-code no-commented-out-code
-      // this.userProfile = await this.whenVisitingMyProfile();
-    }
 
     this.avatarUrl = api.buildAvatarUrl(this.userProfile.id, token)
     this.coverUrl = api.buildCoverUrl(this.userProfile.id, token)
