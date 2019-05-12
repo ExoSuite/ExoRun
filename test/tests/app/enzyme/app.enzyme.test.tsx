@@ -1,8 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import { ModalMock } from "../ModalMock"
 import * as React from "react"
+import { ModalMock } from "../ModalMock"
 import { App } from "../../../../app/app"
 import { mount } from "enzyme"
 import { spy } from "sinon"
