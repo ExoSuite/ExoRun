@@ -3,7 +3,7 @@ import { Api } from "@services/api"
 import { Reactotron } from "@services/reactotron"
 import { SoundPlayer } from "@services/sound-player"
 import * as storage from "@utils/storage"
-import { onPatch, onSnapshot } from "mobx-state-tree"
+import { onSnapshot } from "mobx-state-tree"
 import { RootStore, RootStoreModel, RootStoreSnapshot } from "./root-store"
 import { IUserModel, IUserModelSnapshot, UserModel } from "@models/user-profile"
 
