@@ -23,7 +23,6 @@ import {
   IUser
 } from "./api.types"
 import { ApiRoutes } from "@services/api/api.routes"
-import { save as saveFromStorage, StorageTypes } from "@utils/storage"
 import Axios from "axios"
 import { IUserModel, updateUserModel } from "@models/user-profile"
 
@@ -254,7 +253,6 @@ export class Api implements IService {
 
   public async getProfile(userModel?: IUserModel): Promise<void> {
     const userProfileRequest: ApiResponse<IUser> = await this.get(ApiRoutes.USER_ME)
-    await saveFromStorage(StorageTypes.USER_PROFILE, userProfileRequest.data)
     if (userModel) {
       updateUserModel(userProfileRequest.data, userModel)
     }

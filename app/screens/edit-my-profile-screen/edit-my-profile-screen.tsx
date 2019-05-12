@@ -1,3 +1,4 @@
+// tslint:disable:id-length
 import * as React from "react"
 import { observer } from "mobx-react"
 import { ImageStyle, View, ViewStyle } from "react-native"
@@ -6,10 +7,7 @@ import { NavigationScreenProps } from "react-navigation"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import { IUser } from "@services/api"
 import { action, observable, runInAction } from "mobx"
-import { CachedImage, CachedImageType } from "@components/cached-image"
-import { TouchableGreyscaledIcon } from "@components/touchable-greyscaled-icon"
 import autobind from "autobind-decorator"
-import { Avatar, DefaultRnpAvatarSize } from "@components/avatar"
 import { spacing } from "@theme/spacing"
 import { TextField } from "@components/text-field"
 import { color } from "@theme/color"
@@ -21,7 +19,7 @@ import { inject } from "mobx-react/native"
 import { Injection, InjectionProps } from "@services/injections"
 import moment from "moment"
 import lodash, { clone } from "lodash-es"
-import ramda from "ramda"
+import R from "ramda"
 import { DataLoader } from "@components/data-loader"
 import { updateUserModel } from "@models/user-profile"
 
@@ -101,8 +99,8 @@ export class EditMyProfileScreen extends React.Component<IEditMyProfileScreenPro
     DataLoader.Instance.toggleIsVisible()
 
     // pick only wanted data from profile and user
-    const userData = ramda.pick(["first_name", "last_name", "nick_name"], this.userProfile)
-    const userProfileData = ramda.pick(["description", "city", "birthday"], this.userProfile.profile)
+    const userData = R.pick(["first_name", "last_name", "nick_name"], this.userProfile)
+    const userProfileData = R.pick(["description", "city", "birthday"], this.userProfile.profile)
 
     // remove potential falsey values
     const userUpdatePromise = api.patch("user/me", lodash.pickBy(userData, lodash.identity))
@@ -110,8 +108,7 @@ export class EditMyProfileScreen extends React.Component<IEditMyProfileScreenPro
 
     await Promise.all([userUpdatePromise, userProfileUpdatePromise])
       .then(async () => {
-        const freshUserProfile = clone(this.userProfile)
-        updateUserModel(freshUserProfile, userModel)
+        updateUserModel(this.userProfile, userModel)
         DataLoader.Instance.success(soundPlayer.success)
       })
       .catch((err: any) => {

@@ -97,7 +97,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
 
   @observable private avatarUrl = ""
   @observable private coverUrl = ""
-  @observable private userProfile: IUser = {} as IUser
+  @observable private readonly userProfile: IUser = {} as IUser
 
   public state = {
     scrollY: new Animated.Value(0)
