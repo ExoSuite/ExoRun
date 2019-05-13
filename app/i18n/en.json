@@ -10,7 +10,12 @@
     "password-hide": "Hide password",
     "password-confirmation": "Confirm password",
     "update": "Update",
-    "new-group": "New group"
+    "new-group": "New group",
+    "new-post": "New post",
+    "add-new-post": "Add a new post",
+    "new-post-content": "Content of the new post",
+    "updatedAt": "Updated : ",
+    "createdAt": "Created : "
   },
   "drawer": {
     "my-profile": "Profile",

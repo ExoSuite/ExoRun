@@ -13,6 +13,7 @@ export enum AppScreens {
   EDIT_MY_PROFILE = "edit-my-profile",
   SEARCH = "search",
   NEW_GROUP = "new-group",
+  NEW_POST = "new-post",
   FOLLOW = "follow"
 }
 

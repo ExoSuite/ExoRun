@@ -1,6 +1,6 @@
 import * as React from "react"
 import { observer } from "mobx-react"
-import { Animated, ImageStyle, StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
+import { Animated, FlatList, ImageStyle, StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Button, Screen, Text } from "@components"
 import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
@@ -22,6 +22,9 @@ import { AppScreens } from "@navigation/navigation-definitions"
 import { ApiResponse } from "apisauce"
 import { FontawesomeIcon } from "@components/fontawesome-icon"
 import { IFollowScreenNavigationScreenProps } from "@screens/follow-screen"
+import { FAB, PartialIconProps } from "react-native-paper"
+import moment from "moment"
+import { translate } from "@i18n/translate"
 
 // tslint:disable:id-length
 
@@ -76,6 +79,14 @@ const FIXED_HEADER: ViewStyle = {
   ...headerShadow
 }
 
+const FLOATING_BUTTON: ViewStyle = {
+  position: "absolute",
+  margin: 16,
+  right: 0,
+  bottom: 0,
+  backgroundColor: palette.lightGreen
+}
+
 const FIXED_HEADER_TEXT_CONTAINER: ViewStyle = {
   marginLeft: 14
 }
@@ -119,6 +130,11 @@ interface IAnimationObjects {
   [prop: string]: Animated.AnimatedInterpolation
 }
 
+const floatingButton = (props: PartialIconProps): React.ReactElement =>
+  <FontawesomeIcon name="feather-alt" size={props.size} color={palette.offWhite}/>
+
+const keyExtractor = (item: any, index: number): string => item.id
+
 /**
  * UserProfileScreenImpl will handle a user profile
  */
@@ -135,7 +151,13 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
 
   @observable private avatarUrl = ""
   @observable private coverUrl = ""
+  private currentPage: number
   @observable private isUserFollowedByVisitor = false
+  private maxPage: number
+  private me: boolean
+  private onEndReachedCalledDuringMomentum = true
+  @observable private pictureToken: string
+  @observable private userPosts = []
   @observable private userProfile: IUser = {} as IUser
 
   public state = {
@@ -180,6 +202,34 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     }
   }
 
+  @action
+  // tslint:disable-next-line:typedef
+  private async fetchPosts(needNextPage = false): Promise<void> {
+    const { api, navigation, userModel } = this.props
+
+    const user = navigation.getParam("user")
+    let uri: string
+    // tslint:disable-next-line: prefer-conditional-expression
+    if (user) {
+      uri = `user/${user.id}/dashboard/posts`
+    } else {
+      uri = `user/${userModel.id}/dashboard/posts`
+    }
+
+    if (needNextPage) {
+      uri += `?page=${this.currentPage}`
+    }
+
+    const userPosts = await api.get(uri)
+    this.currentPage = userPosts.data.current_page
+    if (!needNextPage) {
+      this.maxPage = userPosts.data.last_page
+      this.userPosts = userPosts.data.data
+    } else {
+      this.userPosts.push(...userPosts.data.data)
+    }
+  }
+
   @autobind
   private onEditMyProfile(): void {
     this.props.navigation.navigate(AppScreens.EDIT_MY_PROFILE, {
@@ -201,6 +251,66 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     this.props.navigation.navigate(AppScreens.FOLLOW, navigationParams)
   }
 
+  @autobind
+  private onNewPostPress(): void {
+    this.props.navigation.navigate(AppScreens.NEW_POST)
+  }
+
+  @autobind
+  // tslint:disable-next-line: no-feature-envy
+  private renderPost({item}: { item: any}): React.ReactElement {
+    const { api, userModel } = this.props
+    const avatarUrl = api.buildAvatarUrl(item.author_id, this.pictureToken)
+    const user: IUser = this.me ? userModel : this.userProfile
+    console.tron.logImportant(item.created_at)
+    const formatedCreatedAt = moment(item.created_at).format("LLL")
+    console.tron.logImportant(formatedCreatedAt)
+    const formatedUpdatedAt = moment(item.updated_at).format("LLL")
+
+    return (
+      <View style={{
+        backgroundColor: color.backgroundDarkerer,
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
+        margin: spacing[2],
+        padding: spacing[2]
+      }}
+      >
+        <View style={{flexDirection: "row"}}>
+          <Avatar avatarUrl={avatarUrl} urlFromParent size={42}/>
+          <View style={{marginLeft: spacing[2], justifyContent: "center"}}>
+            <Text
+              style={{ textTransform: "capitalize" }}
+              text={`${user.first_name} ${user.last_name}`}
+              preset="userRow"
+            />
+            <Text preset="nicknameLight" text={user.nick_name}/>
+          </View>
+        </View>
+        <View style={{marginTop: spacing[3]}}>
+          <Text text={item.content} />
+        </View>
+        <View style={{flexDirection: "row", flex: 1, marginTop: spacing[3]}}>
+          <View>
+            <Text preset="fieldLabel" tx="common.createdAt" style={{flexWrap: "wrap"}}/>
+            <Text preset="fieldLabel" text={formatedCreatedAt}/>
+          </View>
+          <View style={{alignSelf: "flex-end", flex: 1}}>
+            <Text preset="fieldLabel" tx="common.updatedAt" style={{textAlign: "right"}}/>
+            <Text preset="fieldLabel" text={formatedUpdatedAt} style={{textAlign: "right"}}/>
+          </View>
+        </View>
+      </View>
+    )
+  }
+
   @action.bound
   private async toggleFollow(): Promise<void> {
     const { api } = this.props
@@ -218,7 +328,9 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     const { api, navigation } = this.props
     const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
     const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
+    this.pictureToken = token
     const user = navigation.getParam("user")
+    this.me = navigation.getParam("me")
 
     if (user) {
       const userProfileRequest: ApiResponse<IUser> = await api.get(`user/${user.id}/profile`)
@@ -226,11 +338,10 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
       this.isUserFollowedByVisitor = userProfileRequest.data.follow.status
     }
 
+    await this.fetchPosts();
     this.avatarUrl = api.buildAvatarUrl(this.userProfile.id, token)
     this.coverUrl = api.buildCoverUrl(this.userProfile.id, token)
   }
-
-  // user-check
 
   public render(): React.ReactNode {
     const { avatarMovement, avatarOpacity, headerContentOpacity, headerOpacity, coverMovement } = this.animate()
@@ -301,7 +412,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
             </View>
 
             <View style={[{ marginTop: 10 }, ROW]}>
-              <TouchableOpacity style={ROW} onPress={this.onFollowersPress}>
+              <TouchableOpacity style={ROW} onPress={this.onFollowersPress} disabled>
                 <Text style={TEXT_NUMBER}>
                   2222
                 </Text>
@@ -309,8 +420,26 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
               </TouchableOpacity>
             </View>
           </View>
-          <View style={{ marginTop: 8, height: 1000 }}/>
+          <View style={{ marginTop: 8 }}>
+            <FlatList
+              data={this.userPosts}
+              renderItem={this.renderPost}
+              keyExtractor={keyExtractor}
+
+              contentContainerStyle={{
+                padding: spacing[3]
+              }}
+            />
+          </View>
         </Animated.ScrollView>
+        {renderIf(me)((
+          <FAB
+            style={FLOATING_BUTTON}
+            small
+            icon={floatingButton}
+            onPress={this.onNewPostPress}
+          />
+        ))}
       </Screen>
     )
   }

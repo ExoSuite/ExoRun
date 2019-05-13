@@ -1,7 +1,6 @@
 import * as React from "react"
 import { observer } from "mobx-react"
 import { ViewStyle } from "react-native"
-import { Text } from "@components/text"
 import { Screen } from "@components/screen"
 import { color } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
@@ -21,6 +20,7 @@ const ROOT: ViewStyle = {
 }
 
 // @inject("mobxstuff")
+// tslint:disable-next-line: completed-docs
 @observer
 export class FollowScreen extends React.Component<IFollowScreenProps> {
 
@@ -28,11 +28,10 @@ export class FollowScreen extends React.Component<IFollowScreenProps> {
     headerLeft: NavigationBackButtonWithNestedStackNavigator()
   }
 
+  // tslint:disable-next-line: prefer-function-over-method
   public render(): React.ReactNode {
     return (
-      <Screen style={ROOT} preset="scroll">
-        <Text preset="header" tx="followScreen.header" />
-      </Screen>
+      <Screen style={ROOT} preset="fixed"/>
     )
   }
 }

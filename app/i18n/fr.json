@@ -10,7 +10,12 @@
     "password-hide": "Masquer le mot de passe",
     "password-confirmation": "Confirmer le mot de passe",
     "update": "Mettre à jour",
-    "new-group": "Nouveau groupe"
+    "new-group": "Nouveau groupe",
+    "new-post": "Nouveau statut",
+    "add-new-post": "Ajouter un nouveau statut",
+    "new-post-content": "Contenu du nouveau statut",
+    "updatedAt": "Mise à jour le : ",
+    "createdAt": "Créé le : "
   },
   "drawer": {
     "my-profile": "Mon Profil",

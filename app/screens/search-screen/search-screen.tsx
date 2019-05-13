@@ -92,14 +92,12 @@ export class SearchScreen extends React.Component<ISearchScreenProps> {
 
     const results = await api.get("user/search", queriesParams).catch(onSearchError)
     this.currentPage = results.data.current_page
-    if (results.ok) {
-      if (!needNextPage) {
-        this.maxPage = results.data.last_page
-        this.lastQuery = query
-        this.users = results.data.data
-      } else {
-        this.users.push(...results.data.data)
-      }
+    if (!needNextPage) {
+      this.maxPage = results.data.last_page
+      this.lastQuery = query
+      this.users = results.data.data
+    } else {
+      this.users.push(...results.data.data)
     }
   }
 
