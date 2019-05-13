@@ -1,6 +1,6 @@
 import * as React from "react"
 import { observer } from "mobx-react"
-import { FlatList, ViewStyle } from "react-native"
+import { FlatList, TouchableOpacity, ViewStyle } from "react-native"
 import { Screen } from "@components/screen"
 import { color } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
@@ -14,6 +14,8 @@ import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
 import { ApiResponse } from "apisauce"
 import { UserRow } from "@components/user-row"
+import { AppScreens } from "@navigation/navigation-definitions"
+import { IBoolFunction } from "@types"
 
 export interface ISearchScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -53,6 +55,11 @@ export class SearchScreen extends React.Component<ISearchScreenProps> {
   @observable private users: IUser[] = []
 
   @autobind
+  private goToProfile(user: IUser): IBoolFunction {
+    return (): boolean => this.props.navigation.navigate(AppScreens.USER_PROFILE, { user })
+  }
+
+  @autobind
   private onEndReached(): void {
     if (this.currentPage < this.maxPage && !this.onEndReachedCalledDuringMomentum) {
       this.currentPage += 1
@@ -62,13 +69,18 @@ export class SearchScreen extends React.Component<ISearchScreenProps> {
 
   @autobind
   private onMomentumScrollBegin(): void {
-    this.onEndReachedCalledDuringMomentum = false;
+    this.onEndReachedCalledDuringMomentum = false
   }
 
   @action.bound
   // tslint:disable-next-line: typedef
   private async onUserTypeToSearch(query: string, needNextPage = false): Promise<void> {
     const { api } = this.props
+
+    if (!query) {
+      // tslint:disable-next-line: no-parameter-reassignment
+      query = "*"
+    }
 
     const queriesParams: { page?: number, text: string } = {
       text: query
@@ -79,12 +91,15 @@ export class SearchScreen extends React.Component<ISearchScreenProps> {
     }
 
     const results = await api.get("user/search", queriesParams).catch(onSearchError)
-    this.users.push(...results.data.data)
-    this.users = this.users.slice()
     this.currentPage = results.data.current_page
-    if (!needNextPage) {
-      this.maxPage = results.data.last_page
-      this.lastQuery = query
+    if (results.ok) {
+      if (!needNextPage) {
+        this.maxPage = results.data.last_page
+        this.lastQuery = query
+        this.users = results.data.data
+      } else {
+        this.users.push(...results.data.data)
+      }
     }
   }
 
@@ -94,12 +109,14 @@ export class SearchScreen extends React.Component<ISearchScreenProps> {
     const { api } = this.props
 
     return (
-      <UserRow
-        firstName={item.first_name}
-        lastName={item.last_name}
-        nickName={item.nick_name}
-        avatarUrl={api.buildAvatarUrl(item.id, this.pictureToken)}
-      />
+      <TouchableOpacity onPress={this.goToProfile(item)}>
+        <UserRow
+          firstName={item.first_name}
+          lastName={item.last_name}
+          nickName={item.nick_name}
+          avatarUrl={api.buildAvatarUrl(item.id, this.pictureToken)}
+        />
+      </TouchableOpacity>
     )
   }
 

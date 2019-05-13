@@ -9,7 +9,8 @@
     "password-reveal": "Reveal password",
     "password-hide": "Hide password",
     "password-confirmation": "Confirm password",
-    "update": "Update"
+    "update": "Update",
+    "new-group": "New group"
   },
   "drawer": {
     "my-profile": "Profile",
@@ -31,7 +32,9 @@
     "nickName": "Username",
     "description": "Description",
     "city": "City",
-    "birthday": "Birthday"
+    "birthday": "Birthday",
+    "follow": "Follow",
+    "following": "Following"
   },
   "auth": {
     "powered": "Powered by ",

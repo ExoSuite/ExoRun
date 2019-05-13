@@ -1,6 +1,6 @@
 import { createStackNavigator } from "react-navigation"
 import { FirstStepRegisterScreen, SecondStepRegisterScreen } from "@screens/auth"
-import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
+import { defaultNavigationIcon, NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import { color } from "@theme"
 import { LogoHeader } from "@components/logo-header"
 import { RegisterScreens } from "@navigation/navigation-definitions"
@@ -16,7 +16,9 @@ export const RegisterFlow = createStackNavigator(
     headerMode: "float",
     // @ts-ignore
     defaultNavigationOptions: {
-      headerLeft: NavigationBackButtonWithNestedStackNavigator,
+      headerLeft: NavigationBackButtonWithNestedStackNavigator({
+        iconName: defaultNavigationIcon
+      }),
       headerTitle: LogoHeader,
       headerStyle: {
         backgroundColor: color.backgroundDarkerer,

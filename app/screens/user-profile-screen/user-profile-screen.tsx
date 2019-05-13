@@ -4,8 +4,8 @@ import { Animated, ImageStyle, StyleSheet, View, ViewStyle } from "react-native"
 import { Button, Screen, Text } from "@components"
 import { spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
-import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
-import { IPersonalTokens, IUser } from "@services/api"
+import { defaultNavigationIcon, NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
+import { ICheckIfIamFollowing, IPersonalTokens, IUser } from "@services/api"
 import { Avatar, DefaultRnpAvatarSize } from "@components/avatar"
 import { palette } from "@theme/palette"
 import { headerShadow } from "@utils/shadows"
@@ -13,12 +13,15 @@ import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
 import { inject } from "mobx-react/native"
 import { Injection, InjectionProps } from "@services/injections"
-import { action, observable } from "mobx"
+import { action, observable, runInAction } from "mobx"
 import idx from "idx"
 import { CachedImage, CachedImageType } from "@components/cached-image/cached-image"
 import { renderIf } from "@utils/render-if"
 import autobind from "autobind-decorator"
 import { AppScreens } from "@navigation/navigation-definitions"
+import { ApiResponse } from "apisauce"
+import { FontawesomeIcon } from "@components/fontawesome-icon"
+import axios from "axios"
 
 // tslint:disable:id-length
 
@@ -73,6 +76,19 @@ const FIXED_HEADER: ViewStyle = {
   ...headerShadow
 }
 
+const ROW: ViewStyle = {
+  flexDirection: "row"
+}
+
+const BUTTON_CONTAINER: ViewStyle = {
+  flexDirection: "row",
+  justifyContent: "flex-end"
+}
+
+const FOLLOW_ICON: ViewStyle = {
+  paddingRight: spacing[2]
+}
+
 interface IPersonalProfileScreenState {
   scrollY: Animated.Value
 }
@@ -97,24 +113,22 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
 
   @observable private avatarUrl = ""
   @observable private coverUrl = ""
-  @observable private readonly userProfile: IUser = {} as IUser
+  @observable private isUserFollowedByVisitor = false
+  @observable private userProfile: IUser = {} as IUser
 
   public state = {
     scrollY: new Animated.Value(0)
   }
 
   public static navigationOptions = {
-    headerLeft: NavigationBackButtonWithNestedStackNavigator
+    headerLeft: NavigationBackButtonWithNestedStackNavigator({
+      iconName: defaultNavigationIcon
+    })
   }
 
   constructor(props: IPersonalProfileScreenProps) {
     super(props)
-    if (props.navigation.getParam("me")) {
-      this.userProfile = props.userModel
-    } else {
-      // tslint:disable-next-line:no-commented-code no-commented-out-code
-      // this.userProfile = await this.whenVisitingMyProfile();
-    }
+    this.userProfile = props.navigation.getParam("me") ? props.userModel : props.navigation.getParam("user")
   }
 
   private animate(): IAnimationObjects {
@@ -146,27 +160,59 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
 
   @autobind
   private onEditMyProfile(): void {
-    this.props.navigation.navigate(AppScreens.EDIT_MY_PROFILE , {
+    this.props.navigation.navigate(AppScreens.EDIT_MY_PROFILE, {
       avatarUrl: this.avatarUrl,
       coverUrl: this.coverUrl
     })
   }
 
+  @action.bound
+  private async toggleFollow(): Promise<void> {
+    const { api } = this.props
+    if (this.isUserFollowedByVisitor) {
+      await api.delete(`user/follows`)
+    } else {
+      await api.post(`user/${this.userProfile.id}/follows`)
+    }
+    this.isUserFollowedByVisitor = !this.isUserFollowedByVisitor
+  }
+
   @action
   public async componentDidMount(): Promise<void> {
-    const { api } = this.props
+    const { api, navigation } = this.props
     const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
     const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
+
+    const user = navigation.getParam("user")
+
+    if (user) {
+      const userProfilePromise: Promise<ApiResponse<IUser>> = api.get(`user/${user.id}/profile`)
+      const isUserFollowedByVisitorPromise: Promise<ApiResponse<ICheckIfIamFollowing>> = api.get(`user/${user.id}/follows`)
+      // @ts-ignore
+      axios.all([userProfilePromise, isUserFollowedByVisitorPromise])
+        .then(axios.spread(
+          (userProfileRequest: ApiResponse<IUser>, isUserFollowedByVisitor: ApiResponse<ICheckIfIamFollowing>) => {
+            runInAction(() => {
+              this.userProfile = { ...userProfileRequest.data, nick_name: this.userProfile.nick_name }
+              this.isUserFollowedByVisitor = isUserFollowedByVisitor.data.status
+            })
+          }))
+        .catch()
+    }
 
     this.avatarUrl = api.buildAvatarUrl(this.userProfile.id, token)
     this.coverUrl = api.buildCoverUrl(this.userProfile.id, token)
   }
+
+  // user-check
 
   public render(): React.ReactNode {
     const { avatarMovement, avatarOpacity, headerContentOpacity, headerOpacity, coverMovement } = this.animate()
 
     const description = idx<IUser, string>(this.userProfile, (_: any) => _.profile.description)
     const me = this.props.navigation.getParam("me")
+    const visitorButtonIcon = this.isUserFollowedByVisitor ? "user-check" : "user"
+    const visitorButtonText = this.isUserFollowedByVisitor ? "profile.following" : "profile.follow"
 
     return (
       <Screen style={ROOT} preset="fixed">
@@ -205,10 +251,15 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
             )}
         >
           <View style={StyleSheet.flatten([FIXED_HEADER, { marginTop: 150 }])}>
-            <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-              {renderIf(me)((
+            <View style={BUTTON_CONTAINER}>
+              {renderIf.if(me)(
                 <Button tx="profile.edit" textPreset="primaryBold" onPress={this.onEditMyProfile}/>
-              ))}
+              ).else(
+                <Button onPress={this.toggleFollow} style={ROW}>
+                  <FontawesomeIcon color={palette.white} name={visitorButtonIcon} style={FOLLOW_ICON}/>
+                  <Text tx={visitorButtonText} preset="bold"/>
+                </Button>
+              ).evaluate()}
             </View>
           </View>
 

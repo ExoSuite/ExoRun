@@ -41,6 +41,7 @@ export function UserRow(props: IUserRowProps): React.ReactElement {
         size={DefaultRnpAvatarSize}
         urlFromParent
         avatarUrl={avatarUrl}
+        cache={false}
       />
       <View style={TEXT_CONTAINER}>
         <Text preset="header" text={`${firstName} ${lastName}`} style={CENTERED_TEXT}/>

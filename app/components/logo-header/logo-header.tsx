@@ -14,8 +14,7 @@ const EXORUN_LOGO: ImageStyle = {
  *
  * Component description here for TypeScript tips.
  */
-// tslint:disable-next-line typedef
-export function LogoHeader() {
+export function LogoHeader(): React.ReactElement {
   return (
     <Image
       source={exorunLogo}

@@ -2,6 +2,7 @@ import { Instance, types } from "mobx-state-tree"
 import { RootNavigator } from "./root-navigator"
 import { NavigationActions, NavigationAction, NavigationLeafRoute } from "react-navigation"
 import { NavigationEvents } from "./navigation-events"
+import { IVoidFunction } from "@types"
 
 const DEFAULT_STATE = RootNavigator.router.getStateForAction(NavigationActions.init(), null)
 
@@ -47,8 +48,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
       return { ...snapshot, state: DEFAULT_STATE }
     }
   })
-  // tslint:disable-next-line:typedef
-  .actions((self) => ({
+  .actions((self: Instance<typeof NavigationStoreModel>) => ({
     /**
      * Return all subscribers
      */
@@ -78,6 +78,11 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      */
     reset(): void {
       self.state = DEFAULT_STATE
+    },
+
+    smoothReset(callback: IVoidFunction): void {
+      self.reset()
+      callback()
     },
 
     /**

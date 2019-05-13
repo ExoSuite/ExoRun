@@ -8,6 +8,7 @@ import { footerShadow } from "@utils/shadows"
 import { color } from "@theme"
 import { HomeNavigator } from "@navigation/home-navigator"
 import { SearchScreen } from "@screens/search-screen"
+import { getActiveChildNavigationOptions } from "react-navigation"
 
 const tabBarIconSize = 20
 
@@ -38,7 +39,7 @@ export const AppBottomTabNavigator = createMaterialBottomTabNavigator(
       screen: GroupScreen,
       navigationOptions: {
         tabBarIcon: TabBarIcon({ name: "user-friends", size: tabBarIconSize }),
-        tabBarColor: "#0087c7"
+        tabBarColor: "#0087c7",
       }
     },
     [AppScreens.SEARCH]: {
@@ -55,6 +56,12 @@ export const AppBottomTabNavigator = createMaterialBottomTabNavigator(
       backgroundColor: color.backgroundDarkerer,
       borderBottomWidth: 0
     },
-    labeled: false
+    labeled: false,
+    navigationOptions: ({ navigation, screenProps }) => ({
+      // you can put fallback values before here, eg: a default tabBarLabel
+      ...getActiveChildNavigationOptions(navigation, screenProps),
+      // put other navigationOptions that you don't want the active child to
+      // be able to override here!
+    })
   }
 )

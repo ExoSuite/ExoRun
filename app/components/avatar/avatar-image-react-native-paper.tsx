@@ -17,6 +17,8 @@ export interface IAvatarImageReactNativePaperProps {
    * Image to display for the `Avatar`.
    */
   uri: string,
+
+  cache?: boolean
 }
 
 /**
@@ -40,7 +42,7 @@ class AvatarImageReactNativePaperImpl extends React.PureComponent<IAvatarImageRe
   public static displayName = "Avatar.Image"
 
   public render(): React.ReactNode {
-    const { size, uri, style } = this.props
+    const { size, uri, style, cache } = this.props
 
     const { backgroundColor = "transparent" } = StyleSheet.flatten(style) || {}
 
@@ -60,6 +62,7 @@ class AvatarImageReactNativePaperImpl extends React.PureComponent<IAvatarImageRe
           uri={uri}
           style={{ width: size, height: size, borderRadius: size / 2 }}
           type={CachedImageType.IMAGE}
+          cache={cache}
         />
       </View>
     )
