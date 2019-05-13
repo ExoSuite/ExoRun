@@ -1,11 +1,11 @@
 import * as React from "react"
 import { observer } from "mobx-react"
-import { Animated, ImageStyle, StyleSheet, View, ViewStyle } from "react-native"
+import { Animated, ImageStyle, StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Button, Screen, Text } from "@components"
-import { spacing } from "@theme"
+import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { defaultNavigationIcon, NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
-import { ICheckIfIamFollowing, IPersonalTokens, IUser } from "@services/api"
+import { IPersonalTokens, IUser } from "@services/api"
 import { Avatar, DefaultRnpAvatarSize } from "@components/avatar"
 import { palette } from "@theme/palette"
 import { headerShadow } from "@utils/shadows"
@@ -13,7 +13,7 @@ import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
 import { inject } from "mobx-react/native"
 import { Injection, InjectionProps } from "@services/injections"
-import { action, observable, runInAction } from "mobx"
+import { action, observable } from "mobx"
 import idx from "idx"
 import { CachedImage, CachedImageType } from "@components/cached-image/cached-image"
 import { renderIf } from "@utils/render-if"
@@ -21,7 +21,7 @@ import autobind from "autobind-decorator"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { ApiResponse } from "apisauce"
 import { FontawesomeIcon } from "@components/fontawesome-icon"
-import axios from "axios"
+import { IFollowScreenNavigationScreenProps } from "@screens/follow-screen"
 
 // tslint:disable:id-length
 
@@ -76,6 +76,18 @@ const FIXED_HEADER: ViewStyle = {
   ...headerShadow
 }
 
+const FIXED_HEADER_TEXT_CONTAINER: ViewStyle = {
+  marginLeft: 14
+}
+
+const FIXED_HEADER_DESCRIPTION: ViewStyle = {
+  marginTop: spacing[3]
+}
+
+const FIXED_HEADER_NAME: TextStyle = {
+  textTransform: "capitalize"
+}
+
 const ROW: ViewStyle = {
   flexDirection: "row"
 }
@@ -87,6 +99,16 @@ const BUTTON_CONTAINER: ViewStyle = {
 
 const FOLLOW_ICON: ViewStyle = {
   paddingRight: spacing[2]
+}
+
+const TEXT_NUMBER: TextStyle = {
+  fontWeight: "bold",
+  marginLeft: 14
+}
+
+const TEXT_NUMBER_LABEL: TextStyle = {
+  color: palette.offWhite,
+  marginLeft: 5
 }
 
 interface IPersonalProfileScreenState {
@@ -164,6 +186,19 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
       avatarUrl: this.avatarUrl,
       coverUrl: this.coverUrl
     })
+  }
+
+  @autobind
+  private onFollowersPress(): void {
+    let navigationParams: IFollowScreenNavigationScreenProps
+    // tslint:disable-next-line:prefer-conditional-expression
+    if (this.props.navigation.getParam("me")) {
+      navigationParams = { user: { id: this.props.userModel.id } }
+    } else {
+      navigationParams = { user: { id: this.userProfile.id } }
+    }
+
+    this.props.navigation.navigate(AppScreens.FOLLOW, navigationParams)
   }
 
   @action.bound
@@ -255,33 +290,23 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
           </View>
 
           <View style={FIXED_HEADER}>
-            <View style={{ marginLeft: 14 }}>
-              <Text preset="header" text={`${this.userProfile.first_name} ${this.userProfile.last_name}`}/>
+            <View style={FIXED_HEADER_TEXT_CONTAINER}>
+              <Text
+                preset="header"
+                text={`${this.userProfile.first_name} ${this.userProfile.last_name}`}
+                style={FIXED_HEADER_NAME}
+              />
               <Text preset="nicknameLight" text={this.userProfile.nick_name}/>
-              <Text style={{ marginTop: spacing[3] }} text={description}/>
+              <Text style={FIXED_HEADER_DESCRIPTION} text={description}/>
             </View>
 
-            <View style={{ flexDirection: "row", marginTop: 10 }}>
-              <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{ fontSize: 16, fontWeight: "bold", marginLeft: 14 }}
-                >
+            <View style={[{ marginTop: 10 }, ROW]}>
+              <TouchableOpacity style={ROW} onPress={this.onFollowersPress}>
+                <Text style={TEXT_NUMBER}>
                   2222
                 </Text>
-                <Text style={{ fontSize: 16, color: "#555", marginLeft: 5 }}>
-                  Following
-                </Text>
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{ fontSize: 16, fontWeight: "bold", marginLeft: 30 }}
-                >
-                  2222
-                </Text>
-                <Text style={{ fontSize: 16, color: "#555", marginLeft: 5 }}>
-                  Followers
-                </Text>
-              </View>
+                <Text text="Followers" style={TEXT_NUMBER_LABEL}/>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={{ marginTop: 8, height: 1000 }}/>

@@ -2,22 +2,9 @@ import { TextPresets } from "@components/text/text.presets"
 import * as React from "react"
 import { GestureResponderEvent, TextStyle, TouchableOpacity } from "react-native"
 import { Text } from "../text"
+import { ITextProps } from "@components/text/text.props"
 
-export interface IPressableTextProps {
-
-  preset: TextPresets
-
-  /**
-   * An optional style override useful for padding & margin.
-   */
-  style?: TextStyle,
-
-  text?: string,
-  /**
-   * Text which Is looked up via i18n.
-   */
-  tx?: string
-
+export interface IPressableTextProps extends ITextProps {
   onPress(event: GestureResponderEvent): void;
 }
 

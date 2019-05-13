@@ -70,9 +70,7 @@ export class EditMyProfileScreen extends React.Component<IEditMyProfileScreenPro
   @observable private readonly userProfile: IUser = {} as IUser
 
   public static navigationOptions = {
-    headerLeft: NavigationBackButtonWithNestedStackNavigator({
-      iconName: defaultNavigationIcon
-    })
+    headerLeft: NavigationBackButtonWithNestedStackNavigator()
   }
 
   constructor(props: IEditMyProfileScreenProps) {

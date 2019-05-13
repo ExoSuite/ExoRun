@@ -12,7 +12,8 @@ export enum AppScreens {
   APP_SETTINGS = "application-settings",
   EDIT_MY_PROFILE = "edit-my-profile",
   SEARCH = "search",
-  NEW_GROUP = "new-group"
+  NEW_GROUP = "new-group",
+  FOLLOW = "follow"
 }
 
 export enum AuthScreens {
