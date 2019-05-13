@@ -170,9 +170,10 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   private async toggleFollow(): Promise<void> {
     const { api } = this.props
     if (this.isUserFollowedByVisitor) {
-      await api.delete(`user/follows`)
+      await api.delete(`user/me/follows/${this.userProfile.follow.follow_id}`)
     } else {
-      await api.post(`user/${this.userProfile.id}/follows`)
+      const followResponse: ApiResponse<IUser["follow"]> = await api.post(`user/${this.userProfile.id}/follows`)
+      this.userProfile.follow = followResponse.data
     }
     this.isUserFollowedByVisitor = !this.isUserFollowedByVisitor
   }
@@ -182,22 +183,12 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     const { api, navigation } = this.props
     const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
     const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
-
     const user = navigation.getParam("user")
 
     if (user) {
-      const userProfilePromise: Promise<ApiResponse<IUser>> = api.get(`user/${user.id}/profile`)
-      const isUserFollowedByVisitorPromise: Promise<ApiResponse<ICheckIfIamFollowing>> = api.get(`user/${user.id}/follows`)
-      // @ts-ignore
-      axios.all([userProfilePromise, isUserFollowedByVisitorPromise])
-        .then(axios.spread(
-          (userProfileRequest: ApiResponse<IUser>, isUserFollowedByVisitor: ApiResponse<ICheckIfIamFollowing>) => {
-            runInAction(() => {
-              this.userProfile = { ...userProfileRequest.data, nick_name: this.userProfile.nick_name }
-              this.isUserFollowedByVisitor = isUserFollowedByVisitor.data.status
-            })
-          }))
-        .catch()
+      const userProfileRequest: ApiResponse<IUser> = await api.get(`user/${user.id}/profile`)
+      this.userProfile = { ...userProfileRequest.data, nick_name: this.userProfile.nick_name }
+      this.isUserFollowedByVisitor = userProfileRequest.data.follow.status
     }
 
     this.avatarUrl = api.buildAvatarUrl(this.userProfile.id, token)

@@ -23,8 +23,10 @@ export interface IUser {
   email: string
   first_name: string
   follow?: {
-    follow_id: string
+    follow_id: string,
+    followed_id: string,
     status: boolean,
+    user_id: string,
   }
   id: string
   last_name: string
