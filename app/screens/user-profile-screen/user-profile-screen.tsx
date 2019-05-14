@@ -489,14 +489,14 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
                   <Text style={FIXED_HEADER_DESCRIPTION} text={description}/>
                 </View>
 
-                <View style={[{ marginTop: 10 }, ROW]}>
+                {/*<View style={[{ marginTop: 10 }, ROW]}>
                   <TouchableOpacity style={ROW} onPress={this.onFollowersPress} disabled>
                     <Text style={TEXT_NUMBER}>
                       2222
                     </Text>
                     <Text text="Followers" style={TEXT_NUMBER_LABEL}/>
                   </TouchableOpacity>
-                </View>
+                </View>*/}
               </View>
             </View>
           )}
