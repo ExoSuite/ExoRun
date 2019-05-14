@@ -6,10 +6,14 @@ import { color, spacing } from "@theme"
 import { Button } from "@components"
 import { ViewStyle } from "react-native"
 import { IVoidFunction } from "@types"
+import { FontAwesomeIconNames } from "@components/fontawesome-icon/font-awesome-icon.props"
 
 export interface INavigationBackButtonProps {
-  enableNestedStackNavigatorGoBack?: boolean
+  enableNestedStackNavigatorGoBack?: boolean,
+  iconName?: FontAwesomeIconNames
 }
+
+export const defaultNavigationIcon = "chevron-left"
 
 const ROOT_STYLE: ViewStyle = {
   width: spacing[6],
@@ -32,7 +36,7 @@ export class NavigationBackButton extends React.PureComponent<HeaderBackButtonPr
   }
 
   public render(): React.ReactNode {
-    const { enableNestedStackNavigatorGoBack, onPress } = this.props
+    const { enableNestedStackNavigatorGoBack, onPress, iconName } = this.props
     const goBack: IVoidFunction = enableNestedStackNavigatorGoBack ? this.nestedStackNavigatorGoBack : onPress
 
     return (
@@ -44,7 +48,7 @@ export class NavigationBackButton extends React.PureComponent<HeaderBackButtonPr
         <FontawesomeIcon
           type="solid"
           size={20}
-          name="chevron-left"
+          name={iconName}
           color={color.palette.lightBlue}
         />
       </Button>
@@ -52,11 +56,12 @@ export class NavigationBackButton extends React.PureComponent<HeaderBackButtonPr
   }
 }
 
-export const NavigationBackButtonWithNestedStackNavigator = withNavigation(
-  (props: NavigationScreenProps & HeaderBackButtonProps) => (
+export const NavigationBackButtonWithNestedStackNavigator =
+  (props: INavigationBackButtonProps = { enableNestedStackNavigatorGoBack: true, iconName: defaultNavigationIcon }): any =>
+  withNavigation((navProps: NavigationScreenProps & HeaderBackButtonProps) => (
     <NavigationBackButton
       {...props}
-      enableNestedStackNavigatorGoBack
+      {...navProps}
     />
   )
 )

@@ -83,7 +83,7 @@ export class DrawerNavigation extends React.Component<DrawerItemsProps & Injecti
             <Avatar
               rootStyle={{ marginLeft: 0, marginBottom: spacing[2] }}
               size={DefaultRnpAvatarSize}
-              onPress={this.navigateToScreen(AppScreens.PERSONAL_PROFILE, profileNavigationParams)}
+              onPress={this.navigateToScreen(AppScreens.USER_PROFILE, profileNavigationParams)}
               urlFromParent={false}
             />
           </ProfileCover>
@@ -100,7 +100,7 @@ export class DrawerNavigation extends React.Component<DrawerItemsProps & Injecti
 
           <TouchableOpacity
             style={TOUCHABLE}
-            onPress={this.navigateToScreen(AppScreens.PERSONAL_PROFILE, profileNavigationParams)}
+            onPress={this.navigateToScreen(AppScreens.USER_PROFILE, profileNavigationParams)}
           >
             <FontawesomeIcon
               name="user-circle"

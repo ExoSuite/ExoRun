@@ -21,7 +21,7 @@ describe("login tests", () => {
   test("login render correctly", () => {
     const wrapper = mount<LoginScreen>((
       <Provider api={api} soundPlayer={soundPlayer} userModel={UserModelMock}>
-        <LoginScreen navigation={{goBack: (): boolean => true}}/>
+        <LoginScreen navigation={{goBack: (): boolean => true, getParam: (): object => ({})}}/>
       </Provider>
     ))
     wrapper.render()

@@ -9,7 +9,16 @@
     "password-reveal": "Reveal password",
     "password-hide": "Hide password",
     "password-confirmation": "Confirm password",
-    "update": "Update"
+    "update": "Update",
+    "new-group": "New group",
+    "new-post": "New post",
+    "add-new-post": "Add a new post",
+    "new-post-content": "Content of the new post",
+    "updatedAt": "Updated : ",
+    "createdAt": "Created : ",
+    "update-delete-post": "Update / Delete post",
+    "update-post": "Update the post",
+    "delete-post": "Delete the post"
   },
   "drawer": {
     "my-profile": "Profile",
@@ -31,7 +40,9 @@
     "nickName": "Username",
     "description": "Description",
     "city": "City",
-    "birthday": "Birthday"
+    "birthday": "Birthday",
+    "follow": "Follow",
+    "following": "Following"
   },
   "auth": {
     "powered": "Powered by ",

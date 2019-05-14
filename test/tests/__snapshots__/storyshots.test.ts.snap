@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Animated Data Loader Error 1`] = `
+exports[`storybook tests Storyshots Animated Data Loader Error 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -312,7 +312,7 @@ exports[`Storyshots Animated Data Loader Error 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots Animated Data Loader Success 1`] = `
+exports[`storybook tests Storyshots Animated Data Loader Success 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -624,7 +624,7 @@ exports[`Storyshots Animated Data Loader Success 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots AnimatedInteractiveInput Error animation 1`] = `
+exports[`storybook tests Storyshots AnimatedInteractiveInput Error animation 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -850,7 +850,7 @@ exports[`Storyshots AnimatedInteractiveInput Error animation 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots AnimatedInteractiveInput Loading animation 1`] = `
+exports[`storybook tests Storyshots AnimatedInteractiveInput Loading animation 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -1076,7 +1076,7 @@ exports[`Storyshots AnimatedInteractiveInput Loading animation 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots AnimatedInteractiveInput Random animation 1`] = `
+exports[`storybook tests Storyshots AnimatedInteractiveInput Random animation 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -1268,7 +1268,7 @@ exports[`Storyshots AnimatedInteractiveInput Random animation 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots AnimatedInteractiveInput Success animation 1`] = `
+exports[`storybook tests Storyshots AnimatedInteractiveInput Success animation 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -1494,7 +1494,7 @@ exports[`Storyshots AnimatedInteractiveInput Success animation 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots Avatar Style Presets 1`] = `
+exports[`storybook tests Storyshots Avatar Style Presets 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -1644,7 +1644,7 @@ exports[`Storyshots Avatar Style Presets 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots Button Style Presets 1`] = `
+exports[`storybook tests Storyshots Button Style Presets 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -2011,7 +2011,7 @@ exports[`Storyshots Button Style Presets 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots CachedImage Style Presets 1`] = `
+exports[`storybook tests Storyshots CachedImage Style Presets 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -2220,7 +2220,7 @@ exports[`Storyshots CachedImage Style Presets 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots Checkbox Behaviour 1`] = `
+exports[`storybook tests Storyshots Checkbox Behaviour 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -2633,7 +2633,7 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots Checkbox Styling 1`] = `
+exports[`storybook tests Storyshots Checkbox Styling 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -3301,7 +3301,7 @@ exports[`Storyshots Checkbox Styling 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots DismissKeyboard Style Presets 1`] = `
+exports[`storybook tests Storyshots DismissKeyboard Style Presets 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -3444,7 +3444,7 @@ exports[`Storyshots DismissKeyboard Style Presets 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots FontawesomeIcon Example 1`] = `
+exports[`storybook tests Storyshots FontawesomeIcon Example 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -3877,7 +3877,7 @@ exports[`Storyshots FontawesomeIcon Example 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots FormRow Assembled 1`] = `
+exports[`storybook tests Storyshots FormRow Assembled 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -4219,7 +4219,7 @@ exports[`Storyshots FormRow Assembled 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots FormRow Presets 1`] = `
+exports[`storybook tests Storyshots FormRow Presets 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -4879,7 +4879,7 @@ exports[`Storyshots FormRow Presets 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots FormRow Styling 1`] = `
+exports[`storybook tests Storyshots FormRow Styling 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -5005,7 +5005,7 @@ exports[`Storyshots FormRow Styling 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots Header Behavior 1`] = `
+exports[`storybook tests Storyshots Header Behavior 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -5513,7 +5513,7 @@ exports[`Storyshots Header Behavior 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots LogoHeader Style Presets 1`] = `
+exports[`storybook tests Storyshots LogoHeader Style Presets 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -5632,7 +5632,7 @@ exports[`Storyshots LogoHeader Style Presets 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots PressableText Style Presets 1`] = `
+exports[`storybook tests Storyshots PressableText Style Presets 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -5765,7 +5765,7 @@ exports[`Storyshots PressableText Style Presets 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots ProfileCover Style Presets 1`] = `
+exports[`storybook tests Storyshots ProfileCover Style Presets 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -5904,7 +5904,7 @@ exports[`Storyshots ProfileCover Style Presets 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots Switch Behaviour 1`] = `
+exports[`storybook tests Storyshots Switch Behaviour 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -6307,7 +6307,7 @@ exports[`Storyshots Switch Behaviour 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots Switch Styling 1`] = `
+exports[`storybook tests Storyshots Switch Styling 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -6588,7 +6588,7 @@ exports[`Storyshots Switch Styling 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots Text Passing Content 1`] = `
+exports[`storybook tests Storyshots Text Passing Content 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -7038,7 +7038,7 @@ exports[`Storyshots Text Passing Content 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots Text Style Presets 1`] = `
+exports[`storybook tests Storyshots Text Style Presets 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -7406,7 +7406,7 @@ exports[`Storyshots Text Style Presets 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots Text Styling 1`] = `
+exports[`storybook tests Storyshots Text Styling 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -7550,7 +7550,7 @@ exports[`Storyshots Text Styling 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots TextField Labelling 1`] = `
+exports[`storybook tests Storyshots TextField Labelling 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -7807,7 +7807,7 @@ exports[`Storyshots TextField Labelling 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots TextField Ref Forwarding 1`] = `
+exports[`storybook tests Storyshots TextField Ref Forwarding 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -7963,7 +7963,7 @@ exports[`Storyshots TextField Ref Forwarding 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots TextField Style Overrides 1`] = `
+exports[`storybook tests Storyshots TextField Style Overrides 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -8403,7 +8403,7 @@ exports[`Storyshots TextField Style Overrides 1`] = `
 </RCTSafeAreaView>
 `;
 
-exports[`Storyshots TouchableGreyscaledIcon Demonstration 1`] = `
+exports[`storybook tests Storyshots TouchableGreyscaledIcon Demonstration 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -8766,6 +8766,205 @@ exports[`Storyshots TouchableGreyscaledIcon Demonstration 1`] = `
                   }
                 >
                   
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</RCTSafeAreaView>
+`;
+
+exports[`storybook tests Storyshots UserRow Style Presets 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Object {
+      "backgroundColor": "#f0f0f0",
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                Primary
+              </Text>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              The primary.
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "paddingTop": 12,
+                }
+              }
+            >
+              <View
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "marginLeft": 8,
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderRadius": 32,
+                        "height": 64,
+                        "width": 64,
+                      },
+                      Object {
+                        "backgroundColor": "transparent",
+                      },
+                    ]
+                  }
+                >
+                  <Image
+                    cache={false}
+                    source={
+                      Object {
+                        "uri": "https://api.teamexosuite.cloud//user/default-media/avatar.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "borderRadius": 32,
+                        "height": 64,
+                        "width": 64,
+                      }
+                    }
+                    type={2}
+                    uri="https://api.teamexosuite.cloud//user/default-media/avatar.png"
+                  />
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "flex": 1,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#ffffff",
+                      "fontFamily": "Montserrat",
+                      "fontSize": 24,
+                      "fontWeight": "bold",
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  Jean Michel
+                </Text>
+                <Text
+                  style={
+                    Object {
+                      "color": "#CDD4DA",
+                      "fontFamily": "Montserrat",
+                      "fontSize": 13,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  Eddy mitchell
                 </Text>
               </View>
             </View>

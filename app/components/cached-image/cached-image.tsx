@@ -7,6 +7,7 @@ import autobind from "autobind-decorator"
 import { IRenderFunction } from "@types"
 
 interface ICachedImageProps {
+  cache?: boolean
   children?: React.ReactNode
   type: CachedImageType
   uri: string,
@@ -80,17 +81,22 @@ export class CachedImage extends React.PureComponent<ICachedImageProps & Partial
   }
 
   public componentDidMount(): void {
-    const { uri } = this.props
-    const name = shorthash.unique(uri)
-    const extension = Platform.Android ? "file://" : ""
-    const path = `${extension}${RNFS.CachesDirectoryPath}/${name}.png`
-    RNFS.exists(path).then((exists: any) => {
-      if (exists) {
-        this.loadFile(path)
-      } else {
-        this.downloadFile(uri, path)
-      }
-    }).catch()
+    const { uri, cache = true } = this.props
+
+    if (!cache) {
+      this.loadFile(uri)
+    } else {
+      const name = shorthash.unique(uri)
+      const extension = Platform.Android ? "file://" : ""
+      const path = `${extension}${RNFS.CachesDirectoryPath}/${name}.png`
+      RNFS.exists(path).then((exists: any) => {
+        if (exists) {
+          this.loadFile(path)
+        } else {
+          this.downloadFile(uri, path)
+        }
+      }).catch()
+    }
   }
 
   public render(): React.ReactNode {

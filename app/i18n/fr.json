@@ -9,7 +9,16 @@
     "password-reveal": "Révéler le mot de passe",
     "password-hide": "Masquer le mot de passe",
     "password-confirmation": "Confirmer le mot de passe",
-    "update": "Mettre à jour"
+    "update": "Mettre à jour",
+    "new-group": "Nouveau groupe",
+    "new-post": "Nouveau statut",
+    "update-delete-post": "Supprimer / Modifier statut",
+    "add-new-post": "Ajouter un nouveau statut",
+    "update-post": "Mettre à jour le statut",
+    "delete-post": "Supprimer le statut",
+    "new-post-content": "Contenu du nouveau statut",
+    "updatedAt": "Mise à jour le : ",
+    "createdAt": "Créé le : "
   },
   "drawer": {
     "my-profile": "Mon Profil",
@@ -31,7 +40,9 @@
     "nickName": "Nom d'utilisateur",
     "description": "Description",
     "city": "Ville",
-    "birthday": "Date de naissance"
+    "birthday": "Date de naissance",
+    "follow": "Suivre",
+    "following": "Suivi"
   },
   "auth": {
     "powered": "Powered by ",

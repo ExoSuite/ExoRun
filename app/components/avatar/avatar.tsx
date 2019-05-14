@@ -16,6 +16,7 @@ import { AvatarImageReactNativePaper } from "@components/avatar/avatar-image-rea
 
 export interface IAvatarProps extends InjectionProps {
   avatarUrl?: string
+  cache?: boolean
   disableOnPress?: boolean
   onPress?: IVoidFunction
   rootStyle?: ViewStyle
@@ -74,7 +75,7 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
   }
 
   public render(): React.ReactNode {
-    const { rootStyle, disableOnPress, onPress, size, navigation, withMargin = true } = this.props
+    const { rootStyle, disableOnPress, onPress, size, navigation, withMargin = true, cache } = this.props
     const containerStyle: ViewStyle = { ...ROOT, ...rootStyle }
     const touchable = disableOnPress
     const onTouchableOpacityPressed = navigation ? this.openDrawer : onPress
@@ -94,6 +95,7 @@ export class Avatar extends React.Component<IAvatarProps & Partial<NavigationScr
           size={avatarSize}
           uri={this.getAvatarUrl}
           style={IMAGE}
+          cache={cache}
         />
       </TouchableOpacity>
     )

@@ -7700,10 +7700,10 @@ preserve@^0.2.0:
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
   integrity sha1-gV7R9uvGWSb4ZbMQwHE7yzMVzks=
 
-prettier@1.17.0:
-  version "1.17.0"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.17.0.tgz#53b303676eed22cc14a9f0cec09b477b3026c008"
-  integrity sha512-sXe5lSt2WQlCbydGETgfm1YBShgOX4HxQkFPvbxkcwgDvGDeqVau8h+12+lmSVlP3rHPz0oavfddSZg/q+Szjw==
+prettier@1.17.1:
+  version "1.17.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.17.1.tgz#ed64b4e93e370cb8a25b9ef7fef3e4fd1c0995db"
+  integrity sha512-TzGRNvuUSmPgwivDqkZ9tM/qTGW9hqDKWOE9YHiyQdixlKbv7kvEqsmDPrcHJTKwthU774TQwZXVtaQ/mMsvjg==
 
 pretty-format@24.0.0-alpha.6:
   version "24.0.0-alpha.6"
@@ -8302,10 +8302,10 @@ react-native-gesture-handler@1.2.1:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
-react-native-gifted-chat@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/react-native-gifted-chat/-/react-native-gifted-chat-0.8.0.tgz#7303f6cb1930679c179fed546da3800c24a5070d"
-  integrity sha512-exzSPxyH3+OLGTKrJHlz8yKrCNQ8xWclE74zw4ZVyj2vYAE73kKC3ehiZ4eMUZJlaJWynov7B2rlE9N72YTw6w==
+react-native-gifted-chat@^0.8.2:
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/react-native-gifted-chat/-/react-native-gifted-chat-0.8.2.tgz#1e69bacfa0014703db482f23e965e526f83126e5"
+  integrity sha512-4R/aKFkB1HkI6lKIFzARxSIv6JwQaSIYkfwCCM1ZT9kbtt+KJ/0lPUO212QCvan9bo3QHfo1cObqKSmXn6Sbpg==
   dependencies:
     "@expo/react-native-action-sheet" "^2.0.1"
     moment "^2.19.0"

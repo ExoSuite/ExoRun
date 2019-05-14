@@ -4,7 +4,7 @@ import { ViewStyle } from "react-native"
 import { Button, Screen } from "@components"
 import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
-import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
+import { defaultNavigationIcon, NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import autobind from "autobind-decorator"
 import { reset } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
@@ -32,7 +32,9 @@ const ROOT: ViewStyle = {
 @observer
 export class ApplicationSettingsScreen extends React.Component<IApplicationSettingsScreenProps> {
   public static navigationOptions = {
-    headerLeft: NavigationBackButtonWithNestedStackNavigator
+    headerLeft: NavigationBackButtonWithNestedStackNavigator({
+      iconName: defaultNavigationIcon
+    })
   }
 
   @autobind

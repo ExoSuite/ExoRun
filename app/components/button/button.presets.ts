@@ -29,6 +29,8 @@ export const viewPresets = {
 
   secondary: { ...BASE_VIEW, backgroundColor: color.secondary } as ViewStyle,
 
+  warning: { ...BASE_VIEW, backgroundColor: color.palette.orange } as ViewStyle,
+
   success: { ...BASE_VIEW, backgroundColor: color.success } as ViewStyle,
 
   error: { ...BASE_VIEW, backgroundColor: color.error } as ViewStyle,

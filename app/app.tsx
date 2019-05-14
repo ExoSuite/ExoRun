@@ -22,7 +22,7 @@ import { IUserModel } from "@models/user-profile"
 
 export interface IAppState {
   env?: Environment
-  rootStore?: RootStore,
+  rootStore?: RootStore
   userModel?: IUserModel
 }
 
@@ -65,7 +65,7 @@ export class App extends React.Component<{}, IAppState> {
       {
         env: store.env,
         rootStore: store.rootStore,
-        userModel: store.userModel
+        userModel: store.userModel,
       },
       () => {
         // hack to ignore white screen on android
@@ -90,9 +90,10 @@ export class App extends React.Component<{}, IAppState> {
     // You're welcome to swap in your own component to render if your boot up
     // sequence Is too slow though.
 
-    if (this.stateNotReady("rootStore") === undefined
-      || this.stateNotReady("env") === undefined
-      || this.stateNotReady("userModel") === undefined
+    if (
+      this.stateNotReady("rootStore") === undefined ||
+      this.stateNotReady("env") === undefined ||
+      this.stateNotReady("userModel") === undefined
     ) {
       return null
     }
@@ -107,7 +108,7 @@ export class App extends React.Component<{}, IAppState> {
     const otherStores = {
       api: env.api,
       soundPlayer: env.soundPlayer,
-      userModel: userModel
+      userModel: userModel,
     }
     // --- am: end list of stores ---
 

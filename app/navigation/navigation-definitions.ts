@@ -8,9 +8,13 @@ export enum AppScreens {
   AUGMENTED_REALITY = "augmented-reality",
   GROUPS = "groups",
   NOTIFICATIONS = "notifications",
-  PERSONAL_PROFILE = "personal-profile",
+  USER_PROFILE = "user-profile",
   APP_SETTINGS = "application-settings",
-  EDIT_MY_PROFILE = "edit-my-profile"
+  EDIT_MY_PROFILE = "edit-my-profile",
+  SEARCH = "search",
+  NEW_GROUP = "new-group",
+  NEW_POST = "new-post",
+  FOLLOW = "follow"
 }
 
 export enum AuthScreens {

@@ -22,6 +22,12 @@ export interface IUser {
   created_at: string
   email: string
   first_name: string
+  follow?: {
+    follow_id: string,
+    followed_id: string,
+    status: boolean,
+    user_id: string,
+  }
   id: string
   last_name: string
   nick_name?: string
@@ -36,6 +42,15 @@ export interface IUser {
     updated_at: string,
   }
   updated_at: string,
+}
+
+export interface IPost {
+  author_id: string
+  content: string
+  created_at: string
+  dashboard_id: string
+  id: string
+  updated_at: string
 }
 
 export interface IScope {
@@ -60,6 +75,9 @@ export interface IPersonalTokenResponse extends IPersonalToken {
   token: IToken
 }
 
+export interface ICheckIfIamFollowing {
+  status: boolean
+}
 export interface IPersonalTokens {
   "connect-io-exorun": IPersonalTokenResponse,
   "group-exorun": IPersonalTokenResponse,

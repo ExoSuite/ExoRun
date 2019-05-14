@@ -2,6 +2,7 @@ import * as React from "react"
 import { TextInput } from "react-native"
 
 export type IVoidFunction = () => void
+export type IBoolFunction = () => boolean
 
 export type ITextInputRef = (ref: TextInput) => void
 

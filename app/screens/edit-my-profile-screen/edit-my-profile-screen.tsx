@@ -4,7 +4,7 @@ import { observer } from "mobx-react"
 import { ImageStyle, View, ViewStyle } from "react-native"
 import InputScrollView from "react-native-input-scroll-view";
 import { NavigationScreenProps } from "react-navigation"
-import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
+import { defaultNavigationIcon, NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import { IUser } from "@services/api"
 import { action, observable, runInAction } from "mobx"
 import autobind from "autobind-decorator"
@@ -70,7 +70,7 @@ export class EditMyProfileScreen extends React.Component<IEditMyProfileScreenPro
   @observable private readonly userProfile: IUser = {} as IUser
 
   public static navigationOptions = {
-    headerLeft: NavigationBackButtonWithNestedStackNavigator
+    headerLeft: NavigationBackButtonWithNestedStackNavigator()
   }
 
   constructor(props: IEditMyProfileScreenProps) {

@@ -20,6 +20,10 @@ export class Screen {
     return Screen.Width / 2
   }
 
+  public static get quarterHeight(): number {
+    return Screen.Height * 0.25
+  }
+
   public static get getStatusBarHeight(): number {
     return getStatusBarHeight(true)
   }

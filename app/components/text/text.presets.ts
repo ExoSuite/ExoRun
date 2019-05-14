@@ -28,6 +28,10 @@ export const presets = {
 
   centeredBold: { ...BASE, fontWeight: "bold", textAlign: "center" } as TextStyle,
 
+  userRow: { ...BASE, fontSize: 20, fontWeight: "bold" } as TextStyle,
+
+  lightHeader: { ...BASE, fontSize: 18, fontWeight: "bold" } as TextStyle,
+
   /**
    * Large headers.
    */
