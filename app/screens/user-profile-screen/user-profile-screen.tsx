@@ -220,13 +220,17 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
       uri += `?page=${this.currentPage}`
     }
 
-    const userPosts = await api.get(uri)
-    this.currentPage = userPosts.data.current_page
-    if (!needNextPage) {
-      this.maxPage = userPosts.data.last_page
-      this.userPosts = userPosts.data.data
-    } else {
-      this.userPosts.push(...userPosts.data.data)
+    try {
+      const userPosts = await api.get(uri)
+      this.currentPage = userPosts.data.current_page
+      if (!needNextPage) {
+        this.maxPage = userPosts.data.last_page
+        this.userPosts = userPosts.data.data
+      } else {
+        this.userPosts.push(...userPosts.data.data)
+      }
+    } catch (e) {
+      return;
     }
   }
 
@@ -236,6 +240,15 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
       avatarUrl: this.avatarUrl,
       coverUrl: this.coverUrl
     })
+  }
+
+  @autobind
+  private onEndReached(): void {
+    if (this.currentPage < this.maxPage && !this.onEndReachedCalledDuringMomentum) {
+      console.tron.logImportant("WOW")
+      this.currentPage += 1
+      this.fetchPosts(true).catch()
+    }
   }
 
   @autobind
@@ -252,6 +265,11 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   }
 
   @autobind
+  private onMomentumScrollBegin(): void {
+    this.onEndReachedCalledDuringMomentum = false
+  }
+
+  @autobind
   private onNewPostPress(): void {
     this.props.navigation.navigate(AppScreens.NEW_POST)
   }
@@ -262,13 +280,12 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     const { api, userModel } = this.props
     const avatarUrl = api.buildAvatarUrl(item.author_id, this.pictureToken)
     const user: IUser = this.me ? userModel : this.userProfile
-    console.tron.logImportant(item.created_at)
-    const formatedCreatedAt = moment(item.created_at).format("LLL")
-    console.tron.logImportant(formatedCreatedAt)
-    const formatedUpdatedAt = moment(item.updated_at).format("LLL")
+    const formattedCreatedAt = moment(item.created_at).format("LLL")
+    const formattedUpdatedAt = moment(item.updated_at).format("LLL")
 
     return (
-      <View style={{
+      <View
+        style={{
         backgroundColor: color.backgroundDarkerer,
         shadowColor: "#000",
         shadowOffset: {
@@ -300,11 +317,11 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
         <View style={{flexDirection: "row", flex: 1, marginTop: spacing[3]}}>
           <View>
             <Text preset="fieldLabel" tx="common.createdAt" style={{flexWrap: "wrap"}}/>
-            <Text preset="fieldLabel" text={formatedCreatedAt}/>
+            <Text preset="fieldLabel" text={formattedCreatedAt}/>
           </View>
           <View style={{alignSelf: "flex-end", flex: 1}}>
             <Text preset="fieldLabel" tx="common.updatedAt" style={{textAlign: "right"}}/>
-            <Text preset="fieldLabel" text={formatedUpdatedAt} style={{textAlign: "right"}}/>
+            <Text preset="fieldLabel" text={formattedUpdatedAt} style={{textAlign: "right"}}/>
           </View>
         </View>
       </View>
@@ -316,9 +333,11 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     const { api } = this.props
     if (this.isUserFollowedByVisitor) {
       await api.delete(`user/me/follows/${this.userProfile.follow.follow_id}`)
+      this.userPosts = []
     } else {
       const followResponse: ApiResponse<IUser["follow"]> = await api.post(`user/${this.userProfile.id}/follows`)
       this.userProfile.follow = followResponse.data
+      this.fetchPosts().catch()
     }
     this.isUserFollowedByVisitor = !this.isUserFollowedByVisitor
   }
@@ -338,7 +357,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
       this.isUserFollowedByVisitor = userProfileRequest.data.follow.status
     }
 
-    await this.fetchPosts();
+    await this.fetchPosts().catch();
     this.avatarUrl = api.buildAvatarUrl(this.userProfile.id, token)
     this.coverUrl = api.buildCoverUrl(this.userProfile.id, token)
   }
@@ -375,7 +394,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
         >
           <Avatar size={DefaultRnpAvatarSize} urlFromParent avatarUrl={this.avatarUrl}/>
         </Animated.View>
-        <Animated.ScrollView
+        <Animated.FlatList
           style={ROOT}
           scrollEventThrottle={16}
           showsVerticalScrollIndicator={false}
@@ -386,52 +405,50 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
                 useNativeDriver: true
               }
             )}
-        >
-          <View style={StyleSheet.flatten([FIXED_HEADER, { marginTop: 150 }])}>
-            <View style={BUTTON_CONTAINER}>
-              {renderIf.if(me)(
-                <Button tx="profile.edit" textPreset="primaryBold" onPress={this.onEditMyProfile}/>
-              ).else(
-                <Button onPress={this.toggleFollow} style={ROW}>
-                  <FontawesomeIcon color={palette.white} name={visitorButtonIcon} style={FOLLOW_ICON}/>
-                  <Text tx={visitorButtonText} preset="bold"/>
-                </Button>
-              ).evaluate()}
-            </View>
-          </View>
+          data={this.userPosts}
+          renderItem={this.renderPost}
+          keyExtractor={keyExtractor}
+          ListHeaderComponent={(
+            <View style={{marginBottom: spacing[2]}}>
+              <View style={StyleSheet.flatten([FIXED_HEADER, { marginTop: 150 }])}>
+                <View style={BUTTON_CONTAINER}>
+                  {renderIf.if(me)(
+                    <Button tx="profile.edit" textPreset="primaryBold" onPress={this.onEditMyProfile}/>
+                  ).else(
+                    <Button onPress={this.toggleFollow} style={ROW}>
+                      <FontawesomeIcon color={palette.white} name={visitorButtonIcon} style={FOLLOW_ICON}/>
+                      <Text tx={visitorButtonText} preset="bold"/>
+                    </Button>
+                  ).evaluate()}
+                </View>
+              </View>
+              <View style={FIXED_HEADER}>
+                <View style={FIXED_HEADER_TEXT_CONTAINER}>
+                  <Text
+                    preset="header"
+                    text={`${this.userProfile.first_name} ${this.userProfile.last_name}`}
+                    style={FIXED_HEADER_NAME}
+                  />
+                  <Text preset="nicknameLight" text={this.userProfile.nick_name}/>
+                  <Text style={FIXED_HEADER_DESCRIPTION} text={description}/>
+                </View>
 
-          <View style={FIXED_HEADER}>
-            <View style={FIXED_HEADER_TEXT_CONTAINER}>
-              <Text
-                preset="header"
-                text={`${this.userProfile.first_name} ${this.userProfile.last_name}`}
-                style={FIXED_HEADER_NAME}
-              />
-              <Text preset="nicknameLight" text={this.userProfile.nick_name}/>
-              <Text style={FIXED_HEADER_DESCRIPTION} text={description}/>
+                <View style={[{ marginTop: 10 }, ROW]}>
+                  <TouchableOpacity style={ROW} onPress={this.onFollowersPress} disabled>
+                    <Text style={TEXT_NUMBER}>
+                      2222
+                    </Text>
+                    <Text text="Followers" style={TEXT_NUMBER_LABEL}/>
+                  </TouchableOpacity>
+                </View>
+              </View>
             </View>
-
-            <View style={[{ marginTop: 10 }, ROW]}>
-              <TouchableOpacity style={ROW} onPress={this.onFollowersPress} disabled>
-                <Text style={TEXT_NUMBER}>
-                  2222
-                </Text>
-                <Text text="Followers" style={TEXT_NUMBER_LABEL}/>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={{ marginTop: 8 }}>
-            <FlatList
-              data={this.userPosts}
-              renderItem={this.renderPost}
-              keyExtractor={keyExtractor}
-
-              contentContainerStyle={{
-                padding: spacing[3]
-              }}
-            />
-          </View>
-        </Animated.ScrollView>
+          )}
+          ListFooterComponent={<View style={{ marginBottom: spacing[8] }}/>}
+          onEndReached={this.onEndReached}
+          onEndReachedThreshold={0.5}
+          onMomentumScrollBegin={this.onMomentumScrollBegin}
+        />
         {renderIf(me)((
           <FAB
             style={FLOATING_BUTTON}
