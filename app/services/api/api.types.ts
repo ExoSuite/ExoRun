@@ -44,6 +44,15 @@ export interface IUser {
   updated_at: string,
 }
 
+export interface IPost {
+  author_id: string
+  content: string
+  created_at: string
+  dashboard_id: string
+  id: string
+  updated_at: string
+}
+
 export interface IScope {
   description: string
   id: string

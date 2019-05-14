@@ -5,7 +5,7 @@ import { Button, Screen, Text } from "@components"
 import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { defaultNavigationIcon, NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
-import { IPersonalTokens, IUser } from "@services/api"
+import { IPersonalTokens, IPost, IUser } from "@services/api"
 import { Avatar, DefaultRnpAvatarSize } from "@components/avatar"
 import { palette } from "@theme/palette"
 import { headerShadow } from "@utils/shadows"
@@ -25,6 +25,7 @@ import { IFollowScreenNavigationScreenProps } from "@screens/follow-screen"
 import { FAB, PartialIconProps } from "react-native-paper"
 import moment from "moment"
 import { translate } from "@i18n/translate"
+import { IVoidFunction } from "@types/FunctionTypes"
 
 // tslint:disable:id-length
 
@@ -126,6 +127,24 @@ interface IPersonalProfileScreenState {
   scrollY: Animated.Value
 }
 
+const POST_CONTAINER: ViewStyle = {
+  backgroundColor: color.backgroundDarkerer,
+  shadowColor: "#000",
+  shadowOffset: {
+    width: 0,
+    height: 2,
+  },
+  shadowOpacity: 0.25,
+  shadowRadius: 3.84,
+  elevation: 5,
+  margin: spacing[2],
+  padding: spacing[2]
+}
+
+const TEXT_ALIGN_RIGHT: TextStyle = {
+  textAlign: "right"
+}
+
 interface IAnimationObjects {
   [prop: string]: Animated.AnimatedInterpolation
 }
@@ -157,7 +176,8 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   private me: boolean
   private onEndReachedCalledDuringMomentum = true
   @observable private pictureToken: string
-  @observable private userPosts = []
+  @observable private refreshing = false
+  @observable private userPosts: IPost[] = []
   @observable private userProfile: IUser = {} as IUser
 
   public state = {
@@ -173,6 +193,12 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   constructor(props: IPersonalProfileScreenProps) {
     super(props)
     this.userProfile = props.navigation.getParam("me") ? props.userModel : props.navigation.getParam("user")
+  }
+
+  @action.bound
+  private addNewPostCallback(newPost: object): void {
+    this.userPosts.unshift(newPost)
+    this.toggleRefreshing()
   }
 
   private animate(): IAnimationObjects {
@@ -245,7 +271,6 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   @autobind
   private onEndReached(): void {
     if (this.currentPage < this.maxPage && !this.onEndReachedCalledDuringMomentum) {
-      console.tron.logImportant("WOW")
       this.currentPage += 1
       this.fetchPosts(true).catch()
     }
@@ -270,13 +295,35 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   }
 
   @autobind
-  private onNewPostPress(): void {
-    this.props.navigation.navigate(AppScreens.NEW_POST)
+  // tslint:disable-next-line:typedef
+  private onNewOrUpdatePostPress(event: any, update = false, currentPost?: IPost): void {
+    if (!update) {
+      this.props.navigation.navigate(AppScreens.NEW_POST, {
+        newPostCallback: this.addNewPostCallback,
+        toggleRefreshing: this.toggleRefreshing,
+        headerTitle: "common.new-post",
+        headerPreset: "header"
+      })
+    } else {
+      this.props.navigation.navigate(AppScreens.NEW_POST, {
+        currentPost: currentPost,
+        updatePostCallback: this.updatePostCallback,
+        toggleRefreshing: this.toggleRefreshing,
+        headerTitle: "common.update-delete-post"
+      })
+    }
+  }
+
+  @autobind
+  private onUserWantToUpdatePost(currentPost: IPost): IVoidFunction {
+    return (): void => {
+      this.onNewOrUpdatePostPress(null, true, currentPost)
+    }
   }
 
   @autobind
   // tslint:disable-next-line: no-feature-envy
-  private renderPost({item}: { item: any}): React.ReactElement {
+  private renderPost({item}: { item: IPost}): React.ReactElement {
     const { api, userModel } = this.props
     const avatarUrl = api.buildAvatarUrl(item.author_id, this.pictureToken)
     const user: IUser = this.me ? userModel : this.userProfile
@@ -284,23 +331,12 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     const formattedUpdatedAt = moment(item.updated_at).format("LLL")
 
     return (
-      <View
-        style={{
-        backgroundColor: color.backgroundDarkerer,
-        shadowColor: "#000",
-        shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-
-        elevation: 5,
-        margin: spacing[2],
-        padding: spacing[2]
-      }}
+      <TouchableOpacity
+        style={POST_CONTAINER}
+        onLongPress={this.onUserWantToUpdatePost(item)}
+        disabled={!this.me}
       >
-        <View style={{flexDirection: "row"}}>
+        <View style={ROW}>
           <Avatar avatarUrl={avatarUrl} urlFromParent size={42}/>
           <View style={{marginLeft: spacing[2], justifyContent: "center"}}>
             <Text
@@ -314,17 +350,17 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
         <View style={{marginTop: spacing[3]}}>
           <Text text={item.content} />
         </View>
-        <View style={{flexDirection: "row", flex: 1, marginTop: spacing[3]}}>
+        <View style={{...ROW, flex: 1, marginTop: spacing[3]}}>
           <View>
-            <Text preset="fieldLabel" tx="common.createdAt" style={{flexWrap: "wrap"}}/>
+            <Text preset="fieldLabel" tx="common.createdAt"/>
             <Text preset="fieldLabel" text={formattedCreatedAt}/>
           </View>
           <View style={{alignSelf: "flex-end", flex: 1}}>
-            <Text preset="fieldLabel" tx="common.updatedAt" style={{textAlign: "right"}}/>
-            <Text preset="fieldLabel" text={formattedUpdatedAt} style={{textAlign: "right"}}/>
+            <Text preset="fieldLabel" tx="common.updatedAt" style={TEXT_ALIGN_RIGHT}/>
+            <Text preset="fieldLabel" text={formattedUpdatedAt} style={TEXT_ALIGN_RIGHT}/>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 
@@ -340,6 +376,25 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
       this.fetchPosts().catch()
     }
     this.isUserFollowedByVisitor = !this.isUserFollowedByVisitor
+  }
+
+  @action.bound
+  private toggleRefreshing(): void {
+    this.refreshing = !this.refreshing
+  }
+
+  @action.bound
+  // tslint:disable-next-line:typedef
+  private updatePostCallback(currentPost: IPost, deletePost = false): void {
+    if (!deletePost) {
+      const currentPostIndex = this.userPosts.findIndex((post: any) => post.id === currentPost.id)
+      this.userPosts[currentPostIndex] = currentPost;
+      console.tron.log(this.userPosts[currentPostIndex])
+      this.userPosts = this.userPosts.slice()
+    } else {
+      this.userPosts = this.userPosts.filter((post: any) => post.id !== currentPost.id)
+    }
+    this.toggleRefreshing()
   }
 
   @action
@@ -398,6 +453,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
           style={ROOT}
           scrollEventThrottle={16}
           showsVerticalScrollIndicator={false}
+          refreshing={this.refreshing}
           onScroll={
             Animated.event(
               [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
@@ -454,7 +510,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
             style={FLOATING_BUTTON}
             small
             icon={floatingButton}
-            onPress={this.onNewPostPress}
+            onPress={this.onNewOrUpdatePostPress}
           />
         ))}
       </Screen>

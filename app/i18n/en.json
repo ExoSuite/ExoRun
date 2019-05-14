@@ -15,7 +15,10 @@
     "add-new-post": "Add a new post",
     "new-post-content": "Content of the new post",
     "updatedAt": "Updated : ",
-    "createdAt": "Created : "
+    "createdAt": "Created : ",
+    "update-delete-post": "Update / Delete post",
+    "update-post": "Update the post",
+    "delete-post": "Delete the post"
   },
   "drawer": {
     "my-profile": "Profile",

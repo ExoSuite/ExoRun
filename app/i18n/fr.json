@@ -12,7 +12,10 @@
     "update": "Mettre à jour",
     "new-group": "Nouveau groupe",
     "new-post": "Nouveau statut",
+    "update-delete-post": "Supprimer / Modifier statut",
     "add-new-post": "Ajouter un nouveau statut",
+    "update-post": "Mettre à jour le statut",
+    "delete-post": "Supprimer le statut",
     "new-post-content": "Contenu du nouveau statut",
     "updatedAt": "Mise à jour le : ",
     "createdAt": "Créé le : "

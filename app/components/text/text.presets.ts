@@ -30,6 +30,8 @@ export const presets = {
 
   userRow: { ...BASE, fontSize: 20, fontWeight: "bold" } as TextStyle,
 
+  lightHeader: { ...BASE, fontSize: 18, fontWeight: "bold" } as TextStyle,
+
   /**
    * Large headers.
    */
