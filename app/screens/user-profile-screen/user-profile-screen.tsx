@@ -196,7 +196,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   }
 
   @action.bound
-  private addNewPostCallback(newPost: object): void {
+  private addNewPostCallback(newPost: IPost): void {
     this.userPosts.unshift(newPost)
     this.toggleRefreshing()
   }

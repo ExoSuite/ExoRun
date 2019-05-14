@@ -1,6 +1,6 @@
 import * as React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
-import { Text } from "../text"
+import { Text } from "@components/text"
 import { Avatar, DefaultRnpAvatarSize } from "@components/avatar"
 import { spacing } from "@theme/spacing"
 

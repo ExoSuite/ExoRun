@@ -2,7 +2,7 @@ import * as React from "react"
 import { storiesOf } from "@storybook/react-native"
 import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { DismissKeyboard } from "./"
-import { TextField } from "@components"
+import { TextField } from "@components/text-field"
 
 // tslint:disable typedef
 

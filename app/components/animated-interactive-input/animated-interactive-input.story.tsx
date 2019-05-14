@@ -4,7 +4,7 @@ import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { AnimatedInteractiveInput, AnimatedInteractiveInputState } from "./"
 import { observer } from "mobx-react/native"
 import { action, observable } from "mobx"
-import { Button } from "@components"
+import { Button } from "@components/button"
 
 // tslint:disable completed-docs no-void-expression jsx-no-lambda
 

@@ -1,5 +1,6 @@
 // vendor imports
-import { Button, Text } from "@components"
+import { Button } from "@components/button"
+import { Text } from "@components/text"
 import { FinalAnimationStatus, IAnimation, LoaderState } from "@components/data-loader/data-loader.types"
 import { FormRow } from "@components/form-row"
 import autobind from "autobind-decorator"

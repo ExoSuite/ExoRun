@@ -21,7 +21,7 @@ describe("user profile tests", () => {
           <Provider api={api} userModel={UserModelMock}>
             <UserProfileScreen
               // @ts-ignore
-              navigation={{getParam: (): boolean => true}}
+              navigation={{getParam: (): boolean => false}}
             />
           </Provider>
         )
@@ -31,7 +31,7 @@ describe("user profile tests", () => {
     expect(wrapper).not.toBeEmptyRender()
     expect(wrapper.find(CachedImage)).toExist()
     expect(wrapper.find(Animated.View)).toExist()
-    expect(wrapper.find(Animated.ScrollView)).toExist()
+    expect(wrapper.find(Animated.FlatList)).toExist()
     expect(wrapper.find(Text)).toExist()
     expect(wrapper.find(View)).toExist()
 
