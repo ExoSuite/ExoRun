@@ -57,6 +57,7 @@ export const AppBottomTabNavigator = createMaterialBottomTabNavigator(
       borderBottomWidth: 0
     },
     labeled: false,
+    // tslint:disable-next-line: typedef
     navigationOptions: ({ navigation, screenProps }) => ({
       // you can put fallback values before here, eg: a default tabBarLabel
       ...getActiveChildNavigationOptions(navigation, screenProps),

@@ -16,13 +16,13 @@ import { AvatarImageReactNativePaper } from "@components/avatar/avatar-image-rea
 
 export interface IAvatarProps extends InjectionProps {
   avatarUrl?: string
+  cache?: boolean
   disableOnPress?: boolean
   onPress?: IVoidFunction
   rootStyle?: ViewStyle
   size?: number
   urlFromParent: boolean
   withMargin?: boolean
-  cache?: boolean
 }
 
 const ROOT: ViewStyle = {

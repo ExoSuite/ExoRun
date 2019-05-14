@@ -20,7 +20,7 @@ const HeaderRight = AddNewButton({modalScreen: AppScreens.NEW_GROUP})
 @observer
 export class GroupScreen extends React.Component<IGroupScreenProps> {
 
-  static navigationOptions = {
+  public static navigationOptions = {
     headerRight: <HeaderRight/>
   }
 

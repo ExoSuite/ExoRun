@@ -4,6 +4,8 @@ import { CachedImage, CachedImageType } from "@components/cached-image/cached-im
 import { Theme, withTheme } from "react-native-paper"
 
 export interface IAvatarImageReactNativePaperProps {
+
+  cache?: boolean
   /**
    * Size of the avatar.
    */
@@ -17,8 +19,6 @@ export interface IAvatarImageReactNativePaperProps {
    * Image to display for the `Avatar`.
    */
   uri: string,
-
-  cache?: boolean
 }
 
 /**

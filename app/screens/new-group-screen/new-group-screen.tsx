@@ -15,6 +15,7 @@ const ROOT: ViewStyle = {
 }
 
 // @inject("mobxstuff")
+// tslint:disable-next-line:completed-docs
 @observer
 export class NewGroupScreen extends React.Component<INewGroupScreenProps> {
 
@@ -25,6 +26,7 @@ export class NewGroupScreen extends React.Component<INewGroupScreenProps> {
     })
   }
 
+  // tslint:disable-next-line: prefer-function-over-method
   public render(): React.ReactNode {
     return (
       <Screen style={ROOT} preset="fixed">
