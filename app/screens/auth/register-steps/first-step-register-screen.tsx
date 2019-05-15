@@ -2,7 +2,6 @@ import * as React from "react"
 import { Image, ImageStyle, SafeAreaView, TextInput, View, ViewStyle } from "react-native"
 import { observer } from "mobx-react"
 import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
-import KeyboardSpacer from "react-native-keyboard-spacer"
 import { isEmpty, pickBy } from "lodash"
 import { NavigationScreenProps } from "react-navigation"
 import { action, observable } from "mobx"
@@ -53,6 +52,7 @@ const CONTAINER: ViewStyle = {
   ...FULL,
   paddingHorizontal: spacing[4],
   flexGrow: 1,
+  flex: 1,
   justifyContent: "space-evenly",
   backgroundColor: color.background,
 }
@@ -75,7 +75,8 @@ const NEXT_STEP_BUTTON: ViewStyle = {
 }
 
 const MAIN_CONTAINER: ViewStyle = {
-  marginBottom: spacing[4]
+  marginBottom: spacing[4],
+  flex: 1,
 }
 
 const disabled = color.palette.lightGrey
@@ -208,7 +209,6 @@ export class FirstStepRegisterScreen extends React.Component<IFirstStepRegisterS
               />
 
             </FormRow>
-            {Platform.iOS && <KeyboardSpacer/>}
           </Screen>
 
           {Platform.iOS && (

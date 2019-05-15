@@ -27,7 +27,6 @@ import { action, observable } from "mobx"
 import { observer } from "mobx-react"
 import { inject } from "mobx-react/native"
 import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
-import KeyboardSpacer from "react-native-keyboard-spacer"
 import { NavigationScreenProps } from "react-navigation"
 import { ValidationRules, validate } from "@utils/validate"
 import { footerShadow } from "@utils/shadows"
@@ -260,7 +259,6 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
 
           {/* Email / Password / Login button */}
           <Screen style={CONTAINER} preset="fixed">
-
             <FormRow preset="clearFullWidth" style={MAIN_CONTAINER}>
 
               <AnimatedInteractiveInput
@@ -298,7 +296,6 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
               </FormRow>
             </FormRow>
 
-            {Platform.iOS && <KeyboardSpacer/>}
           </Screen>
 
           {Platform.iOS && (
