@@ -1,6 +1,6 @@
 import * as React from "react"
 import { observer } from "mobx-react"
-import { ViewStyle } from "react-native"
+import { View, ViewStyle } from "react-native"
 import { Button, Screen } from "@components"
 import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
@@ -46,11 +46,12 @@ export class ApplicationSettingsScreen extends React.Component<IApplicationSetti
     await clear()
   }
 
-  // tslint:disable-next-line: prefer-function-over-method
   public render(): React.ReactNode {
     return (
-      <Screen style={ROOT} preset="fixedStack">
-        <Button preset="primary" text="se déconnecter" onPress={this.logout}/>
+      <Screen style={ROOT} preset="fixed">
+        <View style={{margin: spacing[2], padding: spacing[2]}}>
+          <Button preset="primary" textPreset="primaryBold" text="Se déconnecter" onPress={this.logout}/>
+        </View>
       </Screen>
     )
   }

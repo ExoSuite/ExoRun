@@ -56,7 +56,11 @@ export class SearchScreen extends React.Component<ISearchScreenProps> {
 
   @autobind
   private goToProfile(user: IUser): IBoolFunction {
-    return (): boolean => this.props.navigation.navigate(AppScreens.USER_PROFILE, { user })
+    return (): boolean => this.props.navigation.navigate(AppScreens.USER_PROFILE,
+      {
+        user,
+        pictureToken: this.pictureToken
+      })
   }
 
   @autobind

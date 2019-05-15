@@ -16,9 +16,7 @@ export const RegisterFlow = createStackNavigator(
     headerMode: "float",
     // @ts-ignore
     defaultNavigationOptions: {
-      headerLeft: NavigationBackButtonWithNestedStackNavigator({
-        iconName: defaultNavigationIcon
-      }),
+      headerLeft: NavigationBackButtonWithNestedStackNavigator(),
       headerTitle: LogoHeader,
       headerStyle: {
         backgroundColor: color.backgroundDarkerer,

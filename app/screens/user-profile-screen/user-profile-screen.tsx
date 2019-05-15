@@ -1,6 +1,6 @@
 import * as React from "react"
 import { observer } from "mobx-react"
-import { Animated, FlatList, ImageStyle, StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
+import { Animated, ImageStyle, StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Button, Screen, Text } from "@components"
 import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
@@ -24,14 +24,14 @@ import { FontawesomeIcon } from "@components/fontawesome-icon"
 import { IFollowScreenNavigationScreenProps } from "@screens/follow-screen"
 import { FAB, PartialIconProps } from "react-native-paper"
 import moment from "moment"
-import { translate } from "@i18n/translate"
-import { IVoidFunction } from "@types/FunctionTypes"
+import { IVoidFunction } from "@types"
 
 // tslint:disable:id-length
 
 export interface IPersonalProfileNavigationScreenProps {
   me: boolean,
-  user?: IUser
+  pictureToken?: string
+  user?: IUser,
 }
 
 type IPersonalProfileScreenProps = NavigationScreenProps<IPersonalProfileNavigationScreenProps> & InjectionProps
@@ -185,14 +185,17 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   }
 
   public static navigationOptions = {
-    headerLeft: NavigationBackButtonWithNestedStackNavigator({
-      iconName: defaultNavigationIcon
-    })
+    headerLeft: NavigationBackButtonWithNestedStackNavigator()
   }
 
   constructor(props: IPersonalProfileScreenProps) {
     super(props)
     this.userProfile = props.navigation.getParam("me") ? props.userModel : props.navigation.getParam("user")
+    const pictureToken = props.navigation.getParam("pictureToken")
+    if (pictureToken) {
+      this.avatarUrl = props.api.buildAvatarUrl(this.userProfile.id, pictureToken)
+      this.coverUrl = props.api.buildCoverUrl(this.userProfile.id, pictureToken)
+    }
   }
 
   @action.bound
