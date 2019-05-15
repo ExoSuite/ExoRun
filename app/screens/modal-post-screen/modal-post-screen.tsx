@@ -114,10 +114,9 @@ export class ModalPostScreen extends React.Component<INewPostScreenProps & Injec
     } else {
       const currentPost = this.props.navigation.getParam("currentPost")
       api.patch(`user/${userModel.id}/dashboard/posts/${currentPost.id}`,  { content: this.postContent })
-        .then(() => {
+        .then((updatedPostResponse: ApiOkResponse<IPost>) => {
           DataLoader.Instance.success(soundPlayer.success, () => {
-            currentPost.content = this.postContent
-            navigation.getParam("updatePostCallback")(currentPost)
+            navigation.getParam("updatePostCallback")(updatedPostResponse.data)
             navigation.getParam("toggleRefreshing")()
             navigation.goBack()
           })
