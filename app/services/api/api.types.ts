@@ -78,6 +78,7 @@ export interface IPersonalTokenResponse extends IPersonalToken {
 export interface ICheckIfIamFollowing {
   status: boolean
 }
+
 export interface IPersonalTokens {
   "connect-io-exorun": IPersonalTokenResponse,
   "group-exorun": IPersonalTokenResponse,

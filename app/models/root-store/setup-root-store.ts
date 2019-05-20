@@ -6,6 +6,7 @@ import * as storage from "@utils/storage"
 import { onSnapshot } from "mobx-state-tree"
 import { RootStore, RootStoreModel, RootStoreSnapshot } from "./root-store"
 import { IUserModel, IUserModelSnapshot, UserModel } from "@models/user-profile"
+import { GroupsModel } from "@models/groups"
 
 /**
  * The key we'll be saving our state as within async storage.
@@ -58,6 +59,8 @@ export async function setupRootStore(): Promise<ISetupRootStore> {
   onSnapshot(userModel, (snapshot: IUserModelSnapshot): Promise<boolean> => {
     return storage.save(storage.StorageTypes.USER_PROFILE, snapshot)
   })
+
+  const groupsModel = GroupsModel.create({api: env.api})
 
   return {
     rootStore,
