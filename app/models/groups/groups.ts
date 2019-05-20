@@ -1,7 +1,8 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
 import { GroupModel } from "@models/group"
-import { Api } from "@services/api"
+import { Api, IGroup } from "@services/api"
 import { ApiOkResponse } from "apisauce"
+import { SocketIo } from "@services/socket.io"
 
 /**
  * Model description here for TypeScript hints.
@@ -12,7 +13,8 @@ export const GroupsModel = types
     groups: types.optional(types.array(GroupModel), []),
     currentPage: types.optional(types.number, 0),
     maxPage: types.optional(types.number, 0),
-    api: types.frozen(Api)
+    api: types.frozen(Api),
+    socketIO: types.frozen(SocketIo)
   })
   .views((self) => ({
     latest(): any { // will return the latest updated group
@@ -20,29 +22,41 @@ export const GroupsModel = types
     }
   })) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions((self: Instance<typeof GroupsModel>) => ({
-    async fetchGroups(): Promise<void> {
-      let groupsResponse: ApiOkResponse<{current_page: number, data: [], last_page: number}>;
-      try {
-        groupsResponse = await self.api.get("user/me/groups")
-      } catch (error) {
-        return;
-      }
-      console.tron.log(groupsResponse)
-
-      self.groups = groupsResponse.data.data
+    afterCreate(): void {
+      self.fetchGroups()
+    },
+    afterSuccessfulFetch(groupsResponse: ApiOkResponse<{ current_page: number, data: IGroup[], last_page: number }>): void {
       self.currentPage = groupsResponse.data.current_page
       self.maxPage = groupsResponse.data.current_page
+
+      self.groups = groupsResponse.data.data.map((group: IGroup) => {
+        return GroupModel.create({
+          ...group,
+          // @ts-ignore
+          channel: SocketIo.InstantiateChannel(group.id)
+        })
+      })
     },
-    async afterCreate(): Promise<void> {
-      // @ts-ignore
-      await self.fetchGroups()
+    fetchGroups(): void {
+      self.api.get("user/me/groups")
+        .then(self.afterSuccessfulFetch)
+        .catch()
     },
-    addGroup(group: any) {
-      self.groups.unshift(group)
+    addGroup(group: IGroup): void {
+      self.groups.unshift(GroupModel.create({
+        ...group,
+        // @ts-ignore
+        channel: SocketIo.InstantiateChannel(group.id)
+      }))
     }
   })) // eslint-disable-line @typescript-eslint/no-unused-vars
 
 type GroupsType = Instance<typeof GroupsModel>
-export interface Groups extends GroupsType {}
+
+export interface IGroupsModel extends GroupsType {
+}
+
 type GroupsSnapshotType = SnapshotOut<typeof GroupsModel>
-export interface GroupsSnapshot extends GroupsSnapshotType {}
+
+export interface GroupsSnapshot extends GroupsSnapshotType {
+}

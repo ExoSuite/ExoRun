@@ -1,5 +1,10 @@
 // this file Is for define api responses
 
+interface ITimestamps {
+  created_at: string,
+  updated_at: string,
+}
+
 export interface ITokenResponse {
   access_token: string
   expires_in: number
@@ -84,4 +89,9 @@ export interface IPersonalTokens {
   "group-exorun": IPersonalTokenResponse,
   "message-exorun": IPersonalTokenResponse
   "view-picture-exorun": IPersonalTokenResponse,
+}
+
+export interface IGroup extends ITimestamps {
+  id: string
+  name: string
 }

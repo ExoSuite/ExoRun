@@ -47,6 +47,7 @@ export class StatefulNavigator extends React.Component<InjectionProps> {
 
     await api.checkToken()
     await api.getOrCreatePersonalTokens()
+    await api.checkToken()
     await api.getProfile(userModel)
     navigationStore.navigateTo(AppScreens.HOME)
   }

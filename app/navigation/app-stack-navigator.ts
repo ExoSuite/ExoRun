@@ -11,6 +11,7 @@ import { EditMyProfileScreen } from "@screens/edit-my-profile-screen"
 import { NewGroupScreen } from "@screens/new-group-screen"
 import { FollowScreen } from "@screens/follow-screen"
 import { ModalPostScreen } from "@screens/modal-post-screen"
+import { ChooseUsersNewGroupScreen } from "@screens/choose-users-new-group-screen"
 
 export const AppStackNavigatorImpl = createStackNavigator({
   [AppScreens.HOME]: AppBottomTabNavigator,
@@ -42,7 +43,8 @@ export const AppStackNavigator = createStackNavigator({
     },
   },
   [AppScreens.NEW_GROUP]: NewGroupScreen,
-  [AppScreens.NEW_POST]: ModalPostScreen
+  [AppScreens.NEW_POST]: ModalPostScreen,
+  [AppScreens.CHOOSE_USERS_FOR_NEW_GROUP]: ChooseUsersNewGroupScreen
 }, {
   mode: "modal",
   // @ts-ignore

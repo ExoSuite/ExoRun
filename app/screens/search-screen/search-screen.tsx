@@ -16,6 +16,7 @@ import { ApiResponse } from "apisauce"
 import { UserRow } from "@components/user-row"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { IBoolFunction } from "@types"
+import { translate } from "@i18n/translate"
 
 export interface ISearchScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -128,13 +129,13 @@ export class SearchScreen extends React.Component<ISearchScreenProps> {
     this.pictureToken = personalTokens["view-picture-exorun"].accessToken
   }
 
-  // tslint:disable-next-line: no-feature-envy
   public render(): React.ReactNode {
+    const placeholderTx = translate("common.search")
 
     return (
       <Screen style={ROOT} preset="fixed">
         <Searchbar
-          placeholder="Search"
+          placeholder={placeholderTx}
           onChangeText={this.onUserTypeToSearch}
           style={SEARCH}
           theme={DarkTheme}
@@ -147,9 +148,6 @@ export class SearchScreen extends React.Component<ISearchScreenProps> {
           onEndReachedThreshold={0.5}
           onMomentumScrollBegin={this.onMomentumScrollBegin}
         />
-        {/*<Screen preset="scroll">
-         <UserRow avatarUrl={null} firstName="Jean" lastName="Michel" nickName="Toto"/>
-        </Screen>*/}
       </Screen>
     )
   }

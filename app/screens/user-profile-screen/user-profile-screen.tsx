@@ -392,7 +392,6 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     if (!deletePost) {
       const currentPostIndex = this.userPosts.findIndex((post: any) => post.id === currentPost.id)
       this.userPosts[currentPostIndex] = currentPost;
-      console.tron.log(this.userPosts[currentPostIndex])
       this.userPosts = this.userPosts.slice()
     } else {
       this.userPosts = this.userPosts.filter((post: any) => post.id !== currentPost.id)

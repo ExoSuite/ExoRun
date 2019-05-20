@@ -17,16 +17,17 @@ export class SocketIo implements IService {
   public static get Echo(): Echo {
     return SocketIo._Echo
   }
+
   // tslint:disable-next-line:variable-name
   private static _Echo: Echo
 
-  public instantiateGroup(groupId: string): SocketIoPresenceChannel {
-    return new SocketIoPresenceChannel(groupId)
-  }
-
-  public notifications(user: IUser, callback: Function): void {
+  public static Notifications(user: IUser, callback: Function): void {
     SocketIo._Echo.private(`${SocketIoChannel.USER}.${user.id}`)
       .notification(callback)
+  }
+
+  public static InstantiateChannel(groupId: string): SocketIoPresenceChannel {
+    return new SocketIoPresenceChannel(groupId)
   }
 
   // tslint:disable-next-line: prefer-function-over-method
@@ -37,19 +38,23 @@ export class SocketIo implements IService {
       const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
       ioToken = personalTokens["connect-io-exorun"]
     } catch (error) {
-      return;
+      return
     }
 
-    SocketIo._Echo = new Echo({
-      broadcaster: "socket.io",
-      host: `wss://${Config.IO_SERVER}`,
-      client: SocketIoClient,
-      auth: {
-        headers: {
-          "Authorization": `Bearer ${ioToken.accessToken}`,
-        },
-      },
-    })
+    try {
+      SocketIo._Echo = new Echo({
+        broadcaster: "socket.io",
+        host: `wss://${Config.IO_SERVER}`,
+        client: SocketIoClient,
+        auth: {
+          headers: {
+            "Authorization": `Bearer ${ioToken.accessToken}`
+          }
+        }
+      })
+    } catch (error) {
+      return
+    }
   }
 
 }

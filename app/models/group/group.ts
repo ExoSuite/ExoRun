@@ -1,4 +1,5 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
+import { SocketIoPresenceChannel } from "@services/socket.io/socket.io.presence.channel"
 
 /**
  * Model description here for TypeScript hints.
@@ -10,6 +11,7 @@ export const GroupModel = types
     updated_at: types.string,
     id: types.string,
     name: types.string,
+    channel: types.frozen(SocketIoPresenceChannel)
   })
   .views(self => ({
 

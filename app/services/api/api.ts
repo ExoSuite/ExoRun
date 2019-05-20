@@ -2,7 +2,7 @@ import { HttpRequestError } from "@exceptions/HttpRequestError"
 import { LogicErrorState, LogicException } from "@exceptions/LogicException"
 import { languageTag } from "@i18n/i18n"
 import { IService } from "@services/interfaces"
-import { load, save } from "@utils/keychain"
+import { load, reset, save } from "@utils/keychain"
 import { ApiResponse, ApisauceInstance, create } from "apisauce"
 import * as https from "https"
 import jwtDecode from "jwt-decode"
@@ -25,6 +25,7 @@ import {
 import { ApiRoutes } from "@services/api/api.routes"
 import Axios from "axios"
 import { IUserModel, updateUserModel } from "@models/user-profile"
+import { isEmpty } from "lodash-es"
 
 interface IHeaders extends Object {
   Authorization?: string
@@ -97,15 +98,19 @@ export class Api implements IService {
     let localTokensHasBeenModified = false
 
     const response: ApiResponse<IToken[]> = await this.get(ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS)
-    response.data.forEach(async (token: IToken) => {
-      if (token.revoked && token.name in localPersonalTokens) {
-        await this.delete(`${ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS}/${token.id}`)
-        const newPersonalToken: ApiResponse<IPersonalTokenResponse> =
-          await this.post(ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS, { name: token.name, scopes: token.scopes })
-        localPersonalTokens[token.name] = newPersonalToken.data
-        localTokensHasBeenModified = true
-      }
-    })
+    if (isEmpty(response.data)) { // if something bad is happened or happen create token set
+      await this.onNoPersonalTokensCreateTokenSet()
+    } else  {
+      response.data.forEach(async (token: IToken) => {
+        if (token.revoked && token.name in localPersonalTokens) {
+          await this.delete(`${ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS}/${token.id}`)
+          const newPersonalToken: ApiResponse<IPersonalTokenResponse> =
+            await this.post(ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS, { name: token.name, scopes: token.scopes })
+          localPersonalTokens[token.name] = newPersonalToken.data
+          localTokensHasBeenModified = true
+        }
+      })
+    }
 
     if (localTokensHasBeenModified) {
       await save(localPersonalTokens, Server.EXOSUITE_USERS_API_PERSONAL)
@@ -114,8 +119,11 @@ export class Api implements IService {
 
   // tslint:disable-next-line: no-feature-envy
   private async onNoPersonalTokensCreateTokenSet(): Promise<void> {
+    await reset(Server.EXOSUITE_USERS_API_PERSONAL)
+
     const oauthScopes: ApiResponse<IScope[]> = await this.get(ApiRoutes.OAUTH_SCOPES)
     const requestTokenPromises = []
+
     oauthScopes.data.forEach((scope: IScope) => {
       const requestedScopes: string[] = [
         scope.id

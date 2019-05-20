@@ -19,11 +19,13 @@ import { StatefulNavigator } from "./navigation"
 import { DataLoader } from "@components/data-loader"
 import { useScreens } from "react-native-screens"
 import { IUserModel } from "@models/user-profile"
+import { IGroupsModel } from "@models/groups"
 
 export interface IAppState {
   env?: Environment
   rootStore?: RootStore
   userModel?: IUserModel
+  groupsModel?: IGroupsModel
 }
 
 useScreens()
@@ -66,6 +68,7 @@ export class App extends React.Component<{}, IAppState> {
         env: store.env,
         rootStore: store.rootStore,
         userModel: store.userModel,
+        groupsModel: store.groupsModel
       },
       () => {
         // hack to ignore white screen on android
@@ -101,6 +104,7 @@ export class App extends React.Component<{}, IAppState> {
     const rootStore = this.state.rootStore
     const env = this.state.env
     const userModel = this.state.userModel
+    const groupsModel = this.state.groupsModel
 
     // otherwise, we're ready to render the app
 
@@ -108,7 +112,8 @@ export class App extends React.Component<{}, IAppState> {
     const otherStores = {
       api: env.api,
       soundPlayer: env.soundPlayer,
-      userModel: userModel,
+      userModel,
+      groupsModel
     }
     // --- am: end list of stores ---
 
