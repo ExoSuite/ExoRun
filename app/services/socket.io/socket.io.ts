@@ -21,13 +21,13 @@ export class SocketIo implements IService {
   // tslint:disable-next-line:variable-name
   private static _Echo: Echo
 
+  public static InstantiateChannel(groupId: string): SocketIoPresenceChannel {
+    return new SocketIoPresenceChannel(groupId)
+  }
+
   public static Notifications(user: IUser, callback: Function): void {
     SocketIo._Echo.private(`${SocketIoChannel.USER}.${user.id}`)
       .notification(callback)
-  }
-
-  public static InstantiateChannel(groupId: string): SocketIoPresenceChannel {
-    return new SocketIoPresenceChannel(groupId)
   }
 
   // tslint:disable-next-line: prefer-function-over-method

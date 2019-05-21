@@ -4,7 +4,7 @@ import { Animated, ImageStyle, StyleSheet, TextStyle, TouchableOpacity, View, Vi
 import { Button, Screen, Text } from "@components"
 import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
-import { defaultNavigationIcon, NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
+import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import { IPersonalTokens, IPost, IUser } from "@services/api"
 import { Avatar, DefaultRnpAvatarSize } from "@components/avatar"
 import { palette } from "@theme/palette"
@@ -77,7 +77,6 @@ const FIXED_HEADER: ViewStyle = {
   paddingRight: 10,
   flexDirection: "column",
   backgroundColor: palette.backgroundDarker,
-  ...headerShadow
 }
 
 const FLOATING_BUTTON: ViewStyle = {
@@ -325,7 +324,6 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   }
 
   @autobind
-  // tslint:disable-next-line: no-feature-envy
   private renderPost({item}: { item: IPost}): React.ReactElement {
     const { api, userModel } = this.props
     const avatarUrl = api.buildAvatarUrl(item.author_id, this.pictureToken)
@@ -467,7 +465,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
           renderItem={this.renderPost}
           keyExtractor={keyExtractor}
           ListHeaderComponent={(
-            <View style={{marginBottom: spacing[2]}}>
+            <View style={{marginBottom: spacing[2], ...headerShadow}}>
               <View style={StyleSheet.flatten([FIXED_HEADER, { marginTop: 150 }])}>
                 <View style={BUTTON_CONTAINER}>
                   {renderIf.if(me)(

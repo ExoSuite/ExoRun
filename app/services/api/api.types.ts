@@ -95,3 +95,15 @@ export interface IGroup extends ITimestamps {
   id: string
   name: string
 }
+
+export interface IMessage extends ITimestamps {
+  contents: string,
+  group_id: string,
+  id: string,
+  user_id: string
+}
+
+// tslint:disable-next-line: completed-docs
+export class PersonalTokenImpl implements IPersonalToken {
+  public accessToken: string
+}

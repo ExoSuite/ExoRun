@@ -133,7 +133,7 @@ type TLoginScreenProps = NavigationScreenProps & InjectionProps
  * LoginScreen will handle multiple user login
  * by calling the ExoSuite Users API
  */
-@inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel)
+@inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel, Injection.GroupsModel)
 @observer
 export class LoginScreen extends React.Component<TLoginScreenProps> {
 
@@ -213,7 +213,8 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
 
     DataLoader.Instance.success(
       soundPlayer.success,
-      async () => {
+      () => {
+        this.props.groupsModel.fetchGroups()
         navigation.navigate(AppScreens.HOME)
       })
   }

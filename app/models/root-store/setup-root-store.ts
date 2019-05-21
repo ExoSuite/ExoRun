@@ -1,5 +1,5 @@
 import { Environment } from "@models/environment"
-import { Api } from "@services/api"
+import { Api, IPersonalTokens } from "@services/api"
 import { Reactotron } from "@services/reactotron"
 import { SoundPlayer } from "@services/sound-player"
 import * as storage from "@utils/storage"
@@ -8,6 +8,9 @@ import { RootStore, RootStoreModel, RootStoreSnapshot } from "./root-store"
 import { IUserModel, IUserModelSnapshot, UserModel } from "@models/user-profile"
 import { GroupsModel, IGroupsModel } from "@models/groups"
 import { SocketIo } from "@services/socket.io"
+import { load } from "@utils/keychain"
+import { Server } from "@services/api/api.servers"
+import { isEmpty } from "lodash-es"
 
 /**
  * The key we'll be saving our state as within async storage.
@@ -62,7 +65,20 @@ export async function setupRootStore(): Promise<ISetupRootStore> {
     return storage.save(storage.StorageTypes.USER_PROFILE, snapshot)
   })
 
-  const groupsModel = GroupsModel.create({ api: env.api, socketIO: env.socketIO })
+  const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
+
+  if (isEmpty(personalTokens)) {
+    // @ts-ignore
+    personalTokens["message-exorun"] = {
+      accessToken: "",
+    }
+  }
+
+  const groupsModel = GroupsModel.create({
+    api: env.api,
+    socketIO: env.socketIO,
+    messageToken: personalTokens["message-exorun"]
+  })
 
   return {
     rootStore,

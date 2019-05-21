@@ -1,6 +1,6 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
 import { GroupModel } from "@models/group"
-import { Api, IGroup } from "@services/api"
+import { Api, IGroup, PersonalTokenImpl } from "@services/api"
 import { ApiOkResponse } from "apisauce"
 import { SocketIo } from "@services/socket.io"
 
@@ -14,39 +14,46 @@ export const GroupsModel = types
     currentPage: types.optional(types.number, 0),
     maxPage: types.optional(types.number, 0),
     api: types.frozen(Api),
-    socketIO: types.frozen(SocketIo)
+    socketIO: types.frozen(SocketIo),
+    messageToken: types.frozen(PersonalTokenImpl)
   })
-  .views((self) => ({
-    latest(): any { // will return the latest updated group
-      return null
+  .views((self: Instance<typeof GroupsModel>) => ({
+    get latest(): IGroup[] { // will return the latest updated group
+      return self.groups
     }
   })) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions((self: Instance<typeof GroupsModel>) => ({
     afterCreate(): void {
+      console.tron.logImportant(self.groupToken)
       self.fetchGroups()
     },
     afterSuccessfulFetch(groupsResponse: ApiOkResponse<{ current_page: number, data: IGroup[], last_page: number }>): void {
       self.currentPage = groupsResponse.data.current_page
       self.maxPage = groupsResponse.data.current_page
 
-      self.groups = groupsResponse.data.data.map((group: IGroup) => {
-        return GroupModel.create({
+      self.groups = groupsResponse.data.data.map((group: IGroup) => (
+        GroupModel.create({
           ...group,
-          // @ts-ignore
-          channel: SocketIo.InstantiateChannel(group.id)
+          ...self.groupModelParams(group)
         })
-      })
+      ))
     },
     fetchGroups(): void {
       self.api.get("user/me/groups")
         .then(self.afterSuccessfulFetch)
         .catch()
     },
+    groupModelParams(group: IGroup): object {
+      return {
+        channel: SocketIo.InstantiateChannel(group.id),
+        api: self.api,
+        messageToken: self.messageToken
+      }
+    },
     addGroup(group: IGroup): void {
       self.groups.unshift(GroupModel.create({
         ...group,
-        // @ts-ignore
-        channel: SocketIo.InstantiateChannel(group.id)
+        ...self.groupModelParams(group)
       }))
     }
   })) // eslint-disable-line @typescript-eslint/no-unused-vars

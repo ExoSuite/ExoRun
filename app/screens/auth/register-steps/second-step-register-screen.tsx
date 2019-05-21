@@ -194,7 +194,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
 
     DataLoader.Instance.success(
       soundPlayer.success,
-      async () => {
+      () => {
         navigation.navigate(AppScreens.HOME)
       })
   }
@@ -356,4 +356,5 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
 }
 
 export const SecondStepRegisterScreen =
-  inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel)(observer(SecondStepRegisterScreenImpl))
+  inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel)
+  (observer(SecondStepRegisterScreenImpl))

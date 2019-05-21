@@ -12,14 +12,15 @@ import { NewGroupScreen } from "@screens/new-group-screen"
 import { FollowScreen } from "@screens/follow-screen"
 import { ModalPostScreen } from "@screens/modal-post-screen"
 import { ChooseUsersNewGroupScreen } from "@screens/choose-users-new-group-screen"
+import { ChatScreen } from "@screens/chat-screen"
 
 export const AppStackNavigatorImpl = createStackNavigator({
   [AppScreens.HOME]: AppBottomTabNavigator,
   [AppScreens.USER_PROFILE]: UserProfileScreen,
   [AppScreens.APP_SETTINGS]: ApplicationSettingsScreen,
   [AppScreens.EDIT_MY_PROFILE]: EditMyProfileScreen,
-  [AppScreens.FOLLOW]: FollowScreen
-
+  [AppScreens.FOLLOW]: FollowScreen,
+  [AppScreens.CHAT]: ChatScreen
 }, {
   // @ts-ignore
   defaultNavigationOptions: {
