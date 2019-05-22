@@ -17,6 +17,7 @@ import { UserRow } from "@components/user-row"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { IBoolFunction } from "@types"
 import { translate } from "@i18n/translate"
+import { noop } from "lodash-es"
 
 export interface ISearchScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -68,7 +69,7 @@ export class SearchScreen extends React.Component<ISearchScreenProps> {
   private onEndReached(): void {
     if (this.currentPage < this.maxPage && !this.onEndReachedCalledDuringMomentum) {
       this.currentPage += 1
-      this.onUserTypeToSearch(this.lastQuery, true).catch()
+      this.onUserTypeToSearch(this.lastQuery, true).catch(noop)
     }
   }
 

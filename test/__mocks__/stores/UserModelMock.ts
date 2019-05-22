@@ -1,9 +1,5 @@
 import { UserModel } from "@models/user-profile"
-
-function randomString(): string {
-  // tslint:disable-next-line: insecure-random
-  return Math.random().toString(36).substr(2, 5);
-}
+import { randomString } from "./lib/randomString"
 
 export const UserModelMockData = {
   created_at: randomString(),

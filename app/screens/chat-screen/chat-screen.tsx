@@ -4,9 +4,8 @@ import { TouchableWithoutFeedback, View, ViewStyle } from "react-native"
 import { color } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { GiftedChat } from "react-native-gifted-chat"
-import { defaultNavigationIcon, NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
+import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import { IGroup, IPersonalToken } from "@services/api"
-import KeyboardSpacer from "react-native-keyboard-spacer";
 import autobind from "autobind-decorator"
 import { action, observable } from "mobx"
 import { inject } from "mobx-react/native"
@@ -32,7 +31,6 @@ interface IGiftedChatUserModel {
   name: string,
 }
 
-// @inject("mobxstuff")
 // tslint:disable-next-line: completed-docs
 @inject(Injection.UserModel, Injection.Api)
 @observer

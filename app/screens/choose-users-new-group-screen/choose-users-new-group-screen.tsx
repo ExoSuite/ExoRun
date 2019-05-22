@@ -20,7 +20,7 @@ import { Text } from "@components/text"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import { Avatar, DefaultRnpAvatarSize } from "@components/avatar"
 import { FontawesomeIcon } from "@components/fontawesome-icon"
-import { isEmpty } from "lodash-es"
+import { isEmpty, noop } from "lodash-es"
 import { RightNavigationButton } from "@navigation/components/right-navigation-button"
 
 interface IChooseUsersNewGroupNavProps {
@@ -124,7 +124,7 @@ export class ChooseUsersNewGroupScreen extends React.Component<IChooseUsersNewGr
   private onEndReached(): void {
     if (this.currentPage < this.maxPage && !this.onEndReachedCalledDuringMomentum) {
       this.currentPage += 1
-      this.onUserTypeToSearch(this.lastQuery, true).catch()
+      this.onUserTypeToSearch(this.lastQuery, true).catch(noop)
     }
   }
 

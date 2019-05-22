@@ -13,6 +13,7 @@ import { Provider } from "mobx-react/native"
 import { Api } from "@services/api"
 import { SoundPlayer } from "@services/sound-player"
 import { UserModelMock } from "../../../__mocks__/stores/UserModelMock"
+import { GroupsModelMockData } from "../../../__mocks__/stores/GroupsModelMock"
 
 describe("login tests", () => {
   const api: Api = new Api()
@@ -20,7 +21,7 @@ describe("login tests", () => {
 
   test("login render correctly", () => {
     const wrapper = mount<LoginScreen>((
-      <Provider api={api} soundPlayer={soundPlayer} userModel={UserModelMock}>
+      <Provider api={api} soundPlayer={soundPlayer} userModel={UserModelMock} groupsModel={GroupsModelMockData}>
         <LoginScreen navigation={{goBack: (): boolean => true, getParam: (): object => ({})}}/>
       </Provider>
     ))

@@ -25,6 +25,7 @@ import { IFollowScreenNavigationScreenProps } from "@screens/follow-screen"
 import { FAB, PartialIconProps } from "react-native-paper"
 import moment from "moment"
 import { IVoidFunction } from "@types"
+import { noop } from "lodash-es"
 
 // tslint:disable:id-length
 
@@ -274,7 +275,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   private onEndReached(): void {
     if (this.currentPage < this.maxPage && !this.onEndReachedCalledDuringMomentum) {
       this.currentPage += 1
-      this.fetchPosts(true).catch()
+      this.fetchPosts(true).catch(noop)
     }
   }
 
@@ -374,7 +375,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     } else {
       const followResponse: ApiResponse<IUser["follow"]> = await api.post(`user/${this.userProfile.id}/follows`)
       this.userProfile.follow = followResponse.data
-      this.fetchPosts().catch()
+      this.fetchPosts().catch(noop)
     }
     this.isUserFollowedByVisitor = !this.isUserFollowedByVisitor
   }
@@ -412,7 +413,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
       this.isUserFollowedByVisitor = userProfileRequest.data.follow.status
     }
 
-    await this.fetchPosts().catch();
+    await this.fetchPosts().catch(noop);
     this.avatarUrl = api.buildAvatarUrl(this.userProfile.id, token)
     this.coverUrl = api.buildCoverUrl(this.userProfile.id, token)
   }

@@ -1,4 +1,4 @@
-const noop = (): void => null;
+import { noop } from "lodash-es"
 
 const tron = {
   configure: noop,

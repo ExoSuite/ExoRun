@@ -8949,6 +8949,7 @@ exports[`storybook tests Storyshots UserRow Style Presets 1`] = `
                       "fontSize": 24,
                       "fontWeight": "bold",
                       "textAlign": "center",
+                      "textTransform": "capitalize",
                     }
                   }
                 >

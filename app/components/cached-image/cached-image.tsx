@@ -5,6 +5,7 @@ import * as shorthash from "shorthash"
 import { Platform } from "@services/device"
 import autobind from "autobind-decorator"
 import { IRenderFunction } from "@types"
+import { noop } from "lodash-es"
 
 interface ICachedImageProps {
   cache?: boolean
@@ -53,7 +54,7 @@ export class CachedImage extends React.PureComponent<ICachedImageProps & Partial
       .then(() => {
         this.loadFile(path)
       })
-      .catch()
+      .catch(noop)
   }
 
   @autobind
@@ -95,7 +96,7 @@ export class CachedImage extends React.PureComponent<ICachedImageProps & Partial
         } else {
           this.downloadFile(uri, path)
         }
-      }).catch()
+      }).catch(noop)
     }
   }
 

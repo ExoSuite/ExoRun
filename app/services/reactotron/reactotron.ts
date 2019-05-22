@@ -6,6 +6,7 @@ import { ReactotronConfig, DEFAULT_REACTOTRON_CONFIG } from "./reactotron-config
 import { mst } from "reactotron-mst"
 import { clear } from "@utils/storage"
 import { IService } from "@services/interfaces"
+import { noop } from "lodash-es"
 
 // Teach TypeScript about the bad things we want to do.
 declare global {
@@ -17,8 +18,6 @@ declare global {
   }
 }
 
-/** Do Nothing. */
-const noop = () => undefined
 
 // in dev, we attach Reactotron, in prod we attach a interface-compatible mock.
 if (__DEV__) {

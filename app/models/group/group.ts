@@ -4,6 +4,7 @@ import { IMessageModel, MessageModel } from "@models/message"
 import { Api, IGroup, IMessage, PersonalTokenImpl } from "@services/api"
 import { SocketIoServerEvent } from "@services/socket.io/socket.io.server.event"
 import { ApiOkResponse } from "apisauce"
+import { noop } from "lodash-es"
 
 const createMessage = (message: IMessage): IMessageModel => MessageModel.create(message)
 
@@ -35,7 +36,7 @@ export const GroupModel = types
     fetchMessages(): void {
       self.api.get(`group/${self.id}/message`, {}, Api.BuildAuthorizationHeader(self.messageToken))
         .then(self.afterSuccessfulFetch)
-        .catch()
+        .catch(noop)
     },
     afterSuccessfulFetch(messageResponse: ApiOkResponse<{ data: IMessage[] }>): void {
       self.messages = messageResponse.data.data.map(createMessage)

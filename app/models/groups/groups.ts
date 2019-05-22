@@ -3,6 +3,7 @@ import { GroupModel } from "@models/group"
 import { Api, IGroup, PersonalTokenImpl } from "@services/api"
 import { ApiOkResponse } from "apisauce"
 import { SocketIo } from "@services/socket.io"
+import { noop } from "lodash-es"
 
 /**
  * Model description here for TypeScript hints.
@@ -41,7 +42,7 @@ export const GroupsModel = types
     fetchGroups(): void {
       self.api.get("user/me/groups")
         .then(self.afterSuccessfulFetch)
-        .catch()
+        .catch(noop)
     },
     groupModelParams(group: IGroup): object {
       return {
