@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Keyboard, TouchableWithoutFeedback, ViewProps, ViewStyle } from "react-native"
+import { Keyboard, TouchableWithoutFeedback, ViewProps } from "react-native"
 
 export interface IDismissKeyboardProps extends ViewProps {
   children: React.ReactNode

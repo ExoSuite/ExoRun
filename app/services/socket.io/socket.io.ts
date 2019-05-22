@@ -1,5 +1,5 @@
 import Echo from "laravel-echo"
-import SocketIoClient from "socket.io-client"
+import SocketIoClient from "socket.io-client/dist/socket.io"
 import { IService } from "@services/interfaces"
 import Config from "react-native-config"
 import { IPersonalToken, IPersonalTokens, IUser } from "@services/api"
@@ -31,8 +31,12 @@ export class SocketIo implements IService {
   }
 
   // tslint:disable-next-line: prefer-function-over-method
-  public async setup(): Promise<void> {
+  public static async Setup(): Promise<void> {
+    return new SocketIo().setup()
+  }
 
+  // tslint:disable-next-line:prefer-function-over-method
+  public async setup(): Promise<void> {
     let ioToken: IPersonalToken
     try {
       const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens

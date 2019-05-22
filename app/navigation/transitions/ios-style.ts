@@ -11,6 +11,7 @@ export function TransitionContainerStyle(): any {
 export function IosStyle(): TransitionConfig {
   return {
     containerStyle: TransitionContainerStyle(),
+    // @ts-ignore
     screenInterpolator: CardStackStyleInterpolator.forHorizontal
   }
 }

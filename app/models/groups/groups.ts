@@ -25,7 +25,6 @@ export const GroupsModel = types
   })) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions((self: Instance<typeof GroupsModel>) => ({
     afterCreate(): void {
-      console.tron.logImportant(self.groupToken)
       self.fetchGroups()
     },
     afterSuccessfulFetch(groupsResponse: ApiOkResponse<{ current_page: number, data: IGroup[], last_page: number }>): void {

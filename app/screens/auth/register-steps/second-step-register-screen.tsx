@@ -18,7 +18,7 @@ import {
 import { Asset } from "@services/asset"
 import { Platform } from "@services/device"
 import { color, spacing } from "@theme"
-import { ValidationRules as IValidationRules, validate } from "@utils/validate"
+import { validate, ValidationRules as IValidationRules } from "@utils/validate"
 import { equals } from "ramda"
 import { isEmpty, merge, snakeCase, transform } from "lodash"
 import { ApiRoutes, ITokenResponse } from "@services/api"
@@ -30,6 +30,7 @@ import { ApiResponse } from "apisauce"
 import { save } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
 import { AppScreens } from "@navigation/navigation-definitions"
+import { SocketIo } from "@services/socket.io"
 
 export interface ISecondStepRegisterScreenNavigationParams {
   firstName: string,
@@ -194,7 +195,8 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
 
     DataLoader.Instance.success(
       soundPlayer.success,
-      () => {
+      async () => {
+        await SocketIo.Setup()
         navigation.navigate(AppScreens.HOME)
       })
   }

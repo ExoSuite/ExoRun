@@ -11,7 +11,7 @@ import { Injection, InjectionProps } from "@services/injections"
 import autobind from "autobind-decorator"
 import { IGroup, IPersonalToken, IPersonalTokens } from "@services/api"
 import moment from "moment"
-import { IBoolFunction } from "@types/FunctionTypes"
+import { IBoolFunction } from "@types"
 import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
 
@@ -63,13 +63,9 @@ export class GroupScreen extends React.Component<IGroupScreenProps> {
     headerRight: <HeaderRight/>
   }
 
-  @autobind
-  private onGroupPressNavigateToChat(group: IGroup): IBoolFunction {
-    return (): boolean => this.props.navigation.navigate(
-      AppScreens.CHAT,
-      {
-        group
-      })
+  public async componentDidMount(): Promise<void> {
+    const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
+    this.pictureToken = personalTokens["view-picture-exorun"]
   }
 
   // tslint:disable-next-line: no-feature-envy
@@ -111,9 +107,14 @@ export class GroupScreen extends React.Component<IGroupScreenProps> {
     )
   }
 
-  public async componentDidMount(): Promise<void> {
-    const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL)
-    this.pictureToken = personalTokens["view-picture-exorun"]
+  @autobind
+  private onGroupPressNavigateToChat(group: IGroup): IBoolFunction {
+    return (): boolean => this.props.navigation.navigate(
+      AppScreens.CHAT,
+      {
+        group,
+        pictureToken: this.pictureToken
+      })
   }
 
 // tslint:disable-next-line: prefer-function-over-method

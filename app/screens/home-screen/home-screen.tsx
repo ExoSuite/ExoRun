@@ -27,7 +27,7 @@ export class HomeScreen extends React.Component<IHomeScreenProps> {
   public render(): React.ReactNode {
 
     return (
-      <Screen style={ROOT} preset="fixedCenter">
+      <Screen style={ROOT} preset="fixed">
         <Text preset="largeHeaderCentered" text="Welcome to ExoRun!"/>
       </Screen>
     )

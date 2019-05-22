@@ -23,9 +23,9 @@ import { IGroupsModel } from "@models/groups"
 
 export interface IAppState {
   env?: Environment
+  groupsModel?: IGroupsModel
   rootStore?: RootStore
   userModel?: IUserModel
-  groupsModel?: IGroupsModel
 }
 
 useScreens()

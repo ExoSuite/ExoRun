@@ -18,13 +18,13 @@ export class Environment {
    */
   public reactotron: Reactotron
 
-  /**
-   * Our sound-player.
-   */
-  public soundPlayer: SoundPlayer
-
   /*
   * Our SocketIO controller
    */
   public socketIO: SocketIo
+
+  /**
+   * Our sound-player.
+   */
+  public soundPlayer: SoundPlayer
 }

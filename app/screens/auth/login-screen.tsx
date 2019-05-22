@@ -28,10 +28,11 @@ import { observer } from "mobx-react"
 import { inject } from "mobx-react/native"
 import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
 import { NavigationScreenProps } from "react-navigation"
-import { ValidationRules, validate } from "@utils/validate"
+import { validate, ValidationRules } from "@utils/validate"
 import { footerShadow } from "@utils/shadows"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { IVoidFunction } from "@types"
+import { SocketIo } from "@services/socket.io"
 
 const EXOSUITE: ImageStyle = {
   width: 200,
@@ -213,7 +214,8 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
 
     DataLoader.Instance.success(
       soundPlayer.success,
-      () => {
+      async () => {
+        await SocketIo.Setup()
         this.props.groupsModel.fetchGroups()
         navigation.navigate(AppScreens.HOME)
       })

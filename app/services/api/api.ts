@@ -96,7 +96,6 @@ export class Api implements IService {
   // tslint:disable-next-line: no-feature-envy
   private async onLocalTokensFulfilled(localPersonalTokens: IPersonalTokens): Promise<void> {
     let localTokensHasBeenModified = false
-
     const response: ApiResponse<IToken[]> = await this.get(ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS)
     if (isEmpty(response.data)) { // if something bad is happened or happen create token set
       await this.onNoPersonalTokensCreateTokenSet()
@@ -212,8 +211,7 @@ export class Api implements IService {
         // assign refresh token to grantRequest
         this.grantRequest.refresh_token = credentials.refresh_token
         // call api for new tokens
-        const response = await this.apisauce.post("oauth/token", this.grantRequest)
-        // @ts-ignore
+        const response: ApiResponse<ITokenResponse> = await this.apisauce.post("oauth/token", this.grantRequest)
         const newTokens: ITokenResponse = response.data
         // save new tokens
         await save(newTokens, Server.EXOSUITE_USERS_API)
