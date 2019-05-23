@@ -29,7 +29,7 @@
     "version:major": "npm version major -m 'Upgrade to %s'"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.4.0",
+    "@react-native-community/async-storage": "^1.4.1",
     "apisauce": "1.0.2",
     "autobind-decorator": "^2.4.0",
     "emoji-utils": "^1.0.1",

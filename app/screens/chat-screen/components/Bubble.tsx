@@ -127,7 +127,7 @@ export class Bubble extends React.Component<IBubbleProps> {
         <MessageImage
           {...messageImageProps}
           // @ts-ignore
-          imageStyle={[styles.slackImage, messageImageProps.imageStyle]}/>
+          imageStyle={[styles.image, messageImageProps.imageStyle]}/>
       )
     }
 
@@ -260,12 +260,17 @@ const styles = StyleSheet.create({
   tickView: {
     flexDirection: "row"
   },
-  slackImage: {
+  image: {
     borderRadius: 3,
     marginLeft: 0,
     marginRight: 0
   }
 })
+
+Bubble.contextTypes = {
+  // @ts-ignore
+  actionSheet: (): any => null,
+};
 
 // @ts-ignore
 Bubble.defaultProps = {

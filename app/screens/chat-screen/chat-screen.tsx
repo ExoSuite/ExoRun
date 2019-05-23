@@ -13,6 +13,7 @@ import { IUserModel } from "@models/user-profile"
 import { renderComposer, renderInputToolbar, renderMessage, renderSend } from "@screens/chat-screen/lib"
 import { IMessage } from "react-native-gifted-chat/lib/types"
 import { IGroupsModel } from "@models/groups"
+import autobind from "autobind-decorator"
 
 interface IChatScreenNavigationProps {
   group: IGroupsModel,
@@ -33,17 +34,23 @@ interface IGiftedChatUserModel {
   name: string,
 }
 
+interface IChatState {
+  messages: IMessage[]
+}
+
 const maxInputLength = 2048
 
 // tslint:disable-next-line: completed-docs
 @inject(Injection.UserModel, Injection.Api)
 @observer
-export class ChatScreen extends React.Component<IChatScreenProps> {
+export class ChatScreen extends React.Component<IChatScreenProps, IChatState> {
   private readonly giftedChatUserModel: IGiftedChatUserModel
   private readonly group: IGroupsModel
-  @observable private messages: IMessage[] = []
-
   @observable private newMessageText: string
+
+  public state = {
+    messages: []
+  }
 
   public static navigationOptions = {
     headerLeft: NavigationBackButtonWithNestedStackNavigator()
@@ -63,12 +70,25 @@ export class ChatScreen extends React.Component<IChatScreenProps> {
     this.group = group
   }
 
+  @autobind
+  private onSend(messages: IMessage[] = []): void {
+    console.tron.logImportant(messages)
+    this.setState((previousState: IChatState) => ({
+      messages: GiftedChat.append(previousState.messages, messages),
+    }))
+  }
+
+  @action.bound
+  private updateNewMessageText(text: string): void {
+    this.newMessageText = text
+  }
+
   // tslint:disable-next-line:prefer-function-over-method
   public render(): React.ReactNode {
     return (
       <View style={ROOT}>
         <GiftedChat
-          messages={this.messages}
+          messages={this.state.messages}
           alignTop={false}
           forceGetKeyboardHeight
           text={this.newMessageText}
@@ -84,16 +104,5 @@ export class ChatScreen extends React.Component<IChatScreenProps> {
         />
       </View>
     )
-  }
-
-  @action.bound
-  private updateNewMessageText(text: string): void {
-    this.newMessageText = text
-  }
-
-  @action.bound
-  private onSend(messages: IMessage[] = []): void {
-    console.tron.logImportant(messages)
-    this.messages = GiftedChat.append(this.messages, messages)
   }
 }
