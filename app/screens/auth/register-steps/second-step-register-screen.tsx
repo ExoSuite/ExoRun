@@ -1,5 +1,5 @@
 import * as React from "react"
-import { inject, observer } from "mobx-react/native"
+import { inject, observer } from "mobx-react"
 import { Image, ImageStyle, SafeAreaView, TextInput, View, ViewStyle } from "react-native"
 import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
 import { NavigationScreenProps } from "react-navigation"

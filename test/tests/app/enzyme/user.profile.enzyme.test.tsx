@@ -7,7 +7,7 @@ import { UserProfileScreen, UserProfileScreenImpl } from "@screens/user-profile-
 import { Api } from "@services/api"
 import { CachedImage } from "@components/cached-image"
 import { Animated, Text, View } from "react-native"
-import { Provider } from "mobx-react/native"
+import { Provider } from "mobx-react"
 import { UserModelMock } from "../../../__mocks__/stores/UserModelMock"
 
 describe("user profile tests", () => {

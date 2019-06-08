@@ -6,7 +6,7 @@ import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { RightNavigationButton } from "@navigation/components/right-navigation-button"
 import { AppScreens } from "@navigation/navigation-definitions"
-import { inject } from "mobx-react/native"
+import { inject } from "mobx-react"
 import { Injection, InjectionProps } from "@services/injections"
 import autobind from "autobind-decorator"
 import { IGroup, IPersonalToken, IPersonalTokens } from "@services/api"
@@ -63,9 +63,14 @@ export class GroupScreen extends React.Component<IGroupScreenProps> {
     headerRight: <HeaderRight/>
   }
 
-  public async componentDidMount(): Promise<void> {
-    const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
-    this.pictureToken = personalTokens["view-picture-exorun"]
+  @autobind
+  private onGroupPressNavigateToChat(group: IGroup): IBoolFunction {
+    return (): boolean => this.props.navigation.navigate(
+      AppScreens.CHAT,
+      {
+        group,
+        pictureToken: this.pictureToken
+      })
   }
 
   // tslint:disable-next-line: no-feature-envy
@@ -107,14 +112,9 @@ export class GroupScreen extends React.Component<IGroupScreenProps> {
     )
   }
 
-  @autobind
-  private onGroupPressNavigateToChat(group: IGroup): IBoolFunction {
-    return (): boolean => this.props.navigation.navigate(
-      AppScreens.CHAT,
-      {
-        group,
-        pictureToken: this.pictureToken
-      })
+  public async componentDidMount(): Promise<void> {
+    const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
+    this.pictureToken = personalTokens["view-picture-exorun"]
   }
 
 // tslint:disable-next-line: prefer-function-over-method

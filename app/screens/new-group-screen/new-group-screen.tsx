@@ -16,7 +16,7 @@ import { UserRow } from "@components/user-row"
 import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
 import { Injection, InjectionProps } from "@services/injections"
-import { inject } from "mobx-react/native"
+import { inject } from "mobx-react"
 import { renderIf } from "@utils/render-if"
 import { isEmpty } from "lodash-es"
 

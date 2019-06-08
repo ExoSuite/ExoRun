@@ -1,6 +1,6 @@
 import * as React from "react"
 import { ImageStyle, TouchableOpacity, ViewStyle } from "react-native"
-import { inject, observer } from "mobx-react/native"
+import { inject, observer } from "mobx-react"
 import { NavigationScreenProps } from "react-navigation"
 import { action, observable } from "mobx"
 import autobind from "autobind-decorator"

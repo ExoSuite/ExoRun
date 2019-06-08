@@ -68,7 +68,7 @@ export class App extends React.Component<{}, IAppState> {
         env: store.env,
         rootStore: store.rootStore,
         userModel: store.userModel,
-        groupsModel: store.groupsModel
+        groupsModel: store.groupsModel,
       },
       () => {
         // hack to ignore white screen on android
@@ -113,7 +113,7 @@ export class App extends React.Component<{}, IAppState> {
       api: env.api,
       soundPlayer: env.soundPlayer,
       userModel,
-      groupsModel
+      groupsModel,
     }
     // --- am: end list of stores ---
 

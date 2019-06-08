@@ -4,7 +4,7 @@ import { FlatList, TextStyle, TouchableOpacity, View, ViewStyle } from "react-na
 import { Screen } from "@components/screen"
 import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
-import { inject } from "mobx-react/native"
+import { inject } from "mobx-react"
 import { Injection, InjectionProps } from "@services/injections"
 import { DarkTheme, Searchbar } from "react-native-paper"
 import autobind from "autobind-decorator"

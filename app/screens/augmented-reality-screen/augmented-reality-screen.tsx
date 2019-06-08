@@ -1,6 +1,6 @@
 import { color } from "@theme"
 import { action, observable } from "mobx"
-import { observer } from "mobx-react/native"
+import { observer } from "mobx-react"
 import * as React from "react"
 import { ViewStyle } from "react-native"
 import { NavigationScreenProps } from "react-navigation"

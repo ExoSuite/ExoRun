@@ -15,7 +15,7 @@ import { IOnChangeTextCallback } from "@types"
 import { Button } from "@components/button"
 import idx from "idx"
 import DateTimePicker from "react-native-modal-datetime-picker";
-import { inject } from "mobx-react/native"
+import { inject } from "mobx-react"
 import { Injection, InjectionProps } from "@services/injections"
 import moment from "moment"
 import lodash, { clone } from "lodash-es"

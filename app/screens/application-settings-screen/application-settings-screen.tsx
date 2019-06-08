@@ -8,7 +8,7 @@ import { defaultNavigationIcon, NavigationBackButtonWithNestedStackNavigator } f
 import autobind from "autobind-decorator"
 import { reset } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
-import { inject } from "mobx-react/native"
+import { inject } from "mobx-react"
 import { Injection } from "@services/injections"
 import { NavigationStore } from "@navigation/navigation-store"
 import { INavigationScreenProps } from "@navigation/stateful-navigator"

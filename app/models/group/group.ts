@@ -23,7 +23,7 @@ export const GroupModel = types
     api: types.frozen(Api),
     messageToken: types.frozen(PersonalTokenImpl)
   })
-  .views((self) => ({
+  .views((self: Instance<typeof GroupModel>) => ({
 
   })) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions((self: Instance<typeof GroupModel>) => ({
@@ -42,17 +42,12 @@ export const GroupModel = types
       self.messages = messageResponse.data.data.map(createMessage)
     }
 
-  })) // eslint-disable-line @typescript-eslint/no-unused-vars
-
-  /**
-  * Un-comment the following to omit model attributes from your snapshots (and from async storage).
-  * Useful for sensitive data like passwords, or transitive state like whether a modal is open.
-
-  * Note that you'll need to import `omit` from ramda, which is already included in the project!
-  *  .postProcessSnapshot(omit(["password", "socialSecurityNumber", "creditCardNumber"]))
-  */
+  }))
 
 type GroupType = Instance<typeof GroupModel>
+
+// tslint:disable-next-line:no-empty-interface interface-name
 export interface Group extends GroupType {}
 type GroupSnapshotType = SnapshotOut<typeof GroupModel>
+// tslint:disable-next-line:no-empty-interface interface-name
 export interface GroupSnapshot extends GroupSnapshotType {}

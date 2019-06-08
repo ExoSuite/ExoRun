@@ -60,10 +60,12 @@ export const GroupsModel = types
 
 type GroupsType = Instance<typeof GroupsModel>
 
+// tslint:disable-next-line:no-empty-interface
 export interface IGroupsModel extends GroupsType {
 }
 
 type GroupsSnapshotType = SnapshotOut<typeof GroupsModel>
 
+// tslint:disable-next-line:no-empty-interface interface-name
 export interface GroupsSnapshot extends GroupsSnapshotType {
 }

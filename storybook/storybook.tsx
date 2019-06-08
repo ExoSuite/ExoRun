@@ -2,7 +2,7 @@ import React from "react"
 import { addDecorator, configure, getStorybookUI } from "@storybook/react-native"
 import Config from "react-native-config"
 import SplashScreen from "react-native-splash-screen"
-import { Provider } from "mobx-react/native"
+import { Provider } from "mobx-react"
 import { Api } from "@services/api"
 
 // tslint:disable prefer-function-over-method prefer-conditional-expression

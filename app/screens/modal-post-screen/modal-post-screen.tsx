@@ -8,7 +8,7 @@ import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/compon
 import { TextField } from "@components/text-field"
 import InputScrollView from "react-native-input-scroll-view"
 import { action, observable } from "mobx"
-import { inject } from "mobx-react/native"
+import { inject } from "mobx-react"
 import { Injection, InjectionProps } from "@services/injections"
 import { Button } from "@components/button"
 import { DataLoader } from "@components/data-loader"

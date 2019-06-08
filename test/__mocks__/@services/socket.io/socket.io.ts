@@ -1,12 +1,9 @@
 // tslint:disable
 
 import Echo from "laravel-echo"
-import { SocketIo as SocketIoImpl } from "@services/socket.io"
 import { Channel, PresenceChannel } from "laravel-echo/dist/channel"
 
-jest.mock("laravel-echo")
-
-export class SocketIo extends SocketIoImpl {
+export class SocketIo {
 
   public static get Echo(): Echo {
     return {
