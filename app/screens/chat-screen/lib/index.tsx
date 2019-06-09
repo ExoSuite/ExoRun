@@ -46,8 +46,6 @@ export function renderComposer(props: object): React.ReactElement {
       {...props}
       textInputStyle={COMPOSER}
       placeholderTextColor={color.palette.lightGrey}
-      keyboardDismissMode="on-drag"
-      keyboardAppearance="dark"
     />
   )
 }

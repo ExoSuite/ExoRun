@@ -16,15 +16,9 @@ export const MessageModel = types
   .views((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
 
-  /**
-  * Un-comment the following to omit model attributes from your snapshots (and from async storage).
-  * Useful for sensitive data like passwords, or transitive state like whether a modal is open.
-
-  * Note that you'll need to import `omit` from ramda, which is already included in the project!
-  *  .postProcessSnapshot(omit(["password", "socialSecurityNumber", "creditCardNumber"]))
-  */
-
 type MessageType = Instance<typeof MessageModel>
+// tslint:disable-next-line:no-empty-interface
 export interface IMessageModel extends MessageType {}
 type MessageSnapshotType = SnapshotOut<typeof MessageModel>
+// tslint:disable-next-line:interface-name no-empty-interface
 export interface MessageSnapshot extends MessageSnapshotType {}
