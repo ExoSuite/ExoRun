@@ -7,7 +7,7 @@ import { LogicErrorState, LogicException } from "@exceptions/LogicException"
 import jwtDecode from "jwt-decode"
 import { has } from "lodash-es"
 
-enum ApiTokenManagerEvent {
+export enum ApiTokenManagerEvent {
   UNLOCK = "unlocked"
 }
 
@@ -16,7 +16,12 @@ enum ApiTokenManagerEvent {
  */
 // tslint:disable-next-line: min-class-cohesion
 export class ApiTokenManager {
-  private static Bus: EventEmitter
+  public static get Bus(): EventEmitter {
+    return ApiTokenManager._Bus
+  }
+
+  // tslint:disable-next-line: variable-name
+  private static _Bus: EventEmitter
 
   private static Locked = false
 
@@ -44,7 +49,7 @@ export class ApiTokenManager {
       return credentials
     }
 
-    ApiTokenManager.Bus.emit(ApiTokenManagerEvent.UNLOCK)
+    ApiTokenManager._Bus.emit(ApiTokenManagerEvent.UNLOCK)
     // if tokens was not provided throw an error
     throw new LogicException(LogicErrorState.CANT_LOAD_API_TOKENS)
   }
@@ -52,7 +57,7 @@ export class ApiTokenManager {
   // this method will wait for _CheckToken to finish and will release the lock
   public static async CheckToken(grantRequest: IGrantRequest, apisauce: ApisauceInstance): Promise<ITokenResponse | boolean> {
     if (ApiTokenManager.Locked) {
-      await new Promise((resolve: any): any => ApiTokenManager.Bus.once("unlocked", resolve))
+      await new Promise((resolve: any): any => ApiTokenManager.Bus.once(ApiTokenManagerEvent.UNLOCK, resolve))
     }
 
     ApiTokenManager.Locked = true
@@ -68,6 +73,6 @@ export class ApiTokenManager {
   }
 
   public static async Setup(): Promise<void> {
-    ApiTokenManager.Bus = new EventEmitter()
+    ApiTokenManager._Bus = new EventEmitter()
   }
 }

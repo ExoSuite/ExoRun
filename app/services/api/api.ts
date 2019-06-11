@@ -83,10 +83,6 @@ export class Api implements IService {
     }
   }
 
-  private static IsITokenResponse(arg: any): arg is ITokenResponse {
-    return typeof (arg) !== "boolean"
-  }
-
   public static BuildAuthorizationHeader(tokenInstance: IPersonalToken | ITokenResponse): IHeaders {
     return {
       Authorization: `Bearer ${"access_token" in tokenInstance ? tokenInstance.access_token : tokenInstance.accessToken}`

@@ -14,14 +14,23 @@ import { Api } from "@services/api"
 import { SoundPlayer } from "@services/sound-player"
 import { UserModelMock } from "../../../__mocks__/stores/UserModelMock"
 import { GroupsModelMockData } from "../../../__mocks__/stores/GroupsModelMock"
+import { SocketIo } from "@services/socket.io"
+
 
 describe("login tests", () => {
   const api: Api = new Api()
+  const socketIO = new SocketIo()
   const soundPlayer = new SoundPlayer()
 
   test("login render correctly", () => {
     const wrapper = mount<LoginScreen>((
-      <Provider api={api} soundPlayer={soundPlayer} userModel={UserModelMock} groupsModel={GroupsModelMockData}>
+      <Provider
+        api={api}
+        soundPlayer={soundPlayer}
+        userModel={UserModelMock}
+        groupsModel={GroupsModelMockData}
+        socketIO={socketIO}
+      >
         <LoginScreen
           // @ts-ignore
           navigation={{ goBack: (): boolean => true, getParam: (): object => ({}) }}
