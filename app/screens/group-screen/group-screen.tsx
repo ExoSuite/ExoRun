@@ -1,5 +1,5 @@
 import * as React from "react"
-import { observer, inject } from "mobx-react"
+import { inject, observer } from "mobx-react"
 import { FlatList, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Screen, Text } from "@components"
 import { color, spacing } from "@theme"
@@ -75,7 +75,6 @@ export class GroupScreen extends React.Component<IGroupScreenProps> {
   // tslint:disable-next-line: no-feature-envy
   @autobind
   private renderGroup({item}: { item: IGroup}): React.ReactElement {
-    const { api, userModel } = this.props
     const formattedCreatedAt = moment(item.created_at).format("LLL")
     const formattedUpdatedAt = moment(item.updated_at).format("LLL")
 
@@ -116,7 +115,6 @@ export class GroupScreen extends React.Component<IGroupScreenProps> {
     this.pictureToken = personalTokens["view-picture-exorun"]
   }
 
-// tslint:disable-next-line: prefer-function-over-method
   public render(): React.ReactNode {
 
     return (

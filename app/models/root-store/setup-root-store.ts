@@ -10,7 +10,7 @@ import { GroupsModel, IGroupsModel } from "@models/groups"
 import { SocketIo } from "@services/socket.io"
 import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
-import { isEmpty } from "lodash-es"
+import { ApiTokenManager } from "@services/api/api.token.manager"
 
 /**
  * The key we'll be saving our state as within async storage.
@@ -65,12 +65,14 @@ export async function setupRootStore(): Promise<ISetupRootStore> {
     return storage.save(storage.StorageTypes.USER_PROFILE, snapshot)
   })
 
-  const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
+  let personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
 
-  if (isEmpty(personalTokens)) {
-    // @ts-ignore
-    personalTokens["message-exorun"] = {
-      accessToken: "",
+  if (!personalTokens) {
+    personalTokens = {
+      // @ts-ignore
+      "message-exorun": {
+        accessToken: ""
+      }
     }
   }
 
@@ -105,9 +107,12 @@ export async function createEnvironment(): Promise<Environment> {
   env.socketIO = new SocketIo()
 
   // allow each service to setup
-  await env.reactotron.setup()
-  await env.api.setup()
-  await env.soundPlayer.setup()
+  await Promise.all([
+    env.reactotron.setup(),
+    env.api.setup(),
+    env.soundPlayer.setup(),
+    ApiTokenManager.Setup()
+  ])
   await env.socketIO.setup()
 
   return env

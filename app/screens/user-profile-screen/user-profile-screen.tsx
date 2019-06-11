@@ -1,5 +1,5 @@
 import * as React from "react"
-import { observer, inject } from "mobx-react"
+import { inject, observer } from "mobx-react"
 import { Animated, ImageStyle, StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Button, Screen, Text } from "@components"
 import { color, spacing } from "@theme"

@@ -5,7 +5,6 @@ import { IService } from "@services/interfaces"
 import { load, reset, save } from "@utils/keychain"
 import { ApiResponse, ApisauceInstance, create } from "apisauce"
 import * as https from "https"
-import jwtDecode from "jwt-decode"
 import Config from "react-native-config"
 import { DEFAULT_API_CONFIG, IApiConfig } from "./api-config"
 import { HttpRequest, toApiSauceMethod } from "./api-http-request"
@@ -26,6 +25,7 @@ import { ApiRoutes } from "@services/api/api.routes"
 import Axios from "axios"
 import { IUserModel, updateUserModel } from "@models/user-profile"
 import { isEmpty } from "lodash-es"
+import { ApiTokenManager } from "@services/api/api.token.manager"
 
 interface IHeaders extends Object {
   Authorization?: string
@@ -164,7 +164,7 @@ export class Api implements IService {
 
     if (requireAuth && !headers.Authorization) {
       const token: ITokenResponse | boolean = await this.checkToken()
-      if (Api.IsITokenResponse(token) && token.access_token) {
+      if (ApiTokenManager.IsITokenResponse(token)) {
         headers.Authorization = `Bearer ${token.access_token}`
       } else {
         throw new LogicException(LogicErrorState.MALFORMED_API_TOKENS)
@@ -200,31 +200,7 @@ export class Api implements IService {
   }
 
   public async checkToken(): Promise<ITokenResponse | boolean> {
-    // get tokens from secure storage
-    const credentials: ITokenResponse = await load(Server.EXOSUITE_USERS_API) as ITokenResponse
-    // check if credentials match with type ITokenResponse
-    if (Api.IsITokenResponse(credentials)) {
-      // decode token
-      const decoded = jwtDecode(credentials.access_token)
-      // check if token Is expired
-      if (Date.now() / 1000 > decoded.exp) {
-        // assign refresh token to grantRequest
-        this.grantRequest.refresh_token = credentials.refresh_token
-        // call api for new tokens
-        const response: ApiResponse<ITokenResponse> = await this.apisauce.post("oauth/token", this.grantRequest)
-        const newTokens: ITokenResponse = response.data
-        // save new tokens
-        await save(newTokens, Server.EXOSUITE_USERS_API)
-
-        return newTokens
-      }
-
-      // return non modified tokens
-      return credentials
-    }
-
-    // if tokens was not provided throw an error
-    throw new LogicException(LogicErrorState.CANT_LOAD_API_TOKENS)
+    return ApiTokenManager.CheckToken(this.grantRequest, this.apisauce)
   }
 
   // tslint:disable-next-line max-func-args

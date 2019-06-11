@@ -13,8 +13,8 @@ export const MessageModel = types
     created_at: types.string,
     updated_at: types.string
   })
-  .views((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
-  .actions((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
+  .views((self: Instance<typeof MessageModel>) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
+  .actions((self: Instance<typeof MessageModel>) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
 
 type MessageType = Instance<typeof MessageModel>
 // tslint:disable-next-line:no-empty-interface

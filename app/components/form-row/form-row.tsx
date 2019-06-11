@@ -1,4 +1,4 @@
-import { mergeAll, flatten } from "ramda"
+import { flatten, mergeAll } from "ramda"
 import * as React from "react"
 import { View } from "react-native"
 import { PRESETS } from "./form-row.presets"

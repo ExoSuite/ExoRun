@@ -1,6 +1,6 @@
 import { Instance, types } from "mobx-state-tree"
 import { RootNavigator } from "./root-navigator"
-import { NavigationActions, NavigationAction, NavigationLeafRoute } from "react-navigation"
+import { NavigationAction, NavigationActions, NavigationLeafRoute } from "react-navigation"
 import { NavigationEvents } from "./navigation-events"
 import { IVoidFunction } from "@types"
 

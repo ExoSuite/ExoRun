@@ -1,5 +1,5 @@
 import * as React from "react"
-import { observer, inject } from "mobx-react"
+import { inject, observer } from "mobx-react"
 import { View, ViewStyle } from "react-native"
 import { color } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
@@ -13,6 +13,7 @@ import { renderComposer, renderInputToolbar, renderMessage, renderSend } from "@
 import { IMessage } from "react-native-gifted-chat/lib/types"
 import { IGroupsModel } from "@models/groups"
 import autobind from "autobind-decorator"
+import { Group } from "@models/group"
 
 interface IChatScreenNavigationProps {
   group: IGroupsModel,
@@ -44,7 +45,7 @@ const maxInputLength = 2048
 @observer
 export class ChatScreen extends React.Component<IChatScreenProps, IChatState> {
   private readonly giftedChatUserModel: IGiftedChatUserModel
-  private readonly group: IGroupsModel
+  private readonly group: Group
   @observable private newMessageText: string
 
   public state = {
@@ -59,7 +60,7 @@ export class ChatScreen extends React.Component<IChatScreenProps, IChatState> {
     super(props)
     const userModel: IUserModel = props.userModel
     const pictureToken: IPersonalToken = props.navigation.getParam("pictureToken")
-    const group: IGroupsModel = props.navigation.getParam("group")
+    const group: Group = props.navigation.getParam("group")
 
     this.giftedChatUserModel = {
       _id: userModel.id,
@@ -71,10 +72,7 @@ export class ChatScreen extends React.Component<IChatScreenProps, IChatState> {
 
   @autobind
   private onSend(messages: IMessage[] = []): void {
-    console.tron.logImportant(messages)
-    this.setState((previousState: IChatState) => ({
-      messages: GiftedChat.append(previousState.messages, messages),
-    }))
+    messages.forEach(this.group.addMessage)
   }
 
   @action.bound
@@ -82,12 +80,11 @@ export class ChatScreen extends React.Component<IChatScreenProps, IChatState> {
     this.newMessageText = text
   }
 
-  // tslint:disable-next-line:prefer-function-over-method
   public render(): React.ReactNode {
     return (
       <View style={ROOT}>
         <GiftedChat
-          messages={this.state.messages}
+          messages={this.group.toRNGCMessagesFormat(this.giftedChatUserModel)}
           alignTop={false}
           forceGetKeyboardHeight
           text={this.newMessageText}

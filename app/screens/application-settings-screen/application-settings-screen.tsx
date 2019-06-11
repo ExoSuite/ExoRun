@@ -1,5 +1,5 @@
 import * as React from "react"
-import { observer, inject } from "mobx-react"
+import { inject, observer } from "mobx-react"
 import { View, ViewStyle } from "react-native"
 import { Button, Screen } from "@components"
 import { color, spacing } from "@theme"
@@ -12,6 +12,7 @@ import { Injection } from "@services/injections"
 import { NavigationStore } from "@navigation/navigation-store"
 import { INavigationScreenProps } from "@navigation/stateful-navigator"
 import { clear } from "@utils/storage"
+import { SocketIo } from "@services/socket.io"
 
 type ApplicationSettingsScreenPropsType = INavigationScreenProps & NavigationScreenProps<{}>
 
@@ -27,7 +28,7 @@ const ROOT: ViewStyle = {
 /**
  * ApplicationSettingsScreen will handle the in app settings
  */
-@inject(Injection.NavigationStore)
+@inject(Injection.NavigationStore, Injection.SocketIO)
 @observer
 export class ApplicationSettingsScreen extends React.Component<IApplicationSettingsScreenProps> {
   public static navigationOptions = {
@@ -40,9 +41,10 @@ export class ApplicationSettingsScreen extends React.Component<IApplicationSetti
   private async logout(): Promise<void> {
     const { navigationStore, navigation } = this.props
     navigation.getScreenProps.showSplashScreen()
-    navigationStore.smoothReset(navigation.getScreenProps.animateSplashScreen)
     await reset(Server.EXOSUITE_USERS_API)
     await clear()
+    SocketIo.Disconnect()
+    navigationStore.smoothReset(navigation.getScreenProps.animateSplashScreen)
   }
 
   public render(): React.ReactNode {

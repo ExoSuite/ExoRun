@@ -29,6 +29,7 @@ export interface IAppState {
 }
 
 useScreens()
+SplashScreen.hide()
 
 /**
  * This Is the root component of our app.
@@ -112,6 +113,7 @@ export class App extends React.Component<{}, IAppState> {
     const otherStores = {
       api: env.api,
       soundPlayer: env.soundPlayer,
+      socketIO: env.socketIO,
       userModel,
       groupsModel,
     }

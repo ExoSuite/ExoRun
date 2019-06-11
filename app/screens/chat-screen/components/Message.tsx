@@ -61,22 +61,13 @@ export class Message extends React.Component<IMessageProps> {
   }
 
   public renderAvatar() {
-    let extraStyle
-    if (
-      isSameUser(this.props.currentMessage, this.props.previousMessage)
-      && isSameDay(this.props.currentMessage, this.props.previousMessage)
-    ) {
-      // Set the invisible avatar height to 0, but keep the width, padding, etc.
-      extraStyle = { height: 0 }
-    }
-
     const avatarProps = this.getInnerComponentProps()
 
     return (
       <Avatar
         {...avatarProps}
         // @ts-ignore
-        imageStyle={{ left: [styles.avatar, avatarProps.imageStyle, extraStyle] }}
+        imageStyle={{ left: [styles.avatar, avatarProps.imageStyle] }}
       />
     )
   }

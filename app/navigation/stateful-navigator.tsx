@@ -11,7 +11,6 @@ import { Screen } from "@services/device"
 import { Injection, InjectionProps } from "@services/injections"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { IVoidFunction } from "@types"
-import { isEmpty } from "lodash-es"
 
 interface IScreenProps {
   animateSplashScreen: IVoidFunction,
@@ -48,8 +47,7 @@ export class StatefulNavigator extends React.Component<InjectionProps> {
 
     await api.getOrCreatePersonalTokens()
     await api.getProfile(userModel)
-
-    if (isEmpty(groupsModel.groups)) {
+    if (groupsModel) {
       groupsModel.fetchGroups()
     }
 
@@ -61,7 +59,7 @@ export class StatefulNavigator extends React.Component<InjectionProps> {
     try {
       await this.canLogin()
     } catch (exception) {
-      console.tron.logImportant(exception)
+      console.tron.logImportant(exception, exception.message || "error does not have a msg")
       this.returnToLogin()
     }
     this.animateSplashScreen()

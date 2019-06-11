@@ -5,6 +5,7 @@ import { Api, IMessage, PersonalTokenImpl } from "@services/api"
 import { SocketIoServerEvent } from "@services/socket.io/socket.io.server.event"
 import { ApiOkResponse } from "apisauce"
 import { noop } from "lodash-es"
+import { IMessage as IMessageRNGC, User as IUserRNGC } from "react-native-gifted-chat/lib/types"
 
 const createMessage = (message: IMessage): IMessageModel => MessageModel.create(message)
 
@@ -24,13 +25,18 @@ export const GroupModel = types
     messageToken: types.frozen(PersonalTokenImpl)
   })
   .views((self: Instance<typeof GroupModel>) => ({
-
+    toRNGCMessagesFormat(giftedChatUserModel: IUserRNGC): IMessageRNGC[] {
+      return self.messages.map((message: IMessageModel) => ({
+        _id: message.id,
+        text: message.contents,
+        createdAt: message.created_at,
+        user: giftedChatUserModel
+      }))
+    }
   })) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions((self: Instance<typeof GroupModel>) => ({
     afterCreate(): void {
-      self.channel.listen(SocketIoServerEvent.NEW_MESSAGE, (eventData: object) => {
-        console.tron.logImportant(eventData)
-      })
+      self.channel.listen(SocketIoServerEvent.NEW_MESSAGE, self.pushMessage)
       self.fetchMessages()
     },
     fetchMessages(): void {
@@ -40,7 +46,16 @@ export const GroupModel = types
     },
     afterSuccessfulFetch(messageResponse: ApiOkResponse<{ data: IMessage[] }>): void {
       self.messages = messageResponse.data.data.map(createMessage)
-    }
+    },
+    addMessage(newMessage: { text: string }): void {
+      self.api.post(`group/${self.id}/message`,
+        { contents: newMessage.text },
+        Api.BuildAuthorizationHeader(self.messageToken)
+      )
+    },
+    pushMessage(newMessage: IMessage): void {
+      self.messages.unshift(createMessage(newMessage))
+    },
 
   }))
 

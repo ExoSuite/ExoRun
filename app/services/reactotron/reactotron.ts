@@ -2,7 +2,7 @@
 import Tron from "reactotron-react-native"
 import { RootStore } from "@models/root-store"
 import { onSnapshot } from "mobx-state-tree"
-import { ReactotronConfig, DEFAULT_REACTOTRON_CONFIG } from "./reactotron-config"
+import { DEFAULT_REACTOTRON_CONFIG, ReactotronConfig } from "./reactotron-config"
 import { mst } from "reactotron-mst"
 import { clear } from "@utils/storage"
 import { IService } from "@services/interfaces"

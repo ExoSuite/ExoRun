@@ -1,3 +1,3 @@
 export enum SocketIoServerEvent {
-  NEW_MESSAGE = "NewMessage"
+  NEW_MESSAGE = ".NewMessage"
 }

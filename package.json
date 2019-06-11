@@ -73,7 +73,7 @@
     "reactotron-react-native": "^3.6.2",
     "shorthash": "^0.0.2",
     "socket.io-client": "^2.2.0",
-    "tslib": "^1.9.3",
+    "tslib": "^1.10.0",
     "validate.js": "0.12.0"
   },
   "devDependencies": {
@@ -131,7 +131,7 @@
     "tslint-react": "^4.0.0",
     "tslint-sonarts": "^1.9.0",
     "typescript": "3.5.1",
-    "typescript-tslint-plugin": "^0.4.0"
+    "typescript-tslint-plugin": "^0.5.0"
   },
   "jest": {
     "preset": "jest-preset-ignite",

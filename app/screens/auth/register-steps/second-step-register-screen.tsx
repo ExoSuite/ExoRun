@@ -30,7 +30,6 @@ import { ApiResponse } from "apisauce"
 import { save } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
 import { AppScreens } from "@navigation/navigation-definitions"
-import { SocketIo } from "@services/socket.io"
 
 export interface ISecondStepRegisterScreenNavigationParams {
   firstName: string,
@@ -156,7 +155,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
 
   @autobind
   private async register(): Promise<void> {
-    const { api, navigation, soundPlayer, userModel } = this.props
+    const { api, navigation, soundPlayer, userModel, socketIO } = this.props
     const { email, password, passwordConfirmation } = this
     DataLoader.Instance.toggleIsVisible()
 
@@ -196,7 +195,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
     DataLoader.Instance.success(
       soundPlayer.success,
       async () => {
-        await SocketIo.Setup()
+        await socketIO.setup()
         navigation.navigate(AppScreens.HOME)
       })
   }
@@ -358,5 +357,5 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
 }
 
 export const SecondStepRegisterScreen =
-  inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel)
+  inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel, Injection.SocketIO)
   (observer(SecondStepRegisterScreenImpl))

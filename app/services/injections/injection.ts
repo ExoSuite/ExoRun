@@ -5,6 +5,7 @@ import { DataLoader } from "@components/data-loader"
 import { NavigationStore } from "@navigation/navigation-store"
 import { IUserModel } from "@models/user-profile"
 import { IGroupsModel } from "@models/groups"
+import { SocketIo } from "@services/socket.io"
 
 export enum Injection {
   Environment = "env",
@@ -12,7 +13,8 @@ export enum Injection {
   Api = "api",
   SoundPlayer = "soundPlayer",
   UserModel = "userModel",
-  GroupsModel = "groupsModel"
+  GroupsModel = "groupsModel",
+  SocketIO = "socketIO"
 }
 
 // tslint:disable-next-line:interface-name
@@ -22,6 +24,7 @@ interface InjectionPropsImpl {
   env: Environment
   groupsModel: IGroupsModel
   navigationStore: NavigationStore
+  socketIO: SocketIo
   soundPlayer: SoundPlayer,
   userModel: IUserModel,
 }
