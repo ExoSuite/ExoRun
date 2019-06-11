@@ -16,7 +16,6 @@ import { UserModelMock } from "../../../__mocks__/stores/UserModelMock"
 import { GroupsModelMockData } from "../../../__mocks__/stores/GroupsModelMock"
 import { SocketIo } from "@services/socket.io"
 
-
 describe("login tests", () => {
   const api: Api = new Api()
   const socketIO = new SocketIo()
