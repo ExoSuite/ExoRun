@@ -34,7 +34,7 @@ const exosuiteLoader = Asset.Locator("exosuite-loader")
  * StatefulNavigator will handle the SplashScreen component
  * user can be redirected to login or home screen.
  */
-@inject(Injection.NavigationStore, Injection.Api, Injection.UserModel)
+@inject(Injection.NavigationStore, Injection.Api, Injection.UserModel, Injection.GroupsModel)
 @observer
 export class StatefulNavigator extends React.Component<InjectionProps> {
   private currentNavProp: NavigationScreenProp<NavigationState>
@@ -43,11 +43,14 @@ export class StatefulNavigator extends React.Component<InjectionProps> {
 
   // tslint:disable-next-line: no-feature-envy
   private async canLogin(): Promise<void> {
-    const { api, navigationStore, userModel } = this.props
+    const { api, navigationStore, userModel, groupsModel } = this.props
 
-    await api.checkToken()
     await api.getOrCreatePersonalTokens()
     await api.getProfile(userModel)
+    if (groupsModel) {
+      groupsModel.fetchGroups()
+    }
+
     navigationStore.navigateTo(AppScreens.HOME)
   }
 
@@ -56,6 +59,7 @@ export class StatefulNavigator extends React.Component<InjectionProps> {
     try {
       await this.canLogin()
     } catch (exception) {
+      console.tron.logImportant(exception, exception.message || "error does not have a msg")
       this.returnToLogin()
     }
     this.animateSplashScreen()

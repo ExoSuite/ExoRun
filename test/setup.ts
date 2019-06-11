@@ -8,6 +8,7 @@ import "./__mocks__/react-native-splash-screen"
 import "./__mocks__/mock-setup-root-store"
 import "./__mocks__/reactotron"
 import "./__mocks__/react-native-fs"
+import "./__mocks__/@services/socket.io/socket.io"
 import { WebSocket } from "mock-socket"
 
 // @ts-ignore

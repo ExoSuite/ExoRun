@@ -1,5 +1,10 @@
 // this file Is for define api responses
 
+interface ITimestamps {
+  created_at: string,
+  updated_at: string,
+}
+
 export interface ITokenResponse {
   access_token: string
   expires_in: number
@@ -78,9 +83,27 @@ export interface IPersonalTokenResponse extends IPersonalToken {
 export interface ICheckIfIamFollowing {
   status: boolean
 }
+
 export interface IPersonalTokens {
   "connect-io-exorun": IPersonalTokenResponse,
   "group-exorun": IPersonalTokenResponse,
   "message-exorun": IPersonalTokenResponse
   "view-picture-exorun": IPersonalTokenResponse,
+}
+
+export interface IGroup extends ITimestamps {
+  id: string
+  name: string
+}
+
+export interface IMessage extends ITimestamps {
+  contents: string,
+  group_id: string,
+  id: string,
+  user_id: string
+}
+
+// tslint:disable-next-line: completed-docs
+export class PersonalTokenImpl implements IPersonalToken {
+  public accessToken: string
 }

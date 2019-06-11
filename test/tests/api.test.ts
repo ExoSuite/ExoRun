@@ -7,6 +7,10 @@ import { HttpRequestError } from "@exceptions"
 import { LogicErrorState, LogicException } from "@exceptions/LogicException"
 import Config from "react-native-config"
 import { Build, BuiltFor } from "@services/build-detector"
+import { ApiTokenManager, ApiTokenManagerEvent } from "@services/api/api.token.manager"
+
+// tslint:disable-next-line: no-floating-promises
+ApiTokenManager.Setup()
 
 describe("api tests", () => {
   test("should initialize API and throw HttpRequestError", async () => {
@@ -25,13 +29,15 @@ describe("api tests", () => {
     await instance.setup()
 
     const error = expect(
-      instance.get("user/me", {}, {}, true)
+      instance.get("user/me", {})
     ).rejects
     await error.toThrow()
     await error.toThrowError(LogicException)
 
+    const promise = instance.get("user/me", {})
+    ApiTokenManager.Bus.emit(ApiTokenManagerEvent.UNLOCK)
     try {
-      await instance.get("user/me", {}, {}, true)
+      await promise
     } catch (exception) {
       expect(exception.code())
         .toEqual(LogicErrorState.CANT_LOAD_API_TOKENS)

@@ -1,7 +1,7 @@
 import * as React from "react"
-import { Keyboard, TouchableWithoutFeedback } from "react-native"
+import { Keyboard, TouchableWithoutFeedback, ViewProps } from "react-native"
 
-export interface IDismissKeyboardProps {
+export interface IDismissKeyboardProps extends ViewProps {
   children: React.ReactNode
 }
 
@@ -16,10 +16,10 @@ const dismiss = (): void => {
  */
 export function DismissKeyboard(props: IDismissKeyboardProps): React.ReactElement {
   // grab the props
-  const { children } = props
+  const { children, ...rest } = props
 
   return (
-    <TouchableWithoutFeedback onPress={dismiss}>
+    <TouchableWithoutFeedback onPress={dismiss} {...rest}>
       {children}
     </TouchableWithoutFeedback>
   )

@@ -1,6 +1,6 @@
 import { createStackNavigator } from "react-navigation"
 import { FirstStepRegisterScreen, SecondStepRegisterScreen } from "@screens/auth"
-import { defaultNavigationIcon, NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
+import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import { color } from "@theme"
 import { LogoHeader } from "@components/logo-header"
 import { RegisterScreens } from "@navigation/navigation-definitions"

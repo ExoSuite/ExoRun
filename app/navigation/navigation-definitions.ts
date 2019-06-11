@@ -12,9 +12,11 @@ export enum AppScreens {
   APP_SETTINGS = "application-settings",
   EDIT_MY_PROFILE = "edit-my-profile",
   SEARCH = "search",
+  CHOOSE_USERS_FOR_NEW_GROUP = "choose-users-new-group",
   NEW_GROUP = "new-group",
   NEW_POST = "new-post",
-  FOLLOW = "follow"
+  FOLLOW = "follow",
+  CHAT = "chat",
 }
 
 export enum AuthScreens {

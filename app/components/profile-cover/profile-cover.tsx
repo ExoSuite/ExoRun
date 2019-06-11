@@ -1,7 +1,7 @@
 import * as React from "react"
 import { ImageStyle } from "react-native"
 import { action, observable } from "mobx"
-import { inject, observer } from "mobx-react/native"
+import { inject, observer } from "mobx-react"
 import { ApiRoutes, IPersonalTokens, IUser } from "@services/api"
 import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"

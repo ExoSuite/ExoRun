@@ -1,5 +1,5 @@
 import * as React from "react"
-import { inject, observer } from "mobx-react/native"
+import { inject, observer } from "mobx-react"
 import { Image, ImageStyle, SafeAreaView, TextInput, View, ViewStyle } from "react-native"
 import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
 import { NavigationScreenProps } from "react-navigation"
@@ -18,7 +18,7 @@ import {
 import { Asset } from "@services/asset"
 import { Platform } from "@services/device"
 import { color, spacing } from "@theme"
-import { ValidationRules as IValidationRules, validate } from "@utils/validate"
+import { validate, ValidationRules as IValidationRules } from "@utils/validate"
 import { equals } from "ramda"
 import { isEmpty, merge, snakeCase, transform } from "lodash"
 import { ApiRoutes, ITokenResponse } from "@services/api"
@@ -155,7 +155,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
 
   @autobind
   private async register(): Promise<void> {
-    const { api, navigation, soundPlayer, userModel } = this.props
+    const { api, navigation, soundPlayer, userModel, socketIO } = this.props
     const { email, password, passwordConfirmation } = this
     DataLoader.Instance.toggleIsVisible()
 
@@ -195,6 +195,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
     DataLoader.Instance.success(
       soundPlayer.success,
       async () => {
+        await socketIO.setup()
         navigation.navigate(AppScreens.HOME)
       })
   }
@@ -356,4 +357,5 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
 }
 
 export const SecondStepRegisterScreen =
-  inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel)(observer(SecondStepRegisterScreenImpl))
+  inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel, Injection.SocketIO)
+  (observer(SecondStepRegisterScreenImpl))

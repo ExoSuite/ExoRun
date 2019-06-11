@@ -1,6 +1,5 @@
-import { TextPresets } from "@components/text/text.presets"
 import * as React from "react"
-import { GestureResponderEvent, TextStyle, TouchableOpacity } from "react-native"
+import { GestureResponderEvent, TouchableOpacity } from "react-native"
 import { Text } from "../text"
 import { ITextProps } from "@components/text/text.props"
 

@@ -1,10 +1,10 @@
 import * as React from "react"
-import { View, TextInput, TextStyle, ViewStyle } from "react-native"
+import { TextInput, TextStyle, View, ViewStyle } from "react-native"
 import { color, spacing, typography } from "@theme"
 import { translate } from "@i18n"
 import { Text } from "../text"
 import { ITextFieldProps } from "./text-field.props"
-import { mergeAll, flatten } from "ramda"
+import { flatten, mergeAll } from "ramda"
 
 // the base styling for the container
 const CONTAINER: ViewStyle = {

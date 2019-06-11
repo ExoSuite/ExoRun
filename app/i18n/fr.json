@@ -18,11 +18,20 @@
     "delete-post": "Supprimer le statut",
     "new-post-content": "Contenu du nouveau statut",
     "updatedAt": "Mise à jour le : ",
-    "createdAt": "Créé le : "
+    "createdAt": "Créé le : ",
+    "search": "Rechercher"
   },
   "drawer": {
     "my-profile": "Mon Profil",
     "app-settings": "Paramètres"
+  },
+  "group": {
+    "name": "Nom du nouveau groupe (optionnel)",
+    "new-participants": "Ajouter des participants",
+    "modify-participants": "Modifier les participants",
+    "users": "Liste des utilisateurs",
+    "chosen-users": "Liste des utilisateurs choisis",
+    "new": "Créer le groupe"
   },
   "errors": {
     "invalidEmail": "Adresse électronique invalide.",

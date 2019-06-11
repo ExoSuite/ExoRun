@@ -2,7 +2,7 @@ import * as React from "react"
 import { storiesOf } from "@storybook/react-native"
 import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { AnimatedInteractiveInput, AnimatedInteractiveInputState } from "./"
-import { observer } from "mobx-react/native"
+import { observer } from "mobx-react"
 import { action, observable } from "mobx"
 import { Button } from "@components/button"
 

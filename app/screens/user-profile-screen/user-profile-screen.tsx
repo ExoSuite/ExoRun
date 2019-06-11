@@ -1,17 +1,16 @@
 import * as React from "react"
-import { observer } from "mobx-react"
+import { inject, observer } from "mobx-react"
 import { Animated, ImageStyle, StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Button, Screen, Text } from "@components"
 import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
-import { defaultNavigationIcon, NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
+import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import { IPersonalTokens, IPost, IUser } from "@services/api"
 import { Avatar, DefaultRnpAvatarSize } from "@components/avatar"
 import { palette } from "@theme/palette"
 import { headerShadow } from "@utils/shadows"
 import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
-import { inject } from "mobx-react/native"
 import { Injection, InjectionProps } from "@services/injections"
 import { action, observable } from "mobx"
 import idx from "idx"
@@ -25,6 +24,7 @@ import { IFollowScreenNavigationScreenProps } from "@screens/follow-screen"
 import { FAB, PartialIconProps } from "react-native-paper"
 import moment from "moment"
 import { IVoidFunction } from "@types"
+import { noop } from "lodash-es"
 
 // tslint:disable:id-length
 
@@ -77,7 +77,6 @@ const FIXED_HEADER: ViewStyle = {
   paddingRight: 10,
   flexDirection: "column",
   backgroundColor: palette.backgroundDarker,
-  ...headerShadow
 }
 
 const FLOATING_BUTTON: ViewStyle = {
@@ -275,7 +274,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   private onEndReached(): void {
     if (this.currentPage < this.maxPage && !this.onEndReachedCalledDuringMomentum) {
       this.currentPage += 1
-      this.fetchPosts(true).catch()
+      this.fetchPosts(true).catch(noop)
     }
   }
 
@@ -325,7 +324,6 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   }
 
   @autobind
-  // tslint:disable-next-line: no-feature-envy
   private renderPost({item}: { item: IPost}): React.ReactElement {
     const { api, userModel } = this.props
     const avatarUrl = api.buildAvatarUrl(item.author_id, this.pictureToken)
@@ -376,7 +374,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     } else {
       const followResponse: ApiResponse<IUser["follow"]> = await api.post(`user/${this.userProfile.id}/follows`)
       this.userProfile.follow = followResponse.data
-      this.fetchPosts().catch()
+      this.fetchPosts().catch(noop)
     }
     this.isUserFollowedByVisitor = !this.isUserFollowedByVisitor
   }
@@ -392,7 +390,6 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     if (!deletePost) {
       const currentPostIndex = this.userPosts.findIndex((post: any) => post.id === currentPost.id)
       this.userPosts[currentPostIndex] = currentPost;
-      console.tron.log(this.userPosts[currentPostIndex])
       this.userPosts = this.userPosts.slice()
     } else {
       this.userPosts = this.userPosts.filter((post: any) => post.id !== currentPost.id)
@@ -415,7 +412,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
       this.isUserFollowedByVisitor = userProfileRequest.data.follow.status
     }
 
-    await this.fetchPosts().catch();
+    await this.fetchPosts().catch(noop);
     this.avatarUrl = api.buildAvatarUrl(this.userProfile.id, token)
     this.coverUrl = api.buildCoverUrl(this.userProfile.id, token)
   }
@@ -468,7 +465,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
           renderItem={this.renderPost}
           keyExtractor={keyExtractor}
           ListHeaderComponent={(
-            <View style={{marginBottom: spacing[2]}}>
+            <View style={{marginBottom: spacing[2], ...headerShadow}}>
               <View style={StyleSheet.flatten([FIXED_HEADER, { marginTop: 150 }])}>
                 <View style={BUTTON_CONTAINER}>
                   {renderIf.if(me)(

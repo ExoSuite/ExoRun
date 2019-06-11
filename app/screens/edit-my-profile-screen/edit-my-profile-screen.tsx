@@ -1,10 +1,10 @@
 // tslint:disable:id-length
 import * as React from "react"
-import { observer } from "mobx-react"
+import { inject, observer } from "mobx-react"
 import { ImageStyle, View, ViewStyle } from "react-native"
-import InputScrollView from "react-native-input-scroll-view";
+import InputScrollView from "react-native-input-scroll-view"
 import { NavigationScreenProps } from "react-navigation"
-import { defaultNavigationIcon, NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
+import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import { IUser } from "@services/api"
 import { action, observable, runInAction } from "mobx"
 import autobind from "autobind-decorator"
@@ -14,8 +14,7 @@ import { color } from "@theme/color"
 import { IOnChangeTextCallback } from "@types"
 import { Button } from "@components/button"
 import idx from "idx"
-import DateTimePicker from "react-native-modal-datetime-picker";
-import { inject } from "mobx-react/native"
+import DateTimePicker from "react-native-modal-datetime-picker"
 import { Injection, InjectionProps } from "@services/injections"
 import moment from "moment"
 import lodash, { clone } from "lodash-es"

@@ -1,6 +1,7 @@
 import { Api } from "@services/api"
 import { Reactotron } from "@services/reactotron"
 import { SoundPlayer } from "@services/sound-player"
+import { SocketIo } from "@services/socket.io"
 
 /**
  * The environment Is a place where services and shared dependencies between
@@ -16,6 +17,11 @@ export class Environment {
    * Reactotron Is only available in dev.
    */
   public reactotron: Reactotron
+
+  /*
+  * Our SocketIO controller
+   */
+  public socketIO: SocketIo
 
   /**
    * Our sound-player.

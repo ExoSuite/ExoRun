@@ -1,6 +1,6 @@
 import { IUserModel, updateUserModel, UserModel } from "@models/user-profile"
 import { IUser } from "@services/api"
-import { UserModelMockData } from "../__mocks__/stores/UserModelMock"
+import { UserModelMockData } from "../../__mocks__/stores/UserModelMock"
 
 describe("user profile model", () => {
   test("can be created", () => {

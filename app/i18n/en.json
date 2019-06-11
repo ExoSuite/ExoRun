@@ -18,7 +18,8 @@
     "createdAt": "Created : ",
     "update-delete-post": "Update / Delete post",
     "update-post": "Update the post",
-    "delete-post": "Delete the post"
+    "delete-post": "Delete the post",
+    "search": "Search"
   },
   "drawer": {
     "my-profile": "Profile",
@@ -32,6 +33,14 @@
   "storybook": {
     "placeholder": "Placeholder",
     "field": "Field"
+  },
+  "group": {
+    "name": "Name of the new group (optional)",
+    "new-participants": "Add participants",
+    "modify-participants": "Modify participants",
+    "users": "Users list",
+    "chosen-users": "Chosen users list",
+    "new": "Create the group"
   },
   "profile": {
     "edit": "Edit profile",

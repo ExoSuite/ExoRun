@@ -1,11 +1,16 @@
 import { Environment } from "@models/environment"
-import { Api } from "@services/api"
+import { Api, IPersonalTokens } from "@services/api"
 import { Reactotron } from "@services/reactotron"
 import { SoundPlayer } from "@services/sound-player"
 import * as storage from "@utils/storage"
 import { onSnapshot } from "mobx-state-tree"
 import { RootStore, RootStoreModel, RootStoreSnapshot } from "./root-store"
 import { IUserModel, IUserModelSnapshot, UserModel } from "@models/user-profile"
+import { GroupsModel, IGroupsModel } from "@models/groups"
+import { SocketIo } from "@services/socket.io"
+import { load } from "@utils/keychain"
+import { Server } from "@services/api/api.servers"
+import { ApiTokenManager } from "@services/api/api.token.manager"
 
 /**
  * The key we'll be saving our state as within async storage.
@@ -14,6 +19,7 @@ const ROOT_STATE_STORAGE_KEY = "root"
 
 interface ISetupRootStore {
   env: Environment
+  groupsModel: IGroupsModel
   rootStore: RootStore,
   userModel: IUserModel
 }
@@ -54,15 +60,33 @@ export async function setupRootStore(): Promise<ISetupRootStore> {
   ))
 
   const userData = await storage.load(storage.StorageTypes.USER_PROFILE)
-  const userModel = UserModel.create(userData);
+  const userModel = UserModel.create(userData)
   onSnapshot(userModel, (snapshot: IUserModelSnapshot): Promise<boolean> => {
     return storage.save(storage.StorageTypes.USER_PROFILE, snapshot)
+  })
+
+  let personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
+
+  if (!personalTokens) {
+    personalTokens = {
+      // @ts-ignore
+      "message-exorun": {
+        accessToken: ""
+      }
+    }
+  }
+
+  const groupsModel = GroupsModel.create({
+    api: env.api,
+    socketIO: env.socketIO,
+    messageToken: personalTokens["message-exorun"]
   })
 
   return {
     rootStore,
     env,
-    userModel
+    userModel,
+    groupsModel
   }
 }
 
@@ -80,11 +104,16 @@ export async function createEnvironment(): Promise<Environment> {
   env.reactotron = new Reactotron()
   env.api = new Api()
   env.soundPlayer = new SoundPlayer()
+  env.socketIO = new SocketIo()
 
   // allow each service to setup
-  await env.reactotron.setup()
-  await env.api.setup()
-  await env.soundPlayer.setup()
+  await Promise.all([
+    env.reactotron.setup(),
+    env.api.setup(),
+    env.soundPlayer.setup(),
+    ApiTokenManager.Setup()
+  ])
+  await env.socketIO.setup()
 
   return env
 }

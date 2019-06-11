@@ -24,11 +24,10 @@ import { ApiResponse } from "apisauce"
 import autobind from "autobind-decorator"
 import { isEmpty, throttle } from "lodash-es"
 import { action, observable } from "mobx"
-import { observer } from "mobx-react"
-import { inject } from "mobx-react/native"
+import { inject, observer } from "mobx-react"
 import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
 import { NavigationScreenProps } from "react-navigation"
-import { ValidationRules, validate } from "@utils/validate"
+import { validate, ValidationRules } from "@utils/validate"
 import { footerShadow } from "@utils/shadows"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { IVoidFunction } from "@types"
@@ -133,7 +132,7 @@ type TLoginScreenProps = NavigationScreenProps & InjectionProps
  * LoginScreen will handle multiple user login
  * by calling the ExoSuite Users API
  */
-@inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel)
+@inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel, Injection.GroupsModel, Injection.SocketIO)
 @observer
 export class LoginScreen extends React.Component<TLoginScreenProps> {
 
@@ -192,7 +191,7 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
 
   @autobind
   public async _authorizeLogin(): Promise<void> {
-    const { api, soundPlayer, navigation, userModel } = this.props
+    const { api, soundPlayer, navigation, userModel, socketIO } = this.props
     DataLoader.Instance.toggleIsVisible()
 
     const response: ApiResponse<ITokenResponse> | HttpRequestError =
@@ -214,6 +213,8 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
     DataLoader.Instance.success(
       soundPlayer.success,
       async () => {
+        await socketIO.setup()
+        this.props.groupsModel.fetchGroups()
         navigation.navigate(AppScreens.HOME)
       })
   }
