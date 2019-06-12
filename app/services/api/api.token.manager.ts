@@ -12,20 +12,25 @@ export enum ApiTokenManagerEvent {
 }
 
 /**
- * This screen scrolls.
+ * ApiTokenManager will handle the task of refreshing an expired token
  */
 // tslint:disable-next-line: min-class-cohesion
 export class ApiTokenManager {
-  public static get Bus(): EventEmitter {
-    return ApiTokenManager._Bus
+  private static set Bus(value: EventEmitter) {
+    ApiTokenManager.Instance.bus = value
   }
 
+  public static get Instance(): ApiTokenManager {
+    return ApiTokenManager._Instance
+  }
+
+  private bus: EventEmitter
+
+  private locked = false
   // tslint:disable-next-line: variable-name
-  private static _Bus: EventEmitter
+  private static _Instance: ApiTokenManager
 
-  private static Locked = false
-
-  private static async _CheckToken(grantRequest: IGrantRequest, apisauce: ApisauceInstance): Promise<ITokenResponse | boolean> {
+  private static async CheckToken(grantRequest: IGrantRequest, apisauce: ApisauceInstance): Promise<ITokenResponse | boolean> {
     const credentials: ITokenResponse = await load(Server.EXOSUITE_USERS_API) as ITokenResponse
     // get tokens from secure storage
     // check if credentials match with type ITokenResponse
@@ -49,23 +54,9 @@ export class ApiTokenManager {
       return credentials
     }
 
-    ApiTokenManager._Bus.emit(ApiTokenManagerEvent.UNLOCK)
+    ApiTokenManager.Instance.Unlock()
     // if tokens was not provided throw an error
     throw new LogicException(LogicErrorState.CANT_LOAD_API_TOKENS)
-  }
-
-  // this method will wait for _CheckToken to finish and will release the lock
-  public static async CheckToken(grantRequest: IGrantRequest, apisauce: ApisauceInstance): Promise<ITokenResponse | boolean> {
-    if (ApiTokenManager.Locked) {
-      await new Promise((resolve: any): any => ApiTokenManager.Bus.once(ApiTokenManagerEvent.UNLOCK, resolve))
-    }
-
-    ApiTokenManager.Locked = true
-    const result = await ApiTokenManager._CheckToken(grantRequest, apisauce)
-    ApiTokenManager.Locked = false
-    ApiTokenManager.Bus.emit(ApiTokenManagerEvent.UNLOCK)
-
-    return result
   }
 
   public static IsITokenResponse(arg: any): arg is ITokenResponse {
@@ -73,6 +64,31 @@ export class ApiTokenManager {
   }
 
   public static async Setup(): Promise<void> {
-    ApiTokenManager._Bus = new EventEmitter()
+    ApiTokenManager._Instance = new ApiTokenManager()
+    ApiTokenManager.Bus = new EventEmitter()
+  }
+
+  private Lock(): void {
+    this.locked = true
+  }
+
+  private Unlock(): void {
+    this.locked = false
+    this.bus.emit(ApiTokenManagerEvent.UNLOCK)
+  }
+
+  // this method will wait for _CheckToken to finish and will release the lock
+  public async CheckToken(grantRequest: IGrantRequest, apisauce: ApisauceInstance): Promise<ITokenResponse | boolean> {
+    if (this.locked) {
+      await new Promise((resolve: any): void => {
+        this.bus.once(ApiTokenManagerEvent.UNLOCK, resolve)
+      })
+    }
+
+    this.Lock()
+    const result = await ApiTokenManager.CheckToken(grantRequest, apisauce)
+    this.Unlock()
+
+    return result
   }
 }

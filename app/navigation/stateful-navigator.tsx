@@ -11,6 +11,8 @@ import { Screen } from "@services/device"
 import { Injection, InjectionProps } from "@services/injections"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { IVoidFunction } from "@types"
+import { load } from "@utils/keychain"
+import { Server } from "@services/api/api.servers"
 
 interface IScreenProps {
   animateSplashScreen: IVoidFunction,
@@ -59,7 +61,8 @@ export class StatefulNavigator extends React.Component<InjectionProps> {
     try {
       await this.canLogin()
     } catch (exception) {
-      console.tron.logImportant(exception, exception.message || "error does not have a msg")
+      const token = await load(Server.EXOSUITE_USERS_API)
+      console.tron.logImportant(exception, exception.message, token)
       this.returnToLogin()
     }
     this.animateSplashScreen()

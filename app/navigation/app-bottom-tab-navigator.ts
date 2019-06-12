@@ -9,6 +9,7 @@ import { color } from "@theme"
 import { HomeNavigator } from "@navigation/home-navigator"
 import { SearchScreen } from "@screens/search-screen"
 import { getActiveChildNavigationOptions } from "react-navigation"
+import { RunScreen } from "@screens/run-screen"
 
 const tabBarIconSize = 20
 
@@ -28,8 +29,8 @@ export const AppBottomTabNavigator = createMaterialBottomTabNavigator(
         tabBarColor: "#2b872b"
       }
     },
-    [AppScreens.AUGMENTED_REALITY]: {
-      screen: AugmentedRealityNavigator,
+    [AppScreens.RUN]: {
+      screen: RunScreen,
       navigationOptions: {
         tabBarIcon: TabBarIcon({ name: "running", size: 22 }),
         tabBarColor: "#892943"

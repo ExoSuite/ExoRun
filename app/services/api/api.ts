@@ -196,7 +196,7 @@ export class Api implements IService {
   }
 
   public async checkToken(): Promise<ITokenResponse | boolean> {
-    return ApiTokenManager.CheckToken(this.grantRequest, this.apisauce)
+    return ApiTokenManager.Instance.CheckToken(this.grantRequest, this.apisauce)
   }
 
   // tslint:disable-next-line max-func-args

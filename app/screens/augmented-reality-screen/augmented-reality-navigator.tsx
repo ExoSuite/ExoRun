@@ -4,7 +4,7 @@ import React from "react"
 import { ViewStyle } from "react-native"
 import { HeaderBackButtonProps, NavigationScreenOptions, NavigationScreenProps } from "react-navigation"
 import { ViroARSceneNavigator } from "react-viro"
-import { NavigationBackButton } from "@navigation/components"
+import { NavigationBackButton, NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 
 export interface IAugmentedRealityNavigatorProps extends NavigationScreenProps<{}> {
 }
@@ -18,11 +18,8 @@ const FULL: ViewStyle = {
  */
 export class AugmentedRealityNavigator extends React.Component<IAugmentedRealityNavigatorProps> {
 
-  public static navigationOptions: NavigationScreenOptions = {
-    // @ts-ignore
-    headerLeft: (props: HeaderBackButtonProps): React.ReactNode => (
-      <NavigationBackButton {...props}/>
-    )
+  public static navigationOptions = {
+    headerLeft: NavigationBackButtonWithNestedStackNavigator()
   }
 
   // tslint:disable-next-line prefer-function-over-method

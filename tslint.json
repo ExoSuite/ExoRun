@@ -76,7 +76,7 @@
     "unnecessary-else": true,
     "prefer-template": true,
     "prefer-method-signature": true,
-    "prefer-function-over-method": true,
+    "prefer-function-over-method": [true, "allow-public"],
     "no-unnecessary-qualifier": true,
     "no-boolean-literal-compare": true,
     "no-angle-bracket-type-assertion": true,
