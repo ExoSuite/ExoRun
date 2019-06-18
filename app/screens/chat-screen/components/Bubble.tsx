@@ -146,7 +146,13 @@ export class Bubble extends React.Component<IBubbleProps> {
           {...messageTextProps}
           // @ts-ignore
           textStyle={{
-            left: { ...styles.standardFont, ...styles.messageText, ...messageTextProps.textStyle, ...messageTextStyle }
+            left: {
+              ...styles.standardFont,
+              ...styles.messageText,
+              // @ts-ignore
+              ...messageTextProps.textStyle,
+              ...messageTextStyle
+            }
           }}
         />
       )

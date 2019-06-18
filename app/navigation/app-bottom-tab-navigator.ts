@@ -1,7 +1,6 @@
 import { AppScreens } from "@navigation/navigation-definitions"
 import { TabBarIcon } from "@navigation/components/tab-bar-icon"
 import { NotificationsScreen } from "@screens/notifications-screen"
-import { AugmentedRealityNavigator } from "@screens/augmented-reality-screen"
 import { GroupScreen } from "@screens/group-screen"
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs"
 import { footerShadow } from "@utils/shadows"

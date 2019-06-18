@@ -13,7 +13,6 @@ import { FollowScreen } from "@screens/follow-screen"
 import { ModalPostScreen } from "@screens/modal-post-screen"
 import { ChooseUsersNewGroupScreen } from "@screens/choose-users-new-group-screen"
 import { ChatScreen } from "@screens/chat-screen"
-import { RunScreen } from "@screens/run-screen"
 import { AugmentedRealityNavigator } from "@screens/augmented-reality-screen"
 import { MapScreen } from "@screens/map-screen"
 
