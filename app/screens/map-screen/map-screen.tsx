@@ -10,8 +10,10 @@ import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/compon
 import { action, observable } from "mobx"
 import { Injection, InjectionProps } from "@services/injections"
 import { ApiResponse } from "apisauce"
-import { ICheckPoint, IFeatureCollection, IGeoJsonType, IPaginate, IRun } from "@services/api"
-import { featureCollection } from '@turf/helpers';
+import { ICheckPoint, IFeature, IFeatureCollection, IPaginate, IRun } from "@services/api"
+import idx from "idx"
+
+const gridPattern = require("./grid_pattern.png")
 
 export interface IMapScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -26,17 +28,19 @@ const MAP: ViewStyle = {
   flex: 1
 }
 
+const layerStyles = {
+  smileyFace: {
+    fillAntialias: true,
+    fillPattern: gridPattern
+  },
+};
+
 // tslint:disable-next-line: completed-docs
 @inject(Injection.Api)
 @observer
 export class MapScreen extends React.Component<IMapScreenProps> {
 
-  @observable private readonly featureCollection: IFeatureCollection = {
-    type: IGeoJsonType.FEATURE_COLLECTION,
-    features: []
-  }
-
-  private cameraRef;
+  @observable private readonly featureCollection: IFeatureCollection = MapboxGL.geoUtils.makeFeatureCollection()
 
   public static navigationOptions = {
     headerLeft: NavigationBackButtonWithNestedStackNavigator()
@@ -51,9 +55,10 @@ export class MapScreen extends React.Component<IMapScreenProps> {
     this.featureCollection.features = response.data.data[0].checkpoints.map(
       (checkpoint: ICheckPoint) => MapboxGL.geoUtils.makeFeature({
         type: checkpoint.location.type,
-        coordinates: [checkpoint.location.coordinates]
+        coordinates: checkpoint.location.coordinates
       })
     )
+    console.tron.logImportant(this.featureCollection)
   }
 
   public onUserMarkerPress(): void {
@@ -62,7 +67,10 @@ export class MapScreen extends React.Component<IMapScreenProps> {
 
   // tslint:disable-next-line: no-feature-envy
   public render(): React.ReactNode {
-    console.tron.logImportant(this.featureCollection)
+
+    const start = idx(this.featureCollection, (collection: IFeatureCollection) => collection.features[0])
+    const cameraCoordinates = idx(start, (feature: IFeature) => feature.geometry.coordinates[0][0])
+
     return (
       <Screen style={ROOT} preset="fixed">
         <MapboxGL.MapView
@@ -70,16 +78,15 @@ export class MapScreen extends React.Component<IMapScreenProps> {
           // @ts-ignore
           styleURL={MapboxGLConfig.STYLE_URL}
         >
-          <MapboxGL.Camera followZoomLevel={12} followUserLocation />
-          <MapboxGL.UserLocation onPress={this.onUserMarkerPress}/>
-          <MapboxGL.ShapeSource id="smileyFaceSource" shape={this.featureCollection} hitbox={null}>
+          <MapboxGL.Camera
+            zoomLevel={20}
+            centerCoordinate={cameraCoordinates}
+          />
+
+          <MapboxGL.ShapeSource id="runSource" shape={this.featureCollection} hitbox={null}>
             <MapboxGL.FillLayer
-              id="smileyFaceFill"
-              style={{
-                fillAntialias: true,
-                fillColor: "red",
-                fillOutlineColor: "rgba(255, 255, 255, 0.84)"
-              }}
+              id="runFillLayer"
+              style={layerStyles.smileyFace}
             />
           </MapboxGL.ShapeSource>
         </MapboxGL.MapView>
