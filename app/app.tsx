@@ -29,7 +29,6 @@ export interface IAppState {
 }
 
 useScreens()
-SplashScreen.hide()
 
 /**
  * This Is the root component of our app.
