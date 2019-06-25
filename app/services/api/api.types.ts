@@ -109,7 +109,7 @@ export class PersonalTokenImpl implements IPersonalToken {
 }
 
 export interface ILocation {
-  coordinates: [[number, number]]
+  coordinates: number[][][]
   type: IGeoJsonType
 }
 

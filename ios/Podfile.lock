@@ -12,7 +12,7 @@ PODS:
     - React
   - React (0.59.9):
     - React/Core (= 0.59.9)
-  - react-native-mapbox-gl (7.0.0-rc2):
+  - react-native-mapbox-gl (7.0.0-rc3):
     - React
   - React/Core (0.59.9):
     - yoga (= 0.59.9.React)
@@ -144,7 +144,7 @@ SPEC CHECKSUMS:
   lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
   lottie-react-native: 3d8181d43619b1fe804c828bd5a09d20fe8bdea7
   React: a86b92f00edbe1873a63e4a212c29b7a7ad5224f
-  react-native-mapbox-gl: 917d8e63323df89246de4e69c7378a5448017964
+  react-native-mapbox-gl: 26cabddce8bf6f39164c7be4dceb781e6fab0fdc
   RNCAsyncStorage: 9436928b444c5f5361960a7eea051a697c244b68
   RNFS: c9bbde46b0d59619f8e7b735991c60e0f73d22c1
   RNKeychain: c658833a9cb2cbcba6423bdd6e16cce59e27da0e

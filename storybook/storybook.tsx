@@ -5,8 +5,6 @@ import SplashScreen from "react-native-splash-screen"
 import { Provider } from "mobx-react"
 import { Api } from "@services/api"
 
-// tslint:disable prefer-function-over-method prefer-conditional-expression
-
 const api = new Api()
 
 addDecorator((fn: Function) => {
@@ -17,12 +15,16 @@ configure(() => {
   require("./storybook-registry")
 }, module)
 
-let StorybookUI
-if (Config.SERVER_IP) {
-  StorybookUI = getStorybookUI({ port: 9001, host: Config.SERVER_IP, onDeviceUI: true })
-} else {
-  StorybookUI = getStorybookUI({ port: 9001, host: "localhost", onDeviceUI: true })
-}
+const StorybookUI = Config.SERVER_IP ?
+  getStorybookUI({
+    port: 9001,
+    host: Config.SERVER_IP,
+    onDeviceUI: true
+  }) : getStorybookUI({
+    port: 9001,
+    host: "localhost",
+    onDeviceUI: true
+  })
 
 // RN hot module must be in a class for HMR
 /**
@@ -40,6 +42,6 @@ export class StorybookUIRoot extends React.Component {
   }
 
   public render(): React.ReactNode {
-    return <StorybookUI />
+    return <StorybookUI/>
   }
 }
