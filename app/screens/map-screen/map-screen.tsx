@@ -13,8 +13,6 @@ import { ApiResponse } from "apisauce"
 import { ICheckPoint, IFeatureCollection, IPaginate, IRun } from "@services/api"
 import autobind from "autobind-decorator"
 import { renderIf } from "@utils/render-if"
-import { point } from "@turf/helpers"
-import midpoint from "@turf/midpoint"
 import { interpolateCoordinates } from "@utils/geoutils"
 
 const gridPattern = require("./grid_pattern.png")
@@ -73,10 +71,6 @@ export class MapScreen extends React.Component<IMapScreenProps> {
   @autobind
   private setCameraRef(ref: any): void {
     this.cameraRef = ref
-  }
-
-  private interpolateCoordinates(checkpoint: ICheckPoint) {
-
   }
 
   // tslint:disable-next-line:no-feature-envy
