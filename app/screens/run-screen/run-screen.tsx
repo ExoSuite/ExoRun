@@ -16,8 +16,9 @@ const ROOT: ViewStyle = {
   backgroundColor: color.palette.black,
 }
 
-// @inject("mobxstuff")
-// @observer
+/**
+ * RunScreen
+ */
 export class RunScreen extends React.Component<IRunScreenProps> {
 
   @autobind

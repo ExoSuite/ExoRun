@@ -20,8 +20,6 @@ const gridPattern = require("./grid_pattern.png")
 export interface IMapScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
 
-MapboxGL.setAccessToken(MapboxGLConfig.API_KEY)
-
 const ROOT: ViewStyle = {
   backgroundColor: color.palette.black
 }
@@ -55,7 +53,9 @@ const MAP: ViewStyle = {
   flex: 1
 }
 
-// tslint:disable-next-line: completed-docs
+/**
+ * MapScreen will deal with mapbox
+ */
 @inject(Injection.Api)
 @observer
 export class MapScreen extends React.Component<IMapScreenProps> {

@@ -69,7 +69,9 @@ export class App extends React.Component<{}, IAppState> {
       () => {
         // hack to ignore white screen on android
         if (Platform.Android) {
-          setTimeout(SplashScreen.hide, 500)
+          setTimeout(() => {
+            SplashScreen.hide()
+          }, 500)
         } else {
           SplashScreen.hide()
         }
