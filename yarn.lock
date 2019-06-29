@@ -1130,12 +1130,12 @@
 
 "@react-native-mapbox-gl/maps@https://github.com/react-native-mapbox-gl/maps.git":
   version "7.0.0-rc3"
-  resolved "https://github.com/react-native-mapbox-gl/maps.git#5c3dce95137b55e1587f7c5e6a6cf996b0dcb852"
+  resolved "https://github.com/react-native-mapbox-gl/maps.git#c163135071aab4af95b348c27479cbd86eac85da"
   dependencies:
     "@mapbox/geo-viewport" ">= 0.4.0"
-    "@turf/along" ">= 4.0.0"
-    "@turf/distance" ">= 4.0.0"
-    "@turf/helpers" "4.6.0"
+    "@turf/along" ">= 4.0.0 <7.0.0"
+    "@turf/distance" ">= 4.0.0 <7.0.0"
+    "@turf/helpers" ">= 4.6.0 <7.0.0"
     underscore "^1.8.3"
 
 "@react-navigation/core@~3.4.1":
@@ -1352,7 +1352,7 @@
     prop-types "^15.7.2"
     resolve-from "^5.0.0"
 
-"@turf/along@>= 4.0.0":
+"@turf/along@>= 4.0.0 <7.0.0":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@turf/along/-/along-6.0.1.tgz#595cecdc48fc7fcfa83c940a8e3eb24d4c2e04d4"
   integrity sha512-6PptAcrsFR3o0Flpktk8Vo68W2txEVTh14zjoTVu+H5docd2+pv5/upA77bg3YFBoJgAxmUFt1leDdjReJ44BQ==
@@ -1395,7 +1395,7 @@
     "@turf/helpers" "^5.1.5"
     "@turf/invariant" "^5.1.5"
 
-"@turf/distance@6.x", "@turf/distance@>= 4.0.0":
+"@turf/distance@6.x", "@turf/distance@>= 4.0.0 <7.0.0":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@turf/distance/-/distance-6.0.1.tgz#0761f28784286e7865a427c4e7e3593569c2dea8"
   integrity sha512-q7t7rWIWfkg7MP1Vt4uLjSEhe5rPfCO2JjpKmk7JC+QZKEQkuvHEqy3ejW1iC7Kw5ZcZNR3qdMGGz+6HnVwqvg==
@@ -1411,12 +1411,7 @@
     "@turf/helpers" "^5.1.5"
     "@turf/invariant" "^5.1.5"
 
-"@turf/helpers@4.6.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.6.0.tgz#12398733b8ae28420df6166fa44c7ee8ffd6414c"
-  integrity sha1-EjmHM7iuKEIN9hZvpEx+6P/WQUw=
-
-"@turf/helpers@6.x", "@turf/helpers@^6.1.4":
+"@turf/helpers@6.x", "@turf/helpers@>= 4.6.0 <7.0.0", "@turf/helpers@^6.1.4":
   version "6.1.4"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-6.1.4.tgz#d6fd7ebe6782dd9c87dca5559bda5c48ae4c3836"
   integrity sha512-vJvrdOZy1ngC7r3MDA7zIGSoIgyrkWcGnNIEaqn/APmw+bVLF2gAW7HIsdTxd12s5wQMqEpqIQrmrbRRZ0xC7g==
@@ -8708,10 +8703,10 @@ react-native-gesture-handler@1.3.0:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
-react-native-gifted-chat@^0.9.9:
-  version "0.9.9"
-  resolved "https://registry.yarnpkg.com/react-native-gifted-chat/-/react-native-gifted-chat-0.9.9.tgz#a97884b9a4814fd11ad7ebd19a42535c199b293e"
-  integrity sha512-G769h0GXlr0zJcZhxrep0LU+ezTi4xDKzRvcozyURar6tNt4iajGBTclOKugvViRnnxUsYaRcOT6TsF9/j8ngw==
+react-native-gifted-chat@^0.9.11:
+  version "0.9.11"
+  resolved "https://registry.yarnpkg.com/react-native-gifted-chat/-/react-native-gifted-chat-0.9.11.tgz#4ad9a8908dd9e276b4997dd4f33bc6541ce75b33"
+  integrity sha512-2ytloWx2+PIuTBBNwj3tSrtuD03bXzHkfg1ZN1fM6iOLpeKWWiKgSlUm7D/ylmFhOsOGrAdhscFYBB/y7IkE5w==
   dependencies:
     "@expo/react-native-action-sheet" "^2.0.1"
     expo-constants "~5.0.1"
@@ -10570,10 +10565,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript-tslint-plugin@^0.5.2:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/typescript-tslint-plugin/-/typescript-tslint-plugin-0.5.2.tgz#8544e3387ed4256111751fe5caee5ba60f55d3ec"
-  integrity sha512-KzF0geUOAKMxDE9Z6CaFaWOPgoEgx2kpmUJVr3suMD2xs8zvTCE3lixbVqjU9Kn7zGB0B+OaB39hAFPAmg8slQ==
+typescript-tslint-plugin@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/typescript-tslint-plugin/-/typescript-tslint-plugin-0.5.3.tgz#555d1d31c4a8504cdde60e616d1c41da1da7df4e"
+  integrity sha512-mL/11ve0XORmCVnOFsmgw1E/r6Ic/NBaat0ZtmTjLTYopo3noGnW00UJzl1Vf7zxe3YckLHH1irTckgAa+XRrA==
   dependencies:
     minimatch "^3.0.4"
     mock-require "^3.0.2"
