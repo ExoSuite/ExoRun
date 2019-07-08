@@ -27,7 +27,8 @@ const originalConsoleWarn = console.warn
 console.warn = (message: string): void => {
   if (
     message.startsWith("node_modules/react-native/Libraries/Animated/src/NativeAnimatedHelper.js") ||
-    message.startsWith("Animated: `useNativeDriver`")
+    message.startsWith("Animated: `useNativeDriver`") ||
+    message.startsWith("Calling .setNativeProps() in the test renderer")
   ) {
     return
   }

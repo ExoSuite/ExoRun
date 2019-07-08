@@ -29,7 +29,6 @@ export interface IAppState {
 }
 
 useScreens()
-SplashScreen.hide()
 
 /**
  * This Is the root component of our app.
@@ -64,12 +63,8 @@ export class App extends React.Component<{}, IAppState> {
   // tslint:disable-next-line: no-feature-envy
   public async componentDidMount(): Promise<void> {
     const store = await setupRootStore()
-    this.setState(
-      {
-        env: store.env,
-        rootStore: store.rootStore,
-        userModel: store.userModel,
-        groupsModel: store.groupsModel,
+    this.setState({
+        ...store
       },
       () => {
         // hack to ignore white screen on android

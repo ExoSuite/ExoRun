@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
+    "incremental": true,
     "experimentalDecorators": true,
     "jsx": "react-native",
     "module": "esnext",
@@ -44,5 +45,5 @@
       "@types/*": ["app/types/*"]
     }
   },
-  "exclude": ["node_modules"]
+  "exclude": ["./node_modules"]
 }

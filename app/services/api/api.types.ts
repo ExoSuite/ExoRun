@@ -122,3 +122,76 @@ export interface ITime extends ITimestamps {
 export class PersonalTokenImpl implements IPersonalToken {
   public accessToken: string
 }
+
+export interface ILocation {
+  coordinates: number[][][]
+  type: IGeoJsonType
+}
+
+export interface IGeoJsonGeometry {
+  coordinates: [[[number, number]]]
+  type: IGeoJsonType
+}
+
+export interface IPaginate<Template> {
+  current_page: number
+  data: Template[]
+  first_page_url: string
+  from: number
+  last_page: number
+  last_page_url: string
+  next_page_url: string
+  path: string
+  per_page: number
+  prev_page_url: string
+  to: number
+  total: number
+}
+
+export enum ICheckPointType {
+  START = "start",
+  DEFAULT = "checkpoint",
+  ARRIVAL = "arrival"
+}
+
+export interface ICheckPoint extends ITimestamps {
+  id: string,
+  location: ILocation
+  previous_checkpoint_id: string
+  run_id: string
+  times: []
+  type: ICheckPointType,
+}
+
+export interface IRun extends ITimestamps {
+  checkpoints: ICheckPoint[]
+  creator_id: string
+  description: string
+  id: string
+  name: string
+  visibility: string
+}
+
+export interface ITime {
+  check_point_id: string
+  current_time: number
+  id: string
+  run_id: string
+}
+
+export interface IFeature {
+  geometry: IGeoJsonGeometry
+  properties: object,
+  type: string,
+}
+
+export interface IFeatureCollection {
+  features: IFeature[]
+  type: string
+}
+
+export enum IGeoJsonType {
+  FEATURE_COLLECTION = "FeatureCollection",
+  FEATURE = "Feature",
+  POLYGON = "Polygon"
+}
