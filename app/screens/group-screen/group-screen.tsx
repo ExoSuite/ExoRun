@@ -44,9 +44,12 @@ const ROW: ViewStyle = {
   flexDirection: "row"
 }
 
+// tslint:disable-next-line:no-commented-code no-commented-out-code
+/*
 const SEARCH: ViewStyle = {
   backgroundColor: color.backgroundDarkerer
 }
+*/
 
 const HeaderRight = RightNavigationButton({ modalScreen: AppScreens.NEW_GROUP })
 const keyExtractor = (item: IGroup, index: number): string => item.id

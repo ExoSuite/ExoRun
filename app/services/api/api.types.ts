@@ -103,6 +103,21 @@ export interface IMessage extends ITimestamps {
   user_id: string
 }
 
+export interface IRun extends ITimestamps {
+  creator_id: string,
+  description: string,
+  id: string,
+  name: string,
+  visibility: string
+}
+
+export interface ITime extends ITimestamps {
+  check_point_id: string,
+  current_time: bigint,
+  id: string,
+  run_id: string,
+}
+
 // tslint:disable-next-line: completed-docs
 export class PersonalTokenImpl implements IPersonalToken {
   public accessToken: string

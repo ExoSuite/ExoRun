@@ -5,7 +5,7 @@ import { Screen } from "@components/screen"
 import { color } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { Injection, InjectionProps } from "@services/injections"
-import { DarkTheme, Searchbar } from "react-native-paper"
+import { DarkTheme, Searchbar } from "react-native-paper";
 import autobind from "autobind-decorator"
 import { action, observable } from "mobx"
 import { IPersonalTokens, IUser } from "@services/api"
