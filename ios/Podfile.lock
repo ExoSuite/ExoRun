@@ -55,7 +55,7 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - RNCAsyncStorage (1.5.0):
+  - RNCAsyncStorage (1.5.1):
     - React
   - RNFS (2.13.3):
     - React
@@ -145,7 +145,7 @@ SPEC CHECKSUMS:
   lottie-react-native: 3d8181d43619b1fe804c828bd5a09d20fe8bdea7
   React: 36d0768f9e93be2473b37e7fa64f92c1d5341eef
   react-native-mapbox-gl: 26cabddce8bf6f39164c7be4dceb781e6fab0fdc
-  RNCAsyncStorage: 9436928b444c5f5361960a7eea051a697c244b68
+  RNCAsyncStorage: b63d6e83fc629b01df6b624688f17944cea5637f
   RNFS: c9bbde46b0d59619f8e7b735991c60e0f73d22c1
   RNKeychain: c658833a9cb2cbcba6423bdd6e16cce59e27da0e
   RNScreens: 720a9e6968beb73e8196239801e887d8401f86ed
