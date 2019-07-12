@@ -9,8 +9,9 @@ import { Asset } from "@services/asset"
 import { color } from "@theme"
 import { Screen } from "@services/device"
 import { Injection, InjectionProps } from "@services/injections"
-import { AppScreens } from "@navigation/navigation-definitions"
 import { IVoidFunction } from "@types"
+import { load } from "@utils/keychain"
+import { Server } from "@services/api/api.servers"
 
 interface IScreenProps {
   animateSplashScreen: IVoidFunction,
@@ -43,7 +44,7 @@ export class StatefulNavigator extends React.Component<InjectionProps> {
 
   // tslint:disable-next-line: no-feature-envy
   private async canLogin(): Promise<void> {
-    const { api, navigationStore, userModel, groupsModel } = this.props
+    const { api, userModel, groupsModel } = this.props
 
     await api.getOrCreatePersonalTokens()
     await api.getProfile(userModel)
@@ -51,7 +52,6 @@ export class StatefulNavigator extends React.Component<InjectionProps> {
       groupsModel.fetchGroups()
     }
 
-    navigationStore.navigateTo(AppScreens.HOME)
   }
 
   @autobind
@@ -59,7 +59,7 @@ export class StatefulNavigator extends React.Component<InjectionProps> {
     try {
       await this.canLogin()
     } catch (exception) {
-      console.tron.logImportant(exception, exception.message || "error does not have a msg")
+      console.tron.logImportant(exception, exception.message)
       this.returnToLogin()
     }
     this.animateSplashScreen()

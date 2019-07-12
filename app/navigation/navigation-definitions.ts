@@ -17,6 +17,8 @@ export enum AppScreens {
   NEW_POST = "new-post",
   FOLLOW = "follow",
   CHAT = "chat",
+  RUN = "run",
+  MAP = "map"
 }
 
 export enum AuthScreens {

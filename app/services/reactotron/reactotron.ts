@@ -25,10 +25,13 @@ if (__DEV__) {
 } else {
   // attach a mock so if things sneaky by our __DEV__ guards, we won't crash.
   console.tron = {
+    // @ts-ignore
     benchmark: noop,
     clear: noop,
     close: noop,
+    // @ts-ignore
     configure: noop,
+    // @ts-ignore
     connect: noop,
     display: noop,
     error: noop,
@@ -37,7 +40,9 @@ if (__DEV__) {
     logImportant: noop,
     overlay: noop,
     reportError: noop,
+    // @ts-ignore
     use: noop,
+    // @ts-ignore
     useReactNative: noop,
     warn: noop,
   }

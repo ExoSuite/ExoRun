@@ -10,50 +10,52 @@ PODS:
   - lottie-react-native (2.6.1):
     - lottie-ios (~> 2.5.0)
     - React
-  - React (0.59.9):
-    - React/Core (= 0.59.9)
-  - React/Core (0.59.9):
-    - yoga (= 0.59.9.React)
-  - React/CxxBridge (0.59.9):
+  - React (0.59.10):
+    - React/Core (= 0.59.10)
+  - react-native-mapbox-gl (7.0.0-rc3):
+    - React
+  - React/Core (0.59.10):
+    - yoga (= 0.59.10.React)
+  - React/CxxBridge (0.59.10):
     - Folly (= 2018.10.22.00)
     - React/Core
     - React/cxxreact
     - React/jsiexecutor
-  - React/cxxreact (0.59.9):
+  - React/cxxreact (0.59.10):
     - boost-for-react-native (= 1.63.0)
     - DoubleConversion
     - Folly (= 2018.10.22.00)
     - glog
     - React/jsinspector
-  - React/DevSupport (0.59.9):
+  - React/DevSupport (0.59.10):
     - React/Core
     - React/RCTWebSocket
-  - React/fishhook (0.59.9)
-  - React/jsi (0.59.9):
+  - React/fishhook (0.59.10)
+  - React/jsi (0.59.10):
     - DoubleConversion
     - Folly (= 2018.10.22.00)
     - glog
-  - React/jsiexecutor (0.59.9):
+  - React/jsiexecutor (0.59.10):
     - DoubleConversion
     - Folly (= 2018.10.22.00)
     - glog
     - React/cxxreact
     - React/jsi
-  - React/jsinspector (0.59.9)
-  - React/RCTBlob (0.59.9):
+  - React/jsinspector (0.59.10)
+  - React/RCTBlob (0.59.10):
     - React/Core
-  - React/RCTImage (0.59.9):
+  - React/RCTImage (0.59.10):
     - React/Core
     - React/RCTNetwork
-  - React/RCTNetwork (0.59.9):
+  - React/RCTNetwork (0.59.10):
     - React/Core
-  - React/RCTText (0.59.9):
+  - React/RCTText (0.59.10):
     - React/Core
-  - React/RCTWebSocket (0.59.9):
+  - React/RCTWebSocket (0.59.10):
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - RNCAsyncStorage (1.4.2):
+  - RNCAsyncStorage (1.5.1):
     - React
   - RNFS (2.13.3):
     - React
@@ -66,11 +68,11 @@ PODS:
     - RNSound/Core (= 0.10.12)
   - RNSound/Core (0.10.12):
     - React/Core
-  - RNVectorIcons (6.5.0):
+  - RNVectorIcons (6.6.0):
     - React
   - ViroKit_static_lib (1.0)
   - ViroReact (1.0)
-  - yoga (0.59.9.React)
+  - yoga (0.59.10.React)
 
 DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
@@ -78,6 +80,7 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - lottie-ios (from `../node_modules/lottie-ios`)
   - lottie-react-native (from `../node_modules/lottie-react-native`)
+  - "react-native-mapbox-gl (from `../node_modules/@react-native-mapbox-gl/maps`)"
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
@@ -112,6 +115,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/lottie-react-native"
   React:
     :path: "../node_modules/react-native"
+  react-native-mapbox-gl:
+    :path: "../node_modules/@react-native-mapbox-gl/maps"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-community/async-storage"
   RNFS:
@@ -138,17 +143,18 @@ SPEC CHECKSUMS:
   glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
   lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
   lottie-react-native: 3d8181d43619b1fe804c828bd5a09d20fe8bdea7
-  React: a86b92f00edbe1873a63e4a212c29b7a7ad5224f
-  RNCAsyncStorage: 0d2b0cf659d2def90d8ed7de76f502d335268156
+  React: 36d0768f9e93be2473b37e7fa64f92c1d5341eef
+  react-native-mapbox-gl: 26cabddce8bf6f39164c7be4dceb781e6fab0fdc
+  RNCAsyncStorage: b63d6e83fc629b01df6b624688f17944cea5637f
   RNFS: c9bbde46b0d59619f8e7b735991c60e0f73d22c1
   RNKeychain: c658833a9cb2cbcba6423bdd6e16cce59e27da0e
   RNScreens: 720a9e6968beb73e8196239801e887d8401f86ed
   RNSound: a1d01988e043aed5dbb476c2152b5ffb02446750
-  RNVectorIcons: f6cf608dee5b2cb5726ff3b629a5258586d5677b
+  RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   ViroKit_static_lib: ae9c112ac4b128f8d4466fc581c7b07a0264754d
   ViroReact: 7ec32276dcd1883662b4587eaedfff67f7fc3625
-  yoga: 03ff42a6f223fb88deeaed60249020d80c3091ee
+  yoga: 684513b14b03201579ba3cee20218c9d1298b0cc
 
-PODFILE CHECKSUM: 8d133cc537f13f41bc0fa10a988bfdf165541488
+PODFILE CHECKSUM: eb16a2392467d9c9c6cfe3c24232fb5a34265a83
 
-COCOAPODS: 1.7.1
+COCOAPODS: 1.7.3

@@ -43,6 +43,9 @@ target 'ExoRun' do
 
   pod 'RNFS', :path => '../node_modules/react-native-fs'
 
+  pod 'react-native-mapbox-gl', :path => '../node_modules/@react-native-mapbox-gl/maps'
+
+
 end
 
 post_install do |installer|

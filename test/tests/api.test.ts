@@ -7,7 +7,7 @@ import { HttpRequestError } from "@exceptions"
 import { LogicErrorState, LogicException } from "@exceptions/LogicException"
 import Config from "react-native-config"
 import { Build, BuiltFor } from "@services/build-detector"
-import { ApiTokenManager, ApiTokenManagerEvent } from "@services/api/api.token.manager"
+import { ApiTokenManager } from "@services/api/api.token.manager"
 
 // tslint:disable-next-line: no-floating-promises
 ApiTokenManager.Setup()
@@ -35,7 +35,6 @@ describe("api tests", () => {
     await error.toThrowError(LogicException)
 
     const promise = instance.get("user/me", {})
-    ApiTokenManager.Bus.emit(ApiTokenManagerEvent.UNLOCK)
     try {
       await promise
     } catch (exception) {
