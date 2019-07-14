@@ -4,6 +4,10 @@ import android.app.Application;
 
 import com.airbnb.android.react.lottie.LottiePackage;
 import com.facebook.react.ReactApplication;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.facebook.react.bridge.NativeModule;
+import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.uimanager.ViewManager;
 import com.mapbox.rctmgl.RCTMGLPackage;
 import com.rnfs.RNFSPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
@@ -24,8 +28,29 @@ import cx.evermeet.versioninfo.RNVersionInfoPackage;
 
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+
+import javax.annotation.Nonnull;
+
+class DummyPackage implements ReactPackage {
+
+    @Nonnull
+    @Override
+    public List<NativeModule> createNativeModules(@Nonnull ReactApplicationContext reactContext) {
+        List<NativeModule> modules = new ArrayList<>();
+        return modules;
+    }
+
+    @Nonnull
+    @Override
+    public List<ViewManager> createViewManagers(@Nonnull ReactApplicationContext reactContext) {
+        return Collections.emptyList();
+    }
+}
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -37,10 +62,17 @@ public class MainApplication extends Application implements ReactApplication {
 
         @Override
         protected List<ReactPackage> getPackages() {
+            List<ReactPackage> additionalPackages = Collections.emptyList();
+
+            if (!com.exorun.Application.IsRunningOnEmulator()) {
+                additionalPackages.add(new ReactViroPackage(ReactViroPackage.ViroPlatform.AR));
+            }
+
             return Arrays.asList(
                     new MainReactPackage(),
-            new RCTMGLPackage(),
-            new RNFSPackage(),
+                    new RNDeviceInfo(true),
+                    new RCTMGLPackage(),
+                    new RNFSPackage(),
                     new RNScreensPackage(),
                     new AsyncStoragePackage(),
                     new RNLocalizePackage(),
@@ -51,8 +83,8 @@ public class MainApplication extends Application implements ReactApplication {
                     new SplashScreenReactPackage(),
                     new KeychainPackage(),
                     new RNGestureHandlerPackage(),
-                    new ReactViroPackage(ReactViroPackage.ViroPlatform.AR),
-                    new RNVersionInfoPackage()
+                    new RNVersionInfoPackage(),
+                    additionalPackages.stream().findFirst().orElse(new DummyPackage())
             );
         }
 
