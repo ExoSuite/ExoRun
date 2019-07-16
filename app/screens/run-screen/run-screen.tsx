@@ -8,6 +8,7 @@ import { AppScreens } from "@navigation/navigation-definitions"
 import { IBoolFunction } from "@types"
 import autobind from "autobind-decorator"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
+// tslint:disable-next-line: match-default-export-name
 import DeviceInfo from "react-native-device-info"
 
 export interface IRunScreenProps extends NavigationScreenProps<{}> {
