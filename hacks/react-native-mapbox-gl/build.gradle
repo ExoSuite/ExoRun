@@ -1,0 +1,48 @@
+apply plugin: 'com.android.library'
+
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
+android {
+    compileSdkVersion safeExtGet("compileSdkVersion", 28)
+    buildToolsVersion safeExtGet("buildToolsVersion", '28.0.3')
+
+    defaultConfig {
+        minSdkVersion safeExtGet('minSdkVersion', 16)
+        targetSdkVersion safeExtGet('targetSdkVersion', 26)
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // React Native
+    compileOnly "com.facebook.react:react-native:+"
+
+    // Mapbox SDK
+
+    implementation 'com.mapbox.mapboxsdk:mapbox-sdk-services:4.8.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:8.1.0'
+
+    // Dependencies
+    implementation "androidx.vectordrawable:vectordrawable:1.0.1"
+    implementation "androidx.annotation:annotation:1.1.0"
+    implementation "androidx.appcompat:appcompat:1.0.2"
+
+    implementation "com.squareup.okhttp3:okhttp:${safeExtGet('okhttpVersion', '3.12.1')}"
+
+    // Mapbox plugins
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-localization-v8:0.10.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-markerview-v8:0.3.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-sdk-turf:4.8.0'
+}
