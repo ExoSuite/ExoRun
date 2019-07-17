@@ -2,10 +2,6 @@ import "react-native"
 import "jest-enzyme"
 import ReactSixteenAdapter from "enzyme-adapter-react-16"
 import Enzyme from "enzyme"
-import { WebSocket } from "mock-socket"
-
-global.WebSocket = WebSocket
-jest.useFakeTimers()
 
 /**
  * Set up Enzyme to mount to DOM, simulate events,

@@ -142,7 +142,7 @@
   "jest": {
     "preset": "jest-preset-ignite",
     "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-native|react-navigation|@react-navigation|@storybook|@react-native-community|@expo|react-native-vector-icons)"
+      "node_modules/(?!(jest-)?react-native|react-native|react-navigation|@react-navigation|@storybook|@react-native-community|@expo)"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/test/setup-enzyme.ts"
