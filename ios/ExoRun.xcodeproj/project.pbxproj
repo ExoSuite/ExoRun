@@ -471,7 +471,7 @@
 				CODE_SIGN_ENTITLEMENTS = ExoRun/ExoRun.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 182;
+				CURRENT_PROJECT_VERSION = 183;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 59JKX7F3X8;
 				HEADER_SEARCH_PATHS = "$(inherited)";
@@ -544,7 +544,7 @@
 				CODE_SIGN_ENTITLEMENTS = ExoRun/ExoRun.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 182;
+				CURRENT_PROJECT_VERSION = 183;
 				DEVELOPMENT_TEAM = 59JKX7F3X8;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ExoRun/Info.plist;
