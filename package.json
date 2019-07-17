@@ -89,7 +89,7 @@
     "@babel/plugin-transform-runtime": "^7.5.0",
     "@babel/runtime": "^7.5.4",
     "@fortawesome/fontawesome-common-types": "^0.2.19",
-    "@storybook/addon-storyshots": "^5.0.11",
+    "@storybook/addon-storyshots": "^5.1.9",
     "@storybook/react-native": "^5.1.9",
     "@storybook/theming": "^5.1.9",
     "@types/enzyme": "^3.10.3",
@@ -97,7 +97,7 @@
     "@types/jest": "24.0.15",
     "@types/lodash-es": "^4.17.3",
     "@types/node": "^12.6.2",
-    "@types/ramda": "0.26.15",
+    "@types/ramda": "0.26.16",
     "@types/react": "*",
     "@types/react-native-vector-icons": "^6.4.1",
     "@types/sinon": "^7.0.13",
@@ -108,12 +108,10 @@
     "enzyme-adapter-react-16": "^1.14.0",
     "ignite-bowser": "^4.5.0",
     "ignite-vector-icons": "^1.1.1",
-    "jest": "24.8.0",
+    "jest": "^24.8.0",
     "jest-enzyme": "^7.0.2",
-    "jest-haste-map": "^24.8.1",
     "jest-junit": "^6.4.0",
     "jest-preset-ignite": "0.6.1",
-    "jest-resolve": "^24.8.0",
     "jetifier": "^1.6.3",
     "metro-react-native-babel-preset": "0.55.0",
     "mock-socket": "^8.0.5",
@@ -144,11 +142,14 @@
   "jest": {
     "preset": "jest-preset-ignite",
     "transformIgnorePatterns": [
-      "/node_modules/@react-native-community/async-storage/(?!(lib))"
+      "node_modules/(?!(jest-)?react-native|react-native|react-navigation|@react-navigation|@storybook|@react-native-community|@expo)"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/test/setup-enzyme.ts"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^lodash-es$": "lodash"
+    }
   },
   "prettier": {
     "printWidth": 120,
