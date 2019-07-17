@@ -9201,10 +9201,10 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react-viro@^2.14.0:
-  version "2.14.0"
-  resolved "https://registry.yarnpkg.com/react-viro/-/react-viro-2.14.0.tgz#c14284ee1747da3b72fac7ee3ffa46ce8c12ab9f"
-  integrity sha512-acAcvKziZPfgqlaukJZ6tUmzUkA4g/6w57WjbQoF7TImfKwsYdlbzALicc9iyTyP4KTio/15zXpMcKuxz1U+KA==
+react-viro@^2.15.0:
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/react-viro/-/react-viro-2.15.0.tgz#f38096fd98bac7f2250dd118b899c9c475a69942"
+  integrity sha512-dvHNtiY4/jV+1zEPtDdAV62JUZX3TuH4Ai434q+sGqicM/lEVSj+KcK5Ax0kysvApHVzCzoJCL1BNgS+G90ohA==
   dependencies:
     prop-types "^15.5.10"
 
