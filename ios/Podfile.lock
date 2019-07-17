@@ -112,10 +112,10 @@ PODS:
     - React
   - RNScreens (1.0.0-alpha.23):
     - React
-  - RNSound (0.10.12):
+  - RNSound (0.11.0):
     - React
-    - RNSound/Core (= 0.10.12)
-  - RNSound/Core (0.10.12):
+    - RNSound/Core (= 0.11.0)
+  - RNSound/Core (0.11.0):
     - React
   - RNVectorIcons (6.6.0):
     - React
@@ -286,7 +286,7 @@ SPEC CHECKSUMS:
   RNKeychain: c658833a9cb2cbcba6423bdd6e16cce59e27da0e
   RNLocalize: 62a949d2ec5bee0eb8f39a80a48f01e2f4f67080
   RNScreens: f28b48b8345f2f5f39ed6195518291515032a788
-  RNSound: 52aa77f9297b5acf054b19d3f42fc4f200c4d7b5
+  RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   ViroKit_static_lib: ae9c112ac4b128f8d4466fc581c7b07a0264754d
   ViroReact: 7ec32276dcd1883662b4587eaedfff67f7fc3625
