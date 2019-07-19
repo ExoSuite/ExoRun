@@ -104,14 +104,6 @@
     {
       "path": "app/assets/img/exosuite-logo.png",
       "sha1": "dce5d5208d1ee4d18fc749cece006fd11a1bbd6c"
-    },
-    {
-      "path": "app/services/sound-player/assets/nfc_failure.mp3",
-      "sha1": "831de6204f49e351f4676ae003e6ca45dbffb737"
-    },
-    {
-      "path": "app/services/sound-player/assets/popcorn.mp3",
-      "sha1": "44be1f3f14932a14f896d3688abd93e84ccde209"
     }
   ]
 }
