@@ -1,4 +1,5 @@
 // vendor imports
+import * as React from "react"
 import { Button } from "@components/button"
 import { Text } from "@components/text"
 import { FinalAnimationStatus, IAnimation, LoaderState } from "@components/data-loader/data-loader.types"
@@ -8,7 +9,6 @@ import { isEmpty } from "lodash-es"
 import AnimatedLottieView from "lottie-react-native"
 import { action, observable, runInAction } from "mobx"
 import { observer } from "mobx-react"
-import * as React from "react"
 import { View, ViewStyle } from "react-native"
 import { View as AnimatedView } from "react-native-animatable"
 import Modal from "react-native-modal"
@@ -83,7 +83,7 @@ const delayedAction = (callback: Function): void => {
   setTimeout(() => {
     callback()
     // tslint:disable-next-line: no-use-before-declare
-  }, DataLoader.getDelayedTime())
+  }, DataLoader.getDelayedTime)
 }
 
 /**
@@ -121,7 +121,7 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
   /* tslint:disable: variable-name */
   private static _Instance: DataLoader = null
 
-  public static getDelayedTime(): number {
+  public static get getDelayedTime(): number {
     return Platform.iOS ? baseDelayedIOS : baseDelayedAndroid
   }
 
@@ -214,7 +214,7 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
 
   private playSoundCallback(): void {
     if (Platform.iOS) {
-      setTimeout(this.soundCallback, DataLoader.getDelayedTime())
+      setTimeout(this.soundCallback, DataLoader.getDelayedTime)
     } else {
       this.soundCallback()
     }
