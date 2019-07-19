@@ -2,29 +2,13 @@ package com.exorun;
 
 import android.app.Application;
 
-import com.airbnb.android.react.lottie.LottiePackage;
+import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
-import com.mapbox.rctmgl.RCTMGLPackage;
-import com.rnfs.RNFSPackage;
-import com.swmansion.rnscreens.RNScreensPackage;
-import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
-import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
-import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
-import com.oblador.keychain.KeychainPackage;
 import com.viromedia.bridge.ReactViroPackage;
-import com.reactcommunity.rnlocalize.RNLocalizePackage;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import com.zmxv.RNSound.RNSoundPackage;
 
-import cx.evermeet.versioninfo.RNVersionInfoPackage;
-
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
-
-import java.util.Arrays;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -37,23 +21,13 @@ public class MainApplication extends Application implements ReactApplication {
 
         @Override
         protected List<ReactPackage> getPackages() {
-            return Arrays.asList(
-                    new MainReactPackage(),
-            new RCTMGLPackage(),
-            new RNFSPackage(),
-                    new RNScreensPackage(),
-                    new AsyncStoragePackage(),
-                    new RNLocalizePackage(),
-                    new RNSoundPackage(),
-                    new LottiePackage(),
-                    new ReactNativeConfigPackage(),
-                    new VectorIconsPackage(),
-                    new SplashScreenReactPackage(),
-                    new KeychainPackage(),
-                    new RNGestureHandlerPackage(),
-                    new ReactViroPackage(ReactViroPackage.ViroPlatform.AR),
-                    new RNVersionInfoPackage()
-            );
+            List<ReactPackage> packages = new PackageList(this).getPackages();
+
+            if (!com.exorun.Application.IsRunningOnEmulator()) {
+                packages.add(new ReactViroPackage(ReactViroPackage.ViroPlatform.AR));
+            }
+
+            return packages;
         }
 
         @Override

@@ -1,7 +1,6 @@
 import React from "react"
 import renderer, { ReactTestRenderer } from "react-test-renderer"
 import { App } from "../../../app/app"
-import { ModalMock } from "./ModalMock"
 import { store } from "../../__mocks__/mock-setup-root-store"
 
 describe("App tested with react-test-renderer", () => {
@@ -12,8 +11,6 @@ describe("App tested with react-test-renderer", () => {
 
       return Platform
     })
-
-    jest.mock("react-native-modal", () => ModalMock)
   })
 
   test("App match snapshot ReactTestRenderer", () => {

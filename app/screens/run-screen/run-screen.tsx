@@ -8,6 +8,8 @@ import { AppScreens } from "@navigation/navigation-definitions"
 import { IBoolFunction } from "@types"
 import autobind from "autobind-decorator"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
+// tslint:disable-next-line: match-default-export-name
+import DeviceInfo from "react-native-device-info"
 
 export interface IRunScreenProps extends NavigationScreenProps<{}> {
 }
@@ -26,10 +28,17 @@ export class RunScreen extends React.Component<IRunScreenProps> {
     return (): boolean => this.props.navigation.navigate(screen)
   }
 
+  @autobind
+  private goToAugmentedReality(): void {
+    if (!DeviceInfo.isEmulator()) {
+      this.props.navigation.navigate(AppScreens.AUGMENTED_REALITY)
+    }
+  }
+
   public render(): React.ReactNode {
     return (
       <Screen style={ROOT} preset="scroll">
-        <Button text="Réalité augmentée" onPress={this.goTo(AppScreens.AUGMENTED_REALITY)} style={{marginTop: spacing[3]}}/>
+        <Button text="Réalité augmentée" onPress={this.goToAugmentedReality} style={{marginTop: spacing[3]}}/>
         <Button text="Mapbox" onPress={this.goTo(AppScreens.MAP)} style={{marginTop: spacing[3]}}/>
         <Button text="Temps de courses" onPress={this.goTo(AppScreens.RUNS_TIMES)} style={{marginTop: spacing[3]}}/>
       </Screen>

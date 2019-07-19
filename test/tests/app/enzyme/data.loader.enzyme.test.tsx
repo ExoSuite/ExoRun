@@ -4,7 +4,6 @@
 import * as React from "react"
 import { mount } from "enzyme"
 import { DataLoader } from "@components/data-loader"
-import { ModalMock } from "../ModalMock"
 import Modal from "react-native-modal"
 import { View } from "react-native"
 import AnimatedLottieView from "lottie-react-native"
@@ -16,7 +15,6 @@ describe("data loader tests", () => {
   let wrapper
 
   beforeAll(() => {
-    jest.mock("react-native-modal", () => ModalMock)
     wrapper = mount<DataLoader>(<DataLoader/>)
   })
 
@@ -25,7 +23,7 @@ describe("data loader tests", () => {
     expect(wrapper.find(Modal)).toExist()
     expect(wrapper.find(View)).toExist()
     expect(wrapper.find(AnimatedLottieView)).toExist()
-    expect(wrapper.find(AnimatedView)).toExist()
+    expect(wrapper.find(AnimatedView)).toHaveLength(0)
     expect(wrapper.find(FormRow)).toExist()
   })
 
