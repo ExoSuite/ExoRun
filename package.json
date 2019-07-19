@@ -43,6 +43,7 @@
     "jwt-decode": "^2.2.0",
     "laravel-echo": "^1.5.4",
     "lodash-es": "^4.17.15",
+    "lottie-ios": "3.0.3",
     "lottie-react-native": "^3.0.2",
     "mobx": "^5.13.0",
     "mobx-react": "^5.4.4",
@@ -153,11 +154,5 @@
     "titleTemplate": "{classname}-{title}",
     "ancestorSeparator": " › ",
     "usePathForSuiteName": "true"
-  },
-  "rnpm": {
-    "assets": [
-      "./app/theme/fonts/",
-      "./app/assets"
-    ]
   }
 }

@@ -16,11 +16,11 @@ export enum FileExtension {
  */
 export class Asset {
 
-  private static _locator(assetName: string, fileExtension: FileExtension): string {
-    return Platform.OS === "ios" ? assetName : `asset:/custom/${assetName}.${fileExtension}`
+  public static Locator(assetName: string, fileExtension: FileExtension = FileExtension.PNG): IImageUri {
+    return { uri: Asset.NativeLocator(assetName, fileExtension) }
   }
 
-  public static Locator(assetName: string, fileExtension: FileExtension = FileExtension.PNG): IImageUri {
-    return { uri: Asset._locator(assetName, fileExtension) }
+  public static NativeLocator(assetName: string, fileExtension: FileExtension): string {
+    return Platform.OS === "ios" ? assetName : `asset:/custom/${assetName}.${fileExtension}`
   }
 }

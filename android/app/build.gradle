@@ -132,6 +132,7 @@ android {
         applicationId "com.exorun"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+        multiDexEnabled true
         versionCode 250
         versionName "0.9.3"
     }

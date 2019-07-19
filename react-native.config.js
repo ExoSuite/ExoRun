@@ -5,6 +5,7 @@ module.exports = {
   },
   assets: [
     "./app/theme/fonts/",
-    "./app/assets"
+    "./app/assets",
+    "./app/services/sound-player/assets"
   ]
 };
