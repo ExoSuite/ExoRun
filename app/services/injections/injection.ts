@@ -5,7 +5,6 @@ import { DataLoader } from "@components/data-loader"
 import { NavigationStore } from "@navigation/navigation-store"
 import { IUserModel } from "@models/user-profile"
 import { IGroupsModel } from "@models/groups"
-import { IRunsModel } from "@models/runs"
 import { SocketIo } from "@services/socket.io"
 
 export enum Injection {
@@ -29,7 +28,6 @@ interface InjectionPropsImpl {
   socketIO: SocketIo
   soundPlayer: SoundPlayer,
   userModel: IUserModel,
-  runsModel: IRunsModel
 }
 
 export type InjectionProps = Partial<InjectionPropsImpl>

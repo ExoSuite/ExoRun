@@ -31,6 +31,7 @@ export class RunScreen extends React.Component<IRunScreenProps> {
       <Screen style={ROOT} preset="scroll">
         <Button text="Réalité augmentée" onPress={this.goTo(AppScreens.AUGMENTED_REALITY)} style={{marginTop: spacing[3]}}/>
         <Button text="Mapbox" onPress={this.goTo(AppScreens.MAP)} style={{marginTop: spacing[3]}}/>
+        <Button text="Temps de courses" onPress={this.goTo(AppScreens.RUNS_TIMES)} style={{marginTop: spacing[3]}}/>
       </Screen>
     )
   }

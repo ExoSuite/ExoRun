@@ -18,7 +18,7 @@ export enum AppScreens {
   FOLLOW = "follow",
   CHAT = "chat",
   RUNS_TIMES = "runs-times",
-  RUN = "RUN",
+  RUN = "run",
   MAP = "map"
 }
 

@@ -111,6 +111,14 @@ export interface IRun extends ITimestamps {
   visibility: string
 }
 
+export interface IUserRun extends ITimestamps {
+  id: string,
+  run_id: string,
+  times: ITime[],
+  total_time: number,
+  user_id: string,
+}
+
 export interface ITime extends ITimestamps {
   check_point_id: string,
   current_time: bigint,
@@ -161,22 +169,6 @@ export interface ICheckPoint extends ITimestamps {
   run_id: string
   times: []
   type: ICheckPointType,
-}
-
-export interface IRun extends ITimestamps {
-  checkpoints: ICheckPoint[]
-  creator_id: string
-  description: string
-  id: string
-  name: string
-  visibility: string
-}
-
-export interface ITime {
-  check_point_id: string
-  current_time: number
-  id: string
-  run_id: string
 }
 
 export interface IFeature {
