@@ -15,7 +15,7 @@ import { ChooseUsersNewGroupScreen } from "@screens/choose-users-new-group-scree
 import { ChatScreen } from "@screens/chat-screen"
 import { AugmentedRealityNavigator } from "@screens/augmented-reality-screen"
 import { MapScreen } from "@screens/map-screen"
-import { RunsTimesScreen } from "@screens/runs-times-screen"
+import { UserRunsTimesScreen } from "@screens/runs-times-screen"
 
 export const AppStackNavigatorImpl = createStackNavigator({
   [AppScreens.HOME]: AppBottomTabNavigator,
@@ -26,7 +26,7 @@ export const AppStackNavigatorImpl = createStackNavigator({
   [AppScreens.CHAT]: ChatScreen,
   [AppScreens.AUGMENTED_REALITY]: AugmentedRealityNavigator,
   [AppScreens.MAP]: MapScreen,
-  [AppScreens.RUNS_TIMES]: RunsTimesScreen
+  [AppScreens.RUNS_TIMES]: UserRunsTimesScreen
 }, {
   // @ts-ignore
   defaultNavigationOptions: {
