@@ -1,9 +1,10 @@
 import { IService } from "@services/interfaces"
 import Sound from "react-native-sound"
 import autobind from "autobind-decorator"
+import { noop } from "lodash-es"
 
 const mock = {
-  play: (): null => null
+  play: noop
 }
 
 export type SoundPlayerMock = typeof mock
@@ -21,8 +22,8 @@ export class SoundPlayer implements IService {
   }
 
   public async setup(): Promise<void> {
-    this.successSound = new Sound(require("./assets/Popcorn.mp3"))
-    this.errorSound = new Sound(require("./assets/NFCFailure.mp3"))
+    this.successSound = new Sound(require("./assets/popcorn.mp3"), noop)
+    this.errorSound = new Sound(require("./assets/nfc_failure.mp3"), noop)
   }
 
   public setupForTests(successSoundMock?: any, errorSoundMock?: any): void {

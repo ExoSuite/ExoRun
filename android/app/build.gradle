@@ -132,8 +132,10 @@ android {
         applicationId "com.exorun"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 250
-        versionName "0.9.3"
+        multiDexEnabled true
+        versionCode 253
+        versionName "0.9.6"
+        ndk.abiFilters 'armeabi-v7a','arm64-v8a','x86','x86_64'
     }
 
     splits {
