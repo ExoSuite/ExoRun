@@ -18,7 +18,8 @@ export enum AppScreens {
   FOLLOW = "follow",
   CHAT = "chat",
   RUN = "run",
-  MAP = "map"
+  MAP = "map",
+  ACHIEVEMENTS = "achievements"
 }
 
 export enum AuthScreens {
