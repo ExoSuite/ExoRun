@@ -181,32 +181,18 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
   private onAnimationFinish(): void {
 
     // 2nd step when error or success animation has finished cross or a check
-    // ⚠️ THIS PART WILL ONLY RUN ON ANDROID ⚠️
     if (this.finalAnimationStatus === FinalAnimationStatus.PLAYED) {
       this.finalAnimationStep()
     } else if (this.finalAnimationStatus === FinalAnimationStatus.WILL_PLAY) {
-      // on android call the sound animation and success animation after first step
-      if (Platform.Android) {
-        this.firstAnimationStep()
-        this.finalAnimationStatus = FinalAnimationStatus.PLAYED
-      } else { // on ios call the final step
-        this.finalAnimationStep()
-        this.finalAnimationStatus = FinalAnimationStatus.STOPPED
-      }
+      // call the sound animation and success animation after first step
+      this.firstAnimationStep()
+      this.finalAnimationStatus = FinalAnimationStatus.PLAYED
     } else if (this.isSuccessFul()) {
       this.successAnimation()
       this.finalAnimationStatus = FinalAnimationStatus.WILL_PLAY
-      // on ios call the sound animation and success animation beforehand
-      if (Platform.iOS) {
-        this.firstAnimationStep()
-      }
     } else if (this.hasError()) {
       this.errorAnimation()
       this.finalAnimationStatus = FinalAnimationStatus.WILL_PLAY
-      // on ios call the sound animation and success beforehand
-      if (Platform.iOS) {
-        this.firstAnimationStep()
-      }
     } else if (this.isStandingBy()) {
       this.baseAnimation()
     }

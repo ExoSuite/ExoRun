@@ -18,7 +18,7 @@ platform :android do
   lane :staging do
     add_badge(alpha: true, glob: "./android/app/src/main/res/mipmap-*/ic_launcher.png")
     gradle(
-        task: 'assemble',
+        task: 'bundle',
         build_type: 'Release'
      )
   end
@@ -27,7 +27,7 @@ platform :android do
   lane :beta do
     add_badge(glob: "./android/app/src/main/res/mipmap-*/ic_launcher.png")
     gradle(
-        task: 'assemble',
+        task: 'bundle',
         build_type: 'Release'
      )
     upload_to_play_store(track: 'beta')
@@ -36,7 +36,7 @@ platform :android do
   desc "Deploy a new version to the Google Play"
   lane :deploy do
     gradle(
-        task: 'assemble',
+        task: 'bundle',
         build_type: 'Release'
     )
     upload_to_play_store
