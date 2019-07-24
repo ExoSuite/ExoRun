@@ -18,7 +18,7 @@ platform :android do
   lane :staging do
     add_badge(alpha: true, glob: "./android/app/src/main/res/mipmap-*/ic_launcher.png")
     gradle(
-        task: 'bundle',
+        task: 'assemble',
         build_type: 'Release'
      )
   end
