@@ -5444,10 +5444,10 @@ jest-jasmine2@^24.8.0:
     pretty-format "^24.8.0"
     throat "^4.0.0"
 
-jest-junit@^6.4.0:
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/jest-junit/-/jest-junit-6.4.0.tgz#23e15c979fa6338afde46f2d2ac2a6b7e8cf0d9e"
-  integrity sha512-GXEZA5WBeUich94BARoEUccJumhCgCerg7mXDFLxWwI2P7wL3Z7sGWk+53x343YdBLjiMR9aD/gYMVKO+0pE4Q==
+jest-junit@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/jest-junit/-/jest-junit-7.0.0.tgz#e2ab2dc3f4eb2768f3e4c43e4e4cd841133a8c0e"
+  integrity sha512-ljUdO0hLyu0A92xk7R2Wet3kj99fmazTo+ZFYQP6b7AGOBxJUj8ZkJWzJ632ajpXko2Y5oNoGR2kvOwiDdu6hg==
   dependencies:
     jest-validate "^24.0.0"
     mkdirp "^0.5.1"
@@ -6249,10 +6249,10 @@ lottie-ios@3.0.3, lottie-ios@^3.0.3:
   resolved "https://registry.yarnpkg.com/lottie-ios/-/lottie-ios-3.0.3.tgz#8b1d6463a04fe59509a55ec8cc5feea7f40f4cf3"
   integrity sha512-p7dx7bq+1yUX3qA9Xof7Lpa2Gfopi6bPtMfFdv9Qi6iKVSkg0FwJXc7fD2AiiW8trHVFhHgjj2ELTZrZF6uu1A==
 
-lottie-react-native@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/lottie-react-native/-/lottie-react-native-3.0.3.tgz#621339873f55d7ac1b6c4dfa6b4ae51907883820"
-  integrity sha512-jYF4Ve6uHx8OV8/QXxzv0ZlU75FgdwKe55pEAKuPp8UgV4Y6M2i9fKmpEvpDjxfdyZSj/Uc+2zOBuE8fs5PcsQ==
+lottie-react-native@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/lottie-react-native/-/lottie-react-native-3.0.4.tgz#4dad0274d470c0b3ef61cc7330c5637b2c713f7f"
+  integrity sha512-P4+haT2ArmKdLCPOb1zLCVSFNhS5v5gGPTpz79nji/UEG8a7q2LSu6V8MUbre/DWztJr3MLwlX7gKKaKvOM8KA==
   dependencies:
     invariant "^2.2.2"
     lottie-ios "^3.0.3"
@@ -6819,12 +6819,12 @@ mock-require@^3.0.2:
     get-caller-file "^1.0.2"
     normalize-path "^2.1.1"
 
-mock-socket@^8.0.5:
-  version "8.0.5"
-  resolved "https://registry.yarnpkg.com/mock-socket/-/mock-socket-8.0.5.tgz#4ce8909601b2bcdf5f7680f35c2f7b34beb2afc4"
-  integrity sha512-dE2EbcxJKQCeYLZSsI7BAiMZCe/bHbJ2LHb5aGwUuDmfoOINEJ8QI6qYJ85NHsSNkNa90F3s6onZcmt/+MppFA==
+mock-socket@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/mock-socket/-/mock-socket-8.1.0.tgz#d7134eccf34dc6305433495fdcc00feb51015721"
+  integrity sha512-1nY+uRPbnykOcIjl9H3L6Iy6pX4lvremW2l2f+T/pu7j10eNZwWipGuCVOQAD+A9SgWjwKQgUySpKPwQp+vMSQ==
   dependencies:
-    url-parse "^1.2.0"
+    url-parse "^1.4.4"
 
 moment@^2.19.0, moment@^2.24.0:
   version "2.24.0"
@@ -8276,15 +8276,15 @@ react-native-crypto@^2.0.1:
     pbkdf2 "3.0.8"
     public-encrypt "^4.0.0"
 
-react-native-device-info@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-2.2.2.tgz#777388b8cff4594c8db2ea3a53f2f1f9e2c611a1"
-  integrity sha512-2b0TycUJbW/9T7L070L6q4+ce8guD4c0c8mWWjiVNuvCrZVf7VNomvNk1BqIVXcnYbZO43V0SVN6z1fvp2HTyg==
+react-native-device-info@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-2.3.0.tgz#7b2a8baf8453324bd8d120ce46e5e2bb0181ccd4"
+  integrity sha512-ISEChH2zg4bRX8PL1cYoNWffJ7wmgYosKyJbkWyTxs8g+rpeGkmMf9Wo4COriAt1AJ2jC78IGhJYFzbIc+Przw==
 
-react-native-fs@^2.13.3:
-  version "2.13.3"
-  resolved "https://registry.yarnpkg.com/react-native-fs/-/react-native-fs-2.13.3.tgz#a422f0ecd8a093a7e99d8d51ff51440e090a18a8"
-  integrity sha512-B62LSSAEYQGItg7KVTzTVVCxezOYFBYp4DMVFbdoZUd1mZVFdqR2sy1HY1mye1VI/Lf3IbxSyZEQ0GmrrdwLjg==
+react-native-fs@^2.14.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/react-native-fs/-/react-native-fs-2.14.0.tgz#f3385a8a084bdf7e5e5a5aae9f0898bc26f31314"
+  integrity sha512-vRrdVke3/AK77WTN6aDxcebhXSuuieS4vputRqd0sBQ3CJvgDzN/vu5L1SAy6kzblHru6Pdq/ebfLXlrPjFqAA==
   dependencies:
     base-64 "^0.1.0"
     utf8 "^2.1.1"
@@ -10278,7 +10278,7 @@ url-parse-lax@^1.0.0:
   dependencies:
     prepend-http "^1.0.1"
 
-url-parse@^1.2.0:
+url-parse@^1.4.4:
   version "1.4.7"
   resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.4.7.tgz#a8a83535e8c00a316e403a5db4ac1b9b853ae278"
   integrity sha512-d3uaVyzDB9tQoSXFvuSUNFibTd9zxd2bkVrDRvF5TmvWWQwqE4lgYJ5m+x1DbecWkw+LK4RNl2CU1hHuOKPVlg==
