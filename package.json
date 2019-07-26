@@ -90,6 +90,10 @@
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/runtime": "^7.5.5",
     "@fortawesome/fontawesome-common-types": "^0.2.19",
+    "@semantic-release/changelog": "^3.0.4",
+    "@semantic-release/commit-analyzer": "^6.2.0",
+    "@semantic-release/git": "^7.0.16",
+    "@semantic-release/release-notes-generator": "^7.2.1",
     "@storybook/addon-storyshots": "^5.1.9",
     "@storybook/react-native": "^5.1.9",
     "@storybook/theming": "^5.1.9",
@@ -105,6 +109,7 @@
     "babel-plugin-idx": "^2.4.0",
     "babel-plugin-transform-inline-environment-variables": "0.4.3",
     "chai": "^4.2.0",
+    "conventional-changelog-eslint": "^3.0.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "ignite-bowser": "^4.5.0",
@@ -128,6 +133,7 @@
     "react-powerplug": "1.0.0",
     "react-test-renderer": "16.8.6",
     "rimraf": "2.6.3",
+    "semantic-release": "^15.13.19",
     "sinon": "^7.3.2",
     "sinon-chai": "3.3.0",
     "solidarity": "2.3.1",
@@ -154,5 +160,23 @@
     "titleTemplate": "{classname}-{title}",
     "ancestorSeparator": " › ",
     "usePathForSuiteName": "true"
+  },
+  "release": {
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "eslint"
+        }
+      ],
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "preset": "eslint"
+        }
+      ],
+      "@semantic-release/changelog",
+      "@semantic-release/git"
+    ]
   }
 }
