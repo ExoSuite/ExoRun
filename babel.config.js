@@ -28,7 +28,7 @@ module.exports = {
     [
       "@babel/plugin-proposal-optional-catch-binding"
     ],
-    ['@babel/plugin-transform-runtime'],
+    ["@babel/plugin-transform-runtime"],
     ["babel-plugin-idx"]
   ],
   sourceMaps: true
