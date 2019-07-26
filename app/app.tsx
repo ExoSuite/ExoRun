@@ -63,8 +63,9 @@ export class App extends React.Component<{}, IAppState> {
   // tslint:disable-next-line: no-feature-envy
   public async componentDidMount(): Promise<void> {
     const store = await setupRootStore()
-    this.setState({
-        ...store
+    this.setState(
+      {
+        ...store,
       },
       () => {
         // hack to ignore white screen on android
@@ -75,7 +76,7 @@ export class App extends React.Component<{}, IAppState> {
         } else {
           SplashScreen.hide()
         }
-      }
+      },
     )
   }
 
@@ -110,15 +111,15 @@ export class App extends React.Component<{}, IAppState> {
       soundPlayer: env.soundPlayer,
       socketIO: env.socketIO,
       userModel,
-      groupsModel
+      groupsModel,
     }
     // --- am: end list of stores ---
 
     return (
       <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>
         <BackButtonHandler canExit={App.canExit}>
-          <StatefulNavigator/>
-          <DataLoader ref={App.setDataLoaderInstance}/>
+          <StatefulNavigator />
+          <DataLoader ref={App.setDataLoaderInstance} />
         </BackButtonHandler>
       </Provider>
     )
