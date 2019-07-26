@@ -109,7 +109,6 @@
     "babel-plugin-idx": "^2.4.0",
     "babel-plugin-transform-inline-environment-variables": "0.4.3",
     "chai": "^4.2.0",
-    "conventional-changelog-eslint": "^3.0.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "ignite-bowser": "^4.5.0",
@@ -166,13 +165,13 @@
       [
         "@semantic-release/commit-analyzer",
         {
-          "preset": "eslint"
+          "preset": "atom"
         }
       ],
       [
         "@semantic-release/release-notes-generator",
         {
-          "preset": "eslint"
+          "preset": "atom"
         }
       ],
       "@semantic-release/changelog",
