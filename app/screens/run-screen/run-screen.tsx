@@ -15,7 +15,7 @@ export interface IRunScreenProps extends NavigationScreenProps<{}> {
 }
 
 const ROOT: ViewStyle = {
-  backgroundColor: color.palette.black,
+  backgroundColor: color.palette.black
 }
 
 /**
@@ -38,8 +38,8 @@ export class RunScreen extends React.Component<IRunScreenProps> {
   public render(): React.ReactNode {
     return (
       <Screen style={ROOT} preset="scroll">
-        <Button text="Réalité augmentée" onPress={this.goToAugmentedReality} style={{marginTop: spacing[3]}}/>
-        <Button text="Mapbox" onPress={this.goTo(AppScreens.MAP)} style={{marginTop: spacing[3]}}/>
+        <Button text="Réalité augmentée" onPress={this.goToAugmentedReality} style={{ marginTop: spacing[3] }}/>
+        <Button text="Mapbox" onPress={this.goTo(AppScreens.MAP)} style={{ marginTop: spacing[3] }}/>
       </Screen>
     )
   }

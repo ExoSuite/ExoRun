@@ -55,14 +55,18 @@ export const GroupModel = types
     },
     pushMessage(newMessage: IMessage): void {
       self.messages.unshift(createMessage(newMessage))
-    },
+    }
 
   }))
 
 type GroupType = Instance<typeof GroupModel>
 
 // tslint:disable-next-line:no-empty-interface interface-name
-export interface Group extends GroupType {}
+export interface Group extends GroupType {
+}
+
 type GroupSnapshotType = SnapshotOut<typeof GroupModel>
+
 // tslint:disable-next-line:no-empty-interface interface-name
-export interface GroupSnapshot extends GroupSnapshotType {}
+export interface GroupSnapshot extends GroupSnapshotType {
+}

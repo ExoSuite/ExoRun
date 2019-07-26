@@ -73,7 +73,7 @@ const CONTAINER: ViewStyle = {
   flexGrow: 1,
   flex: 1,
   justifyContent: "space-evenly",
-  backgroundColor: color.background,
+  backgroundColor: color.background
 }
 
 const KEYBOARD_ACCESSORY_VIEW: ViewStyle = {

@@ -275,8 +275,8 @@ const styles = StyleSheet.create({
 
 Bubble.contextTypes = {
   // @ts-ignore
-  actionSheet: (): any => null,
-};
+  actionSheet: (): any => null
+}
 
 // @ts-ignore
 Bubble.defaultProps = {

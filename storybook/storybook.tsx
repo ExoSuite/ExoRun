@@ -15,16 +15,17 @@ configure(() => {
   require("./storybook-registry")
 }, module)
 
-const StorybookUI = Config.SERVER_IP ?
-  getStorybookUI({
-    port: 9001,
-    host: Config.SERVER_IP,
-    onDeviceUI: true
-  }) : getStorybookUI({
-    port: 9001,
-    host: "localhost",
-    onDeviceUI: true
-  })
+const StorybookUI = Config.SERVER_IP
+  ? getStorybookUI({
+      port: 9001,
+      host: Config.SERVER_IP,
+      onDeviceUI: true,
+    })
+  : getStorybookUI({
+      port: 9001,
+      host: "localhost",
+      onDeviceUI: true,
+    })
 
 // RN hot module must be in a class for HMR
 /**
@@ -42,6 +43,6 @@ export class StorybookUIRoot extends React.Component {
   }
 
   public render(): React.ReactNode {
-    return <StorybookUI/>
+    return <StorybookUI />
   }
 }

@@ -9,8 +9,8 @@
 // It's easier just to leave it here.
 
 // inject nodejs native module
-import "core-js/stable";
-import "regenerator-runtime/runtime";
+import "core-js/stable"
+import "regenerator-runtime/runtime"
 import "node-libs-react-native/globals"
 // import main APP
 import "./app/app.tsx"

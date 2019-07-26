@@ -54,7 +54,7 @@ const CONTAINER: ViewStyle = {
   flexGrow: 1,
   flex: 1,
   justifyContent: "space-evenly",
-  backgroundColor: color.background,
+  backgroundColor: color.background
 }
 
 const KEYBOARD_ACCESSORY_VIEW: ViewStyle = {
@@ -76,7 +76,7 @@ const NEXT_STEP_BUTTON: ViewStyle = {
 
 const MAIN_CONTAINER: ViewStyle = {
   marginBottom: spacing[4],
-  flex: 1,
+  flex: 1
 }
 
 const disabled = color.palette.lightGrey

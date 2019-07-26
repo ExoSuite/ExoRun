@@ -2,9 +2,9 @@ import { ApiResponse } from "apisauce"
 import { HttpResponse } from "./api-http-response"
 
 export type GeneralApiProblem =
-  /**
-   * Times up.
-   */
+/**
+ * Times up.
+ */
   | { kind: HttpResponse.TIMEOUT; temporary: true }
   /**
    * Cannot connect to the server for some reason.

@@ -76,7 +76,7 @@ const FIXED_HEADER: ViewStyle = {
   paddingLeft: 10,
   paddingRight: 10,
   flexDirection: "column",
-  backgroundColor: palette.backgroundDarker,
+  backgroundColor: palette.backgroundDarker
 }
 
 const FLOATING_BUTTON: ViewStyle = {
@@ -131,7 +131,7 @@ const POST_CONTAINER: ViewStyle = {
   shadowColor: "#000",
   shadowOffset: {
     width: 0,
-    height: 2,
+    height: 2
   },
   shadowOpacity: 0.25,
   shadowRadius: 3.84,
@@ -258,7 +258,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
         this.userPosts.push(...userPosts.data.data)
       }
     } catch (e) {
-      return;
+      return
     }
   }
 
@@ -324,7 +324,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   }
 
   @autobind
-  private renderPost({item}: { item: IPost}): React.ReactElement {
+  private renderPost({ item }: { item: IPost }): React.ReactElement {
     const { api, userModel } = this.props
     const avatarUrl = api.buildAvatarUrl(item.author_id, this.pictureToken)
     const user: IUser = this.me ? userModel : this.userProfile
@@ -339,7 +339,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
       >
         <View style={ROW}>
           <Avatar avatarUrl={avatarUrl} urlFromParent size={42}/>
-          <View style={{marginLeft: spacing[2], justifyContent: "center"}}>
+          <View style={{ marginLeft: spacing[2], justifyContent: "center" }}>
             <Text
               style={{ textTransform: "capitalize" }}
               text={`${user.first_name} ${user.last_name}`}
@@ -348,15 +348,15 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
             <Text preset="nicknameLight" text={user.nick_name}/>
           </View>
         </View>
-        <View style={{marginTop: spacing[3]}}>
-          <Text text={item.content} />
+        <View style={{ marginTop: spacing[3] }}>
+          <Text text={item.content}/>
         </View>
-        <View style={{...ROW, flex: 1, marginTop: spacing[3]}}>
+        <View style={{ ...ROW, flex: 1, marginTop: spacing[3] }}>
           <View>
             <Text preset="fieldLabel" tx="common.createdAt"/>
             <Text preset="fieldLabel" text={formattedCreatedAt}/>
           </View>
-          <View style={{alignSelf: "flex-end", flex: 1}}>
+          <View style={{ alignSelf: "flex-end", flex: 1 }}>
             <Text preset="fieldLabel" tx="common.updatedAt" style={TEXT_ALIGN_RIGHT}/>
             <Text preset="fieldLabel" text={formattedUpdatedAt} style={TEXT_ALIGN_RIGHT}/>
           </View>
@@ -389,7 +389,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   private updatePostCallback(currentPost: IPost, deletePost = false): void {
     if (!deletePost) {
       const currentPostIndex = this.userPosts.findIndex((post: any) => post.id === currentPost.id)
-      this.userPosts[currentPostIndex] = currentPost;
+      this.userPosts[currentPostIndex] = currentPost
       this.userPosts = this.userPosts.slice()
     } else {
       this.userPosts = this.userPosts.filter((post: any) => post.id !== currentPost.id)
@@ -412,7 +412,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
       this.isUserFollowedByVisitor = userProfileRequest.data.follow.status
     }
 
-    await this.fetchPosts().catch(noop);
+    await this.fetchPosts().catch(noop)
     this.avatarUrl = api.buildAvatarUrl(this.userProfile.id, token)
     this.coverUrl = api.buildCoverUrl(this.userProfile.id, token)
   }
@@ -465,7 +465,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
           renderItem={this.renderPost}
           keyExtractor={keyExtractor}
           ListHeaderComponent={(
-            <View style={{marginBottom: spacing[2], ...headerShadow}}>
+            <View style={{ marginBottom: spacing[2], ...headerShadow }}>
               <View style={StyleSheet.flatten([FIXED_HEADER, { marginTop: 150 }])}>
                 <View style={BUTTON_CONTAINER}>
                   {renderIf.if(me)(

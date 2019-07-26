@@ -95,7 +95,7 @@ export class Api implements IService {
     const response: ApiResponse<IToken[]> = await this.get(ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS)
     if (isEmpty(response.data)) { // if something bad is happened or happen create token set
       await this.onNoPersonalTokensCreateTokenSet()
-    } else  {
+    } else {
       response.data.forEach(async (token: IToken) => {
         if (token.revoked && token.name in localPersonalTokens) {
           await this.delete(`${ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS}/${token.id}`)

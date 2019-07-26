@@ -24,6 +24,7 @@ import { RightNavigationButton } from "@navigation/components/right-navigation-b
 
 interface IChooseUsersNewGroupNavProps {
   chosenUsers?: IUser[]
+
   updateUsers(chosenUsers: IUser[]): void
 }
 
@@ -259,7 +260,7 @@ export class ChooseUsersNewGroupScreen extends React.Component<IChooseUsersNewGr
           />
         </View>
 
-        <View style={{padding: spacing[2]}}>
+        <View style={{ padding: spacing[2] }}>
           <Text tx="group.users" preset="bold" style={{ marginLeft: spacing[2] }}/>
           <FlatList
             data={this.users}
