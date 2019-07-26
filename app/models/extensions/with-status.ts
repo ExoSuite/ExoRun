@@ -40,7 +40,7 @@ export const withStatus = (self: IStateTreeNode) => {
       // as setter
       set status(value: StatusType) {
         status.set(value)
-      },
+      }
     },
     actions: {
       /**
@@ -50,7 +50,7 @@ export const withStatus = (self: IStateTreeNode) => {
        */
       setStatus(value: StatusType): void {
         status.set(value)
-      },
-    },
+      }
+    }
   }
 }

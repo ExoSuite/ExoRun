@@ -75,7 +75,7 @@ export class App extends React.Component<{}, IAppState> {
         } else {
           SplashScreen.hide()
         }
-      },
+      }
     )
   }
 
@@ -110,15 +110,15 @@ export class App extends React.Component<{}, IAppState> {
       soundPlayer: env.soundPlayer,
       socketIO: env.socketIO,
       userModel,
-      groupsModel,
+      groupsModel
     }
     // --- am: end list of stores ---
 
     return (
       <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>
         <BackButtonHandler canExit={App.canExit}>
-          <StatefulNavigator />
-          <DataLoader ref={App.setDataLoaderInstance} />
+          <StatefulNavigator/>
+          <DataLoader ref={App.setDataLoaderInstance}/>
         </BackButtonHandler>
       </Provider>
     )

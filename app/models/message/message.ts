@@ -17,8 +17,13 @@ export const MessageModel = types
   .actions((self: Instance<typeof MessageModel>) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
 
 type MessageType = Instance<typeof MessageModel>
+
 // tslint:disable-next-line:no-empty-interface
-export interface IMessageModel extends MessageType {}
+export interface IMessageModel extends MessageType {
+}
+
 type MessageSnapshotType = SnapshotOut<typeof MessageModel>
+
 // tslint:disable-next-line:interface-name no-empty-interface
-export interface MessageSnapshot extends MessageSnapshotType {}
+export interface MessageSnapshot extends MessageSnapshotType {
+}

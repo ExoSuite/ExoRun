@@ -38,7 +38,7 @@ const CONTAINER: ViewStyle = {
 
 const PROFILE_COVER: ImageStyle = {
   width: "100%",
-  height: 150,
+  height: 150
 }
 
 const BOTTOM_BORDER: ViewStyle = {
@@ -82,7 +82,7 @@ export class EditMyProfileScreen extends React.Component<IEditMyProfileScreenPro
 
   @action.bound
   private handleDatePicked(date: Date): void {
-    this.userProfile.profile.birthday = moment(date).format("YYYY-MM-DD");
+    this.userProfile.profile.birthday = moment(date).format("YYYY-MM-DD")
     this.toggleIsDateTimePickerVisible()
   }
 
@@ -142,7 +142,7 @@ export class EditMyProfileScreen extends React.Component<IEditMyProfileScreenPro
 
     return (
       <InputScrollView style={CONTAINER} useAnimatedScrollView>
-     {/*   <TouchableGreyscaledIcon
+        {/*   <TouchableGreyscaledIcon
           iconName="camera-alt"
           iconSize={32}
           onPress={this.onProfileCoverPressed}
@@ -166,7 +166,7 @@ export class EditMyProfileScreen extends React.Component<IEditMyProfileScreenPro
             <Avatar size={DefaultRnpAvatarSize} urlFromParent avatarUrl={this.avatarUrl} withMargin={false}/>
           </TouchableGreyscaledIcon>
         </View>*/}
-        <View style={{marginTop: spacing[6], width: "100%", padding: spacing[6]}}>
+        <View style={{ marginTop: spacing[6], width: "100%", padding: spacing[6] }}>
           <TextField
             autoCapitalize="none"
             labelTx="profile.nickName"
@@ -230,7 +230,7 @@ export class EditMyProfileScreen extends React.Component<IEditMyProfileScreenPro
             editable={false}
           />
 
-          <View style={{marginTop: spacing[6]}}>
+          <View style={{ marginTop: spacing[6] }}>
             <Button
               tx="common.update"
               preset="success"

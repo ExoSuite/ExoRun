@@ -10,6 +10,6 @@ export const withEnvironment = (self: IStateTreeNode) => ({
   views: {
     get environment(): Environment {
       return getEnv(self)
-    },
-  },
+    }
+  }
 })

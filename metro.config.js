@@ -10,18 +10,18 @@ module.exports = {
     getTransformOptions: async () => ({
       transform: {
         experimentalImportSupport: false,
-        inlineRequires: false,
-      },
+        inlineRequires: false
+      }
     }),
     getTransformModulePath() {
       return require.resolve("react-native-typescript-transformer")
     },
     getSourceExts() {
       return ["ts", "tsx"]
-    },
+    }
   },
   resolver: {
     extraNodeModules: require("node-libs-react-native"),
-    assetExts: ["mp3", "ttf", "ogg", "png", "vrx", "hdr", "gltf", "glb", "arobject", "obj", "mtl"],
-  },
+    assetExts: ["mp3", "ttf", "ogg", "png", "vrx", "hdr", "gltf", "glb", "arobject", "obj", "mtl"]
+  }
 }

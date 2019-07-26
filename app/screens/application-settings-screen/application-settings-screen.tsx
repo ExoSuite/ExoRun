@@ -50,7 +50,7 @@ export class ApplicationSettingsScreen extends React.Component<IApplicationSetti
   public render(): React.ReactNode {
     return (
       <Screen style={ROOT} preset="fixed">
-        <View style={{margin: spacing[2], padding: spacing[2]}}>
+        <View style={{ margin: spacing[2], padding: spacing[2] }}>
           <Button preset="primary" textPreset="primaryBold" text="Se déconnecter" onPress={this.logout}/>
         </View>
       </Screen>

@@ -27,7 +27,7 @@ const GROUP_CONTAINER: ViewStyle = {
   shadowColor: "#000",
   shadowOffset: {
     width: 0,
-    height: 2,
+    height: 2
   },
   shadowOpacity: 0.25,
   shadowRadius: 3.84,
@@ -74,7 +74,7 @@ export class GroupScreen extends React.Component<IGroupScreenProps> {
 
   // tslint:disable-next-line: no-feature-envy
   @autobind
-  private renderGroup({item}: { item: IGroup}): React.ReactElement {
+  private renderGroup({ item }: { item: IGroup }): React.ReactElement {
     const formattedCreatedAt = moment(item.created_at).format("LLL")
     const formattedUpdatedAt = moment(item.updated_at).format("LLL")
 
@@ -85,7 +85,7 @@ export class GroupScreen extends React.Component<IGroupScreenProps> {
         //        onLongPress={this.onUserWantToUpdatePost(item)}
       >
         <View style={ROW}>
-          <View style={{marginLeft: spacing[2], justifyContent: "center"}}>
+          <View style={{ marginLeft: spacing[2], justifyContent: "center" }}>
             <Text
               style={{ textTransform: "capitalize" }}
               text={item.name}
@@ -93,15 +93,15 @@ export class GroupScreen extends React.Component<IGroupScreenProps> {
             />
           </View>
         </View>
-        <View style={{marginTop: spacing[3]}}>
+        <View style={{ marginTop: spacing[3] }}>
           {/*<Text text={item.content} />*/}
         </View>
-        <View style={{...ROW, flex: 1, marginTop: spacing[3]}}>
+        <View style={{ ...ROW, flex: 1, marginTop: spacing[3] }}>
           <View>
             <Text preset="fieldLabel" tx="common.createdAt"/>
             <Text preset="fieldLabel" text={formattedCreatedAt}/>
           </View>
-          <View style={{alignSelf: "flex-end", flex: 1}}>
+          <View style={{ alignSelf: "flex-end", flex: 1 }}>
             <Text preset="fieldLabel" tx="common.updatedAt" style={TEXT_ALIGN_RIGHT}/>
             <Text preset="fieldLabel" text={formattedUpdatedAt} style={TEXT_ALIGN_RIGHT}/>
           </View>
