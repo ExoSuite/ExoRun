@@ -13,4 +13,4 @@ module.exports = {
     "^.+\\.js$": "<rootDir>/test/preprocessors/react-native-preprocessor.js",
     "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/jest-preset-ignite/preprocessor.js"
   }
-};
+}
