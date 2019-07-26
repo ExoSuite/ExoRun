@@ -371,12 +371,10 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ExoRun/Pods-ExoRun-frameworks.sh",
 				"${PODS_ROOT}/../../node_modules/react-viro/ios/dist/ViroRenderer/static_lib/ViroKit_static_lib.framework",
-				"${PODS_ROOT}/../../node_modules/@react-native-mapbox-gl/maps/ios/Mapbox.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ViroKit_static_lib.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -474,7 +472,7 @@
 				CODE_SIGN_ENTITLEMENTS = ExoRun/ExoRun.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 193;
+				CURRENT_PROJECT_VERSION = 194;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 59JKX7F3X8;
 				GCC_INPUT_FILETYPE = automatic;
@@ -551,7 +549,7 @@
 				CODE_SIGN_ENTITLEMENTS = ExoRun/ExoRun.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 193;
+				CURRENT_PROJECT_VERSION = 194;
 				DEVELOPMENT_TEAM = 59JKX7F3X8;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_OPTIMIZATION_LEVEL = s;
