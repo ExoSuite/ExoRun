@@ -63,7 +63,7 @@ PODS:
   - React-jsinspector (0.60.4)
   - react-native-config (0.11.7):
     - React
-  - react-native-mapbox-gl (7.0.0-rc3):
+  - react-native-mapbox-gl (7.0.1):
     - React
   - react-native-splash-screen (3.2.0):
     - React
@@ -267,7 +267,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 7549641e48bafae7bfee3f3ea19bf4901639c5de
   React-jsinspector: 73f24a02fa684ed6a2b828ba116874a2191ded88
   react-native-config: 55548054279d92e0e4566ea15a8b9b81028ec342
-  react-native-mapbox-gl: 26cabddce8bf6f39164c7be4dceb781e6fab0fdc
+  react-native-mapbox-gl: eda3e4176b31915dde30121e20d442de82701bc5
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-version-info: f95938832bdb2ce94c3d045c2e44fabcc88f796a
   react-native-video: 6555881252c8ca039760e1cd6df28ac28ffb2baf
