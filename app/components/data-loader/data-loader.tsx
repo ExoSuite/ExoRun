@@ -1,5 +1,4 @@
 // vendor imports
-import * as React from "react"
 import { Button } from "@components/button"
 import { Text } from "@components/text"
 import { FinalAnimationStatus, IAnimation, LoaderState } from "@components/data-loader/data-loader.types"
@@ -9,6 +8,7 @@ import { isEmpty } from "lodash-es"
 import AnimatedLottieView from "lottie-react-native"
 import { action, observable, runInAction } from "mobx"
 import { observer } from "mobx-react"
+import * as React from "react"
 import { View, ViewStyle } from "react-native"
 import { View as AnimatedView } from "react-native-animatable"
 import Modal from "react-native-modal"
@@ -77,7 +77,7 @@ export const defaultSoundCallback: CallbackType = (): void => {
   console.tron.log("sound callback from animated loader called!")
 }
 
-const baseDelayedIOS = 550
+const baseDelayedIOS = 1100
 const baseDelayedAndroid = 1100
 const delayedAction = (callback: Function): void => {
   setTimeout(() => {
@@ -132,7 +132,6 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
 
   private errorAnimation(): void {
     const { start, end } = errorAnimation
-    this.lottieAnimation.reset()
     this.lottieAnimation.play(start, end)
   }
 
@@ -181,29 +180,39 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
   private onAnimationFinish(): void {
 
     // 2nd step when error or success animation has finished cross or a check
+    // ⚠️ THIS PART WILL ONLY RUN ON ANDROID ⚠️
     if (this.finalAnimationStatus === FinalAnimationStatus.PLAYED) {
       this.finalAnimationStep()
     } else if (this.finalAnimationStatus === FinalAnimationStatus.WILL_PLAY) {
-      // call the sound animation and success animation after first step
-      this.firstAnimationStep()
-      this.finalAnimationStatus = FinalAnimationStatus.PLAYED
+      // on android call the sound animation and success animation after first step
+      if (Platform.Android) {
+        this.firstAnimationStep()
+        this.finalAnimationStatus = FinalAnimationStatus.PLAYED
+      } else { // on ios call the final step
+        this.finalAnimationStep()
+        this.finalAnimationStatus = FinalAnimationStatus.STOPPED
+      }
     } else if (this.isSuccessFul()) {
       this.successAnimation()
       this.finalAnimationStatus = FinalAnimationStatus.WILL_PLAY
+      // on ios call the sound animation and success animation beforehand
+      if (Platform.iOS) {
+        this.firstAnimationStep()
+      }
     } else if (this.hasError()) {
       this.errorAnimation()
       this.finalAnimationStatus = FinalAnimationStatus.WILL_PLAY
+      // on ios call the sound animation and success beforehand
+      if (Platform.iOS) {
+        this.firstAnimationStep()
+      }
     } else if (this.isStandingBy()) {
       this.baseAnimation()
     }
   }
 
   private playSoundCallback(): void {
-    if (Platform.iOS) {
-      setTimeout(this.soundCallback, DataLoader.getDelayedTime)
-    } else {
-      this.soundCallback()
-    }
+    this.soundCallback()
   }
 
   @autobind
@@ -218,7 +227,7 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
 
   private successAnimation(): void {
     const { start, end } = successAnimation
-    this.lottieAnimation.reset()
+    //this.lottieAnimation.reset()
     this.lottieAnimation.play(start, end)
   }
 
