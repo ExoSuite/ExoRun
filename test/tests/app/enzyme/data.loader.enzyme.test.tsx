@@ -61,7 +61,7 @@ describe("data loader tests", () => {
     wrapper.instance().onAnimationFinish()
     expect(wrapper.instance().finalAnimationStatus).toEqual(FinalAnimationStatus.WILL_PLAY)
     wrapper.instance().onAnimationFinish()
-    expect(wrapper.instance().finalAnimationStatus).toEqual(FinalAnimationStatus.PLAYED)
+    expect(wrapper.instance().finalAnimationStatus).toEqual(FinalAnimationStatus.STOPPED)
   })
 
 })
