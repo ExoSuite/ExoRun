@@ -195,8 +195,8 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
     DataLoader.Instance.success(
       soundPlayer.success,
       async () => {
-        await socketIO.setup()
         navigation.navigate(AppScreens.HOME)
+        await socketIO.setup()
       })
   }
 
@@ -213,10 +213,11 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
     if (isEmpty(validate(RULES, { email }))) {
       const { api } = this.props
       this.emailInputState = AnimatedInteractiveInputState.LOADING
-      api.post("auth/preflight/email", { email }, {}, false)
-        .then(this.handleValidEmail)
-        .catch(this.handleInvalidEmail)
-
+      setTimeout(() => {
+        api.post("auth/preflight/email", { email }, {}, false)
+          .then(this.handleValidEmail)
+          .catch(this.handleInvalidEmail)
+      }, 500)
     } else {
       this.emailInputState = AnimatedInteractiveInputState.ERROR
     }

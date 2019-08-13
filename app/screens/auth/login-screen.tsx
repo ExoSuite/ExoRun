@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Image, ImageStyle, SafeAreaView, TextInput, TextStyle, View, ViewStyle } from "react-native"
+import { Image, ImageStyle, Keyboard, SafeAreaView, TextInput, TextStyle, View, ViewStyle } from "react-native"
 import {
   AnimatedInteractiveInput,
   booleanToInputState,
@@ -192,6 +192,7 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
   @autobind
   public async _authorizeLogin(): Promise<void> {
     const { api, soundPlayer, navigation, userModel, socketIO } = this.props
+    Keyboard.dismiss()
     DataLoader.Instance.toggleIsVisible()
 
     const response: ApiResponse<ITokenResponse> | HttpRequestError =
@@ -213,9 +214,9 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
     DataLoader.Instance.success(
       soundPlayer.success,
       async () => {
+        navigation.navigate(AppScreens.HOME)
         await socketIO.setup()
         this.props.groupsModel.fetchGroups()
-        navigation.navigate(AppScreens.HOME)
       })
   }
 
