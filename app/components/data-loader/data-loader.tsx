@@ -227,7 +227,6 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
 
   private successAnimation(): void {
     const { start, end } = successAnimation
-    //this.lottieAnimation.reset()
     this.lottieAnimation.play(start, end)
   }
 
