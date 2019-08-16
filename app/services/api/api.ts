@@ -96,15 +96,17 @@ export class Api implements IService {
     if (isEmpty(response.data)) { // if something bad is happened or happen create token set
       await this.onNoPersonalTokensCreateTokenSet()
     } else {
-      response.data.forEach(async (token: IToken) => {
+      for (const token of response.data) {
         if (token.revoked && token.name in localPersonalTokens) {
           await this.delete(`${ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS}/${token.id}`)
-          const newPersonalToken: ApiResponse<IPersonalTokenResponse> =
-            await this.post(ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS, { name: token.name, scopes: token.scopes })
+          const newPersonalToken: ApiResponse<IPersonalTokenResponse> = await this.post(
+            ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS,
+            { name: token.name, scopes: token.scopes }
+          )
           localPersonalTokens[token.name] = newPersonalToken.data
           localTokensHasBeenModified = true
         }
-      })
+      }
     }
 
     if (localTokensHasBeenModified) {

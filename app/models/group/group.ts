@@ -41,17 +41,17 @@ export const GroupModel = types
     },
     fetchMessages(): void {
       self.api.get(`group/${self.id}/message`, {}, Api.BuildAuthorizationHeader(self.messageToken))
-        .then(self.afterSuccessfulFetch)
+        .then(self.afterSuccessfulRequest)
         .catch(noop)
     },
-    afterSuccessfulFetch(messageResponse: ApiOkResponse<{ data: IMessage[] }>): void {
+    afterSuccessfulRequest(messageResponse: ApiOkResponse<{ data: IMessage[] }>): void {
       self.messages = messageResponse.data.data.map(createMessage)
     },
     addMessage(newMessage: { text: string }): void {
       self.api.post(`group/${self.id}/message`,
         { contents: newMessage.text },
         Api.BuildAuthorizationHeader(self.messageToken)
-      )
+      ).catch(noop)
     },
     pushMessage(newMessage: IMessage): void {
       self.messages.unshift(createMessage(newMessage))

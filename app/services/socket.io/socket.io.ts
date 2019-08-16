@@ -1,5 +1,5 @@
-import Echo from "laravel-echo"
-import SocketIoClient from "socket.io-client/dist/socket.io"
+import Echo from "laravel-echo/dist/echo"
+import SocketIoClient from "socket.io-client"
 import { IService } from "@services/interfaces"
 import Config from "react-native-config"
 import { IPersonalToken, IPersonalTokens, IUser } from "@services/api"
