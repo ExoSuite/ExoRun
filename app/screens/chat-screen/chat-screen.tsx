@@ -15,6 +15,7 @@ import { IGroupsModel } from "@models/groups"
 import autobind from "autobind-decorator"
 import { Group } from "@models/group"
 import { convertUserToRNGCFormat } from "@utils/rngc/convertUser"
+import { User as RNGCUser } from "react-native-gifted-chat"
 
 interface IChatScreenNavigationProps {
   group: IGroupsModel,
@@ -45,7 +46,7 @@ const maxInputLength = 2048
 @inject(Injection.UserModel, Injection.Api)
 @observer
 export class ChatScreen extends React.Component<IChatScreenProps, IChatState> {
-  private readonly giftedChatUserModel: IGiftedChatUserModel
+  private readonly giftedChatUserModel: RNGCUser
   private readonly group: Group
   @observable private newMessageText: string
 
