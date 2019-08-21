@@ -14,6 +14,7 @@ import { IMessage } from "react-native-gifted-chat/lib/types"
 import { IGroupsModel } from "@models/groups"
 import autobind from "autobind-decorator"
 import { Group } from "@models/group"
+import { convertUserToRNGCFormat } from "@utils/rngc/convertUser"
 
 interface IChatScreenNavigationProps {
   group: IGroupsModel,
@@ -62,11 +63,10 @@ export class ChatScreen extends React.Component<IChatScreenProps, IChatState> {
     const pictureToken: IPersonalToken = props.navigation.getParam("pictureToken")
     const group: Group = props.navigation.getParam("group")
 
-    this.giftedChatUserModel = {
-      _id: userModel.id,
-      name: `${userModel.first_name} ${userModel.last_name}`,
-      avatar: props.api.buildAvatarUrl(userModel.id, pictureToken.accessToken)
-    }
+    this.giftedChatUserModel = convertUserToRNGCFormat(
+      userModel,
+      props.api.buildAvatarUrl(userModel.id, pictureToken.accessToken)
+    )
     this.group = group
   }
 
@@ -84,7 +84,7 @@ export class ChatScreen extends React.Component<IChatScreenProps, IChatState> {
     return (
       <View style={ROOT}>
         <GiftedChat
-          messages={this.group.toRNGCMessagesFormat(this.giftedChatUserModel)}
+          messages={this.group.toRNGCMessagesFormat}
           alignTop={false}
           forceGetKeyboardHeight
           text={this.newMessageText}

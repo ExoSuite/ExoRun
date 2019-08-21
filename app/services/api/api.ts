@@ -91,27 +91,23 @@ export class Api implements IService {
 
   // tslint:disable-next-line: no-feature-envy
   private async onLocalTokensFulfilled(localPersonalTokens: IPersonalTokens): Promise<void> {
-    let localTokensHasBeenModified = false
     const response: ApiResponse<IToken[]> = await this.get(ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS)
-    if (isEmpty(response.data)) { // if something bad is happened or happen create token set
+    if (isEmpty(response.data)) { // if something bad is happened or happen create a token set
       await this.onNoPersonalTokensCreateTokenSet()
     } else {
       for (const token of response.data) {
-        if (token.revoked && token.name in localPersonalTokens) {
+        if (token.revoked) {
           await this.delete(`${ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS}/${token.id}`)
           const newPersonalToken: ApiResponse<IPersonalTokenResponse> = await this.post(
             ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS,
             { name: token.name, scopes: token.scopes }
           )
           localPersonalTokens[token.name] = newPersonalToken.data
-          localTokensHasBeenModified = true
         }
       }
     }
 
-    if (localTokensHasBeenModified) {
-      await save(localPersonalTokens, Server.EXOSUITE_USERS_API_PERSONAL)
-    }
+    await save(localPersonalTokens, Server.EXOSUITE_USERS_API_PERSONAL)
   }
 
   // tslint:disable-next-line: no-feature-envy

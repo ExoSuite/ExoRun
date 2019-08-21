@@ -16,7 +16,8 @@ export const GroupsModel = types
     maxPage: types.optional(types.number, 0),
     api: types.frozen(Api),
     socketIO: types.frozen(SocketIo),
-    messageToken: types.frozen(PersonalTokenImpl)
+    messageToken: types.frozen(PersonalTokenImpl),
+    pictureToken: types.frozen(PersonalTokenImpl),
   })
   .views((self: Instance<typeof GroupsModel>) => ({
     get latest(): IGroup[] { // will return the latest updated group
@@ -47,7 +48,8 @@ export const GroupsModel = types
       return {
         channel: SocketIo.InstantiateChannel(group.id),
         api: self.api,
-        messageToken: self.messageToken
+        messageToken: self.messageToken,
+        pictureToken: self.pictureToken
       }
     },
     addGroup(group: IGroup): void {

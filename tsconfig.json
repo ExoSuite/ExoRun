@@ -5,7 +5,7 @@
     "incremental": true,
     "experimentalDecorators": true,
     "jsx": "react-native",
-    "module": "esnext",
+    "module": "es2015",
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "noImplicitAny": false,
@@ -15,8 +15,9 @@
     "removeComments": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "target": "esnext",
-    "lib": ["es6"],
+    "target": "es2015",
+    "lib": ["es2018"],
+    "skipLibCheck": true,
     "noEmit": true,
     "importHelpers": true,
     "plugins": [
@@ -45,5 +46,6 @@
       "@types/*": ["app/types/*"]
     }
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "include": ["app", "test", "storybook"]
 }

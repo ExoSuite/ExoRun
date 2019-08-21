@@ -22,11 +22,9 @@ interface IMessageProps {
   renderDay(props: any): React.ReactElement
 }
 
-// tslint:disable
-
 export class Message extends React.Component<IMessageProps> {
 
-  public getInnerComponentProps() {
+  public getInnerComponentProps(): object {
     // @ts-ignore
     const { containerStyle, ...props } = this.props
 
@@ -38,8 +36,7 @@ export class Message extends React.Component<IMessageProps> {
     }
   }
 
-  public render() {
-    // @ts-ignore
+  public render(): React.ReactNode {
     const marginBottom = isSameUser(this.props.currentMessage, this.props.nextMessage) ? 2 : 10
 
     return (
@@ -60,8 +57,8 @@ export class Message extends React.Component<IMessageProps> {
     )
   }
 
-  public renderAvatar() {
-    const avatarProps = this.getInnerComponentProps()
+  public renderAvatar(): React.ReactNode {
+    const avatarProps = this.getInnerComponentProps();
 
     return (
       <Avatar
@@ -72,7 +69,7 @@ export class Message extends React.Component<IMessageProps> {
     )
   }
 
-  public renderBubble() {
+  public renderBubble(): React.ReactNode {
     const bubbleProps = this.getInnerComponentProps()
     if (this.props.renderBubble) {
       return this.props.renderBubble(bubbleProps)
@@ -82,7 +79,7 @@ export class Message extends React.Component<IMessageProps> {
     return <Bubble {...bubbleProps} />
   }
 
-  public renderDay() {
+  public renderDay(): React.ReactNode {
     if (this.props.currentMessage.createdAt) {
       const dayProps = this.getInnerComponentProps()
       if (this.props.renderDay) {

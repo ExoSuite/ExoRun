@@ -5,7 +5,7 @@ import { Api, IMessage, PersonalTokenImpl } from "@services/api"
 import { SocketIoServerEvent } from "@services/socket.io/socket.io.server.event"
 import { ApiOkResponse } from "apisauce"
 import { noop } from "lodash-es"
-import { IMessage as IMessageRNGC, User as IUserRNGC } from "react-native-gifted-chat/lib/types"
+import { IMessage as IMessageRNGC } from "react-native-gifted-chat/lib/types"
 
 const createMessage = (message: IMessage): IMessageModel => MessageModel.create(message)
 
@@ -22,15 +22,20 @@ export const GroupModel = types
     channel: types.frozen(SocketIoPresenceChannel),
     messages: types.optional(types.array(MessageModel), []),
     api: types.frozen(Api),
-    messageToken: types.frozen(PersonalTokenImpl)
+    messageToken: types.frozen(PersonalTokenImpl),
+    pictureToken: types.frozen(PersonalTokenImpl),
   })
   .views((self: Instance<typeof GroupModel>) => ({
-    toRNGCMessagesFormat(giftedChatUserModel: IUserRNGC): IMessageRNGC[] {
+    get toRNGCMessagesFormat(): IMessageRNGC[] {
       return self.messages.map((message: IMessageModel) => ({
         _id: message.id,
         text: message.contents,
         createdAt: message.created_at,
-        user: giftedChatUserModel
+        user: {
+          _id: message.user_id,
+          name: `${message.user.first_name} ${message.user.last_name}`,
+          avatar: self.api.buildAvatarUrl(message.user.id, self.pictureToken.accessToken)
+        }
       }))
     }
   })) // eslint-disable-line @typescript-eslint/no-unused-vars

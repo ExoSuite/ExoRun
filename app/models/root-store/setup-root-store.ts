@@ -72,6 +72,10 @@ export async function setupRootStore(): Promise<ISetupRootStore> {
       // @ts-ignore
       "message-exorun": {
         accessToken: ""
+      },
+      // @ts-ignore
+      "view-picture-exorun": {
+        accessToken: ""
       }
     }
   }
@@ -79,7 +83,8 @@ export async function setupRootStore(): Promise<ISetupRootStore> {
   const groupsModel = GroupsModel.create({
     api: env.api,
     socketIO: env.socketIO,
-    messageToken: personalTokens["message-exorun"]
+    messageToken: personalTokens["message-exorun"],
+    pictureToken: personalTokens["view-picture-exorun"]
   })
 
   return {
