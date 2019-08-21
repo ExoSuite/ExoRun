@@ -22,6 +22,9 @@ interface IMessageProps {
   renderDay(props: any): React.ReactElement
 }
 
+/**
+ * Message will handle the content of a message
+ */
 export class Message extends React.Component<IMessageProps> {
 
   public getInnerComponentProps(): object {

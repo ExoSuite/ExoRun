@@ -51,7 +51,9 @@ const SEARCH: ViewStyle = {
 const HeaderRight = RightNavigationButton({ modalScreen: AppScreens.NEW_GROUP })
 const keyExtractor = (item: IGroup, index: number): string => item.id
 
-// tslint:disable-next-line: completed-docs
+/**
+ * GroupScreen will show the groups
+ */
 @inject(Injection.GroupsModel)
 @observer
 export class GroupScreen extends React.Component<IGroupScreenProps> {

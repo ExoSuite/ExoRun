@@ -10,12 +10,11 @@ import { action, observable } from "mobx"
 import { Injection, InjectionProps } from "@services/injections"
 import { IUserModel } from "@models/user-profile"
 import { renderComposer, renderInputToolbar, renderMessage, renderSend } from "@screens/chat-screen/lib"
-import { IMessage } from "react-native-gifted-chat/lib/types"
+import { IMessage, User as RNGCUser } from "react-native-gifted-chat/lib/types"
 import { IGroupsModel } from "@models/groups"
 import autobind from "autobind-decorator"
 import { Group } from "@models/group"
 import { convertUserToRNGCFormat } from "@utils/rngc/convertUser"
-import { User as RNGCUser } from "react-native-gifted-chat"
 
 interface IChatScreenNavigationProps {
   group: IGroupsModel,
@@ -30,19 +29,15 @@ const ROOT: ViewStyle = {
   flex: 1
 }
 
-interface IGiftedChatUserModel {
-  _id: string,
-  avatar: string,
-  name: string,
-}
-
 interface IChatState {
   messages: IMessage[]
 }
 
 const maxInputLength = 2048
 
-// tslint:disable-next-line: completed-docs
+/**
+ * ChatScreen will show the message
+ */
 @inject(Injection.UserModel, Injection.Api)
 @observer
 export class ChatScreen extends React.Component<IChatScreenProps, IChatState> {
