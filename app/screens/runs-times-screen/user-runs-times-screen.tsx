@@ -1,6 +1,6 @@
 import * as React from "react"
 import { observer, inject } from "mobx-react"
-import { FlatList, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
+import { FlatList, Picker, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Text } from "@components/text"
 import { Screen } from "@components/screen"
 import { color, spacing } from "../../theme"
@@ -8,19 +8,15 @@ import { NavigationScreenProps } from "react-navigation"
 import moment from "moment"
 import { AppScreens } from "@navigation/navigation-definitions"
 import autobind from "autobind-decorator"
-// @ts-ignore
-import { IBoolFunction } from "@types/FunctionTypes"
+import { IBoolFunction } from "@types"
 import { action, observable } from "mobx"
-import { Switch } from "@components/switch"
-import { Toggle } from "react-powerplug"
 import { DarkTheme, Searchbar } from "react-native-paper"
 import { noop } from "lodash-es"
 import { Injection, InjectionProps } from "@services/injections"
 import { IUserRun } from "@services/api"
 import { ApiResponse } from "apisauce"
 import { translate } from "@i18n/translate"
-// @ts-ignore
-// tslint:disable-next-line:no-commented-code no-commented-out-code
+import { SortValues } from "@utils/sort-values"
 
 export interface IRunsTimesScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -51,10 +47,6 @@ const TIME_CONTAINER: ViewStyle = {
   padding: spacing[2]
 }
 
-const TEXT_ALIGN_RIGHT: TextStyle = {
-  textAlign: "right"
-}
-
 const ROW: ViewStyle = {
   flexDirection: "row"
 }
@@ -73,6 +65,12 @@ const onSearchError = (): ApiResponse<any> => (
   }
 )
 
+/*
+const filters = [
+  "filtre" => () => {}
+]
+*/
+
 // tslint:disable-next-line:no-commented-code no-commented-out-code
 //const keyExtractor = (item: IRun, index: number): string => item.id
 const keyExtractor = (item: IUserRun, index: number): string => item.id
@@ -82,9 +80,11 @@ const keyExtractor = (item: IUserRun, index: number): string => item.id
 @observer
 export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> {
   private currentPage: number
+  private filterValue: string
   private lastQuery: string
   private maxPage: number
   private onEndReachedCalledDuringMomentum = true
+  @observable private run: string
   @observable private userRuns: IUserRun[] = []
 
 /*
@@ -107,6 +107,83 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
     this.onEndReachedCalledDuringMomentum = false
   }
 
+  // tslint:disable-next-line:no-feature-envy
+  @action.bound
+  private onPickerValueChange(item: string): void {
+    if (item !== this.filterValue && item !== null) {
+      this.filterValue = item
+      switch (item) {
+        case "best": {
+          this.userRuns = this.userRuns.slice().sort((prev: IUserRun, next: IUserRun) => {
+            if (prev.final_time > next.final_time) {
+              return SortValues.DECAY
+            }
+            if (prev.final_time < next.final_time) {
+              return SortValues.ASCENT
+            }
+
+            return SortValues.NONE
+          });
+          break;
+        }
+        case "lower": {
+          this.userRuns = this.userRuns.slice().sort((prev: IUserRun, next: IUserRun) => {
+            if (prev.final_time < next.final_time) {
+              return SortValues.DECAY
+            }
+            if (prev.final_time > next.final_time) {
+              return SortValues.ASCENT
+            }
+
+            return SortValues.NONE
+          });
+          break;
+        }
+        case "oldest": {
+          this.userRuns = this.userRuns.slice().sort((prev: IUserRun, next: IUserRun) => {
+            if (prev.created_at < next.created_at) {
+              return SortValues.DECAY
+            }
+            if (prev.created_at > next.created_at) {
+              return SortValues.ASCENT
+            }
+
+            return SortValues.NONE
+          });
+          break;
+        }
+        case "younger": {
+          this.userRuns = this.userRuns.slice().sort((prev: IUserRun, next: IUserRun) => {
+            if (prev.created_at > next.created_at) {
+              return SortValues.DECAY
+            }
+            if (prev.created_at < next.created_at) {
+              return SortValues.ASCENT
+            }
+
+            return SortValues.NONE
+          });
+          break;
+        }
+        default: {
+          return
+        }
+      }
+    }
+  }
+
+  @autobind
+  private onTimePressNavigateToDetails(item: IUserRun, run_name: string): IBoolFunction {
+
+    return (): boolean => this.props.navigation.navigate(
+      AppScreens.RUN_TIMES_DETAILS,
+      {
+        item,
+        run_name
+      }
+    )
+  }
+
   @action.bound
   // tslint:disable-next-line:typedef
   private async onUserTypeSearch(query: string, neededNextPage = false): Promise<void> {
@@ -125,7 +202,7 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
       queriesParams.page = this.currentPage
     }
 
-    const results = await api.get("maRoute", queriesParams).catch(onSearchError)
+    const results = await api.get("user/me/run/50d46910-afa6-11e9-84e8-31e5da852473/user_run", queriesParams).catch(onSearchError)
     this.currentPage = results.data.current_page
     if (!neededNextPage) {
       this.maxPage = results.data.last_page
@@ -134,72 +211,60 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
     } else {
       this.userRuns.push(...results.data.data)
     }
-  }
-
-/*
-  @autobind
-  private filterDatas(runName: string): void {
-    this.testDatas.forEach(function (elem) {
-      if (elem.run.name === runName) {
-
-      }
-    })
-  }
-*/
-
-  @autobind
-  private onTimePressNavigateToDetails(item: any): IBoolFunction {
-    return (): boolean => this.props.navigation.navigate(
-      AppScreens.CHAT,
-      {
-        item
-      }
-    )
+    this.onPickerValueChange(this.filterValue)
   }
 
   // tslint:disable-next-line:no-feature-envy
   @autobind
-  private renderTimes({item}: { item: any }): React.ReactElement {
+  private renderTimes({item}: { item: IUserRun }): React.ReactElement {
     const formattedCreatedAt = moment(item.created_at).format("LLL");
     const time = new Date(
       0,
       0,
       0,
-      (item.time / 3600),
-      (item.time / 60) % 60,
-      item.time % 60
+      (item.final_time / 3600),
+      (item.final_time / 60) % 60,
+      item.final_time % 60
     );
-    // tslint:disable-next-line:max-line-length prefer-template
-    const formattedTime = time.getHours().toString()
-      + " h " + time.getMinutes().toString() + " min " + time.getSeconds().toString() + " sec";
+
+    const formattedTime = `${time.getHours().toString()} h ${time.getMinutes().toString()} min ${time.getSeconds().toString()} sec`
 
     return (
       <TouchableOpacity
         style={TIME_CONTAINER}
-        onPress={this.onTimePressNavigateToDetails(item)}
+        onPress={this.onTimePressNavigateToDetails(item, this.run)}
       >
         <View style={ROW}>
           <View style={{marginLeft: spacing[2], justifyContent: "center"}}>
             <Text
               style={{textTransform: "capitalize"}}
-              text={item.run.name}
+              text={formattedTime}
               preset="userRow"
             />
           </View>
         </View>
         <View style={{...ROW, flex: 1, marginTop: spacing[3]}}>
           <View>
-            <Text preset="fieldLabel" text="Temps total :"/>
-            <Text preset="fieldLabel" text={formattedTime}/>
-          </View>
-          <View style={{alignSelf: "flex-end", flex: 1}}>
-            <Text preset="fieldLabel" tx="common.createdAt" style={TEXT_ALIGN_RIGHT}/>
-            <Text preset="fieldLabel" text={formattedCreatedAt} style={TEXT_ALIGN_RIGHT}/>
+            <Text preset="fieldLabel" text="Couru le :"/>
+            <Text preset="fieldLabel" text={formattedCreatedAt}/>
           </View>
         </View>
       </TouchableOpacity>
 
     )
+  }
+
+  @action
+  public async componentDidMount(): Promise<void> {
+    const { api } = this.props
+
+    // tslint:disable-next-line:max-line-length no-suspicious-comment
+    const results = await api.get("user/me/run/50d46910-afa6-11e9-84e8-31e5da852473/user_run").catch(onSearchError) //TODO:Changer valeur par defaut
+    this.userRuns.push(...results.data.data)
+    await this.onUserTypeSearch("*")
+    // tslint:disable-next-line:no-suspicious-comment max-line-length
+    const run_results = await api.get(`user/me/run/50d46910-afa6-11e9-84e8-31e5da852473`).catch(onSearchError)  //TODO:Changer valeur par defaut
+    this.run = run_results.data.name
   }
 
   public render (): React.ReactNode {
@@ -218,17 +283,17 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
             />
           </View>
           <View style={{flex: 1, backgroundColor: color.palette.backgroundDarkerer, flexDirection: "row"}}>
-            <Text preset="fieldLabel" text="Meilleurs temps : " style={{marginTop: spacing[1]}}/>
-            <Toggle initial={false}>
-              {({ on, toggle }) => (
-                <View style={{alignItems: "flex-end"}}>
-                  <Switch
-                    value={on}
-                    onToggle={toggle}
-                  />
-                </View>
-              )}
-            </Toggle>
+            <Text preset="fieldLabel" text="Classer par : " style={{marginTop: spacing[1]}}/>
+            <Picker
+              onValueChange={this.onPickerValueChange}
+              selectedValue={this.filterValue}
+              style={{ backgroundColor: "white", width: 100, height: 30}}
+            >
+              <Picker.Item label="Plus récent" value="younger"/>
+              <Picker.Item label="Plus ancien" value="oldest"/>
+              <Picker.Item label="Meilleurs temps" value="best"/>
+              <Picker.Item label="Plus petits temps" value="lower"/>
+            </Picker>
           </View>
         </View>
 

@@ -112,18 +112,19 @@ export interface IRun extends ITimestamps {
 }
 
 export interface IUserRun extends ITimestamps {
+  final_time: number,
   id: string,
   run_id: string,
   times: ITime[],
-  total_time: number,
   user_id: string,
 }
 
 export interface ITime extends ITimestamps {
   check_point_id: string,
-  current_time: bigint,
+  current_time: number,
   id: string,
   run_id: string,
+  user_run_id: string
 }
 
 // tslint:disable-next-line: completed-docs

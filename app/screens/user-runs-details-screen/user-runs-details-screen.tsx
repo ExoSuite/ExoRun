@@ -1,13 +1,18 @@
 import * as React from "react"
-import { observer } from "mobx-react"
+import { inject, observer } from "mobx-react"
 import { FlatList, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, spacing } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import moment from "moment"
+import { action, observable } from "mobx"
+import { ITime, IUserRun } from "@services/api"
+import { ApiResponse } from "apisauce"
+import { Injection, InjectionProps } from "@services/injections"
+import autobind from "autobind-decorator"
 
-export interface IUserRunsDetailsScreenProps extends NavigationScreenProps<{}> {
+export interface IUserRunsDetailsScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
 
 const TITLE: ViewStyle = {
@@ -19,10 +24,6 @@ const TITLE: ViewStyle = {
 const ROOT: ViewStyle = {
   backgroundColor: color.palette.backgroundDarker,
   flex: 1
-}
-
-const TEXT_ALIGN_CENTER : TextStyle = {
-  textAlign: "center"
 }
 
 const TIME_CONTAINER: ViewStyle = {
@@ -47,72 +48,58 @@ const ROW: ViewStyle = {
   flexDirection: "row"
 }
 
+// @ts-ignore
+const onSearchError = (): ApiResponse<any> => (
+  {
+    data: {
+      data: [],
+      current_page: Number.MAX_SAFE_INTEGER
+    }
+  }
+)
+
 const keyExtractor = (item: any, index: number): string => item.id
 
 // tslint:disable-next-line:completed-docs
+@inject(Injection.Api)
 @observer
 export class UserRunsDetailsScreen extends React.Component<IUserRunsDetailsScreenProps> {
-  private testDatas =
-    {
-      createdAt: "2019-06-09 08:37:46",
-      id: 1,
-      run: {
-        name: "Run 1"
-      },
-      times: [
-        {
-          current_time: 64,
-          checkpoint: {
-            name: "Checkpoint 1"
-          },
-          createdAt: "2019-06-09 08:37:46"
-        },
-        {
-          current_time: 128,
-          checkpoint: {
-            name: "Checkpoint 2"
-          },
-          createdAt: "2019-06-09 08:37:46"
-        },
-        {
-          current_time: 256,
-          checkpoint: {
-            name: "Checkpoint 3"
-          },
-          createdAt: "2019-06-09 08:37:46"
-        },
-        {
-          current_time: 512,
-          checkpoint: {
-            name: "Checkpoint 4"
-          },
-          createdAt: "2019-06-09 08:37:46"
-        },
-        {
-          current_time: 1024,
-          checkpoint: {
-            name: "Checkpoint 5"
-          },
-          createdAt: "2019-06-09 08:37:46"
-        }
-      ],
-      updatedAt: "2019-06-09 08:39:48"
-    }
+  private cp_id = 0
+  private nbr_cp: number
+  private starting_timestamp: number
+  // @ts-ignore
+  private userRun : IUserRun = this.props.navigation.getParam("item")
+  @observable private userRunTimes : ITime[] = this.userRun.times
+  // tslint:disable-next-line: member-ordering
+  @observable private save_userRunTimes: ITime[] = this.userRun.times
 
   // tslint:disable-next-line:no-feature-envy
-  public renderTimes({item}: { item: any }): React.ReactElement {
+  @autobind
+  // tslint:disable-next-line:prefer-function-over-method
+  private renderTimes({item}: { item: ITime }): React.ReactElement {
     const formattedCreatedAt = moment(item.created_at).format("LLL");
+    let checkpoint_name: string
+    let checkpoint_time = 0
+    if (this.starting_timestamp) {
+      checkpoint_time = item.current_time - this.starting_timestamp
+    }
     const time = new Date(
       0,
       0,
       0,
-      (item.current_time / 3600),
-      (item.current_time / 60) % 60,
-      item.current_time % 60
+      (checkpoint_time / 3600),
+      (checkpoint_time / 60) % 60,
+      checkpoint_time % 60
     );
-    // tslint:disable-next-line:max-line-length
-    const formattedTime = time.getHours().toString()
-      + " h " + time.getMinutes().toString() + " min " + time.getSeconds().toString() + " sec";
+
+    if (this.cp_id < this.nbr_cp) {
+      this.cp_id += 1
+      checkpoint_name = `Checkpoint ${this.cp_id}`
+    }
+    if (this.cp_id === this.nbr_cp) {
+      checkpoint_name = `Arrivée`
+    }
+    const formattedTime = `${time.getHours().toString()} h ${time.getMinutes().toString()} min ${time.getSeconds().toString()} sec`
 
     return (
       <TouchableOpacity
@@ -122,16 +109,11 @@ export class UserRunsDetailsScreen extends React.Component<IUserRunsDetailsScree
           <View style={{marginLeft: spacing[2], justifyContent: "center"}}>
             <Text
               style={{textTransform: "capitalize"}}
-              text={item.checkpoint.name}
+              text={checkpoint_name}
               preset="userRow"
             />
           </View>
         </View>
-        {/*
-        <View style={{marginTop: spacing[3]}}>
-          <Text text={item.content} />
-        </View>
-*/}
         <View style={{...ROW, flex: 1, marginTop: spacing[3]}}>
           <View>
             <Text preset="default" text="Temps :"/>
@@ -146,17 +128,35 @@ export class UserRunsDetailsScreen extends React.Component<IUserRunsDetailsScree
     )
   }
 
+  @action
+  public async componentDidMount(): Promise<void> {
+// tslint:disable-next-line:no-commented-code no-commented-out-code
+/*
+    console.log("PARAM")
+    console.log(`param : ${this.props.navigation.getParam("item").times}`)
+    console.log(`save : ${this.save_userRunTimes}`)
+    console.log(`tab : ${this.userRunTimes}`)
+*/
+
+    this.userRunTimes = this.save_userRunTimes
+    const elem = this.userRunTimes.shift()
+    this.starting_timestamp = elem.current_time
+
+    this.nbr_cp = this.userRunTimes.length
+  }
+
   public render(): React.ReactNode {
+    const formatted_createdAt = moment(this.userRun.created_at).format("LLL")
 
     return (
       <Screen style={ROOT} preset="scroll">
         <View>
           <View style={TITLE}>
-            <Text preset="userRow">{this.testDatas.run.name}</Text>
+            <Text preset="userRow">{`Course du ${formatted_createdAt}`}</Text>
           </View>
         </View>
         <FlatList
-          data={this.testDatas.times}
+          data={this.userRunTimes}
           renderItem={this.renderTimes}
           keyExtractor={keyExtractor}
         />

@@ -19,7 +19,8 @@ export enum AppScreens {
   CHAT = "chat",
   RUNS_TIMES = "runs-times",
   RUN = "run",
-  MAP = "map"
+  MAP = "map",
+  RUN_TIMES_DETAILS = "run-times-details"
 }
 
 export enum AuthScreens {
