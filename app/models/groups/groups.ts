@@ -1,9 +1,9 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
-import { GroupModel } from "@models/group"
-import { Api, IGroup, PersonalTokenImpl } from "@services/api"
+import { GroupModel, IGroup } from "@models/group"
+import { Api, PersonalTokenImpl } from "@services/api"
 import { ApiOkResponse } from "apisauce"
 import { SocketIo } from "@services/socket.io"
-import { noop } from "lodash-es"
+import { isEmpty, noop, orderBy } from "lodash-es"
 
 /**
  * Model description here for TypeScript hints.
@@ -21,7 +21,13 @@ export const GroupsModel = types
   })
   .views((self: Instance<typeof GroupsModel>) => ({
     get latest(): IGroup[] { // will return the latest updated group
-      return self.groups
+     return orderBy(
+       self.groups.slice(),
+       (group: IGroup) => {
+         return !isEmpty(group.messages) ? group.messages[0].created_at : group.created_at
+       },
+       ["desc"]
+     )
     }
   })) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions((self: Instance<typeof GroupsModel>) => ({

@@ -7,7 +7,7 @@ import { ApiOkResponse } from "apisauce"
 import { noop } from "lodash-es"
 import { IMessage as IMessageRNGC } from "react-native-gifted-chat/lib/types"
 
-const createMessage = (message: IMessage): IMessageModel => MessageModel.create(message)
+const createMessage = (message: IMessageModel): IMessageModel => MessageModel.create(message)
 
 /**
  * Model description here for TypeScript hints.
@@ -66,8 +66,8 @@ export const GroupModel = types
 
 type GroupType = Instance<typeof GroupModel>
 
-// tslint:disable-next-line:no-empty-interface interface-name
-export interface Group extends GroupType {
+// tslint:disable-next-line:no-empty-interface
+export interface IGroup extends GroupType {
 }
 
 type GroupSnapshotType = SnapshotOut<typeof GroupModel>

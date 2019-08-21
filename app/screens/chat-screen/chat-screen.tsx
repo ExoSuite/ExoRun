@@ -13,8 +13,9 @@ import { renderComposer, renderInputToolbar, renderMessage, renderSend } from "@
 import { IMessage, User as RNGCUser } from "react-native-gifted-chat/lib/types"
 import { IGroupsModel } from "@models/groups"
 import autobind from "autobind-decorator"
-import { Group } from "@models/group"
+import { IGroup } from "@models/group"
 import { convertUserToRNGCFormat } from "@utils/rngc/convertUser"
+import { languageTag } from "@i18n/i18n"
 
 interface IChatScreenNavigationProps {
   group: IGroupsModel,
@@ -42,7 +43,7 @@ const maxInputLength = 2048
 @observer
 export class ChatScreen extends React.Component<IChatScreenProps, IChatState> {
   private readonly giftedChatUserModel: RNGCUser
-  private readonly group: Group
+  private readonly group: IGroup
   @observable private newMessageText: string
 
   public state = {
@@ -57,7 +58,7 @@ export class ChatScreen extends React.Component<IChatScreenProps, IChatState> {
     super(props)
     const userModel: IUserModel = props.userModel
     const pictureToken: IPersonalToken = props.navigation.getParam("pictureToken")
-    const group: Group = props.navigation.getParam("group")
+    const group: IGroup = props.navigation.getParam("group")
 
     this.giftedChatUserModel = convertUserToRNGCFormat(
       userModel,
@@ -82,6 +83,7 @@ export class ChatScreen extends React.Component<IChatScreenProps, IChatState> {
         <GiftedChat
           messages={this.group.toRNGCMessagesFormat}
           alignTop={false}
+          locale={languageTag}
           forceGetKeyboardHeight
           text={this.newMessageText}
           onInputTextChanged={this.updateNewMessageText}

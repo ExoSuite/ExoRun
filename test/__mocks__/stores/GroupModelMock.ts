@@ -1,9 +1,9 @@
 import { randomString } from "./lib/randomString"
-import { Group } from "@models/group"
+import { IGroup } from "@models/group"
 import { SocketIoPresenceChannel } from "@services/socket.io/socket.io.presence.channel"
 import { Api, PersonalTokenImpl } from "@services/api"
 
-export const GroupModelMockData: Group = {
+export const GroupModelMockData: IGroup = {
   created_at: randomString(),
   id: randomString(),
   name: randomString(),
