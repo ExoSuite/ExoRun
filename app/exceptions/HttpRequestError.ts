@@ -8,7 +8,7 @@ const baseError = {
 }
 
 /**
- * * HttpRequestError will be thrown by api.ts:134:7 in case of an HTTP error
+ * * HttpRequestError will be thrown by api.ts:134:7 in case of an HTTP playError
  */
 export class HttpRequestError extends BaseError {
 

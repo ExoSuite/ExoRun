@@ -4,7 +4,7 @@ import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { UserRow } from "./"
 import { Api } from "@services/api"
 
-const api = new Api();
+const api = new Api()
 
 storiesOf("UserRow", module)
   .addDecorator((fn: Function) => <StoryScreen>{fn()}</StoryScreen>)

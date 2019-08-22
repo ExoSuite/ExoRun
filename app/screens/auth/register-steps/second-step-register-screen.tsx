@@ -131,7 +131,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
   private handleInvalidEmail(error: HttpRequestError): void {
     const { soundPlayer } = this.props
     this.emailInputState = AnimatedInteractiveInputState.ERROR
-    DataLoader.Instance.hasErrors(error, soundPlayer.error)
+    DataLoader.Instance.hasErrors(error, soundPlayer.playError)
   }
 
   @action.bound
@@ -141,7 +141,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
 
   private manageResponseError(response: HttpRequestError): void {
     const { soundPlayer } = this.props
-    DataLoader.Instance.hasErrors(response, soundPlayer.error)
+    DataLoader.Instance.hasErrors(response, soundPlayer.playError)
   }
 
   private passwordConfirmationIsExactPassword(): boolean {
@@ -193,7 +193,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
     ])
 
     DataLoader.Instance.success(
-      soundPlayer.success,
+      soundPlayer.playSuccess,
       async () => {
         navigation.navigate(AppScreens.HOME)
         await socketIO.setup()

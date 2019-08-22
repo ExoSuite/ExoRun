@@ -11,7 +11,7 @@ export type GeneralApiProblem =
    */
   | { kind: HttpResponse.CANNOT_CONNECT; temporary: true }
   /**
-   * The server experienced a problem. Any 5xx error.
+   * The server experienced a problem. Any 5xx playError.
    */
   | { kind: HttpResponse.SERVER_ERROR }
   /**

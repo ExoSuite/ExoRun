@@ -1,6 +1,6 @@
 import * as React from "react"
 import { inject, observer } from "mobx-react"
-import { View, ViewStyle } from "react-native"
+import { TextStyle, View, ViewStyle } from "react-native"
 import { color } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { GiftedChat } from "react-native-gifted-chat"
@@ -10,10 +10,13 @@ import { action, observable } from "mobx"
 import { Injection, InjectionProps } from "@services/injections"
 import { IUserModel } from "@models/user-profile"
 import { renderComposer, renderInputToolbar, renderMessage, renderSend } from "@screens/chat-screen/lib"
-import { IMessage } from "react-native-gifted-chat/lib/types"
+import { IMessage, User as RNGCUser } from "react-native-gifted-chat/lib/types"
 import { IGroupsModel } from "@models/groups"
 import autobind from "autobind-decorator"
-import { Group } from "@models/group"
+import { IGroup } from "@models/group"
+import { convertUserToRNGCFormat } from "@utils/rngc/convertUser"
+import { languageTag } from "@i18n/i18n"
+import { Text } from "@components/text"
 
 interface IChatScreenNavigationProps {
   group: IGroupsModel,
@@ -28,47 +31,48 @@ const ROOT: ViewStyle = {
   flex: 1
 }
 
-interface IGiftedChatUserModel {
-  _id: string,
-  avatar: string,
-  name: string,
-}
-
 interface IChatState {
   messages: IMessage[]
 }
 
 const maxInputLength = 2048
 
-// tslint:disable-next-line: completed-docs
+const TEXT_ALIGN_CENTER: TextStyle = {
+  textAlign: "center"
+}
+
+/**
+ * ChatScreen will show the message
+ */
 @inject(Injection.UserModel, Injection.Api)
 @observer
 export class ChatScreen extends React.Component<IChatScreenProps, IChatState> {
-  private readonly giftedChatUserModel: IGiftedChatUserModel
-  private readonly group: Group
+  private readonly giftedChatUserModel: RNGCUser
+  private readonly group: IGroup
   @observable private newMessageText: string
 
   public state = {
     messages: []
   }
 
-  public static navigationOptions = {
-    headerLeft: NavigationBackButtonWithNestedStackNavigator()
-  }
-
   constructor(props: IChatScreenProps) {
     super(props)
     const userModel: IUserModel = props.userModel
     const pictureToken: IPersonalToken = props.navigation.getParam("pictureToken")
-    const group: Group = props.navigation.getParam("group")
+    const group: IGroup = props.navigation.getParam("group")
 
-    this.giftedChatUserModel = {
-      _id: userModel.id,
-      name: `${userModel.first_name} ${userModel.last_name}`,
-      avatar: props.api.buildAvatarUrl(userModel.id, pictureToken.accessToken)
-    }
+    this.giftedChatUserModel = convertUserToRNGCFormat(
+      userModel,
+      props.api.buildAvatarUrl(userModel.id, pictureToken.accessToken)
+    )
     this.group = group
   }
+
+  // tslint:disable-next-line: typedef
+  public static navigationOptions = ({ navigation }) => ({
+    headerTitle: <Text text={navigation.getParam("group").name} preset="lightHeader" style={TEXT_ALIGN_CENTER}/>,
+    headerLeft: NavigationBackButtonWithNestedStackNavigator()
+  })
 
   @autobind
   private onSend(messages: IMessage[] = []): void {
@@ -84,8 +88,9 @@ export class ChatScreen extends React.Component<IChatScreenProps, IChatState> {
     return (
       <View style={ROOT}>
         <GiftedChat
-          messages={this.group.toRNGCMessagesFormat(this.giftedChatUserModel)}
+          messages={this.group.toRNGCMessagesFormat}
           alignTop={false}
+          locale={languageTag}
           forceGetKeyboardHeight
           text={this.newMessageText}
           onInputTextChanged={this.updateNewMessageText}

@@ -8,18 +8,18 @@ import { RightNavigationButton } from "@navigation/components/right-navigation-b
 import { AppScreens } from "@navigation/navigation-definitions"
 import { Injection, InjectionProps } from "@services/injections"
 import autobind from "autobind-decorator"
-import { IGroup, IPersonalToken, IPersonalTokens } from "@services/api"
+import { IPersonalToken, IPersonalTokens } from "@services/api"
 import moment from "moment"
 import { IBoolFunction } from "@types"
 import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
+import { IGroup } from "@models/group"
 
 export interface IGroupScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
 
 const ROOT: ViewStyle = {
-  backgroundColor: color.background,
-  flex: 1
+  backgroundColor: color.background
 }
 
 const GROUP_CONTAINER: ViewStyle = {
@@ -51,7 +51,9 @@ const SEARCH: ViewStyle = {
 const HeaderRight = RightNavigationButton({ modalScreen: AppScreens.NEW_GROUP })
 const keyExtractor = (item: IGroup, index: number): string => item.id
 
-// tslint:disable-next-line: completed-docs
+/**
+ * GroupScreen will show the groups
+ */
 @inject(Injection.GroupsModel)
 @observer
 export class GroupScreen extends React.Component<IGroupScreenProps> {
@@ -118,13 +120,15 @@ export class GroupScreen extends React.Component<IGroupScreenProps> {
   public render(): React.ReactNode {
 
     return (
-      <Screen style={ROOT} preset="fixed">
-        <FlatList
-          data={this.props.groupsModel.latest}
-          renderItem={this.renderGroup}
-          keyExtractor={keyExtractor}
-        />
-      </Screen>
+      <FlatList
+        data={this.props.groupsModel.latest}
+        renderItem={this.renderGroup}
+        keyExtractor={keyExtractor}
+        style={ROOT}
+        initialNumToRender={8}
+        maxToRenderPerBatch={2}
+        onEndReachedThreshold={0.5}
+      />
     )
   }
 }

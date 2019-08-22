@@ -91,11 +91,6 @@ export interface IPersonalTokens {
   "view-picture-exorun": IPersonalTokenResponse,
 }
 
-export interface IGroup extends ITimestamps {
-  id: string
-  name: string
-}
-
 export interface IMessage extends ITimestamps {
   contents: string,
   group_id: string,

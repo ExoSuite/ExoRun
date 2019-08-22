@@ -45,7 +45,7 @@ storiesOf("Animated Data Loader", module)
             preset="success"
             onPress={() => {
               refSuccess.success(
-                () => soundPlayer.success(),
+                () => soundPlayer.playSuccess(),
                 defaultSuccessCallback
               )
             }}
@@ -67,7 +67,7 @@ storiesOf("Animated Data Loader", module)
             onPress={() =>
               refError.hasErrors(
                 errors,
-                () => soundPlayer.error(),
+                () => soundPlayer.playError(),
                 defaultErrorCallback
               )
             }

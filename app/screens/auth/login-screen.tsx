@@ -160,7 +160,7 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
 
   private manageResponseError(response: HttpRequestError): void {
     const { soundPlayer } = this.props
-    DataLoader.Instance.hasErrors(response, soundPlayer.error)
+    DataLoader.Instance.hasErrors(response, soundPlayer.playError)
   }
 
   @autobind
@@ -212,7 +212,7 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
     ])
 
     DataLoader.Instance.success(
-      soundPlayer.success,
+      soundPlayer.playSuccess,
       async () => {
         navigation.navigate(AppScreens.HOME)
         await socketIO.setup()

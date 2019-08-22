@@ -27,7 +27,7 @@ describe("data loader tests", () => {
     expect(wrapper.find(FormRow)).toExist()
   })
 
-  test("on error should update", () => {
+  test("on playError should update", () => {
     const errors = {
       "email": [
         "The email field Is required."
@@ -44,7 +44,7 @@ describe("data loader tests", () => {
     expect(wrapper.instance().status).toEqual(LoaderState.ERROR)
   })
 
-  test("on success should update", () => {
+  test("on playSuccess should update", () => {
     wrapper.instance().success()
     expect(wrapper.find(AnimatedLottieView)).not.toBeEmptyRender()
     expect(wrapper.instance().status).toEqual(LoaderState.SUCCESS)
@@ -55,7 +55,7 @@ describe("data loader tests", () => {
     expect(wrapper.instance().status).toEqual(LoaderState.STANDBY)
   })
 
-  test("on success and onAnimationFinish should test status", () => {
+  test("on playSuccess and onAnimationFinish should test status", () => {
     wrapper.instance().success()
     expect(wrapper.instance().status).toEqual(LoaderState.SUCCESS)
     wrapper.instance().onAnimationFinish()

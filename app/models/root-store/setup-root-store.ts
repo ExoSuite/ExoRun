@@ -72,14 +72,20 @@ export async function setupRootStore(): Promise<ISetupRootStore> {
       // @ts-ignore
       "message-exorun": {
         accessToken: ""
+      },
+      // @ts-ignore
+      "view-picture-exorun": {
+        accessToken: ""
       }
     }
   }
 
   const groupsModel = GroupsModel.create({
-    api: env.api,
-    socketIO: env.socketIO,
-    messageToken: personalTokens["message-exorun"]
+    messageToken: personalTokens["message-exorun"],
+    pictureToken: personalTokens["view-picture-exorun"]
+  }, {
+    environment: env,
+    userModel
   })
 
   return {
@@ -106,12 +112,13 @@ export async function createEnvironment(): Promise<Environment> {
   env.soundPlayer = new SoundPlayer()
   env.socketIO = new SocketIo()
 
+  await ApiTokenManager.Setup()
+
   // allow each service to setup
   await Promise.all([
     env.reactotron.setup(),
     env.api.setup(),
     env.soundPlayer.setup(),
-    ApiTokenManager.Setup()
   ])
   await env.socketIO.setup()
 

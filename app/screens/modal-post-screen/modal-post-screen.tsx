@@ -84,14 +84,14 @@ export class ModalPostScreen extends React.Component<INewPostScreenProps & Injec
     const currentPost = this.props.navigation.getParam("currentPost")
     api.delete(`user/${userModel.id}/dashboard/posts/${currentPost.id}`)
       .then(() => {
-        DataLoader.Instance.success(soundPlayer.success, () => {
+        DataLoader.Instance.success(soundPlayer.playSuccess, () => {
           navigation.getParam("updatePostCallback")(navigation.getParam("currentPost"), true)
           navigation.getParam("toggleRefreshing")()
           navigation.goBack()
         })
       })
       .catch((error: any) => {
-        DataLoader.Instance.hasErrors(error, soundPlayer.error)
+        DataLoader.Instance.hasErrors(error, soundPlayer.playError)
       })
   }
 
@@ -104,27 +104,27 @@ export class ModalPostScreen extends React.Component<INewPostScreenProps & Injec
     if (navigation.getParam("newPostCallback")) {
       api.post(`user/${userModel.id}/dashboard/posts`, { content: this.postContent })
         .then((newPost: ApiOkResponse<any>) => {
-          DataLoader.Instance.success(soundPlayer.success, () => {
+          DataLoader.Instance.success(soundPlayer.playSuccess, () => {
             navigation.getParam("newPostCallback")(newPost.data)
             navigation.getParam("toggleRefreshing")()
             navigation.goBack()
           })
         })
         .catch((error: any) => {
-          DataLoader.Instance.hasErrors(error, soundPlayer.error)
+          DataLoader.Instance.hasErrors(error, soundPlayer.playError)
         })
     } else {
       const currentPost = this.props.navigation.getParam("currentPost")
       api.patch(`user/${userModel.id}/dashboard/posts/${currentPost.id}`, { content: this.postContent })
         .then((updatedPostResponse: ApiOkResponse<IPost>) => {
-          DataLoader.Instance.success(soundPlayer.success, () => {
+          DataLoader.Instance.success(soundPlayer.playSuccess, () => {
             navigation.getParam("updatePostCallback")(updatedPostResponse.data)
             navigation.getParam("toggleRefreshing")()
             navigation.goBack()
           })
         })
         .catch((error: any) => {
-          DataLoader.Instance.hasErrors(error, soundPlayer.error)
+          DataLoader.Instance.hasErrors(error, soundPlayer.playError)
         })
     }
   }

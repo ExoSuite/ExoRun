@@ -29,7 +29,7 @@ const GREYSCALED_VIEW: ViewStyle = {
   position: "absolute",
   overflow: "hidden",
   justifyContent: "center",
-  alignItems: "center",
+  alignItems: "center"
 }
 
 const FULL: ViewStyle = {

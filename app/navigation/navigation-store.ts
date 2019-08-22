@@ -30,7 +30,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
     /**
      * the navigation state tree (Frozen here means it is immutable.)
      */
-    state: types.optional(types.frozen(), DEFAULT_STATE),
+    state: types.optional(types.frozen(), DEFAULT_STATE)
   })
   // tslint:disable-next-line:typedef deprecation
   .preProcessSnapshot((snapshot) => {
@@ -90,7 +90,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      */
     findCurrentRoute(): NavigationLeafRoute {
       return findCurrentRoute(self.state)
-    },
+    }
   }))
   .actions((self: any) => ({
     /**
@@ -100,7 +100,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      */
     navigateTo(routeName: string): void {
       self.dispatch(NavigationActions.navigate({ routeName }))
-    },
+    }
   }))
 
 export type NavigationStore = Instance<typeof NavigationStoreModel>

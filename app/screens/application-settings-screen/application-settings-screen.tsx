@@ -6,8 +6,7 @@ import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { defaultNavigationIcon, NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import autobind from "autobind-decorator"
-import { reset } from "@utils/keychain"
-import { Server } from "@services/api/api.servers"
+import { ServerReset } from "@services/api/api.servers"
 import { Injection } from "@services/injections"
 import { NavigationStore } from "@navigation/navigation-store"
 import { INavigationScreenProps } from "@navigation/stateful-navigator"
@@ -41,7 +40,7 @@ export class ApplicationSettingsScreen extends React.Component<IApplicationSetti
   private async logout(): Promise<void> {
     const { navigationStore, navigation } = this.props
     navigation.getScreenProps.showSplashScreen()
-    await reset(Server.EXOSUITE_USERS_API)
+    await ServerReset()
     await clear()
     SocketIo.Disconnect()
     navigationStore.smoothReset(navigation.getScreenProps.animateSplashScreen)
