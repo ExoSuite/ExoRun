@@ -68,10 +68,8 @@ export class UserRunsDetailsScreen extends React.Component<IUserRunsDetailsScree
   private nbr_cp: number
   private starting_timestamp: number
   // @ts-ignore
-  private userRun : IUserRun = this.props.navigation.getParam("item")
-  @observable private userRunTimes : ITime[] = this.userRun.times
-  // tslint:disable-next-line: member-ordering
-  @observable private save_userRunTimes: ITime[] = this.userRun.times
+  private readonly userRun : IUserRun = this.props.navigation.getParam("item")
+  @observable private userRunTimes : ITime[] = this.userRun.times.slice()
 
   // tslint:disable-next-line:no-feature-envy
   @autobind
@@ -129,16 +127,7 @@ export class UserRunsDetailsScreen extends React.Component<IUserRunsDetailsScree
   }
 
   @action
-  public async componentDidMount(): Promise<void> {
-// tslint:disable-next-line:no-commented-code no-commented-out-code
-/*
-    console.log("PARAM")
-    console.log(`param : ${this.props.navigation.getParam("item").times}`)
-    console.log(`save : ${this.save_userRunTimes}`)
-    console.log(`tab : ${this.userRunTimes}`)
-*/
-
-    this.userRunTimes = this.save_userRunTimes
+  public componentDidMount(): void {
     const elem = this.userRunTimes.shift()
     this.starting_timestamp = elem.current_time
 

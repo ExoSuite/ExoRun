@@ -1,5 +1,5 @@
 import * as React from "react"
-import { observer, inject } from "mobx-react"
+import { inject, observer } from "mobx-react"
 import { FlatList, Picker, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Text } from "@components/text"
 import { Screen } from "@components/screen"
@@ -11,12 +11,14 @@ import autobind from "autobind-decorator"
 import { IBoolFunction } from "@types"
 import { action, observable } from "mobx"
 import { DarkTheme, Searchbar } from "react-native-paper"
-import { noop } from "lodash-es"
+import { isEmpty, noop } from "lodash-es"
 import { Injection, InjectionProps } from "@services/injections"
 import { IUserRun } from "@services/api"
 import { ApiResponse } from "apisauce"
 import { translate } from "@i18n/translate"
 import { SortValues } from "@utils/sort-values"
+import { SortFields } from "@utils/sort-fields"
+import { UserRunFilters } from "@utils/user-run-filters"
 
 export interface IRunsTimesScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -65,11 +67,38 @@ const onSearchError = (): ApiResponse<any> => (
   }
 )
 
-/*
-const filters = [
-  "filtre" => () => {}
-]
-*/
+// tslint:disable-next-line:typedef
+const ascentValue = (field: SortFields) => (prev: IUserRun, next: IUserRun) => {
+  console.log("ascent")
+  if (prev[field] > next[field]) {
+    return SortValues.DECAY
+  }
+  if (prev[field] < next[field]) {
+    return SortValues.ASCENT
+  }
+
+  return SortValues.NONE
+}
+
+// tslint:disable-next-line:typedef
+const decayValue = (field: SortFields) => (prev: IUserRun, next: IUserRun) => {
+  console.log("decay")
+  if (prev[field] < next[field]) {
+    return SortValues.DECAY
+  }
+  if (prev[field] > next[field]) {
+    return SortValues.ASCENT
+  }
+
+  return SortValues.NONE
+}
+
+const filters = {
+  "best": ascentValue(SortFields.FINAL_TIME),
+  "lower": decayValue(SortFields.FINAL_TIME),
+  "oldest": decayValue(SortFields.CREATED_AT),
+  "youger": ascentValue(SortFields.CREATED_AT)
+}
 
 // tslint:disable-next-line:no-commented-code no-commented-out-code
 //const keyExtractor = (item: IRun, index: number): string => item.id
@@ -110,64 +139,11 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
   // tslint:disable-next-line:no-feature-envy
   @action.bound
   private onPickerValueChange(item: string): void {
-    if (item !== this.filterValue && item !== null) {
+    if (item !== this.filterValue && !isEmpty(item)) {
       this.filterValue = item
-      switch (item) {
-        case "best": {
-          this.userRuns = this.userRuns.slice().sort((prev: IUserRun, next: IUserRun) => {
-            if (prev.final_time > next.final_time) {
-              return SortValues.DECAY
-            }
-            if (prev.final_time < next.final_time) {
-              return SortValues.ASCENT
-            }
 
-            return SortValues.NONE
-          });
-          break;
-        }
-        case "lower": {
-          this.userRuns = this.userRuns.slice().sort((prev: IUserRun, next: IUserRun) => {
-            if (prev.final_time < next.final_time) {
-              return SortValues.DECAY
-            }
-            if (prev.final_time > next.final_time) {
-              return SortValues.ASCENT
-            }
-
-            return SortValues.NONE
-          });
-          break;
-        }
-        case "oldest": {
-          this.userRuns = this.userRuns.slice().sort((prev: IUserRun, next: IUserRun) => {
-            if (prev.created_at < next.created_at) {
-              return SortValues.DECAY
-            }
-            if (prev.created_at > next.created_at) {
-              return SortValues.ASCENT
-            }
-
-            return SortValues.NONE
-          });
-          break;
-        }
-        case "younger": {
-          this.userRuns = this.userRuns.slice().sort((prev: IUserRun, next: IUserRun) => {
-            if (prev.created_at > next.created_at) {
-              return SortValues.DECAY
-            }
-            if (prev.created_at < next.created_at) {
-              return SortValues.ASCENT
-            }
-
-            return SortValues.NONE
-          });
-          break;
-        }
-        default: {
-          return
-        }
+      if (item === "best" || item === "lower" || item === "oldest" || item === "younger") {
+        this.userRuns = this.userRuns.slice().sort(filters[item]);
       }
     }
   }
@@ -289,10 +265,10 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
               selectedValue={this.filterValue}
               style={{ backgroundColor: "white", width: 100, height: 30}}
             >
-              <Picker.Item label="Plus récent" value="younger"/>
-              <Picker.Item label="Plus ancien" value="oldest"/>
-              <Picker.Item label="Meilleurs temps" value="best"/>
-              <Picker.Item label="Plus petits temps" value="lower"/>
+              <Picker.Item label="Plus récent" value={UserRunFilters.YOUNGER}/>
+              <Picker.Item label="Plus ancien" value={UserRunFilters.OLDEST}/>
+              <Picker.Item label="Meilleurs temps" value={UserRunFilters.BEST}/>
+              <Picker.Item label="Plus petits temps" value={UserRunFilters.LOWER}/>
             </Picker>
           </View>
         </View>
