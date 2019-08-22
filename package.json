@@ -1,6 +1,6 @@
 {
   "name": "ExoRun",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "private": true,
   "scripts": {
     "start": "react-native start",
@@ -22,10 +22,10 @@
     "reload-android": "adb shell input text 'RR'",
     "reactotron-android": "adb reverse tcp:9090 tcp:9090",
     "packager-android": "adb reverse tcp:8081 tcp:8081",
-    "version:patch": "npm version patch -m 'Upgrade to %s'",
     "prepare": "npm-run-all patch hack:*",
     "patch": "patch-package",
     "postversion": "react-native-version",
+    "version:patch": "npm version patch -m 'Upgrade to %s'",
     "version:minor": "npm version minor -m 'Upgrade to %s'",
     "version:major": "npm version major -m 'Upgrade to %s'"
   },
