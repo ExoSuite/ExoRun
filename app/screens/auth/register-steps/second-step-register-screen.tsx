@@ -70,9 +70,8 @@ const FULL: ViewStyle = {
 const CONTAINER: ViewStyle = {
   ...FULL,
   paddingHorizontal: spacing[4],
-  flexGrow: 1,
   flex: 1,
-  justifyContent: "space-evenly",
+  justifyContent: Platform.Android ? "space-evenly" : "flex-start",
   backgroundColor: color.background
 }
 
@@ -91,11 +90,6 @@ const NEXT_STEP_BUTTON: ViewStyle = {
   maxWidth: "35%",
   minWidth: "20%",
   margin: spacing[1]
-}
-
-const MAIN_CONTAINER: ViewStyle = {
-  marginBottom: spacing[4],
-  flex: 1
 }
 
 const disabled = color.palette.lightGrey
@@ -267,8 +261,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
           </FormRow>
 
           <Screen style={CONTAINER} backgroundColor={color.background} preset="fixed">
-            <FormRow preset="clearFullWidth" style={MAIN_CONTAINER}>
-
+            <FormRow preset="clearFullWidth">
               <AnimatedInteractiveInput
                 preset="auth"
                 autoCapitalize="none"
@@ -283,7 +276,8 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
                 onSubmitEditing={this.focusOnPassword}
                 autoFocus
               />
-
+            </FormRow>
+            <FormRow preset="clearFullWidth">
               <AnimatedInteractiveInput
                 preset="auth"
                 autoCapitalize="none"
@@ -299,11 +293,11 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
                 onSubmitEditing={this.focusOnPasswordConfirmation}
                 inputState={passwordInputState}
               />
-
               <FormRow preset={"clear"} style={[ZERO_PADDING, { paddingTop: spacing[2] }]}>
                 <Button preset="link" tx={passwordToggleText} onPress={toggleIsPasswordVisible}/>
               </FormRow>
-
+            </FormRow>
+            <FormRow preset="clearFullWidth">
               <AnimatedInteractiveInput
                 preset="auth"
                 autoCapitalize="none"
@@ -317,7 +311,6 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
                 forwardedRef={this.setPasswordConfirmationInputRef}
                 inputState={passwordConfirmationInputState}
               />
-
             </FormRow>
           </Screen>
 

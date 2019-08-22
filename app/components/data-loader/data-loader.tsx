@@ -179,19 +179,8 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
   @autobind
   private onAnimationFinish(): void {
 
-    // 2nd step when playError or playSuccess animation has finished cross or a check
-    // ⚠️ THIS PART WILL ONLY RUN ON ANDROID ⚠️
-    if (this.finalAnimationStatus === FinalAnimationStatus.PLAYED) {
+    if (this.finalAnimationStatus === FinalAnimationStatus.WILL_PLAY) {
       this.finalAnimationStep()
-    } else if (this.finalAnimationStatus === FinalAnimationStatus.WILL_PLAY) {
-      // on android call the sound animation and playSuccess animation after first step
-      if (Platform.Android) {
-        this.firstAnimationStep()
-        this.finalAnimationStatus = FinalAnimationStatus.PLAYED
-      } else { // on ios call the final step
-        this.finalAnimationStep()
-        this.finalAnimationStatus = FinalAnimationStatus.STOPPED
-      }
     } else if (this.isSuccessFul()) {
       this.successAnimation()
       this.finalAnimationStatus = FinalAnimationStatus.WILL_PLAY
