@@ -108,10 +108,10 @@ export class EditMyProfileScreen extends React.Component<IEditMyProfileScreenPro
     await Promise.all([userUpdatePromise, userProfileUpdatePromise])
       .then(async () => {
         updateUserModel(this.userProfile, userModel)
-        DataLoader.Instance.success(soundPlayer.success)
+        DataLoader.Instance.success(soundPlayer.playSuccess)
       })
       .catch((err: any) => {
-        DataLoader.Instance.hasErrors(err, soundPlayer.error)
+        DataLoader.Instance.hasErrors(err, soundPlayer.playError)
       })
   }
 

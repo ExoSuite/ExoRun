@@ -1,5 +1,6 @@
 import { types } from "mobx-state-tree"
 import { EventType, NavigationEventCallback } from "react-navigation"
+import { noop } from "lodash-es"
 
 /**
  * This mobx-state-tree model bestows a few events for working with `react-navigation`
@@ -26,7 +27,7 @@ export const NavigationEvents = types.model("NavigationEvents").volatile(() => {
         type: "action",
         action,
         state: newState,
-        lastState: oldState,
+        lastState: oldState
       })
     })
   }
@@ -40,8 +41,9 @@ export const NavigationEvents = types.model("NavigationEvents").volatile(() => {
    */
   const addListener = (eventName: EventType, handler: NavigationEventCallback): any => {
     if (eventName !== "action") {
-      // tslint:disable-next-line:typedef no-empty
-      return { remove: () => {} }
+      return {
+        remove: noop
+      }
     }
 
     // subscribe
@@ -50,9 +52,9 @@ export const NavigationEvents = types.model("NavigationEvents").volatile(() => {
     // return the instructions on how to unsubscribe
     return {
       // tslint:disable-next-line:typedef
-      remove: () => subs.delete(handler),
+      remove: () => subs.delete(handler)
     }
   }
 
-  return { addListener, fireSubscribers, subs}
+  return { addListener, fireSubscribers, subs }
 })

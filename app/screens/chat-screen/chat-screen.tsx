@@ -1,6 +1,6 @@
 import * as React from "react"
 import { inject, observer } from "mobx-react"
-import { View, ViewStyle } from "react-native"
+import { TextStyle, View, ViewStyle } from "react-native"
 import { color } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { GiftedChat } from "react-native-gifted-chat"
@@ -16,6 +16,7 @@ import autobind from "autobind-decorator"
 import { IGroup } from "@models/group"
 import { convertUserToRNGCFormat } from "@utils/rngc/convertUser"
 import { languageTag } from "@i18n/i18n"
+import { Text } from "@components/text"
 
 interface IChatScreenNavigationProps {
   group: IGroupsModel,
@@ -36,6 +37,10 @@ interface IChatState {
 
 const maxInputLength = 2048
 
+const TEXT_ALIGN_CENTER: TextStyle = {
+  textAlign: "center"
+}
+
 /**
  * ChatScreen will show the message
  */
@@ -50,10 +55,6 @@ export class ChatScreen extends React.Component<IChatScreenProps, IChatState> {
     messages: []
   }
 
-  public static navigationOptions = {
-    headerLeft: NavigationBackButtonWithNestedStackNavigator()
-  }
-
   constructor(props: IChatScreenProps) {
     super(props)
     const userModel: IUserModel = props.userModel
@@ -66,6 +67,12 @@ export class ChatScreen extends React.Component<IChatScreenProps, IChatState> {
     )
     this.group = group
   }
+
+  // tslint:disable-next-line: typedef
+  public static navigationOptions = ({ navigation }) => ({
+    headerTitle: <Text text={navigation.getParam("group").name} preset="lightHeader" style={TEXT_ALIGN_CENTER}/>,
+    headerLeft: NavigationBackButtonWithNestedStackNavigator()
+  })
 
   @autobind
   private onSend(messages: IMessage[] = []): void {

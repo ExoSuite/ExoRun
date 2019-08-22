@@ -8,7 +8,7 @@ import { flatten, mergeAll } from "ramda"
 const ROOT: ViewStyle = {
   flexDirection: "row",
   paddingVertical: spacing[1],
-  alignSelf: "flex-start",
+  alignSelf: "flex-start"
 }
 
 const DIMENSIONS = { width: 16, height: 16 }
@@ -20,13 +20,13 @@ const OUTLINE: ViewStyle = {
   alignItems: "center",
   borderWidth: 1,
   borderColor: color.primaryDarker,
-  borderRadius: 1,
+  borderRadius: 1
 }
 
 const FILL: ViewStyle = {
   width: DIMENSIONS.width - 4,
   height: DIMENSIONS.height - 4,
-  backgroundColor: color.primary,
+  backgroundColor: color.primary
 }
 
 const LABEL: TextStyle = { paddingLeft: spacing[2] }
@@ -48,8 +48,8 @@ export function Checkbox(props: ICheckboxProps): React.ReactElement {
       onPress={onPress}
       style={rootStyle}
     >
-      <View style={outlineStyle}>{props.value && <View style={fillStyle} />}</View>
-      <Text text={props.text} tx={props.tx} numberOfLines={numberOfLines} style={LABEL} />
+      <View style={outlineStyle}>{props.value && <View style={fillStyle}/>}</View>
+      <Text text={props.text} tx={props.tx} numberOfLines={numberOfLines} style={LABEL}/>
     </TouchableOpacity>
   )
 }

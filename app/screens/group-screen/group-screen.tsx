@@ -19,7 +19,7 @@ export interface IGroupScreenProps extends NavigationScreenProps<{}>, InjectionP
 }
 
 const ROOT: ViewStyle = {
-  backgroundColor: color.background,
+  backgroundColor: color.background
 }
 
 const GROUP_CONTAINER: ViewStyle = {

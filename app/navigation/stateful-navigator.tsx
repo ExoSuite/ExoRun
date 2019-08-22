@@ -102,7 +102,7 @@ export class StatefulNavigator extends React.Component<InjectionProps> {
       dispatch,
       actionSubscribers(),
       screenNavigationParams,
-      this.getCurrentNavigation,
+      this.getCurrentNavigation
     )
 
     return (

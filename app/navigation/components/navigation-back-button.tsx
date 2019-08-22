@@ -57,11 +57,14 @@ export class NavigationBackButton extends React.PureComponent<HeaderBackButtonPr
 }
 
 export const NavigationBackButtonWithNestedStackNavigator =
-  (props: INavigationBackButtonProps = { enableNestedStackNavigatorGoBack: true, iconName: defaultNavigationIcon }): any =>
-  withNavigation((navProps: NavigationScreenProps & HeaderBackButtonProps) => (
-    <NavigationBackButton
-      {...props}
-      {...navProps}
-    />
-  )
-)
+  (props: INavigationBackButtonProps = {
+    enableNestedStackNavigatorGoBack: true,
+    iconName: defaultNavigationIcon
+  }): any =>
+    withNavigation((navProps: NavigationScreenProps & HeaderBackButtonProps) => (
+        <NavigationBackButton
+          {...props}
+          {...navProps}
+        />
+      )
+    )

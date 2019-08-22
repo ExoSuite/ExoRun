@@ -6,6 +6,8 @@ import { SocketIoServerEvent } from "@services/socket.io/socket.io.server.event"
 import { ApiOkResponse } from "apisauce"
 import { noop } from "lodash-es"
 import { IMessage as IMessageRNGC } from "react-native-gifted-chat/lib/types"
+import { withEnvironment } from "@models/extensions"
+import { withUserModel } from "@models/extensions/with-user-model"
 
 const createMessage = (message: IMessageModel): IMessageModel => MessageModel.create(message)
 
@@ -14,6 +16,8 @@ const createMessage = (message: IMessageModel): IMessageModel => MessageModel.cr
  */
 export const GroupModel = types
   .model("Group")
+  .extend(withEnvironment)
+  .extend(withUserModel)
   .props({
     created_at: types.string,
     updated_at: types.string,
@@ -21,9 +25,8 @@ export const GroupModel = types
     name: types.string,
     channel: types.frozen(SocketIoPresenceChannel),
     messages: types.optional(types.array(MessageModel), []),
-    api: types.frozen(Api),
     messageToken: types.frozen(PersonalTokenImpl),
-    pictureToken: types.frozen(PersonalTokenImpl),
+    pictureToken: types.frozen(PersonalTokenImpl)
   })
   .views((self: Instance<typeof GroupModel>) => ({
     get toRNGCMessagesFormat(): IMessageRNGC[] {
@@ -34,7 +37,7 @@ export const GroupModel = types
         user: {
           _id: message.user_id,
           name: `${message.user.first_name} ${message.user.last_name}`,
-          avatar: self.api.buildAvatarUrl(message.user.id, self.pictureToken.accessToken)
+          avatar: self.environment.api.buildAvatarUrl(message.user.id, self.pictureToken.accessToken)
         }
       }))
     }
@@ -45,7 +48,11 @@ export const GroupModel = types
       self.fetchMessages()
     },
     fetchMessages(): void {
-      self.api.get(`group/${self.id}/message`, {}, Api.BuildAuthorizationHeader(self.messageToken))
+      self.environment.api.get(
+        `group/${self.id}/message`,
+        {},
+        Api.BuildAuthorizationHeader(self.messageToken)
+      )
         .then(self.afterSuccessfulRequest)
         .catch(noop)
     },
@@ -53,12 +60,18 @@ export const GroupModel = types
       self.messages = messageResponse.data.data.map(createMessage)
     },
     addMessage(newMessage: { text: string }): void {
-      self.api.post(`group/${self.id}/message`,
+      self.environment.soundPlayer.playSendMessage()
+      self.environment.api.post(
+        `group/${self.id}/message`,
         { contents: newMessage.text },
         Api.BuildAuthorizationHeader(self.messageToken)
       ).catch(noop)
     },
     pushMessage(newMessage: IMessage): void {
+      if (self.userModel.id !== newMessage.user_id) {
+        self.environment.soundPlayer.playReceiveMessage()
+      }
+
       self.messages.unshift(createMessage(newMessage))
     }
 

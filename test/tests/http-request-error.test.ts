@@ -14,7 +14,7 @@ const errors = {
   ]
 };
 
-describe("http request error tests", () => {
+describe("http request playError tests", () => {
 
   test("must return correct message", () => {
     try {
@@ -38,7 +38,7 @@ describe("http request error tests", () => {
     }
   })
 
-  test("must return the error array from server", () => {
+  test("must return the playError array from server", () => {
     try {
       throw new HttpRequestError(basicProblem, {
         config: undefined, data: { errors }, duration: 0, headers: {}, originalError: null, status: 0,
@@ -49,7 +49,7 @@ describe("http request error tests", () => {
     }
   })
 
-  test("must return the error array from server and format it", () => {
+  test("must return the playError array from server and format it", () => {
     try {
       throw new HttpRequestError(basicProblem, {
         config: undefined, data: { errors }, duration: 0, headers: {}, originalError: null, status: 0,

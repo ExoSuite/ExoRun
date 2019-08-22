@@ -1,15 +1,15 @@
 import { getEnv, IStateTreeNode } from "mobx-state-tree"
-import { Environment } from "../environment"
+import { IUserModel } from "@models/user-profile"
 
 /**
  * Adds a environment property to the node for accessing our
  * Environment in strongly typed.
  */
 // tslint:disable-next-line: typedef
-export const withEnvironment = (self: IStateTreeNode) => ({
+export const withUserModel = (self: IStateTreeNode) => ({
   views: {
-    get environment(): Environment {
-      return getEnv(self).environment
+    get userModel(): IUserModel {
+      return getEnv(self).userModel
     }
   }
 })

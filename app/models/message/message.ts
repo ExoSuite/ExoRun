@@ -1,10 +1,10 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
 
 const UserMessageModel = types.model("UserMessageModel").props({
-    id: types.string,
-    first_name: types.maybeNull(types.string),
-    last_name: types.maybeNull(types.string),
-    nick_name: types.maybeNull(types.string),
+  id: types.string,
+  first_name: types.maybeNull(types.string),
+  last_name: types.maybeNull(types.string),
+  nick_name: types.maybeNull(types.string)
 })
 
 /**

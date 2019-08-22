@@ -20,7 +20,6 @@ import { DataLoader } from "@components/data-loader"
 import { useScreens } from "react-native-screens"
 import { IUserModel } from "@models/user-profile"
 import { IGroupsModel } from "@models/groups"
-import { View } from "react-native-animatable"
 
 export interface IAppState {
   env?: Environment
