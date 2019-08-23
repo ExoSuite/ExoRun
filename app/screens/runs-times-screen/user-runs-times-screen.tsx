@@ -16,9 +16,9 @@ import { Injection, InjectionProps } from "@services/injections"
 import { IUserRun } from "@services/api"
 import { ApiResponse } from "apisauce"
 import { translate } from "@i18n/translate"
-import { SortValues } from "@utils/sort-values"
 import { SortFields } from "@utils/sort-fields"
 import { UserRunFilters } from "@utils/user-run-filters"
+import * as FilterFunctons from "@utils/filters-functions"
 
 export interface IRunsTimesScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -67,37 +67,11 @@ const onSearchError = (): ApiResponse<any> => (
   }
 )
 
-// tslint:disable-next-line:typedef
-const ascentValue = (field: SortFields) => (prev: IUserRun, next: IUserRun) => {
-  console.log("ascent")
-  if (prev[field] > next[field]) {
-    return SortValues.DECAY
-  }
-  if (prev[field] < next[field]) {
-    return SortValues.ASCENT
-  }
-
-  return SortValues.NONE
-}
-
-// tslint:disable-next-line:typedef
-const decayValue = (field: SortFields) => (prev: IUserRun, next: IUserRun) => {
-  console.log("decay")
-  if (prev[field] < next[field]) {
-    return SortValues.DECAY
-  }
-  if (prev[field] > next[field]) {
-    return SortValues.ASCENT
-  }
-
-  return SortValues.NONE
-}
-
 const filters = {
-  "best": ascentValue(SortFields.FINAL_TIME),
-  "lower": decayValue(SortFields.FINAL_TIME),
-  "oldest": decayValue(SortFields.CREATED_AT),
-  "youger": ascentValue(SortFields.CREATED_AT)
+  "best": FilterFunctons.ascentValue(SortFields.FINAL_TIME),
+  "lower": FilterFunctons.decayValue(SortFields.FINAL_TIME),
+  "oldest": FilterFunctons.decayValue(SortFields.CREATED_AT),
+  "younger": FilterFunctons.ascentValue(SortFields.CREATED_AT)
 }
 
 // tslint:disable-next-line:no-commented-code no-commented-out-code
@@ -264,6 +238,7 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
               onValueChange={this.onPickerValueChange}
               selectedValue={this.filterValue}
               style={{ backgroundColor: "white", width: 100, height: 30}}
+              itemStyle={{ backgroundColor: "white" }}
             >
               <Picker.Item label="Plus récent" value={UserRunFilters.YOUNGER}/>
               <Picker.Item label="Plus ancien" value={UserRunFilters.OLDEST}/>
