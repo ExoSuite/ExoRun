@@ -1,6 +1,6 @@
 import { getEnv, Instance, SnapshotOut, types } from "mobx-state-tree"
 import { GroupModel, IGroup } from "@models/group"
-import { PersonalTokenImpl } from "@services/api"
+import { IPersonalTokens, PersonalTokenImpl } from "@services/api"
 import { ApiOkResponse } from "apisauce"
 import { SocketIo } from "@services/socket.io"
 import { isEmpty, noop, orderBy } from "lodash-es"
@@ -62,6 +62,10 @@ export const GroupsModel = types
     },
     addGroup(group: IGroup): void {
       self.groups.unshift(self.createNewGroup(getEnv(self), group))
+    },
+    updateTokens(tokens: IPersonalTokens): void {
+      self.pictureToken = tokens["view-picture-exorun"]
+      self.messageToken = tokens["message-exorun"]
     },
     createNewGroup(env: IGroupsInjectedEnvironment, group: IGroup): IGroup {
       return GroupModel.create({

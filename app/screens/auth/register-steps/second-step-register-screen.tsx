@@ -27,9 +27,7 @@ import { HttpRequestError } from "@exceptions"
 import { DataLoader } from "@components/data-loader"
 import autobind from "autobind-decorator"
 import { ApiResponse } from "apisauce"
-import { save } from "@utils/keychain"
-import { Server } from "@services/api/api.servers"
-import { AppScreens } from "@navigation/navigation-definitions"
+import { afterSuccessfulLogin } from "@utils/auth/after-successful-login"
 
 export interface ISecondStepRegisterScreenNavigationParams {
   firstName: string,
@@ -149,7 +147,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
 
   @autobind
   private async register(): Promise<void> {
-    const { api, navigation, soundPlayer, userModel, socketIO } = this.props
+    const { api, navigation, userModel, groupsModel, env } = this.props
     const { email, password, passwordConfirmation } = this
     DataLoader.Instance.toggleIsVisible()
 
@@ -180,19 +178,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
       return
     }
 
-    await save(loginResponse.data, Server.EXOSUITE_USERS_API)
-    await Promise.all([
-      api.getOrCreatePersonalTokens(),
-      api.getProfile(userModel)
-    ])
-
-    DataLoader.Instance.success(
-      soundPlayer.playSuccess,
-      async () => {
-        navigation.navigate(AppScreens.HOME)
-        await socketIO.setup()
-        this.props.groupsModel.fetchGroups()
-      })
+    await afterSuccessfulLogin(loginResponse, groupsModel, userModel, env, navigation)
   }
 
   @action.bound
@@ -352,5 +338,5 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
 }
 
 export const SecondStepRegisterScreen =
-  inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel, Injection.SocketIO)
+  inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel, Injection.SocketIO, Injection.GroupsModel, Injection.Environment)
   (observer(SecondStepRegisterScreenImpl))

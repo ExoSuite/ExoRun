@@ -91,7 +91,6 @@ export class ChatScreen extends React.Component<IChatScreenProps, IChatState> {
           messages={this.group.toRNGCMessagesFormat}
           alignTop={false}
           locale={languageTag}
-          forceGetKeyboardHeight
           text={this.newMessageText}
           onInputTextChanged={this.updateNewMessageText}
           renderUsernameOnMessage
