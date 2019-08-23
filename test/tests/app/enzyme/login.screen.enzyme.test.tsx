@@ -15,11 +15,13 @@ import { SoundPlayer } from "@services/sound-player"
 import { UserModelMock } from "../../../__mocks__/stores/UserModelMock"
 import { GroupsModelMockData } from "../../../__mocks__/stores/GroupsModelMock"
 import { SocketIo } from "@services/socket.io"
+import { Environment } from "@models/environment"
 
 describe("login tests", () => {
   const api: Api = new Api()
   const socketIO = new SocketIo()
   const soundPlayer = new SoundPlayer()
+  const env = new Environment()
 
   test("login render correctly", () => {
     const wrapper = mount<LoginScreen>((
@@ -29,6 +31,7 @@ describe("login tests", () => {
         userModel={UserModelMock}
         groupsModel={GroupsModelMockData}
         socketIO={socketIO}
+        env={env}
       >
         <LoginScreen
           // @ts-ignore

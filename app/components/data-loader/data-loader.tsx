@@ -184,17 +184,13 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
     } else if (this.isSuccessFul()) {
       this.successAnimation()
       this.finalAnimationStatus = FinalAnimationStatus.WILL_PLAY
-      // on ios call the sound animation and playSuccess animation beforehand
-      if (Platform.iOS) {
-        this.firstAnimationStep()
-      }
+      // call the sound animation and playSuccess beforehand
+      this.firstAnimationStep()
     } else if (this.hasError()) {
       this.errorAnimation()
       this.finalAnimationStatus = FinalAnimationStatus.WILL_PLAY
-      // on ios call the sound animation and playSuccess beforehand
-      if (Platform.iOS) {
-        this.firstAnimationStep()
-      }
+      // call the sound animation and playSuccess beforehand
+      this.firstAnimationStep()
     } else if (this.isStandingBy()) {
       this.baseAnimation()
     }

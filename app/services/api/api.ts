@@ -90,7 +90,7 @@ export class Api implements IService {
   }
 
   // tslint:disable-next-line: no-feature-envy
-  private async onLocalTokensFulfilled(localPersonalTokens: IPersonalTokens): Promise<void> {
+  private async onLocalTokensFulfilled(localPersonalTokens: IPersonalTokens): Promise<IPersonalTokens> {
     const response: ApiResponse<IToken[]> = await this.get(ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS)
     if (isEmpty(response.data)) { // if something bad is happened or happen create a token set
       await this.onNoPersonalTokensCreateTokenSet()
@@ -108,10 +108,12 @@ export class Api implements IService {
     }
 
     await save(localPersonalTokens, Server.EXOSUITE_USERS_API_PERSONAL)
+
+    return localPersonalTokens;
   }
 
   // tslint:disable-next-line: no-feature-envy
-  private async onNoPersonalTokensCreateTokenSet(): Promise<void> {
+  private async onNoPersonalTokensCreateTokenSet(): Promise<IPersonalTokens> {
     await reset(Server.EXOSUITE_USERS_API_PERSONAL)
 
     const oauthScopes: ApiResponse<IScope[]> = await this.get(ApiRoutes.OAUTH_SCOPES)
@@ -144,6 +146,7 @@ export class Api implements IService {
 
     await save(tokens, Server.EXOSUITE_USERS_API_PERSONAL)
 
+    return tokens;
   }
 
   // tslint:disable-next-line max-func-args
@@ -217,7 +220,7 @@ export class Api implements IService {
     return this.request(HttpRequest.GET, url, data, headers, requireAuth)
   }
 
-  public async getOrCreatePersonalTokens(): Promise<void> {
+  public async getOrCreatePersonalTokens(): Promise<IPersonalTokens> {
     const localPersonalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
 
     if (localPersonalTokens) {

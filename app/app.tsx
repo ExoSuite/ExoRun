@@ -112,6 +112,7 @@ export class App extends React.Component<{}, IAppState> {
       socketIO: env.socketIO,
       userModel,
       groupsModel,
+      env: env
     }
     // --- am: end list of stores ---
 
