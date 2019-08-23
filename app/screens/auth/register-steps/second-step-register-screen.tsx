@@ -191,6 +191,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
       async () => {
         navigation.navigate(AppScreens.HOME)
         await socketIO.setup()
+        this.props.groupsModel.fetchGroups()
       })
   }
 
