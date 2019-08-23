@@ -1,10 +1,12 @@
 <resources>
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
-<!--
+        <item name="android:colorBackground">@color/white</item>    <!--ligne ajoutée pour modifier la couleur du picker natif d'android en blanc-->
+
+        <!--
         <item name="android:colorBackground">@color/primary_dark</item> &lt;!&ndash;Change for the color you want &ndash;&gt;
 -->
-        <item name="android:colorBackground">@color/white</item>
+
     </style>
 
     </resources>
