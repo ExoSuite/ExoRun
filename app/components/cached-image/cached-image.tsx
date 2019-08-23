@@ -4,7 +4,7 @@ import * as RNFS from "react-native-fs"
 import * as shorthash from "shorthash"
 import { Platform } from "@services/device"
 import autobind from "autobind-decorator"
-import { IRenderFunction } from "@types"
+import { IRenderFunction } from "@custom-types"
 import { noop } from "lodash-es"
 
 interface ICachedImageProps {

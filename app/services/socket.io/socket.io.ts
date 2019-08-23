@@ -14,22 +14,22 @@ import { SocketIoChannel } from "@services/socket.io/socket.io.channel"
 // tslint:disable-next-line: min-class-cohesion
 export class SocketIo implements IService {
 
-  public static get Echo(): Echo {
+  public get Echo(): Echo {
     return SocketIo._Echo
   }
 
   // tslint:disable-next-line:variable-name
   private static _Echo: Echo
 
-  public static Disconnect(): void {
+  public disconnect(): void {
     SocketIo._Echo.disconnect()
   }
 
-  public static InstantiateChannel(groupId: string): SocketIoPresenceChannel {
+  public instantiateChannel(groupId: string): SocketIoPresenceChannel {
     return new SocketIoPresenceChannel(groupId)
   }
 
-  public static Notifications(user: IUser, callback: Function): void {
+  public notifications(user: IUser, callback: Function): void {
     SocketIo._Echo.private(`${SocketIoChannel.USER}.${user.id}`)
       .notification(callback)
   }

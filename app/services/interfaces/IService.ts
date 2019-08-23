@@ -1,3 +1,3 @@
 export interface IService {
-  setup(): Promise<void>
+  setup(...args: any[]): Promise<void>
 }

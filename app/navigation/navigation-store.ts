@@ -2,7 +2,7 @@ import { Instance, types } from "mobx-state-tree"
 import { RootNavigator } from "./root-navigator"
 import { NavigationAction, NavigationActions, NavigationLeafRoute } from "react-navigation"
 import { NavigationEvents } from "./navigation-events"
-import { IVoidFunction } from "@types"
+import { IVoidFunction } from "@custom-types"
 
 const DEFAULT_STATE = RootNavigator.router.getStateForAction(NavigationActions.init(), null)
 

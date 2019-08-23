@@ -155,8 +155,8 @@ export class Api implements IService {
     url: string,
     data: object = {},
     headers: IHeaders = { Authorization: null },
-    // tslint:disable-next-line no-inferrable-types no-flag-args
-    requireAuth: boolean = true
+    // tslint:disable-next-line: typedef
+    requireAuth = true
   ): Promise<ApiResponse<any>> {
 
     if (requireAuth && !headers.Authorization) {
@@ -205,8 +205,8 @@ export class Api implements IService {
     url: string,
     data: object = {},
     headers: IHeaders = { Authorization: null },
-    // tslint:disable-next-line no-inferrable-types no-flag-args
-    requireAuth: boolean = true): Promise<ApiResponse<any>> {
+    // tslint:disable-next-line:typedef
+    requireAuth = true): Promise<ApiResponse<any>> {
     return this.request(HttpRequest.DELETE, url, data, headers, requireAuth)
   }
 
@@ -215,8 +215,8 @@ export class Api implements IService {
     url: string,
     data: object = {},
     headers: IHeaders = { Authorization: null },
-    // tslint:disable-next-line no-inferrable-types no-flag-args
-    requireAuth: boolean = true): Promise<ApiResponse<any>> {
+    // tslint:disable-next-line:typedef
+    requireAuth = true): Promise<ApiResponse<any>> {
     return this.request(HttpRequest.GET, url, data, headers, requireAuth)
   }
 
@@ -247,8 +247,8 @@ export class Api implements IService {
     url: string,
     data: object = {},
     headers: IHeaders = { Authorization: null },
-    // tslint:disable-next-line no-inferrable-types no-flag-args
-    requireAuth: boolean = true): Promise<ApiResponse<any>> {
+    // tslint:disable-next-line:typedef
+    requireAuth = true): Promise<ApiResponse<any>> {
     return this.request(HttpRequest.PATCH, url, data, headers, requireAuth)
   }
 
@@ -257,8 +257,8 @@ export class Api implements IService {
     url: string,
     data: object = {},
     headers: IHeaders = { Authorization: null },
-    // tslint:disable-next-line no-inferrable-types no-flag-args
-    requireAuth: boolean = true): Promise<ApiResponse<any>> {
+    // tslint:disable-next-line:typedef
+    requireAuth = true): Promise<ApiResponse<any>> {
     return this.request(HttpRequest.POST, url, data, headers, requireAuth)
   }
 
@@ -267,8 +267,8 @@ export class Api implements IService {
     url: string,
     data: object = {},
     headers: IHeaders = { Authorization: null },
-    // tslint:disable-next-line no-inferrable-types no-flag-args
-    requireAuth: boolean = true): Promise<ApiResponse<any>> {
+    // tslint:disable-next-line:typedef
+    requireAuth = true): Promise<ApiResponse<any>> {
     return this.request(HttpRequest.PUT, url, data, headers, requireAuth)
   }
 

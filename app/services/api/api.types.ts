@@ -175,3 +175,15 @@ export enum IGeoJsonType {
   FEATURE = "Feature",
   POLYGON = "Polygon"
 }
+
+export enum NotificationType {
+  FOLLOW = "follow",
+  NEW_MESSAGE = "new_message",
+  NEW_GROUP = "new_group",
+  DELETED_GROUP = "deleted_group",
+  EXPELLED_FROM_GROUP = "expelled_from_group"
+}
+
+export interface INotification {
+  type: NotificationType
+}

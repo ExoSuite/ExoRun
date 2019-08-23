@@ -23,7 +23,7 @@ import { FontawesomeIcon } from "@components/fontawesome-icon"
 import { IFollowScreenNavigationScreenProps } from "@screens/follow-screen"
 import { FAB, PartialIconProps } from "react-native-paper"
 import moment from "moment"
-import { IVoidFunction } from "@types"
+import { IVoidFunction } from "@custom-types"
 import { noop } from "lodash-es"
 
 // tslint:disable:id-length

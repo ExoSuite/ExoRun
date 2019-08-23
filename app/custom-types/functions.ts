@@ -9,3 +9,5 @@ export type ITextInputRef = (ref: TextInput) => void
 export type IRenderFunction = () => React.ReactNode
 
 export type IOnChangeTextCallback = (text: string) => void
+
+export type IVoidCallbackArray = IVoidFunction[]

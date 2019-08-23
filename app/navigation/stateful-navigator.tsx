@@ -9,7 +9,7 @@ import { Asset } from "@services/asset"
 import { color } from "@theme"
 import { Screen } from "@services/device"
 import { Injection, InjectionProps } from "@services/injections"
-import { IVoidFunction } from "@types"
+import { IVoidFunction } from "@custom-types"
 
 interface IScreenProps {
   animateSplashScreen: IVoidFunction,

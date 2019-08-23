@@ -5,7 +5,7 @@ import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { Button } from "@components/button"
 import { AppScreens } from "@navigation/navigation-definitions"
-import { IBoolFunction } from "@types"
+import { IBoolFunction } from "@custom-types"
 import autobind from "autobind-decorator"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 // tslint:disable-next-line: match-default-export-name

@@ -5,7 +5,7 @@ import { FontawesomeIcon } from "@components/fontawesome-icon"
 import { color, spacing } from "@theme"
 import { Button } from "@components"
 import { ViewStyle } from "react-native"
-import { IVoidFunction } from "@types"
+import { IVoidFunction } from "@custom-types"
 import { FontAwesomeIconNames } from "@components/fontawesome-icon/font-awesome-icon.props"
 
 export interface INavigationBackButtonProps {
