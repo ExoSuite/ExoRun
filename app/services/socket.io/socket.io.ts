@@ -15,23 +15,25 @@ import { SocketIoChannel } from "@services/socket.io/socket.io.channel"
 export class SocketIo implements IService {
 
   public get Echo(): Echo {
-    return SocketIo._Echo
+    return this._Echo
   }
 
   // tslint:disable-next-line:variable-name
-  private static _Echo: Echo
+  private _Echo: Echo
 
   public disconnect(): void {
-    SocketIo._Echo.disconnect()
+    this._Echo.disconnect()
   }
 
   public instantiateChannel(groupId: string): SocketIoPresenceChannel {
-    return new SocketIoPresenceChannel(groupId)
+    return new SocketIoPresenceChannel(groupId, this)
   }
 
   public notifications(user: IUser, callback: Function): void {
-    SocketIo._Echo.private(`${SocketIoChannel.USER}.${user.id}`)
-      .notification(callback)
+    if (this._Echo) {
+      this._Echo.private(`${SocketIoChannel.USER}.${user.id}`)
+        .notification(callback)
+    }
   }
 
   // tslint:disable-next-line:prefer-function-over-method
@@ -45,7 +47,7 @@ export class SocketIo implements IService {
     }
 
     try {
-      SocketIo._Echo = new Echo({
+      this._Echo = new Echo({
         broadcaster: "socket.io",
         host: `wss://${Config.IO_SERVER}`,
         client: SocketIoClient,

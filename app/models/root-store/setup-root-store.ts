@@ -115,7 +115,7 @@ export async function createEnvironment(): Promise<Environment> {
   env.api = new Api()
   env.soundPlayer = new SoundPlayer()
   env.socketIO = new SocketIo()
-  env.notificationManager = new NotificationManager()
+  env.notificationManager = new NotificationManager(env.soundPlayer)
 
   await ApiTokenManager.Setup()
 

@@ -1,5 +1,7 @@
 // this file Is for define api responses
 
+import { IGroup } from "@models/group"
+
 interface ITimestamps {
   created_at: string,
   updated_at: string,
@@ -186,4 +188,17 @@ export enum NotificationType {
 
 export interface INotification {
   type: NotificationType
+}
+
+export interface ILiveGroupNotification {
+  group: IGroup
+  message: string
+}
+
+export interface ILiveNotification<ILiveNotificationData> {
+  data: ILiveNotificationData
+  id: string
+  notification_type: NotificationType
+  socket: string
+  type: string
 }

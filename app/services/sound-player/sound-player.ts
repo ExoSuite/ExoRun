@@ -7,35 +7,38 @@ import { noop } from "lodash-es"
  * SoundPlayer will be the controller to handle app sounds and ringtones
  */
 // tslint:disable-next-line: min-class-cohesion
+@autobind
 export class SoundPlayer implements IService {
+  private addedToGroupSound: Sound
   private errorSound: Sound
   private receiveMessageSound: Sound
   private sendMessageSound: Sound
   private successSound: Sound
 
-  @autobind
+  public playAddedToGroup(): void {
+    this.addedToGroupSound.setVolume(0.15)
+    this.addedToGroupSound.play()
+  }
+
   public playError(): void {
-    this.errorSound.setVolume(0.75)
+    this.errorSound.setVolume(0.5)
     this.errorSound.play()
   }
 
-  @autobind
   public playReceiveMessage(): void {
     this.receiveMessageSound.setVolume(0.05)
     this.receiveMessageSound.setSpeed(1.25)
     this.receiveMessageSound.play()
   }
 
-  @autobind
   public playSendMessage(): void {
     this.sendMessageSound.setVolume(0.1)
     this.sendMessageSound.setSpeed(1.25)
     this.sendMessageSound.play()
   }
 
-  @autobind
   public playSuccess(): void {
-    this.successSound.setVolume(0.75)
+    this.successSound.setVolume(0.5)
     this.successSound.play()
   }
 
@@ -44,6 +47,7 @@ export class SoundPlayer implements IService {
     this.errorSound = new Sound(require("./assets/nfc_failure.mp3"), noop)
     this.sendMessageSound = new Sound(require("./assets/send_message.mp3"), noop)
     this.receiveMessageSound = new Sound(require("./assets/receive_message.mp3"), noop)
+    this.addedToGroupSound = new Sound(require("./assets/new_group.mp3"), noop)
   }
 
   // tslint:disable-next-line: max-func-args

@@ -54,7 +54,7 @@ export const GroupsModel = types
     },
     groupModelParams(group: IGroup): object {
       return {
-        channel: self.environment.instantiateChannel(group.id),
+        channel: self.environment.socketIO.instantiateChannel(group.id),
         messageToken: self.messageToken,
         pictureToken: self.pictureToken
       }

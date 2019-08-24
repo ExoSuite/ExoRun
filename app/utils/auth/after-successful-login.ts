@@ -21,6 +21,8 @@ export async function afterSuccessfulLogin(
   groupsModel.updateTokens(await environment.api.getOrCreatePersonalTokens())
   await Promise.all([environment.socketIO.setup(), environment.api.getProfile(userModel)])
   groupsModel.fetchGroups()
+  await environment.notificationManager.setup(groupsModel)
+  environment.socketIO.notifications(userModel, environment.notificationManager.notify)
 
   DataLoader.Instance.success(
     environment.soundPlayer.playSuccess,
