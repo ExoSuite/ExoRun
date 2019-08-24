@@ -27,7 +27,7 @@ import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
 import { NavigationScreenProps } from "react-navigation"
 import { validate, ValidationRules } from "@utils/validate"
 import { footerShadow } from "@utils/shadows"
-import { IVoidFunction } from "@types"
+import { IVoidFunction } from "@custom-types"
 import { afterSuccessfulLogin } from "@utils/auth/after-successful-login"
 
 const EXOSUITE: ImageStyle = {

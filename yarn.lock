@@ -808,10 +808,10 @@
     hoist-non-react-statics "^2.2.2"
     prop-types "^15.5.10"
 
-"@fortawesome/fontawesome-common-types@^0.2.21":
-  version "0.2.21"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.21.tgz#f1c26ae24761cca583de7cafd1273ab4c70a4d87"
-  integrity sha512-iJtcrU2BtF9Wyr0zm3tHEJy3HqA6sADExhCqCv3SKaJJKKp4ORJ40t4nyHvcWXSVFtd7r1gcdqcRsAfoREGTFA==
+"@fortawesome/fontawesome-common-types@^0.2.22":
+  version "0.2.22"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.22.tgz#3f1328d232a0fd5de8484d833c8519426f39f016"
+  integrity sha512-QmEuZsipX5/cR9JOg0fsTN4Yr/9lieYWM8AQpmRa0eIfeOcl/HLYoEa366BCGRSrgNJEexuvOgbq9jnJ22IY5g==
 
 "@hapi/address@2.x.x":
   version "2.0.0"
@@ -1585,12 +1585,12 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.1.tgz#f1a11e7babb0c3cad68100be381d1e064c68f1f6"
   integrity sha512-CFzn9idOEpHrgdw8JsoTkaDDyRWk1jrzIV8djzcgpq0y9tG4B4lFT+Nxh52DVpDXV+n4+NPNv7M1Dj5uMp6XFg==
 
-"@types/ramda@0.26.19":
-  version "0.26.19"
-  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.26.19.tgz#400580597566c016e9743f17c1c48bf4671cda81"
-  integrity sha512-lJuMZDXqZ8W2hl0Gz+wEPUhXcf/tZRuaO5vrxFD3Dv2XMqgTZVw+bvfS6iQAsio9XQV+uhkggtT4eLhDmUpI5g==
+"@types/ramda@0.26.21":
+  version "0.26.21"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.26.21.tgz#cfd552c679453d153a9e2fd89ffc5dd5aa93d2c9"
+  integrity sha512-zMYtIZMceA6BvH+or6LmewLBgojbXg5+FGCwjO8K+Z+d/ZWxILmhhASXkehW0PqJL+V0QbyDeeAHix0dvEKXfQ==
   dependencies:
-    ts-toolbelt "^3.2.22"
+    ts-toolbelt "^3.8.4"
 
 "@types/react-native-vector-icons@^6.4.1":
   version "6.4.1"
@@ -2028,12 +2028,12 @@ apisauce@0.14.3:
     axios "^0.16.2"
     ramda "^0.24.1"
 
-apisauce@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/apisauce/-/apisauce-1.0.3.tgz#f2989299a5b7a7ea1b2a9ad69539212e5d59f9e2"
-  integrity sha512-kcc4p75KoRVQCCpKgieu4D/om9ixt7m/GX/q/VbOLuwLVf31IDDh9GbncmNA2XqFV7UO9STaqd68X9O2jwaCbQ==
+apisauce@1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/apisauce/-/apisauce-1.0.5.tgz#bae76c41719821108552984e746c56d1863be048"
+  integrity sha512-iXqkqCph/yp1AmmGm/SBN2lWAhX8F++etLBb40MLM+cb/2gF490bVhb7kl6wmM6VoSSDsirLalOziITVBMXdnA==
   dependencies:
-    axios "^0.18.1"
+    axios "^0.19.0"
     ramda "^0.25.0"
 
 app-module-path@^2.2.0:
@@ -2262,10 +2262,10 @@ axios@^0.16.2:
     follow-redirects "^1.2.3"
     is-buffer "^1.1.5"
 
-axios@^0.18.1:
-  version "0.18.1"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.1.tgz#ff3f0de2e7b5d180e757ad98000f1081b87bcea3"
-  integrity sha512-0BfJq4NSfQXd+SkFdrvFbG7addhYSBA2mQwISr46pD6E5iqkWg02RAs8vyTT/j0RTnoYmeXauBuSv1qKwR179g==
+axios@^0.19.0:
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.0.tgz#8e09bff3d9122e133f7b8101c8fbdd00ed3d2ab8"
+  integrity sha512-1uvKqKQta3KBxIz14F2v06AEHZ/dIoeKfbTRkK1E5oqjDnuEerLmYTgJB5AiQZHJcljpg1TuRzdjDR06qNk0DQ==
   dependencies:
     follow-redirects "1.5.10"
     is-buffer "^2.0.2"
@@ -8621,10 +8621,10 @@ react-native-fs@^2.14.1:
     base-64 "^0.1.0"
     utf8 "^2.1.1"
 
-react-native-gesture-handler@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.4.0.tgz#115f9b0a8f79ca96334f876a67c0122501ef5081"
-  integrity sha512-dbsDWU1mqNrKjsPs1t2CGnRUaGF7U/GN2JbH1AejkC/Wg6WbzGuxZaCPU9yotlXefZpLNQVemmU1bhMTo4IiWw==
+react-native-gesture-handler@1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.4.1.tgz#c38d9e57637b95e221722a79f2bafac62e3aeb21"
+  integrity sha512-Ffcs+SbEbkGaal0CClYL+v7A9y4OA5G5lW01qrzjxaqASp5C8BfnWSKuqYKE00s6bLwE5L4xnlHkG0yIxAtbrQ==
   dependencies:
     hammerjs "^2.0.8"
     hoist-non-react-statics "^2.3.1"
@@ -10344,10 +10344,10 @@ trim-right@^1.0.1:
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
   integrity sha1-yy4SAwZ+DI3h9hQJS5/kVwTqYAM=
 
-ts-toolbelt@^3.2.22:
-  version "3.2.24"
-  resolved "https://registry.yarnpkg.com/ts-toolbelt/-/ts-toolbelt-3.2.24.tgz#948fab52fab0f169bd0047e56f924760f8e6179a"
-  integrity sha512-bBzpseWAp/db3JFbneBA0aG7xxC4iRLzeqyKKr0ee1l0XHNcTi7LtypmENWnPkqPOiUcm061mlcC+S1SgfYkkw==
+ts-toolbelt@^3.8.4:
+  version "3.8.16"
+  resolved "https://registry.yarnpkg.com/ts-toolbelt/-/ts-toolbelt-3.8.16.tgz#f839a8fec26cf882e8586034aeb78a5a766a01b4"
+  integrity sha512-bMymH0SWHbReBzXtsfILYPemRpxzY6hANCI0toxMYz3VizXKesru2+5SS2wDenkSPMkehSm8DiMay+KxzRXX1A==
 
 tslib@^1.10.0, tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1:
   version "1.10.0"

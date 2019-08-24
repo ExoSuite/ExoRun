@@ -3,7 +3,7 @@ import { TouchableOpacity, View, ViewStyle } from "react-native"
 import { FontAwesomeIconNames } from "@components/fontawesome-icon/font-awesome-icon.props"
 import { FontawesomeIcon } from "@components/fontawesome-icon"
 import { palette } from "@theme/palette"
-import { IVoidFunction } from "@types"
+import { IVoidFunction } from "@custom-types"
 
 export interface ITouchableGreyscaledIconProps {
   children: React.ReactNode

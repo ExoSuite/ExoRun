@@ -1,5 +1,5 @@
 import { TextInputProps, TextStyle, ViewStyle } from "react-native"
-import { ITextInputRef } from "@types"
+import { ITextInputRef } from "@custom-types/functions"
 
 export interface ITextFieldProps extends TextInputProps {
 

@@ -11,6 +11,7 @@ import { SocketIo } from "@services/socket.io"
 import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
 import { ApiTokenManager } from "@services/api/api.token.manager"
+import { NotificationManager } from "@services/notification-manager"
 
 /**
  * The key we'll be saving our state as within async storage.
@@ -88,6 +89,9 @@ export async function setupRootStore(): Promise<ISetupRootStore> {
     userModel
   })
 
+  await env.notificationManager.setup(groupsModel)
+  env.socketIO.notifications(userModel, env.notificationManager.notify)
+
   return {
     rootStore,
     env,
@@ -111,6 +115,7 @@ export async function createEnvironment(): Promise<Environment> {
   env.api = new Api()
   env.soundPlayer = new SoundPlayer()
   env.socketIO = new SocketIo()
+  env.notificationManager = new NotificationManager(env.soundPlayer)
 
   await ApiTokenManager.Setup()
 

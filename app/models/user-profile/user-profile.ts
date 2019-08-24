@@ -22,12 +22,10 @@ export const UserModel = types
     last_name: types.optional(types.string, ""),
     nick_name: types.optional(types.string, ""),
     updated_at: types.optional(types.string, ""),
-    // @ts-ignore
     profile: types.optional(UserProfileModel, {})
   })
   .actions((self: any) => ({
     updateUserField(field: string, value: string): void {
-      // tslint:disable-next-line: no-parameter-reassignment
       self[field] = value
     }
   }))

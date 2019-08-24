@@ -2,7 +2,6 @@ import { getEnv, Instance, SnapshotOut, types } from "mobx-state-tree"
 import { GroupModel, IGroup } from "@models/group"
 import { IPersonalTokens, PersonalTokenImpl } from "@services/api"
 import { ApiOkResponse } from "apisauce"
-import { SocketIo } from "@services/socket.io"
 import { isEmpty, noop, orderBy } from "lodash-es"
 import { withEnvironment } from "@models/extensions"
 import { Environment } from "@models/environment"
@@ -55,7 +54,7 @@ export const GroupsModel = types
     },
     groupModelParams(group: IGroup): object {
       return {
-        channel: SocketIo.InstantiateChannel(group.id),
+        channel: self.environment.socketIO.instantiateChannel(group.id),
         messageToken: self.messageToken,
         pictureToken: self.pictureToken
       }

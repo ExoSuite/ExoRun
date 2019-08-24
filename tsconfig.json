@@ -42,8 +42,8 @@
       "@i18n": ["app/i18n"],
       "@exceptions": ["app/exceptions"],
       "@exceptions/*": ["app/exceptions/*"],
-      "@types": ["app/types"],
-      "@types/*": ["app/types/*"]
+      "@custom-types": ["app/custom-types"],
+      "@custom-types/*": ["app/custom-types/*"]
     }
   },
   "exclude": ["node_modules"],
