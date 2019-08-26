@@ -1,7 +1,7 @@
 import * as React from "react"
 import { inject, observer } from "mobx-react"
 import { FlatList, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
-import { Screen, Text } from "@components"
+import { Text } from "@components"
 import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { RightNavigationButton } from "@navigation/components/right-navigation-button"
@@ -14,6 +14,7 @@ import { IBoolFunction } from "@custom-types"
 import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
 import { IGroup } from "@models/group"
+import { GroupSwipeableRow } from "@screens/group-screen/components/group-swipeable-row"
 
 export interface IGroupScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -32,8 +33,11 @@ const GROUP_CONTAINER: ViewStyle = {
   shadowOpacity: 0.25,
   shadowRadius: 3.84,
   elevation: 5,
-  margin: spacing[2],
-  padding: spacing[2]
+  margin: spacing[3],
+}
+
+const TOUCHABLE_GROUP_CONTAINER: ViewStyle = {
+  backgroundColor: GROUP_CONTAINER.backgroundColor
 }
 
 const TEXT_ALIGN_RIGHT: TextStyle = {
@@ -42,6 +46,13 @@ const TEXT_ALIGN_RIGHT: TextStyle = {
 
 const ROW: ViewStyle = {
   flexDirection: "row"
+}
+
+const TEXT_ROW: ViewStyle = {
+  ...ROW,
+  flex: 1,
+  marginTop: spacing[3],
+  padding: spacing[2]
 }
 
 const SEARCH: ViewStyle = {
@@ -81,34 +92,35 @@ export class GroupScreen extends React.Component<IGroupScreenProps> {
     const formattedUpdatedAt = moment(item.updated_at).format("LLL")
 
     return (
-      <TouchableOpacity
-        style={GROUP_CONTAINER}
-        onPress={this.onGroupPressNavigateToChat(item)}
-        //        onLongPress={this.onUserWantToUpdatePost(item)}
-      >
-        <View style={ROW}>
-          <View style={{ marginLeft: spacing[2], justifyContent: "center" }}>
-            <Text
-              style={{ textTransform: "capitalize" }}
-              text={item.name}
-              preset="userRow"
-            />
+      <GroupSwipeableRow style={GROUP_CONTAINER}>
+        <TouchableOpacity
+          style={TOUCHABLE_GROUP_CONTAINER}
+          onPress={this.onGroupPressNavigateToChat(item)}
+        >
+          <View style={ROW}>
+            <View style={{ marginLeft: spacing[2], justifyContent: "center" }}>
+              <Text
+                style={{ textTransform: "capitalize" }}
+                text={item.name}
+                preset="userRow"
+              />
+            </View>
           </View>
-        </View>
-        <View style={{ marginTop: spacing[3] }}>
-          {/*<Text text={item.content} />*/}
-        </View>
-        <View style={{ ...ROW, flex: 1, marginTop: spacing[3] }}>
-          <View>
-            <Text preset="fieldLabel" tx="common.createdAt"/>
-            <Text preset="fieldLabel" text={formattedCreatedAt}/>
+          <View style={{ marginTop: spacing[3] }}>
+            {/*<Text text={item.content} />*/}
           </View>
-          <View style={{ alignSelf: "flex-end", flex: 1 }}>
-            <Text preset="fieldLabel" tx="common.updatedAt" style={TEXT_ALIGN_RIGHT}/>
-            <Text preset="fieldLabel" text={formattedUpdatedAt} style={TEXT_ALIGN_RIGHT}/>
+          <View style={TEXT_ROW}>
+            <View>
+              <Text preset="fieldLabel" tx="common.createdAt"/>
+              <Text preset="fieldLabel" text={formattedCreatedAt}/>
+            </View>
+            <View style={{ alignSelf: "flex-end", flex: 1 }}>
+              <Text preset="fieldLabel" tx="common.updatedAt" style={TEXT_ALIGN_RIGHT}/>
+              <Text preset="fieldLabel" text={formattedUpdatedAt} style={TEXT_ALIGN_RIGHT}/>
+            </View>
           </View>
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      </GroupSwipeableRow>
     )
   }
 
