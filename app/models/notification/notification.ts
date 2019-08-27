@@ -6,18 +6,9 @@ import { Instance, SnapshotOut, types } from "mobx-state-tree"
 export const NotificationModel = types
   .model("Notification")
   .props({})
-  .views(self => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
-  .actions(self => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
+  .views((self: INotificationModel) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
+  .actions((self: INotificationModel) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
 
-  /**
-  * Un-comment the following to omit model attributes from your snapshots (and from async storage).
-  * Useful for sensitive data like passwords, or transitive state like whether a modal is open.
-
-  * Note that you'll need to import `omit` from ramda, which is already included in the project!
-  *  .postProcessSnapshot(omit(["password", "socialSecurityNumber", "creditCardNumber"]))
-  */
-
-type NotificationType = Instance<typeof NotificationModel>
-export interface Notification extends NotificationType {}
+export interface INotificationModel extends Instance<typeof NotificationModel> {}
 type NotificationSnapshotType = SnapshotOut<typeof NotificationModel>
-export interface NotificationSnapshot extends NotificationSnapshotType {}
+export interface INotificationSnapshot extends NotificationSnapshotType {}

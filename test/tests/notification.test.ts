@@ -1,7 +1,7 @@
-import { NotificationModel, Notification } from "@models/notification/notification"
+import { NotificationModel, INotificationModel } from "@models/notification/notification"
 
 test("can be created", () => {
-  const instance: Notification = NotificationModel.create({})
+  const instance: INotificationModel = NotificationModel.create({})
 
   expect(instance).toBeTruthy()
 })

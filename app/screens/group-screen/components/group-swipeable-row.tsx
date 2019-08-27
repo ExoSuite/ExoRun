@@ -25,16 +25,53 @@ export interface IGroupSwipeableRowProps {
  * see: https://kmagiera.github.io/react-native-gesture-handler/docs/component-swipeable.html
  * example: https://github.com/kmagiera/react-native-gesture-handler/blob/master/Example/swipeable/index.js
  */
+@autobind
 export class GroupSwipeableRow extends React.Component<IGroupSwipeableRowProps> {
 
   private swipeableRef: Swipeable
 
-  @autobind
   private closeRow(): void {
     this.swipeableRef.close()
   }
 
-  @autobind
+  private renderLeftActions(progress: any, dragX: Animated.Value): React.ReactNode {
+    const scale = dragX.interpolate({
+      inputRange: [0, 80],
+      outputRange: [0, 1],
+      extrapolate: "clamp",
+    });
+
+    return (
+      <RectButton style={styles.leftAction} onPress={this.closeRow}>
+        <AnimatedIcon
+          name="archive"
+          size={30}
+          color="#fff"
+          style={[styles.actionIcon, { transform: [{ scale }] }]}
+        />
+      </RectButton>
+    );
+  }
+
+  private renderRightActions(progress: any, dragX: Animated.Value): React.ReactNode {
+    const scale = dragX.interpolate({
+      inputRange: [-80, 0],
+      outputRange: [1, 0],
+      extrapolate: "clamp",
+    });
+
+    return (
+      <RectButton style={styles.rightAction} onPress={this.closeRow}>
+        <AnimatedIcon
+          name="trash"
+          size={30}
+          color="#fff"
+          style={[styles.actionIcon, { transform: [{ scale }] }]}
+        />
+      </RectButton>
+    );
+  }
+
   private setSwipeableRef(ref: Swipeable): void {
     this.swipeableRef = ref
   }
@@ -56,44 +93,6 @@ export class GroupSwipeableRow extends React.Component<IGroupSwipeableRowProps> 
       </Swipeable>
     )
   }
-
-  public renderLeftActions = (progress, dragX) => {
-    const scale = dragX.interpolate({
-      inputRange: [0, 80],
-      outputRange: [0, 1],
-      extrapolate: "clamp",
-    });
-
-    return (
-      <RectButton style={styles.leftAction} onPress={this.closeRow}>
-        <AnimatedIcon
-          name="archive"
-          size={30}
-          color="#fff"
-          style={[styles.actionIcon, { transform: [{ scale }] }]}
-        />
-      </RectButton>
-    );
-  };
-
-  public renderRightActions = (progress, dragX) => {
-    const scale = dragX.interpolate({
-      inputRange: [-80, 0],
-      outputRange: [1, 0],
-      extrapolate: "clamp",
-    });
-
-    return (
-      <RectButton style={styles.rightAction} onPress={this.closeRow}>
-        <AnimatedIcon
-          name="trash"
-          size={30}
-          color="#fff"
-          style={[styles.actionIcon, { transform: [{ scale }] }]}
-        />
-      </RectButton>
-    );
-  };
 }
 
 const styles = StyleSheet.create({
