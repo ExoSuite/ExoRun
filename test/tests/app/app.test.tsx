@@ -11,6 +11,8 @@ describe("App tested with react-test-renderer", () => {
 
       return Platform
     })
+
+    jest.mock("react-native-gesture-handler", () => {});
   })
 
   test("App match snapshot ReactTestRenderer", () => {

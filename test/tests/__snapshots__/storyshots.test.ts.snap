@@ -639,7 +639,7 @@ exports[`storybook tests Storyshots AnimatedInteractiveInput Error animation 1`]
                     Object {
                       "color": "#939AA4",
                       "fontFamily": "Montserrat",
-                      "fontSize": 13,
+                      "fontSize": 10,
                     }
                   }
                 />
@@ -867,7 +867,7 @@ exports[`storybook tests Storyshots AnimatedInteractiveInput Loading animation 1
                     Object {
                       "color": "#939AA4",
                       "fontFamily": "Montserrat",
-                      "fontSize": 13,
+                      "fontSize": 10,
                     }
                   }
                 />
@@ -1059,7 +1059,7 @@ exports[`storybook tests Storyshots AnimatedInteractiveInput Random animation 1`
                     Object {
                       "color": "#939AA4",
                       "fontFamily": "Montserrat",
-                      "fontSize": 13,
+                      "fontSize": 10,
                     }
                   }
                 />
@@ -1287,7 +1287,7 @@ exports[`storybook tests Storyshots AnimatedInteractiveInput Success animation 1
                     Object {
                       "color": "#939AA4",
                       "fontFamily": "Montserrat",
-                      "fontSize": 13,
+                      "fontSize": 10,
                     }
                   }
                 />
@@ -3300,7 +3300,7 @@ exports[`storybook tests Storyshots DismissKeyboard Style Presets 1`] = `
                   Object {
                     "color": "#939AA4",
                     "fontFamily": "Montserrat",
-                    "fontSize": 13,
+                    "fontSize": 10,
                   }
                 }
               />
@@ -3883,7 +3883,7 @@ exports[`storybook tests Storyshots FormRow Assembled 1`] = `
                   Object {
                     "color": "#ffffff",
                     "fontFamily": "Montserrat",
-                    "fontSize": 13,
+                    "fontSize": 10,
                   }
                 }
               >
@@ -7567,7 +7567,7 @@ exports[`storybook tests Storyshots TextField Labelling 1`] = `
                   Object {
                     "color": "#939AA4",
                     "fontFamily": "Montserrat",
-                    "fontSize": 13,
+                    "fontSize": 10,
                   }
                 }
               >
@@ -7683,7 +7683,7 @@ exports[`storybook tests Storyshots TextField Labelling 1`] = `
                   Object {
                     "color": "#939AA4",
                     "fontFamily": "Montserrat",
-                    "fontSize": 13,
+                    "fontSize": 10,
                   }
                 }
               >
@@ -7824,7 +7824,7 @@ exports[`storybook tests Storyshots TextField Ref Forwarding 1`] = `
                   Object {
                     "color": "#939AA4",
                     "fontFamily": "Montserrat",
-                    "fontSize": 13,
+                    "fontSize": 10,
                   }
                 }
               >
@@ -7982,7 +7982,7 @@ exports[`storybook tests Storyshots TextField Style Overrides 1`] = `
                   Object {
                     "color": "#939AA4",
                     "fontFamily": "Montserrat",
-                    "fontSize": 13,
+                    "fontSize": 10,
                   }
                 }
               >
@@ -8018,7 +8018,7 @@ exports[`storybook tests Storyshots TextField Style Overrides 1`] = `
                   Object {
                     "color": "#939AA4",
                     "fontFamily": "Montserrat",
-                    "fontSize": 13,
+                    "fontSize": 10,
                   }
                 }
               >
@@ -8133,7 +8133,7 @@ exports[`storybook tests Storyshots TextField Style Overrides 1`] = `
                   Object {
                     "color": "#939AA4",
                     "fontFamily": "Montserrat",
-                    "fontSize": 13,
+                    "fontSize": 10,
                   }
                 }
               >
@@ -8265,7 +8265,7 @@ exports[`storybook tests Storyshots TextField Style Overrides 1`] = `
                   Object {
                     "color": "#939AA4",
                     "fontFamily": "Montserrat",
-                    "fontSize": 13,
+                    "fontSize": 10,
                   }
                 }
               >
