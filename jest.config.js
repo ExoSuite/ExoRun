@@ -7,6 +7,7 @@ module.exports = {
   moduleNameMapper: {
     "^lodash-es$": "lodash",
   },
+  setupFiles: ["<rootDir>/node_modules/react-native-gesture-handler/jestSetup.js", "<rootDir>/test/setup.ts"],
   transform: {
     "^.+\\.js$": "<rootDir>/test/preprocessors/react-native-preprocessor.js",
     "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/jest-preset-ignite/preprocessor.js",

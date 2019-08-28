@@ -112,7 +112,7 @@ export class StatefulNavigator extends React.Component<InjectionProps> {
         imageProperties={IMAGE_STYLE}
         imageSource={exosuiteLoader}
       >
-        <RootNavigator navigation={this.currentNavProp}/>
+        <RootNavigator navigation={this.currentNavProp} theme="dark"/>
       </SplashScreen>
     )
   }
