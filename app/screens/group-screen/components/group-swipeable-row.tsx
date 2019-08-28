@@ -21,6 +21,24 @@ export interface IGroupSwipeableRowProps {
   style: ViewStyle
 }
 
+const styles = StyleSheet.create({
+  leftAction: {
+    backgroundColor: "#388e3c",
+    justifyContent: "center",
+    flex: 1
+  },
+  actionIcon: {
+    width: 30,
+    marginHorizontal: 10,
+  },
+  rightAction: {
+    alignItems: "flex-end",
+    backgroundColor: "#dd2c00",
+    justifyContent: "center",
+    flex: 1
+  },
+});
+
 /**
  * see: https://kmagiera.github.io/react-native-gesture-handler/docs/component-swipeable.html
  * example: https://github.com/kmagiera/react-native-gesture-handler/blob/master/Example/swipeable/index.js
@@ -94,21 +112,3 @@ export class GroupSwipeableRow extends React.Component<IGroupSwipeableRowProps> 
     )
   }
 }
-
-const styles = StyleSheet.create({
-  leftAction: {
-    backgroundColor: "#388e3c",
-    justifyContent: "center",
-    flex: 1
-  },
-  actionIcon: {
-    width: 30,
-    marginHorizontal: 10,
-  },
-  rightAction: {
-    alignItems: "flex-end",
-    backgroundColor: "#dd2c00",
-    justifyContent: "center",
-    flex: 1
-  },
-});

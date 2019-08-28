@@ -11,4 +11,5 @@ export const NotificationModel = types
 
 export interface INotificationModel extends Instance<typeof NotificationModel> {}
 type NotificationSnapshotType = SnapshotOut<typeof NotificationModel>
+// tslint:disable-next-line:no-empty-interface
 export interface INotificationSnapshot extends NotificationSnapshotType {}
