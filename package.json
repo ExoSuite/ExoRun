@@ -34,7 +34,7 @@
     "@react-native-mapbox-gl/maps": "https://github.com/react-native-mapbox-gl/maps.git",
     "@turf/helpers": "^6.1.4",
     "@turf/midpoint": "^5.1.5",
-    "apisauce": "1.0.5",
+    "apisauce": "1.1.0",
     "autobind-decorator": "^2.4.0",
     "core-js": "^3",
     "emoji-utils": "^1.0.1",
@@ -97,7 +97,7 @@
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "24.0.18",
     "@types/lodash-es": "^4.17.3",
-    "@types/node": "^12.7.2",
+    "@types/node": "^12.7.3",
     "@types/ramda": "0.26.21",
     "@types/react": "*",
     "@types/react-native-vector-icons": "^6.4.1",
@@ -137,7 +137,7 @@
     "tslint-microsoft-contrib": "^6.2.0",
     "tslint-react": "^4.0.0",
     "tslint-sonarts": "^1.9.0",
-    "typescript": "3.5.3",
+    "typescript": "3.6.2",
     "typescript-tslint-plugin": "^0.5.4"
   },
   "prettier": {

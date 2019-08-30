@@ -130,7 +130,15 @@ type TLoginScreenProps = NavigationScreenProps & InjectionProps
  * LoginScreen will handle multiple user login
  * by calling the ExoSuite Users API
  */
-@inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel, Injection.GroupsModel, Injection.SocketIO, Injection.Environment)
+@inject(
+  Injection.Api,
+  Injection.SoundPlayer,
+  Injection.UserModel,
+  Injection.GroupsModel,
+  Injection.SocketIO,
+  Injection.Environment,
+  Injection.NotificationsModel
+)
 @observer
 export class LoginScreen extends React.Component<TLoginScreenProps> {
 
@@ -189,7 +197,7 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
 
   @autobind
   public async _authorizeLogin(): Promise<void> {
-    const { api, navigation, userModel, groupsModel, env } = this.props
+    const { api, navigation, userModel, groupsModel, env, notificationsModel } = this.props
     Keyboard.dismiss()
     DataLoader.Instance.toggleIsVisible()
 
@@ -203,7 +211,7 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
       return
     }
 
-    await afterSuccessfulLogin(response, groupsModel, userModel, env, navigation)
+    await afterSuccessfulLogin(response, groupsModel, notificationsModel, userModel, env, navigation)
   }
 
   @autobind

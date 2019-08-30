@@ -2,7 +2,7 @@
 
 import { IGroup } from "@models/group"
 
-interface ITimestamps {
+export interface ITimestamps {
   created_at: string,
   updated_at: string,
 }
@@ -97,7 +97,8 @@ export interface IMessage extends ITimestamps {
   contents: string,
   group_id: string,
   id: string,
-  user_id: string
+  user: IUser
+  user_id: string,
 }
 
 // tslint:disable-next-line: completed-docs
@@ -184,10 +185,6 @@ export enum NotificationType {
   NEW_GROUP = "new_group",
   DELETED_GROUP = "deleted_group",
   EXPELLED_FROM_GROUP = "expelled_from_group"
-}
-
-export interface INotification {
-  type: NotificationType
 }
 
 export interface ILiveGroupNotification {

@@ -12,6 +12,7 @@ import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
 import { ApiTokenManager } from "@services/api/api.token.manager"
 import { NotificationManager } from "@services/notification-manager"
+import { INotificationsModel, NotificationsModel } from "@models/notifications"
 
 /**
  * The key we'll be saving our state as within async storage.
@@ -21,7 +22,8 @@ const ROOT_STATE_STORAGE_KEY = "root"
 interface ISetupRootStore {
   env: Environment
   groupsModel: IGroupsModel
-  rootStore: RootStore,
+  notificationsModel: INotificationsModel
+  rootStore: RootStore
   userModel: IUserModel
 }
 
@@ -96,7 +98,8 @@ export async function setupRootStore(): Promise<ISetupRootStore> {
     rootStore,
     env,
     userModel,
-    groupsModel
+    groupsModel,
+    notificationsModel: NotificationsModel.create({}, {environment: env})
   }
 }
 
