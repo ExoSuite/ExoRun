@@ -45,7 +45,7 @@ export const AppStackNavigator = createStackNavigator({
     screen: AppStackNavigatorImpl,
     navigationOptions: {
       header: null
-    },
+    }
   },
   [AppScreens.NEW_GROUP]: NewGroupScreen,
   [AppScreens.NEW_POST]: ModalPostScreen,
@@ -59,5 +59,5 @@ export const AppStackNavigator = createStackNavigator({
       borderBottomWidth: 0,
       ...headerShadow
     }
-  },
+  }
 })

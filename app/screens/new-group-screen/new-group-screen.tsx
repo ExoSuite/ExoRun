@@ -37,7 +37,7 @@ const INPUT_STYLE: ViewStyle = {
 }
 
 const MARGIN_TOP: ViewStyle = {
-  marginTop: spacing[3],
+  marginTop: spacing[3]
 }
 
 const NEW_GROUP_SEND_BUTTON: ViewStyle = {

@@ -55,7 +55,7 @@ export class ApiTokenManager {
     }
 
     ApiTokenManager.Instance.Unlock()
-    // if tokens was not provided throw an error
+    // if tokens was not provided throw an playError
     throw new LogicException(LogicErrorState.CANT_LOAD_API_TOKENS)
   }
 

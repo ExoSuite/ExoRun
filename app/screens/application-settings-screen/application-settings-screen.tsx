@@ -6,13 +6,11 @@ import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { defaultNavigationIcon, NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import autobind from "autobind-decorator"
-import { reset } from "@utils/keychain"
-import { Server } from "@services/api/api.servers"
-import { Injection } from "@services/injections"
+import { ServerReset } from "@services/api/api.servers"
+import { Injection, InjectionProps } from "@services/injections"
 import { NavigationStore } from "@navigation/navigation-store"
 import { INavigationScreenProps } from "@navigation/stateful-navigator"
 import { clear } from "@utils/storage"
-import { SocketIo } from "@services/socket.io"
 
 type ApplicationSettingsScreenPropsType = INavigationScreenProps & NavigationScreenProps<{}>
 
@@ -30,7 +28,7 @@ const ROOT: ViewStyle = {
  */
 @inject(Injection.NavigationStore, Injection.SocketIO)
 @observer
-export class ApplicationSettingsScreen extends React.Component<IApplicationSettingsScreenProps> {
+export class ApplicationSettingsScreen extends React.Component<IApplicationSettingsScreenProps & InjectionProps> {
   public static navigationOptions = {
     headerLeft: NavigationBackButtonWithNestedStackNavigator({
       iconName: defaultNavigationIcon
@@ -39,18 +37,18 @@ export class ApplicationSettingsScreen extends React.Component<IApplicationSetti
 
   @autobind
   private async logout(): Promise<void> {
-    const { navigationStore, navigation } = this.props
+    const { navigationStore, navigation, socketIO } = this.props
     navigation.getScreenProps.showSplashScreen()
-    await reset(Server.EXOSUITE_USERS_API)
+    await ServerReset()
     await clear()
-    SocketIo.Disconnect()
+    socketIO.disconnect()
     navigationStore.smoothReset(navigation.getScreenProps.animateSplashScreen)
   }
 
   public render(): React.ReactNode {
     return (
       <Screen style={ROOT} preset="fixed">
-        <View style={{margin: spacing[2], padding: spacing[2]}}>
+        <View style={{ margin: spacing[2], padding: spacing[2] }}>
           <Button preset="primary" textPreset="primaryBold" text="Se déconnecter" onPress={this.logout}/>
         </View>
       </Screen>

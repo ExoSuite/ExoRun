@@ -63,8 +63,9 @@ export class App extends React.Component<{}, IAppState> {
   // tslint:disable-next-line: no-feature-envy
   public async componentDidMount(): Promise<void> {
     const store = await setupRootStore()
-    this.setState({
-        ...store
+    this.setState(
+      {
+        ...store,
       },
       () => {
         // hack to ignore white screen on android
@@ -111,6 +112,7 @@ export class App extends React.Component<{}, IAppState> {
       socketIO: env.socketIO,
       userModel,
       groupsModel,
+      env: env,
     }
     // --- am: end list of stores ---
 

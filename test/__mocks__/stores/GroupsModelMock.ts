@@ -1,8 +1,6 @@
-import { Api, PersonalTokenImpl } from "@services/api"
-import { SocketIo } from "@services/socket.io"
+import { PersonalTokenImpl } from "@services/api"
 
 export const GroupsModelMockData = {
-  api: new Api(),
-  socketIO: new SocketIo(),
-  messageToken: new PersonalTokenImpl()
+  messageToken: new PersonalTokenImpl(),
+  pictureToken: new PersonalTokenImpl()
 }

@@ -11,6 +11,7 @@ describe("App tested with react-test-renderer", () => {
 
       return Platform
     })
+
   })
 
   test("App match snapshot ReactTestRenderer", () => {

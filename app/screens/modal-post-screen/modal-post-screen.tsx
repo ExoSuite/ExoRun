@@ -22,8 +22,11 @@ interface INewPostScreenNavigationScreenProps {
   currentPost?: IPost
   headerPreset: TextPresets
   headerText: string
+
   newPostCallback?(newPost: object): void
+
   toggleRefreshing(): void
+
   // tslint:disable-next-line: no-flag-args
   updatePostCallback(currentPost: IPost, deletePost?: boolean): void
 }
@@ -42,7 +45,7 @@ const INPUT_STYLE: ViewStyle = {
 }
 
 const CONTAINER: ViewStyle = {
-  padding: spacing[6],
+  padding: spacing[6]
 }
 
 const TEXT_ALIGN_CENTER: TextStyle = {
@@ -69,59 +72,59 @@ export class ModalPostScreen extends React.Component<INewPostScreenProps & Injec
   public static navigationOptions = ({ navigation }) => ({
     headerTitle: <Text tx={navigation.getParam("headerTitle")} preset="lightHeader" style={TEXT_ALIGN_CENTER}/>,
     headerLeft: NavigationBackButtonWithNestedStackNavigator({
-      iconName: "chevron-down",
+      iconName: "chevron-down"
     })
   })
 
   // tslint:disable-next-line: no-feature-envy
   @autobind
   private deletePost(): void {
-    const { api, soundPlayer, userModel, navigation} = this.props
+    const { api, soundPlayer, userModel, navigation } = this.props
     DataLoader.Instance.toggleIsVisible()
     const currentPost = this.props.navigation.getParam("currentPost")
     api.delete(`user/${userModel.id}/dashboard/posts/${currentPost.id}`)
       .then(() => {
-        DataLoader.Instance.success(soundPlayer.success, () => {
+        DataLoader.Instance.success(soundPlayer.playSuccess, () => {
           navigation.getParam("updatePostCallback")(navigation.getParam("currentPost"), true)
           navigation.getParam("toggleRefreshing")()
           navigation.goBack()
         })
       })
       .catch((error: any) => {
-        DataLoader.Instance.hasErrors(error, soundPlayer.error)
+        DataLoader.Instance.hasErrors(error, soundPlayer.playError)
       })
   }
 
   // tslint:disable-next-line: no-feature-envy
   @autobind
   private onButtonPress(): void {
-    const { api, soundPlayer, userModel, navigation} = this.props
+    const { api, soundPlayer, userModel, navigation } = this.props
     DataLoader.Instance.toggleIsVisible()
 
     if (navigation.getParam("newPostCallback")) {
-      api.post(`user/${userModel.id}/dashboard/posts`,  { content: this.postContent })
+      api.post(`user/${userModel.id}/dashboard/posts`, { content: this.postContent })
         .then((newPost: ApiOkResponse<any>) => {
-          DataLoader.Instance.success(soundPlayer.success, () => {
+          DataLoader.Instance.success(soundPlayer.playSuccess, () => {
             navigation.getParam("newPostCallback")(newPost.data)
             navigation.getParam("toggleRefreshing")()
             navigation.goBack()
           })
         })
         .catch((error: any) => {
-          DataLoader.Instance.hasErrors(error, soundPlayer.error)
+          DataLoader.Instance.hasErrors(error, soundPlayer.playError)
         })
     } else {
       const currentPost = this.props.navigation.getParam("currentPost")
-      api.patch(`user/${userModel.id}/dashboard/posts/${currentPost.id}`,  { content: this.postContent })
+      api.patch(`user/${userModel.id}/dashboard/posts/${currentPost.id}`, { content: this.postContent })
         .then((updatedPostResponse: ApiOkResponse<IPost>) => {
-          DataLoader.Instance.success(soundPlayer.success, () => {
+          DataLoader.Instance.success(soundPlayer.playSuccess, () => {
             navigation.getParam("updatePostCallback")(updatedPostResponse.data)
             navigation.getParam("toggleRefreshing")()
             navigation.goBack()
           })
         })
         .catch((error: any) => {
-          DataLoader.Instance.hasErrors(error, soundPlayer.error)
+          DataLoader.Instance.hasErrors(error, soundPlayer.playError)
         })
     }
   }
@@ -160,7 +163,7 @@ export class ModalPostScreen extends React.Component<INewPostScreenProps & Injec
               preset="warning"
               textPreset="primaryBoldLarge"
               onPress={this.deletePost}
-              style={{marginTop: spacing[2]}}
+              style={{ marginTop: spacing[2] }}
             />
           ))}
         </View>

@@ -1,5 +1,4 @@
 // vendor imports
-import * as React from "react"
 import { Button } from "@components/button"
 import { Text } from "@components/text"
 import { FinalAnimationStatus, IAnimation, LoaderState } from "@components/data-loader/data-loader.types"
@@ -9,6 +8,7 @@ import { isEmpty } from "lodash-es"
 import AnimatedLottieView from "lottie-react-native"
 import { action, observable, runInAction } from "mobx"
 import { observer } from "mobx-react"
+import * as React from "react"
 import { View, ViewStyle } from "react-native"
 import { View as AnimatedView } from "react-native-animatable"
 import Modal from "react-native-modal"
@@ -68,16 +68,16 @@ const CONTAINER_TEXT_STYLE: ViewStyle = {
 
 type CallbackType = () => void
 export const defaultSuccessCallback: CallbackType = (): void => {
-  console.tron.log("success callback from animated loader called!")
+  console.tron.log("playSuccess callback from animated loader called!")
 }
 export const defaultErrorCallback: CallbackType = (): void => {
-  console.tron.log("error callback from animated loader called!")
+  console.tron.log("playError callback from animated loader called!")
 }
 export const defaultSoundCallback: CallbackType = (): void => {
   console.tron.log("sound callback from animated loader called!")
 }
 
-const baseDelayedIOS = 550
+const baseDelayedIOS = 1100
 const baseDelayedAndroid = 1100
 const delayedAction = (callback: Function): void => {
   setTimeout(() => {
@@ -87,7 +87,7 @@ const delayedAction = (callback: Function): void => {
 }
 
 /**
- * Loader with lottie animation on error or success
+ * Loader with lottie animation on playError or playSuccess
  *
  * Component description here for TypeScript tips.
  */
@@ -105,7 +105,7 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
   private animatedTextView: AnimatedView
   // optional failure callback
   private errorCallback: CallbackType = defaultErrorCallback
-  // will be displayed on error animation has finished
+  // will be displayed on playError animation has finished
   @observable private errors: object = {}
   private finalAnimationStatus: FinalAnimationStatus
   @observable private isVisible: boolean
@@ -115,7 +115,7 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
   private soundCallback: CallbackType = defaultSoundCallback
   // initialize the state to standby
   private status: LoaderState = LoaderState.STANDBY
-  // optional success callback
+  // optional playSuccess callback
   private successCallback: CallbackType = defaultSuccessCallback
 
   /* tslint:disable: variable-name */
@@ -132,7 +132,6 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
 
   private errorAnimation(): void {
     const { start, end } = errorAnimation
-    this.lottieAnimation.reset()
     this.lottieAnimation.play(start, end)
   }
 
@@ -180,30 +179,25 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
   @autobind
   private onAnimationFinish(): void {
 
-    // 2nd step when error or success animation has finished cross or a check
-    if (this.finalAnimationStatus === FinalAnimationStatus.PLAYED) {
+    if (this.finalAnimationStatus === FinalAnimationStatus.WILL_PLAY) {
       this.finalAnimationStep()
-    } else if (this.finalAnimationStatus === FinalAnimationStatus.WILL_PLAY) {
-      // call the sound animation and success animation after first step
-      this.firstAnimationStep()
-      this.finalAnimationStatus = FinalAnimationStatus.PLAYED
     } else if (this.isSuccessFul()) {
       this.successAnimation()
       this.finalAnimationStatus = FinalAnimationStatus.WILL_PLAY
+      // call the sound animation and playSuccess beforehand
+      this.firstAnimationStep()
     } else if (this.hasError()) {
       this.errorAnimation()
       this.finalAnimationStatus = FinalAnimationStatus.WILL_PLAY
+      // call the sound animation and playSuccess beforehand
+      this.firstAnimationStep()
     } else if (this.isStandingBy()) {
       this.baseAnimation()
     }
   }
 
   private playSoundCallback(): void {
-    if (Platform.iOS) {
-      setTimeout(this.soundCallback, DataLoader.getDelayedTime)
-    } else {
-      this.soundCallback()
-    }
+    this.soundCallback()
   }
 
   @autobind
@@ -218,7 +212,6 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
 
   private successAnimation(): void {
     const { start, end } = successAnimation
-    this.lottieAnimation.reset()
     this.lottieAnimation.play(start, end)
   }
 
@@ -252,7 +245,7 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
   }
 
   /*
-  * call this method when you want to display the error modal
+  * call this method when you want to display the playError modal
   * errors must be as the same form as
   * https://confluence.dev.exosuite.fr/display/APIDoc/Routes+documentation#/Auth/loginUser
   * see 422 section
@@ -318,7 +311,7 @@ export class DataLoader extends React.Component<IDataLoaderProps> {
     )
   }
 
-  // call this method when you want to display the success modal
+  // call this method when you want to display the playSuccess modal
   @action
   public success(soundCallback?: CallbackType, successCallback?: CallbackType): void {
     this.status = LoaderState.SUCCESS

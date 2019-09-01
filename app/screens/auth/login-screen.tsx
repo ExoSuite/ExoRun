@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Image, ImageStyle, SafeAreaView, TextInput, TextStyle, View, ViewStyle } from "react-native"
+import { Image, ImageStyle, Keyboard, SafeAreaView, TextInput, TextStyle, View, ViewStyle } from "react-native"
 import {
   AnimatedInteractiveInput,
   booleanToInputState,
@@ -14,12 +14,10 @@ import {
 import { DataLoader } from "@components/data-loader"
 import { HttpRequestError } from "@exceptions"
 import { ITokenResponse } from "@services/api"
-import { Server } from "@services/api/api.servers"
 import { Asset } from "@services/asset"
 import { Platform } from "@services/device"
 import { Injection, InjectionProps } from "@services/injections"
 import { color, spacing } from "@theme"
-import { save } from "@utils/keychain"
 import { ApiResponse } from "apisauce"
 import autobind from "autobind-decorator"
 import { isEmpty, throttle } from "lodash-es"
@@ -29,8 +27,8 @@ import { KeyboardAccessoryView } from "react-native-keyboard-accessory"
 import { NavigationScreenProps } from "react-navigation"
 import { validate, ValidationRules } from "@utils/validate"
 import { footerShadow } from "@utils/shadows"
-import { AppScreens } from "@navigation/navigation-definitions"
-import { IVoidFunction } from "@types"
+import { IVoidFunction } from "@custom-types"
+import { afterSuccessfulLogin } from "@utils/auth/after-successful-login"
 
 const EXOSUITE: ImageStyle = {
   width: 200,
@@ -132,7 +130,7 @@ type TLoginScreenProps = NavigationScreenProps & InjectionProps
  * LoginScreen will handle multiple user login
  * by calling the ExoSuite Users API
  */
-@inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel, Injection.GroupsModel, Injection.SocketIO)
+@inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel, Injection.GroupsModel, Injection.SocketIO, Injection.Environment)
 @observer
 export class LoginScreen extends React.Component<TLoginScreenProps> {
 
@@ -160,7 +158,7 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
 
   private manageResponseError(response: HttpRequestError): void {
     const { soundPlayer } = this.props
-    DataLoader.Instance.hasErrors(response, soundPlayer.error)
+    DataLoader.Instance.hasErrors(response, soundPlayer.playError)
   }
 
   @autobind
@@ -191,7 +189,8 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
 
   @autobind
   public async _authorizeLogin(): Promise<void> {
-    const { api, soundPlayer, navigation, userModel, socketIO } = this.props
+    const { api, navigation, userModel, groupsModel, env } = this.props
+    Keyboard.dismiss()
     DataLoader.Instance.toggleIsVisible()
 
     const response: ApiResponse<ITokenResponse> | HttpRequestError =
@@ -204,19 +203,7 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
       return
     }
 
-    await save(response.data, Server.EXOSUITE_USERS_API)
-    await Promise.all([
-      api.getOrCreatePersonalTokens(),
-      api.getProfile(userModel)
-    ])
-
-    DataLoader.Instance.success(
-      soundPlayer.success,
-      async () => {
-        await socketIO.setup()
-        this.props.groupsModel.fetchGroups()
-        navigation.navigate(AppScreens.HOME)
-      })
+    await afterSuccessfulLogin(response, groupsModel, userModel, env, navigation)
   }
 
   @autobind

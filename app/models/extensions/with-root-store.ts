@@ -10,6 +10,6 @@ export const withRootStore = (self: IStateTreeNode) => ({
   views: {
     get rootStore(): RootStore {
       return getRoot(self)
-    },
-  },
+    }
+  }
 })

@@ -90,30 +90,30 @@ export class Api implements IService {
   }
 
   // tslint:disable-next-line: no-feature-envy
-  private async onLocalTokensFulfilled(localPersonalTokens: IPersonalTokens): Promise<void> {
-    let localTokensHasBeenModified = false
+  private async onLocalTokensFulfilled(localPersonalTokens: IPersonalTokens): Promise<IPersonalTokens> {
     const response: ApiResponse<IToken[]> = await this.get(ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS)
-    if (isEmpty(response.data)) { // if something bad is happened or happen create token set
+    if (isEmpty(response.data)) { // if something bad is happened or happen create a token set
       await this.onNoPersonalTokensCreateTokenSet()
-    } else  {
-      response.data.forEach(async (token: IToken) => {
-        if (token.revoked && token.name in localPersonalTokens) {
+    } else {
+      for (const token of response.data) {
+        if (token.revoked) {
           await this.delete(`${ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS}/${token.id}`)
-          const newPersonalToken: ApiResponse<IPersonalTokenResponse> =
-            await this.post(ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS, { name: token.name, scopes: token.scopes })
+          const newPersonalToken: ApiResponse<IPersonalTokenResponse> = await this.post(
+            ApiRoutes.OAUTH_PERSONAL_ACCESS_TOKENS,
+            { name: token.name, scopes: token.scopes }
+          )
           localPersonalTokens[token.name] = newPersonalToken.data
-          localTokensHasBeenModified = true
         }
-      })
+      }
     }
 
-    if (localTokensHasBeenModified) {
-      await save(localPersonalTokens, Server.EXOSUITE_USERS_API_PERSONAL)
-    }
+    await save(localPersonalTokens, Server.EXOSUITE_USERS_API_PERSONAL)
+
+    return localPersonalTokens;
   }
 
   // tslint:disable-next-line: no-feature-envy
-  private async onNoPersonalTokensCreateTokenSet(): Promise<void> {
+  private async onNoPersonalTokensCreateTokenSet(): Promise<IPersonalTokens> {
     await reset(Server.EXOSUITE_USERS_API_PERSONAL)
 
     const oauthScopes: ApiResponse<IScope[]> = await this.get(ApiRoutes.OAUTH_SCOPES)
@@ -146,6 +146,7 @@ export class Api implements IService {
 
     await save(tokens, Server.EXOSUITE_USERS_API_PERSONAL)
 
+    return tokens;
   }
 
   // tslint:disable-next-line max-func-args
@@ -154,8 +155,8 @@ export class Api implements IService {
     url: string,
     data: object = {},
     headers: IHeaders = { Authorization: null },
-    // tslint:disable-next-line no-inferrable-types no-flag-args
-    requireAuth: boolean = true
+    // tslint:disable-next-line: typedef
+    requireAuth = true
   ): Promise<ApiResponse<any>> {
 
     if (requireAuth && !headers.Authorization) {
@@ -204,8 +205,8 @@ export class Api implements IService {
     url: string,
     data: object = {},
     headers: IHeaders = { Authorization: null },
-    // tslint:disable-next-line no-inferrable-types no-flag-args
-    requireAuth: boolean = true): Promise<ApiResponse<any>> {
+    // tslint:disable-next-line:typedef
+    requireAuth = true): Promise<ApiResponse<any>> {
     return this.request(HttpRequest.DELETE, url, data, headers, requireAuth)
   }
 
@@ -214,12 +215,12 @@ export class Api implements IService {
     url: string,
     data: object = {},
     headers: IHeaders = { Authorization: null },
-    // tslint:disable-next-line no-inferrable-types no-flag-args
-    requireAuth: boolean = true): Promise<ApiResponse<any>> {
+    // tslint:disable-next-line:typedef
+    requireAuth = true): Promise<ApiResponse<any>> {
     return this.request(HttpRequest.GET, url, data, headers, requireAuth)
   }
 
-  public async getOrCreatePersonalTokens(): Promise<void> {
+  public async getOrCreatePersonalTokens(): Promise<IPersonalTokens> {
     const localPersonalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
 
     if (localPersonalTokens) {
@@ -246,8 +247,8 @@ export class Api implements IService {
     url: string,
     data: object = {},
     headers: IHeaders = { Authorization: null },
-    // tslint:disable-next-line no-inferrable-types no-flag-args
-    requireAuth: boolean = true): Promise<ApiResponse<any>> {
+    // tslint:disable-next-line:typedef
+    requireAuth = true): Promise<ApiResponse<any>> {
     return this.request(HttpRequest.PATCH, url, data, headers, requireAuth)
   }
 
@@ -256,8 +257,8 @@ export class Api implements IService {
     url: string,
     data: object = {},
     headers: IHeaders = { Authorization: null },
-    // tslint:disable-next-line no-inferrable-types no-flag-args
-    requireAuth: boolean = true): Promise<ApiResponse<any>> {
+    // tslint:disable-next-line:typedef
+    requireAuth = true): Promise<ApiResponse<any>> {
     return this.request(HttpRequest.POST, url, data, headers, requireAuth)
   }
 
@@ -266,8 +267,8 @@ export class Api implements IService {
     url: string,
     data: object = {},
     headers: IHeaders = { Authorization: null },
-    // tslint:disable-next-line no-inferrable-types no-flag-args
-    requireAuth: boolean = true): Promise<ApiResponse<any>> {
+    // tslint:disable-next-line:typedef
+    requireAuth = true): Promise<ApiResponse<any>> {
     return this.request(HttpRequest.PUT, url, data, headers, requireAuth)
   }
 
