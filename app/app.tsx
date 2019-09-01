@@ -21,6 +21,8 @@ import { useScreens } from "react-native-screens"
 import { IUserModel } from "@models/user-profile"
 import { IGroupsModel } from "@models/groups"
 import { INotificationsModel } from "@models/notifications"
+import { Notification } from "react-native-in-app-message";
+import { NotificationComponent, NotificationComponentManager } from "@components/notification-component"
 
 export interface IAppState {
   env?: Environment
@@ -128,6 +130,14 @@ export class App extends React.Component<{}, IAppState> {
         <BackButtonHandler canExit={App.canExit}>
           <StatefulNavigator />
           <DataLoader ref={App.setDataLoaderInstance} />
+          <Notification
+            // @ts-ignore
+            onPress={Notification.hide}
+            tapticFeedback
+            hideStatusBar={false}
+            customComponent={<NotificationComponent/>}
+            onHide={NotificationComponentManager.ResetNotification}
+          />
         </BackButtonHandler>
       </Provider>
     )

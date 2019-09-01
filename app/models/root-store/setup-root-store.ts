@@ -93,13 +93,15 @@ export async function setupRootStore(): Promise<ISetupRootStore> {
 
   await env.notificationManager.setup(groupsModel)
   env.socketIO.notifications(userModel, env.notificationManager.notify)
+  const notificationsModel = NotificationsModel.create({}, {environment: env});
+  env.notificationManager.notificationsModel = notificationsModel
 
   return {
     rootStore,
     env,
     userModel,
     groupsModel,
-    notificationsModel: NotificationsModel.create({}, {environment: env})
+    notificationsModel
   }
 }
 

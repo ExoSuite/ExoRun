@@ -1094,7 +1094,7 @@
 
 "@react-native-mapbox-gl/maps@https://github.com/react-native-mapbox-gl/maps.git":
   version "7.0.1"
-  resolved "https://github.com/react-native-mapbox-gl/maps.git#af0d70e9869d649a97708c560bd4f9eb786e61cd"
+  resolved "https://github.com/react-native-mapbox-gl/maps.git#8b3fa282eae7a54363ae3d610d9a22abf188e36b"
   dependencies:
     "@mapbox/geo-viewport" ">= 0.4.0"
     "@turf/along" ">= 4.0.0 <7.0.0"
@@ -8380,6 +8380,10 @@ react-native-gifted-chat@^0.9.11:
     react-native-parsed-text "^0.0.20"
     react-native-video "4.4.2"
     uuid "3.3.0"
+
+"react-native-in-app-message@https://github.com/KirillGudkov/react-native-in-app-message":
+  version "1.0.2"
+  resolved "https://github.com/KirillGudkov/react-native-in-app-message#442da5e6b2ebdc5907ef7d6275a2d727b35d7be4"
 
 react-native-input-scroll-view@^1.9.3:
   version "1.9.3"

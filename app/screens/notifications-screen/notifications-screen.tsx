@@ -12,6 +12,8 @@ import { Server } from "@services/api/api.servers"
 import { IGroup } from "@models/group"
 import autobind from "autobind-decorator"
 import moment from "moment"
+import { INotificationModel } from "@models/notification"
+import { Notification } from "react-native-in-app-message"
 
 export interface INotificationsScreenProps extends NavigationScreenProps<{}> {
 }
@@ -30,7 +32,7 @@ const NOTIFICATION_CONTAINER: ViewStyle = {
   shadowOpacity: 0.25,
   shadowRadius: 3.84,
   elevation: 5,
-  margin: spacing[3],
+  margin: spacing[3]
 }
 
 const TEXT_ALIGN_RIGHT: TextStyle = {
@@ -48,7 +50,7 @@ const TEXT_ROW: ViewStyle = {
   padding: spacing[2]
 }
 
-const keyExtractor = (item: INotification, index: number): string => item.id
+const keyExtractor = (item: INotificationModel, index: number): string => item.id
 
 /**
  * NotificationsScreen when an user Is logged in, he will be redirected here.
@@ -61,7 +63,7 @@ export class NotificationsScreen extends React.Component<INotificationsScreenPro
 
   @autobind
   // tslint:disable-next-line:prefer-function-over-method no-feature-envy
-  private renderNotification({ item }: { item: INotification }): React.ReactElement {
+  private renderNotification({ item }: { item: INotificationModel }): React.ReactElement {
     const formattedCreatedAt = moment(item.created_at).format("LLL")
     const formattedUpdatedAt = moment(item.updated_at).format("LLL")
 
@@ -72,8 +74,7 @@ export class NotificationsScreen extends React.Component<INotificationsScreenPro
         <View style={ROW}>
           <View style={{ marginLeft: spacing[2], justifyContent: "center" }}>
             <Text
-              style={{ textTransform: "capitalize" }}
-              text="coucou"
+              text={item.parseMessage}
               preset="userRow"
             />
           </View>
@@ -104,6 +105,7 @@ export class NotificationsScreen extends React.Component<INotificationsScreenPro
     return (
       <FlatList
         data={this.props.notificationsModel.notifications}
+        // @ts-ignore
         renderItem={this.renderNotification}
         keyExtractor={keyExtractor}
         style={ROOT}

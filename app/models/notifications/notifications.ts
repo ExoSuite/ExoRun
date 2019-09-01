@@ -1,7 +1,7 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
 import { INotificationModel, NotificationModel } from "@models/notification"
 import { withEnvironment } from "@models/extensions"
-import { ApiRoutes, INotification, INotificationApiResponse } from "@services/api"
+import { ApiRoutes, ILiveNotification, INotification, INotificationApiResponse } from "@services/api"
 import { ApiOkResponse } from "apisauce"
 import { noop } from "lodash-es"
 
@@ -19,6 +19,14 @@ export const NotificationsModel = types
   .views((self: INotificationsModel) => ({
     get sortedNotifications(): INotificationModel[] {
       return self.notifications
+    },
+    get lastNotification(): INotificationModel {
+      return self.notifications.find(Boolean) // get first element safely
+    },
+    liveNotificationToNotificationModel(liveNotification: ILiveNotification<any>): INotificationModel {
+      return {
+        ...liveNotification,
+      }
     }
   }))
   .actions((self: INotificationsModel)  => ({
@@ -36,7 +44,14 @@ export const NotificationsModel = types
       self.notifications = notificationsResponse.data.data.map(self.createNewNotification)
     },
     createNewNotification(notification: INotification): INotificationModel {
+      // @ts-ignore
       return NotificationModel.create(notification)
+    },
+    pushNewNotification(notification: INotification): INotificationModel {
+      const newNotification = self.createNewNotification(notification)
+      self.notifications.unshift(newNotification)
+
+      return newNotification
     }
   }))
 

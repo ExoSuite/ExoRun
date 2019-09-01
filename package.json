@@ -59,6 +59,7 @@
     "react-native-fs": "^2.14.1",
     "react-native-gesture-handler": "1.4.1",
     "react-native-gifted-chat": "^0.9.11",
+    "react-native-in-app-message": "https://github.com/KirillGudkov/react-native-in-app-message",
     "react-native-input-scroll-view": "^1.9.3",
     "react-native-keyboard-accessory": "^0.1.9",
     "react-native-keychain": "3.1.3",

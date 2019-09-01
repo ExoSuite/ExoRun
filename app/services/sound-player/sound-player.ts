@@ -15,14 +15,14 @@ export class SoundPlayer implements IService {
   private sendMessageSound: Sound
   private successSound: Sound
 
-  public playAddedToGroup(): void {
-    this.addedToGroupSound.setVolume(0.15)
-    this.addedToGroupSound.play()
-  }
-
   public playError(): void {
     this.errorSound.setVolume(0.5)
     this.errorSound.play()
+  }
+
+  public playNewNotification(): void {
+    this.addedToGroupSound.setVolume(0.15)
+    this.addedToGroupSound.play()
   }
 
   public playReceiveMessage(): void {
