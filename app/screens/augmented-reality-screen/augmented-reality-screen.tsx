@@ -4,7 +4,8 @@ import { observer } from "mobx-react"
 import * as React from "react"
 import { View, ViewStyle } from "react-native"
 import { NavigationScreenProps } from "react-navigation"
-import { ViroARScene, ViroConstants, ViroText, ViroAmbientLight, Viro3DObject, ViroARCamera, ViroBox, ViroButton } from "react-viro"
+import { ViroARScene, ViroConstants, ViroText, ViroAmbientLight,
+          Viro3DObject, ViroARCamera, ViroBox, ViroButton, ViroARPlaneSelector, ViroNode } from "react-viro"
 import { TextInput } from "react-native-paper"
 
 export interface IAugmentedRealityScreenProps extends NavigationScreenProps<{}> {
@@ -13,6 +14,7 @@ export interface IAugmentedRealityScreenProps extends NavigationScreenProps<{}> 
 const Animation = require("../../assets/3Dasset/IdleAndRun.vrx");
 const AnimationRun = require("../../assets/3Dasset/IdleAndRunFastAndSlow.vrx");
 const Arrow = require("../../assets/3Dasset/Arrow.vrx");
+const CheckPoint = require("../../assets/3Dasset/CheckPointWithAnim.vrx");
 const ROOT: ViewStyle = {
   backgroundColor: color.background
 }
@@ -70,7 +72,20 @@ export class AugmentedRealityScreen extends React.Component<IAugmentedRealityScr
     return (
       <ViroARScene style={ROOT} onTrackingUpdated={this.onInitialized}>
         <ViroAmbientLight color="#ffffff" />
-        <ViroARCamera>
+        <ViroNode position={[0, -1, -1]} dragType="FixedToPlane" onDrag={( )=>{}} >
+          <Viro3DObject
+            source={CheckPoint}
+            highAccuracyEvents
+            position={[0, 0.5, 0]}
+            scale={[0.02, 0.02, 0.02]}
+            type="VRX"
+            animation={{name: "Take 001",
+              run: true,
+              loop: true,
+              interruptible: true}}
+          />
+        </ViroNode>
+        {/*<ViroARCamera>
           <Viro3DObject
             source={Arrow}
             highAccuracyEvents
@@ -89,9 +104,9 @@ export class AugmentedRealityScreen extends React.Component<IAugmentedRealityScr
             type="VRX"
             onClick={this.SwitchAnimation}
             animation={{name: this.AnimationName,
-                        run: true,
-                        loop: true,
-                        interruptible: true}}
+              run: true,
+              loop: true,
+              interruptible: true}}
           />
 
           <ViroButton
@@ -108,8 +123,7 @@ export class AugmentedRealityScreen extends React.Component<IAugmentedRealityScr
             width={1.5}
             onClick={this.switchSpeed}
           />
-
-        </ViroARCamera>
+        </ViroARCamera>*/}
       </ViroARScene>
     )
   }
