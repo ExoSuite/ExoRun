@@ -64,7 +64,7 @@ PODS:
     - React
   - react-native-in-app-message (1.0.2):
     - React
-  - react-native-mapbox-gl (7.0.1):
+  - react-native-mapbox-gl (7.0.4):
     - React
   - react-native-splash-screen (3.2.0):
     - React
@@ -109,6 +109,8 @@ PODS:
   - RNKeychain (3.1.3):
     - React
   - RNLocalize (1.1.4):
+    - React
+  - RNReanimated (1.2.0):
     - React
   - RNScreens (1.0.0-alpha.23):
     - React
@@ -158,6 +160,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNLocalize (from `../node_modules/react-native-localize`)
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSound (from `../node_modules/react-native-sound`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -238,6 +241,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-keychain"
   RNLocalize:
     :path: "../node_modules/react-native-localize"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSound:
@@ -267,7 +272,7 @@ SPEC CHECKSUMS:
   React-jsinspector: e08662d1bf5b129a3d556eb9ea343a3f40353ae4
   react-native-config: 55548054279d92e0e4566ea15a8b9b81028ec342
   react-native-in-app-message: f91de5009620af01456531118264c93e249b83ec
-  react-native-mapbox-gl: eda3e4176b31915dde30121e20d442de82701bc5
+  react-native-mapbox-gl: e5e1921140b7e2ae2e4e1d917f4c91ad13da3f25
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-version-info: f95938832bdb2ce94c3d045c2e44fabcc88f796a
   react-native-video: 6555881252c8ca039760e1cd6df28ac28ffb2baf
@@ -287,6 +292,7 @@ SPEC CHECKSUMS:
   RNGestureHandler: 4cb47a93019c1a201df2644413a0a1569a51c8aa
   RNKeychain: c658833a9cb2cbcba6423bdd6e16cce59e27da0e
   RNLocalize: 62a949d2ec5bee0eb8f39a80a48f01e2f4f67080
+  RNReanimated: 1b52415c4302f198cb581282a0166690bad62c43
   RNScreens: f28b48b8345f2f5f39ed6195518291515032a788
   RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4

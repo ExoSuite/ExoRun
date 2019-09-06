@@ -47,7 +47,14 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
       // otherwise restore default state
       return { ...snapshot, state: DEFAULT_STATE }
     }
-  })
+  }).views((self:  Instance<typeof NavigationStoreModel>) => ({
+    /**
+     * Finds the current route.
+     */
+    findCurrentRoute(): NavigationLeafRoute {
+      return findCurrentRoute(self.state)
+    }
+  }))
   .actions((self: Instance<typeof NavigationStoreModel>) => ({
     /**
      * Return all subscribers
@@ -84,13 +91,6 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
       self.reset()
       callback()
     },
-
-    /**
-     * Finds the current route.
-     */
-    findCurrentRoute(): NavigationLeafRoute {
-      return findCurrentRoute(self.state)
-    }
   }))
   .actions((self: any) => ({
     /**
@@ -103,4 +103,5 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
     }
   }))
 
-export type NavigationStore = Instance<typeof NavigationStoreModel>
+// tslint:disable-next-line:interface-name
+export interface NavigationStore extends Instance<typeof NavigationStoreModel> {}

@@ -16,6 +16,7 @@ import { UserModelMock } from "../../../__mocks__/stores/UserModelMock"
 import { GroupsModelMockData } from "../../../__mocks__/stores/GroupsModelMock"
 import { SocketIo } from "@services/socket.io"
 import { Environment } from "@models/environment"
+import { NotificationsModelMock } from "../../../__mocks__/stores/NotificationsModelMock"
 
 describe("login tests", () => {
   const api: Api = new Api()
@@ -32,6 +33,7 @@ describe("login tests", () => {
         groupsModel={GroupsModelMockData}
         socketIO={socketIO}
         env={env}
+        notificationsModel={NotificationsModelMock}
       >
         <LoginScreen
           // @ts-ignore

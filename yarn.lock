@@ -1092,9 +1092,10 @@
     shell-quote "1.6.1"
     ws "^1.1.0"
 
-"@react-native-mapbox-gl/maps@https://github.com/react-native-mapbox-gl/maps.git":
-  version "7.0.1"
-  resolved "https://github.com/react-native-mapbox-gl/maps.git#8b3fa282eae7a54363ae3d610d9a22abf188e36b"
+"@react-native-mapbox-gl/maps@7.0.4":
+  version "7.0.4"
+  resolved "https://registry.yarnpkg.com/@react-native-mapbox-gl/maps/-/maps-7.0.4.tgz#202efdb48b5061780e73be8752f74a730e146f65"
+  integrity sha512-NNCvcbFhBaUmwtq72ppZGGgV4EBvQqIcc3uIbAAwyuumN7L4bVICtDXg9zhk/M8fJQq+aTkGFkhC/RgIPQVjlQ==
   dependencies:
     "@mapbox/geo-viewport" ">= 0.4.0"
     "@turf/along" ">= 4.0.0 <7.0.0"
@@ -1102,7 +1103,7 @@
     "@turf/helpers" ">= 4.6.0 <7.0.0"
     underscore "^1.8.3"
 
-"@react-navigation/core@~3.5.0":
+"@react-navigation/core@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-3.5.0.tgz#73d1a12448e2bd71855e0080b95a7f51ede0cd9e"
   integrity sha512-NLm24lA51R8o8c+iFnwtN9elqRzm4OJ8f1qPBCUNIYW1sb8M5yCD53vRP0fRcPFpr/6Xzs2TJMsWnnebwFp0Rw==
@@ -1112,7 +1113,7 @@
     query-string "^6.4.2"
     react-is "^16.8.6"
 
-"@react-navigation/native@~3.6.1":
+"@react-navigation/native@^3.6.2":
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-3.6.2.tgz#3634697b6350cc5189657ae4551f2d52b57fbbf0"
   integrity sha512-Cybeou6N82ZeRmgnGlu+wzlV3z5BZQR2dmYaNFV1TNLUGHqtvv8E7oNw9uYcz9Ox5LFbiX+FdNTn2d6ZPlK0kg==
@@ -1136,7 +1137,7 @@
     "@sinonjs/commons" "^1"
     "@sinonjs/samsam" "^3.1.0"
 
-"@sinonjs/samsam@^3.1.0", "@sinonjs/samsam@^3.3.2":
+"@sinonjs/samsam@^3.1.0", "@sinonjs/samsam@^3.3.3":
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/@sinonjs/samsam/-/samsam-3.3.3.tgz#46682efd9967b259b81136b9f120fd54585feb4a"
   integrity sha512-bKCMKZvWIjYD0BLGnNrxVuw4dkWCYsLqFOUWw8VgKF/+5Y+mE7LfHWPIYoDXowH+3a9LsWDMo0uAP8YDosPvHQ==
@@ -3801,10 +3802,10 @@ enzyme-adapter-utils@^1.12.0:
     prop-types "^15.7.2"
     semver "^5.6.0"
 
-enzyme-matchers@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/enzyme-matchers/-/enzyme-matchers-7.1.0.tgz#7224298028679af41d224fdff02b9a9a61f2ad86"
-  integrity sha512-PCfIvyNnZh4ougBaMXKeqNrN6yilzkbtphpi2X74uFeqbPabDUcvNq30Bcw29sSIv7QI1ZCTlQ2ktGep/4jIBw==
+enzyme-matchers@^7.1.1:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/enzyme-matchers/-/enzyme-matchers-7.1.1.tgz#d1210ce0bd55b55d61af1ff72777bd8b1fa5176e"
+  integrity sha512-fw/FxwpEg6n1KYpEHnhA44iFduYHDUVVePXSMmf883q/JDMXb+sIU55maSw2oFWqt9zd7rcGqmSV8sHQO5pReg==
   dependencies:
     circular-json-es6 "^2.0.1"
     deep-equal-ident "^1.1.1"
@@ -5410,10 +5411,10 @@ jest-each@^24.9.0:
     jest-util "^24.9.0"
     pretty-format "^24.9.0"
 
-jest-environment-enzyme@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/jest-environment-enzyme/-/jest-environment-enzyme-7.1.0.tgz#1181d174034a2a4d8ba8fd6ba2123f243ccaf7ec"
-  integrity sha512-31nPBYx1MZfihsKUgZg16zLS4+f4gBvo4YpYMU4TIvQ2IjbREU9bLFwAszTgcs5mkE7SNOykm/68OjPmgDd4/Q==
+jest-environment-enzyme@^7.1.1:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/jest-environment-enzyme/-/jest-environment-enzyme-7.1.1.tgz#d9dd7b6b72ed37d213ba77e05ab7f9062aa62402"
+  integrity sha512-k+QJkK0iRtjWbNfKdtj1QQIs12JbbvPmHW30cSbDoIgOFO7Bd1lLo6qOabM+PdhPCeLWQ1D1ZoTrHPauXdYpzA==
   dependencies:
     jest-environment-jsdom "^24.0.0"
 
@@ -5440,14 +5441,14 @@ jest-environment-node@^24.9.0:
     jest-mock "^24.9.0"
     jest-util "^24.9.0"
 
-jest-enzyme@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/jest-enzyme/-/jest-enzyme-7.1.0.tgz#4345e989382a6cd70c15c7225dad9c9a9bb79cbc"
-  integrity sha512-ukL9jFwvQ3xbzhoKniDVTkAgZzGCFJNeJVU058RyY0R46fVhjJlPEV/hYlmJl518qfCmKNW6zXgtmyPcaDgxhA==
+jest-enzyme@^7.1.1:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/jest-enzyme/-/jest-enzyme-7.1.1.tgz#7684720b795636503c7660e8c6f70bd644a485fd"
+  integrity sha512-ujMi/2OF16rsjsS2ozdZCukfRZGC/Sb3MoJjINXITTvZM6lTL14lDliJr1kYIlUZVrphw0fmZkTNVTP7DnJ+Xw==
   dependencies:
-    enzyme-matchers "^7.1.0"
+    enzyme-matchers "^7.1.1"
     enzyme-to-json "^3.3.0"
-    jest-environment-enzyme "^7.1.0"
+    jest-environment-enzyme "^7.1.1"
 
 jest-get-type@^24.9.0:
   version "24.9.0"
@@ -6983,10 +6984,10 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
-nise@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/nise/-/nise-1.5.1.tgz#de61d99a1d3b46b5233be4531569b9a8e27372b2"
-  integrity sha512-edFWm0fsFG2n318rfEnKlTZTkjlbVOFF9XIA+fj+Ed+Qz1laYW2lobwavWoMzGrYDHH1EpiNJgDfvGnkZztR/g==
+nise@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/nise/-/nise-1.5.2.tgz#b6d29af10e48b321b307e10e065199338eeb2652"
+  integrity sha512-/6RhOUlicRCbE9s+94qCUsyE+pKlVJ5AhIv+jEE7ESKwnbXqulKZ1FYU+XAtHHWE9TinYvAxDUJAb912PwPoWA==
   dependencies:
     "@sinonjs/formatio" "^3.2.1"
     "@sinonjs/text-encoding" "^0.7.1"
@@ -8468,6 +8469,10 @@ react-native-randombytes@^3.5.1:
     buffer "^4.9.1"
     sjcl "^1.0.3"
 
+"react-native-reanimated@https://github.com/loic-lopez/react-native-reanimated":
+  version "1.2.0"
+  resolved "https://github.com/loic-lopez/react-native-reanimated#1b39679410420743067473c5ae7614be1feea8da"
+
 react-native-safe-area-view@^0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.12.0.tgz#5c312f087300ecf82e8541c3eac25d560e147f22"
@@ -8516,7 +8521,7 @@ react-native-swipe-gestures@^1.0.3:
   resolved "https://registry.yarnpkg.com/react-native-swipe-gestures/-/react-native-swipe-gestures-1.0.3.tgz#4160f8d459627323f3a3d2770af4bcd82fd054f5"
   integrity sha512-KOouRzPB2fHFjVombsSdRfYo8SFeNVa4Ho4B5il87DuuF26sPNOtb3je+qaT/xVptedOsCzRPJGbWFMsaBApgg==
 
-react-native-tab-view@^1.2.0, react-native-tab-view@^1.4.1:
+react-native-tab-view@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-1.4.1.tgz#f113cd87485808f0c991abec937f70fa380478b9"
   integrity sha512-Bke8KkDcDhvB/z0AS7MnQKMD2p6Kwfc1rSKlMOvg9CC5CnClQ2QEnhPSbwegKDYhUkBI92iH/BYy7hNSm5kbUQ==
@@ -8621,12 +8626,10 @@ react-native@0.60.5:
     stacktrace-parser "^0.1.3"
     whatwg-fetch "^3.0.0"
 
-react-navigation-drawer@~1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/react-navigation-drawer/-/react-navigation-drawer-1.4.0.tgz#70f3dd83e3da9cd4ea6e2739526502c823d466b9"
-  integrity sha512-ZyWBozcjB2aZ7vwCALv90cYA2NpDjM+WALaiYRshvPvue8l7cqynePbHK8GhlMGyJDwZqp4MxQmu8u1XAKp3Bw==
-  dependencies:
-    react-native-tab-view "^1.2.0"
+react-navigation-drawer@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-navigation-drawer/-/react-navigation-drawer-2.1.0.tgz#fbc51f2e485a81ef5a10e09bc63275b34f0f167d"
+  integrity sha512-gEXpGIi1p09HpqbzsmbdC7Qga/WvyKlZzPR4S829EyQiTdeSxP0GeFrPlxICdlH+PGZvRBmyC27EfTR0jZ872A==
 
 react-navigation-material-bottom-tabs@^1.1.1:
   version "1.1.1"
@@ -8637,10 +8640,10 @@ react-navigation-material-bottom-tabs@^1.1.1:
     prop-types "^15.6.0"
     react-navigation-tabs "~1.2.0"
 
-react-navigation-stack@~1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/react-navigation-stack/-/react-navigation-stack-1.5.0.tgz#f2ddee8b441158cd26c631359bc12810cd41228f"
-  integrity sha512-XwgdQY8c7PguPw/cx6GCRMnYMe6P/izzOpeOfE8g6sWrWW2vs/vwodRb9a820QePhX0I7dkgxdnTSq+o7/R49Q==
+react-navigation-stack@1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/react-navigation-stack/-/react-navigation-stack-1.5.1.tgz#8a8c0cd0b8498225f4e8e564f06043849961bede"
+  integrity sha512-VEMSsKvicaLlFu6+U4u5YkwFe4hnMTLu83bR15GumuqrpCVPPgl7Qt4fSZCRG/YtC5ZcUiy5EgCRu9MVIINV5w==
   dependencies:
     prop-types "^15.7.2"
 
@@ -8653,16 +8656,13 @@ react-navigation-tabs@~1.2.0:
     prop-types "^15.6.1"
     react-native-tab-view "^1.4.1"
 
-react-navigation@3.12.1:
-  version "3.12.1"
-  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-3.12.1.tgz#f86246e65030ab16160e9cbfa8585f3822450e38"
-  integrity sha512-WLjQis/A40cIMpFlw4o26nSLN+CvrZp8MGvJoL5K5H7DMZ/TdwgPa/Nm2sAQA27Hw7hOohQGj+diyxFRZi89Iw==
+react-navigation@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-4.0.0.tgz#b83faf5490c26ef126e384bac7a2e755fe6ef777"
+  integrity sha512-Tgh1XKr1jDcIWkn3suUYNhow674G8GhZKDs9cetpji6NCj+79yuNgFr9KQc9fsWFWSw4Byau9Ny8ZRZBR1eomg==
   dependencies:
-    "@react-navigation/core" "~3.5.0"
-    "@react-navigation/native" "~3.6.1"
-    react-navigation-drawer "~1.4.0"
-    react-navigation-stack "~1.5.0"
-    react-navigation-tabs "~1.2.0"
+    "@react-navigation/core" "^3.5.0"
+    "@react-navigation/native" "^3.6.2"
 
 react-powerplug@1.0.0:
   version "1.0.0"
@@ -9470,17 +9470,17 @@ sinon-chai@3.3.0:
   resolved "https://registry.yarnpkg.com/sinon-chai/-/sinon-chai-3.3.0.tgz#8084ff99451064910fbe2c2cb8ab540c00b740ea"
   integrity sha512-r2JhDY7gbbmh5z3Q62pNbrjxZdOAjpsqW/8yxAZRSqLZqowmfGZPGUZPFf3UX36NLis0cv8VEM5IJh9HgkSOAA==
 
-sinon@^7.4.1:
-  version "7.4.1"
-  resolved "https://registry.yarnpkg.com/sinon/-/sinon-7.4.1.tgz#bcd0c63953893e87fa0cc502f52489c32a83d4d9"
-  integrity sha512-7s9buHGHN/jqoy/v4bJgmt0m1XEkCEd/tqdHXumpBp0JSujaT4Ng84JU5wDdK4E85ZMq78NuDe0I3NAqXY8TFg==
+sinon@^7.4.2:
+  version "7.4.2"
+  resolved "https://registry.yarnpkg.com/sinon/-/sinon-7.4.2.tgz#ecd54158fef2fcfbdb231a3fa55140e8cb02ad6c"
+  integrity sha512-pY5RY99DKelU3pjNxcWo6XqeB1S118GBcVIIdDi6V+h6hevn1izcg2xv1hTHW/sViRXU7sUOxt4wTUJ3gsW2CQ==
   dependencies:
     "@sinonjs/commons" "^1.4.0"
     "@sinonjs/formatio" "^3.2.1"
-    "@sinonjs/samsam" "^3.3.2"
+    "@sinonjs/samsam" "^3.3.3"
     diff "^3.5.0"
     lolex "^4.2.0"
-    nise "^1.5.1"
+    nise "^1.5.2"
     supports-color "^5.5.0"
 
 sisteransi@^1.0.3:

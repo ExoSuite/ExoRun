@@ -95,6 +95,8 @@ export async function setupRootStore(): Promise<ISetupRootStore> {
   env.socketIO.notifications(userModel, env.notificationManager.notify)
   const notificationsModel = NotificationsModel.create({}, {environment: env});
   env.notificationManager.notificationsModel = notificationsModel
+  env.notificationManager.navigationStore = rootStore.navigationStore
+  env.soundPlayer.navigationStore = rootStore.navigationStore
 
   return {
     rootStore,

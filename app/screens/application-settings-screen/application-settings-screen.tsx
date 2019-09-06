@@ -11,6 +11,7 @@ import { Injection, InjectionProps } from "@services/injections"
 import { NavigationStore } from "@navigation/navigation-store"
 import { INavigationScreenProps } from "@navigation/stateful-navigator"
 import { clear } from "@utils/storage"
+import { clearAllStorage } from "@utils/storage/clearAllStorage"
 
 type ApplicationSettingsScreenPropsType = INavigationScreenProps & NavigationScreenProps<{}>
 
@@ -39,8 +40,7 @@ export class ApplicationSettingsScreen extends React.Component<IApplicationSetti
   private async logout(): Promise<void> {
     const { navigationStore, navigation, socketIO } = this.props
     navigation.getScreenProps.showSplashScreen()
-    await ServerReset()
-    await clear()
+    await clearAllStorage()
     socketIO.disconnect()
     navigationStore.smoothReset(navigation.getScreenProps.animateSplashScreen)
   }

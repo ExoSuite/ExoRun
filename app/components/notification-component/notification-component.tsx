@@ -1,5 +1,5 @@
 import React from "react"
-import { View, ViewStyle } from "react-native"
+import { TextStyle, View, ViewStyle } from "react-native"
 import { Text } from "@components/text"
 import { inject, observer } from "mobx-react"
 import { Injection, InjectionProps } from "@services/injections"
@@ -12,6 +12,8 @@ import { spacing } from "@theme/spacing"
 import { Avatar } from "@components/avatar"
 import { IVoidFunction } from "@custom-types/functions"
 import { action, observable } from "mobx"
+import { Platform } from "@services/device"
+import { color } from "@theme/color"
 
 const ROOT: ViewStyle = {
   flex: 1,
@@ -25,6 +27,26 @@ const ROOT: ViewStyle = {
 export class NotificationComponentManager {
   public static FillNotification: IVoidFunction
   public static ResetNotification: IVoidFunction
+}
+
+const textColor = (): string => {
+  return Platform.Android ? color.palette.black : color.palette.white
+}
+
+const AVATAR_CONTAINER: ViewStyle = {
+  flex: 0.20,
+  paddingTop: spacing[2]
+}
+
+const TEXT_CONTAINER: ViewStyle = {
+  paddingTop: spacing[2],
+  paddingLeft: spacing[2],
+  paddingRight: spacing[2],
+  flex: 0.80
+}
+
+const TEXT: TextStyle = {
+  color: textColor()
 }
 
 /**
@@ -68,15 +90,19 @@ export class NotificationComponent extends React.Component<InjectionProps> {
 
     return (
       <View style={ROOT}>
-        <View style={{flex: 0.20, paddingTop: spacing[2]}}>
+        <View style={AVATAR_CONTAINER}>
           <Avatar
             urlFromParent
             size={52}
             avatarUrl={api.buildAvatarUrl(this.notification.authorUserId, this.pictureToken.accessToken)}
           />
         </View>
-        <View style={{paddingTop: spacing[2], paddingLeft: spacing[2], paddingRight: spacing[2], flex: 0.80}}>
-          <Text text={this.notification.parseMessage} preset="bold"/>
+        <View style={TEXT_CONTAINER}>
+          <Text
+            text={this.notification.parseMessage}
+            preset="bold"
+            style={TEXT}
+          />
         </View>
       </View>
     )
