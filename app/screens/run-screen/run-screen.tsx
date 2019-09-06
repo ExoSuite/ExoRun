@@ -7,7 +7,7 @@ import { Button } from "@components/button"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { IBoolFunction } from "@types"
 import autobind from "autobind-decorator"
-import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
+
 // tslint:disable-next-line: match-default-export-name
 import DeviceInfo from "react-native-device-info"
 
@@ -40,7 +40,10 @@ export class RunScreen extends React.Component<IRunScreenProps> {
       <Screen style={ROOT} preset="scroll">
         <Button text="Réalité augmentée" onPress={this.goToAugmentedReality} style={{marginTop: spacing[3]}}/>
         <Button text="Mapbox" onPress={this.goTo(AppScreens.MAP)} style={{marginTop: spacing[3]}}/>
+{/*
         <Button text="Temps de courses" onPress={this.goTo(AppScreens.RUNS_TIMES)} style={{marginTop: spacing[3]}}/>
+*/}
+        <Button text="Parcours" onPress={this.goTo(AppScreens.RUNS)} style={{marginTop: spacing[3]}}/>
       </Screen>
     )
   }

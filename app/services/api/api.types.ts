@@ -104,11 +104,12 @@ export interface IMessage extends ITimestamps {
 }
 
 export interface IRun extends ITimestamps {
+  checkpoints: ICheckPoint[],
   creator_id: string,
   description: string,
   id: string,
   name: string,
-  visibility: string
+  visibility: string,
 }
 
 export interface IUserRun extends ITimestamps {
@@ -168,7 +169,7 @@ export interface ICheckPoint extends ITimestamps {
   location: ILocation
   previous_checkpoint_id: string
   run_id: string
-  times: []
+  times: ITime[]
   type: ICheckPointType,
 }
 

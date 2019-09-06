@@ -4,13 +4,14 @@ import { FlatList, TextStyle, TouchableOpacity, View, ViewStyle } from "react-na
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, spacing } from "../../theme"
-import { NavigationScreenProps } from "react-navigation"
+import { NavigationActions, NavigationScreenProps } from "react-navigation"
 import moment from "moment"
 import { action, observable } from "mobx"
 import { ITime, IUserRun } from "@services/api"
 import { ApiResponse } from "apisauce"
 import { Injection, InjectionProps } from "@services/injections"
 import autobind from "autobind-decorator"
+import { FAB } from "react-native-paper"
 
 export interface IUserRunsDetailsScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -48,6 +49,12 @@ const ROW: ViewStyle = {
   flexDirection: "row"
 }
 
+const fab: ViewStyle = {
+  position: "absolute",
+  right: 0,
+  bottom: 0,
+}
+
 // @ts-ignore
 const onSearchError = (): ApiResponse<any> => (
   {
@@ -65,13 +72,28 @@ const keyExtractor = (item: any, index: number): string => item.id
 @observer
 export class UserRunsDetailsScreen extends React.Component<IUserRunsDetailsScreenProps> {
   private cp_id = 0
+  @observable private isFabOpen = false
   private nbr_cp: number
   private starting_timestamp: number
   // @ts-ignore
   private readonly userRun : IUserRun = this.props.navigation.getParam("item")
   @observable private userRunTimes : ITime[] = this.userRun.times.slice()
 
-  // tslint:disable-next-line:no-feature-envy
+  @autobind
+  private changeIsFabOpen(): any {
+    this.isFabOpen = !this.isFabOpen
+  }
+
+  @autobind
+  private async onPressDelete(): Promise<void> {
+    const { api } = this.props
+
+    await api.delete(`/user/me/run/${this.userRun.run_id}/user_run/${this.userRun.id}`).catch(onSearchError)
+    // @ts-ignore
+    this.props.navigation.getParam("deleteUserRun")(this.userRun)
+    this.props.navigation.dispatch(NavigationActions.back())
+  }
+
   @autobind
   // tslint:disable-next-line:prefer-function-over-method
   private renderTimes({item}: { item: ITime }): React.ReactElement {
@@ -135,6 +157,7 @@ export class UserRunsDetailsScreen extends React.Component<IUserRunsDetailsScree
   }
 
   public render(): React.ReactNode {
+
     const formatted_createdAt = moment(this.userRun.created_at).format("LLL")
 
     return (
@@ -149,7 +172,18 @@ export class UserRunsDetailsScreen extends React.Component<IUserRunsDetailsScree
           renderItem={this.renderTimes}
           keyExtractor={keyExtractor}
         />
+        {/* tslint:disable-next-line:use-simple-attributes */}
+        <FAB.Group
+          style={fab}
+          actions={[
+            { icon: "delete", label: "Supprimer", onPress: this.onPressDelete},
+          ]}
+          icon={this.isFabOpen ? "remove" : "add"}
+          open={this.isFabOpen}
+          onStateChange={this.changeIsFabOpen}
+        />
       </Screen>
+
     )
   }
 }
