@@ -7,5 +7,4 @@ project(':gvr_common').projectDir = new File('../node_modules/react-viro/android
 project(':viro_renderer').projectDir = new File('../node_modules/react-viro/android/viro_renderer')
 project(':react_viro').projectDir = new File('../node_modules/react-viro/android/react_viro')
 
-
 include ':app'

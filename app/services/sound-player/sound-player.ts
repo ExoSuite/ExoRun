@@ -2,6 +2,8 @@ import { IService } from "@services/interfaces"
 import Sound from "react-native-sound"
 import autobind from "autobind-decorator"
 import { noop } from "lodash-es"
+import { userIsOnChatScreen } from "@utils/userIsOnChatScreen"
+import { NavigationStore } from "@navigation/navigation-store"
 
 /**
  * SoundPlayer will be the controller to handle app sounds and ringtones
@@ -9,23 +11,30 @@ import { noop } from "lodash-es"
 // tslint:disable-next-line: min-class-cohesion
 @autobind
 export class SoundPlayer implements IService {
+  public set navigationStore(value: NavigationStore) {
+    this._navigationStore = value
+  }
+  // tslint:disable-next-line:variable-name
+  private _navigationStore: NavigationStore
   private addedToGroupSound: Sound
   private errorSound: Sound
   private receiveMessageSound: Sound
   private sendMessageSound: Sound
   private successSound: Sound
 
-  public playAddedToGroup(): void {
-    this.addedToGroupSound.setVolume(0.15)
-    this.addedToGroupSound.play()
-  }
-
   public playError(): void {
     this.errorSound.setVolume(0.5)
     this.errorSound.play()
   }
 
+  public playNewNotification(): void {
+    this.addedToGroupSound.setVolume(0.15)
+    this.addedToGroupSound.play()
+  }
+
   public playReceiveMessage(): void {
+    if (!userIsOnChatScreen(this._navigationStore.findCurrentRoute())) { return }
+
     this.receiveMessageSound.setVolume(0.05)
     this.receiveMessageSound.setSpeed(1.25)
     this.receiveMessageSound.play()

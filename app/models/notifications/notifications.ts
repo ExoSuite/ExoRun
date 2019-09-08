@@ -1,22 +1,57 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
 import { INotificationModel, NotificationModel } from "@models/notification"
+import { withEnvironment } from "@models/extensions"
+import { ApiRoutes, ILiveNotification, INotification, INotificationApiResponse } from "@services/api"
+import { ApiOkResponse } from "apisauce"
+import { noop } from "lodash-es"
 
 /**
  * Model description here for TypeScript hints.
  */
 export const NotificationsModel = types
   .model("Notifications")
+  .extend(withEnvironment)
   .props({
+    currentPage: types.optional(types.number, 0),
+    maxPage: types.optional(types.number, 0),
     notifications: types.optional(types.array(NotificationModel), []),
   })
   .views((self: INotificationsModel) => ({
     get sortedNotifications(): INotificationModel[] {
       return self.notifications
+    },
+    get lastNotification(): INotificationModel {
+      return self.notifications.find(Boolean) // get first element safely
+    },
+    liveNotificationToNotificationModel(liveNotification: ILiveNotification<any>): INotificationModel {
+      return {
+        ...liveNotification,
+      }
     }
   }))
   .actions((self: INotificationsModel)  => ({
-    createNotification(notification: any): void {
-      self.notifications.unshift(NotificationModel.create(notification))
+    afterCreate(): void {
+      self.fetchNotifications()
+    },
+    fetchNotifications(): void {
+      self.environment.api.get(ApiRoutes.NOTIFICATIONS)
+        .then(self.afterSuccessfulFetch)
+        .catch(noop)
+    },
+    afterSuccessfulFetch(notificationsResponse: ApiOkResponse<INotificationApiResponse>): void {
+      self.currentPage = notificationsResponse.data.current_page
+      self.maxPage = notificationsResponse.data.current_page
+      self.notifications = notificationsResponse.data.data.map(self.createNewNotification)
+    },
+    createNewNotification(notification: INotification): INotificationModel {
+      // @ts-ignore
+      return NotificationModel.create(notification)
+    },
+    pushNewNotification(notification: INotification): INotificationModel {
+      const newNotification = self.createNewNotification(notification)
+      self.notifications.unshift(newNotification)
+
+      return newNotification
     }
   }))
 

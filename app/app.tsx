@@ -20,10 +20,14 @@ import { DataLoader } from "@components/data-loader"
 import { useScreens } from "react-native-screens"
 import { IUserModel } from "@models/user-profile"
 import { IGroupsModel } from "@models/groups"
+import { INotificationsModel } from "@models/notifications"
+import { Notification } from "react-native-in-app-message"
+import { NotificationComponent, NotificationComponentManager } from "@components/notification-component"
 
 export interface IAppState {
   env?: Environment
   groupsModel?: IGroupsModel
+  notificationsModel: INotificationsModel
   rootStore?: RootStore
   userModel?: IUserModel
 }
@@ -91,8 +95,11 @@ export class App extends React.Component<{}, IAppState> {
     // sequence Is too slow though.
 
     if (
+      // tslint:disable-next-line: no-complex-conditionals
       this.stateNotReady("rootStore") === undefined ||
       this.stateNotReady("env") === undefined ||
+      this.stateNotReady("groupsModel") === undefined ||
+      this.stateNotReady("notificationsModel") === undefined ||
       this.stateNotReady("userModel") === undefined
     ) {
       return null
@@ -102,6 +109,7 @@ export class App extends React.Component<{}, IAppState> {
     const env = this.state.env
     const userModel = this.state.userModel
     const groupsModel = this.state.groupsModel
+    const notificationsModel = this.state.notificationsModel
 
     // otherwise, we're ready to render the app
 
@@ -112,6 +120,7 @@ export class App extends React.Component<{}, IAppState> {
       socketIO: env.socketIO,
       userModel,
       groupsModel,
+      notificationsModel,
       env: env,
     }
     // --- am: end list of stores ---
@@ -121,6 +130,14 @@ export class App extends React.Component<{}, IAppState> {
         <BackButtonHandler canExit={App.canExit}>
           <StatefulNavigator />
           <DataLoader ref={App.setDataLoaderInstance} />
+          <Notification
+            // @ts-ignore
+            onPress={Notification.hide}
+            tapticFeedback
+            hideStatusBar={false}
+            customComponent={<NotificationComponent />}
+            onHide={NotificationComponentManager.ResetNotification}
+          />
         </BackButtonHandler>
       </Provider>
     )

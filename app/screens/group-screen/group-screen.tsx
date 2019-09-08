@@ -137,9 +137,6 @@ export class GroupScreen extends React.Component<IGroupScreenProps> {
         renderItem={this.renderGroup}
         keyExtractor={keyExtractor}
         style={ROOT}
-        initialNumToRender={8}
-        maxToRenderPerBatch={2}
-        onEndReachedThreshold={0.5}
       />
     )
   }

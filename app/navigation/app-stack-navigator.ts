@@ -1,4 +1,4 @@
-import { createStackNavigator } from "react-navigation"
+import { createStackNavigator } from "react-navigation-stack"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { LogoHeader } from "@components/logo-header"
 import { color } from "@theme"

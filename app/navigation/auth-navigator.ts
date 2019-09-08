@@ -1,5 +1,5 @@
 import { AuthScreen, LoginScreen } from "@screens/auth"
-import { createStackNavigator } from "react-navigation"
+import { createStackNavigator } from "react-navigation-stack";
 import { RegisterFlow } from "@navigation/register-navigator"
 import { AuthScreens } from "@navigation/navigation-definitions"
 

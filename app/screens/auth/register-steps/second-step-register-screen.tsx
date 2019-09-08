@@ -147,7 +147,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
 
   @autobind
   private async register(): Promise<void> {
-    const { api, navigation, userModel, groupsModel, env } = this.props
+    const { api, navigation, userModel, groupsModel, env, notificationsModel } = this.props
     const { email, password, passwordConfirmation } = this
     DataLoader.Instance.toggleIsVisible()
 
@@ -178,7 +178,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
       return
     }
 
-    await afterSuccessfulLogin(loginResponse, groupsModel, userModel, env, navigation)
+    await afterSuccessfulLogin(loginResponse, groupsModel, notificationsModel, userModel, env, navigation)
   }
 
   @action.bound
@@ -338,5 +338,12 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
 }
 
 export const SecondStepRegisterScreen =
-  inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel, Injection.SocketIO, Injection.GroupsModel, Injection.Environment)
-  (observer(SecondStepRegisterScreenImpl))
+  inject(
+    Injection.Api,
+    Injection.SoundPlayer,
+    Injection.UserModel,
+    Injection.SocketIO,
+    Injection.GroupsModel,
+    Injection.Environment,
+    Injection.NotificationsModel
+  )(observer(SecondStepRegisterScreenImpl))

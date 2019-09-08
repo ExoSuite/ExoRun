@@ -11,15 +11,14 @@ import { Injection, InjectionProps } from "@services/injections"
 import { IUserModel } from "@models/user-profile"
 import { renderComposer, renderInputToolbar, renderMessage, renderSend } from "@screens/chat-screen/lib"
 import { IMessage, User as RNGCUser } from "react-native-gifted-chat/lib/types"
-import { IGroupsModel } from "@models/groups"
 import autobind from "autobind-decorator"
 import { IGroup } from "@models/group"
 import { convertUserToRNGCFormat } from "@utils/rngc/convertUser"
 import { languageTag } from "@i18n/i18n"
 import { Text } from "@components/text"
 
-interface IChatScreenNavigationProps {
-  group: IGroupsModel,
+export interface IChatScreenNavigationProps {
+  group: IGroup,
   pictureToken: IPersonalToken
 }
 

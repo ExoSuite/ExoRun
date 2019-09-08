@@ -44,6 +44,9 @@ describe("sound player tests", () => {
   })
 
   test("receive message sound must be called", () => {
+    soundPlayer.navigationStore = {
+      findCurrentRoute: (): any => ({routeName: "chat"})
+    }
     soundPlayer.playReceiveMessage()
     // @ts-ignore
     expect(receiveMock.play.called).toBeTruthy()
