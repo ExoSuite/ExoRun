@@ -70,10 +70,10 @@ PODS:
     - React
   - react-native-version-info (1.0.1):
     - React
-  - react-native-video (5.0.0):
+  - react-native-video (5.0.2):
     - React
-    - react-native-video/Video (= 5.0.0)
-  - react-native-video/Video (5.0.0):
+    - react-native-video/Video (= 5.0.2)
+  - react-native-video/Video (5.0.2):
     - React
   - React-RCTActionSheet (0.60.5):
     - React-Core (= 0.60.5)
@@ -275,7 +275,7 @@ SPEC CHECKSUMS:
   react-native-mapbox-gl: e5e1921140b7e2ae2e4e1d917f4c91ad13da3f25
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-version-info: f95938832bdb2ce94c3d045c2e44fabcc88f796a
-  react-native-video: 6555881252c8ca039760e1cd6df28ac28ffb2baf
+  react-native-video: d01ed7ff1e38fa7dcc6c15c94cf505e661b7bfd0
   React-RCTActionSheet: b0f1ea83f4bf75fb966eae9bfc47b78c8d3efd90
   React-RCTAnimation: 359ba1b5690b1e87cc173558a78e82d35919333e
   React-RCTBlob: 5e2b55f76e9a1c7ae52b826923502ddc3238df24

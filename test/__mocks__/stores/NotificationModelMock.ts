@@ -12,5 +12,4 @@ export const NotificationModelMockData = {
   }
 }
 
-
 export const NotificationModelMock = NotificationModel.create(NotificationModelMockData)
