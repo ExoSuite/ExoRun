@@ -19,7 +19,6 @@ import { translate } from "@i18n/translate"
 import moment from "moment"
 import { IBoolFunction } from "@types"
 import { AppScreens } from "@navigation/navigation-definitions"
-import { __await, __awaiter } from "tslib"
 
 export interface IRunsScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
