@@ -1096,6 +1096,11 @@
     shell-quote "1.6.1"
     ws "^1.1.0"
 
+"@react-native-community/masked-view@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.1.tgz#dbcfc5ec08efbb02d4142dd9426c8d7a396829d7"
+  integrity sha512-EyJVSbarZkOPYq+zCZLx9apMcpwkX9HvH6R+6CeVL29q88kEFemnLO/IhmE4YX/0MfalsduI8eTi7fuQh/5VeA==
+
 "@react-native-mapbox-gl/maps@7.0.4":
   version "7.0.4"
   resolved "https://registry.yarnpkg.com/@react-native-mapbox-gl/maps/-/maps-7.0.4.tgz#202efdb48b5061780e73be8752f74a730e146f65"
@@ -1107,10 +1112,10 @@
     "@turf/helpers" ">= 4.6.0 <7.0.0"
     underscore "^1.8.3"
 
-"@react-navigation/core@^3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-3.5.0.tgz#73d1a12448e2bd71855e0080b95a7f51ede0cd9e"
-  integrity sha512-NLm24lA51R8o8c+iFnwtN9elqRzm4OJ8f1qPBCUNIYW1sb8M5yCD53vRP0fRcPFpr/6Xzs2TJMsWnnebwFp0Rw==
+"@react-navigation/core@^3.5.1":
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-3.5.1.tgz#7a2339fca3496979305fb3a8ab88c2ca8d8c214d"
+  integrity sha512-q7NyhWVYOhVIWqL2GZKa6G78YarXaVTTtOlSDkvy4ZIggo40wZzamlnrJRvsaQX46gsgw45FAWb5SriHh8o7eA==
   dependencies:
     hoist-non-react-statics "^3.3.0"
     path-to-regexp "^1.7.0"
@@ -8353,10 +8358,10 @@ react-native-crypto@^2.0.1:
     public-encrypt "^4.0.0"
     randomfill "^1.0.3"
 
-react-native-device-info@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-3.0.1.tgz#4378f04d91688ec04500af828dfb4695d585686b"
-  integrity sha512-uj7dCTG8IpbiR9hTH74n5iXHNCk1/ljMYygNQUt+mx+M5hjnwJ67Ib/efY2EJuNCd0NKXQ2NRGpXvCPsvJaHZA==
+react-native-device-info@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-3.1.0.tgz#0f41fedb8b55f16e3193dfbce232b3641d861194"
+  integrity sha512-A61Hs4k6GrILZPlHMWmQjLB+opEg2gMzhoqTInN4Cn9QWdORa53JJSCgTWi70IL7lii1KLe3Ux/x/lCAMXkCDQ==
 
 react-native-fs@^2.14.1:
   version "2.14.1"
@@ -8665,12 +8670,12 @@ react-navigation-stack@^1.7.3:
   dependencies:
     prop-types "^15.7.2"
 
-react-navigation@4.0.4:
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-4.0.4.tgz#afa43c7183891d38708cf57f1d4394fed1d4c2ad"
-  integrity sha512-MZeVkYkFTKZobhrXMV3Hgeg0HHeokCrYsbxActVfO0n6zfzm0/La6EiC2mIHiwOymvb1ZygyFf90vryLUMEBNA==
+react-navigation@4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-4.0.5.tgz#d4e16d9884cfd6bb2cda4d16e001227e2c859b46"
+  integrity sha512-VidRiSA2RvrgPlKs/7FNKV6pXEYXREtxiEl6m/Dmfb8x27amG6JRibzJC2mpWt4w0SAIGMUjHallRi3h9sIk0A==
   dependencies:
-    "@react-navigation/core" "^3.5.0"
+    "@react-navigation/core" "^3.5.1"
     "@react-navigation/native" "^3.6.2"
 
 react-powerplug@1.0.0:
@@ -10124,10 +10129,10 @@ tslib@^1.10.0, tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
   integrity sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
 
-tslint-clean-code@^0.2.9:
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/tslint-clean-code/-/tslint-clean-code-0.2.9.tgz#4accfdf92cc701b7dd783e736559e90905c68f6c"
-  integrity sha512-h9BqZIUsvqtns46IIto5fbouaERFd9Iu0NupTZ9s80frdm5eGhOWDp2VjfOx4LqgnvchMFX1xrj+dfWs4bVYog==
+tslint-clean-code@^0.2.10:
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/tslint-clean-code/-/tslint-clean-code-0.2.10.tgz#eaba79fb92d52bebf5ee1177054f056b2233fafa"
+  integrity sha512-MjfU3TVDB+oidhI/uAN/p0ncaqFnPq4L6nYtPvNp/MaFxM52jYtgx1qxf+uTIaQ7KZWZB/P9CpbL7/8WWSzQJg==
   dependencies:
     memoize-decorator "^1.0.2"
     tsutils "2.7.1"

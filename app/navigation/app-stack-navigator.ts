@@ -15,6 +15,7 @@ import { ChooseUsersNewGroupScreen } from "@screens/choose-users-new-group-scree
 import { ChatScreen } from "@screens/chat-screen"
 import { AugmentedRealityNavigator } from "@screens/augmented-reality-screen"
 import { MapScreen } from "@screens/map-screen"
+import { IosStyle } from "@navigation/transitions/ios-style"
 
 export const AppStackNavigatorImpl = createStackNavigator({
   [AppScreens.HOME]: AppBottomTabNavigator,
@@ -37,7 +38,8 @@ export const AppStackNavigatorImpl = createStackNavigator({
     }
   },
   headerLayoutPreset: "center",
-  initialRouteName: AppScreens.HOME
+  initialRouteName: AppScreens.HOME,
+  transitionConfig: IosStyle
 })
 
 export const AppStackNavigator = createStackNavigator({
