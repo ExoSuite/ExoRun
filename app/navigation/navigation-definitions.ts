@@ -22,7 +22,7 @@ export enum AppScreens {
   MAP = "map",
   RUN_TIMES_DETAILS = "run-times-details",
   RUNS = "runs",
-  RUN_DETAILS = "run-details"
+  RUN_DETAILS = "run-details",
 }
 
 export enum AuthScreens {

@@ -7,7 +7,7 @@ import { color, spacing } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
 import { Injection, InjectionProps } from "@services/injections"
 import autobind from "autobind-decorator"
-import { IRun } from "@services/api"
+import { IRun, IUser } from "@services/api"
 import { action, observable } from "mobx"
 import { ApiResponse } from "apisauce"
 import { isEmpty, noop, remove } from "lodash-es"
@@ -19,6 +19,7 @@ import { translate } from "@i18n/translate"
 import moment from "moment"
 import { IBoolFunction } from "@types"
 import { AppScreens } from "@navigation/navigation-definitions"
+import { renderIf } from "@utils/render-if"
 
 export interface IRunsScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -36,6 +37,20 @@ const TITLE: ViewStyle = {
   backgroundColor: color.palette.backgroundDarker,
   paddingLeft: spacing[5],
   flexDirection: "column",
+}
+
+const HEADER_PICKER: ViewStyle = {
+  flex: 1,
+  flexDirection: "row",
+  backgroundColor: color.palette.backgroundDarkerer
+}
+
+const HEADER_TITLE: ViewStyle = {
+  flex: 1,
+  flexDirection: "row",
+  backgroundColor: color.palette.backgroundDarkerer,
+  justifyContent: "flex-end",
+  paddingRight: spacing[4]
 }
 
 const TIME_CONTAINER: ViewStyle = {
@@ -87,7 +102,11 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
   private lastQuery: string
   private maxPage: number
   private onEndReachedCalledDuringMomentum = true
+  private routeAPIGetParcours: string
   @observable private runs: IRun[] = []
+  // @ts-ignore
+  @observable private target = this.props.navigation.getParam("me")
+  private targetProfile: IUser = {} as IUser
 
   @action.bound
   private deleteRun(runToDelete: IRun): void {
@@ -120,13 +139,14 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
   }
 
   @autobind
-  private onRunPressNavigateToDetails(item: IRun): IBoolFunction {
-
+  private onRunPressNavigateToDetails(item: IRun, targetProfile: IUser): IBoolFunction {
     return (): boolean => this.props.navigation.navigate(
       AppScreens.RUN_DETAILS,
       {
         item,
-        deleteRun: this.deleteRun
+        targetProfile,
+        deleteRun: this.deleteRun,
+        me: this.props.navigation.getParam("me")
       }
     )
   }
@@ -149,7 +169,7 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
       queriesParams.page = this.currentPage
     }
 
-    const results = await api.get("user/me/run/", queriesParams).catch(onSearchError)
+    const results = await api.get(this.routeAPIGetParcours, queriesParams).catch(onSearchError)
     this.currentPage = results.data.current_page
     if (!neededNextPage) {
       this.maxPage = results.data.last_page
@@ -158,7 +178,6 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
     } else {
       this.runs.push(...results.data.data)
     }
-    console.log("CUL")
     this.onPickerValueChange(this.filterValue)
   }
 
@@ -170,7 +189,7 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
     return (
       <TouchableOpacity
         style={TIME_CONTAINER}
-        onPress={this.onRunPressNavigateToDetails(item)}
+        onPress={this.onRunPressNavigateToDetails(item, this.targetProfile)}
       >
         <View style={ROW}>
           <View style={{marginLeft: spacing[2], justifyContent: "center"}}>
@@ -198,29 +217,32 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
   @action
   public async componentDidMount(): Promise<void> {
     const { api } = this.props
+    this.routeAPIGetParcours = "user/me/run"
 
-    const result = await api.get("user/me/run").catch(onSearchError)
+    if (!this.target) {
+      // @ts-ignore
+      this.target = this.props.navigation.getParam("userProfile")
+      this.routeAPIGetParcours = `user/${this.target.id}/run`
+      this.targetProfile = this.target
+    } else {
+      const me = await api.get("user/me/").catch(onSearchError)
+      this.targetProfile = {...me.data}
+    }
+    const result = await api.get(this.routeAPIGetParcours).catch(onSearchError)
     this.runs.push(...result.data.data)
     await this.onUserTypeSearch("*")
-    console.log("prout")
   }
 
   public render(): React.ReactNode {
     const placeholderTx = translate("common.search")
 
+    // @ts-ignore
+    // @ts-ignore
     return (
       <Screen style={ROOT} preset="scroll">
         <View style={TITLE}>
-      <View style={{flex: 1, flexDirection: "row", backgroundColor: color.backgroundDarkerer}}>
-        <Text preset="fieldLabel" text="Filtrer :  " style={{marginTop: spacing[1]}}/>
-          <Searchbar
-            placeholder={placeholderTx}
-            onChangeText={this.onUserTypeSearch}
-            style={SEARCH}
-            theme={DarkTheme}
-          />
-      </View>
-    <View style={{flex: 1, flexDirection: "row", backgroundColor: color.palette.backgroundDarkerer}}>
+    <View style={{flexDirection: "row", backgroundColor: color.palette.backgroundDarkerer}}>
+      <View style={HEADER_PICKER}>
             <Text preset="fieldLabel" text="Classer par : " style={{marginTop: spacing[1]}}/>
             <Picker
               onValueChange={this.onPickerValueChange}
@@ -231,6 +253,29 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
               <Picker.Item label="plus récent" value={UserRunFilters.YOUNGER}/>
               <Picker.Item label="plus ancien" value={UserRunFilters.OLDEST}/>
             </Picker>
+        <View style={HEADER_TITLE}>
+          {renderIf.if(this.targetProfile.first_name === undefined)(
+              <Text preset="header" text={" "} style={{ alignSelf: "center" }}/>
+            ).elseIf(this.props.navigation.getParam("me") === true)(
+              <Text preset="header" text={"Mes Parcours"} style={{ alignSelf: "center" }}/>
+          ).else(
+              <Text
+                preset="header"
+                text={`Parcours de ${this.targetProfile.first_name} ${this.targetProfile.last_name}`}
+                style={{ alignSelf: "center" }}
+              />
+            ).evaluate()}
+          </View>
+          </View>
+          </View>
+          <View style={{flex: 1, flexDirection: "row", backgroundColor: color.backgroundDarkerer}}>
+            <Text preset="fieldLabel" text="Filtrer :  " style={{marginTop: spacing[1]}}/>
+            <Searchbar
+              placeholder={placeholderTx}
+              onChangeText={this.onUserTypeSearch}
+              style={SEARCH}
+              theme={DarkTheme}
+            />
           </View>
         </View>
         <FlatList

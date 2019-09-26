@@ -12,13 +12,28 @@ import { IBoolFunction } from "@types"
 import { action, observable } from "mobx"
 import { isEmpty, noop, remove } from "lodash-es"
 import { Injection, InjectionProps } from "@services/injections"
-import { IUserRun } from "@services/api"
+import { IUser, IUserRun } from "@services/api"
 import { ApiResponse } from "apisauce"
 import { SortFields } from "@utils/sort-fields"
 import { UserRunFilters } from "@utils/user-run-filters"
 import * as FilterFunctons from "@utils/filters-functions"
+import { renderIf } from "@utils/render-if"
 
 export interface IRunsTimesScreenProps extends NavigationScreenProps<{}>, InjectionProps {
+}
+
+const HEADER_PICKER: ViewStyle = {
+  flex: 1,
+  flexDirection: "row",
+  backgroundColor: color.palette.backgroundDarkerer
+}
+
+const HEADER_TITLE: ViewStyle = {
+  flex: 2,
+  flexDirection: "row",
+  backgroundColor: color.palette.backgroundDarkerer,
+  justifyContent: "flex-end",
+  paddingRight: spacing[4]
 }
 
 const TITLE: ViewStyle = {
@@ -83,6 +98,8 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
   private onEndReachedCalledDuringMomentum = true
   // @ts-ignore
   @observable private readonly runId: string = this.props.navigation.getParam("run_id")
+  // @ts-ignore
+  private readonly targetProfile: IUser = this.props.navigation.getParam("targetProfile")
   @observable private userRuns: IUserRun[] = []
 
   @action.bound
@@ -145,7 +162,7 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
       queriesParams.page = this.currentPage
     }
 
-    const results = await api.get(`user/me/run/${this.runId}/user_run`, queriesParams).catch(onSearchError)
+    const results = await api.get(`user/${this.targetProfile.id}/run/${this.runId}/user_run`, queriesParams).catch(onSearchError)
     this.currentPage = results.data.current_page
     if (!neededNextPage) {
       this.maxPage = results.data.last_page
@@ -201,10 +218,9 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
   public async componentDidMount(): Promise<void> {
     const { api } = this.props
 
-    const results = await api.get(`user/me/run/${this.runId}/user_run`).catch(onSearchError)
+    const results = await api.get(`user/${this.targetProfile.id}/run/${this.runId}/user_run`).catch(onSearchError)
     this.userRuns.push(...results.data.data)
     await this.onUserTypeSearch("*")
-    console.log("pouet")
   }
 
   public render (): React.ReactNode {
@@ -213,6 +229,7 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
       <Screen style={ROOT} preset="fixed">
         <View style={TITLE}>
           <View style={{flex: 1, backgroundColor: color.palette.backgroundDarkerer, flexDirection: "row"}}>
+            <View style={HEADER_PICKER}>
             <Text preset="fieldLabel" text="Classer par : " style={{marginTop: spacing[1]}}/>
             <Picker
               onValueChange={this.onPickerValueChange}
@@ -225,6 +242,20 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
               <Picker.Item label="Meilleurs temps" value={UserRunFilters.BEST}/>
               <Picker.Item label="Plus petits temps" value={UserRunFilters.LOWER}/>
             </Picker>
+            </View>
+            <View style={HEADER_TITLE}>
+              {renderIf.if(this.props.navigation.getParam("me") === true)(
+                <Text
+                  text={`Mes temps de courses`}
+                  style={{ alignSelf: "center", fontWeight: "bold", fontSize: 20}}
+                />
+              ).else(
+                <Text
+                  text={`Temps de : ${this.targetProfile.first_name} ${this.targetProfile.last_name}`}
+                  style={{ alignSelf: "center", fontWeight: "bold", fontSize: 20}}
+                />
+              ).evaluate()}
+          </View>
           </View>
         </View>
         <FlatList

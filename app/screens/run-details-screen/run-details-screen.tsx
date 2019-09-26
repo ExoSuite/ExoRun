@@ -67,6 +67,8 @@ export class RunDetailsScreen extends React.Component<IRunDetailsScreenProps> {
   @observable private readonly run: IRun = this.props.navigation.getParam("item")
   // @ts-ignore
   @observable private runCreator: IUser = {} as IUser
+  // @ts-ignore
+  private readonly targetProfile: IUser = this.props.navigation.getParam("targetProfile")
 
   @autobind
   private changeIsFabOpen(): any {
@@ -78,19 +80,20 @@ export class RunDetailsScreen extends React.Component<IRunDetailsScreenProps> {
     const { api } = this.props
 
     await api.delete(`/user/me/run/${this.run.id}`).catch(onSearchError)
-    console.log(`/user/me/run/${this.run.id}`)
     // @ts-ignore
     this.props.navigation.getParam("deleteRun")(this.run)
     this.props.navigation.dispatch(NavigationActions.back())
   }
 
   @autobind
-  private onPressGoToRunTimes(run_id: string): IBoolFunction {
+  private onPressGoToRunTimes(run_id: string, targetProfile: IUser): IBoolFunction {
 
     return (): boolean => this.props.navigation.navigate(
       AppScreens.RUNS_TIMES,
       {
-        run_id
+        run_id,
+        targetProfile,
+        me: this.props.navigation.getParam("me")
       }
     )
   }
@@ -133,7 +136,8 @@ export class RunDetailsScreen extends React.Component<IRunDetailsScreenProps> {
           style={fab}
           actions={[
             { icon: "delete", label: "Supprimer", onPress: this.onPressDelete},
-            { icon: "hourglass-empty", label: "Temps de courses", onPress: this.onPressGoToRunTimes(this.run.id) },
+            { icon: "hourglass-empty", label: "Temps de courses",
+              onPress: this.onPressGoToRunTimes(this.run.id, this.targetProfile) },
           ]}
           icon={this.isFabOpen ? "remove" : "add"}
           open={this.isFabOpen}
