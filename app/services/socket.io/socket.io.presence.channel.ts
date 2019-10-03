@@ -15,10 +15,10 @@ export class SocketIoPresenceChannel {
   private readonly groupId: string
   private readonly presenceChannel: SocketIoPresenceChannelImpl
 
-  constructor(groupId: string) {
+  constructor(groupId: string, socketIO: SocketIo) {
     this.groupId = groupId
     // @ts-ignore
-    this.presenceChannel = SocketIo.Echo.join(this.channel)
+    this.presenceChannel = socketIO.Echo.join(this.channel)
   }
 
   public here(callback: Function): void {

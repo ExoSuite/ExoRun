@@ -13,7 +13,7 @@ import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
 import { ApiResponse } from "apisauce"
 import { UserRow } from "@components/user-row"
-import { IVoidFunction } from "@types"
+import { IVoidFunction } from "@custom-types"
 import { translate } from "@i18n/translate"
 import { Text } from "@components/text"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
@@ -24,6 +24,7 @@ import { RightNavigationButton } from "@navigation/components/right-navigation-b
 
 interface IChooseUsersNewGroupNavProps {
   chosenUsers?: IUser[]
+
   updateUsers(chosenUsers: IUser[]): void
 }
 
@@ -259,7 +260,7 @@ export class ChooseUsersNewGroupScreen extends React.Component<IChooseUsersNewGr
           />
         </View>
 
-        <View style={{padding: spacing[2]}}>
+        <View style={{ padding: spacing[2] }}>
           <Text tx="group.users" preset="bold" style={{ marginLeft: spacing[2] }}/>
           <FlatList
             data={this.users}

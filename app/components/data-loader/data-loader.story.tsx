@@ -4,6 +4,7 @@ import { Story, StoryScreen, UseCase } from "../../../storybook/views"
 import { DataLoader, defaultErrorCallback, defaultSuccessCallback } from "./"
 import { Button } from "@components/button"
 import { SoundPlayer } from "@services/sound-player"
+import { noop } from "lodash-es"
 
 /* tslint:disable */
 
@@ -14,7 +15,8 @@ const soundPlayer = new SoundPlayer()
 if (process.env.JEST_WORKER_ID === undefined) {
   soundPlayer.setup()
 } else {
-  soundPlayer.setupForTests()
+  // @ts-ignore
+  soundPlayer.setupForTests(noop, noop, noop, noop)
 }
 
 const errors = {
@@ -45,7 +47,7 @@ storiesOf("Animated Data Loader", module)
             preset="success"
             onPress={() => {
               refSuccess.success(
-                () => soundPlayer.success(),
+                () => soundPlayer.playSuccess(),
                 defaultSuccessCallback
               )
             }}
@@ -67,7 +69,7 @@ storiesOf("Animated Data Loader", module)
             onPress={() =>
               refError.hasErrors(
                 errors,
-                () => soundPlayer.error(),
+                () => soundPlayer.playError(),
                 defaultErrorCallback
               )
             }

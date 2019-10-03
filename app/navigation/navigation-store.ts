@@ -2,7 +2,7 @@ import { Instance, types } from "mobx-state-tree"
 import { RootNavigator } from "./root-navigator"
 import { NavigationAction, NavigationActions, NavigationLeafRoute } from "react-navigation"
 import { NavigationEvents } from "./navigation-events"
-import { IVoidFunction } from "@types"
+import { IVoidFunction } from "@custom-types"
 
 const DEFAULT_STATE = RootNavigator.router.getStateForAction(NavigationActions.init(), null)
 
@@ -30,7 +30,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
     /**
      * the navigation state tree (Frozen here means it is immutable.)
      */
-    state: types.optional(types.frozen(), DEFAULT_STATE),
+    state: types.optional(types.frozen(), DEFAULT_STATE)
   })
   // tslint:disable-next-line:typedef deprecation
   .preProcessSnapshot((snapshot) => {
@@ -47,7 +47,14 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
       // otherwise restore default state
       return { ...snapshot, state: DEFAULT_STATE }
     }
-  })
+  }).views((self:  Instance<typeof NavigationStoreModel>) => ({
+    /**
+     * Finds the current route.
+     */
+    findCurrentRoute(): NavigationLeafRoute {
+      return findCurrentRoute(self.state)
+    }
+  }))
   .actions((self: Instance<typeof NavigationStoreModel>) => ({
     /**
      * Return all subscribers
@@ -84,13 +91,6 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
       self.reset()
       callback()
     },
-
-    /**
-     * Finds the current route.
-     */
-    findCurrentRoute(): NavigationLeafRoute {
-      return findCurrentRoute(self.state)
-    },
   }))
   .actions((self: any) => ({
     /**
@@ -100,7 +100,8 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      */
     navigateTo(routeName: string): void {
       self.dispatch(NavigationActions.navigate({ routeName }))
-    },
+    }
   }))
 
-export type NavigationStore = Instance<typeof NavigationStoreModel>
+// tslint:disable-next-line:interface-name
+export interface NavigationStore extends Instance<typeof NavigationStoreModel> {}

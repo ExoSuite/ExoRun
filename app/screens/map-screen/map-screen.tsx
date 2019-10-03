@@ -27,27 +27,27 @@ const ROOT: ViewStyle = {
 const layerStyles = {
   origin: {
     circleRadius: 5,
-    circleColor: "white",
+    circleColor: "white"
   },
   destination: {
     circleRadius: 5,
-    circleColor: "white",
+    circleColor: "white"
   },
   route: {
     lineColor: "white",
     lineCap: MapboxGL.LineJoin.Round,
     lineWidth: 3,
-    lineOpacity: 0.84,
+    lineOpacity: 0.84
   },
   progress: {
     lineColor: "#314ccd",
-    lineWidth: 3,
+    lineWidth: 3
   },
   smileyFace: {
     fillAntialias: true,
     fillPattern: gridPattern
-  },
-};
+  }
+}
 
 const MAP: ViewStyle = {
   flex: 1
@@ -60,9 +60,9 @@ const MAP: ViewStyle = {
 @observer
 export class MapScreen extends React.Component<IMapScreenProps> {
 
-  private cameraRef;
+  private cameraRef
   @observable private readonly featureCollection: IFeatureCollection = MapboxGL.geoUtils.makeFeatureCollection()
-  @observable private line = null;
+  @observable private line = null
 
   public static navigationOptions = {
     headerLeft: NavigationBackButtonWithNestedStackNavigator()
@@ -82,7 +82,7 @@ export class MapScreen extends React.Component<IMapScreenProps> {
     const response: ApiResponse<IPaginate<IRun>> = await api.get("user/me/run")
     const checkpoints = response.data.data[0].checkpoints
     this.cameraRef.flyTo(checkpoints[0].location.coordinates[0][0])
-    this.line =  MapboxGL.geoUtils.makeLineString(checkpoints.map(interpolateCoordinates))
+    this.line = MapboxGL.geoUtils.makeLineString(checkpoints.map(interpolateCoordinates))
     this.featureCollection.features = checkpoints.map(
       (checkpoint: ICheckPoint) => MapboxGL.geoUtils.makeFeature({
         type: checkpoint.location.type,
@@ -120,12 +120,12 @@ export class MapScreen extends React.Component<IMapScreenProps> {
           )}
 
           {renderIf(this.line)(
-            <MapboxGL.Animated.ShapeSource id="progressSource" shape={this.line}>
-              <MapboxGL.Animated.LineLayer
+            <MapboxGL.ShapeSource id="progressSource" shape={this.line}>
+              <MapboxGL.LineLayer
                 id="progressFill"
                 style={layerStyles.progress}
               />
-            </MapboxGL.Animated.ShapeSource>
+            </MapboxGL.ShapeSource>
           )}
         </MapboxGL.MapView>
       </Screen>

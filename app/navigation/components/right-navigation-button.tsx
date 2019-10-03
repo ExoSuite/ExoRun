@@ -27,7 +27,6 @@ class RightNavigationButtonIpml extends React.PureComponent<NavigationInjectedPr
   @autobind
   private onPress(): void {
     if (this.props.wantGoBack) {
-      console.tron.log("GO BACK")
       this.props.navigation.goBack()
     } else {
       this.props.navigation.navigate(this.props.modalScreen)

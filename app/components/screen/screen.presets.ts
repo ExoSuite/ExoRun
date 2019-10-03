@@ -6,7 +6,7 @@ import { color } from "../../theme"
  * All screen keyboard offsets.
  */
 export const offsets = {
-  none: 0,
+  none: 0
 }
 
 /**
@@ -33,14 +33,14 @@ export const presets: IPreset = {
     outer: {
       backgroundColor: color.background,
       flex: 1,
-      height: "100%",
+      height: "100%"
     } as ViewStyle,
     inner: {
       justifyContent: "flex-start",
       alignItems: "stretch",
       height: "100%",
-      width: "100%",
-    } as ViewStyle,
+      width: "100%"
+    } as ViewStyle
   },
 
   /**
@@ -50,14 +50,14 @@ export const presets: IPreset = {
     outer: {
       backgroundColor: color.background,
       flex: 1,
-      height: "100%",
+      height: "100%"
     } as ViewStyle,
     inner: {
       justifyContent: "center",
       alignItems: "center",
       height: "100%",
-      width: "100%",
-    } as ViewStyle,
+      width: "100%"
+    } as ViewStyle
   },
 
   /**
@@ -69,10 +69,10 @@ export const presets: IPreset = {
     outer: {
       backgroundColor: color.background,
       flex: 1,
-      height: "100%",
+      height: "100%"
     } as ViewStyle,
-    inner: { justifyContent: "flex-start", alignItems: "stretch" } as ViewStyle,
-  },
+    inner: { justifyContent: "flex-start", alignItems: "stretch" } as ViewStyle
+  }
 }
 
 /**

@@ -1,6 +1,8 @@
 // this file Is for define api responses
 
-interface ITimestamps {
+import { IGroup } from "@models/group"
+
+export interface ITimestamps {
   created_at: string,
   updated_at: string,
 }
@@ -91,16 +93,12 @@ export interface IPersonalTokens {
   "view-picture-exorun": IPersonalTokenResponse,
 }
 
-export interface IGroup extends ITimestamps {
-  id: string
-  name: string
-}
-
 export interface IMessage extends ITimestamps {
   contents: string,
   group_id: string,
   id: string,
-  user_id: string
+  user: IUser
+  user_id: string,
 }
 
 export interface IRun extends ITimestamps {
@@ -188,4 +186,25 @@ export enum IGeoJsonType {
   FEATURE_COLLECTION = "FeatureCollection",
   FEATURE = "Feature",
   POLYGON = "Polygon"
+}
+
+export enum NotificationType {
+  FOLLOW = "follow",
+  NEW_MESSAGE = "new_message",
+  NEW_GROUP = "new_group",
+  DELETED_GROUP = "deleted_group",
+  EXPELLED_FROM_GROUP = "expelled_from_group"
+}
+
+export interface ILiveGroupNotification {
+  group: IGroup
+  message: string
+}
+
+export interface ILiveNotification<ILiveNotificationData> {
+  data: ILiveNotificationData
+  id: string
+  notification_type: NotificationType
+  socket: string
+  type: string
 }

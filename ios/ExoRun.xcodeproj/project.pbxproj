@@ -20,13 +20,13 @@
 		3ABE4FB36A55469AABEC2CFD /* exosuite-loader.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E87F2F4C4A245819BCFDCC5 /* exosuite-loader.png */; };
 		4092AC45633845B495B37EFD /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 205BFE3EB51240889DB10617 /* Montserrat-SemiBold.ttf */; };
 		476871324E654F6083CFEAB5 /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED2F190971234B8DAE0340A1 /* Montserrat-BlackItalic.ttf */; };
-		51E42AF52FAD897D3C8D45DC /* libPods-ExoRun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 519A819A7758E9BE30F02759 /* libPods-ExoRun.a */; };
 		56A3FDB5654C49C3A2970320 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DEC6BF2CC44F46DD886F43DB /* Montserrat-Regular.ttf */; };
 		5C8E5FCECFEC445D8EBA1C0B /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 235C7328C1854E1D801E9348 /* Montserrat-MediumItalic.ttf */; };
 		6AC66F56973E4F50A9198CE2 /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5AB7A33F44FF470EA3232136 /* Montserrat-ExtraLight.ttf */; };
 		6EEDA9833FCE43418E1C37E4 /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F4813DEC1CD4ACCA54D928D /* Montserrat-BoldItalic.ttf */; };
 		95A060354DA14B0DA6C84F93 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35CB3F5967484C3EAC1BAC9E /* Montserrat-Medium.ttf */; };
 		A6F9FF03F32B43F6A486377B /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 26192B291E2E4C99A812E5A2 /* Montserrat-Black.ttf */; };
+		ACA2ADF913E93C41575A2F7A /* libPods-ExoRun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 647DD002245BC664F77B81AC /* libPods-ExoRun.a */; };
 		B53A6C1D608B46E6885C08B7 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF7EE06E46D34BC0A345A3C7 /* Montserrat-Thin.ttf */; };
 		BD905B0422DDDDD600C03EE3 /* EmptySwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD905B0322DDDDD600C03EE3 /* EmptySwift.swift */; };
 		BDEEA7672277AFB6009CBF6E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BDEEA7652277AFB5009CBF6E /* Localizable.strings */; };
@@ -59,12 +59,12 @@
 		373A139F74C04F0BA0AA26E7 /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBoldItalic.ttf"; path = "../app/theme/fonts/Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		3E87F2F4C4A245819BCFDCC5 /* exosuite-loader.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "exosuite-loader.png"; path = "../app/assets/img/exosuite-loader.png"; sourceTree = "<group>"; };
 		4FA04FF809CA4C38B41B1097 /* exorun-text.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "exorun-text.png"; path = "../app/assets/img/exorun-text.png"; sourceTree = "<group>"; };
-		519A819A7758E9BE30F02759 /* libPods-ExoRun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExoRun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		51C1292692F140FC92BAC691 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../app/theme/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		52C722836ECD4A0CBFAC7418 /* libRNKeychain.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNKeychain.a; sourceTree = "<group>"; };
 		5AB7A33F44FF470EA3232136 /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLight.ttf"; path = "../app/theme/fonts/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
 		61AD25507C5D4A7BAE4A029A /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.ttf"; path = "../app/theme/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		620A86E7953E4069BC76F122 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../app/theme/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		647DD002245BC664F77B81AC /* libPods-ExoRun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExoRun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		678D7E743DC283F4E2A795C0 /* Pods-ExoRun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExoRun.debug.xcconfig"; path = "Target Support Files/Pods-ExoRun/Pods-ExoRun.debug.xcconfig"; sourceTree = "<group>"; };
 		71C4DCAC629432FEFDFB0511 /* Pods-ExoRun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExoRun.release.xcconfig"; path = "Target Support Files/Pods-ExoRun/Pods-ExoRun.release.xcconfig"; sourceTree = "<group>"; };
 		8B7B54E58F1D45E2A83DB102 /* libRNLanguages-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNLanguages-tvOS.a"; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51E42AF52FAD897D3C8D45DC /* libPods-ExoRun.a in Frameworks */,
+				ACA2ADF913E93C41575A2F7A /* libPods-ExoRun.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,7 +128,7 @@
 			children = (
 				BD84660C2214FD2C00672CF2 /* JavaScriptCore.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
-				519A819A7758E9BE30F02759 /* libPods-ExoRun.a */,
+				647DD002245BC664F77B81AC /* libPods-ExoRun.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -474,7 +474,7 @@
 				CODE_SIGN_ENTITLEMENTS = ExoRun/ExoRun.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 189;
+				CURRENT_PROJECT_VERSION = 209;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 59JKX7F3X8;
 				GCC_INPUT_FILETYPE = automatic;
@@ -551,7 +551,7 @@
 				CODE_SIGN_ENTITLEMENTS = ExoRun/ExoRun.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 189;
+				CURRENT_PROJECT_VERSION = 209;
 				DEVELOPMENT_TEAM = 59JKX7F3X8;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_OPTIMIZATION_LEVEL = s;

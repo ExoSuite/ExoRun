@@ -179,5 +179,114 @@ Array [
       </View>
     </View>
   </View>,
+  <View
+    collapsable={false}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
+    onLayout={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "alignSelf": "center",
+        "backgroundColor": "transparent",
+        "borderRadius": 14,
+        "elevation": 2,
+        "justifyContent": "center",
+        "position": "absolute",
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 5,
+          "width": 0,
+        },
+        "shadowOpacity": 0.1,
+        "shadowRadius": 4,
+        "top": 22,
+        "transform": Array [
+          Object {
+            "translateY": -9000,
+          },
+        ],
+        "width": "96.5%",
+        "zIndex": 2,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        accessible={true}
+        clickable={false}
+        isTVSelectable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "height": "100%",
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": "100%",
+          }
+        }
+      >
+        <Blur
+          blurAmount={7}
+          blurType="light"
+          pointerEvents="none"
+          style={
+            Array [
+              Object {
+                "borderRadius": 14,
+                "height": "100%",
+                "position": "absolute",
+                "width": "100%",
+              },
+              Object {
+                "borderRadius": 14,
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "borderRadius": 4,
+                  "height": 4,
+                  "marginVertical": 6,
+                  "opacity": 0.3,
+                  "width": 50,
+                },
+                Object {
+                  "backgroundColor": "#000",
+                },
+              ]
+            }
+          />
+        </View>
+      </View>
+    </View>
+  </View>,
 ]
 `;

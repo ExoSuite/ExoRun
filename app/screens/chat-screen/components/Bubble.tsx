@@ -189,9 +189,9 @@ export class Bubble extends React.Component<IBubbleProps> {
       }
 
       return (
+        // @ts-ignore
         <Time
           {...timeProps}
-          // @ts-ignore
           containerStyle={{ left: [styles.timeContainer] }}
           // @ts-ignore
           textStyle={{ left: [styles.standardFont, styles.headerItem, styles.time, timeProps.textStyle] }}
@@ -275,8 +275,8 @@ const styles = StyleSheet.create({
 
 Bubble.contextTypes = {
   // @ts-ignore
-  actionSheet: (): any => null,
-};
+  actionSheet: (): any => null
+}
 
 // @ts-ignore
 Bubble.defaultProps = {

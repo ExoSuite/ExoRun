@@ -14,7 +14,7 @@ import { Server } from "@services/api/api.servers"
 import { ApiResponse } from "apisauce"
 import { UserRow } from "@components/user-row"
 import { AppScreens } from "@navigation/navigation-definitions"
-import { IBoolFunction } from "@types"
+import { IBoolFunction } from "@custom-types"
 import { translate } from "@i18n/translate"
 import { noop } from "lodash-es"
 

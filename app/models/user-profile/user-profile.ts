@@ -9,7 +9,7 @@ const UserProfileModel = types.model("UserProfile").props({
   created_at: types.optional(types.string, ""),
   description: types.maybeNull(types.string),
   id: types.maybeNull(types.string),
-  updated_at: types.optional(types.string, ""),
+  updated_at: types.optional(types.string, "")
 })
 
 export const UserModel = types
@@ -22,14 +22,12 @@ export const UserModel = types
     last_name: types.optional(types.string, ""),
     nick_name: types.optional(types.string, ""),
     updated_at: types.optional(types.string, ""),
-    // @ts-ignore
-    profile: types.optional(UserProfileModel, {}),
+    profile: types.optional(UserProfileModel, {})
   })
-  .actions((self: any)  => ({
+  .actions((self: any) => ({
     updateUserField(field: string, value: string): void {
-      // tslint:disable-next-line: no-parameter-reassignment
       self[field] = value
-    },
+    }
   }))
 
 export function updateUserModel(newUser: IUser, userModel: IUserModel): void {
@@ -37,12 +35,17 @@ export function updateUserModel(newUser: IUser, userModel: IUserModel): void {
     ([key, value]: [string, string]): void => {
       userModel.updateUserField(key, value || "")
     }
-  );
+  )
 }
 
 type UserModelType = Instance<typeof UserModel>
+
 // tslint:disable-next-line:no-empty-interface
-export interface IUserModel extends UserModelType {}
+export interface IUserModel extends UserModelType {
+}
+
 type UserProfileSnapshotType = SnapshotOut<typeof UserModel>
+
 // tslint:disable-next-line:no-empty-interface
-export interface IUserModelSnapshot extends UserProfileSnapshotType {}
+export interface IUserModelSnapshot extends UserProfileSnapshotType {
+}

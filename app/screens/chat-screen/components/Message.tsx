@@ -1,10 +1,12 @@
 import PropTypes from "prop-types"
 import React from "react"
-import { StyleSheet, View, ViewPropTypes, ViewStyle } from "react-native"
+import { ImageStyle, View, ViewPropTypes, ViewStyle } from "react-native"
 
 import { Avatar, Day, utils } from "react-native-gifted-chat"
 import { Bubble } from "./Bubble"
 import { IMessage, User } from "react-native-gifted-chat/lib/types"
+import { inject } from "mobx-react"
+import { Injection, InjectionProps } from "@services/injections"
 
 const { isSameUser, isSameDay } = utils
 
@@ -22,11 +24,31 @@ interface IMessageProps {
   renderDay(props: any): React.ReactElement
 }
 
-// tslint:disable
+const CONTAINER: ViewStyle = {
+  flexDirection: "row",
+  alignItems: "flex-end",
+  justifyContent: "flex-start",
+  marginLeft: 8,
+  marginRight: 0
+}
 
-export class Message extends React.Component<IMessageProps> {
+const AVATAR: ImageStyle = {
+  height: 40,
+  width: 40,
+  borderRadius: 3
+}
 
-  public getInnerComponentProps() {
+/**
+ * Message will handle the content of a message
+ *
+ */
+@inject(Injection.SoundPlayer)
+export class Message extends React.Component<IMessageProps & InjectionProps> {
+
+  public static defaultProps
+  public static propTypes
+
+  public getInnerComponentProps(): object {
     // @ts-ignore
     const { containerStyle, ...props } = this.props
 
@@ -38,8 +60,7 @@ export class Message extends React.Component<IMessageProps> {
     }
   }
 
-  public render() {
-    // @ts-ignore
+  public render(): React.ReactNode {
     const marginBottom = isSameUser(this.props.currentMessage, this.props.nextMessage) ? 2 : 10
 
     return (
@@ -47,7 +68,7 @@ export class Message extends React.Component<IMessageProps> {
         {this.renderDay()}
         <View
           style={[
-            styles.container,
+            CONTAINER,
             { marginBottom },
             // @ts-ignore
             this.props.containerStyle
@@ -60,19 +81,19 @@ export class Message extends React.Component<IMessageProps> {
     )
   }
 
-  public renderAvatar() {
+  public renderAvatar(): React.ReactNode {
     const avatarProps = this.getInnerComponentProps()
 
     return (
       <Avatar
         {...avatarProps}
         // @ts-ignore
-        imageStyle={{ left: [styles.avatar, avatarProps.imageStyle] }}
+        imageStyle={{ left: [AVATAR, avatarProps.imageStyle] }}
       />
     )
   }
 
-  public renderBubble() {
+  public renderBubble(): React.ReactNode {
     const bubbleProps = this.getInnerComponentProps()
     if (this.props.renderBubble) {
       return this.props.renderBubble(bubbleProps)
@@ -82,7 +103,7 @@ export class Message extends React.Component<IMessageProps> {
     return <Bubble {...bubbleProps} />
   }
 
-  public renderDay() {
+  public renderDay(): React.ReactNode {
     if (this.props.currentMessage.createdAt) {
       const dayProps = this.getInnerComponentProps()
       if (this.props.renderDay) {
@@ -97,23 +118,6 @@ export class Message extends React.Component<IMessageProps> {
 
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "flex-end",
-    justifyContent: "flex-start",
-    marginLeft: 8,
-    marginRight: 0
-  },
-  avatar: {
-    // The bottom should roughly line up with the first line of message text.
-    height: 40,
-    width: 40,
-    borderRadius: 3
-  }
-})
-
-// @ts-ignore
 Message.defaultProps = {
   renderAvatar: undefined,
   renderBubble: null,
@@ -125,7 +129,6 @@ Message.defaultProps = {
   containerStyle: {}
 }
 
-// @ts-ignore
 Message.propTypes = {
   renderAvatar: PropTypes.func,
   renderBubble: PropTypes.func,

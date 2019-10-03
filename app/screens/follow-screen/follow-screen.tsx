@@ -16,7 +16,7 @@ export interface IFollowScreenProps extends NavigationScreenProps<IFollowScreenN
 }
 
 const ROOT: ViewStyle = {
-  backgroundColor: color.background,
+  backgroundColor: color.background
 }
 
 // @inject("mobxstuff")

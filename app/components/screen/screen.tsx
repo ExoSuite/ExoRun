@@ -39,7 +39,7 @@ function ScreenWithoutScrolling(props: IScreenProps): React.ReactElement {
       behavior={behavior}
       keyboardVerticalOffset={offsets[props.keyboardOffset || "none"]}
     >
-      <StatusBar barStyle={barStyle} />
+      <StatusBar barStyle={barStyle}/>
       <Wrapper
         style={[preset.inner, style]}
         unsafe={props.unsafe}
@@ -69,7 +69,7 @@ function ScreenWithScrolling(props: IScreenProps) {
       behavior={behavior}
       keyboardVerticalOffset={offsets[props.keyboardOffset || "none"]}
     >
-      <StatusBar barStyle={barStyle} />
+      <StatusBar barStyle={barStyle}/>
       <Wrapper
         style={[preset.outer, backgroundStyle]}
         unsafe={props.unsafe}

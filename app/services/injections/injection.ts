@@ -6,6 +6,7 @@ import { NavigationStore } from "@navigation/navigation-store"
 import { IUserModel } from "@models/user-profile"
 import { IGroupsModel } from "@models/groups"
 import { SocketIo } from "@services/socket.io"
+import { INotificationsModel } from "@models/notifications"
 
 export enum Injection {
   Environment = "env",
@@ -15,7 +16,7 @@ export enum Injection {
   UserModel = "userModel",
   GroupsModel = "groupsModel",
   SocketIO = "socketIO",
-  RunsModel = "runsModel"
+  NotificationsModel = "notificationsModel"
 }
 
 // tslint:disable-next-line:interface-name
@@ -25,9 +26,10 @@ interface InjectionPropsImpl {
   env: Environment
   groupsModel: IGroupsModel
   navigationStore: NavigationStore
+  notificationsModel: INotificationsModel
   socketIO: SocketIo
-  soundPlayer: SoundPlayer,
-  userModel: IUserModel,
+  soundPlayer: SoundPlayer
+  userModel: IUserModel
 }
 
 export type InjectionProps = Partial<InjectionPropsImpl>

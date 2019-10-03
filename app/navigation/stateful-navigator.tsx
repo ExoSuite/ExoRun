@@ -9,9 +9,7 @@ import { Asset } from "@services/asset"
 import { color } from "@theme"
 import { Screen } from "@services/device"
 import { Injection, InjectionProps } from "@services/injections"
-import { IVoidFunction } from "@types"
-import { load } from "@utils/keychain"
-import { Server } from "@services/api/api.servers"
+import { IVoidFunction } from "@custom-types"
 
 interface IScreenProps {
   animateSplashScreen: IVoidFunction,
@@ -44,14 +42,10 @@ export class StatefulNavigator extends React.Component<InjectionProps> {
 
   // tslint:disable-next-line: no-feature-envy
   private async canLogin(): Promise<void> {
-    const { api, userModel, groupsModel } = this.props
+    const { api, userModel } = this.props
 
     await api.getOrCreatePersonalTokens()
     await api.getProfile(userModel)
-    if (groupsModel) {
-      groupsModel.fetchGroups()
-    }
-
   }
 
   @autobind
@@ -118,7 +112,7 @@ export class StatefulNavigator extends React.Component<InjectionProps> {
         imageProperties={IMAGE_STYLE}
         imageSource={exosuiteLoader}
       >
-        <RootNavigator navigation={this.currentNavProp}/>
+        <RootNavigator navigation={this.currentNavProp} theme="dark"/>
       </SplashScreen>
     )
   }

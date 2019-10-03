@@ -2,16 +2,16 @@ import { ApiResponse } from "apisauce"
 import { HttpResponse } from "./api-http-response"
 
 export type GeneralApiProblem =
-  /**
-   * Times up.
-   */
+/**
+ * Times up.
+ */
   | { kind: HttpResponse.TIMEOUT; temporary: true }
   /**
    * Cannot connect to the server for some reason.
    */
   | { kind: HttpResponse.CANNOT_CONNECT; temporary: true }
   /**
-   * The server experienced a problem. Any 5xx error.
+   * The server experienced a problem. Any 5xx playError.
    */
   | { kind: HttpResponse.SERVER_ERROR }
   /**

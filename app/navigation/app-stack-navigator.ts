@@ -1,4 +1,4 @@
-import { createStackNavigator } from "react-navigation"
+import { createStackNavigator } from "react-navigation-stack"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { LogoHeader } from "@components/logo-header"
 import { color } from "@theme"
@@ -15,6 +15,7 @@ import { ChooseUsersNewGroupScreen } from "@screens/choose-users-new-group-scree
 import { ChatScreen } from "@screens/chat-screen"
 import { AugmentedRealityNavigator } from "@screens/augmented-reality-screen"
 import { MapScreen } from "@screens/map-screen"
+import { IosStyle } from "@navigation/transitions/ios-style"
 import { UserRunsTimesScreen } from "@screens/runs-times-screen"
 import { UserRunsDetailsScreen } from "@screens/user-runs-details-screen"
 import { RunsScreen } from "@screens/runs-screen"
@@ -45,7 +46,8 @@ export const AppStackNavigatorImpl = createStackNavigator({
     }
   },
   headerLayoutPreset: "center",
-  initialRouteName: AppScreens.HOME
+  initialRouteName: AppScreens.HOME,
+  transitionConfig: IosStyle
 })
 
 export const AppStackNavigator = createStackNavigator({
@@ -53,7 +55,7 @@ export const AppStackNavigator = createStackNavigator({
     screen: AppStackNavigatorImpl,
     navigationOptions: {
       header: null
-    },
+    }
   },
   [AppScreens.NEW_GROUP]: NewGroupScreen,
   [AppScreens.NEW_POST]: ModalPostScreen,
@@ -67,5 +69,5 @@ export const AppStackNavigator = createStackNavigator({
       borderBottomWidth: 0,
       ...headerShadow
     }
-  },
+  }
 })

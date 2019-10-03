@@ -27,9 +27,7 @@ import { HttpRequestError } from "@exceptions"
 import { DataLoader } from "@components/data-loader"
 import autobind from "autobind-decorator"
 import { ApiResponse } from "apisauce"
-import { save } from "@utils/keychain"
-import { Server } from "@services/api/api.servers"
-import { AppScreens } from "@navigation/navigation-definitions"
+import { afterSuccessfulLogin } from "@utils/auth/after-successful-login"
 
 export interface ISecondStepRegisterScreenNavigationParams {
   firstName: string,
@@ -70,10 +68,9 @@ const FULL: ViewStyle = {
 const CONTAINER: ViewStyle = {
   ...FULL,
   paddingHorizontal: spacing[4],
-  flexGrow: 1,
   flex: 1,
-  justifyContent: "space-evenly",
-  backgroundColor: color.background,
+  justifyContent: Platform.Android ? "space-evenly" : "flex-start",
+  backgroundColor: color.background
 }
 
 const KEYBOARD_ACCESSORY_VIEW: ViewStyle = {
@@ -91,11 +88,6 @@ const NEXT_STEP_BUTTON: ViewStyle = {
   maxWidth: "35%",
   minWidth: "20%",
   margin: spacing[1]
-}
-
-const MAIN_CONTAINER: ViewStyle = {
-  marginBottom: spacing[4],
-  flex: 1
 }
 
 const disabled = color.palette.lightGrey
@@ -131,7 +123,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
   private handleInvalidEmail(error: HttpRequestError): void {
     const { soundPlayer } = this.props
     this.emailInputState = AnimatedInteractiveInputState.ERROR
-    DataLoader.Instance.hasErrors(error, soundPlayer.error)
+    DataLoader.Instance.hasErrors(error, soundPlayer.playError)
   }
 
   @action.bound
@@ -141,7 +133,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
 
   private manageResponseError(response: HttpRequestError): void {
     const { soundPlayer } = this.props
-    DataLoader.Instance.hasErrors(response, soundPlayer.error)
+    DataLoader.Instance.hasErrors(response, soundPlayer.playError)
   }
 
   private passwordConfirmationIsExactPassword(): boolean {
@@ -155,7 +147,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
 
   @autobind
   private async register(): Promise<void> {
-    const { api, navigation, soundPlayer, userModel, socketIO } = this.props
+    const { api, navigation, userModel, groupsModel, env, notificationsModel } = this.props
     const { email, password, passwordConfirmation } = this
     DataLoader.Instance.toggleIsVisible()
 
@@ -186,18 +178,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
       return
     }
 
-    await save(loginResponse.data, Server.EXOSUITE_USERS_API)
-    await Promise.all([
-      api.getOrCreatePersonalTokens(),
-      api.getProfile(userModel)
-    ])
-
-    DataLoader.Instance.success(
-      soundPlayer.success,
-      async () => {
-        await socketIO.setup()
-        navigation.navigate(AppScreens.HOME)
-      })
+    await afterSuccessfulLogin(loginResponse, groupsModel, notificationsModel, userModel, env, navigation)
   }
 
   @action.bound
@@ -213,10 +194,11 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
     if (isEmpty(validate(RULES, { email }))) {
       const { api } = this.props
       this.emailInputState = AnimatedInteractiveInputState.LOADING
-      api.post("auth/preflight/email", { email }, {}, false)
-        .then(this.handleValidEmail)
-        .catch(this.handleInvalidEmail)
-
+      setTimeout(() => {
+        api.post("auth/preflight/email", { email }, {}, false)
+          .then(this.handleValidEmail)
+          .catch(this.handleInvalidEmail)
+      }, 500)
     } else {
       this.emailInputState = AnimatedInteractiveInputState.ERROR
     }
@@ -266,8 +248,7 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
           </FormRow>
 
           <Screen style={CONTAINER} backgroundColor={color.background} preset="fixed">
-            <FormRow preset="clearFullWidth" style={MAIN_CONTAINER}>
-
+            <FormRow preset="clearFullWidth">
               <AnimatedInteractiveInput
                 preset="auth"
                 autoCapitalize="none"
@@ -282,7 +263,8 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
                 onSubmitEditing={this.focusOnPassword}
                 autoFocus
               />
-
+            </FormRow>
+            <FormRow preset="clearFullWidth">
               <AnimatedInteractiveInput
                 preset="auth"
                 autoCapitalize="none"
@@ -298,11 +280,11 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
                 onSubmitEditing={this.focusOnPasswordConfirmation}
                 inputState={passwordInputState}
               />
-
               <FormRow preset={"clear"} style={[ZERO_PADDING, { paddingTop: spacing[2] }]}>
                 <Button preset="link" tx={passwordToggleText} onPress={toggleIsPasswordVisible}/>
               </FormRow>
-
+            </FormRow>
+            <FormRow preset="clearFullWidth">
               <AnimatedInteractiveInput
                 preset="auth"
                 autoCapitalize="none"
@@ -316,7 +298,6 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
                 forwardedRef={this.setPasswordConfirmationInputRef}
                 inputState={passwordConfirmationInputState}
               />
-
             </FormRow>
           </Screen>
 
@@ -357,5 +338,12 @@ export class SecondStepRegisterScreenImpl extends React.Component<ISecondStepReg
 }
 
 export const SecondStepRegisterScreen =
-  inject(Injection.Api, Injection.SoundPlayer, Injection.UserModel, Injection.SocketIO)
-  (observer(SecondStepRegisterScreenImpl))
+  inject(
+    Injection.Api,
+    Injection.SoundPlayer,
+    Injection.UserModel,
+    Injection.SocketIO,
+    Injection.GroupsModel,
+    Injection.Environment,
+    Injection.NotificationsModel
+  )(observer(SecondStepRegisterScreenImpl))

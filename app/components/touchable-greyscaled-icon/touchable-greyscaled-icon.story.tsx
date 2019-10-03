@@ -21,8 +21,14 @@ storiesOf("TouchableGreyscaledIcon", module)
           />
         </TouchableGreyscaledIcon>
       </UseCase>
-      <UseCase text="for avatar image" usage="use it with avatar" style={{height: 50}}>
-        <TouchableGreyscaledIcon iconName="camera" iconSize={21} fullScreen={false} size={defaultSize} onPress={(): void => null}>
+      <UseCase text="for avatar image" usage="use it with avatar" style={{ height: 50 }}>
+        <TouchableGreyscaledIcon
+          iconName="camera"
+          iconSize={21}
+          fullScreen={false}
+          size={defaultSize}
+          onPress={(): void => null}
+        >
           <Avatar urlFromParent avatarUrl="https://api.adorable.io/avatars/285/abott@adorable.png" withMargin={false}/>
         </TouchableGreyscaledIcon>
       </UseCase>
