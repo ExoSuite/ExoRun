@@ -135,13 +135,15 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
   @autobind
   private onTimePressNavigateToDetails(item: IUserRun): IBoolFunction {
 
-    return (): boolean => this.props.navigation.navigate(
-      AppScreens.RUN_TIMES_DETAILS,
-      {
-        item,
-        deleteUserRun: this.deleteUserRun
-      }
-    )
+    if (item.final_time !== 0) {
+      return (): boolean => this.props.navigation.navigate(
+        AppScreens.RUN_TIMES_DETAILS,
+        {
+          item,
+          deleteUserRun: this.deleteUserRun
+        }
+      )
+    }
   }
 
   @action.bound
