@@ -51,7 +51,8 @@
     "city": "City",
     "birthday": "Birthday",
     "follow": "Follow",
-    "following": "Following"
+    "following": "Following",
+    "run": "Courses"
   },
   "auth": {
     "powered": "Powered by ",

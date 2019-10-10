@@ -268,6 +268,7 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
           </View>
           </View>
           </View>
+{/*
           <View style={{flex: 1, flexDirection: "row", backgroundColor: color.backgroundDarkerer}}>
             <Text preset="fieldLabel" text="Filtrer :  " style={{marginTop: spacing[1]}}/>
             <Searchbar
@@ -277,6 +278,7 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
               theme={DarkTheme}
             />
           </View>
+*/}
         </View>
         <FlatList
           data={this.runs}

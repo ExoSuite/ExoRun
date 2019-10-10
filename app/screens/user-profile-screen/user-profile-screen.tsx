@@ -23,7 +23,7 @@ import { FontawesomeIcon } from "@components/fontawesome-icon"
 import { IFollowScreenNavigationScreenProps } from "@screens/follow-screen"
 import { FAB, PartialIconProps } from "react-native-paper"
 import moment from "moment"
-import { IVoidFunction } from "@custom-types"
+import { IBoolFunction, IVoidFunction } from "@custom-types"
 import { noop } from "lodash-es"
 
 // tslint:disable:id-length
@@ -101,6 +101,11 @@ const FIXED_HEADER_NAME: TextStyle = {
 
 const ROW: ViewStyle = {
   flexDirection: "row"
+}
+
+const ACTION_BUTTON: ViewStyle = {
+  flexDirection: "row",
+  marginRight: spacing[2]
 }
 
 const BUTTON_CONTAINER: ViewStyle = {
@@ -317,6 +322,13 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   }
 
   @autobind
+  private onPressGoToRuns(): void {
+    this.props.navigation.navigate(AppScreens.RUNS, {
+      userProfile: this.userProfile
+    })
+  }
+
+  @autobind
   private onUserWantToUpdatePost(currentPost: IPost): IVoidFunction {
     return (): void => {
       this.onNewOrUpdatePostPress(null, true, currentPost)
@@ -471,9 +483,16 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
                   {renderIf.if(me)(
                     <Button tx="profile.edit" textPreset="primaryBold" onPress={this.onEditMyProfile}/>
                   ).else(
-                    <Button onPress={this.toggleFollow} style={ROW}>
+                    <Button onPress={this.toggleFollow} style={ACTION_BUTTON}>
                       <FontawesomeIcon color={palette.white} name={visitorButtonIcon} style={FOLLOW_ICON}/>
                       <Text tx={visitorButtonText} preset="bold"/>
+                    </Button>
+                  ).evaluate()}
+                  {
+                    renderIf.if(!me)(
+                    <Button onPress={this.onPressGoToRuns} style={ACTION_BUTTON}>
+                      <FontawesomeIcon color={palette.white} name={visitorButtonIcon} style={FOLLOW_ICON}/>
+                      <Text tx={"profile.run"} preset="bold"/>
                     </Button>
                   ).evaluate()}
                 </View>

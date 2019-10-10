@@ -51,7 +51,8 @@
     "city": "Ville",
     "birthday": "Date de naissance",
     "follow": "Suivre",
-    "following": "Suivi"
+    "following": "Suivi",
+    "run": "Parcours"
   },
   "auth": {
     "powered": "Powered by ",
