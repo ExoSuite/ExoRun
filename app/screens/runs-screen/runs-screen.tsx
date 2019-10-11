@@ -234,7 +234,6 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
   }
 
   public render(): React.ReactNode {
-    const placeholderTx = translate("common.search")
 
     // @ts-ignore
     // @ts-ignore

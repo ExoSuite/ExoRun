@@ -77,7 +77,7 @@ export class UserRunsDetailsScreen extends React.Component<IUserRunsDetailsScree
   private starting_timestamp: number
   // @ts-ignore
   private readonly userRun : IUserRun = this.props.navigation.getParam("item")
-  @observable private userRunTimes : ITime[] = this.userRun.times.slice()
+  @observable private readonly userRunTimes : ITime[] = this.userRun.times.slice()
 
   @autobind
   private changeIsFabOpen(): any {
