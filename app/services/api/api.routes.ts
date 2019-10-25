@@ -6,7 +6,8 @@ export enum ApiRoutes {
   AUTH_LOGIN = "auth/login",
   USER = "user",
   PROFILE_PICTURE_AVATAR = "profile/picture/avatar",
-  PROFILE_PICTURE_COVER = "profile/picture/cover"
+  PROFILE_PICTURE_COVER = "profile/picture/cover",
+  NOTIFICATIONS = "notification"
 }
 
 export function publicUserRoute(userId: string): string {

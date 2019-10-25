@@ -120,12 +120,12 @@ export class MapScreen extends React.Component<IMapScreenProps> {
           )}
 
           {renderIf(this.line)(
-            <MapboxGL.Animated.ShapeSource id="progressSource" shape={this.line}>
-              <MapboxGL.Animated.LineLayer
+            <MapboxGL.ShapeSource id="progressSource" shape={this.line}>
+              <MapboxGL.LineLayer
                 id="progressFill"
                 style={layerStyles.progress}
               />
-            </MapboxGL.Animated.ShapeSource>
+            </MapboxGL.ShapeSource>
           )}
         </MapboxGL.MapView>
       </Screen>

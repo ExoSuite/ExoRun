@@ -2,7 +2,7 @@
 
 import { IGroup } from "@models/group"
 
-interface ITimestamps {
+export interface ITimestamps {
   created_at: string,
   updated_at: string,
 }
@@ -97,7 +97,33 @@ export interface IMessage extends ITimestamps {
   contents: string,
   group_id: string,
   id: string,
-  user_id: string
+  user: IUser
+  user_id: string,
+}
+
+export interface IRun extends ITimestamps {
+  checkpoints: ICheckPoint[],
+  creator_id: string,
+  description: string,
+  id: string,
+  name: string,
+  visibility: string,
+}
+
+export interface IUserRun extends ITimestamps {
+  final_time: number,
+  id: string,
+  run_id: string,
+  times: ITime[],
+  user_id: string,
+}
+
+export interface ITime extends ITimestamps {
+  check_point_id: string,
+  current_time: number,
+  id: string,
+  run_id: string,
+  user_run_id: string
 }
 
 // tslint:disable-next-line: completed-docs
@@ -141,24 +167,8 @@ export interface ICheckPoint extends ITimestamps {
   location: ILocation
   previous_checkpoint_id: string
   run_id: string
-  times: []
+  times: ITime[]
   type: ICheckPointType,
-}
-
-export interface IRun extends ITimestamps {
-  checkpoints: ICheckPoint[]
-  creator_id: string
-  description: string
-  id: string
-  name: string
-  visibility: string
-}
-
-export interface ITime {
-  check_point_id: string
-  current_time: number
-  id: string
-  run_id: string
 }
 
 export interface IFeature {
@@ -184,10 +194,6 @@ export enum NotificationType {
   NEW_GROUP = "new_group",
   DELETED_GROUP = "deleted_group",
   EXPELLED_FROM_GROUP = "expelled_from_group"
-}
-
-export interface INotification {
-  type: NotificationType
 }
 
 export interface ILiveGroupNotification {

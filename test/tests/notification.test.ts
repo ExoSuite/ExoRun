@@ -1,7 +1,10 @@
 import { NotificationModel, INotificationModel } from "@models/notification/notification"
+import { NotificationModelMockData } from "../__mocks__/stores/NotificationModelMock"
 
-test("can be created", () => {
-  const instance: INotificationModel = NotificationModel.create({})
+describe("notification model", () => {
+  test("can be created", () => {
+    const instance: INotificationModel = NotificationModel.create(NotificationModelMockData)
 
-  expect(instance).toBeTruthy()
+    expect(instance).toBeTruthy()
+  })
 })
