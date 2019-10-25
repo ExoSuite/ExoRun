@@ -7,7 +7,6 @@ import { Button } from "@components/button"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { IBoolFunction } from "@custom-types"
 import autobind from "autobind-decorator"
-
 // tslint:disable-next-line: match-default-export-name
 import DeviceInfo from "react-native-device-info"
 import { IPersonalProfileNavigationScreenProps } from "@screens/user-profile-screen"
@@ -35,9 +34,7 @@ export class RunScreen extends React.Component<IRunScreenProps> {
 
   @autobind
   private goToAugmentedReality(): void {
-    if (!DeviceInfo.isEmulator()) {
-      this.props.navigation.navigate(AppScreens.AUGMENTED_REALITY)
-    }
+    this.props.navigation.navigate(AppScreens.AUGMENTED_REALITY)
   }
 
   public render(): React.ReactNode {
