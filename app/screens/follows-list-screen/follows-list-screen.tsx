@@ -88,7 +88,7 @@ export class FollowsListScreen extends React.Component<IFollowsListScreenProps> 
   private goToProfile(user: IUser): IBoolFunction {
     console.log(user.first_name);
 
-    return (): boolean => this.props.navigation.navigate(AppScreens.USER_PROFILE,
+    return (): boolean => this.props.navigation.push(AppScreens.USER_PROFILE,
       {
         user,
         pictureToken: this.pictureToken
