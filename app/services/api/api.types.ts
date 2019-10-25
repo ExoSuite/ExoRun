@@ -126,6 +126,20 @@ export interface ITime extends ITimestamps {
   user_run_id: string
 }
 
+export interface IFollow extends ITimestamps {
+  followed_id: string,
+  following: IUser,
+  id: string,
+  user_id: string,
+}
+
+export interface IFollower extends ITimestamps {
+  followed_id: string,
+  followers: IUser,
+  id: string,
+  user_id: string,
+}
+
 // tslint:disable-next-line: completed-docs
 export class PersonalTokenImpl implements IPersonalToken {
   public accessToken: string

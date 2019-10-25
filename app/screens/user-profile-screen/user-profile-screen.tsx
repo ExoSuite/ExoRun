@@ -329,6 +329,20 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   }
 
   @autobind
+  private onPressSeeFollowers(): void {
+    this.props.navigation.navigate(AppScreens.GET_FOLLOWERS, {
+      userProfile: this.userProfile
+    })
+  }
+
+  @autobind
+  private onPressSeeFollows(): void {
+    this.props.navigation.navigate(AppScreens.GET_FOLLOWS, {
+      userProfile: this.userProfile
+    })
+  }
+
+  @autobind
   private onUserWantToUpdatePost(currentPost: IPost): IVoidFunction {
     return (): void => {
       this.onNewOrUpdatePostPress(null, true, currentPost)
@@ -495,6 +509,14 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
                       <Text tx={"profile.run"} preset="bold"/>
                     </Button>
                   ).evaluate()}
+                  <Button onPress={this.onPressSeeFollowers} style={ACTION_BUTTON}>
+                    <FontawesomeIcon color={palette.white} name={visitorButtonIcon} style={FOLLOW_ICON}/>
+                    <Text tx={"profile.followers"} preset="bold"/>
+                  </Button>
+                  <Button onPress={this.onPressSeeFollows} style={ACTION_BUTTON}>
+                    <FontawesomeIcon color={palette.white} name={visitorButtonIcon} style={FOLLOW_ICON}/>
+                    <Text tx={"profile.follows"} preset="bold"/>
+                  </Button>
                 </View>
               </View>
               <View style={FIXED_HEADER}>

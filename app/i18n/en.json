@@ -52,6 +52,8 @@
     "birthday": "Birthday",
     "follow": "Follow",
     "following": "Following",
+    "followers": "Followers",
+    "follows": "Follows",
     "run": "Courses"
   },
   "auth": {

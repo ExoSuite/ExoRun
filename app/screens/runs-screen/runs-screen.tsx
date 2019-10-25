@@ -240,32 +240,32 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
     return (
       <Screen style={ROOT} preset="scroll">
         <View style={TITLE}>
-    <View style={{flexDirection: "row", backgroundColor: color.palette.backgroundDarkerer}}>
-      <View style={HEADER_PICKER}>
-            <Text preset="fieldLabel" text="Classer par : " style={{marginTop: spacing[1]}}/>
-            <Picker
-              onValueChange={this.onPickerValueChange}
-              selectedValue={this.filterValue}
-              style={{ backgroundColor: "white", width: 100, height: 30 }}
-              itemStyle={{ backgroundColor: "white"}}
-            >
-              <Picker.Item label="plus récent" value={UserRunFilters.YOUNGER}/>
-              <Picker.Item label="plus ancien" value={UserRunFilters.OLDEST}/>
-            </Picker>
-        <View style={HEADER_TITLE}>
-          {renderIf.if(this.targetProfile.first_name === undefined)(
-              <Text preset="header" text={" "} style={{ alignSelf: "center" }}/>
-            ).elseIf(this.props.navigation.getParam("me") === true)(
-              <Text preset="header" text={"Mes Parcours"} style={{ alignSelf: "center" }}/>
-          ).else(
-              <Text
-                preset="header"
-                text={`Parcours de ${this.targetProfile.first_name} ${this.targetProfile.last_name}`}
-                style={{ alignSelf: "center" }}
-              />
-            ).evaluate()}
-          </View>
-          </View>
+          <View style={{flexDirection: "row", backgroundColor: color.palette.backgroundDarkerer}}>
+            <View style={HEADER_PICKER}>
+              <Text preset="fieldLabel" text="Classer par : " style={{marginTop: spacing[1]}}/>
+              <Picker
+                onValueChange={this.onPickerValueChange}
+                selectedValue={this.filterValue}
+                style={{ backgroundColor: "white", width: 100, height: 30 }}
+                itemStyle={{ backgroundColor: "white"}}
+              >
+                <Picker.Item label="plus récent" value={UserRunFilters.YOUNGER}/>
+                <Picker.Item label="plus ancien" value={UserRunFilters.OLDEST}/>
+              </Picker>
+              <View style={HEADER_TITLE}>
+                {renderIf.if(this.targetProfile.first_name === undefined)(
+                    <Text preset="header" text={" "} style={{ alignSelf: "center" }}/>
+                  ).elseIf(this.props.navigation.getParam("me") === true)(
+                    <Text preset="header" text={"Mes Parcours"} style={{ alignSelf: "center" }}/>
+                ).else(
+                    <Text
+                      preset="header"
+                      text={`Parcours de ${this.targetProfile.first_name} ${this.targetProfile.last_name}`}
+                      style={{ alignSelf: "center" }}
+                    />
+                  ).evaluate()}
+                </View>
+            </View>
           </View>
 {/*
           <View style={{flex: 1, flexDirection: "row", backgroundColor: color.backgroundDarkerer}}>

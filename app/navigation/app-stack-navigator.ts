@@ -20,6 +20,8 @@ import { UserRunsTimesScreen } from "@screens/runs-times-screen"
 import { UserRunsDetailsScreen } from "@screens/user-runs-details-screen"
 import { RunsScreen } from "@screens/runs-screen"
 import { RunDetailsScreen } from "@screens/run-details-screen"
+import { FollowersListScreen } from "@screens/followers-list-screen"
+import { FollowsListScreen } from "@screens/follows-list-screen"
 
 export const AppStackNavigatorImpl = createStackNavigator({
   [AppScreens.HOME]: AppBottomTabNavigator,
@@ -34,6 +36,8 @@ export const AppStackNavigatorImpl = createStackNavigator({
   [AppScreens.RUN_TIMES_DETAILS]: UserRunsDetailsScreen,
   [AppScreens.RUNS]: RunsScreen,
   [AppScreens.RUN_DETAILS]: RunDetailsScreen,
+  [AppScreens.GET_FOLLOWERS]: FollowersListScreen,
+  [AppScreens.GET_FOLLOWS]: FollowsListScreen,
 }, {
   // @ts-ignore
   defaultNavigationOptions: {
