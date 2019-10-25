@@ -16,6 +16,10 @@ import { ChatScreen } from "@screens/chat-screen"
 import { AugmentedRealityNavigator } from "@screens/augmented-reality-screen"
 import { MapScreen } from "@screens/map-screen"
 import { IosStyle } from "@navigation/transitions/ios-style"
+import { UserRunsTimesScreen } from "@screens/runs-times-screen"
+import { UserRunsDetailsScreen } from "@screens/user-runs-details-screen"
+import { RunsScreen } from "@screens/runs-screen"
+import { RunDetailsScreen } from "@screens/run-details-screen"
 
 export const AppStackNavigatorImpl = createStackNavigator({
   [AppScreens.HOME]: AppBottomTabNavigator,
@@ -25,7 +29,11 @@ export const AppStackNavigatorImpl = createStackNavigator({
   [AppScreens.FOLLOW]: FollowScreen,
   [AppScreens.CHAT]: ChatScreen,
   [AppScreens.AUGMENTED_REALITY]: AugmentedRealityNavigator,
-  [AppScreens.MAP]: MapScreen
+  [AppScreens.MAP]: MapScreen,
+  [AppScreens.RUNS_TIMES]: UserRunsTimesScreen,
+  [AppScreens.RUN_TIMES_DETAILS]: UserRunsDetailsScreen,
+  [AppScreens.RUNS]: RunsScreen,
+  [AppScreens.RUN_DETAILS]: RunDetailsScreen,
 }, {
   // @ts-ignore
   defaultNavigationOptions: {

@@ -101,6 +101,31 @@ export interface IMessage extends ITimestamps {
   user_id: string,
 }
 
+export interface IRun extends ITimestamps {
+  checkpoints: ICheckPoint[],
+  creator_id: string,
+  description: string,
+  id: string,
+  name: string,
+  visibility: string,
+}
+
+export interface IUserRun extends ITimestamps {
+  final_time: number,
+  id: string,
+  run_id: string,
+  times: ITime[],
+  user_id: string,
+}
+
+export interface ITime extends ITimestamps {
+  check_point_id: string,
+  current_time: number,
+  id: string,
+  run_id: string,
+  user_run_id: string
+}
+
 // tslint:disable-next-line: completed-docs
 export class PersonalTokenImpl implements IPersonalToken {
   public accessToken: string
@@ -142,24 +167,8 @@ export interface ICheckPoint extends ITimestamps {
   location: ILocation
   previous_checkpoint_id: string
   run_id: string
-  times: []
+  times: ITime[]
   type: ICheckPointType,
-}
-
-export interface IRun extends ITimestamps {
-  checkpoints: ICheckPoint[]
-  creator_id: string
-  description: string
-  id: string
-  name: string
-  visibility: string
-}
-
-export interface ITime {
-  check_point_id: string
-  current_time: number
-  id: string
-  run_id: string
 }
 
 export interface IFeature {
