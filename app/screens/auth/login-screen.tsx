@@ -29,6 +29,7 @@ import { validate, ValidationRules } from "@utils/validate"
 import { footerShadow } from "@utils/shadows"
 import { IVoidFunction } from "@custom-types"
 import { afterSuccessfulLogin } from "@utils/auth/after-successful-login"
+import { AuthScreens } from "@navigation/navigation-definitions"
 
 const EXOSUITE: ImageStyle = {
   width: 200,
@@ -120,8 +121,6 @@ const enabled = color.secondary
 const hidePassword = "common.password-hide"
 const revealPassword = "common.password-reveal"
 
-const onResetPasswordPress = (): null => null
-
 const RULES: ValidationRules = { email: { email: true } }
 
 type TLoginScreenProps = NavigationScreenProps & InjectionProps
@@ -172,6 +171,12 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
   @autobind
   private onEmailPressNext(): void {
     this.passwordInputRef.focus()
+  }
+
+  @autobind
+  private onResetPasswordPress(): void {
+    const { navigation } = this.props;
+    navigation.navigate(AuthScreens.RESET_PASSWORD)
   }
 
   @action.bound
@@ -316,7 +321,7 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
                 preset="bold"
                 tx="auth.login.reset-password"
                 style={RESET_PASSWORD}
-                onPress={onResetPasswordPress}
+                onPress={this.onResetPasswordPress}
               />
               <Button
                 style={{
