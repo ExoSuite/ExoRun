@@ -54,7 +54,11 @@
     "following": "Following",
     "followers": "Followers",
     "follows": "Follows",
-    "run": "Courses"
+    "run": "Courses",
+    "addFriend": "Ask friendship",
+    "friendsList": "Friends",
+    "accept": "Accept",
+    "decline": "Decline"
   },
   "auth": {
     "powered": "Powered by ",

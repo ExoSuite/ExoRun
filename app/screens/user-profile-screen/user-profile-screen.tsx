@@ -1,6 +1,6 @@
 import * as React from "react"
 import { inject, observer } from "mobx-react"
-import { Animated, ImageStyle, StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
+import { Animated, ImageStyle, StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle, ScrollView } from "react-native"
 import { Button, Screen, Text } from "@components"
 import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
@@ -25,6 +25,7 @@ import { FAB, PartialIconProps } from "react-native-paper"
 import moment from "moment"
 import { IBoolFunction, IVoidFunction } from "@custom-types"
 import { noop } from "lodash-es"
+import { background } from "@storybook/theming"
 
 // tslint:disable:id-length
 
@@ -61,7 +62,7 @@ const HEADER_CONTENT: ViewStyle = {
   flexDirection: "row",
   alignItems: "center",
   width: "100%",
-  justifyContent: "space-between"
+  justifyContent: "space-between",
 }
 
 const ANIMATED_AVATAR: ViewStyle = {
@@ -105,16 +106,21 @@ const ROW: ViewStyle = {
 
 const ACTION_BUTTON: ViewStyle = {
   flexDirection: "row",
-  marginRight: spacing[2]
+  marginRight: spacing[1],
+}
+
+const TEXT_ACTION_BUTTON: TextStyle = {
+  fontSize: 10,
+  fontWeight: "bold",
 }
 
 const BUTTON_CONTAINER: ViewStyle = {
   flexDirection: "row",
-  justifyContent: "flex-end"
+  marginLeft: 60,
 }
 
 const FOLLOW_ICON: ViewStyle = {
-  paddingRight: spacing[2]
+  paddingRight: spacing[1]
 }
 
 const TEXT_NUMBER: TextStyle = {
@@ -322,6 +328,13 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   }
 
   @autobind
+  private onPressGoToFriendsList(): void {
+    this.props.navigation.navigate(AppScreens.GET_FRIENDS, {
+      userProfile: this.userProfile
+    })
+  }
+
+  @autobind
   private onPressGoToRuns(): void {
     this.props.navigation.navigate(AppScreens.RUNS, {
       userProfile: this.userProfile
@@ -340,6 +353,13 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     this.props.navigation.navigate(AppScreens.GET_FOLLOWS, {
       userProfile: this.userProfile
     })
+  }
+
+  @autobind
+  private async onPressSendAskFriendship(): Promise<void> {
+    const { api } = this.props;
+
+    api.post(`user/${this.userProfile.id}/friendship`);
   }
 
   @autobind
@@ -493,7 +513,15 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
           ListHeaderComponent={(
             <View style={{ marginBottom: spacing[2], ...headerShadow }}>
               <View style={StyleSheet.flatten([FIXED_HEADER, { marginTop: 150 }])}>
-                <View style={BUTTON_CONTAINER}>
+                <ScrollView horizontal style={BUTTON_CONTAINER}>
+                  <Button onPress={this.onPressSeeFollowers} style={ACTION_BUTTON}>
+                    {/*<FontawesomeIcon color={palette.white} name={visitorButtonIcon} style={FOLLOW_ICON}/>*/}
+                    <Text tx={"profile.followers"} style={TEXT_ACTION_BUTTON}/>
+                  </Button>
+                  <Button onPress={this.onPressSeeFollows} style={ACTION_BUTTON}>
+                    {/*<FontawesomeIcon color={palette.white} name={visitorButtonIcon} style={FOLLOW_ICON}/>*/}
+                    <Text tx={"profile.follows"} style={TEXT_ACTION_BUTTON}/>
+                  </Button>
                   {renderIf.if(me)(
                     <Button tx="profile.edit" textPreset="primaryBold" onPress={this.onEditMyProfile}/>
                   ).else(
@@ -502,22 +530,21 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
                       <Text tx={visitorButtonText} preset="bold"/>
                     </Button>
                   ).evaluate()}
-                  {
-                    renderIf.if(!me)(
+                  {renderIf.if(!me)(
                     <Button onPress={this.onPressGoToRuns} style={ACTION_BUTTON}>
-                      <FontawesomeIcon color={palette.white} name={visitorButtonIcon} style={FOLLOW_ICON}/>
+                      <FontawesomeIcon color={palette.white} name="running" style={FOLLOW_ICON}/>
                       <Text tx={"profile.run"} preset="bold"/>
                     </Button>
                   ).evaluate()}
-                  <Button onPress={this.onPressSeeFollowers} style={ACTION_BUTTON}>
-                    <FontawesomeIcon color={palette.white} name={visitorButtonIcon} style={FOLLOW_ICON}/>
-                    <Text tx={"profile.followers"} preset="bold"/>
+                  <Button onPress={this.onPressSendAskFriendship} style={ACTION_BUTTON}>
+                    <FontawesomeIcon color={palette.white} name="user-plus" style={FOLLOW_ICON}/>
+                    <Text tx={"profile.addFriend"} style={TEXT_ACTION_BUTTON}/>
                   </Button>
-                  <Button onPress={this.onPressSeeFollows} style={ACTION_BUTTON}>
-                    <FontawesomeIcon color={palette.white} name={visitorButtonIcon} style={FOLLOW_ICON}/>
-                    <Text tx={"profile.follows"} preset="bold"/>
+                  <Button onPress={this.onPressGoToFriendsList} style={ACTION_BUTTON}>
+                    <FontawesomeIcon color={palette.white} name="users" style={FOLLOW_ICON}/>
+                    <Text tx={"profile.friendsList"} style={TEXT_ACTION_BUTTON}/>
                   </Button>
-                </View>
+                </ScrollView>
               </View>
               <View style={FIXED_HEADER}>
                 <View style={FIXED_HEADER_TEXT_CONTAINER}>

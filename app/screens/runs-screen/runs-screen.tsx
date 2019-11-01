@@ -28,11 +28,6 @@ const ROOT: ViewStyle = {
   backgroundColor: color.palette.black,
 }
 
-const SEARCH: ViewStyle = {
-  backgroundColor: color.backgroundDarkerer,
-  width: 350
-}
-
 const TITLE: ViewStyle = {
   backgroundColor: color.palette.backgroundDarker,
   paddingLeft: spacing[5],
@@ -267,17 +262,6 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
                 </View>
             </View>
           </View>
-{/*
-          <View style={{flex: 1, flexDirection: "row", backgroundColor: color.backgroundDarkerer}}>
-            <Text preset="fieldLabel" text="Filtrer :  " style={{marginTop: spacing[1]}}/>
-            <Searchbar
-              placeholder={placeholderTx}
-              onChangeText={this.onUserTypeSearch}
-              style={SEARCH}
-              theme={DarkTheme}
-            />
-          </View>
-*/}
         </View>
         <FlatList
           data={this.runs}
