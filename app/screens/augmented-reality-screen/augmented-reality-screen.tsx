@@ -7,6 +7,7 @@ import { NavigationScreenProps } from "react-navigation"
 import { ViroARScene, ViroConstants, ViroText, ViroAmbientLight,
           Viro3DObject, ViroARCamera, ViroBox, ViroButton, ViroARPlaneSelector, ViroNode } from "react-viro"
 import { TextInput } from "react-native-paper"
+import autobind from "autobind-decorator"
 
 export interface IAugmentedRealityScreenProps extends NavigationScreenProps<{}> {
 }
@@ -28,10 +29,16 @@ export class AugmentedRealityScreen extends React.Component<IAugmentedRealityScr
   @observable private AnimationName = "Idle"
   @observable private Speed = "RunFast";
   @observable private text = "Initializing AR..."
+  @observable private Active = true
 
   @action.bound
   private AdaptSpeed(scrollPosition: any, source: any): void {
     console.log(scrollPosition[0] + scrollPosition[1]);
+  }
+
+  @action.bound
+  private switchModel(): void {
+    this.Active = !this.Active;
   }
 
   @action.bound
@@ -66,35 +73,10 @@ export class AugmentedRealityScreen extends React.Component<IAugmentedRealityScr
     }
   }
 
-  public render(): React.ReactNode {
-    const { text } = this
-
-    return (
-      <ViroARScene style={ROOT} onTrackingUpdated={this.onInitialized}>
-        <ViroAmbientLight color="#ffffff" />
+  private setRunner() : any {
+    if (!this.Active) {
+      return(
         <ViroNode position={[0, -1, -1]} dragType="FixedToPlane" onDrag={( )=>{}} >
-          <Viro3DObject
-            source={CheckPoint}
-            highAccuracyEvents
-            position={[0, 0.5, 0]}
-            scale={[0.02, 0.02, 0.02]}
-            type="VRX"
-            animation={{name: "Take 001",
-              run: true,
-              loop: true,
-              interruptible: true}}
-          />
-        </ViroNode>
-        {/*<ViroARCamera>
-          <Viro3DObject
-            source={Arrow}
-            highAccuracyEvents
-            position={[0, 0.7, -2.1]}
-            scale={[0.1, 0.1, 0.1]}
-            rotation={[0, 0, 0]}
-            type="VRX"
-            transformBehaviors={["billboard"]}
-          />
           <Viro3DObject
             source={AnimationRun}
             highAccuracyEvents
@@ -108,22 +90,61 @@ export class AugmentedRealityScreen extends React.Component<IAugmentedRealityScr
               loop: true,
               interruptible: true}}
           />
+        </ViroNode>
+      )
+    }
+  }
 
-          <ViroButton
-            source={require("../../assets/3Dasset/BBackground.png")}
-            position={[-2, -4, -10]}
-            height={1}
-            width={1.5}
-            onClick={this.SwitchAnimation}
+  private setCheckpoint() : any {
+    if (this.Active) {
+      return(
+        <ViroNode position={[0, -1, -1]} dragType="FixedToPlane" onDrag={( )=>{}} >
+          <Viro3DObject
+            source={CheckPoint}
+            highAccuracyEvents
+            position={[0, 0.5, 0]}
+            scale={[0.02, 0.02, 0.02]}
+            type="VRX"
+            animation={{name: "Take 001",
+              run: true,
+              loop: true,
+              interruptible: true}}
           />
-          <ViroButton
-            source={require("../../assets/3Dasset/BBackgroundSpeed.png")}
-            position={[2, -4, -10]}
-            height={1}
-            width={1.5}
-            onClick={this.switchSpeed}
-          />
-        </ViroARCamera>*/}
+        </ViroNode>
+      )
+    }
+  }
+
+  private setButton() : any {
+    return(
+      <ViroARCamera>
+        <ViroButton
+          source={require("../../assets/3Dasset/BBackground.png")}
+          position={[-2, -4, -10]}
+          height={1}
+          width={1.5}
+          onClick={this.switchModel}
+        />
+        <ViroButton
+          source={require("../../assets/3Dasset/BBackgroundSpeed.png")}
+          position={[2, -4, -10]}
+          height={1}
+          width={1.5}
+          onClick={this.switchSpeed}
+        />
+      </ViroARCamera>
+    )
+  }
+
+  public render(): React.ReactNode {
+    const { text } = this
+
+    return (
+      <ViroARScene style={ROOT} onTrackingUpdated={this.onInitialized}>
+        <ViroAmbientLight color="#ffffff" />
+        {this.setCheckpoint()}
+        {this.setRunner()}
+        {this.setButton()}
       </ViroARScene>
     )
   }
