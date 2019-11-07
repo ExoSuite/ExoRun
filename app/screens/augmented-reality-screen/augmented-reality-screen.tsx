@@ -102,8 +102,8 @@ export class AugmentedRealityScreen extends React.Component<IAugmentedRealityScr
           <Viro3DObject
             source={CheckPoint}
             highAccuracyEvents
-            position={[0, 0.5, 0]}
-            scale={[0.02, 0.02, 0.02]}
+            position={[0, 0, 0]}
+            scale={[0.05, 0.05, 0.05]}
             type="VRX"
             animation={{name: "Take 001",
               run: true,
