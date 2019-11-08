@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ViewStyle } from "react-native"
+import { PermissionsAndroid, ViewStyle } from "react-native"
 import { Screen } from "@components/screen"
 import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
@@ -10,6 +10,7 @@ import autobind from "autobind-decorator"
 // tslint:disable-next-line: match-default-export-name
 import DeviceInfo from "react-native-device-info"
 import { IPersonalProfileNavigationScreenProps } from "@screens/user-profile-screen"
+import { Platform } from "@services/device"
 
 export interface IRunScreenProps extends NavigationScreenProps<{}> {
 }
@@ -35,6 +36,13 @@ export class RunScreen extends React.Component<IRunScreenProps> {
   @autobind
   private goToAugmentedReality(): void {
     this.props.navigation.navigate(AppScreens.AUGMENTED_REALITY)
+  }
+
+  // tslint:disable-next-line: no-feature-envy
+  public componentDidMount(): void {
+    if (Platform.Android) {
+      PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CAMERA).catch()
+    }
   }
 
   public render(): React.ReactNode {
