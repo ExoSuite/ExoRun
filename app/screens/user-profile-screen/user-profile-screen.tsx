@@ -5,7 +5,7 @@ import { Button, Screen, Text } from "@components"
 import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
-import { IPersonalTokens, IPost, IUser } from "@services/api"
+import { IFriendship, IPersonalTokens, IPost, IUser } from "@services/api"
 import { Avatar, DefaultRnpAvatarSize } from "@components/avatar"
 import { palette } from "@theme/palette"
 import { headerShadow } from "@utils/shadows"
@@ -109,6 +109,12 @@ const ACTION_BUTTON: ViewStyle = {
   marginRight: spacing[1],
 }
 
+const ACTION_BUTTON_DISABLED: ViewStyle = {
+  flexDirection: "row",
+  marginRight: spacing[1],
+  backgroundColor: "#B2B2B2"
+}
+
 const TEXT_ACTION_BUTTON: TextStyle = {
   fontSize: 10,
   fontWeight: "bold",
@@ -181,9 +187,13 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   @observable private avatarUrl = ""
   @observable private coverUrl = ""
   private currentPage: number
+  @observable private friendship: IFriendship = null
+  @observable private friendship_target: IFriendship = null
+  @observable private hasMadeFriendshipAction = false
+  @observable private isFriendshipDoneOrPending = false
   @observable private isUserFollowedByVisitor = false
   private maxPage: number
-  private me: boolean
+  private me = false
   private onEndReachedCalledDuringMomentum = true
   @observable private pictureToken: string
   @observable private refreshing = false
@@ -360,6 +370,20 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     const { api } = this.props;
 
     api.post(`user/${this.userProfile.id}/friendship`);
+    this.hasMadeFriendshipAction = !this.hasMadeFriendshipAction
+  }
+
+  @autobind
+  private async onPressDeleteFriendship(): Promise<void> {
+    const { api } = this.props;
+
+    if (this.friendship !== null) {
+      api.delete(`user/me/friendship/${this.friendship.id}`);
+      if (this.friendship_target !== null) {
+        api.delete(`user/me/friendship/${this.friendship_target.id}`);
+      }
+      this.hasMadeFriendshipAction = !this.hasMadeFriendshipAction
+    }
   }
 
   @autobind
@@ -450,12 +474,20 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
     this.pictureToken = token
     const user = navigation.getParam("user")
-    this.me = navigation.getParam("me")
+    this.me = navigation.getParam("me") || false
+
+    if (!this.me) {
+      const HERE_IS_FRIENDSHIP = await api.get(`/user/${this.userProfile.id}/friendship/existingFriendship`).catch(noop)
+      this.isFriendshipDoneOrPending = HERE_IS_FRIENDSHIP.data.value
+      this.friendship = HERE_IS_FRIENDSHIP.data.friendship_entity
+      this.friendship_target = HERE_IS_FRIENDSHIP.data.friendship_entity_target
+    }
 
     if (user) {
       const userProfileRequest: ApiResponse<IUser> = await api.get(`user/${user.id}/profile`)
       this.userProfile = { ...userProfileRequest.data, nick_name: this.userProfile.nick_name }
-      this.isUserFollowedByVisitor = userProfileRequest.data.follow.status
+      this.isUserFollowedByVisitor = false // userProfileRequest.data.follow.status
+
     }
 
     await this.fetchPosts().catch(noop)
@@ -467,7 +499,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     const { avatarMovement, avatarOpacity, headerContentOpacity, headerOpacity, coverMovement } = this.animate()
 
     const description = idx<IUser, string>(this.userProfile, (_: any) => _.profile.description)
-    const me = this.props.navigation.getParam("me")
+    const me = this.me;
     const visitorButtonIcon = this.isUserFollowedByVisitor ? "user-check" : "user"
     const visitorButtonText = this.isUserFollowedByVisitor ? "profile.following" : "profile.follow"
 
@@ -515,15 +547,13 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
               <View style={StyleSheet.flatten([FIXED_HEADER, { marginTop: 150 }])}>
                 <ScrollView horizontal style={BUTTON_CONTAINER}>
                   <Button onPress={this.onPressSeeFollowers} style={ACTION_BUTTON}>
-                    {/*<FontawesomeIcon color={palette.white} name={visitorButtonIcon} style={FOLLOW_ICON}/>*/}
                     <Text tx={"profile.followers"} style={TEXT_ACTION_BUTTON}/>
                   </Button>
                   <Button onPress={this.onPressSeeFollows} style={ACTION_BUTTON}>
-                    {/*<FontawesomeIcon color={palette.white} name={visitorButtonIcon} style={FOLLOW_ICON}/>*/}
                     <Text tx={"profile.follows"} style={TEXT_ACTION_BUTTON}/>
                   </Button>
                   {renderIf.if(me)(
-                    <Button tx="profile.edit" textPreset="primaryBold" onPress={this.onEditMyProfile}/>
+                    <Button style={ACTION_BUTTON} tx="profile.edit" textPreset="primaryBold" onPress={this.onEditMyProfile}/>
                   ).else(
                     <Button onPress={this.toggleFollow} style={ACTION_BUTTON}>
                       <FontawesomeIcon color={palette.white} name={visitorButtonIcon} style={FOLLOW_ICON}/>
@@ -536,10 +566,22 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
                       <Text tx={"profile.run"} preset="bold"/>
                     </Button>
                   ).evaluate()}
-                  <Button onPress={this.onPressSendAskFriendship} style={ACTION_BUTTON}>
-                    <FontawesomeIcon color={palette.white} name="user-plus" style={FOLLOW_ICON}/>
-                    <Text tx={"profile.addFriend"} style={TEXT_ACTION_BUTTON}/>
-                  </Button>
+                  {renderIf.if(!me && this.isFriendshipDoneOrPending)(
+                    <Button onPress={this.onPressSendAskFriendship} style={ACTION_BUTTON}>
+                      <FontawesomeIcon color={palette.white} name="users" style={FOLLOW_ICON}/>
+                      <Text text={"profile.addFriend"} style={TEXT_ACTION_BUTTON}/>
+                    </Button>
+                  ).elseIf(!me && !this.isFriendshipDoneOrPending && (this.friendship === null))(
+                    <Button disabled style={ACTION_BUTTON_DISABLED}>
+                      <FontawesomeIcon color={palette.white} name="users" style={FOLLOW_ICON}/>
+                      <Text text={"profile.addFriend"} style={TEXT_ACTION_BUTTON}/>
+                    </Button>
+                  ).elseIf(!me && !this.isFriendshipDoneOrPending && (this.friendship !== null))(
+                    <Button onPress={this.onPressDeleteFriendship} style={ACTION_BUTTON}>
+                      <FontawesomeIcon color={palette.white} name="users" style={FOLLOW_ICON}/>
+                      <Text text={"profile.deleteFriend"} style={TEXT_ACTION_BUTTON}/>
+                    </Button>
+                  ).evaluate()}
                   <Button onPress={this.onPressGoToFriendsList} style={ACTION_BUTTON}>
                     <FontawesomeIcon color={palette.white} name="users" style={FOLLOW_ICON}/>
                     <Text tx={"profile.friendsList"} style={TEXT_ACTION_BUTTON}/>
@@ -556,15 +598,6 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
                   <Text preset="nicknameLight" text={this.userProfile.nick_name}/>
                   <Text style={FIXED_HEADER_DESCRIPTION} text={description}/>
                 </View>
-
-                {/*<View style={[{ marginTop: 10 }, ROW]}>
-                  <TouchableOpacity style={ROW} onPress={this.onFollowersPress} disabled>
-                    <Text style={TEXT_NUMBER}>
-                      2222
-                    </Text>
-                    <Text text="Followers" style={TEXT_NUMBER_LABEL}/>
-                  </TouchableOpacity>
-                </View>*/}
               </View>
             </View>
           )}

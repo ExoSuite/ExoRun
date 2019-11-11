@@ -20,7 +20,6 @@ import { AppScreens } from "@navigation/navigation-definitions"
 import { Button } from "@components/button"
 import { FontawesomeIcon } from "@components/fontawesome-icon"
 import { palette } from "@theme/palette"
-import { GestureHandlerGestureEvent } from "react-native-gesture-handler"
 
 export interface IPendingRequestsScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -200,16 +199,6 @@ export class PendingRequestsScreen extends React.Component<IPendingRequestsScree
         <View style={TITLE}>
           <View style={{flexDirection: "row", backgroundColor: color.palette.backgroundDarkerer}}>
             <View style={HEADER_PICKER}>
-              {/*<Text preset="fieldLabel" text="Classer par : " style={{marginTop: spacing[1]}}/>*/}
-              {/*<Picker*/}
-              {/*  onValueChange={this.onPickerValueChange}*/}
-              {/*  selectedValue={this.filterValue}*/}
-              {/*  style={{ backgroundColor: "white", width: 100, height: 30 }}*/}
-              {/*  itemStyle={{ backgroundColor: "white"}}*/}
-              {/*>*/}
-              {/*  <Picker.Item label="plus récent" value={UserRunFilters.YOUNGER}/>*/}
-              {/*  <Picker.Item label="plus ancien" value={UserRunFilters.OLDEST}/>*/}
-              {/*</Picker>*/}
               <View style={HEADER_TITLE}>
                   <Text
                     preset="header"
