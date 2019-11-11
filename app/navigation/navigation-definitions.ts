@@ -32,5 +32,6 @@ export enum AppScreens {
 export enum AuthScreens {
   AUTH = "auth",
   LOGIN = "login",
-  REGISTER = "register"
+  REGISTER = "register",
+  RESET_PASSWORD = "reset-password"
 }

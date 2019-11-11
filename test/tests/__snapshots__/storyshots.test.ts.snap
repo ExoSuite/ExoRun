@@ -99,7 +99,7 @@ exports[`storybook tests Storyshots Animated Data Loader Error 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -200,7 +200,7 @@ exports[`storybook tests Storyshots Animated Data Loader Error 1`] = `
             </View>
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -341,7 +341,7 @@ exports[`storybook tests Storyshots Animated Data Loader Success 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -442,7 +442,7 @@ exports[`storybook tests Storyshots Animated Data Loader Success 1`] = `
             </View>
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -583,7 +583,7 @@ exports[`storybook tests Storyshots AnimatedInteractiveInput Error animation 1`]
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -811,7 +811,7 @@ exports[`storybook tests Storyshots AnimatedInteractiveInput Loading animation 1
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -1231,7 +1231,7 @@ exports[`storybook tests Storyshots AnimatedInteractiveInput Success animation 1
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -1459,7 +1459,7 @@ exports[`storybook tests Storyshots Avatar Style Presets 1`] = `
           >
             <View
               accessible={true}
-              clickable={false}
+              focusable={false}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -1611,7 +1611,7 @@ exports[`storybook tests Storyshots Button Style Presets 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -1727,7 +1727,7 @@ exports[`storybook tests Storyshots Button Style Presets 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -1843,7 +1843,7 @@ exports[`storybook tests Storyshots Button Style Presets 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -2193,7 +2193,7 @@ exports[`storybook tests Storyshots Checkbox Behaviour 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -2321,7 +2321,7 @@ exports[`storybook tests Storyshots Checkbox Behaviour 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -2459,7 +2459,7 @@ exports[`storybook tests Storyshots Checkbox Behaviour 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -2613,7 +2613,7 @@ exports[`storybook tests Storyshots Checkbox Styling 1`] = `
             <View>
               <View
                 accessible={true}
-                clickable={true}
+                focusable={true}
                 isTVSelectable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
@@ -2743,7 +2743,7 @@ exports[`storybook tests Storyshots Checkbox Styling 1`] = `
             <View>
               <View
                 accessible={true}
-                clickable={true}
+                focusable={true}
                 isTVSelectable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
@@ -2876,7 +2876,7 @@ exports[`storybook tests Storyshots Checkbox Styling 1`] = `
             <View>
               <View
                 accessible={true}
-                clickable={true}
+                focusable={true}
                 isTVSelectable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
@@ -3006,7 +3006,7 @@ exports[`storybook tests Storyshots Checkbox Styling 1`] = `
             <View>
               <View
                 accessible={true}
-                clickable={true}
+                focusable={true}
                 isTVSelectable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
@@ -3136,7 +3136,7 @@ exports[`storybook tests Storyshots Checkbox Styling 1`] = `
             <View>
               <View
                 accessible={true}
-                clickable={true}
+                focusable={true}
                 isTVSelectable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
@@ -3307,7 +3307,7 @@ exports[`storybook tests Storyshots DismissKeyboard Style Presets 1`] = `
               <TextInput
                 accessible={true}
                 autoFocus={false}
-                clickable={true}
+                focusable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
@@ -5153,7 +5153,7 @@ exports[`storybook tests Storyshots Header Behavior 1`] = `
               >
                 <View
                   accessible={true}
-                  clickable={true}
+                  focusable={true}
                   isTVSelectable={true}
                   onClick={[Function]}
                   onResponderGrant={[Function]}
@@ -5356,7 +5356,7 @@ exports[`storybook tests Storyshots Header Behavior 1`] = `
                 </View>
                 <View
                   accessible={true}
-                  clickable={true}
+                  focusable={true}
                   isTVSelectable={true}
                   onClick={[Function]}
                   onResponderGrant={[Function]}
@@ -5627,7 +5627,7 @@ exports[`storybook tests Storyshots PressableText Style Presets 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -5901,7 +5901,7 @@ exports[`storybook tests Storyshots Switch Behaviour 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -6029,7 +6029,7 @@ exports[`storybook tests Storyshots Switch Behaviour 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -6157,7 +6157,7 @@ exports[`storybook tests Storyshots Switch Behaviour 1`] = `
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -6311,7 +6311,7 @@ exports[`storybook tests Storyshots Switch Styling 1`] = `
             <View>
               <View
                 accessible={true}
-                clickable={true}
+                focusable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
@@ -6441,7 +6441,7 @@ exports[`storybook tests Storyshots Switch Styling 1`] = `
             <View>
               <View
                 accessible={true}
-                clickable={true}
+                focusable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
@@ -8410,7 +8410,7 @@ exports[`storybook tests Storyshots TouchableGreyscaledIcon Demonstration 1`] = 
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -8580,7 +8580,7 @@ exports[`storybook tests Storyshots TouchableGreyscaledIcon Demonstration 1`] = 
           >
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -8599,7 +8599,7 @@ exports[`storybook tests Storyshots TouchableGreyscaledIcon Demonstration 1`] = 
             >
               <View
                 accessible={true}
-                clickable={false}
+                focusable={false}
                 isTVSelectable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
@@ -8799,7 +8799,7 @@ exports[`storybook tests Storyshots UserRow Style Presets 1`] = `
             >
               <View
                 accessible={true}
-                clickable={false}
+                focusable={false}
                 isTVSelectable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
