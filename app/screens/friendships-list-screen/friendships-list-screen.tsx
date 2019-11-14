@@ -134,6 +134,29 @@ export class FriendshipsListScreen extends React.Component<IFriendshipsListScree
     }
   }
 
+  @action
+  public async componentDidMount(): Promise<void> {
+    const { api } = this.props;
+    const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
+
+    this.pictureToken = personalTokens["view-picture-exorun"].accessToken
+    this.routeAPIGetFollowers = "user/me/friendship";
+
+    if (!this.target) {
+      // @ts-ignore
+      this.target = this.props.navigation.getParam("userProfile");
+      this.routeAPIGetFollowers = `user/${this.target.id}/friendship`;
+      this.targetProfile = this.target;
+    } else {
+      const ME = await api.get("user/me/").catch(onSearchError);
+      this.targetProfile = {...ME.data};
+    }
+    const RESULT = await api.get(this.routeAPIGetFollowers).catch(onSearchError);
+    this.friends.push(...RESULT.data.data);
+    await this.onUserTypeSearch("*")
+
+  }
+
   public render(): React.ReactNode {
     return (
       <Screen style={ROOT} preset="scroll">
@@ -167,29 +190,6 @@ export class FriendshipsListScreen extends React.Component<IFriendshipsListScree
         />
       </Screen>
     )
-  }
-
-  @action
-  public async componentDidMount(): Promise<void> {
-    const { api } = this.props;
-    const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
-
-    this.pictureToken = personalTokens["view-picture-exorun"].accessToken
-    this.routeAPIGetFollowers = "user/me/friendship";
-
-    if (!this.target) {
-      // @ts-ignore
-      this.target = this.props.navigation.getParam("userProfile");
-      this.routeAPIGetFollowers = `user/${this.target.id}/friendship`;
-      this.targetProfile = this.target;
-    } else {
-      const ME = await api.get("user/me/").catch(onSearchError);
-      this.targetProfile = {...ME.data};
-    }
-    const RESULT = await api.get(this.routeAPIGetFollowers).catch(onSearchError);
-    this.friends.push(...RESULT.data.data);
-    await this.onUserTypeSearch("*")
-
   }
 
   // tslint:disable-next-line: no-feature-envy

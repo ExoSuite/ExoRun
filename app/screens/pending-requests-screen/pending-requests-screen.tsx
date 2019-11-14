@@ -86,7 +86,6 @@ const FOLLOW_ICON: ViewStyle = {
   paddingRight: spacing[1]
 }
 
-
 // @ts-ignore
 const onSearchError = (): ApiResponse<any> => (
   {

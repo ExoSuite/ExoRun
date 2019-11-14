@@ -160,26 +160,6 @@ export class FollowsListScreen extends React.Component<IFollowsListScreenProps> 
     await this.onUserTypeSearch("*")
   }
 
-  // tslint:disable-next-line: no-feature-envy
-  @autobind
-   public renderItem({item} : { item: IFollow }): React.ReactElement {
-    const {api} = this.props
-
-      return (
-        <TouchableOpacity
-          style={FOLLOW_CONTAINER}
-          onPress={this.goToProfile(item.following)}
-        >
-          <UserRow
-            firstName={item.following.first_name}
-            lastName={item.following.last_name}
-            nickName={item.following.nick_name}
-            avatarUrl={api.buildAvatarUrl(item.following.id, this.pictureToken)}
-          />
-        </TouchableOpacity>
-      )
-   }
-
   public render(): React.ReactNode {
     return (
       <Screen style={ROOT} preset="scroll">
@@ -214,4 +194,24 @@ export class FollowsListScreen extends React.Component<IFollowsListScreenProps> 
       </Screen>
     )
   }
+
+  // tslint:disable-next-line: no-feature-envy
+  @autobind
+   public renderItem({item} : { item: IFollow }): React.ReactElement {
+    const {api} = this.props
+
+      return (
+        <TouchableOpacity
+          style={FOLLOW_CONTAINER}
+          onPress={this.goToProfile(item.following)}
+        >
+          <UserRow
+            firstName={item.following.first_name}
+            lastName={item.following.last_name}
+            nickName={item.following.nick_name}
+            avatarUrl={api.buildAvatarUrl(item.following.id, this.pictureToken)}
+          />
+        </TouchableOpacity>
+      )
+   }
 }

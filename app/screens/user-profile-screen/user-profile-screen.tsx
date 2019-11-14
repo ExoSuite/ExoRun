@@ -338,6 +338,19 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   }
 
   @autobind
+  private async onPressDeleteFriendship(): Promise<void> {
+    const { api } = this.props;
+
+    if (this.friendship !== null) {
+      api.delete(`user/me/friendship/${this.friendship.id}`);
+      if (this.friendship_target !== null) {
+        api.delete(`user/me/friendship/${this.friendship_target.id}`);
+      }
+      this.hasMadeFriendshipAction = !this.hasMadeFriendshipAction
+    }
+  }
+
+  @autobind
   private onPressGoToFriendsList(): void {
     this.props.navigation.navigate(AppScreens.GET_FRIENDS, {
       userProfile: this.userProfile
@@ -371,19 +384,6 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
 
     api.post(`user/${this.userProfile.id}/friendship`);
     this.hasMadeFriendshipAction = !this.hasMadeFriendshipAction
-  }
-
-  @autobind
-  private async onPressDeleteFriendship(): Promise<void> {
-    const { api } = this.props;
-
-    if (this.friendship !== null) {
-      api.delete(`user/me/friendship/${this.friendship.id}`);
-      if (this.friendship_target !== null) {
-        api.delete(`user/me/friendship/${this.friendship_target.id}`);
-      }
-      this.hasMadeFriendshipAction = !this.hasMadeFriendshipAction
-    }
   }
 
   @autobind
@@ -486,8 +486,9 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     if (user) {
       const userProfileRequest: ApiResponse<IUser> = await api.get(`user/${user.id}/profile`)
       this.userProfile = { ...userProfileRequest.data, nick_name: this.userProfile.nick_name }
-      this.isUserFollowedByVisitor = false // userProfileRequest.data.follow.status
-
+      this.isUserFollowedByVisitor = false
+      // tslint:disable-next-line:no-commented-out-code
+      // userProfileRequest.data.follow.status
     }
 
     await this.fetchPosts().catch(noop)
@@ -569,17 +570,17 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
                   {renderIf.if(!me && this.isFriendshipDoneOrPending)(
                     <Button onPress={this.onPressSendAskFriendship} style={ACTION_BUTTON}>
                       <FontawesomeIcon color={palette.white} name="users" style={FOLLOW_ICON}/>
-                      <Text text={"profile.addFriend"} style={TEXT_ACTION_BUTTON}/>
+                      <Text tx={"profile.addFriend"} style={TEXT_ACTION_BUTTON}/>
                     </Button>
                   ).elseIf(!me && !this.isFriendshipDoneOrPending && (this.friendship === null))(
                     <Button disabled style={ACTION_BUTTON_DISABLED}>
                       <FontawesomeIcon color={palette.white} name="users" style={FOLLOW_ICON}/>
-                      <Text text={"profile.addFriend"} style={TEXT_ACTION_BUTTON}/>
+                      <Text tx={"profile.addFriend"} style={TEXT_ACTION_BUTTON}/>
                     </Button>
                   ).elseIf(!me && !this.isFriendshipDoneOrPending && (this.friendship !== null))(
                     <Button onPress={this.onPressDeleteFriendship} style={ACTION_BUTTON}>
                       <FontawesomeIcon color={palette.white} name="users" style={FOLLOW_ICON}/>
-                      <Text text={"profile.deleteFriend"} style={TEXT_ACTION_BUTTON}/>
+                      <Text tx={"profile.deleteFriend"} style={TEXT_ACTION_BUTTON}/>
                     </Button>
                   ).evaluate()}
                   <Button onPress={this.onPressGoToFriendsList} style={ACTION_BUTTON}>
