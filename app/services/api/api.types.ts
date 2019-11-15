@@ -1,6 +1,7 @@
 // this file Is for define api responses
 
 import { IGroup } from "@models/group"
+import { PendingRequestsTypes } from "@utils/pending-requests-types"
 
 export interface ITimestamps {
   created_at: string,
@@ -101,6 +102,14 @@ export interface IMessage extends ITimestamps {
   user_id: string,
 }
 
+export interface IPendingRequest extends ITimestamps {
+  id: string,
+  requester_id: string,
+  target_id: string,
+  type: PendingRequestsTypes,
+  user: IUser
+}
+
 export interface IRun extends ITimestamps {
   checkpoints: ICheckPoint[],
   creator_id: string,
@@ -124,6 +133,27 @@ export interface ITime extends ITimestamps {
   id: string,
   run_id: string,
   user_run_id: string
+}
+
+export interface IFollow extends ITimestamps {
+  followed_id: string,
+  following: IUser,
+  id: string,
+  user_id: string,
+}
+
+export interface IFollower extends ITimestamps {
+  followed_id: string,
+  followers: IUser,
+  id: string,
+  user_id: string,
+}
+
+export interface IFriendship extends ITimestamps {
+  friend: IUser,
+  friend_id: string,
+  id: string,
+  user_id: string,
 }
 
 // tslint:disable-next-line: completed-docs

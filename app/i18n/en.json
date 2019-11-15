@@ -52,7 +52,14 @@
     "birthday": "Birthday",
     "follow": "Follow",
     "following": "Following",
-    "run": "Courses"
+    "followers": "Followers",
+    "follows": "Follows",
+    "run": "Courses",
+    "addFriend": "Ask friendship",
+    "deleteFriend": "UnFriend",
+    "friendsList": "Friends",
+    "accept": "Accept",
+    "decline": "Decline"
   },
   "auth": {
     "powered": "Powered by ",
