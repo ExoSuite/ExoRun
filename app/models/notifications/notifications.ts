@@ -3,7 +3,8 @@ import { INotificationModel, NotificationModel } from "@models/notification"
 import { withEnvironment } from "@models/extensions"
 import { ApiRoutes, ILiveNotification, INotification, INotificationApiResponse } from "@services/api"
 import { ApiOkResponse } from "apisauce"
-import { noop } from "lodash-es"
+import { isEmpty, noop, orderBy } from "lodash-es"
+import { IGroup } from "@models/group"
 
 /**
  * Model description here for TypeScript hints.
@@ -27,6 +28,15 @@ export const NotificationsModel = types
       return {
         ...liveNotification,
       }
+    },
+    get latest(): NotificationsSnapshotType[] {
+      return orderBy(
+        self.notifications.slice(),
+        (notification: INotificationModel) => {
+          return !isEmpty(notification) ? notification.messages[0].created_at : notification.created_at
+        },
+        ["desc"]
+      )
     }
   }))
   .actions((self: INotificationsModel)  => ({

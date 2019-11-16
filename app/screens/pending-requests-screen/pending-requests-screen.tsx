@@ -97,7 +97,6 @@ export class PendingRequestsScreen extends React.Component<IPendingRequestsScree
     headerLeft: NavigationBackButtonWithNestedStackNavigator()
   })
 
-
   @action
   private async acceptRequest(item: IPendingRequest): Promise<void> {
     const { api } = this.props;
