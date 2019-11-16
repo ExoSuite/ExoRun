@@ -51,6 +51,11 @@ export class RunScreen extends React.Component<IRunScreenProps> {
         <Button text="Réalité augmentée" onPress={this.goToAugmentedReality} style={{ marginTop: spacing[3] }}/>
         <Button text="Mapbox" onPress={this.goTo(AppScreens.MAP)} style={{ marginTop: spacing[3] }}/>
         <Button text="Parcours" onPress={this.goTo(AppScreens.RUNS, runNavigationParams)} style={{marginTop: spacing[3]}}/>
+        <Button
+          text="Requetes en attentes"
+          onPress={this.goTo(AppScreens.PENDING_REQUESTS, runNavigationParams)}
+          style={{marginTop: spacing[3]}}
+        />
       </Screen>
     )
   }
