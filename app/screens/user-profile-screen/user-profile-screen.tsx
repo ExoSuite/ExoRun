@@ -5,7 +5,7 @@ import { Button, Screen, Text } from "@components"
 import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
-import { IPersonalTokens, IPost, IUser } from "@services/api"
+import { HttpResponse, IPersonalTokens, IPost, IUser } from "@services/api"
 import { Avatar, DefaultRnpAvatarSize } from "@components/avatar"
 import { palette } from "@theme/palette"
 import { headerShadow } from "@utils/shadows"
@@ -23,8 +23,8 @@ import { FontawesomeIcon } from "@components/fontawesome-icon"
 import { IFollowScreenNavigationScreenProps } from "@screens/follow-screen"
 import { FAB, PartialIconProps } from "react-native-paper"
 import moment from "moment"
-import { IBoolFunction, IVoidFunction } from "@custom-types"
-import { noop } from "lodash-es"
+import { IVoidFunction } from "@custom-types"
+import { isEmpty, noop } from "lodash-es"
 
 // tslint:disable:id-length
 
@@ -195,6 +195,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   constructor(props: IPersonalProfileScreenProps) {
     super(props)
     this.userProfile = props.navigation.getParam("me") ? props.userModel : props.navigation.getParam("user")
+    console.tron.logImportant(this.userProfile)
     const pictureToken = props.navigation.getParam("pictureToken")
     if (pictureToken) {
       this.avatarUrl = props.api.buildAvatarUrl(this.userProfile.id, pictureToken)
@@ -381,7 +382,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   private async toggleFollow(): Promise<void> {
     const { api } = this.props
     if (this.isUserFollowedByVisitor) {
-      await api.delete(`user/me/follows/${this.userProfile.follow.follow_id}`)
+      await api.delete(`user/me/follows/${this.userProfile.follow.id}`).catch(noop)
       this.userPosts = []
     } else {
       const followResponse: ApiResponse<IUser["follow"]> = await api.post(`user/${this.userProfile.id}/follows`)
@@ -421,7 +422,12 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     if (user) {
       const userProfileRequest: ApiResponse<IUser> = await api.get(`user/${user.id}/profile`)
       this.userProfile = { ...userProfileRequest.data, nick_name: this.userProfile.nick_name }
-      this.isUserFollowedByVisitor = userProfileRequest.data.follow.status
+      const followResponse: ApiResponse<any> = await api.get(`user/${user.id}/follows`).catch(noop)
+      if (!isEmpty(followResponse.data)) {
+        console.tron.logImportant(followResponse.data)
+        this.userProfile.follow = followResponse.data;
+      }
+      this.isUserFollowedByVisitor = followResponse.status === HttpResponse.OK;
     }
 
     await this.fetchPosts().catch(noop)

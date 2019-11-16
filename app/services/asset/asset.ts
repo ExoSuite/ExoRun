@@ -8,6 +8,7 @@ export enum FileExtension {
   PNG = "png",
   JPG = "jpg",
   JSON = "json",
+  VRX = "vrx"
 }
 
 /**

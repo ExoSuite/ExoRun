@@ -220,7 +220,7 @@ Array [
     >
       <View
         accessible={true}
-        focusable={false}
+        clickable={false}
         isTVSelectable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
