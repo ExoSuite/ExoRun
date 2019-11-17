@@ -18,6 +18,7 @@ import moment from "moment"
 import { IBoolFunction } from "@types"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { renderIf } from "@utils/render-if"
+import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 
 export interface IRunsScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -99,7 +100,15 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
   @observable private runs: IRun[] = []
   // @ts-ignore
   @observable private target = this.props.navigation.getParam("me")
-  private targetProfile: IUser = {} as IUser
+  private static targetProfile: IUser = {} as IUser
+
+  // tslint:disable-next-line: typedef
+  public static navigationOptions = {
+    headerTitle: (
+      <Text preset="header" text="Parcours" style={{ alignSelf: "center" }}/>
+    ),
+    headerLeft: NavigationBackButtonWithNestedStackNavigator()
+  }
 
   @action.bound
   private deleteRun(runToDelete: IRun): void {
@@ -182,7 +191,7 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
     return (
       <TouchableOpacity
         style={TIME_CONTAINER}
-        onPress={this.onRunPressNavigateToDetails(item, this.targetProfile)}
+        onPress={this.onRunPressNavigateToDetails(item, RunsScreen.targetProfile)}
       >
         <View style={ROW}>
           <View style={{marginLeft: spacing[2], justifyContent: "center"}}>
@@ -216,10 +225,10 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
       // @ts-ignore
       this.target = this.props.navigation.getParam("userProfile")
       this.routeAPIGetParcours = `user/${this.target.id}/run`
-      this.targetProfile = this.target
+      RunsScreen.targetProfile = this.target
     } else {
       const me = await api.get("user/me/").catch(onSearchError)
-      this.targetProfile = {...me.data}
+      RunsScreen.targetProfile = {...me.data}
     }
     const result = await api.get(this.routeAPIGetParcours).catch(onSearchError)
     this.runs.push(...result.data.data)
@@ -245,19 +254,6 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
                 <Picker.Item label="plus récent" value={UserRunFilters.YOUNGER}/>
                 <Picker.Item label="plus ancien" value={UserRunFilters.OLDEST}/>
               </Picker>
-              <View style={HEADER_TITLE}>
-                {renderIf.if(this.targetProfile.first_name === undefined)(
-                    <Text preset="header" text={" "} style={{ alignSelf: "center" }}/>
-                  ).elseIf(this.props.navigation.getParam("me") === true)(
-                    <Text preset="header" text={"Mes Parcours"} style={{ alignSelf: "center" }}/>
-                ).else(
-                    <Text
-                      preset="header"
-                      text={`Parcours de ${this.targetProfile.first_name} ${this.targetProfile.last_name}`}
-                      style={{ alignSelf: "center" }}
-                    />
-                  ).evaluate()}
-                </View>
             </View>
           </View>
         </View>
