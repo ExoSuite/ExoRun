@@ -70,7 +70,7 @@ export class NotificationsScreen extends React.Component<INotificationsScreenPro
   private pictureToken: IPersonalToken
 
   private static goToPendingRequests(navigation: NavigationStackProp): IVoidFunction {
-    return (): any => navigation.navigate(AppScreens.PENDING_REQUESTS)
+    return (): any => navigation.navigate(AppScreens.PENDING_REQUESTS, { me: true })
   }
 
   // tslint:disable-next-line: typedef

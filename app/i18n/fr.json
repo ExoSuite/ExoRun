@@ -19,11 +19,24 @@
     "new-post-content": "Contenu du nouveau statut",
     "updatedAt": "Mise à jour le : ",
     "createdAt": "Créé le : ",
-    "search": "Rechercher"
+    "search": "Rechercher",
+    "next-step": "Étape suivante",
+    "previous-step": "Étape précédente"
+  },
+  "checkpoint": {
+    "from-run": "Ajouter des points de passage à la course"
   },
   "drawer": {
     "my-profile": "Mon Profil",
     "app-settings": "Paramètres"
+  },
+  "run": {
+    "new": "Créer une nouvelle course",
+    "name": "Nom de la course",
+    "description": "Description de la course",
+    "type": "Visibilité de la course",
+    "private": "privé",
+    "public": "publique"
   },
   "group": {
     "name": "Nom du nouveau groupe (optionnel)",
