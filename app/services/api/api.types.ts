@@ -186,7 +186,7 @@ export interface IPaginate<Template> {
   total: number
 }
 
-export enum ICheckPointType {
+export enum CheckPointType {
   START = "start",
   DEFAULT = "checkpoint",
   ARRIVAL = "arrival"
@@ -198,7 +198,7 @@ export interface ICheckPoint extends ITimestamps {
   previous_checkpoint_id: string
   run_id: string
   times: ITime[]
-  type: ICheckPointType,
+  type: CheckPointType,
 }
 
 export interface IFeature {

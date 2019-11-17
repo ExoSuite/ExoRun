@@ -32,6 +32,8 @@ pod 'React', :path => '../node_modules/react-native/'
   
   pod 'ViroReact', :path => '../node_modules/react-viro/ios/'
   pod 'ViroKit_static_lib', :path => '../node_modules/react-viro/ios/dist/ViroRenderer/static_lib'
+
+  pod 'react-native-geolocation', path: '../node_modules/@react-native-community/geolocation'
   
   use_native_modules!
   

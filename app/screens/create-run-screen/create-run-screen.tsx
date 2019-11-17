@@ -1,7 +1,7 @@
 import * as React from "react"
 import { observer } from "mobx-react"
 import { View, ViewStyle } from "react-native"
-import { Button, Text, TextField } from "@components"
+import { Button, DismissKeyboard, Text, TextField } from "@components"
 // import { useStores } from "../models/root-store"
 import { color, spacing } from "@theme/index"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
@@ -18,16 +18,16 @@ const ROOT: ViewStyle = {
   backgroundColor: color.background,
   padding: spacing[6],
   flex: 1,
-  justifyContent: "space-evenly"
+  justifyContent: "space-evenly",
 }
 
 const BOTTOM_BORDER: ViewStyle = {
   borderBottomColor: color.palette.lighterGrey,
-  borderBottomWidth: 0.5
+  borderBottomWidth: 0.5,
 }
 
 const INPUT_STYLE: ViewStyle = {
-  backgroundColor: color.transparent
+  backgroundColor: color.transparent,
 }
 
 const disabled = color.palette.lightGrey
@@ -45,14 +45,14 @@ export class CreateRunScreen extends React.Component {
   public static navigationOptions = {
     headerTitle: <Text tx="run.new" preset="header"/>,
     headerLeft: NavigationBackButtonWithNestedStackNavigator({
-      iconName: "chevron-down"
-    })
+      iconName: "chevron-down",
+    }),
   }
 
   private chooseRunType(runType: RunType): IVoidFunction {
     // tslint:disable-next-line: no-void-expression
     return (): void => runInAction(() => {
-      this.runType = runType;
+      this.runType = runType
       this.toggleChooseRunTypeOpened()
     })
   }
@@ -63,8 +63,8 @@ export class CreateRunScreen extends React.Component {
       AppScreens.CHECKPOINTS_FOR_NEW_RUN, {
         runType: this.runType,
         description: this.description,
-        name: this.name
-      }
+        name: this.name,
+      },
     )
   }
 
@@ -75,77 +75,79 @@ export class CreateRunScreen extends React.Component {
 
   @action.bound
   private updateName(name: string): void {
-    this.name = name;
+    this.name = name
   }
 
   @action.bound
   private updateDescription(description: string): void {
-    this.description = description;
+    this.description = description
   }
 
   // tslint:disable-next-line:no-feature-envy
   public render(): React.ReactNode {
 
-    const translatedRunType = translate(`run.${this.runType}`);
+    const translatedRunType = translate(`run.${this.runType}`)
 
     let buttonColor = !isEmpty(this.name) && !isEmpty(this.description) ? buttonColor = enabled : buttonColor = disabled
 
     return (
-      <View style={ROOT}>
-        <TextField
-          value={this.name}
-          autoCapitalize="none"
-          labelTx="run.name"
-          placeholderTx="run.name"
-          inputStyle={[INPUT_STYLE, BOTTOM_BORDER]}
-          placeholderTextColor={color.palette.lightGrey}
-          onChangeText={this.updateName}
-        />
-        <TextField
-          value={this.description}
-          autoCapitalize="none"
-          labelTx="run.description"
-          multiline
-          placeholderTx="run.description"
-          inputStyle={[INPUT_STYLE, BOTTOM_BORDER]}
-          placeholderTextColor={color.palette.lightGrey}
-          onChangeText={this.updateDescription}
-        />
-
-        <Menu
-          visible={this.chooseRunTypeOpened}
-          onDismiss={this.toggleChooseRunTypeOpened}
-          anchor={
-            (
-              <Button
-                preset="neutral"
-                textPreset="primaryBoldLarge"
-                text={`${translate("run.type")}: ${translatedRunType}`}
-                onPress={this.toggleChooseRunTypeOpened}
-              />
-            )
-          }
-          contentStyle={{backgroundColor: color.backgroundDarkerer}}
-        >
-          <Menu.Item
-            onPress={this.chooseRunType(RunType.PRIVATE)}
-            title={<Text style={{textTransform: "capitalize"}} text={translate(`run.${RunType.PRIVATE}`)}/>}
+      <DismissKeyboard>
+        <View style={ROOT}>
+          <TextField
+            value={this.name}
+            autoCapitalize="none"
+            labelTx="run.name"
+            placeholderTx="run.name"
+            inputStyle={[INPUT_STYLE, BOTTOM_BORDER]}
+            placeholderTextColor={color.palette.lightGrey}
+            onChangeText={this.updateName}
           />
-          <Menu.Item
-            onPress={this.chooseRunType(RunType.PUBLIC)}
-            title={<Text style={{textTransform: "capitalize"}} text={translate(`run.${RunType.PUBLIC}`)}/>}
+          <TextField
+            value={this.description}
+            autoCapitalize="none"
+            labelTx="run.description"
+            multiline
+            placeholderTx="run.description"
+            inputStyle={[INPUT_STYLE, BOTTOM_BORDER]}
+            placeholderTextColor={color.palette.lightGrey}
+            onChangeText={this.updateDescription}
           />
-        </Menu>
 
-        <Button
-          tx="common.next-step"
-          textPreset="primaryBoldLarge"
-          style={{height: spacing[7], backgroundColor: buttonColor}}
-          onPress={this.navigateNext}
-          disabled={buttonColor !== enabled}
-        />
+          <Menu
+            visible={this.chooseRunTypeOpened}
+            onDismiss={this.toggleChooseRunTypeOpened}
+            anchor={
+              (
+                <Button
+                  preset="neutral"
+                  textPreset="primaryBoldLarge"
+                  text={`${translate("run.type")}: ${translatedRunType}`}
+                  onPress={this.toggleChooseRunTypeOpened}
+                />
+              )
+            }
+            contentStyle={{ backgroundColor: color.backgroundDarkerer }}
+          >
+            <Menu.Item
+              onPress={this.chooseRunType(RunType.PRIVATE)}
+              title={<Text style={{ textTransform: "capitalize" }} text={translate(`run.${RunType.PRIVATE}`)}/>}
+            />
+            <Menu.Item
+              onPress={this.chooseRunType(RunType.PUBLIC)}
+              title={<Text style={{ textTransform: "capitalize" }} text={translate(`run.${RunType.PUBLIC}`)}/>}
+            />
+          </Menu>
 
-      </View>
+          <Button
+            tx="common.next-step"
+            textPreset="primaryBoldLarge"
+            style={{ height: spacing[7], backgroundColor: buttonColor }}
+            onPress={this.navigateNext}
+            disabled={buttonColor !== enabled}
+          />
+
+        </View>
+      </DismissKeyboard>
     )
   }
 }
