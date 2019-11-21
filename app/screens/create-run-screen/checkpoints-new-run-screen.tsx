@@ -126,7 +126,7 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
       visibility: params.runType
     })
 
-
+    // tslint:disable-next-line:no-shadowed-variable
     const getCheckPointType = (it: number): string => {
       if (it === 0) {
         return "start"
