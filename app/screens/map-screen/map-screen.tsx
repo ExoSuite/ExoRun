@@ -53,6 +53,8 @@ const MAP: ViewStyle = {
   flex: 1
 }
 
+MapboxGL.setTelemetryEnabled(false)
+
 /**
  * MapScreen will deal with mapbox
  */
@@ -78,7 +80,6 @@ export class MapScreen extends React.Component<IMapScreenProps> {
   public async componentDidMount(): Promise<void> {
     const { api } = this.props
 
-    MapboxGL.setTelemetryEnabled(false)
     const response: ApiResponse<IPaginate<IRun>> = await api.get("user/me/run")
     const checkpoints = response.data.data[0].checkpoints
     this.cameraRef.flyTo(checkpoints[0].location.coordinates[0][0])
@@ -91,24 +92,25 @@ export class MapScreen extends React.Component<IMapScreenProps> {
     )
   }
 
-  public onUserMarkerPress(): void {
-    Alert.alert("You pressed on the user location annotation")
-  }
-
   // tslint:disable-next-line: no-feature-envy
   public render(): React.ReactNode {
 
     return (
       <Screen style={ROOT} preset="fixed">
         <MapboxGL.MapView
+          animated
           style={MAP}
           // @ts-ignore
           styleURL={MapboxGLConfig.STYLE_URL}
         >
           <MapboxGL.Camera
-            zoomLevel={22}
+            zoomLevel={50}
+            followUserLocation
+            followUserMode="course"
             ref={this.setCameraRef}
           />
+
+          <MapboxGL.UserLocation />
 
           {renderIf(this.featureCollection.features.length > 0)(
             <MapboxGL.ShapeSource id="runSource" shape={this.featureCollection} hitbox={null}>
