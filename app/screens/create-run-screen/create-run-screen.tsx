@@ -2,7 +2,6 @@ import * as React from "react"
 import { observer } from "mobx-react"
 import { View, ViewStyle } from "react-native"
 import { Button, DismissKeyboard, Text, TextField } from "@components"
-// import { useStores } from "../models/root-store"
 import { color, spacing } from "@theme/index"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import { Menu } from "react-native-paper"
@@ -58,7 +57,7 @@ export class CreateRunScreen extends React.Component {
   }
 
   @autobind
-  private navigateNext() {
+  private navigateNext(): void {
     this.props.navigation.navigate(
       AppScreens.CHECKPOINTS_FOR_NEW_RUN, {
         runType: this.runType,
@@ -74,13 +73,13 @@ export class CreateRunScreen extends React.Component {
   }
 
   @action.bound
-  private updateName(name: string): void {
-    this.name = name
+  private updateDescription(description: string): void {
+    this.description = description
   }
 
   @action.bound
-  private updateDescription(description: string): void {
-    this.description = description
+  private updateName(name: string): void {
+    this.name = name
   }
 
   // tslint:disable-next-line:no-feature-envy
@@ -88,7 +87,7 @@ export class CreateRunScreen extends React.Component {
 
     const translatedRunType = translate(`run.${this.runType}`)
 
-    let buttonColor = !isEmpty(this.name) && !isEmpty(this.description) ? buttonColor = enabled : buttonColor = disabled
+    const buttonColor = !isEmpty(this.name) && !isEmpty(this.description) ? enabled : disabled
 
     return (
       <DismissKeyboard>

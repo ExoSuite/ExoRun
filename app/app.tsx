@@ -130,14 +130,14 @@ export class App extends React.Component<{}, IAppState> {
       <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>
         <RNPProvider>
           <BackButtonHandler canExit={App.canExit}>
-            <StatefulNavigator/>
-            <DataLoader ref={App.setDataLoaderInstance}/>
+            <StatefulNavigator />
+            <DataLoader ref={App.setDataLoaderInstance} />
             <Notification
               // @ts-ignore
               onPress={Notification.hide}
               tapticFeedback
               hideStatusBar={false}
-              customComponent={<NotificationComponent/>}
+              customComponent={<NotificationComponent />}
               onHide={NotificationComponentManager.ResetNotification}
             />
           </BackButtonHandler>

@@ -4,20 +4,27 @@ import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/compon
 import { View, ViewStyle } from "react-native"
 import { color } from "@theme/color"
 import { spacing } from "@theme/spacing"
-import MapboxGL, { UserTrackingModes } from "@react-native-mapbox-gl/maps"
+import MapboxGL from "@react-native-mapbox-gl/maps"
 import { MapboxGLConfig } from "@utils/mapbox-gl-cfg"
 import { Button } from "@components/button"
 import { NavigationStackScreenProps } from "react-navigation-stack"
 import autobind from "autobind-decorator"
-import { ICheckPoint, CheckPointType, IFeatureCollection, ILocation, IFeature } from "@services/api"
+import { IFeature, IRun } from "@services/api"
 import { renderIf } from "@utils/render-if"
-import { action, observable, runInAction } from "mobx"
+import { action, observable } from "mobx"
 import Geolocation, { GeoPosition } from "react-native-geolocation-service"
-import { forEach, noop } from "lodash-es"
-import { RNNumberStepper } from "react-native-number-stepper";
+import { first, isEmpty, noop } from "lodash-es"
+import { RNNumberStepper } from "react-native-number-stepper"
 import destination from "@turf/destination"
-import turf, { Coord, Position } from "@turf/helpers"
+import { Position } from "@turf/helpers"
 import { interpolateCoordinates } from "@utils/geoutils"
+import { inject, observer } from "mobx-react"
+import booleanContains from "@turf/boolean-contains"
+import { Injection, InjectionProps } from "@services/injections"
+import { ApiResponse } from "apisauce"
+import { DataLoader } from "@components/data-loader"
+import { NavigationActions, StackActions } from "react-navigation"
+import { AppScreens } from "@navigation/navigation-definitions"
 
 const ROOT: ViewStyle = {
   backgroundColor: color.background,
@@ -59,16 +66,17 @@ const disabled = color.palette.lightGrey
 const enabled = color.secondary
 
 // tslint:disable-next-line: completed-docs
-export class CheckpointsNewRunScreen extends React.Component<NavigationStackScreenProps> {
+@inject(Injection.Api, Injection.SoundPlayer)
+@observer
+export class CheckpointsNewRunScreen extends React.Component<NavigationStackScreenProps & InjectionProps> {
 
   private get kmToMeters(): number {
     return this.checkpointRange / 1000
   }
 
-  private cameraRef
   @observable private checkpointRange = 2.5
 
-  @observable private checkpoints = []
+  @observable private readonly checkpoints: Position[] = []
 
   @observable private readonly line = null
 
@@ -91,9 +99,7 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
 
   @action.bound
   private buildFirstCheckpoint(position: GeoPosition): void {
-    this.checkpoints.push([position.coords.longitude, position.coords.latitude])
-    this.checkpoints = this.checkpoints.slice()
-    this.forceUpdate()
+    this.checkpoints[0] = [position.coords.longitude, position.coords.latitude]
   }
 
   @autobind
@@ -107,26 +113,95 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
   }
 
   @autobind
-  private setCameraRef(ref: any): void {
-    this.cameraRef = ref
+  private async createRunAndCheckpoints(): Promise<void> {
+    const { api, soundPlayer, navigation } = this.props;
+
+    DataLoader.Instance.toggleIsVisible()
+
+    const params = navigation.state.params
+
+    const run: ApiResponse<IRun> = await api.post("user/me/run", {
+      name: params.name,
+      description: params.description,
+      visibility: params.runType
+    })
+
+
+    const getCheckPointType = (it: number): string => {
+      if (it === 0) {
+        return "start"
+      }
+
+      if (it === this.checkpoints.length - 1) {
+        return "arrival"
+      }
+
+      return "checkpoint"
+    }
+
+    let it = 0;
+    for (const checkpoint of this.checkpoints) {
+
+      const formattedCheckpoint = this.buildCheckpoint(checkpoint)[0];
+      formattedCheckpoint.push(first(formattedCheckpoint))
+
+      await api.post(`user/me/run/${run.data.id}/checkpoint`, {
+        type: getCheckPointType(it),
+        location: formattedCheckpoint
+      });
+
+      it += 1
+    }
+
+    DataLoader.Instance.success(
+      soundPlayer.playSuccess,
+      () => navigation.pop(2)
+    )
   }
 
+  @action.bound
+  private onUserLongPressTheMap(feature: IFeature): void {
+    if (this.checkpoints.length === 1) { return; }
+
+    // tslint:disable-next-line: no-ignored-return no-map-without-usage
+    let filteredCheckpoint = this.checkpoints.slice(1, this.checkpoints.length).map((checkpoint: Position) => {
+      const checkpointFeature = MapboxGL.geoUtils.makeFeature({
+        type: "Polygon",
+        coordinates: this.buildCheckpoint(checkpoint),
+      })
+
+      // @ts-ignore
+      if (booleanContains(checkpointFeature, feature)) {
+        return null
+      }
+
+      return checkpoint
+    })
+
+    filteredCheckpoint = filteredCheckpoint.filter((checkpoint: Position) => !isEmpty(checkpoint))
+    this.checkpoints.length = 1;
+    this.checkpoints.push(...filteredCheckpoint)
+  }
+
+  @action.bound
+  private onUserPressTheMap(feature: IFeature): void {
+    // @ts-ignore
+    this.checkpoints.push(feature.geometry.coordinates)
+  }
 
   @action.bound
   private updateCheckpointRange(range: number): void {
     this.checkpointRange = range
-    this.forceUpdate()
   }
 
   public componentDidMount(): void {
     // tslint:disable-next-line: no-void-expression
     Geolocation.getCurrentPosition(this.buildFirstCheckpoint).catch(noop)
-
   }
 
   // tslint:disable-next-line: no-feature-envy
   public render(): React.ReactNode {
-    const buttonColor = true ? enabled : disabled
+    const buttonColor = this.checkpoints.length >= 2 ? enabled : disabled
 
     return (
       <View style={ROOT}>
@@ -135,6 +210,8 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
           style={MAP}
           // @ts-ignore
           styleURL={MapboxGLConfig.STYLE_URL}
+          onPress={this.onUserPressTheMap}
+          onLongPress={this.onUserLongPressTheMap}
         >
           <MapboxGL.Camera
             zoomLevel={50}
@@ -142,7 +219,7 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
             followUserMode="course"
           />
 
-          <MapboxGL.UserLocation/>
+          <MapboxGL.UserLocation onUpdate={this.buildFirstCheckpoint}/>
 
           {renderIf(this.checkpoints.length > 0)(
             <MapboxGL.ShapeSource id="runSource" shape={this.collection()} hitbox={null}>
@@ -153,14 +230,26 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
             </MapboxGL.ShapeSource>
           )}
 
-          {renderIf(this.line)(
-            <MapboxGL.ShapeSource id="progressSource" shape={this.line}>
-              <MapboxGL.LineLayer
-                id="progressFill"
-                style={layerStyles.progress}
-              />
-            </MapboxGL.ShapeSource>
-          )}
+          {
+            this.checkpoints.length >= 2 && (
+              <MapboxGL.ShapeSource
+                id="progressSource"
+                shape={MapboxGL.geoUtils.makeLineString(
+                  this.checkpoints.map((checkpoint: Position) => interpolateCoordinates({
+                    // @ts-ignore
+                    location: {
+                      coordinates: this.buildCheckpoint(checkpoint)
+                    }
+                  }))
+                )}
+              >
+                <MapboxGL.LineLayer
+                  id="progressFill"
+                  style={layerStyles.progress}
+                />
+              </MapboxGL.ShapeSource>
+            )
+          }
         </MapboxGL.MapView>
 
         <View style={{padding: spacing[4], justifyContent: "space-between"}}>
@@ -181,6 +270,7 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
             textPreset="primaryBoldLarge"
             style={{height: spacing[7], backgroundColor: buttonColor}}
             disabled={buttonColor !== enabled}
+            onPress={this.createRunAndCheckpoints}
           />
         </View>
 
