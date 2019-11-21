@@ -3,7 +3,7 @@ import { observer } from "mobx-react"
 import { FlatList, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Screen, Text } from "@components"
 import { color, spacing } from "@theme"
-import { NavigationScreenProps } from "react-navigation"
+import { NavigationParams, NavigationScreenProps } from "react-navigation"
 import { inject } from "mobx-react/native"
 import { Injection, InjectionProps } from "@services/injections"
 import { INotification, IPersonalToken, IPersonalTokens } from "@services/api"
@@ -14,6 +14,14 @@ import autobind from "autobind-decorator"
 import moment from "moment"
 import { INotificationModel } from "@models/notification"
 import { Notification } from "react-native-in-app-message"
+import { AvatarLeftHeader } from "@navigation/components/avatar-left-header"
+import { LogoHeader } from "@components/logo-header"
+import { headerShadow } from "@utils/shadows"
+import { FontawesomeIcon } from "@components/fontawesome-icon"
+import { NavigationStackScreenProps } from "react-navigation-stack"
+import { NavigationStackProp } from "react-navigation-stack/src/types"
+import { AppScreens } from "@navigation/navigation-definitions"
+import { IVoidFunction } from "@custom-types/functions"
 
 export interface INotificationsScreenProps extends NavigationScreenProps<{}> {
 }
@@ -60,6 +68,26 @@ const keyExtractor = (item: INotificationModel, index: number): string => item.i
 export class NotificationsScreen extends React.Component<INotificationsScreenProps & InjectionProps> {
 
   private pictureToken: IPersonalToken
+
+  private static goToPendingRequests(navigation: NavigationStackProp): IVoidFunction {
+    return (): any => navigation.navigate(AppScreens.PENDING_REQUESTS, { me: true })
+  }
+
+  // tslint:disable-next-line: typedef
+  public static navigationOptions = ({ navigation }) => ({
+    headerLeft: AvatarLeftHeader,
+    headerTitle: LogoHeader,
+    headerStyle: {
+      backgroundColor: color.backgroundDarkerer,
+      borderBottomWidth: 0,
+      ...headerShadow
+    },
+    headerRight: (
+      <TouchableOpacity style={{marginRight: spacing[2]}} onPress={NotificationsScreen.goToPendingRequests(navigation)}>
+        <FontawesomeIcon name="users-cog" size={32} color={color.palette.white} />
+      </TouchableOpacity>
+    )
+  })
 
   @autobind
   // tslint:disable-next-line:prefer-function-over-method no-feature-envy

@@ -20,32 +20,13 @@ import { AppScreens } from "@navigation/navigation-definitions"
 import { Button } from "@components/button"
 import { FontawesomeIcon } from "@components/fontawesome-icon"
 import { palette } from "@theme/palette"
+import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 
 export interface IPendingRequestsScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
 
 const ROOT: ViewStyle = {
-  backgroundColor: color.palette.black,
-}
-
-const TITLE: ViewStyle = {
-  backgroundColor: color.palette.backgroundDarker,
-  paddingLeft: spacing[5],
-  flexDirection: "column",
-}
-
-const HEADER_PICKER: ViewStyle = {
-  flex: 1,
-  flexDirection: "row",
-  backgroundColor: color.palette.backgroundDarkerer
-}
-
-const HEADER_TITLE: ViewStyle = {
-  flex: 1,
-  flexDirection: "row",
-  backgroundColor: color.palette.backgroundDarkerer,
-  justifyContent: "flex-end",
-  paddingRight: spacing[4]
+  backgroundColor: color.background
 }
 
 const TIME_CONTAINER: ViewStyle = {
@@ -109,6 +90,12 @@ export class PendingRequestsScreen extends React.Component<IPendingRequestsScree
   @observable private pictureToken: string
   @observable private requests: IPendingRequest[] = []
   private readonly routeAPIGetPendings = "user/me/pending_requests"
+
+  // tslint:disable-next-line: typedef
+  public static navigationOptions = ({ navigation }) => ({
+    headerTitle: <Text preset="lightHeader" text={`Vos requêtes en attentes`} style={{ alignSelf: "center" }}/>,
+    headerLeft: NavigationBackButtonWithNestedStackNavigator()
+  })
 
   @action
   private async acceptRequest(item: IPendingRequest): Promise<void> {
@@ -194,29 +181,15 @@ export class PendingRequestsScreen extends React.Component<IPendingRequestsScree
 
   public render(): React.ReactNode {
     return (
-      <Screen style={ROOT} preset="scroll">
-        <View style={TITLE}>
-          <View style={{flexDirection: "row", backgroundColor: color.palette.backgroundDarkerer}}>
-            <View style={HEADER_PICKER}>
-              <View style={HEADER_TITLE}>
-                  <Text
-                    preset="header"
-                    text={`Vos requêtes en attentes`}
-                    style={{ alignSelf: "center" }}
-                  />
-              </View>
-            </View>
-          </View>
-        </View>
-        <FlatList
-          data={this.requests}
-          keyExtractor={keyExtractor}
-          renderItem={this.renderItem}
-          onEndReached={this.onEndReached}
-          onEndReachedThreshold={0.5}
-          onMomentumScrollBegin={this.onMomentumScrollBegin}
-        />
-      </Screen>
+      <FlatList
+        data={this.requests}
+        keyExtractor={keyExtractor}
+        renderItem={this.renderItem}
+        onEndReached={this.onEndReached}
+        onEndReachedThreshold={0.5}
+        onMomentumScrollBegin={this.onMomentumScrollBegin}
+        style={ROOT}
+      />
     )
   }
 

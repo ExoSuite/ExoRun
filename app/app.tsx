@@ -23,6 +23,7 @@ import { IGroupsModel } from "@models/groups"
 import { INotificationsModel } from "@models/notifications"
 import { Notification } from "react-native-in-app-message"
 import { NotificationComponent, NotificationComponentManager } from "@components/notification-component"
+import { Provider as RNPProvider } from "react-native-paper"
 
 export interface IAppState {
   env?: Environment
@@ -127,18 +128,20 @@ export class App extends React.Component<{}, IAppState> {
 
     return (
       <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>
-        <BackButtonHandler canExit={App.canExit}>
-          <StatefulNavigator />
-          <DataLoader ref={App.setDataLoaderInstance} />
-          <Notification
-            // @ts-ignore
-            onPress={Notification.hide}
-            tapticFeedback
-            hideStatusBar={false}
-            customComponent={<NotificationComponent />}
-            onHide={NotificationComponentManager.ResetNotification}
-          />
-        </BackButtonHandler>
+        <RNPProvider>
+          <BackButtonHandler canExit={App.canExit}>
+            <StatefulNavigator />
+            <DataLoader ref={App.setDataLoaderInstance} />
+            <Notification
+              // @ts-ignore
+              onPress={Notification.hide}
+              tapticFeedback
+              hideStatusBar={false}
+              customComponent={<NotificationComponent />}
+              onHide={NotificationComponentManager.ResetNotification}
+            />
+          </BackButtonHandler>
+        </RNPProvider>
       </Provider>
     )
   }
