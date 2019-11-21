@@ -45,7 +45,10 @@
     "description": "Description of the run",
     "type": "Visibility of the run",
     "private": "private",
-    "public": "public"
+    "public": "public",
+    "filter-by": "Filter by:",
+    "younger": "latest",
+    "oldest": "oldest"
   },
   "group": {
     "name": "Name of the new group (optional)",

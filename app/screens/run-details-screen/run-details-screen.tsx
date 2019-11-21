@@ -15,6 +15,7 @@ import { FAB } from "react-native-paper"
 import autobind from "autobind-decorator"
 import { IBoolFunction } from "@types"
 import { AppScreens } from "@navigation/navigation-definitions"
+import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 export interface IRunDetailsScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
 
@@ -69,6 +70,11 @@ export class RunDetailsScreen extends React.Component<IRunDetailsScreenProps> {
   @observable private runCreator: IUser = {} as IUser
   // @ts-ignore
   private readonly targetProfile: IUser = this.props.navigation.getParam("targetProfile")
+
+  // tslint:disable-next-line: typedef
+  public static navigationOptions = ({ navigation }) => ({
+    headerLeft: NavigationBackButtonWithNestedStackNavigator()
+  })
 
   @autobind
   private changeIsFabOpen(): any {
