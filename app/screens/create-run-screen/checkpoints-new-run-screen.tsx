@@ -137,13 +137,16 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
       data: []
     }
 
+    let it = 0
+
     for (const checkpoint of checkpoints) {
 
-      formattedCheckpoint.data[checkpoint.id] = {
+      formattedCheckpoint.data[it] = {
         id: checkpoint.id,
         location: this.buildCheckpoint(checkpoint.location)[0]
       }
-      formattedCheckpoint.data[checkpoint.id].location.push(first(formattedCheckpoint.data[checkpoint.id].location))
+      formattedCheckpoint.data[it].location.push(first(formattedCheckpoint.data[it].location))
+      it += 1
     }
 
     const run: ApiResponse<IRun> = await api.post("user/me/run", {
