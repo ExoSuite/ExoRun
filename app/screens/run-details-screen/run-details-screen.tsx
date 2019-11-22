@@ -103,9 +103,7 @@ export class RunDetailsScreen extends React.Component<IRunDetailsScreenProps> {
     const { api } = this.props
 
     await api.delete(`/user/me/run/${this.run.id}`).catch(onSearchError)
-    // @ts-ignore
-    this.props.navigation.getParam("deleteRun")(this.run)
-    this.props.navigation.dispatch(NavigationActions.back())
+    this.props.navigation.goBack()
   }
 
   @autobind
@@ -158,14 +156,14 @@ export class RunDetailsScreen extends React.Component<IRunDetailsScreenProps> {
           actions={[
             { icon: "delete", label: "Supprimer", onPress: this.onPressDelete },
             {
-              icon: "star", label: "Temps de courses",
+              icon: "timer", label: "Temps de courses",
               onPress: this.onPressGoToRunTimes(this.run.id, this.targetProfile),
             },
             {
-              icon: "vr", label: "Réalité augmentée", onPress: this.goToAugmentedReality
+              icon: "augmented-reality", label: "Réalité augmentée", onPress: this.goToAugmentedReality
             },
             {
-              icon: "point", label: "Voir les points de passage", onPress: this.goToCheckpointsView
+              icon: "map-marker-path", label: "Voir les points de passage", onPress: this.goToCheckpointsView
             }
           ]}
           icon={this.isFabOpen ? "minus" : "plus"}

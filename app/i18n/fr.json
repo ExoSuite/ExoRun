@@ -39,7 +39,10 @@
     "public": "publique",
     "filter-by": "Filtrer par :",
     "younger": "Plus récent",
-    "oldest": "Plus ancien"
+    "oldest": "Plus ancien",
+    "best": "Meilleurs temps",
+    "lower": "Plus petits temps",
+    "sort": "Classer par :"
   },
   "group": {
     "name": "Nom du nouveau groupe (optionnel)",

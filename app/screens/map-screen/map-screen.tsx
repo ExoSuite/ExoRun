@@ -109,7 +109,6 @@ export class MapScreen extends React.Component<IMapScreenProps> {
       }
     }
 
-
     this.cameraRef.flyTo(filteredCheckpoints[0].location.coordinates[0][0])
     this.line = MapboxGL.geoUtils.makeLineString(filteredCheckpoints.map(interpolateCoordinates))
     this.featureCollection.features = filteredCheckpoints.map(
@@ -141,21 +140,25 @@ export class MapScreen extends React.Component<IMapScreenProps> {
           <MapboxGL.UserLocation/>
 
           {renderIf(this.featureCollection.features.length > 0)(
-            <MapboxGL.ShapeSource id="runSource" shape={this.featureCollection} hitbox={null}>
-              <MapboxGL.FillLayer
-                id="runFillLayer"
-                style={layerStyles.smileyFace}
-              />
-            </MapboxGL.ShapeSource>,
+            (
+              <MapboxGL.ShapeSource id="runSource" shape={this.featureCollection} hitbox={null}>
+                <MapboxGL.FillLayer
+                  id="runFillLayer"
+                  style={layerStyles.smileyFace}
+                />
+              </MapboxGL.ShapeSource>
+            ),
           )}
 
           {renderIf(this.line)(
-            <MapboxGL.ShapeSource id="progressSource" shape={this.line}>
-              <MapboxGL.LineLayer
-                id="progressFill"
-                style={layerStyles.progress}
-              />
-            </MapboxGL.ShapeSource>,
+            (
+              <MapboxGL.ShapeSource id="progressSource" shape={this.line}>
+                <MapboxGL.LineLayer
+                  id="progressFill"
+                  style={layerStyles.progress}
+                />
+              </MapboxGL.ShapeSource>
+            )
           )}
         </MapboxGL.MapView>
       </Screen>

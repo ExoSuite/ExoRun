@@ -132,43 +132,13 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
     const params = navigation.state.params
     const checkpoints = orderBy(this.checkpoints, "id")
 
-    console.tron.logImportant(checkpoints)
-
-    return ;
-
     const run: ApiResponse<IRun> = await api.post("user/me/run", {
       name: params.name,
       description: params.description,
       visibility: params.runType
     })
 
-    // tslint:disable-next-line:no-shadowed-variable
-    const getCheckPointType = (it: number): string => {
-      if (it === 0) {
-        return "start"
-      }
-
-      if (it === this.checkpoints.length - 1) {
-        return "arrival"
-      }
-
-      return "checkpoint"
-    }
-
-    let it = 0;
-    for (const checkpoint of checkpoints) {
-
-      const formattedCheckpoint = this.buildCheckpoint(checkpoint.location)[0];
-      formattedCheckpoint.push(first(formattedCheckpoint))
-
-      await api.post(`user/me/run/${run.data.id}/checkpoint`, {
-        type: getCheckPointType(it),
-        location: formattedCheckpoint
-      });
-
-      await sleep(500)
-      it += 1
-    }
+    await api.post(`user/me/run/${run.data.id}/checkpoint/checkpoints`, checkpoints);
 
     DataLoader.Instance.success(
       soundPlayer.playSuccess,
