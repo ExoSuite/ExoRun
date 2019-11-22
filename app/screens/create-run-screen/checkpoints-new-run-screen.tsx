@@ -146,8 +146,6 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
       formattedCheckpoint.data[checkpoint.id].location.push(first(formattedCheckpoint.data[checkpoint.id].location))
     }
 
-
-
     const run: ApiResponse<IRun> = await api.post("user/me/run", {
       name: params.name,
       description: params.description,
