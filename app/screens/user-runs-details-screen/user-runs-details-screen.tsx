@@ -11,6 +11,8 @@ import { ApiResponse } from "apisauce"
 import { Injection, InjectionProps } from "@services/injections"
 import autobind from "autobind-decorator"
 import { FAB } from "react-native-paper"
+import { AppScreens } from "@navigation/navigation-definitions"
+import { IBoolFunction } from "@custom-types/functions"
 
 export interface IUserRunsDetailsScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -91,6 +93,16 @@ export class UserRunsDetailsScreen extends React.Component<IUserRunsDetailsScree
     // @ts-ignore
     this.props.navigation.getParam("deleteUserRun")(this.userRun)
     this.props.navigation.dispatch(NavigationActions.back())
+  }
+
+  @autobind
+  private onPressCompare(): void {
+    this.props.navigation.navigate(
+      AppScreens.COMPARE_USER_RUN,
+      {
+        targetUserRun: this.userRun,
+      }
+    )
   }
 
   @autobind
@@ -176,6 +188,7 @@ export class UserRunsDetailsScreen extends React.Component<IUserRunsDetailsScree
           style={fab}
           actions={[
             { icon: "delete", label: "Supprimer", onPress: this.onPressDelete},
+            { icon: "stopwatch", label: "Comparer à mes temps", onPress: this.onPressCompare},
           ]}
           icon={this.isFabOpen ? "remove" : "add"}
           open={this.isFabOpen}
