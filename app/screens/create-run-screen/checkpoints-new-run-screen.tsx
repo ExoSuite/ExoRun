@@ -13,7 +13,7 @@ import { IFeature, IRun } from "@services/api"
 import { renderIf } from "@utils/render-if"
 import { action, observable } from "mobx"
 import Geolocation, { GeoPosition } from "react-native-geolocation-service"
-import { first, isEmpty, noop } from "lodash-es"
+import { first, isEmpty, last, noop, orderBy } from "lodash-es"
 import { RNNumberStepper } from "react-native-number-stepper"
 import destination from "@turf/destination"
 import { Position } from "@turf/helpers"
@@ -25,6 +25,7 @@ import { ApiResponse } from "apisauce"
 import { DataLoader } from "@components/data-loader"
 import { NavigationActions, StackActions } from "react-navigation"
 import { AppScreens } from "@navigation/navigation-definitions"
+import moment from "moment"
 
 const ROOT: ViewStyle = {
   backgroundColor: color.background,
@@ -65,6 +66,17 @@ const layerStyles = {
 const disabled = color.palette.lightGrey
 const enabled = color.secondary
 
+interface IPoint {
+  id: number,
+  location: Position
+}
+
+// tslint:disable-next-line:typedef
+const sleep = (milliseconds) => {
+  // tslint:disable-next-line:typedef no-string-based-set-timeout
+  return new Promise((resolve) => setTimeout(resolve, milliseconds))
+}
+
 // tslint:disable-next-line: completed-docs
 @inject(Injection.Api, Injection.SoundPlayer)
 @observer
@@ -76,9 +88,7 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
 
   @observable private checkpointRange = 2.5
 
-  @observable private readonly checkpoints: Position[] = []
-
-  @observable private readonly line = null
+  @observable private readonly checkpoints: IPoint[] = []
 
   public static navigationOptions = {
     headerTitle: <Text tx="checkpoint.from-run" preset="lightHeader"/>,
@@ -90,35 +100,54 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
   private buildCheckpoint(coordinates: Position): any {
     const degrees = [-45, 45, 135, -135]
 
-    const checkpoints = degrees.map((degree: number) => {
-      return destination(coordinates, this.kmToMeters, degree).geometry.coordinates
-    })
+    const checkpoints = degrees.map((degree: number) =>
+      destination(coordinates, this.kmToMeters, degree).geometry.coordinates)
 
     return [checkpoints]
   }
 
   @action.bound
   private buildFirstCheckpoint(position: GeoPosition): void {
-    this.checkpoints[0] = [position.coords.longitude, position.coords.latitude]
+    this.checkpoints[0] = {
+      id: 0,
+      location: [position.coords.longitude, position.coords.latitude]
+    }
   }
 
   @autobind
   private collection(): any {
-    return MapboxGL.geoUtils.makeFeatureCollection(this.checkpoints.map((checkpoint: [number, number]) => {
+    return MapboxGL.geoUtils.makeFeatureCollection(this.checkpoints.map((checkpoint: IPoint) => {
       return MapboxGL.geoUtils.makeFeature({
         type: "Polygon",
-        coordinates: this.buildCheckpoint(checkpoint)
+        coordinates: this.buildCheckpoint(checkpoint.location)
       })
     }))
   }
 
+  // tslint:disable-next-line: no-feature-envy
   @autobind
   private async createRunAndCheckpoints(): Promise<void> {
     const { api, soundPlayer, navigation } = this.props;
 
     DataLoader.Instance.toggleIsVisible()
-
     const params = navigation.state.params
+    const checkpoints = orderBy(this.checkpoints, "id")
+
+    const formattedCheckpoint = {
+      data: []
+    }
+
+    let it = 0
+
+    for (const checkpoint of checkpoints) {
+
+      formattedCheckpoint.data[it] = {
+        id: checkpoint.id,
+        location: this.buildCheckpoint(checkpoint.location)[0]
+      }
+      formattedCheckpoint.data[it].location.push(first(formattedCheckpoint.data[it].location))
+      it += 1
+    }
 
     const run: ApiResponse<IRun> = await api.post("user/me/run", {
       name: params.name,
@@ -126,32 +155,7 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
       visibility: params.runType
     })
 
-    // tslint:disable-next-line:no-shadowed-variable
-    const getCheckPointType = (it: number): string => {
-      if (it === 0) {
-        return "start"
-      }
-
-      if (it === this.checkpoints.length - 1) {
-        return "arrival"
-      }
-
-      return "checkpoint"
-    }
-
-    let it = 0;
-    for (const checkpoint of this.checkpoints) {
-
-      const formattedCheckpoint = this.buildCheckpoint(checkpoint)[0];
-      formattedCheckpoint.push(first(formattedCheckpoint))
-
-      await api.post(`user/me/run/${run.data.id}/checkpoint`, {
-        type: getCheckPointType(it),
-        location: formattedCheckpoint
-      });
-
-      it += 1
-    }
+    await api.post(`user/me/run/${run.data.id}/checkpoint/checkpoints`, formattedCheckpoint);
 
     DataLoader.Instance.success(
       soundPlayer.playSuccess,
@@ -164,10 +168,10 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
     if (this.checkpoints.length === 1) { return; }
 
     // tslint:disable-next-line: no-ignored-return no-map-without-usage
-    let filteredCheckpoint = this.checkpoints.slice(1, this.checkpoints.length).map((checkpoint: Position) => {
+    let filteredCheckpoint = this.checkpoints.slice(1, this.checkpoints.length).map((checkpoint: IPoint) => {
       const checkpointFeature = MapboxGL.geoUtils.makeFeature({
         type: "Polygon",
-        coordinates: this.buildCheckpoint(checkpoint),
+        coordinates: this.buildCheckpoint(checkpoint.location),
       })
 
       // @ts-ignore
@@ -178,15 +182,18 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
       return checkpoint
     })
 
-    filteredCheckpoint = filteredCheckpoint.filter((checkpoint: Position) => !isEmpty(checkpoint))
+    filteredCheckpoint = filteredCheckpoint.filter((checkpoint: IPoint) => !isEmpty(checkpoint))
     this.checkpoints.length = 1;
     this.checkpoints.push(...filteredCheckpoint)
   }
 
   @action.bound
   private onUserPressTheMap(feature: IFeature): void {
-    // @ts-ignore
-    this.checkpoints.push(feature.geometry.coordinates)
+    this.checkpoints.push({
+      id: last(this.checkpoints).id + 1,
+      // @ts-ignore
+      location: feature.geometry.coordinates
+    })
   }
 
   @action.bound
@@ -235,10 +242,10 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
               <MapboxGL.ShapeSource
                 id="progressSource"
                 shape={MapboxGL.geoUtils.makeLineString(
-                  this.checkpoints.map((checkpoint: Position) => interpolateCoordinates({
+                  this.checkpoints.map((checkpoint: IPoint) => interpolateCoordinates({
                     // @ts-ignore
                     location: {
-                      coordinates: this.buildCheckpoint(checkpoint)
+                      coordinates: this.buildCheckpoint(checkpoint.location)
                     }
                   }))
                 )}

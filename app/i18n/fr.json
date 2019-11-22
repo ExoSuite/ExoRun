@@ -36,7 +36,13 @@
     "description": "Description de la course",
     "type": "Visibilité de la course",
     "private": "privé",
-    "public": "publique"
+    "public": "publique",
+    "filter-by": "Filtrer par :",
+    "younger": "Plus récent",
+    "oldest": "Plus ancien",
+    "best": "Meilleurs temps",
+    "lower": "Plus petits temps",
+    "sort": "Classer par :"
   },
   "group": {
     "name": "Nom du nouveau groupe (optionnel)",

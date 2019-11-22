@@ -8,7 +8,7 @@ import { color } from "@theme"
 import { HomeNavigator } from "@navigation/home-navigator"
 import { SearchScreen } from "@screens/search-screen"
 import { getActiveChildNavigationOptions } from "react-navigation"
-import { RunScreen } from "@screens/run-screen"
+import { RunsScreen } from "@screens/runs-screen"
 
 const tabBarIconSize = 20
 
@@ -29,7 +29,7 @@ export const AppBottomTabNavigator = createMaterialBottomTabNavigator(
       }
     },
     [AppScreens.RUN]: {
-      screen: RunScreen,
+      screen: RunsScreen,
       navigationOptions: {
         tabBarIcon: TabBarIcon({ name: "running", size: 22 }),
         tabBarColor: "#892943"

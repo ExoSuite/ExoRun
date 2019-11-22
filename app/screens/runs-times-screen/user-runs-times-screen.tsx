@@ -18,6 +18,10 @@ import { SortFields } from "@utils/sort-fields"
 import { UserRunFilters } from "@utils/user-run-filters"
 import * as FilterFunctons from "@utils/filters-functions"
 import { renderIf } from "@utils/render-if"
+import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
+import { Menu } from "react-native-paper"
+import { Button } from "@components/button"
+import { translate } from "@i18n/translate"
 
 export interface IRunsTimesScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -25,7 +29,7 @@ export interface IRunsTimesScreenProps extends NavigationScreenProps<{}>, Inject
 const HEADER_PICKER: ViewStyle = {
   flex: 1,
   flexDirection: "row",
-  backgroundColor: color.palette.backgroundDarkerer
+  backgroundColor: color.palette.backgroundDarkerer,
 }
 
 const HEADER_TITLE: ViewStyle = {
@@ -33,7 +37,7 @@ const HEADER_TITLE: ViewStyle = {
   flexDirection: "row",
   backgroundColor: color.palette.backgroundDarkerer,
   justifyContent: "flex-end",
-  paddingRight: spacing[4]
+  paddingRight: spacing[4],
 }
 
 const TITLE: ViewStyle = {
@@ -45,7 +49,7 @@ const TITLE: ViewStyle = {
 
 const ROOT: ViewStyle = {
   backgroundColor: color.background,
-  flex: 1
+  flex: 1,
 }
 
 const TIME_CONTAINER: ViewStyle = {
@@ -59,11 +63,11 @@ const TIME_CONTAINER: ViewStyle = {
   shadowRadius: 3.84,
   elevation: 5,
   margin: spacing[2],
-  padding: spacing[2]
+  padding: spacing[2],
 }
 
 const ROW: ViewStyle = {
-  flexDirection: "row"
+  flexDirection: "row",
 }
 
 // @ts-ignore
@@ -71,8 +75,8 @@ const onSearchError = (): ApiResponse<any> => (
   {
     data: {
       data: [],
-      current_page: Number.MAX_SAFE_INTEGER
-    }
+      current_page: Number.MAX_SAFE_INTEGER,
+    },
   }
 )
 
@@ -80,7 +84,7 @@ const filters = {
   "best": FilterFunctons.ascentValue(SortFields.FINAL_TIME),
   "lower": FilterFunctons.decayValue(SortFields.FINAL_TIME),
   "oldest": FilterFunctons.decayValue(SortFields.CREATED_AT),
-  "younger": FilterFunctons.ascentValue(SortFields.CREATED_AT)
+  "younger": FilterFunctons.ascentValue(SortFields.CREATED_AT),
 }
 
 // tslint:disable-next-line:no-commented-code no-commented-out-code
@@ -92,7 +96,9 @@ const keyExtractor = (item: IUserRun, index: number): string => item.id
 @observer
 export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> {
   private currentPage: number
-  private filterValue: string
+  private filterValue: string = UserRunFilters.YOUNGER
+
+  @observable private isOptionOpened = false
   private lastQuery: string
   private maxPage: number
   private onEndReachedCalledDuringMomentum = true
@@ -101,6 +107,11 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
   // @ts-ignore
   private readonly targetProfile: IUser = this.props.navigation.getParam("targetProfile")
   @observable private userRuns: IUserRun[] = []
+
+  // tslint:disable-next-line: typedef
+  public static navigationOptions = ({ navigation }) => ({
+    headerLeft: NavigationBackButtonWithNestedStackNavigator(),
+  })
 
   @action.bound
   private deleteUserRun(userRunToDelete: IUserRun): void {
@@ -127,7 +138,8 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
       this.filterValue = item
 
       if (item === "best" || item === "lower" || item === "oldest" || item === "younger") {
-        this.userRuns = this.userRuns.slice().sort(filters[item]);
+        this.userRuns = this.userRuns.slice().sort(filters[item])
+        this.toggleOptions()
       }
     }
   }
@@ -140,8 +152,8 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
         AppScreens.RUN_TIMES_DETAILS,
         {
           item,
-          deleteUserRun: this.deleteUserRun
-        }
+          deleteUserRun: this.deleteUserRun,
+        },
       )
     }
   }
@@ -157,7 +169,7 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
     }
 
     const queriesParams: { page?: number, text: string } = {
-      text: query
+      text: query,
     }
 
     if (neededNextPage) {
@@ -178,16 +190,16 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
 
   // tslint:disable-next-line:no-feature-envy
   @autobind
-  private renderTimes({item}: { item: IUserRun }): React.ReactElement {
-    const formattedCreatedAt = moment(item.created_at).format("LLL");
+  private renderTimes({ item }: { item: IUserRun }): React.ReactElement {
+    const formattedCreatedAt = moment(item.created_at).format("LLL")
     const time = new Date(
       0,
       0,
       0,
       (item.final_time / 3600),
       (item.final_time / 60) % 60,
-      item.final_time % 60
-    );
+      item.final_time % 60,
+    )
 
     const formattedTime = `${time.getHours().toString()} h ${time.getMinutes().toString()} min ${time.getSeconds().toString()} sec`
 
@@ -197,15 +209,15 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
         onPress={this.onTimePressNavigateToDetails(item)}
       >
         <View style={ROW}>
-          <View style={{marginLeft: spacing[2], justifyContent: "center"}}>
+          <View style={{ marginLeft: spacing[2], justifyContent: "center" }}>
             <Text
-              style={{textTransform: "capitalize"}}
+              style={{ textTransform: "capitalize" }}
               text={formattedTime}
               preset="userRow"
             />
           </View>
         </View>
-        <View style={{...ROW, flex: 1, marginTop: spacing[3]}}>
+        <View style={{ ...ROW, flex: 1, marginTop: spacing[3] }}>
           <View>
             <Text preset="fieldLabel" text="Couru le :"/>
             <Text preset="fieldLabel" text={formattedCreatedAt}/>
@@ -214,6 +226,11 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
       </TouchableOpacity>
 
     )
+  }
+
+  @action.bound
+  private toggleOptions(): void {
+    this.isOptionOpened = !this.isOptionOpened
   }
 
   @action
@@ -225,39 +242,88 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
     await this.onUserTypeSearch("*")
   }
 
-  public render (): React.ReactNode {
+  public render(): React.ReactNode {
+
+    // tslint:disable: no-void-expression
+    const onYoungerSelected = (): void => this.onPickerValueChange(UserRunFilters.YOUNGER)
+    const onOldestSelected = (): void => this.onPickerValueChange(UserRunFilters.OLDEST)
+    const onBestSelected = (): void => this.onPickerValueChange(UserRunFilters.BEST)
+    const onLowerSelected = (): void => this.onPickerValueChange(UserRunFilters.LOWER)
+    const currentFilterTranslated = translate(`run.${this.filterValue}`)
 
     return (
       <Screen style={ROOT} preset="fixed">
         <View style={TITLE}>
-          <View style={{flex: 1, backgroundColor: color.palette.backgroundDarkerer, flexDirection: "row"}}>
+          <View style={{ flex: 1, backgroundColor: color.palette.backgroundDarkerer, flexDirection: "row" }}>
             <View style={HEADER_PICKER}>
-            <Text preset="fieldLabel" text="Classer par : " style={{marginTop: spacing[1]}}/>
-            <Picker
-              onValueChange={this.onPickerValueChange}
-              selectedValue={this.filterValue}
-              style={{ backgroundColor: "white", width: 100, height: 30}}
-              itemStyle={{ backgroundColor: "white" }}
-            >
-              <Picker.Item label="Plus récent" value={UserRunFilters.YOUNGER}/>
-              <Picker.Item label="Plus ancien" value={UserRunFilters.OLDEST}/>
-              <Picker.Item label="Meilleurs temps" value={UserRunFilters.BEST}/>
-              <Picker.Item label="Plus petits temps" value={UserRunFilters.LOWER}/>
-            </Picker>
+              <Menu
+                visible={this.isOptionOpened}
+                onDismiss={this.toggleOptions}
+                anchor={
+                  (
+                    <Button
+                      preset="neutral"
+                      textPreset="primaryBoldLarge"
+                      text={`${translate("run.sort")} ${currentFilterTranslated}`}
+                      onPress={this.toggleOptions}
+                    />
+                  )
+                }
+                contentStyle={{ backgroundColor: color.backgroundDarkerer }}
+              >
+                <Menu.Item
+                  onPress={onYoungerSelected}
+                  title={(
+                    <Text
+                      style={{ textTransform: "capitalize" }}
+                      text={translate(`run.${UserRunFilters.YOUNGER}`)}
+                    />
+                   )}
+                />
+                <Menu.Item
+                  onPress={onOldestSelected}
+                  title={(
+                    <Text
+                      style={{ textTransform: "capitalize" }}
+                      text={translate(`run.${UserRunFilters.OLDEST}`)}
+                    />
+                  )}
+                />
+
+                <Menu.Item
+                  onPress={onBestSelected}
+                  title={<Text style={{ textTransform: "capitalize" }} text={translate(`run.${UserRunFilters.BEST}`)}/>}
+                />
+
+                <Menu.Item
+                  onPress={onLowerSelected}
+                  title={(
+                    <Text
+                      style={{ textTransform: "capitalize" }}
+                      text={translate(`run.${UserRunFilters.LOWER}`)}
+                    />
+                  )}
+                />
+
+              </Menu>
             </View>
             <View style={HEADER_TITLE}>
               {renderIf.if(this.props.navigation.getParam("me") === true)(
-                <Text
-                  text={`Mes temps de courses`}
-                  style={{ alignSelf: "center", fontWeight: "bold", fontSize: 20}}
-                />
+                (
+                  <Text
+                    text={`Mes temps de courses`}
+                    style={{ alignSelf: "center", fontWeight: "bold", fontSize: 20 }}
+                  />
+                )
               ).else(
-                <Text
-                  text={`Temps de : ${this.targetProfile.first_name} ${this.targetProfile.last_name}`}
-                  style={{ alignSelf: "center", fontWeight: "bold", fontSize: 20}}
-                />
+                (
+                  <Text
+                    text={`Temps de : ${this.targetProfile.first_name} ${this.targetProfile.last_name}`}
+                    style={{ alignSelf: "center", fontWeight: "bold", fontSize: 20 }}
+                  />
+                )
               ).evaluate()}
-          </View>
+            </View>
           </View>
         </View>
         <FlatList
