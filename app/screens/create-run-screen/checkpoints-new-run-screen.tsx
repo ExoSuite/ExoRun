@@ -124,6 +124,7 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
     }))
   }
 
+  // tslint:disable-next-line: no-feature-envy
   @autobind
   private async createRunAndCheckpoints(): Promise<void> {
     const { api, soundPlayer, navigation } = this.props;
@@ -132,13 +133,28 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
     const params = navigation.state.params
     const checkpoints = orderBy(this.checkpoints, "id")
 
+    const formattedCheckpoint = {
+      data: []
+    }
+
+    for (const checkpoint of checkpoints) {
+
+      formattedCheckpoint.data[checkpoint.id] = {
+        id: checkpoint.id,
+        location: this.buildCheckpoint(checkpoint.location)[0]
+      }
+      formattedCheckpoint.data[checkpoint.id].location.push(first(formattedCheckpoint.data[checkpoint.id].location))
+    }
+
+
+
     const run: ApiResponse<IRun> = await api.post("user/me/run", {
       name: params.name,
       description: params.description,
       visibility: params.runType
     })
 
-    await api.post(`user/me/run/${run.data.id}/checkpoint/checkpoints`, checkpoints);
+    await api.post(`user/me/run/${run.data.id}/checkpoint/checkpoints`, formattedCheckpoint);
 
     DataLoader.Instance.success(
       soundPlayer.playSuccess,
