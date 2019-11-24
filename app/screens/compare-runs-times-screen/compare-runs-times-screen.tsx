@@ -198,12 +198,12 @@ export class CompareRunsTimesScreen extends React.Component<ICompareRunsTimesScr
           <View style={{marginLeft: spacing[2], justifyContent: "center"}}>
             <Text
               style={{textTransform: "capitalize"}}
-              text={`Reference : ${formattedMyTime}`}
+              text={`Reference : ${formattedOtherTime}`}
               preset="userRow"
             />
             <Text
               style={{textTransform: "capitalize", color: "red"}}
-              text={`Temps comparé : ${formattedOtherTime}`}
+              text={`Temps comparé : ${formattedMyTime}`}
               preset="userRow"
             />
             <Text

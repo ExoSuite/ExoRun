@@ -102,9 +102,8 @@ export class ChooseUserRunScreen extends React.Component<IChooseUserRunScreenPro
 
   @action.bound
   private chooseUserRun(item: IUserRun): IVoidFunction {
-      this.props.navigation.getParam("chooseMyUserRun")(item)
-
       return (): void => {
+        this.props.navigation.getParam("chooseMyUserRun")(item)
         this.props.navigation.goBack()
       }
   }
