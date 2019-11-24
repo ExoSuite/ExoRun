@@ -105,7 +105,6 @@ export class ChooseUserRunScreen extends React.Component<IChooseUserRunScreenPro
   private readonly targetProfile: IUser = this.props.navigation.getParam("targetProfile")
   @observable private userRuns: IUserRun[] = []
 
-
   // tslint:disable-next-line: typedef
   public static navigationOptions = ({ navigation }) => ({
     headerLeft: NavigationBackButtonWithNestedStackNavigator(),
