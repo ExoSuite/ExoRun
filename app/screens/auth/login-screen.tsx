@@ -234,8 +234,7 @@ export class LoginScreen extends React.Component<TLoginScreenProps> {
       isValidEmail
     } = this
 
-    let buttonColor
-    email && password && isValidEmail ? buttonColor = enabled : buttonColor = disabled
+    const buttonColor = email && password && isValidEmail ?  enabled : disabled
     const passwordToggleText = isPasswordVisible ? hidePassword : revealPassword
 
     const emailInputState = booleanToInputState(isValidEmail)

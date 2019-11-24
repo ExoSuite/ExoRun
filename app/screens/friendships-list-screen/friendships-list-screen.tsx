@@ -82,11 +82,22 @@ export class FriendshipsListScreen extends React.Component<IFriendshipsListScree
   private routeAPIGetFollowers: string
   // @ts-ignore
   @observable private target = this.props.navigation.getParam("me")
-  private targetProfile: IUser = {} as IUser
+  private static targetProfile: IUser = {} as IUser
 
   // tslint:disable-next-line: typedef
   public static navigationOptions = ({ navigation }) => ({
-    headerLeft: NavigationBackButtonWithNestedStackNavigator()
+    headerLeft: NavigationBackButtonWithNestedStackNavigator(),
+    headerTitle: renderIf.if(FriendshipsListScreen.targetProfile.first_name === undefined)(
+      <Text preset="lightHeader" text={" "} style={{ textAlign: "center" }}/>
+    ).elseIf(navigation.getParam("me") === true)(
+      <Text preset="lightHeader" text={"Mes Amis"} style={{ textAlign: "center" }}/>
+    ).else(
+      <Text
+        preset="lightHeader"
+        text={`Liste d'amis de ${FriendshipsListScreen.targetProfile.first_name} ${FriendshipsListScreen.targetProfile.last_name}`}
+        style={{ textAlign: "center" }}
+      />
+    ).evaluate()
   })
 
   @autobind
@@ -152,10 +163,10 @@ export class FriendshipsListScreen extends React.Component<IFriendshipsListScree
       // @ts-ignore
       this.target = this.props.navigation.getParam("userProfile");
       this.routeAPIGetFollowers = `user/${this.target.id}/friendship`;
-      this.targetProfile = this.target;
+      FriendshipsListScreen.targetProfile = this.target;
     } else {
       const ME = await api.get("user/me/").catch(onSearchError);
-      this.targetProfile = {...ME.data};
+      FriendshipsListScreen.targetProfile = {...ME.data};
     }
     const RESULT = await api.get(this.routeAPIGetFollowers).catch(onSearchError);
     this.friends.push(...RESULT.data.data);
@@ -165,36 +176,15 @@ export class FriendshipsListScreen extends React.Component<IFriendshipsListScree
 
   public render(): React.ReactNode {
     return (
-      <Screen style={ROOT} preset="scroll">
-        <View style={TITLE}>
-          <View style={{flexDirection: "row", backgroundColor: color.palette.backgroundDarkerer}}>
-            <View style={HEADER_PICKER}>
-              {/* SEARCH BAR */}
-              <View style={HEADER_TITLE}>
-                {renderIf.if(this.targetProfile.first_name === undefined)(
-                  <Text preset="header" text={" "} style={{ alignSelf: "center" }}/>
-                ).elseIf(this.props.navigation.getParam("me") === true)(
-                  <Text preset="header" text={"Mes Amis"} style={{ alignSelf: "center" }}/>
-                ).else(
-                  <Text
-                    preset="header"
-                    text={`Liste d'amis de ${this.targetProfile.first_name} ${this.targetProfile.last_name}`}
-                    style={{ alignSelf: "center" }}
-                  />
-                ).evaluate()}
-              </View>
-            </View>
-          </View>
-        </View>
-        <FlatList
-          data={this.friends}
-          keyExtractor={keyExtractor}
-          renderItem={this.renderItem}
-          onEndReached={this.onEndReached}
-          onEndReachedThreshold={0.5}
-          onMomentumScrollBegin={this.onMomentumScrollBegin}
-        />
-      </Screen>
+      <FlatList
+        data={this.friends}
+        style={ROOT}
+        keyExtractor={keyExtractor}
+        renderItem={this.renderItem}
+        onEndReached={this.onEndReached}
+        onEndReachedThreshold={0.5}
+        onMomentumScrollBegin={this.onMomentumScrollBegin}
+      />
     )
   }
 

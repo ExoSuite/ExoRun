@@ -18,6 +18,7 @@ import { AppScreens } from "@navigation/navigation-definitions"
 import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
+import { translate } from "@i18n/translate"
 
 export interface IFollowersListScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -83,11 +84,22 @@ export class FollowersListScreen extends React.Component<IFollowersListScreenPro
   private routeAPIGetFollowers: string
   // @ts-ignore
   @observable private target = this.props.navigation.getParam("me")
-  private targetProfile: IUser = {} as IUser
+  private static targetProfile: IUser = {} as IUser
 
   // tslint:disable-next-line: typedef
   public static navigationOptions = ({ navigation }) => ({
-    headerLeft: NavigationBackButtonWithNestedStackNavigator()
+    headerLeft: NavigationBackButtonWithNestedStackNavigator(),
+    headerTitle: renderIf.if(FollowersListScreen.targetProfile.first_name === undefined)(
+      <Text preset="lightHeader" text={" "} style={{ alignSelf: "center" }}/>
+    ).elseIf(navigation.getParam("me") === true)(
+      <Text preset="lightHeader" text={"Mes followers"} style={{ textAlign: "center" }}/>
+    ).else(
+      <Text
+        preset="lightHeader"
+        text={`${translate("common.followers")} ${FollowersListScreen.targetProfile.first_name} ${FollowersListScreen.targetProfile.last_name}`}
+        style={{ textAlign: "center" }}
+      />
+    ).evaluate()
   })
 
   @autobind
@@ -173,10 +185,10 @@ export class FollowersListScreen extends React.Component<IFollowersListScreenPro
       // @ts-ignore
       this.target = this.props.navigation.getParam("userProfile");
       this.routeAPIGetFollowers = `user/${this.target.id}/follows/followers`;
-      this.targetProfile = this.target;
+      FollowersListScreen.targetProfile = this.target;
     } else {
       const ME = await api.get("user/me/").catch(onSearchError);
-      this.targetProfile = {...ME.data};
+      FollowersListScreen.targetProfile = {...ME.data};
     }
     const RESULT = await api.get(this.routeAPIGetFollowers).catch(onSearchError);
     this.followers.push(...RESULT.data.data);
@@ -185,36 +197,15 @@ export class FollowersListScreen extends React.Component<IFollowersListScreenPro
 
   public render(): React.ReactNode {
     return (
-      <Screen style={ROOT} preset="scroll">
-        <View style={TITLE}>
-          <View style={{flexDirection: "row", backgroundColor: color.palette.backgroundDarkerer}}>
-            <View style={HEADER_PICKER}>
-              {/* SEARCH BAR */}
-              <View style={HEADER_TITLE}>
-                {renderIf.if(this.targetProfile.first_name === undefined)(
-                  <Text preset="header" text={" "} style={{ alignSelf: "center" }}/>
-                ).elseIf(this.props.navigation.getParam("me") === true)(
-                  <Text preset="header" text={"Mes followers"} style={{ alignSelf: "center" }}/>
-                ).else(
-                  <Text
-                    preset="header"
-                    text={`Followers de ${this.targetProfile.first_name} ${this.targetProfile.last_name}`}
-                    style={{ alignSelf: "center" }}
-                  />
-                ).evaluate()}
-              </View>
-            </View>
-          </View>
-        </View>
-        <FlatList
-          data={this.followers}
-          keyExtractor={keyExtractor}
-          renderItem={this.renderItem}
-          onEndReached={this.onEndReached}
-          onEndReachedThreshold={0.5}
-          onMomentumScrollBegin={this.onMomentumScrollBegin}
-        />
-      </Screen>
+      <FlatList
+        data={this.followers}
+        style={ROOT}
+        keyExtractor={keyExtractor}
+        renderItem={this.renderItem}
+        onEndReached={this.onEndReached}
+        onEndReachedThreshold={0.5}
+        onMomentumScrollBegin={this.onMomentumScrollBegin}
+      />
     )
   }
 

@@ -95,15 +95,6 @@ export class GroupScreen extends React.Component<IGroupScreenProps> {
     }
   }
 
-  @action.bound
-  // tslint:disable-next-line: typedef
-  private async onUserTypeToSearch(): Promise<void> {
-    const { groupsModel } = this.props
-
-    groupsModel.fetchGroups(groupsModel.currentPage + 1)
-  }
-
-
   @autobind
   private onGroupPressNavigateToChat(group: IGroup): IBoolFunction {
     return (): boolean => this.props.navigation.navigate(
@@ -117,6 +108,15 @@ export class GroupScreen extends React.Component<IGroupScreenProps> {
   @autobind
   private onMomentumScrollBegin(): void {
     this.onEndReachedCalledDuringMomentum = false
+  }
+
+  @action.bound
+  // tslint:disable-next-line: typedef
+  private async onUserTypeToSearch(): Promise<void> {
+    const { groupsModel } = this.props
+
+    // tslint:disable-next-line: restrict-plus-operands
+    groupsModel.fetchGroups(groupsModel.currentPage + 1)
   }
 
   // tslint:disable-next-line: no-feature-envy

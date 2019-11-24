@@ -18,6 +18,7 @@ import { IBoolFunction } from "@custom-types/functions"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { noop } from "lodash-es"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
+import { translate } from "@i18n/translate"
 
 export interface IFollowsListScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -33,7 +34,7 @@ const onSearchError = (): ApiResponse<any> => (
 )
 
 const ROOT: ViewStyle = {
-  backgroundColor: color.palette.black,
+  backgroundColor: color.background
 }
 
 const TITLE: ViewStyle = {
@@ -83,11 +84,22 @@ export class FollowsListScreen extends React.Component<IFollowsListScreenProps> 
   private routeAPIGetFollowers: string
   // @ts-ignore
   @observable private target = this.props.navigation.getParam("me")
-  private targetProfile: IUser = {} as IUser
+  private static targetProfile: IUser = {} as IUser
 
   // tslint:disable-next-line: typedef
   public static navigationOptions = ({ navigation }) => ({
-    headerLeft: NavigationBackButtonWithNestedStackNavigator()
+    headerLeft: NavigationBackButtonWithNestedStackNavigator(),
+    headerTitle : renderIf.if(FollowsListScreen.targetProfile.first_name === undefined)(
+        <Text preset="lightHeader" text={" "} style={{ alignSelf: "center" }}/>
+      ).elseIf(navigation.getParam("me") === true)(
+        <Text preset="lightHeader" text={"Personnes suivis"} style={{ textAlign: "center" }}/>
+      ).else(
+        <Text
+          preset="lightHeader"
+          text={`${translate("common.follow")} ${FollowsListScreen.targetProfile.first_name} ${FollowsListScreen.targetProfile.last_name}`}
+          style={{ textAlign: "center" }}
+        />
+      ).evaluate()
   })
 
   @autobind
@@ -156,10 +168,10 @@ export class FollowsListScreen extends React.Component<IFollowsListScreenProps> 
       // @ts-ignore
       this.target = this.props.navigation.getParam("userProfile");
       this.routeAPIGetFollowers = `user/${this.target.id}/follows/following`;
-      this.targetProfile = this.target;
+      FollowsListScreen.targetProfile = this.target;
     } else {
       const ME = await api.get("user/me/").catch(onSearchError);
-      this.targetProfile = {...ME.data};
+      FollowsListScreen.targetProfile = {...ME.data};
     }
     const RESULT = await api.get(this.routeAPIGetFollowers).catch(onSearchError);
     this.follows.push(...RESULT.data.data);
@@ -168,36 +180,15 @@ export class FollowsListScreen extends React.Component<IFollowsListScreenProps> 
 
   public render(): React.ReactNode {
     return (
-      <Screen style={ROOT} preset="scroll">
-        <View style={TITLE}>
-          <View style={{flexDirection: "row", backgroundColor: color.palette.backgroundDarkerer}}>
-            <View style={HEADER_PICKER}>
-              {/* SEARCH BAR */}
-              <View style={HEADER_TITLE}>
-                {renderIf.if(this.targetProfile.first_name === undefined)(
-                  <Text preset="header" text={" "} style={{ alignSelf: "center" }}/>
-                ).elseIf(this.props.navigation.getParam("me") === true)(
-                  <Text preset="header" text={"Personnes suivis"} style={{ alignSelf: "center" }}/>
-                ).else(
-                  <Text
-                    preset="header"
-                    text={`Personnes suivies par ${this.targetProfile.first_name} ${this.targetProfile.last_name}`}
-                    style={{ alignSelf: "center" }}
-                  />
-                ).evaluate()}
-              </View>
-            </View>
-          </View>
-        </View>
-        <FlatList
-          data={this.follows}
-          keyExtractor={keyExtractor}
-          renderItem={this.renderItem}
-          onEndReached={this.onEndReached}
-          onEndReachedThreshold={0.5}
-          onMomentumScrollBegin={this.onMomentumScrollBegin}
-        />
-      </Screen>
+      <FlatList
+        style={ROOT}
+        data={this.follows}
+        keyExtractor={keyExtractor}
+        renderItem={this.renderItem}
+        onEndReached={this.onEndReached}
+        onEndReachedThreshold={0.5}
+        onMomentumScrollBegin={this.onMomentumScrollBegin}
+      />
     )
   }
 
