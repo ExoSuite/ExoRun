@@ -2,11 +2,11 @@ import { AugmentedRealityScreen } from "@screens/augmented-reality-screen/augmen
 import { ReactViroConfig } from "@utils/react-viro-cfg"
 import React from "react"
 import { ViewStyle } from "react-native"
-import { NavigationScreenProps } from "react-navigation"
+import { NavigationScreenProp } from "react-navigation"
 import { ViroARSceneNavigator } from "react-viro"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 
-export interface IAugmentedRealityNavigatorProps extends NavigationScreenProps<{}> {
+export interface IAugmentedRealityNavigatorProps extends NavigationScreenProp<{}> {
 }
 
 const FULL: ViewStyle = {

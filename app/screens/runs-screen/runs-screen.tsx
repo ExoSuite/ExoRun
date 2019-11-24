@@ -18,46 +18,39 @@ import moment from "moment"
 import { IBoolFunction } from "@types"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { renderIf } from "@utils/render-if"
+import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
+import { FontawesomeIcon } from "@components/fontawesome-icon"
+import { NavigationStackProp } from "react-navigation-stack/src/types"
+import { IVoidFunction } from "@custom-types/functions"
+import { Button } from "@components/button"
+import { translate } from "@i18n/translate"
+import { Menu } from "react-native-paper"
+import { RunType } from "@screens/create-run-screen/run-type"
 
 export interface IRunsScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
 
 const ROOT: ViewStyle = {
-  backgroundColor: color.palette.black,
+  backgroundColor: color.background,
+  flex: 1
 }
 
 const TITLE: ViewStyle = {
   backgroundColor: color.palette.backgroundDarker,
-  paddingLeft: spacing[5],
-  flexDirection: "column",
+  padding: spacing[5]
 }
 
-const HEADER_PICKER: ViewStyle = {
-  flex: 1,
-  flexDirection: "row",
-  backgroundColor: color.palette.backgroundDarkerer
-}
-
-const HEADER_TITLE: ViewStyle = {
-  flex: 1,
-  flexDirection: "row",
-  backgroundColor: color.palette.backgroundDarkerer,
-  justifyContent: "flex-end",
-  paddingRight: spacing[4]
-}
-
-const TIME_CONTAINER: ViewStyle = {
+const RUN_CONTAINER: ViewStyle = {
   backgroundColor: color.backgroundDarkerer,
   shadowColor: "#000",
   shadowOffset: {
     width: 0,
-    height: 0,
+    height: 2
   },
   shadowOpacity: 0.25,
   shadowRadius: 3.84,
   elevation: 5,
-//  margin: spacing[2],
-  padding: spacing[2]
+  margin: spacing[3],
 }
 
 const ROW: ViewStyle = {
@@ -91,15 +84,31 @@ const keyExtractor = (item: IRun, index: number): string => item.id
 @observer
 export class RunsScreen extends React.Component<IRunsScreenProps> {
   private currentPage: number
-  private filterValue: string
+  private filterValue: string = UserRunFilters.YOUNGER
+  private focusListener: any
+
+  @observable private isOptionOpened = false
   private lastQuery: string
   private maxPage: number
   private onEndReachedCalledDuringMomentum = true
   private routeAPIGetParcours: string
   @observable private runs: IRun[] = []
   // @ts-ignore
-  @observable private target = this.props.navigation.getParam("me")
-  private targetProfile: IUser = {} as IUser
+  @observable private target = this.props.navigation.getParam("me") ?? true
+  private static targetProfile: IUser = {} as IUser
+
+  private static AddNewRun(navigation: NavigationStackProp): IVoidFunction {
+    return (): any => navigation.navigate(AppScreens.CREATE_NEW_RUN)
+  }
+
+  // tslint:disable-next-line: typedef
+  public static navigationOptions = ({ navigation }) => ({
+    headerRight: (
+      <TouchableOpacity style={{marginRight: spacing[2]}} onPress={RunsScreen.AddNewRun(navigation)}>
+        <FontawesomeIcon name="layer-plus" size={32} color={color.palette.white} />
+      </TouchableOpacity>
+    )
+  })
 
   @action.bound
   private deleteRun(runToDelete: IRun): void {
@@ -127,6 +136,7 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
 
       if (item === "best" || item === "lower" || item === "oldest" || item === "younger") {
         this.runs = this.runs.slice().sort(filters[item]);
+        this.toggleOptions()
       }
     }
   }
@@ -181,8 +191,8 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
 
     return (
       <TouchableOpacity
-        style={TIME_CONTAINER}
-        onPress={this.onRunPressNavigateToDetails(item, this.targetProfile)}
+        style={RUN_CONTAINER}
+        onPress={this.onRunPressNavigateToDetails(item, RunsScreen.targetProfile)}
       >
         <View style={ROW}>
           <View style={{marginLeft: spacing[2], justifyContent: "center"}}>
@@ -207,6 +217,11 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
     )
   }
 
+  @action.bound
+  private toggleOptions(): void {
+    this.isOptionOpened = !this.isOptionOpened
+  }
+
   @action
   public async componentDidMount(): Promise<void> {
     const { api } = this.props
@@ -216,50 +231,59 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
       // @ts-ignore
       this.target = this.props.navigation.getParam("userProfile")
       this.routeAPIGetParcours = `user/${this.target.id}/run`
-      this.targetProfile = this.target
+      RunsScreen.targetProfile = this.target
     } else {
       const me = await api.get("user/me/").catch(onSearchError)
-      this.targetProfile = {...me.data}
+      RunsScreen.targetProfile = {...me.data}
     }
     const result = await api.get(this.routeAPIGetParcours).catch(onSearchError)
     this.runs.push(...result.data.data)
     await this.onUserTypeSearch("*")
+
+    this.focusListener = this.props.navigation.addListener("didFocus", () => {
+      this.onUserTypeSearch("*").catch(noop)
+    });
+  }
+
+  public componentWillUnmount(): void {
+    // Remove the event listener
+    this.focusListener.remove();
   }
 
   public render(): React.ReactNode {
 
-    // @ts-ignore
-    // @ts-ignore
+    // tslint:disable: no-void-expression
+    const onYoungerSelected = (): void => this.onPickerValueChange(UserRunFilters.YOUNGER)
+    const onOldestSelected = (): void => this.onPickerValueChange(UserRunFilters.OLDEST)
+    const currentFilterTranslated = translate(`run.${this.filterValue}`)
+
     return (
-      <Screen style={ROOT} preset="scroll">
+      <View style={ROOT}>
         <View style={TITLE}>
-          <View style={{flexDirection: "row", backgroundColor: color.palette.backgroundDarkerer}}>
-            <View style={HEADER_PICKER}>
-              <Text preset="fieldLabel" text="Classer par : " style={{marginTop: spacing[1]}}/>
-              <Picker
-                onValueChange={this.onPickerValueChange}
-                selectedValue={this.filterValue}
-                style={{ backgroundColor: "white", width: 100, height: 30 }}
-                itemStyle={{ backgroundColor: "white"}}
-              >
-                <Picker.Item label="plus récent" value={UserRunFilters.YOUNGER}/>
-                <Picker.Item label="plus ancien" value={UserRunFilters.OLDEST}/>
-              </Picker>
-              <View style={HEADER_TITLE}>
-                {renderIf.if(this.targetProfile.first_name === undefined)(
-                    <Text preset="header" text={" "} style={{ alignSelf: "center" }}/>
-                  ).elseIf(this.props.navigation.getParam("me") === true)(
-                    <Text preset="header" text={"Mes Parcours"} style={{ alignSelf: "center" }}/>
-                ).else(
-                    <Text
-                      preset="header"
-                      text={`Parcours de ${this.targetProfile.first_name} ${this.targetProfile.last_name}`}
-                      style={{ alignSelf: "center" }}
-                    />
-                  ).evaluate()}
-                </View>
-            </View>
-          </View>
+          <Menu
+            visible={this.isOptionOpened}
+            onDismiss={this.toggleOptions}
+            anchor={
+              (
+                <Button
+                  preset="neutral"
+                  textPreset="primaryBoldLarge"
+                  text={`${translate("run.filter-by")} ${currentFilterTranslated}`}
+                  onPress={this.toggleOptions}
+                />
+              )
+            }
+            contentStyle={{ backgroundColor: color.backgroundDarkerer }}
+          >
+            <Menu.Item
+              onPress={onYoungerSelected}
+              title={<Text style={{ textTransform: "capitalize" }} text={translate(`run.${UserRunFilters.YOUNGER}`)}/>}
+            />
+            <Menu.Item
+              onPress={onOldestSelected}
+              title={<Text style={{ textTransform: "capitalize" }} text={translate(`run.${UserRunFilters.OLDEST}`)}/>}
+            />
+          </Menu>
         </View>
         <FlatList
           data={this.runs}
@@ -269,7 +293,7 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
           onEndReachedThreshold={0.5}
           onMomentumScrollBegin={this.onMomentumScrollBegin}
         />
-      </Screen>
+      </View>
     )
   }
 }

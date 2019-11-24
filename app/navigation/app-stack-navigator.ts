@@ -24,6 +24,8 @@ import { FollowersListScreen } from "@screens/followers-list-screen"
 import { FollowsListScreen } from "@screens/follows-list-screen"
 import { FriendshipsListScreen } from "@screens/friendships-list-screen"
 import { PendingRequestsScreen } from "@screens/pending-requests-screen"
+import { CreateRunScreen } from "@screens/create-run-screen/create-run-screen"
+import { CheckpointsNewRunScreen } from "@screens/create-run-screen/checkpoints-new-run-screen"
 import { CompareRunsTimesScreen } from "@screens/compare-runs-times-screen"
 import { ChooseUserRunScreen } from "@screens/choose-user-run-screen"
 
@@ -71,7 +73,9 @@ export const AppStackNavigator = createStackNavigator({
   },
   [AppScreens.NEW_GROUP]: NewGroupScreen,
   [AppScreens.NEW_POST]: ModalPostScreen,
-  [AppScreens.CHOOSE_USERS_FOR_NEW_GROUP]: ChooseUsersNewGroupScreen
+  [AppScreens.CHOOSE_USERS_FOR_NEW_GROUP]: ChooseUsersNewGroupScreen,
+  [AppScreens.CREATE_NEW_RUN]: CreateRunScreen,
+  [AppScreens.CHECKPOINTS_FOR_NEW_RUN]: CheckpointsNewRunScreen
 }, {
   mode: "modal",
   // @ts-ignore

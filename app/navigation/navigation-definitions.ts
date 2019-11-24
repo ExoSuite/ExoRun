@@ -27,6 +27,8 @@ export enum AppScreens {
   GET_FOLLOWS = "follows-list",
   GET_FRIENDS = "friends-list",
   PENDING_REQUESTS = "pending-requests",
+  CREATE_NEW_RUN = "new-run",
+  CHECKPOINTS_FOR_NEW_RUN = "checkpoints-for-new-run"
   COMPARE_USER_RUN = "compare-runs-times",
   CHOOSE_USER_RUN = "choose-user-run",
 }

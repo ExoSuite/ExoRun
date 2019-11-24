@@ -15,6 +15,9 @@ import { FAB } from "react-native-paper"
 import autobind from "autobind-decorator"
 import { IBoolFunction } from "@types"
 import { AppScreens } from "@navigation/navigation-definitions"
+import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
+import { FontawesomeIcon } from "@components/fontawesome-icon"
+
 export interface IRunDetailsScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
 
@@ -27,19 +30,19 @@ const TITLE: ViewStyle = {
   paddingLeft: spacing[5],
 //  margin: spacing[2],
   flexDirection: "row",
-  flex: 1
+  flex: 1,
 }
 
 const CREATED_BY: ViewStyle = {
   flex: 1,
   backgroundColor: color.palette.backgroundDarkerer,
-  flexDirection: "row"
+  flexDirection: "row",
 }
 
-const DESCRIPTION : ViewStyle = {
+const DESCRIPTION: ViewStyle = {
   flex: 15,
   backgroundColor: color.palette.backgroundDarkerer,
-  padding: spacing[3]
+  padding: spacing[3],
 }
 
 const fab: ViewStyle = {
@@ -53,8 +56,8 @@ const onSearchError = (): ApiResponse<any> => (
   {
     data: {
       data: [],
-      current_page: Number.MAX_SAFE_INTEGER
-    }
+      current_page: Number.MAX_SAFE_INTEGER,
+    },
   }
 )
 
@@ -70,9 +73,29 @@ export class RunDetailsScreen extends React.Component<IRunDetailsScreenProps> {
   // @ts-ignore
   private readonly targetProfile: IUser = this.props.navigation.getParam("targetProfile")
 
+  // tslint:disable-next-line: typedef
+  public static navigationOptions = ({ navigation }) => ({
+    headerLeft: NavigationBackButtonWithNestedStackNavigator(),
+  })
+
   @autobind
   private changeIsFabOpen(): any {
     this.isFabOpen = !this.isFabOpen
+  }
+
+  @autobind
+  private goToAugmentedReality(): void {
+    this.props.navigation.navigate(AppScreens.AUGMENTED_REALITY)
+  }
+
+  @autobind
+  private goToCheckpointsView(): void {
+    const creatorId = this.runCreator.id ?? this.targetProfile.id
+
+    this.props.navigation.navigate(AppScreens.MAP, {
+      runId: this.run.id,
+      creatorId,
+    })
   }
 
   @autobind
@@ -80,9 +103,7 @@ export class RunDetailsScreen extends React.Component<IRunDetailsScreenProps> {
     const { api } = this.props
 
     await api.delete(`/user/me/run/${this.run.id}`).catch(onSearchError)
-    // @ts-ignore
-    this.props.navigation.getParam("deleteRun")(this.run)
-    this.props.navigation.dispatch(NavigationActions.back())
+    this.props.navigation.goBack()
   }
 
   @autobind
@@ -93,8 +114,8 @@ export class RunDetailsScreen extends React.Component<IRunDetailsScreenProps> {
       {
         run_id,
         targetProfile,
-        me: this.props.navigation.getParam("me")
-      }
+        me: this.props.navigation.getParam("me"),
+      },
     )
   }
 
@@ -106,44 +127,50 @@ export class RunDetailsScreen extends React.Component<IRunDetailsScreenProps> {
     this.runCreator = { ...result.data }
   }
 
-  public render (): React.ReactNode {
+  public render(): React.ReactNode {
     const formattedCreatedAt = moment(this.run.created_at).format("LLL")
     let creator_name: string
     !isEmpty(this.runCreator) ? creator_name = `${this.runCreator.first_name} ${this.runCreator.last_name}` : creator_name = ""
 
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <Screen style={ROOT} preset="fixed">
           <View style={TITLE}>
-            <View style={{flex: 1, backgroundColor: color.palette.backgroundDarkerer}}>
-              <Text preset="header" text={this.run.name} style={{marginTop: spacing[1]}}/>
+            <View style={{ flex: 1, backgroundColor: color.palette.backgroundDarkerer }}>
+              <Text preset="header" text={this.run.name} style={{ marginTop: spacing[1] }}/>
             </View>
             <View style={CREATED_BY}>
-              <Text preset="lightHeader" text="Créé par : " style={{marginTop: spacing[1]}}/>
-              <Text preset="lightHeader" text={creator_name} style={{marginTop: spacing[1]}}/>
+              <Text preset="lightHeader" text="Créé par : " style={{ marginTop: spacing[1] }}/>
+              <Text preset="lightHeader" text={creator_name} style={{ marginTop: spacing[1] }}/>
             </View>
           </View>
           <View style={DESCRIPTION}>
-            <Text preset="lightHeader" text="Description de la course :" style={{textDecorationLine: "underline"}}/>
-            <Text preset="default" text={this.run.description} style={{marginTop: spacing[3]}}/>
-            <Text preset="fieldLabel" text={`Créé le : ${formattedCreatedAt}`} style={{marginTop: spacing[5]}}/>
+            <Text preset="lightHeader" text="Description de la course :" style={{ textDecorationLine: "underline" }}/>
+            <Text preset="default" text={this.run.description} style={{ marginTop: spacing[3] }}/>
+            <Text preset="fieldLabel" text={`Créé le : ${formattedCreatedAt}`} style={{ marginTop: spacing[5] }}/>
           </View>
         </Screen>
-{/*
-         tslint:disable-next-line:use-simple-attributes
-*/}
+        {/*tslint:disable-next-line:use-simple-attributes*/}
         <FAB.Group
           style={fab}
           actions={[
-            { icon: "delete", label: "Supprimer", onPress: this.onPressDelete},
-            { icon: "hourglass-empty", label: "Temps de courses",
-              onPress: this.onPressGoToRunTimes(this.run.id, this.targetProfile) },
+            { icon: "delete", label: "Supprimer", onPress: this.onPressDelete },
+            {
+              icon: "timer", label: "Temps de courses",
+              onPress: this.onPressGoToRunTimes(this.run.id, this.targetProfile),
+            },
+            {
+              icon: "augmented-reality", label: "Réalité augmentée", onPress: this.goToAugmentedReality
+            },
+            {
+              icon: "map-marker-path", label: "Voir les points de passage", onPress: this.goToCheckpointsView
+            }
           ]}
-          icon={this.isFabOpen ? "remove" : "add"}
+          icon={this.isFabOpen ? "minus" : "plus"}
           open={this.isFabOpen}
           onStateChange={this.changeIsFabOpen}
         />
       </View>
-          )
+    )
   }
 }

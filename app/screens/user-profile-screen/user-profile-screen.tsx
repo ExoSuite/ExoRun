@@ -5,7 +5,7 @@ import { Button, Screen, Text } from "@components"
 import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
-import { IFriendship, IPersonalTokens, IPost, IUser } from "@services/api"
+import { HttpResponse, IFriendship, IPersonalTokens, IPost, IUser } from "@services/api"
 import { Avatar, DefaultRnpAvatarSize } from "@components/avatar"
 import { palette } from "@theme/palette"
 import { headerShadow } from "@utils/shadows"
@@ -24,7 +24,7 @@ import { IFollowScreenNavigationScreenProps } from "@screens/follow-screen"
 import { FAB, PartialIconProps } from "react-native-paper"
 import moment from "moment"
 import { IBoolFunction, IVoidFunction } from "@custom-types"
-import { noop } from "lodash-es"
+import { isEmpty, noop } from "lodash-es"
 import { background } from "@storybook/theming"
 
 // tslint:disable:id-length
@@ -342,9 +342,9 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     const { api } = this.props;
 
     if (this.friendship !== null) {
-      api.delete(`user/me/friendship/${this.friendship.id}`);
+      await api.delete(`user/me/friendship/${this.friendship.id}`);
       if (this.friendship_target !== null) {
-        api.delete(`user/me/friendship/${this.friendship_target.id}`);
+        await api.delete(`user/me/friendship/${this.friendship_target.id}`);
       }
       this.hasMadeFriendshipAction = !this.hasMadeFriendshipAction
     }
@@ -382,7 +382,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   private async onPressSendAskFriendship(): Promise<void> {
     const { api } = this.props;
 
-    api.post(`user/${this.userProfile.id}/friendship`);
+    await api.post(`user/${this.userProfile.id}/friendship`);
     this.hasMadeFriendshipAction = !this.hasMadeFriendshipAction
   }
 
@@ -439,7 +439,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   private async toggleFollow(): Promise<void> {
     const { api } = this.props
     if (this.isUserFollowedByVisitor) {
-      await api.delete(`user/me/follows/${this.userProfile.follow.follow_id}`)
+      await api.delete(`user/me/follows/${this.userProfile.follow.id}`)
       this.userPosts = []
     } else {
       const followResponse: ApiResponse<IUser["follow"]> = await api.post(`user/${this.userProfile.id}/follows`)
@@ -487,8 +487,11 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
       const userProfileRequest: ApiResponse<IUser> = await api.get(`user/${user.id}/profile`)
       this.userProfile = { ...userProfileRequest.data, nick_name: this.userProfile.nick_name }
       this.isUserFollowedByVisitor = false
-      // tslint:disable-next-line:no-commented-out-code
-      // userProfileRequest.data.follow.status
+      const followResponse: ApiResponse<any> = await api.get(`user/${user.id}/follows`).catch(noop)
+      if (!isEmpty(followResponse.data)) {
+        this.userProfile.follow = followResponse.data;
+      }
+      this.isUserFollowedByVisitor = followResponse.status === HttpResponse.OK;
     }
 
     await this.fetchPosts().catch(noop)
