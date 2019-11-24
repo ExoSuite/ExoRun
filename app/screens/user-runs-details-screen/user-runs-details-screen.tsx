@@ -86,16 +86,6 @@ export class UserRunsDetailsScreen extends React.Component<IUserRunsDetailsScree
   }
 
   @autobind
-  private async onPressDelete(): Promise<void> {
-    const { api } = this.props
-
-    await api.delete(`/user/me/run/${this.userRun.run_id}/user_run/${this.userRun.id}`).catch(onSearchError)
-    // @ts-ignore
-    this.props.navigation.getParam("deleteUserRun")(this.userRun)
-    this.props.navigation.dispatch(NavigationActions.back())
-  }
-
-  @autobind
   private onPressCompare(): void {
     this.props.navigation.navigate(
       AppScreens.COMPARE_USER_RUN,
@@ -103,6 +93,16 @@ export class UserRunsDetailsScreen extends React.Component<IUserRunsDetailsScree
         targetUserRun: this.userRun,
       }
     )
+  }
+
+  @autobind
+  private async onPressDelete(): Promise<void> {
+    const { api } = this.props
+
+    await api.delete(`/user/me/run/${this.userRun.run_id}/user_run/${this.userRun.id}`).catch(onSearchError)
+    // @ts-ignore
+    this.props.navigation.getParam("deleteUserRun")(this.userRun)
+    this.props.navigation.dispatch(NavigationActions.back())
   }
 
   @autobind
@@ -188,7 +188,7 @@ export class UserRunsDetailsScreen extends React.Component<IUserRunsDetailsScree
           style={fab}
           actions={[
             { icon: "delete", label: "Supprimer", onPress: this.onPressDelete},
-            { icon: "stopwatch", label: "Comparer à mes temps", onPress: this.onPressCompare},
+            { icon: "timer", label: "Comparer à mes temps", onPress: this.onPressCompare},
           ]}
           icon={this.isFabOpen ? "remove" : "add"}
           open={this.isFabOpen}

@@ -148,7 +148,7 @@ export class CompareRunsTimesScreen extends React.Component<ICompareRunsTimesScr
   // tslint:disable-next-line:prefer-function-over-method
   private renderTimes({item}: { item: IComparableTime }): React.ReactElement {
     let negative_diff = false;
-    let diff = new Date();
+    let diff;
     const myTime = new Date(
       0,
       0,
@@ -192,7 +192,7 @@ export class CompareRunsTimesScreen extends React.Component<ICompareRunsTimesScr
     return (
       <TouchableOpacity
         style={TIME_CONTAINER}
-        onPress={(): void => null}
+        onPress={null}
       >
         <View style={ROW}>
           <View style={{marginLeft: spacing[2], justifyContent: "center"}}>
