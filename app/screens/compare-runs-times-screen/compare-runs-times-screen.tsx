@@ -153,7 +153,6 @@ export class CompareRunsTimesScreen extends React.Component<ICompareRunsTimesScr
   @autobind
   // tslint:disable-next-line:prefer-function-over-method
   private renderTimes({item}: { item: IComparableTime }): React.ReactElement {
-    let negative_diff = false;
     let diff;
     const myTime = new Date(
       0,
