@@ -17,6 +17,7 @@ import { IBoolFunction } from "@custom-types/functions"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
+import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 
 export interface IFollowersListScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -83,6 +84,11 @@ export class FollowersListScreen extends React.Component<IFollowersListScreenPro
   // @ts-ignore
   @observable private target = this.props.navigation.getParam("me")
   private targetProfile: IUser = {} as IUser
+
+  // tslint:disable-next-line: typedef
+  public static navigationOptions = ({ navigation }) => ({
+    headerLeft: NavigationBackButtonWithNestedStackNavigator()
+  })
 
   @autobind
   private goToProfile(user: IUser): IBoolFunction {

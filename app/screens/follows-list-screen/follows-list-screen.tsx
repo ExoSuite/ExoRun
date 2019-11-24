@@ -17,6 +17,7 @@ import { Server } from "@services/api/api.servers"
 import { IBoolFunction } from "@custom-types/functions"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { noop } from "lodash-es"
+import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 
 export interface IFollowsListScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -83,6 +84,11 @@ export class FollowsListScreen extends React.Component<IFollowsListScreenProps> 
   // @ts-ignore
   @observable private target = this.props.navigation.getParam("me")
   private targetProfile: IUser = {} as IUser
+
+  // tslint:disable-next-line: typedef
+  public static navigationOptions = ({ navigation }) => ({
+    headerLeft: NavigationBackButtonWithNestedStackNavigator()
+  })
 
   @autobind
   private goToProfile(user: IUser): IBoolFunction {

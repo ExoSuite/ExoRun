@@ -16,6 +16,7 @@ import { AppScreens } from "@navigation/navigation-definitions"
 import { noop } from "lodash-es"
 import { renderIf } from "@utils/render-if"
 import { ApiResponse } from "apisauce"
+import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 
 export interface IFriendshipsListScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -82,6 +83,11 @@ export class FriendshipsListScreen extends React.Component<IFriendshipsListScree
   // @ts-ignore
   @observable private target = this.props.navigation.getParam("me")
   private targetProfile: IUser = {} as IUser
+
+  // tslint:disable-next-line: typedef
+  public static navigationOptions = ({ navigation }) => ({
+    headerLeft: NavigationBackButtonWithNestedStackNavigator()
+  })
 
   @autobind
   private goToProfile(user: IUser): IBoolFunction {

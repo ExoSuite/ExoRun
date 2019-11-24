@@ -79,6 +79,14 @@ const filters = {
 
 const keyExtractor = (item: IRun, index: number): string => item.id
 
+// tslint:disable-next-line:typedef
+const UserTab = (props) => (
+  // tslint:disable-next-line: no-use-before-declare
+  <TouchableOpacity style={{marginRight: spacing[2]}} onPress={RunsScreen.AddNewRun(props.navigation)}>
+    <FontawesomeIcon name="layer-plus" size={32} color={color.palette.white} />
+  </TouchableOpacity>
+)
+
 // tslint:disable-next-line:completed-docs
 @inject(Injection.Api)
 @observer
@@ -94,21 +102,28 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
   private routeAPIGetParcours: string
   @observable private runs: IRun[] = []
   // @ts-ignore
-  @observable private target = this.props.navigation.getParam("me") ?? true
+  @observable private target = this.props.navigation.getParam("me")
   private static targetProfile: IUser = {} as IUser
 
-  private static AddNewRun(navigation: NavigationStackProp): IVoidFunction {
+  public static AddNewRun(navigation: NavigationStackProp): IVoidFunction {
     return (): any => navigation.navigate(AppScreens.CREATE_NEW_RUN)
   }
 
   // tslint:disable-next-line: typedef
-  public static navigationOptions = ({ navigation }) => ({
-    headerRight: (
-      <TouchableOpacity style={{marginRight: spacing[2]}} onPress={RunsScreen.AddNewRun(navigation)}>
-        <FontawesomeIcon name="layer-plus" size={32} color={color.palette.white} />
-      </TouchableOpacity>
-    )
-  })
+  public static navigationOptions = ({ navigation }) => {
+    const options = {
+      headerRight: null
+    }
+
+    if (navigation.state.routeName === AppScreens.RUN) {
+      options.headerRight = <UserTab {...{navigation}}/>
+    } else {
+      // @ts-ignore
+      options.headerLeft = NavigationBackButtonWithNestedStackNavigator()
+    }
+
+    return options;
+  }
 
   @action.bound
   private deleteRun(runToDelete: IRun): void {
@@ -227,7 +242,9 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
     const { api } = this.props
     this.routeAPIGetParcours = "user/me/run"
 
-    if (!this.target) {
+    console.tron.logImportant(this.props.navigation.state.routeName)
+
+    if (this.props.navigation.state.routeName === AppScreens.RUNS) {
       // @ts-ignore
       this.target = this.props.navigation.getParam("userProfile")
       this.routeAPIGetParcours = `user/${this.target.id}/run`
