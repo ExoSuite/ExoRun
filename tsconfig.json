@@ -5,7 +5,7 @@
     "incremental": true,
     "experimentalDecorators": true,
     "jsx": "react-native",
-    "module": "es2015",
+    "module": "esnext",
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "noImplicitAny": false,
@@ -43,7 +43,9 @@
       "@exceptions": ["app/exceptions"],
       "@exceptions/*": ["app/exceptions/*"],
       "@custom-types": ["app/custom-types"],
-      "@custom-types/*": ["app/custom-types/*"]
+      "@custom-types/*": ["app/custom-types/*"],
+      "@assets/*": ["app/assets/*"],
+      "@assets/": ["app/assets/"]
     }
   },
   "exclude": ["node_modules"],

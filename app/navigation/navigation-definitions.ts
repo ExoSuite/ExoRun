@@ -23,6 +23,10 @@ export enum AppScreens {
   RUN_TIMES_DETAILS = "run-times-details",
   RUNS = "runs",
   RUN_DETAILS = "run-details",
+  GET_FOLLOWERS = "followers-list",
+  GET_FOLLOWS = "follows-list",
+  GET_FRIENDS = "friends-list",
+  PENDING_REQUESTS = "pending-requests",
 }
 
 export enum AuthScreens {

@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -39,6 +38,13 @@
 		E1AEDCA242584DBBBC2B4552 /* FontAwesome5_Pro_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB52629DAF0F4C5EA2F73B2F /* FontAwesome5_Pro_Solid.ttf */; };
 		E4A6AA9B2C7346F3B80E44DC /* Montserrat-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B837E49A7A0445D486A281F3 /* Montserrat-ExtraLightItalic.ttf */; };
 		E4EB15E435C34271A063014C /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B00BFB64D2145AC8166FED6 /* Montserrat-Italic.ttf */; };
+		04D71DA036BA4C8097A9163B /* Arrow.vrx in Resources */ = {isa = PBXBuildFile; fileRef = FAC165AA79E849B29B0BF574 /* Arrow.vrx */; };
+		E2CFADF2BE904B73AA5BA209 /* BBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 49933227579143E2A47D567F /* BBackground.png */; };
+		77E9501B22F242299AF75EB5 /* BBackgroundSpeed.png in Resources */ = {isa = PBXBuildFile; fileRef = 7452C7E289B74D89ACA4BC3D /* BBackgroundSpeed.png */; };
+		03A8B60F75C04B2687E52740 /* CheckPointWithAnim.vrx in Resources */ = {isa = PBXBuildFile; fileRef = FB84400053C3432F86FF62DE /* CheckPointWithAnim.vrx */; };
+		730C19DAB9AA4035953129BC /* IdleAndRun.vrx in Resources */ = {isa = PBXBuildFile; fileRef = D56F0EC60193451892598284 /* IdleAndRun.vrx */; };
+		B80B601518634A42A36D5C67 /* IdleAndRunFastAndSlow.vrx in Resources */ = {isa = PBXBuildFile; fileRef = 86CFF981E27043CA83044A53 /* IdleAndRunFastAndSlow.vrx */; };
+		1E4AB9B6A3894A2599D6758A /* RunningOnPlace.vrx in Resources */ = {isa = PBXBuildFile; fileRef = 8A5BF7AD9B09449391ED2F46 /* RunningOnPlace.vrx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +98,13 @@
 		E84CDE90AC4C4F609F3E2222 /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ThinItalic.ttf"; path = "../app/theme/fonts/Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
 		ED2F190971234B8DAE0340A1 /* Montserrat-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BlackItalic.ttf"; path = "../app/theme/fonts/Montserrat-BlackItalic.ttf"; sourceTree = "<group>"; };
 		FB52629DAF0F4C5EA2F73B2F /* FontAwesome5_Pro_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Solid.ttf; path = ../app/assets/fonts/FontAwesome5_Pro_Solid.ttf; sourceTree = "<group>"; };
+		FAC165AA79E849B29B0BF574 /* Arrow.vrx */ = {isa = PBXFileReference; name = "Arrow.vrx"; path = "../app/assets/3Dasset/Arrow.vrx"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		49933227579143E2A47D567F /* BBackground.png */ = {isa = PBXFileReference; name = "BBackground.png"; path = "../app/assets/3Dasset/BBackground.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7452C7E289B74D89ACA4BC3D /* BBackgroundSpeed.png */ = {isa = PBXFileReference; name = "BBackgroundSpeed.png"; path = "../app/assets/3Dasset/BBackgroundSpeed.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FB84400053C3432F86FF62DE /* CheckPointWithAnim.vrx */ = {isa = PBXFileReference; name = "CheckPointWithAnim.vrx"; path = "../app/assets/3Dasset/CheckPointWithAnim.vrx"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D56F0EC60193451892598284 /* IdleAndRun.vrx */ = {isa = PBXFileReference; name = "IdleAndRun.vrx"; path = "../app/assets/3Dasset/IdleAndRun.vrx"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		86CFF981E27043CA83044A53 /* IdleAndRunFastAndSlow.vrx */ = {isa = PBXFileReference; name = "IdleAndRunFastAndSlow.vrx"; path = "../app/assets/3Dasset/IdleAndRunFastAndSlow.vrx"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8A5BF7AD9B09449391ED2F46 /* RunningOnPlace.vrx */ = {isa = PBXFileReference; name = "RunningOnPlace.vrx"; path = "../app/assets/3Dasset/RunningOnPlace.vrx"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +175,13 @@
 				4FA04FF809CA4C38B41B1097 /* exorun-text.png */,
 				3E87F2F4C4A245819BCFDCC5 /* exosuite-loader.png */,
 				D03CD94E7C48410EB6FEA959 /* exosuite-logo.png */,
+				FAC165AA79E849B29B0BF574 /* Arrow.vrx */,
+				49933227579143E2A47D567F /* BBackground.png */,
+				7452C7E289B74D89ACA4BC3D /* BBackgroundSpeed.png */,
+				FB84400053C3432F86FF62DE /* CheckPointWithAnim.vrx */,
+				D56F0EC60193451892598284 /* IdleAndRun.vrx */,
+				86CFF981E27043CA83044A53 /* IdleAndRunFastAndSlow.vrx */,
+				8A5BF7AD9B09449391ED2F46 /* RunningOnPlace.vrx */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -321,6 +341,13 @@
 				229D3A83010544D4ADC2777A /* exorun-text.png in Resources */,
 				3ABE4FB36A55469AABEC2CFD /* exosuite-loader.png in Resources */,
 				155A67FD15B44150A8806B0D /* exosuite-logo.png in Resources */,
+				04D71DA036BA4C8097A9163B /* Arrow.vrx in Resources */,
+				E2CFADF2BE904B73AA5BA209 /* BBackground.png in Resources */,
+				77E9501B22F242299AF75EB5 /* BBackgroundSpeed.png in Resources */,
+				03A8B60F75C04B2687E52740 /* CheckPointWithAnim.vrx in Resources */,
+				730C19DAB9AA4035953129BC /* IdleAndRun.vrx in Resources */,
+				B80B601518634A42A36D5C67 /* IdleAndRunFastAndSlow.vrx in Resources */,
+				1E4AB9B6A3894A2599D6758A /* RunningOnPlace.vrx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,7 +501,7 @@
 				CODE_SIGN_ENTITLEMENTS = ExoRun/ExoRun.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 211;
+				CURRENT_PROJECT_VERSION = 212;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 59JKX7F3X8;
 				GCC_INPUT_FILETYPE = automatic;
@@ -551,7 +578,7 @@
 				CODE_SIGN_ENTITLEMENTS = ExoRun/ExoRun.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 211;
+				CURRENT_PROJECT_VERSION = 212;
 				DEVELOPMENT_TEAM = 59JKX7F3X8;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_OPTIMIZATION_LEVEL = s;

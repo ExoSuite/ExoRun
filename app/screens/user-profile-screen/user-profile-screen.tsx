@@ -1,11 +1,11 @@
 import * as React from "react"
 import { inject, observer } from "mobx-react"
-import { Animated, ImageStyle, StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
+import { Animated, ImageStyle, StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle, ScrollView } from "react-native"
 import { Button, Screen, Text } from "@components"
 import { color, spacing } from "@theme"
 import { NavigationScreenProps } from "react-navigation"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
-import { IPersonalTokens, IPost, IUser } from "@services/api"
+import { HttpResponse, IFriendship, IPersonalTokens, IPost, IUser } from "@services/api"
 import { Avatar, DefaultRnpAvatarSize } from "@components/avatar"
 import { palette } from "@theme/palette"
 import { headerShadow } from "@utils/shadows"
@@ -24,7 +24,8 @@ import { IFollowScreenNavigationScreenProps } from "@screens/follow-screen"
 import { FAB, PartialIconProps } from "react-native-paper"
 import moment from "moment"
 import { IBoolFunction, IVoidFunction } from "@custom-types"
-import { noop } from "lodash-es"
+import { isEmpty, noop } from "lodash-es"
+import { background } from "@storybook/theming"
 
 // tslint:disable:id-length
 
@@ -61,7 +62,7 @@ const HEADER_CONTENT: ViewStyle = {
   flexDirection: "row",
   alignItems: "center",
   width: "100%",
-  justifyContent: "space-between"
+  justifyContent: "space-between",
 }
 
 const ANIMATED_AVATAR: ViewStyle = {
@@ -105,16 +106,27 @@ const ROW: ViewStyle = {
 
 const ACTION_BUTTON: ViewStyle = {
   flexDirection: "row",
-  marginRight: spacing[2]
+  marginRight: spacing[1],
+}
+
+const ACTION_BUTTON_DISABLED: ViewStyle = {
+  flexDirection: "row",
+  marginRight: spacing[1],
+  backgroundColor: "#B2B2B2"
+}
+
+const TEXT_ACTION_BUTTON: TextStyle = {
+  fontSize: 10,
+  fontWeight: "bold",
 }
 
 const BUTTON_CONTAINER: ViewStyle = {
   flexDirection: "row",
-  justifyContent: "flex-end"
+  marginLeft: 60,
 }
 
 const FOLLOW_ICON: ViewStyle = {
-  paddingRight: spacing[2]
+  paddingRight: spacing[1]
 }
 
 const TEXT_NUMBER: TextStyle = {
@@ -175,9 +187,13 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   @observable private avatarUrl = ""
   @observable private coverUrl = ""
   private currentPage: number
+  @observable private friendship: IFriendship = null
+  @observable private friendship_target: IFriendship = null
+  @observable private hasMadeFriendshipAction = false
+  @observable private isFriendshipDoneOrPending = false
   @observable private isUserFollowedByVisitor = false
   private maxPage: number
-  private me: boolean
+  private me = false
   private onEndReachedCalledDuringMomentum = true
   @observable private pictureToken: string
   @observable private refreshing = false
@@ -322,10 +338,52 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   }
 
   @autobind
+  private async onPressDeleteFriendship(): Promise<void> {
+    const { api } = this.props;
+
+    if (this.friendship !== null) {
+      await api.delete(`user/me/friendship/${this.friendship.id}`);
+      if (this.friendship_target !== null) {
+        await api.delete(`user/me/friendship/${this.friendship_target.id}`);
+      }
+      this.hasMadeFriendshipAction = !this.hasMadeFriendshipAction
+    }
+  }
+
+  @autobind
+  private onPressGoToFriendsList(): void {
+    this.props.navigation.navigate(AppScreens.GET_FRIENDS, {
+      userProfile: this.userProfile
+    })
+  }
+
+  @autobind
   private onPressGoToRuns(): void {
     this.props.navigation.navigate(AppScreens.RUNS, {
       userProfile: this.userProfile
     })
+  }
+
+  @autobind
+  private onPressSeeFollowers(): void {
+    this.props.navigation.navigate(AppScreens.GET_FOLLOWERS, {
+      userProfile: this.userProfile
+    })
+  }
+
+  @autobind
+  private onPressSeeFollows(): void {
+    this.props.navigation.navigate(AppScreens.GET_FOLLOWS, {
+      userProfile: this.userProfile
+    })
+  }
+
+  @autobind
+  private async onPressSendAskFriendship(): Promise<void> {
+    const { api } = this.props;
+
+    await api.post(`user/${this.userProfile.id}/friendship`);
+    this.hasMadeFriendshipAction = !this.hasMadeFriendshipAction
   }
 
   @autobind
@@ -381,7 +439,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
   private async toggleFollow(): Promise<void> {
     const { api } = this.props
     if (this.isUserFollowedByVisitor) {
-      await api.delete(`user/me/follows/${this.userProfile.follow.follow_id}`)
+      await api.delete(`user/me/follows/${this.userProfile.follow.id}`)
       this.userPosts = []
     } else {
       const followResponse: ApiResponse<IUser["follow"]> = await api.post(`user/${this.userProfile.id}/follows`)
@@ -416,12 +474,24 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     const token = personalTokens && personalTokens["view-picture-exorun"].accessToken || ""
     this.pictureToken = token
     const user = navigation.getParam("user")
-    this.me = navigation.getParam("me")
+    this.me = navigation.getParam("me") || false
+
+    if (!this.me) {
+      const HERE_IS_FRIENDSHIP = await api.get(`/user/${this.userProfile.id}/friendship/existingFriendship`).catch(noop)
+      this.isFriendshipDoneOrPending = HERE_IS_FRIENDSHIP.data.value
+      this.friendship = HERE_IS_FRIENDSHIP.data.friendship_entity
+      this.friendship_target = HERE_IS_FRIENDSHIP.data.friendship_entity_target
+    }
 
     if (user) {
       const userProfileRequest: ApiResponse<IUser> = await api.get(`user/${user.id}/profile`)
       this.userProfile = { ...userProfileRequest.data, nick_name: this.userProfile.nick_name }
-      this.isUserFollowedByVisitor = userProfileRequest.data.follow.status
+      this.isUserFollowedByVisitor = false
+      const followResponse: ApiResponse<any> = await api.get(`user/${user.id}/follows`).catch(noop)
+      if (!isEmpty(followResponse.data)) {
+        this.userProfile.follow = followResponse.data;
+      }
+      this.isUserFollowedByVisitor = followResponse.status === HttpResponse.OK;
     }
 
     await this.fetchPosts().catch(noop)
@@ -433,7 +503,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     const { avatarMovement, avatarOpacity, headerContentOpacity, headerOpacity, coverMovement } = this.animate()
 
     const description = idx<IUser, string>(this.userProfile, (_: any) => _.profile.description)
-    const me = this.props.navigation.getParam("me")
+    const me = this.me;
     const visitorButtonIcon = this.isUserFollowedByVisitor ? "user-check" : "user"
     const visitorButtonText = this.isUserFollowedByVisitor ? "profile.following" : "profile.follow"
 
@@ -479,23 +549,48 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
           ListHeaderComponent={(
             <View style={{ marginBottom: spacing[2], ...headerShadow }}>
               <View style={StyleSheet.flatten([FIXED_HEADER, { marginTop: 150 }])}>
-                <View style={BUTTON_CONTAINER}>
+                <ScrollView horizontal style={BUTTON_CONTAINER}>
+                  <Button onPress={this.onPressSeeFollowers} style={ACTION_BUTTON}>
+                    <Text tx={"profile.followers"} style={TEXT_ACTION_BUTTON}/>
+                  </Button>
+                  <Button onPress={this.onPressSeeFollows} style={ACTION_BUTTON}>
+                    <Text tx={"profile.follows"} style={TEXT_ACTION_BUTTON}/>
+                  </Button>
                   {renderIf.if(me)(
-                    <Button tx="profile.edit" textPreset="primaryBold" onPress={this.onEditMyProfile}/>
+                    <Button style={ACTION_BUTTON} tx="profile.edit" textPreset="primaryBold" onPress={this.onEditMyProfile}/>
                   ).else(
                     <Button onPress={this.toggleFollow} style={ACTION_BUTTON}>
                       <FontawesomeIcon color={palette.white} name={visitorButtonIcon} style={FOLLOW_ICON}/>
                       <Text tx={visitorButtonText} preset="bold"/>
                     </Button>
                   ).evaluate()}
-                  {
-                    renderIf.if(!me)(
+                  {renderIf.if(!me)(
                     <Button onPress={this.onPressGoToRuns} style={ACTION_BUTTON}>
-                      <FontawesomeIcon color={palette.white} name={visitorButtonIcon} style={FOLLOW_ICON}/>
+                      <FontawesomeIcon color={palette.white} name="running" style={FOLLOW_ICON}/>
                       <Text tx={"profile.run"} preset="bold"/>
                     </Button>
                   ).evaluate()}
-                </View>
+                  {renderIf.if(!me && this.isFriendshipDoneOrPending)(
+                    <Button onPress={this.onPressSendAskFriendship} style={ACTION_BUTTON}>
+                      <FontawesomeIcon color={palette.white} name="users" style={FOLLOW_ICON}/>
+                      <Text tx={"profile.addFriend"} style={TEXT_ACTION_BUTTON}/>
+                    </Button>
+                  ).elseIf(!me && !this.isFriendshipDoneOrPending && (this.friendship === null))(
+                    <Button disabled style={ACTION_BUTTON_DISABLED}>
+                      <FontawesomeIcon color={palette.white} name="users" style={FOLLOW_ICON}/>
+                      <Text tx={"profile.addFriend"} style={TEXT_ACTION_BUTTON}/>
+                    </Button>
+                  ).elseIf(!me && !this.isFriendshipDoneOrPending && (this.friendship !== null))(
+                    <Button onPress={this.onPressDeleteFriendship} style={ACTION_BUTTON}>
+                      <FontawesomeIcon color={palette.white} name="users" style={FOLLOW_ICON}/>
+                      <Text tx={"profile.deleteFriend"} style={TEXT_ACTION_BUTTON}/>
+                    </Button>
+                  ).evaluate()}
+                  <Button onPress={this.onPressGoToFriendsList} style={ACTION_BUTTON}>
+                    <FontawesomeIcon color={palette.white} name="users" style={FOLLOW_ICON}/>
+                    <Text tx={"profile.friendsList"} style={TEXT_ACTION_BUTTON}/>
+                  </Button>
+                </ScrollView>
               </View>
               <View style={FIXED_HEADER}>
                 <View style={FIXED_HEADER_TEXT_CONTAINER}>
@@ -507,15 +602,6 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
                   <Text preset="nicknameLight" text={this.userProfile.nick_name}/>
                   <Text style={FIXED_HEADER_DESCRIPTION} text={description}/>
                 </View>
-
-                {/*<View style={[{ marginTop: 10 }, ROW]}>
-                  <TouchableOpacity style={ROW} onPress={this.onFollowersPress} disabled>
-                    <Text style={TEXT_NUMBER}>
-                      2222
-                    </Text>
-                    <Text text="Followers" style={TEXT_NUMBER_LABEL}/>
-                  </TouchableOpacity>
-                </View>*/}
               </View>
             </View>
           )}

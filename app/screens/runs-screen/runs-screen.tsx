@@ -14,8 +14,6 @@ import { isEmpty, noop, remove } from "lodash-es"
 import * as FilterFunctons from "@utils/filters-functions"
 import { SortFields } from "@utils/sort-fields"
 import { UserRunFilters } from "@utils/user-run-filters"
-import { DarkTheme, Searchbar } from "react-native-paper"
-import { translate } from "@i18n/translate"
 import moment from "moment"
 import { IBoolFunction } from "@types"
 import { AppScreens } from "@navigation/navigation-definitions"
@@ -26,11 +24,6 @@ export interface IRunsScreenProps extends NavigationScreenProps<{}>, InjectionPr
 
 const ROOT: ViewStyle = {
   backgroundColor: color.palette.black,
-}
-
-const SEARCH: ViewStyle = {
-  backgroundColor: color.backgroundDarkerer,
-  width: 350
 }
 
 const TITLE: ViewStyle = {
@@ -240,44 +233,33 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
     return (
       <Screen style={ROOT} preset="scroll">
         <View style={TITLE}>
-    <View style={{flexDirection: "row", backgroundColor: color.palette.backgroundDarkerer}}>
-      <View style={HEADER_PICKER}>
-            <Text preset="fieldLabel" text="Classer par : " style={{marginTop: spacing[1]}}/>
-            <Picker
-              onValueChange={this.onPickerValueChange}
-              selectedValue={this.filterValue}
-              style={{ backgroundColor: "white", width: 100, height: 30 }}
-              itemStyle={{ backgroundColor: "white"}}
-            >
-              <Picker.Item label="plus récent" value={UserRunFilters.YOUNGER}/>
-              <Picker.Item label="plus ancien" value={UserRunFilters.OLDEST}/>
-            </Picker>
-        <View style={HEADER_TITLE}>
-          {renderIf.if(this.targetProfile.first_name === undefined)(
-              <Text preset="header" text={" "} style={{ alignSelf: "center" }}/>
-            ).elseIf(this.props.navigation.getParam("me") === true)(
-              <Text preset="header" text={"Mes Parcours"} style={{ alignSelf: "center" }}/>
-          ).else(
-              <Text
-                preset="header"
-                text={`Parcours de ${this.targetProfile.first_name} ${this.targetProfile.last_name}`}
-                style={{ alignSelf: "center" }}
-              />
-            ).evaluate()}
+          <View style={{flexDirection: "row", backgroundColor: color.palette.backgroundDarkerer}}>
+            <View style={HEADER_PICKER}>
+              <Text preset="fieldLabel" text="Classer par : " style={{marginTop: spacing[1]}}/>
+              <Picker
+                onValueChange={this.onPickerValueChange}
+                selectedValue={this.filterValue}
+                style={{ backgroundColor: "white", width: 100, height: 30 }}
+                itemStyle={{ backgroundColor: "white"}}
+              >
+                <Picker.Item label="plus récent" value={UserRunFilters.YOUNGER}/>
+                <Picker.Item label="plus ancien" value={UserRunFilters.OLDEST}/>
+              </Picker>
+              <View style={HEADER_TITLE}>
+                {renderIf.if(this.targetProfile.first_name === undefined)(
+                    <Text preset="header" text={" "} style={{ alignSelf: "center" }}/>
+                  ).elseIf(this.props.navigation.getParam("me") === true)(
+                    <Text preset="header" text={"Mes Parcours"} style={{ alignSelf: "center" }}/>
+                ).else(
+                    <Text
+                      preset="header"
+                      text={`Parcours de ${this.targetProfile.first_name} ${this.targetProfile.last_name}`}
+                      style={{ alignSelf: "center" }}
+                    />
+                  ).evaluate()}
+                </View>
+            </View>
           </View>
-          </View>
-          </View>
-{/*
-          <View style={{flex: 1, flexDirection: "row", backgroundColor: color.backgroundDarkerer}}>
-            <Text preset="fieldLabel" text="Filtrer :  " style={{marginTop: spacing[1]}}/>
-            <Searchbar
-              placeholder={placeholderTx}
-              onChangeText={this.onUserTypeSearch}
-              style={SEARCH}
-              theme={DarkTheme}
-            />
-          </View>
-*/}
         </View>
         <FlatList
           data={this.runs}

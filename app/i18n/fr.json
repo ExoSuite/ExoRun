@@ -52,7 +52,14 @@
     "birthday": "Date de naissance",
     "follow": "Suivre",
     "following": "Suivi",
-    "run": "Parcours"
+    "followers": "Followers",
+    "follows": "Follows",
+    "run": "Parcours",
+    "addFriend": "Ajouter en ami(e)",
+    "deleteFriend": "Retirer de mes amis",
+    "friendsList": "Amis",
+    "accept": "Accepter",
+    "decline": "Décliner"
   },
   "auth": {
     "powered": "Powered by ",
