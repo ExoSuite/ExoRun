@@ -1,6 +1,6 @@
 import * as React from "react"
 import { inject, observer } from "mobx-react"
-import { FlatList, Picker, TouchableOpacity, View, ViewStyle } from "react-native"
+import { FlatList, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Text } from "../../components/text"
 import { Screen } from "../../components/screen"
 import { color, spacing } from "../../theme"
@@ -17,6 +17,9 @@ import autobind from "autobind-decorator"
 import moment from "moment"
 import { IVoidFunction } from "@custom-types/functions"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
+import { Menu } from "react-native-paper"
+import { Button } from "@components/button"
+import { translate } from "@i18n/translate"
 
 export interface IChooseUserRunScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -91,7 +94,8 @@ const keyExtractor = (item: IUserRun, index: number): string => item.id
 @observer
 export class ChooseUserRunScreen extends React.Component<IChooseUserRunScreenProps> {
   private currentPage: number
-  private filterValue: string
+  private filterValue: string = UserRunFilters.YOUNGER
+  @observable private isOptionOpened = false
   private lastQuery: string
   private maxPage: number
   private onEndReachedCalledDuringMomentum = true
@@ -100,6 +104,7 @@ export class ChooseUserRunScreen extends React.Component<IChooseUserRunScreenPro
   // @ts-ignore
   private readonly targetProfile: IUser = this.props.navigation.getParam("targetProfile")
   @observable private userRuns: IUserRun[] = []
+
 
   // tslint:disable-next-line: typedef
   public static navigationOptions = ({ navigation }) => ({
@@ -213,6 +218,11 @@ export class ChooseUserRunScreen extends React.Component<IChooseUserRunScreenPro
     )
   }
 
+  @action.bound
+  private toggleOptions(): void {
+    this.isOptionOpened = !this.isOptionOpened
+  }
+
   @action
   public async componentDidMount(): Promise<void> {
     const { api } = this.props
@@ -224,23 +234,68 @@ export class ChooseUserRunScreen extends React.Component<IChooseUserRunScreenPro
 
   public render(): React.ReactNode {
 
+    // tslint:disable: no-void-expression
+    const onYoungerSelected = (): void => this.onPickerValueChange(UserRunFilters.YOUNGER)
+    const onOldestSelected = (): void => this.onPickerValueChange(UserRunFilters.OLDEST)
+    const onBestSelected = (): void => this.onPickerValueChange(UserRunFilters.BEST)
+    const onLowerSelected = (): void => this.onPickerValueChange(UserRunFilters.LOWER)
+    const currentFilterTranslated = translate(`run.${this.filterValue}`)
+
     return (
       <Screen style={ROOT} preset="fixed">
         <View style={TITLE}>
           <View style={{flex: 1, backgroundColor: color.palette.backgroundDarkerer, flexDirection: "row"}}>
             <View style={HEADER_PICKER}>
-              <Text preset="fieldLabel" text="Classer par : " style={{marginTop: spacing[1]}}/>
-              <Picker
-                onValueChange={this.onPickerValueChange}
-                selectedValue={this.filterValue}
-                style={{ backgroundColor: "white", width: 100, height: 30}}
-                itemStyle={{ backgroundColor: "white" }}
+              <Menu
+                visible={this.isOptionOpened}
+                onDismiss={this.toggleOptions}
+                anchor={
+                  (
+                    <Button
+                      preset="neutral"
+                      textPreset="primaryBoldLarge"
+                      text={`${translate("run.sort")} ${currentFilterTranslated}`}
+                      onPress={this.toggleOptions}
+                    />
+                  )
+                }
+                contentStyle={{ backgroundColor: color.backgroundDarkerer }}
               >
-                <Picker.Item label="Plus récent" value={UserRunFilters.YOUNGER}/>
-                <Picker.Item label="Plus ancien" value={UserRunFilters.OLDEST}/>
-                <Picker.Item label="Meilleurs temps" value={UserRunFilters.BEST}/>
-                <Picker.Item label="Plus petits temps" value={UserRunFilters.LOWER}/>
-              </Picker>
+                <Menu.Item
+                  onPress={onYoungerSelected}
+                  title={(
+                    <Text
+                      style={{ textTransform: "capitalize" }}
+                      text={translate(`run.${UserRunFilters.YOUNGER}`)}
+                    />
+                  )}
+                />
+                <Menu.Item
+                  onPress={onOldestSelected}
+                  title={(
+                    <Text
+                      style={{ textTransform: "capitalize" }}
+                      text={translate(`run.${UserRunFilters.OLDEST}`)}
+                    />
+                  )}
+                />
+
+                <Menu.Item
+                  onPress={onBestSelected}
+                  title={<Text style={{ textTransform: "capitalize" }} text={translate(`run.${UserRunFilters.BEST}`)}/>}
+                />
+
+                <Menu.Item
+                  onPress={onLowerSelected}
+                  title={(
+                    <Text
+                      style={{ textTransform: "capitalize" }}
+                      text={translate(`run.${UserRunFilters.LOWER}`)}
+                    />
+                  )}
+                />
+
+              </Menu>
             </View>
             <View style={HEADER_TITLE}>
               <Text
