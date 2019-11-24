@@ -22,7 +22,8 @@ import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/compon
 import { Menu } from "react-native-paper"
 import { Button } from "@components/button"
 import { translate } from "@i18n/translate"
-import { ReactElement } from "react"
+import { FontawesomeIcon } from "@components/fontawesome-icon"
+import { RunsScreen } from "@screens/runs-screen"
 
 export interface IRunsTimesScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }

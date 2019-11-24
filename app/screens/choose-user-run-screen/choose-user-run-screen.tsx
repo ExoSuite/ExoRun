@@ -16,6 +16,7 @@ import { isEmpty, noop } from "lodash-es"
 import autobind from "autobind-decorator"
 import moment from "moment"
 import { IVoidFunction } from "@custom-types/functions"
+import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 
 export interface IChooseUserRunScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -99,6 +100,11 @@ export class ChooseUserRunScreen extends React.Component<IChooseUserRunScreenPro
   // @ts-ignore
   private readonly targetProfile: IUser = this.props.navigation.getParam("targetProfile")
   @observable private userRuns: IUserRun[] = []
+
+  // tslint:disable-next-line: typedef
+  public static navigationOptions = ({ navigation }) => ({
+    headerLeft: NavigationBackButtonWithNestedStackNavigator(),
+  })
 
   @action.bound
   private chooseUserRun(item: IUserRun): IVoidFunction {

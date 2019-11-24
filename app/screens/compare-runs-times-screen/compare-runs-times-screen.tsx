@@ -16,6 +16,7 @@ import { Button } from "@components/button"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { first } from "lodash-es"
 import { renderIf } from "@utils/render-if"
+import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 
 export interface ICompareRunsTimesScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -89,6 +90,11 @@ export class CompareRunsTimesScreen extends React.Component<ICompareRunsTimesScr
   @observable private readonly targetUserRun: IUserRun = this.props.navigation.getParam("targetUserRun")
   // tslint:disable-next-line: member-ordering
   @observable private readonly targetTimes: ITime[] = this.targetUserRun.times.slice()
+
+  // tslint:disable-next-line: typedef
+  public static navigationOptions = ({ navigation }) => ({
+    headerLeft: NavigationBackButtonWithNestedStackNavigator(),
+  })
 
   @autobind
   // tslint:disable-next-line:typedef
@@ -166,7 +172,6 @@ export class CompareRunsTimesScreen extends React.Component<ICompareRunsTimesScr
       item.other_current_time % 60
     );
     if (item.my_current_time < item.other_current_time) {
-      negative_diff = true;
       diff = new Date(
         0,
         0,
