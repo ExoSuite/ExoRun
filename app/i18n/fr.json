@@ -21,7 +21,9 @@
     "createdAt": "Créé le : ",
     "search": "Rechercher",
     "next-step": "Étape suivante",
-    "previous-step": "Étape précédente"
+    "previous-step": "Étape précédente",
+    "follow": "Personnes suivies par",
+    "followers": "Followers de"
   },
   "checkpoint": {
     "from-run": "Ajouter des points de passage à la course"

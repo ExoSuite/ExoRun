@@ -8,13 +8,15 @@ import { RightNavigationButton } from "@navigation/components/right-navigation-b
 import { AppScreens } from "@navigation/navigation-definitions"
 import { Injection, InjectionProps } from "@services/injections"
 import autobind from "autobind-decorator"
-import { IPersonalToken, IPersonalTokens } from "@services/api"
+import { Api, IPersonalToken, IPersonalTokens } from "@services/api"
 import moment from "moment"
 import { IBoolFunction } from "@custom-types"
 import { load } from "@utils/keychain"
 import { Server } from "@services/api/api.servers"
 import { IGroup } from "@models/group"
 import { GroupSwipeableRow } from "@screens/group-screen/components/group-swipeable-row"
+import { noop } from "lodash-es"
+import { action } from "mobx"
 
 export interface IGroupScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -65,14 +67,32 @@ const keyExtractor = (item: IGroup, index: number): string => item.id
 /**
  * GroupScreen will show the groups
  */
-@inject(Injection.GroupsModel)
+@inject(Injection.GroupsModel, Injection.Api)
 @observer
 export class GroupScreen extends React.Component<IGroupScreenProps> {
-
+  private groupToken: IPersonalToken
+  private onEndReachedCalledDuringMomentum = true
   private pictureToken: IPersonalToken
 
   public static navigationOptions = {
     headerRight: <HeaderRight/>
+  }
+
+  @autobind
+  private async deleteGroup(group: IGroup): Promise<void> {
+    const { api } = this.props
+
+    await api.delete(`group/${group.id}`, {}, Api.BuildAuthorizationHeader(this.groupToken)).catch(noop)
+    this.props.groupsModel.deleteGroup(group)
+  }
+
+  @autobind
+  private onEndReached(): void {
+    const { groupsModel } = this.props
+
+    if (groupsModel.currentPage < groupsModel.maxPage && !this.onEndReachedCalledDuringMomentum) {
+      this.onUserTypeToSearch().catch(noop)
+    }
   }
 
   @autobind
@@ -85,14 +105,31 @@ export class GroupScreen extends React.Component<IGroupScreenProps> {
       })
   }
 
+  @autobind
+  private onMomentumScrollBegin(): void {
+    this.onEndReachedCalledDuringMomentum = false
+  }
+
+  @action.bound
+  // tslint:disable-next-line: typedef
+  private async onUserTypeToSearch(): Promise<void> {
+    const { groupsModel } = this.props
+
+    // tslint:disable-next-line: restrict-plus-operands
+    groupsModel.fetchGroups(groupsModel.currentPage + 1)
+  }
+
   // tslint:disable-next-line: no-feature-envy
   @autobind
   private renderGroup({ item }: { item: IGroup }): React.ReactElement {
     const formattedCreatedAt = moment(item.created_at).format("LLL")
     const formattedUpdatedAt = moment(item.updated_at).format("LLL")
 
+    // @ts-ignore
+    const onDeleteGroup = (): void => this.deleteGroup(item)
+
     return (
-      <GroupSwipeableRow style={GROUP_CONTAINER}>
+      <GroupSwipeableRow style={GROUP_CONTAINER} onDeleteGroup={onDeleteGroup}>
         <TouchableOpacity
           style={TOUCHABLE_GROUP_CONTAINER}
           onPress={this.onGroupPressNavigateToChat(item)}
@@ -127,6 +164,7 @@ export class GroupScreen extends React.Component<IGroupScreenProps> {
   public async componentDidMount(): Promise<void> {
     const personalTokens: IPersonalTokens = await load(Server.EXOSUITE_USERS_API_PERSONAL) as IPersonalTokens
     this.pictureToken = personalTokens["view-picture-exorun"]
+    this.groupToken = personalTokens["group-exorun"]
   }
 
   public render(): React.ReactNode {
@@ -137,6 +175,9 @@ export class GroupScreen extends React.Component<IGroupScreenProps> {
         renderItem={this.renderGroup}
         keyExtractor={keyExtractor}
         style={ROOT}
+        onEndReached={this.onEndReached}
+        onEndReachedThreshold={0.5}
+        onMomentumScrollBegin={this.onMomentumScrollBegin}
       />
     )
   }
