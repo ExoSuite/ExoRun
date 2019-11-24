@@ -5,6 +5,7 @@ import autobind from "autobind-decorator"
 import { RectButton } from "react-native-gesture-handler";
 import { IFontawesomeIconProps } from "@components/fontawesome-icon/font-awesome-icon.props"
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5"
+import { IVoidFunction } from "@custom-types/functions"
 
 const AnimatedIcon = Animated.createAnimatedComponent(
   class Icon extends React.PureComponent<IFontawesomeIconProps> {
@@ -18,7 +19,8 @@ const AnimatedIcon = Animated.createAnimatedComponent(
 
 export interface IGroupSwipeableRowProps {
   children: React.ReactNode
-  style: ViewStyle
+  onDeleteGroup: IVoidFunction
+  style: ViewStyle,
 }
 
 const styles = StyleSheet.create({
@@ -49,26 +51,8 @@ export class GroupSwipeableRow extends React.Component<IGroupSwipeableRowProps> 
   private swipeableRef: Swipeable
 
   private closeRow(): void {
+    this.props.onDeleteGroup()
     this.swipeableRef.close()
-  }
-
-  private renderLeftActions(progress: any, dragX: Animated.Value): React.ReactNode {
-    const scale = dragX.interpolate({
-      inputRange: [0, 80],
-      outputRange: [0, 1],
-      extrapolate: "clamp",
-    });
-
-    return (
-      <RectButton style={styles.leftAction} onPress={this.closeRow}>
-        <AnimatedIcon
-          name="archive"
-          size={30}
-          color="#fff"
-          style={[styles.actionIcon, { transform: [{ scale }] }]}
-        />
-      </RectButton>
-    );
   }
 
   private renderRightActions(progress: any, dragX: Animated.Value): React.ReactNode {
@@ -103,7 +87,6 @@ export class GroupSwipeableRow extends React.Component<IGroupSwipeableRowProps> 
         friction={2}
         leftThreshold={80}
         rightThreshold={40}
-        renderLeftActions={this.renderLeftActions}
         renderRightActions={this.renderRightActions}
         containerStyle={style}
       >

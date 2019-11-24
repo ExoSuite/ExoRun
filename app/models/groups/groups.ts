@@ -43,12 +43,13 @@ export const GroupsModel = types
     },
     afterSuccessfulFetch(groupsResponse: ApiOkResponse<{ current_page: number, data: IGroup[], last_page: number }>): void {
       self.currentPage = groupsResponse.data.current_page
-      self.maxPage = groupsResponse.data.current_page
+      self.maxPage = groupsResponse.data.last_page
       const env = getEnv<IGroupsInjectedEnvironment>(self);
-      self.groups = groupsResponse.data.data.map((group: IGroup) => self.createNewGroup(env, group))
+      self.groups.push(...groupsResponse.data.data.map((group: IGroup) => self.createNewGroup(env, group)))
     },
-    fetchGroups(): void {
-      self.environment.api.get("user/me/groups")
+    // tslint:disable-next-line:typedef
+    fetchGroups(page = 1): void {
+      self.environment.api.get("user/me/groups", { page })
         .then(self.afterSuccessfulFetch)
         .catch(noop)
     },
@@ -71,6 +72,9 @@ export const GroupsModel = types
         ...group,
         ...self.groupModelParams(group)
       }, env)
+    },
+    deleteGroup(groupToDelete: IGroup): void {
+      self.groups = self.groups.filter((group: IGroup) => group.id !== groupToDelete.id)
     }
   })) // eslint-disable-line @typescript-eslint/no-unused-vars
 

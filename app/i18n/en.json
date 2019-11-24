@@ -21,7 +21,9 @@
     "delete-post": "Delete the post",
     "search": "Search",
     "next-step": "Next step",
-    "previous-step": "Previous step"
+    "previous-step": "Previous step",
+    "follow": "People followed by",
+    "followers": "Followers of"
   },
   "checkpoint": {
     "from-run": "Add checkpoints to run"
