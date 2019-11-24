@@ -100,13 +100,13 @@ export class ChooseUserRunScreen extends React.Component<IChooseUserRunScreenPro
   private readonly targetProfile: IUser = this.props.navigation.getParam("targetProfile")
   @observable private userRuns: IUserRun[] = []
 
-  @autobind
+  @action.bound
   private chooseUserRun(item: IUserRun): IVoidFunction {
-    this.props.navigation.getParam("chooseMyUserRun")(item)
+      this.props.navigation.getParam("chooseMyUserRun")(item)
 
-    return (): void => {
-      this.props.navigation.goBack()
-    }
+      return (): void => {
+        this.props.navigation.goBack()
+      }
   }
 
   @autobind
@@ -180,26 +180,30 @@ export class ChooseUserRunScreen extends React.Component<IChooseUserRunScreenPro
     const formattedTime = `${time.getHours().toString()} h ${time.getMinutes().toString()} min ${time.getSeconds().toString()} sec`
 
     return (
-      <TouchableOpacity
-        style={TIME_CONTAINER}
-        onPress={this.chooseUserRun(item)}
-      >
-        <View style={ROW}>
-          <View style={{marginLeft: spacing[2], justifyContent: "center"}}>
-            <Text
-              style={{textTransform: "capitalize"}}
-              text={formattedTime}
-              preset="userRow"
-            />
-          </View>
-        </View>
-        <View style={{...ROW, flex: 1, marginTop: spacing[3]}}>
-          <View>
-            <Text preset="fieldLabel" text="Couru le :"/>
-            <Text preset="fieldLabel" text={formattedCreatedAt}/>
-          </View>
-        </View>
-      </TouchableOpacity>
+      <>
+        { item.final_time > 0 && (
+          <TouchableOpacity
+            style={TIME_CONTAINER}
+            onPress={this.chooseUserRun(item)}
+          >
+            <View style={ROW}>
+              <View style={{marginLeft: spacing[2], justifyContent: "center"}}>
+                <Text
+                  style={{textTransform: "capitalize"}}
+                  text={formattedTime}
+                  preset="userRow"
+                />
+              </View>
+            </View>
+            <View style={{...ROW, flex: 1, marginTop: spacing[3]}}>
+              <View>
+                <Text preset="fieldLabel" text="Couru le :"/>
+                <Text preset="fieldLabel" text={formattedCreatedAt}/>
+              </View>
+            </View>
+          </TouchableOpacity>
+        )}
+      </>
 
     )
   }

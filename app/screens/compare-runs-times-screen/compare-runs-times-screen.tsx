@@ -198,27 +198,19 @@ export class CompareRunsTimesScreen extends React.Component<ICompareRunsTimesScr
           <View style={{marginLeft: spacing[2], justifyContent: "center"}}>
             <Text
               style={{textTransform: "capitalize"}}
-              text={`Votre temps : ${formattedMyTime}`}
+              text={`Reference : ${formattedMyTime}`}
               preset="userRow"
             />
             <Text
               style={{textTransform: "capitalize", color: "red"}}
-              text={`Votre temps : ${formattedOtherTime}`}
+              text={`Temps comparé : ${formattedOtherTime}`}
               preset="userRow"
             />
-            {renderIf.if(!negative_diff)(
-              <Text
-                style={{textTransform: "capitalize", color: "cyan"}}
-                text={formattedDiff}
-                preset="userRow"
-              />
-            ).else(
-              <Text
-                style={{textTransform: "capitalize"}}
-                text={`- ${formattedDiff}`}
-                preset="userRow"
-              />
-            ).evaluate()}
+            <Text
+              style={{textTransform: "capitalize", color: "cyan"}}
+              text={`Différence ${formattedDiff}`}
+              preset="userRow"
+            />
           </View>
         </View>
         <View style={{...ROW, flex: 1, marginTop: spacing[3]}}>

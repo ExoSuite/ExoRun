@@ -190,7 +190,7 @@ export class UserRunsDetailsScreen extends React.Component<IUserRunsDetailsScree
             { icon: "delete", label: "Supprimer", onPress: this.onPressDelete},
             { icon: "timer", label: "Comparer à mes temps", onPress: this.onPressCompare},
           ]}
-          icon={this.isFabOpen ? "remove" : "add"}
+          icon={this.isFabOpen ? "minus" : "plus"}
           open={this.isFabOpen}
           onStateChange={this.changeIsFabOpen}
         />

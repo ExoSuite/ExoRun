@@ -22,6 +22,7 @@ import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/compon
 import { Menu } from "react-native-paper"
 import { Button } from "@components/button"
 import { translate } from "@i18n/translate"
+import { ReactElement } from "react"
 
 export interface IRunsTimesScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -204,27 +205,32 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
     const formattedTime = `${time.getHours().toString()} h ${time.getMinutes().toString()} min ${time.getSeconds().toString()} sec`
 
     return (
-      <TouchableOpacity
-        style={TIME_CONTAINER}
-        onPress={this.onTimePressNavigateToDetails(item)}
-      >
-        <View style={ROW}>
-          <View style={{ marginLeft: spacing[2], justifyContent: "center" }}>
-            <Text
-              style={{ textTransform: "capitalize" }}
-              text={formattedTime}
-              preset="userRow"
-            />
+      <>
+      {
+        item.final_time > 0 && (
+          <TouchableOpacity
+            style={TIME_CONTAINER}
+            onPress={this.onTimePressNavigateToDetails(item)}
+          >
+          <View style={ROW}>
+            <View style={{ marginLeft: spacing[2], justifyContent: "center" }}>
+              <Text
+                style={{ textTransform: "capitalize" }}
+                text={formattedTime}
+                preset="userRow"
+              />
+            </View>
           </View>
-        </View>
-        <View style={{ ...ROW, flex: 1, marginTop: spacing[3] }}>
-          <View>
-            <Text preset="fieldLabel" text="Couru le :"/>
-            <Text preset="fieldLabel" text={formattedCreatedAt}/>
+          <View style={{ ...ROW, flex: 1, marginTop: spacing[3] }}>
+            <View>
+              <Text preset="fieldLabel" text="Couru le :"/>
+              <Text preset="fieldLabel" text={formattedCreatedAt}/>
+            </View>
           </View>
-        </View>
-      </TouchableOpacity>
-
+          </TouchableOpacity>
+        )
+      }
+      </>
     )
   }
 
