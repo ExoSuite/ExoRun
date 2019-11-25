@@ -108,6 +108,13 @@ export class ChooseUserRunScreen extends React.Component<IChooseUserRunScreenPro
   // tslint:disable-next-line: typedef
   public static navigationOptions = ({ navigation }) => ({
     headerLeft: NavigationBackButtonWithNestedStackNavigator(),
+    headerTitle: (
+      <Text
+        tx="common.my-run-time"
+        style={{ textAlign: "center", fontWeight: "bold", fontSize: 20}}
+      />
+    )
+
   })
 
   @action.bound
@@ -206,7 +213,7 @@ export class ChooseUserRunScreen extends React.Component<IChooseUserRunScreenPro
             </View>
             <View style={{...ROW, flex: 1, marginTop: spacing[3]}}>
               <View>
-                <Text preset="fieldLabel" text="Couru le :"/>
+                <Text preset="fieldLabel" tx="common.createdAt"/>
                 <Text preset="fieldLabel" text={formattedCreatedAt}/>
               </View>
             </View>
@@ -295,12 +302,6 @@ export class ChooseUserRunScreen extends React.Component<IChooseUserRunScreenPro
                 />
 
               </Menu>
-            </View>
-            <View style={HEADER_TITLE}>
-              <Text
-                text={`Mes temps de courses`}
-                style={{ alignSelf: "center", fontWeight: "bold", fontSize: 20}}
-              />
             </View>
           </View>
         </View>

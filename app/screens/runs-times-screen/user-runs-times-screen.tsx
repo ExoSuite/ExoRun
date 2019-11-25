@@ -1,6 +1,6 @@
 import * as React from "react"
 import { inject, observer } from "mobx-react"
-import { FlatList, Picker, TouchableOpacity, View, ViewStyle } from "react-native"
+import { FlatList, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Text } from "@components/text"
 import { Screen } from "@components/screen"
 import { color, spacing } from "../../theme"
@@ -22,8 +22,6 @@ import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/compon
 import { Menu } from "react-native-paper"
 import { Button } from "@components/button"
 import { translate } from "@i18n/translate"
-import { FontawesomeIcon } from "@components/fontawesome-icon"
-import { RunsScreen } from "@screens/runs-screen"
 
 export interface IRunsTimesScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -32,14 +30,6 @@ const HEADER_PICKER: ViewStyle = {
   flex: 1,
   flexDirection: "row",
   backgroundColor: color.palette.backgroundDarkerer,
-}
-
-const HEADER_TITLE: ViewStyle = {
-  flex: 2,
-  flexDirection: "row",
-  backgroundColor: color.palette.backgroundDarkerer,
-  justifyContent: "flex-end",
-  paddingRight: spacing[4],
 }
 
 const TITLE: ViewStyle = {
@@ -106,13 +96,28 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
   private onEndReachedCalledDuringMomentum = true
   // @ts-ignore
   @observable private readonly runId: string = this.props.navigation.getParam("run_id")
-  // @ts-ignore
-  private readonly targetProfile: IUser = this.props.navigation.getParam("targetProfile")
   @observable private userRuns: IUserRun[] = []
+  // @ts-ignore
+  private static targetProfile: IUser = {}
 
   // tslint:disable-next-line: typedef
   public static navigationOptions = ({ navigation }) => ({
     headerLeft: NavigationBackButtonWithNestedStackNavigator(),
+    headerTitle: renderIf.if(navigation.getParam("me") === true)(
+      (
+        <Text
+          tx="common.my-run-time"
+          style={{ textAlign: "center", fontWeight: "bold", fontSize: 20 }}
+        />
+      )
+    ).else(
+      (
+        <Text
+          text={`${translate("common.other-run-time")} ${UserRunsTimesScreen.targetProfile.first_name} ${this.targetProfile.last_name}`}
+          style={{ textAlign: "center", fontWeight: "bold", fontSize: 20 }}
+        />
+      )
+    ).evaluate()
   })
 
   @action.bound
@@ -178,7 +183,8 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
       queriesParams.page = this.currentPage
     }
 
-    const results = await api.get(`user/${this.targetProfile.id}/run/${this.runId}/user_run`, queriesParams).catch(onSearchError)
+    const results = await api.get(
+      `user/${UserRunsTimesScreen.targetProfile.id}/run/${this.runId}/user_run`, queriesParams).catch(onSearchError)
     this.currentPage = results.data.current_page
     if (!neededNextPage) {
       this.maxPage = results.data.last_page
@@ -224,7 +230,7 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
           </View>
           <View style={{ ...ROW, flex: 1, marginTop: spacing[3] }}>
             <View>
-              <Text preset="fieldLabel" text="Couru le :"/>
+              <Text preset="fieldLabel" tx="common.createdAt"/>
               <Text preset="fieldLabel" text={formattedCreatedAt}/>
             </View>
           </View>
@@ -244,7 +250,8 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
   public async componentDidMount(): Promise<void> {
     const { api } = this.props
 
-    const results = await api.get(`user/${this.targetProfile.id}/run/${this.runId}/user_run`).catch(onSearchError)
+    UserRunsTimesScreen.targetProfile = this.props.navigation.getParam("targetProfile")
+    const results = await api.get(`user/${UserRunsTimesScreen.targetProfile.id}/run/${this.runId}/user_run`).catch(onSearchError)
     this.userRuns.push(...results.data.data)
     await this.onUserTypeSearch("*")
   }
@@ -313,23 +320,6 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
                 />
 
               </Menu>
-            </View>
-            <View style={HEADER_TITLE}>
-              {renderIf.if(this.props.navigation.getParam("me") === true)(
-                (
-                  <Text
-                    text={`Mes temps de courses`}
-                    style={{ alignSelf: "center", fontWeight: "bold", fontSize: 20 }}
-                  />
-                )
-              ).else(
-                (
-                  <Text
-                    text={`Temps de : ${this.targetProfile.first_name} ${this.targetProfile.last_name}`}
-                    style={{ alignSelf: "center", fontWeight: "bold", fontSize: 20 }}
-                  />
-                )
-              ).evaluate()}
             </View>
           </View>
         </View>

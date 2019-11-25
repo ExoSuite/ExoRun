@@ -80,7 +80,9 @@
     "deleteFriend": "UnFriend",
     "friendsList": "Friends",
     "accept": "Accept",
-    "decline": "Decline"
+    "decline": "Decline",
+    "my-run-time": "My run times",
+    "other-run-time": "'s run  times"
   },
   "auth": {
     "powered": "Powered by ",
