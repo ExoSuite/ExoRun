@@ -113,7 +113,7 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
     ).else(
       (
         <Text
-          text={`${translate("common.other-run-time")} ${UserRunsTimesScreen.targetProfile.first_name} ${this.targetProfile.last_name}`}
+          text={`${translate("common.other-run-time")} ${UserRunsTimesScreen.targetProfile.first_name} ${UserRunsTimesScreen.targetProfile.last_name}`}
           style={{ textAlign: "center", fontWeight: "bold", fontSize: 20 }}
         />
       )
