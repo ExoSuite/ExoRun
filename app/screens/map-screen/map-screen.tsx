@@ -141,7 +141,7 @@ export class MapScreen extends React.Component<IMapScreenProps> {
 
           {renderIf(this.featureCollection.features.length > 0)(
             (
-              <MapboxGL.ShapeSource id="runSource" shape={this.featureCollection} hitbox={null}>
+              <MapboxGL.ShapeSource id="runSource" shape={this.featureCollection}>
                 <MapboxGL.FillLayer
                   id="runFillLayer"
                   style={layerStyles.smileyFace}

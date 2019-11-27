@@ -19,11 +19,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.21.0</string>
+	<string>0.22.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>218</string>
+	<string>219</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false />
 	<key>LSRequiresIPhoneOS</key>
@@ -42,6 +42,8 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Used for AR</string>
 	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Used with in combination with AR</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Used with in combination with AR</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Used with in combination with AR</string>
@@ -88,6 +90,13 @@
 		<string>FontAwesome5_Pro_Light.ttf</string>
 		<string>FontAwesome5_Pro_Regular.ttf</string>
 		<string>FontAwesome5_Pro_Solid.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>location</string>
+		<string>processing</string>
+		<string>remote-notification</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>

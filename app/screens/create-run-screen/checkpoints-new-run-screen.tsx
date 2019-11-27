@@ -229,7 +229,7 @@ export class CheckpointsNewRunScreen extends React.Component<NavigationStackScre
           <MapboxGL.UserLocation onUpdate={this.buildFirstCheckpoint}/>
 
           {renderIf(this.checkpoints.length > 0)(
-            <MapboxGL.ShapeSource id="runSource" shape={this.collection()} hitbox={null}>
+            <MapboxGL.ShapeSource id="runSource" shape={this.collection()}>
               <MapboxGL.FillLayer
                 id="runFillLayer"
                 style={layerStyles.smileyFace}

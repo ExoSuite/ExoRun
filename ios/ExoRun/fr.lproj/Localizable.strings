@@ -10,3 +10,4 @@
 "NSMicrophoneUsageDescription" = "Cette application ne nécessite pas d'accès au microphone.";
 "NSCameraUsageDescription" = "Utilisé pour afficher le mode réalité augmentée.";
 "NSLocationWhenInUseUsageDescription" = "Utilisé avec en combinaison avec la réalité augmentée.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Utilisé avec en combinaison avec la réalité augmentée.";
