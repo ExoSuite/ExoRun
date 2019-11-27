@@ -19,11 +19,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.22.0</string>
+	<string>0.22.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>219</string>
+	<string>220</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false />
 	<key>LSRequiresIPhoneOS</key>
@@ -41,9 +41,9 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Used for AR</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Used with in combination with AR</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Used with in combination with AR</string>
+	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Used with in combination with AR</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Used with in combination with AR</string>
@@ -93,10 +93,7 @@
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>fetch</string>
 		<string>location</string>
-		<string>processing</string>
-		<string>remote-notification</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
