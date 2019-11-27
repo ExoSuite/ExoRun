@@ -12,6 +12,7 @@ import { translate } from "@i18n/translate"
 import autobind from "autobind-decorator"
 import { AppScreens } from "@navigation/navigation-definitions"
 import { isEmpty } from "lodash-es"
+import Geolocation from "react-native-geolocation-service";
 
 const ROOT: ViewStyle = {
   backgroundColor: color.background,
@@ -80,6 +81,10 @@ export class CreateRunScreen extends React.Component {
   @action.bound
   private updateName(name: string): void {
     this.name = name
+  }
+
+  public componentDidMount(): void {
+    Geolocation.requestAuthorization()
   }
 
   // tslint:disable-next-line:no-feature-envy
