@@ -25,9 +25,9 @@
 	<key>CFBundleVersion</key>
 	<string>219</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
-	<false />
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
-	<true />
+	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
@@ -35,15 +35,15 @@
 			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true />
+				<true/>
 			</dict>
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Used for AR</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Used with in combination with AR</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Used with in combination with AR</string>
+	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Used with in combination with AR</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Used with in combination with AR</string>
@@ -93,17 +93,14 @@
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>fetch</string>
 		<string>location</string>
-		<string>processing</string>
-		<string>remote-notification</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
 	<key>UIRequiresFullScreen</key>
-	<true />
+	<true/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>
@@ -119,6 +116,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false />
+	<false/>
 </dict>
 </plist>
