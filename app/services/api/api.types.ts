@@ -135,6 +135,14 @@ export interface ITime extends ITimestamps {
   user_run_id: string
 }
 
+export interface IComparableTime {
+  check_point_id: string,
+  id: string,
+  my_current_time: number,
+  other_current_time: number,
+  run_id: string,
+}
+
 export interface IFollow extends ITimestamps {
   followed_id: string,
   following: IUser,

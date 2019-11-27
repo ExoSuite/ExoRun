@@ -23,7 +23,9 @@
     "next-step": "Étape suivante",
     "previous-step": "Étape précédente",
     "follow": "Personnes suivies par",
-    "followers": "Followers de"
+    "followers": "Followers de",
+    "my-run-time": "Mes temps de courses",
+    "other-run-time": "Temps de course de"
   },
   "checkpoint": {
     "from-run": "Ajouter des points de passage à la course"

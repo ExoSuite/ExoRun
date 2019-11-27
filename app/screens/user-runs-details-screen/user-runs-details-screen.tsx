@@ -11,6 +11,9 @@ import { ApiResponse } from "apisauce"
 import { Injection, InjectionProps } from "@services/injections"
 import autobind from "autobind-decorator"
 import { FAB } from "react-native-paper"
+import { AppScreens } from "@navigation/navigation-definitions"
+import { IBoolFunction } from "@custom-types/functions"
+import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 
 export interface IUserRunsDetailsScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -78,9 +81,24 @@ export class UserRunsDetailsScreen extends React.Component<IUserRunsDetailsScree
   private readonly userRun : IUserRun = this.props.navigation.getParam("item")
   @observable private readonly userRunTimes : ITime[] = this.userRun.times.slice()
 
+  // tslint:disable-next-line: typedef
+  public static navigationOptions = ({ navigation }) => ({
+    headerLeft: NavigationBackButtonWithNestedStackNavigator(),
+  })
+
   @autobind
   private changeIsFabOpen(): any {
     this.isFabOpen = !this.isFabOpen
+  }
+
+  @autobind
+  private onPressCompare(): void {
+    this.props.navigation.navigate(
+      AppScreens.COMPARE_USER_RUN,
+      {
+        targetUserRun: this.userRun,
+      }
+    )
   }
 
   @autobind
@@ -176,8 +194,9 @@ export class UserRunsDetailsScreen extends React.Component<IUserRunsDetailsScree
           style={fab}
           actions={[
             { icon: "delete", label: "Supprimer", onPress: this.onPressDelete},
+            { icon: "timer", label: "Comparer à mes temps", onPress: this.onPressCompare},
           ]}
-          icon={this.isFabOpen ? "remove" : "add"}
+          icon={this.isFabOpen ? "minus" : "plus"}
           open={this.isFabOpen}
           onStateChange={this.changeIsFabOpen}
         />

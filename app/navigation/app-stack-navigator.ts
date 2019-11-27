@@ -26,6 +26,8 @@ import { FriendshipsListScreen } from "@screens/friendships-list-screen"
 import { PendingRequestsScreen } from "@screens/pending-requests-screen"
 import { CreateRunScreen } from "@screens/create-run-screen/create-run-screen"
 import { CheckpointsNewRunScreen } from "@screens/create-run-screen/checkpoints-new-run-screen"
+import { CompareRunsTimesScreen } from "@screens/compare-runs-times-screen"
+import { ChooseUserRunScreen } from "@screens/choose-user-run-screen"
 
 export const AppStackNavigatorImpl = createStackNavigator({
   [AppScreens.HOME]: AppBottomTabNavigator,
@@ -44,6 +46,8 @@ export const AppStackNavigatorImpl = createStackNavigator({
   [AppScreens.GET_FOLLOWS]: FollowsListScreen,
   [AppScreens.GET_FRIENDS]: FriendshipsListScreen,
   [AppScreens.PENDING_REQUESTS]: PendingRequestsScreen,
+  [AppScreens.COMPARE_USER_RUN]: CompareRunsTimesScreen,
+  [AppScreens.CHOOSE_USER_RUN]: ChooseUserRunScreen,
 }, {
   // @ts-ignore
   defaultNavigationOptions: {

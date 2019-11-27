@@ -1,35 +1,41 @@
 import * as React from "react"
 import { inject, observer } from "mobx-react"
 import { FlatList, TouchableOpacity, View, ViewStyle } from "react-native"
-import { Text } from "@components/text"
-import { Screen } from "@components/screen"
+import { Text } from "../../components/text"
+import { Screen } from "../../components/screen"
 import { color, spacing } from "../../theme"
 import { NavigationScreenProps } from "react-navigation"
-import moment from "moment"
-import { AppScreens } from "@navigation/navigation-definitions"
-import autobind from "autobind-decorator"
-import { IBoolFunction } from "@types"
-import { action, observable } from "mobx"
-import { isEmpty, noop, remove } from "lodash-es"
 import { Injection, InjectionProps } from "@services/injections"
-import { IUser, IUserRun } from "@services/api"
-import { ApiResponse } from "apisauce"
-import { SortFields } from "@utils/sort-fields"
 import { UserRunFilters } from "@utils/user-run-filters"
+import { ApiResponse } from "apisauce"
 import * as FilterFunctons from "@utils/filters-functions"
-import { renderIf } from "@utils/render-if"
+import { SortFields } from "@utils/sort-fields"
+import { IUser, IUserRun } from "@services/api"
+import { action, observable } from "mobx"
+import { isEmpty, noop } from "lodash-es"
+import autobind from "autobind-decorator"
+import moment from "moment"
+import { IVoidFunction } from "@custom-types/functions"
 import { NavigationBackButtonWithNestedStackNavigator } from "@navigation/components"
 import { Menu } from "react-native-paper"
 import { Button } from "@components/button"
 import { translate } from "@i18n/translate"
 
-export interface IRunsTimesScreenProps extends NavigationScreenProps<{}>, InjectionProps {
+export interface IChooseUserRunScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
 
 const HEADER_PICKER: ViewStyle = {
   flex: 1,
   flexDirection: "row",
+  backgroundColor: color.palette.backgroundDarkerer
+}
+
+const HEADER_TITLE: ViewStyle = {
+  flex: 2,
+  flexDirection: "row",
   backgroundColor: color.palette.backgroundDarkerer,
+  justifyContent: "flex-end",
+  paddingRight: spacing[4]
 }
 
 const TITLE: ViewStyle = {
@@ -41,7 +47,7 @@ const TITLE: ViewStyle = {
 
 const ROOT: ViewStyle = {
   backgroundColor: color.background,
-  flex: 1,
+  flex: 1
 }
 
 const TIME_CONTAINER: ViewStyle = {
@@ -55,11 +61,11 @@ const TIME_CONTAINER: ViewStyle = {
   shadowRadius: 3.84,
   elevation: 5,
   margin: spacing[2],
-  padding: spacing[2],
+  padding: spacing[2]
 }
 
 const ROW: ViewStyle = {
-  flexDirection: "row",
+  flexDirection: "row"
 }
 
 // @ts-ignore
@@ -67,8 +73,8 @@ const onSearchError = (): ApiResponse<any> => (
   {
     data: {
       data: [],
-      current_page: Number.MAX_SAFE_INTEGER,
-    },
+      current_page: Number.MAX_SAFE_INTEGER
+    }
   }
 )
 
@@ -76,7 +82,7 @@ const filters = {
   "best": FilterFunctons.ascentValue(SortFields.FINAL_TIME),
   "lower": FilterFunctons.decayValue(SortFields.FINAL_TIME),
   "oldest": FilterFunctons.decayValue(SortFields.CREATED_AT),
-  "younger": FilterFunctons.ascentValue(SortFields.CREATED_AT),
+  "younger": FilterFunctons.ascentValue(SortFields.CREATED_AT)
 }
 
 // tslint:disable-next-line:no-commented-code no-commented-out-code
@@ -86,43 +92,37 @@ const keyExtractor = (item: IUserRun, index: number): string => item.id
 // tslint:disable-next-line:completed-docs
 @inject(Injection.Api)
 @observer
-export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> {
+export class ChooseUserRunScreen extends React.Component<IChooseUserRunScreenProps> {
   private currentPage: number
   private filterValue: string = UserRunFilters.YOUNGER
-
   @observable private isOptionOpened = false
   private lastQuery: string
   private maxPage: number
   private onEndReachedCalledDuringMomentum = true
   // @ts-ignore
   @observable private readonly runId: string = this.props.navigation.getParam("run_id")
-  @observable private userRuns: IUserRun[] = []
   // @ts-ignore
-  private static targetProfile: IUser = {}
+  private readonly targetProfile: IUser = this.props.navigation.getParam("targetProfile")
+  @observable private userRuns: IUserRun[] = []
 
   // tslint:disable-next-line: typedef
   public static navigationOptions = ({ navigation }) => ({
     headerLeft: NavigationBackButtonWithNestedStackNavigator(),
-    headerTitle: renderIf.if(navigation.getParam("me") === true)(
-      (
-        <Text
-          tx="common.my-run-time"
-          style={{ textAlign: "center", fontWeight: "bold", fontSize: 20 }}
-        />
-      )
-    ).else(
-      (
-        <Text
-          text={`${translate("common.other-run-time")} ${UserRunsTimesScreen.targetProfile.first_name} ${UserRunsTimesScreen.targetProfile.last_name}`}
-          style={{ textAlign: "center", fontWeight: "bold", fontSize: 20 }}
-        />
-      )
-    ).evaluate()
+    headerTitle: (
+      <Text
+        tx="common.my-run-time"
+        style={{ textAlign: "center", fontWeight: "bold", fontSize: 20}}
+      />
+    )
+
   })
 
   @action.bound
-  private deleteUserRun(userRunToDelete: IUserRun): void {
-    remove(this.userRuns, (userRun: IUserRun) => userRun.id === userRunToDelete.id)
+  private chooseUserRun(item: IUserRun): IVoidFunction {
+      return (): void => {
+        this.props.navigation.getParam("chooseMyUserRun")(item)
+        this.props.navigation.goBack()
+      }
   }
 
   @autobind
@@ -145,23 +145,8 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
       this.filterValue = item
 
       if (item === "best" || item === "lower" || item === "oldest" || item === "younger") {
-        this.userRuns = this.userRuns.slice().sort(filters[item])
-        this.toggleOptions()
+        this.userRuns = this.userRuns.slice().sort(filters[item]);
       }
-    }
-  }
-
-  @autobind
-  private onTimePressNavigateToDetails(item: IUserRun): IBoolFunction {
-
-    if (item.final_time !== 0) {
-      return (): boolean => this.props.navigation.navigate(
-        AppScreens.RUN_TIMES_DETAILS,
-        {
-          item,
-          deleteUserRun: this.deleteUserRun,
-        },
-      )
     }
   }
 
@@ -176,15 +161,14 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
     }
 
     const queriesParams: { page?: number, text: string } = {
-      text: query,
+      text: query
     }
 
     if (neededNextPage) {
       queriesParams.page = this.currentPage
     }
 
-    const results = await api.get(
-      `user/${UserRunsTimesScreen.targetProfile.id}/run/${this.runId}/user_run`, queriesParams).catch(onSearchError)
+    const results = await api.get(`user/${this.targetProfile.id}/run/${this.runId}/user_run`, queriesParams).catch(onSearchError)
     this.currentPage = results.data.current_page
     if (!neededNextPage) {
       this.maxPage = results.data.last_page
@@ -198,46 +182,45 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
 
   // tslint:disable-next-line:no-feature-envy
   @autobind
-  private renderTimes({ item }: { item: IUserRun }): React.ReactElement {
-    const formattedCreatedAt = moment(item.created_at).format("LLL")
+  private renderTimes({item}: { item: IUserRun }): React.ReactElement {
+    const formattedCreatedAt = moment(item.created_at).format("LLL");
     const time = new Date(
       0,
       0,
       0,
       (item.final_time / 3600),
       (item.final_time / 60) % 60,
-      item.final_time % 60,
-    )
+      item.final_time % 60
+    );
 
     const formattedTime = `${time.getHours().toString()} h ${time.getMinutes().toString()} min ${time.getSeconds().toString()} sec`
 
     return (
       <>
-      {
-        item.final_time > 0 && (
+        { item.final_time > 0 && (
           <TouchableOpacity
             style={TIME_CONTAINER}
-            onPress={this.onTimePressNavigateToDetails(item)}
+            onPress={this.chooseUserRun(item)}
           >
-          <View style={ROW}>
-            <View style={{ marginLeft: spacing[2], justifyContent: "center" }}>
-              <Text
-                style={{ textTransform: "capitalize" }}
-                text={formattedTime}
-                preset="userRow"
-              />
+            <View style={ROW}>
+              <View style={{marginLeft: spacing[2], justifyContent: "center"}}>
+                <Text
+                  style={{textTransform: "capitalize"}}
+                  text={formattedTime}
+                  preset="userRow"
+                />
+              </View>
             </View>
-          </View>
-          <View style={{ ...ROW, flex: 1, marginTop: spacing[3] }}>
-            <View>
-              <Text preset="fieldLabel" tx="common.createdAt"/>
-              <Text preset="fieldLabel" text={formattedCreatedAt}/>
+            <View style={{...ROW, flex: 1, marginTop: spacing[3]}}>
+              <View>
+                <Text preset="fieldLabel" tx="common.createdAt"/>
+                <Text preset="fieldLabel" text={formattedCreatedAt}/>
+              </View>
             </View>
-          </View>
           </TouchableOpacity>
-        )
-      }
+        )}
       </>
+
     )
   }
 
@@ -250,8 +233,7 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
   public async componentDidMount(): Promise<void> {
     const { api } = this.props
 
-    UserRunsTimesScreen.targetProfile = this.props.navigation.getParam("targetProfile")
-    const results = await api.get(`user/${UserRunsTimesScreen.targetProfile.id}/run/${this.runId}/user_run`).catch(onSearchError)
+    const results = await api.get(`user/${this.targetProfile.id}/run/${this.runId}/user_run`).catch(onSearchError)
     this.userRuns.push(...results.data.data)
     await this.onUserTypeSearch("*")
   }
@@ -268,7 +250,7 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
     return (
       <Screen style={ROOT} preset="fixed">
         <View style={TITLE}>
-          <View style={{ flex: 1, backgroundColor: color.palette.backgroundDarkerer, flexDirection: "row" }}>
+          <View style={{flex: 1, backgroundColor: color.palette.backgroundDarkerer, flexDirection: "row"}}>
             <View style={HEADER_PICKER}>
               <Menu
                 visible={this.isOptionOpened}
@@ -292,7 +274,7 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
                       style={{ textTransform: "capitalize" }}
                       text={translate(`run.${UserRunFilters.YOUNGER}`)}
                     />
-                   )}
+                  )}
                 />
                 <Menu.Item
                   onPress={onOldestSelected}
@@ -334,5 +316,5 @@ export class UserRunsTimesScreen extends React.Component<IRunsTimesScreenProps> 
 
       </Screen>
     )
-  }
+}
 }

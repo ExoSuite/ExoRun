@@ -168,6 +168,8 @@ interface IAnimationObjects {
 const floatingButton = (props: PartialIconProps): React.ReactElement =>
   <FontawesomeIcon name="feather-alt" size={props.size} color={palette.offWhite}/>
 
+const disabled = ACTION_BUTTON_DISABLED
+const enabled = ACTION_BUTTON
 const keyExtractor = (item: any, index: number): string => item.id
 
 /**
@@ -337,7 +339,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     }
   }
 
-  @autobind
+  @action.bound
   private async onPressDeleteFriendship(): Promise<void> {
     const { api } = this.props;
 
@@ -378,12 +380,14 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     })
   }
 
-  @autobind
+  @action.bound
   private async onPressSendAskFriendship(): Promise<void> {
     const { api } = this.props;
 
-    await api.post(`user/${this.userProfile.id}/friendship`);
-    this.hasMadeFriendshipAction = !this.hasMadeFriendshipAction
+    if (!this.hasMadeFriendshipAction) {
+      await api.post(`user/${this.userProfile.id}/friendship`);
+      this.hasMadeFriendshipAction = !this.hasMadeFriendshipAction
+    }
   }
 
   @autobind
@@ -506,6 +510,8 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
     const me = this.me;
     const visitorButtonIcon = this.isUserFollowedByVisitor ? "user-check" : "user"
     const visitorButtonText = this.isUserFollowedByVisitor ? "profile.following" : "profile.follow"
+    let button
+    this.hasMadeFriendshipAction ? button = disabled : button = enabled
 
     return (
       <Screen style={ROOT} preset="fixed">
@@ -571,7 +577,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
                     </Button>
                   ).evaluate()}
                   {renderIf.if(!me && this.isFriendshipDoneOrPending)(
-                    <Button onPress={this.onPressSendAskFriendship} style={ACTION_BUTTON}>
+                    <Button onPress={this.onPressSendAskFriendship} style={button} disabled={button !== enabled}>
                       <FontawesomeIcon color={palette.white} name="users" style={FOLLOW_ICON}/>
                       <Text tx={"profile.addFriend"} style={TEXT_ACTION_BUTTON}/>
                     </Button>
@@ -581,7 +587,7 @@ export class UserProfileScreenImpl extends React.Component<IPersonalProfileScree
                       <Text tx={"profile.addFriend"} style={TEXT_ACTION_BUTTON}/>
                     </Button>
                   ).elseIf(!me && !this.isFriendshipDoneOrPending && (this.friendship !== null))(
-                    <Button onPress={this.onPressDeleteFriendship} style={ACTION_BUTTON}>
+                    <Button onPress={this.onPressDeleteFriendship} style={button} disabled={button !== enabled}>
                       <FontawesomeIcon color={palette.white} name="users" style={FOLLOW_ICON}/>
                       <Text tx={"profile.deleteFriend"} style={TEXT_ACTION_BUTTON}/>
                     </Button>
