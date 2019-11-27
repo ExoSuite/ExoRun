@@ -26,6 +26,8 @@ import { Button } from "@components/button"
 import { translate } from "@i18n/translate"
 import { Menu } from "react-native-paper"
 import { RunType } from "@screens/create-run-screen/run-type"
+import { PERMISSIONS, request } from "react-native-permissions"
+import { Platform } from "@services/device"
 
 export interface IRunsScreenProps extends NavigationScreenProps<{}>, InjectionProps {
 }
@@ -242,8 +244,6 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
     const { api } = this.props
     this.routeAPIGetParcours = "user/me/run"
 
-    console.tron.logImportant(this.props.navigation.state.routeName)
-
     if (this.props.navigation.state.routeName === AppScreens.RUNS) {
       // @ts-ignore
       this.target = this.props.navigation.getParam("userProfile")
@@ -260,6 +260,14 @@ export class RunsScreen extends React.Component<IRunsScreenProps> {
     this.focusListener = this.props.navigation.addListener("didFocus", () => {
       this.onUserTypeSearch("*").catch(noop)
     });
+
+    if (Platform.iOS) {
+      await request(PERMISSIONS.IOS.CAMERA)
+      await request(PERMISSIONS.IOS.LOCATION_ALWAYS)
+    } else {
+      await request(PERMISSIONS.ANDROID.CAMERA)
+      await request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION)
+    }
   }
 
   public componentWillUnmount(): void {

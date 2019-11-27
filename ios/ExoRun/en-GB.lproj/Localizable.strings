@@ -10,3 +10,4 @@
 "NSMicrophoneUsageDescription" = "This app does not require access to the microphone.";
 "NSCameraUsageDescription" = "Used to show AR mode.";
 "NSLocationWhenInUseUsageDescription" = "Used with in combination with AR.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Used for AR";
